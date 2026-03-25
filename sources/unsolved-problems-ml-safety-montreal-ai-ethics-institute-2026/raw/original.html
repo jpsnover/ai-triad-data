@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head >
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unsolved Problems in ML Safety | Montreal AI Ethics Institute</title>
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+<!-- The SEO Framework by Sybre Waaijer -->
+<link rel="canonical" href="https://montrealethics.ai/unsolved-problems-in-ml-safety/" />
+<meta name="description" content="🔬 Research Summary by Dan Hendrycks, received his PhD from UC Berkeley where he was advised by Dawn Song and Jacob Steinhardt. He is now the director of the…" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Montreal AI Ethics Institute" />
+<meta property="og:title" content="Unsolved Problems in ML Safety | Montreal AI Ethics Institute" />
+<meta property="og:description" content="🔬 Research Summary by Dan Hendrycks, received his PhD from UC Berkeley where he was advised by Dawn Song and Jacob Steinhardt. He is now the director of the Center for AI Safety." />
+<meta property="og:url" content="https://montrealethics.ai/unsolved-problems-in-ml-safety/" />
+<meta property="og:image" content="https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="1024" />
+<meta property="article:published_time" content="2023-05-28T13:46:25+00:00" />
+<meta property="article:modified_time" content="2025-10-14T14:10:11+00:00" />
+<meta property="article:publisher" content="https://www.facebook.com/mtlaiethics" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@mtlaiethics" />
+<meta name="twitter:title" content="Unsolved Problems in ML Safety | Montreal AI Ethics Institute" />
+<meta name="twitter:description" content="🔬 Research Summary by Dan Hendrycks, received his PhD from UC Berkeley where he was advised by Dawn Song and Jacob Steinhardt. He is now the director of the Center for AI Safety." />
+<meta name="twitter:image" content="https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art.png" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://montrealethics.ai/#/schema/WebSite","url":"https://montrealethics.ai/","name":"Montreal AI Ethics Institute","description":"Democratizing AI ethics literacy","inLanguage":"en-US","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://montrealethics.ai/search/{search_term_string}/"},"query-input":"required name=search_term_string"},"publisher":{"@type":"Organization","@id":"https://montrealethics.ai/#/schema/Organization","name":"Montreal AI Ethics Institute","url":"https://montrealethics.ai/","logo":{"@type":"ImageObject","url":"https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header.png","contentUrl":"https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header.png","width":2000,"height":292,"contentSize":"28696"}}},{"@type":"WebPage","@id":"https://montrealethics.ai/unsolved-problems-in-ml-safety/","url":"https://montrealethics.ai/unsolved-problems-in-ml-safety/","name":"Unsolved Problems in ML Safety | Montreal AI Ethics Institute","description":"🔬 Research Summary by Dan Hendrycks, received his PhD from UC Berkeley where he was advised by Dawn Song and Jacob Steinhardt. He is now the director of the…","inLanguage":"en-US","isPartOf":{"@id":"https://montrealethics.ai/#/schema/WebSite"},"breadcrumb":{"@type":"BreadcrumbList","@id":"https://montrealethics.ai/#/schema/BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":"https://montrealethics.ai/","name":"Montreal AI Ethics Institute"},{"@type":"ListItem","position":2,"item":"https://montrealethics.ai/category/human-rights/","name":"Category: Human Rights"},{"@type":"ListItem","position":3,"item":"https://montrealethics.ai/category/human-rights/ethics/","name":"Category: Ethics"},{"@type":"ListItem","position":4,"name":"Unsolved Problems in ML Safety"}]},"potentialAction":{"@type":"ReadAction","target":"https://montrealethics.ai/unsolved-problems-in-ml-safety/"},"datePublished":"2023-05-28T13:46:25+00:00","dateModified":"2025-10-14T14:10:11+00:00","author":{"@type":"Person","@id":"https://montrealethics.ai/#/schema/Person/76e8afcdca0b8dcf8315ad7281d7ae36","name":"MAIEI"}}]}</script>
+<!-- / The SEO Framework by Sybre Waaijer | 6.17ms meta | 0.11ms boot -->
+
+<link rel='dns-prefetch' href='//static.addtoany.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Montreal AI Ethics Institute &raquo; Feed" href="https://montrealethics.ai/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Montreal AI Ethics Institute &raquo; Comments Feed" href="https://montrealethics.ai/comments/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/montrealethics.ai\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<link rel='stylesheet' id='genesis-blocks-style-css-css' href='https://montrealethics.ai/wp-content/plugins/genesis-blocks/dist/style-blocks.build.css?ver=1764946045' media='all' />
+<link rel='stylesheet' id='genesis-simple-share-plugin-css-css' href='https://montrealethics.ai/wp-content/plugins/genesis-simple-share/assets/css/share.min.css?ver=0.1.0' media='all' />
+<link rel='stylesheet' id='genesis-simple-share-genericons-css-css' href='https://montrealethics.ai/wp-content/plugins/genesis-simple-share/assets/css/genericons.min.css?ver=0.1.0' media='all' />
+<link rel='stylesheet' id='magazine-pro-css' href='https://montrealethics.ai/wp-content/themes/magazine-pro/style.css?ver=3.7.2' media='all' />
+<style id='magazine-pro-inline-css'>
+
+
+		button:focus,
+		button:hover,
+		input[type="button"]:focus,
+		input[type="button"]:hover,
+		input[type="reset"]:focus,
+		input[type="reset"]:hover,
+		input[type="submit"]:focus,
+		input[type="submit"]:hover,
+		.archive-pagination li a:focus,
+		.archive-pagination li a:hover,
+		.archive-pagination li.active a,
+		.button:focus,
+		.button:hover,
+		.entry-content .button:focus,
+		.entry-content .button:hover,
+		.sidebar .tagcloud a:focus,
+		.sidebar .tagcloud a:hover,
+		.sidebar .widget a.button:focus,
+		.sidebar .widget a.button:hover,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form input[type="submit"]:hover,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:focus,
+		.site-container div.wpforms-container-full .wpforms-form button[type="submit"]:hover,
+		.widget-area .enews-widget input[type="submit"] {
+			background-color: #27efff;
+			color: #222222;
+		}
+
+		
+
+		a,
+		.entry-title a:focus,
+		.entry-title a:hover,
+		.nav-secondary .genesis-nav-menu a:focus,
+		.nav-secondary .genesis-nav-menu a:hover,
+		.nav-secondary .genesis-nav-menu .current-menu-item > a,
+		.nav-secondary .genesis-nav-menu .sub-menu .current-menu-item > a:focus,
+		.nav-secondary .genesis-nav-menu .sub-menu .current-menu-item > a:hover {
+			color: #007bff;
+		}
+		
+		.custom-logo-link,
+		.wp-custom-logo .title-area {
+			max-width: 1200px;
+		}
+
+		.wp-custom-logo .header-widget-area {
+			max-width: calc(99% - 1200px);
+		}
+		
+		.site-header .search-form,
+		.wp-custom-logo .site-header .widget-area,
+		.wp-custom-logo .title-area {
+			float: none;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.wp-custom-logo .site-header .widget-area {
+			margin-top: 20px;
+			max-width: 100%;
+		}
+
+		.site-header .search-form {
+			max-width: 1200px;
+		}
+		
+</style>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://montrealethics.ai/wp-includes/css/dist/block-library/style.min.css?ver=6.8.3' media='all' />
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<link rel='stylesheet' id='wp-components-css' href='https://montrealethics.ai/wp-includes/css/dist/components/style.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='wp-preferences-css' href='https://montrealethics.ai/wp-includes/css/dist/preferences/style.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='wp-block-editor-css' href='https://montrealethics.ai/wp-includes/css/dist/block-editor/style.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='popup-maker-block-library-style-css' href='https://montrealethics.ai/wp-content/plugins/popup-maker/dist/packages/block-library-style.css?ver=dbea705cfafe089d65f1' media='all' />
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--theme-primary: #007bff;--wp--preset--color--theme-secondary: #27efff;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 12px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 20px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--normal: 16px;--wp--preset--font-size--larger: 24px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='streamline-css' href='https://montrealethics.ai/wp-content/plugins/icon-widget/assets/css/streamline.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='widgetopts-styles-css' href='https://montrealethics.ai/wp-content/plugins/widget-options/assets/css/widget-options.css?ver=4.1.3' media='all' />
+<link rel='stylesheet' id='wpos-slick-style-css' href='https://montrealethics.ai/wp-content/plugins/wp-responsive-recent-post-slider/assets/css/slick.css?ver=3.7.1' media='all' />
+<link rel='stylesheet' id='wppsac-public-style-css' href='https://montrealethics.ai/wp-content/plugins/wp-responsive-recent-post-slider/assets/css/recent-post-style.css?ver=3.7.1' media='all' />
+<link rel='stylesheet' id='awsm-team-css' href='https://montrealethics.ai/wp-content/plugins/awsm-team/css/team.min.css?ver=1.3.4' media='all' />
+<link rel='stylesheet' id='qi-addons-for-elementor-grid-style-css' href='https://montrealethics.ai/wp-content/plugins/qi-addons-for-elementor/assets/css/grid.min.css?ver=1.9.3' media='all' />
+<link rel='stylesheet' id='qi-addons-for-elementor-helper-parts-style-css' href='https://montrealethics.ai/wp-content/plugins/qi-addons-for-elementor/assets/css/helper-parts.min.css?ver=1.9.3' media='all' />
+<link rel='stylesheet' id='qi-addons-for-elementor-style-css' href='https://montrealethics.ai/wp-content/plugins/qi-addons-for-elementor/assets/css/main.min.css?ver=1.9.3' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://montrealethics.ai/wp-includes/css/dashicons.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='magazine-pro-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%7CRaleway%3A400%2C500%2C900&#038;ver=3.7.2' media='all' />
+<link rel='stylesheet' id='magazine-pro-gutenberg-css' href='https://montrealethics.ai/wp-content/themes/magazine-pro/lib/gutenberg/front-end.css?ver=3.7.2' media='all' />
+<style id='magazine-pro-gutenberg-inline-css'>
+.gb-block-post-grid .gb-block-post-grid-more-link:hover,
+.gb-block-post-grid header .gb-block-post-grid-title a:hover {
+	color: #007bff;
+}
+
+.button-more-link.gb-block-post-grid .gb-block-post-grid-more-link:hover,
+.gb-block-post-grid .is-grid .gb-block-post-grid-image a .gb-block-post-grid-date,
+.site-container .wp-block-button .wp-block-button__link {
+	background-color: #27efff;
+	color: #222222;
+}
+
+.button-more-link.gb-block-post-grid .gb-block-post-grid-more-link:hover,
+.wp-block-button .wp-block-button__link:not(.has-background),
+.wp-block-button .wp-block-button__link:not(.has-background):focus,
+.wp-block-button .wp-block-button__link:not(.has-background):hover {
+	color: #222222;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link {
+	color: #27efff;
+}
+
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:focus,
+.site-container .wp-block-button.is-style-outline .wp-block-button__link:hover {
+	color: #4affff;
+}
+
+.site-container .wp-block-pullquote.is-style-solid-color {
+	background-color: #27efff;
+}		.site-container .has-small-font-size {
+			font-size: 12px;
+		}		.site-container .has-normal-font-size {
+			font-size: 16px;
+		}		.site-container .has-large-font-size {
+			font-size: 20px;
+		}		.site-container .has-larger-font-size {
+			font-size: 24px;
+		}		.site-container .has-theme-primary-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-color,
+		.site-container .wp-block-button.is-style-outline .wp-block-button__link.has-theme-primary-color {
+			color: #007bff;
+		}
+		.site-container .has-theme-primary-background-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-primary-background-color,
+		.site-container .wp-block-pullquote.is-style-solid-color.has-theme-primary-background-color {
+			background-color: #007bff;
+		}		.site-container .has-theme-secondary-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-secondary-color,
+		.site-container .wp-block-button.is-style-outline .wp-block-button__link.has-theme-secondary-color {
+			color: #27efff;
+		}
+		.site-container .has-theme-secondary-background-color,
+		.site-container .wp-block-button .wp-block-button__link.has-theme-secondary-background-color,
+		.site-container .wp-block-pullquote.is-style-solid-color.has-theme-secondary-background-color {
+			background-color: #27efff;
+		}
+</style>
+<link rel='stylesheet' id='simple-social-icons-font-css' href='https://montrealethics.ai/wp-content/plugins/simple-social-icons/css/style.css?ver=4.0.0' media='all' />
+<link rel='stylesheet' id='popup-maker-site-css' href='//montrealethics.ai/wp-content/uploads/pum/pum-site-styles.css?generated=1755182856&#038;ver=1.21.5' media='all' />
+<link rel='stylesheet' id='swiper-css' href='https://montrealethics.ai/wp-content/plugins/qi-addons-for-elementor/assets/plugins/swiper/8.4.5/swiper.min.css?ver=8.4.5' media='all' />
+<link rel='stylesheet' id='addtoany-css' href='https://montrealethics.ai/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.16' media='all' />
+<link rel='stylesheet' id='wp-featherlight-css' href='https://montrealethics.ai/wp-content/plugins/wp-featherlight/css/wp-featherlight.min.css?ver=1.3.4' media='all' />
+<link rel='stylesheet' id='lightslider-style-css' href='https://montrealethics.ai/wp-content/plugins/wpstudio-testimonial-slider/assets/css/lightslider.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='gts-style-css' href='https://montrealethics.ai/wp-content/plugins/wpstudio-testimonial-slider/assets/css/gts-style.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://montrealethics.ai/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.31.0' media='all' />
+<link rel='stylesheet' id='eael-general-css' href='https://montrealethics.ai/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=6.2.4' media='all' />
+<script src="https://montrealethics.ai/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://montrealethics.ai/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/genesis-simple-share/assets/js/sharrre/jquery.sharrre.min.js?ver=0.1.0" id="genesis-simple-share-plugin-js-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/genesis-simple-share/assets/js/waypoints.min.js?ver=0.1.0" id="genesis-simple-share-waypoint-js-js"></script>
+<script id="addtoany-core-js-before">
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+</script>
+<script defer src="https://static.addtoany.com/menu/page.js" id="addtoany-core-js"></script>
+<script defer src="https://montrealethics.ai/wp-content/plugins/add-to-any/addtoany.min.js?ver=1.1" id="addtoany-jquery-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/related-posts-thumbnails/assets/js/front.min.js?ver=4.3.2" id="rpt_front_style-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/related-posts-thumbnails/assets/js/lazy-load.js?ver=4.3.2" id="rpt-lazy-load-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/wpstudio-testimonial-slider/assets/js/lightslider.min.js?ver=6.8.3" id="gts-lighslider-js"></script>
+<link rel="https://api.w.org/" href="https://montrealethics.ai/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://montrealethics.ai/wp-json/wp/v2/posts/4482" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://montrealethics.ai/xmlrpc.php?rsd" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://montrealethics.ai/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmontrealethics.ai%2Funsolved-problems-in-ml-safety%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://montrealethics.ai/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fmontrealethics.ai%2Funsolved-problems-in-ml-safety%2F&#038;format=xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href='https://fonts.googleapis.com/css2?display=swap&family=Quattrocento+Sans:wght@400;700' rel='stylesheet'>        <style>
+            #related_posts_thumbnails li {
+                border-right: 1px solid #dddddd;
+                background-color: #ffffff            }
+
+            #related_posts_thumbnails li:hover {
+                background-color: #eeeeee;
+            }
+
+            .relpost_content {
+                font-size: 18px;
+                color: #333333;
+            }
+
+            .relpost-block-single {
+                background-color: #ffffff;
+                border-right: 1px solid #dddddd;
+                border-left: 1px solid #dddddd;
+                margin-right: -1px;
+            }
+
+            .relpost-block-single:hover {
+                background-color: #eeeeee;
+            }
+        </style>
+
+        <!-- Fathom - beautiful, simple website analytics -->
+<script src="https://cdn.usefathom.com/script.js" data-site="VKVPDLLI" defer></script>
+<!-- / Fathom --><style type="text/css" id="gs-faq-critical">.gs-faq {padding: 5px 0;}.gs-faq__question {display: none;margin-top: 10px;text-align: left;white-space: normal;width: 100%;}.js .gs-faq__question {display: block;}.gs-faq__question:first-of-type {margin-top: 0;}.js .gs-faq__answer {display: none;padding: 5px;}.gs-faq__answer p:last-of-type {margin-bottom: 0;}.js .gs-faq__answer__heading {display: none;}.gs-faq__answer.no-animation.gs-faq--expanded {display: block;}</style><meta name="generator" content="Elementor 3.31.0; features: e_font_icon_svg, additional_custom_breakpoints, e_element_cache; settings: css_print_method-external, google_font-enabled, font_display-swap">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://montrealethics.ai/wp-content/uploads/2021/01/cropped-NEWlogo-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://montrealethics.ai/wp-content/uploads/2021/01/cropped-NEWlogo-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://montrealethics.ai/wp-content/uploads/2021/01/cropped-NEWlogo-180x180.png" />
+<meta name="msapplication-TileImage" content="https://montrealethics.ai/wp-content/uploads/2021/01/cropped-NEWlogo-270x270.png" />
+	<style id="egf-frontend-styles" type="text/css">
+		p {font-family: 'Quattrocento Sans', sans-serif;font-size: 21px;font-style: normal;font-weight: 400;} h1 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 700;} h2 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 700;} h3 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 700;} h4 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 400;} h5 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 400;} h6 {font-family: 'Quattrocento Sans', sans-serif;font-style: normal;font-weight: 400;} 	</style>
+	</head>
+<body class="wp-singular post-template-default single single-post postid-4482 single-format-standard wp-custom-logo wp-embed-responsive wp-theme-genesis wp-child-theme-magazine-pro qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wp-featherlight-captions header-full-width content-sidebar genesis-breadcrumbs-hidden genesis-singular-image-visible genesis-footer-widgets-visible elementor-default elementor-kit-14111" itemscope itemtype="https://schema.org/WebPage"><div class="site-container"><ul class="genesis-skip-link"><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to main content</a></li><li><a href="#genesis-nav-secondary" class="screen-reader-shortcut"> Skip to secondary menu</a></li><li><a href="#genesis-sidebar-primary" class="screen-reader-shortcut"> Skip to primary sidebar</a></li><li><a href="#genesis-footer-widgets" class="screen-reader-shortcut"> Skip to footer</a></li></ul><header class="site-header" itemscope itemtype="https://schema.org/WPHeader"><div class="wrap"><div class="title-area"><a href="https://montrealethics.ai/" class="custom-logo-link" rel="home"><img fetchpriority="high" width="2000" height="292" src="https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header.png" class="custom-logo" alt="Montreal AI Ethics Institute" decoding="async" srcset="https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header.png 2000w, https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header-300x44.png 300w, https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header-1200x175.png 1200w, https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header-768x112.png 768w, https://montrealethics.ai/wp-content/uploads/2024/12/cropped-MAIEI-Top-Banner-Header-1536x224.png 1536w" sizes="(max-width: 2000px) 100vw, 2000px" /></a><p class="site-title" itemprop="headline">Montreal AI Ethics Institute</p><p class="site-description" itemprop="description">Democratizing AI ethics literacy</p></div></div></header><nav class="nav-secondary" aria-label="Secondary" id="genesis-nav-secondary" itemscope itemtype="https://schema.org/SiteNavigationElement"><div class="wrap"><ul id="menu-after-header-menu" class="menu genesis-nav-menu menu-secondary js-superfish"><li id="menu-item-14285" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-14285"><a href="https://montrealethics.ai/blog/" itemprop="url"><span itemprop="name">Articles</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-14293" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14293"><a href="https://montrealethics.ai/category/public-policy/" itemprop="url"><span itemprop="name">Public Policy</span></a></li>
+	<li id="menu-item-14294" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14294"><a href="https://montrealethics.ai/category/privacy-security/" itemprop="url"><span itemprop="name">Privacy &amp; Security</span></a></li>
+	<li id="menu-item-14286" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-14286"><a href="https://montrealethics.ai/category/human-rights/" itemprop="url"><span itemprop="name">Human Rights</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-14325" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-14325"><a href="https://montrealethics.ai/category/human-rights/ethics/" itemprop="url"><span itemprop="name">Ethics</span></a></li>
+		<li id="menu-item-14296" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14296"><a href="https://montrealethics.ai/category/human-rights/jedi/" itemprop="url"><span itemprop="name">JEDI (Justice, Equity, Diversity, Inclusion</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-14295" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14295"><a href="https://montrealethics.ai/category/climate/" itemprop="url"><span itemprop="name">Climate</span></a></li>
+	<li id="menu-item-14291" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-14291"><a href="https://montrealethics.ai/category/design/" itemprop="url"><span itemprop="name">Design</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-14292" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-14292"><a href="https://montrealethics.ai/category/design/emerging-technology/" itemprop="url"><span itemprop="name">Emerging Technology</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-14288" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-14288"><a href="https://montrealethics.ai/category/application-adoption/" itemprop="url"><span itemprop="name">Application &amp; Adoption</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-14289" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14289"><a href="https://montrealethics.ai/category/application-adoption/health/" itemprop="url"><span itemprop="name">Health</span></a></li>
+		<li id="menu-item-14305" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14305"><a href="https://montrealethics.ai/category/application-adoption/education/" itemprop="url"><span itemprop="name">Education</span></a></li>
+		<li id="menu-item-14290" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-14290"><a href="https://montrealethics.ai/category/application-adoption/government/" itemprop="url"><span itemprop="name">Government</span></a>
+		<ul class="sub-menu">
+			<li id="menu-item-14298" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14298"><a href="https://montrealethics.ai/category/application-adoption/government/military/" itemprop="url"><span itemprop="name">Military</span></a></li>
+			<li id="menu-item-14299" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14299"><a href="https://montrealethics.ai/category/application-adoption/government/public-works/" itemprop="url"><span itemprop="name">Public Works</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-14297" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-14297"><a href="https://montrealethics.ai/category/application-adoption/labour/" itemprop="url"><span itemprop="name">Labour</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-14303" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-14303"><a href="https://montrealethics.ai/category/arts-culture/" itemprop="url"><span itemprop="name">Arts &amp; Culture</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-14300" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14300"><a href="https://montrealethics.ai/category/arts-culture/film-tv/" itemprop="url"><span itemprop="name">Film &amp; TV</span></a></li>
+		<li id="menu-item-14301" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14301"><a href="https://montrealethics.ai/category/arts-culture/music/" itemprop="url"><span itemprop="name">Music</span></a></li>
+		<li id="menu-item-14302" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14302"><a href="https://montrealethics.ai/category/arts-culture/pop-culture/" itemprop="url"><span itemprop="name">Pop Culture</span></a></li>
+		<li id="menu-item-14304" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14304"><a href="https://montrealethics.ai/category/arts-culture/digital-art/" itemprop="url"><span itemprop="name">Digital Art</span></a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-14315" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-has-children menu-item-14315"><a href="https://montrealethics.ai/blog/" itemprop="url"><span itemprop="name">Columns</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-14313" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14313"><a href="https://montrealethics.ai/category/insights/ai-policy-corner/" itemprop="url"><span itemprop="name">AI Policy Corner</span></a></li>
+	<li id="menu-item-14314" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14314"><a href="https://montrealethics.ai/category/insights/recess/" itemprop="url"><span itemprop="name">Recess</span></a></li>
+	<li id="menu-item-14500" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14500"><a href="https://montrealethics.ai/category/insights/tech-futures/" itemprop="url"><span itemprop="name">Tech Futures</span></a></li>
+</ul>
+</li>
+<li id="menu-item-14282" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14282"><a href="https://brief.montrealethics.ai/" itemprop="url"><span itemprop="name">The AI Ethics Brief</span></a></li>
+<li id="menu-item-14281" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-14281"><a href="https://montrealethics.ai/dictionary/" itemprop="url"><span itemprop="name">AI Literacy</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-14327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14327"><a href="https://montrealethics.ai/category/rsum/" itemprop="url"><span itemprop="name">Research Summaries</span></a></li>
+	<li id="menu-item-14308" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14308"><a href="https://montrealethics.ai/dictionary/" itemprop="url"><span itemprop="name">AI Ethics Living Dictionary</span></a></li>
+	<li id="menu-item-14309" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14309"><a href="https://montrealethics.ai/learning-community/" itemprop="url"><span itemprop="name">Learning Community</span></a></li>
+</ul>
+</li>
+<li id="menu-item-14272" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-has-children menu-item-14272"><a href="https://montrealethics.ai/state/" itemprop="url"><span itemprop="name">The State of AI Ethics Report</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-14365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14365"><a href="https://montrealethics.ai/saier-vol-7-landing/" itemprop="url"><span itemprop="name">Volume 7 (November 2025)</span></a></li>
+	<li id="menu-item-14273" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14273"><a href="https://montrealethics.ai/volume6/" itemprop="url"><span itemprop="name">Volume 6 (February 2022)</span></a></li>
+	<li id="menu-item-14274" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14274"><a href="https://montrealethics.ai/volume5/" itemprop="url"><span itemprop="name">Volume 5 (July 2021)</span></a></li>
+	<li id="menu-item-14275" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14275"><a href="https://montrealethics.ai/volume4/" itemprop="url"><span itemprop="name">Volume 4 (April 2021)</span></a></li>
+	<li id="menu-item-14276" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14276"><a href="https://montrealethics.ai/jan2021/" itemprop="url"><span itemprop="name">Volume 3 (Jan 2021)</span></a></li>
+	<li id="menu-item-14277" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14277"><a href="https://montrealethics.ai/oct2020/" itemprop="url"><span itemprop="name">Volume 2 (Oct 2020)</span></a></li>
+	<li id="menu-item-14278" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-14278"><a href="https://montrealethics.ai/the-state-of-ai-ethics-report-june-2020/" itemprop="url"><span itemprop="name">Volume 1 (June 2020)</span></a></li>
+</ul>
+</li>
+<li id="menu-item-14267" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-14267"><a href="https://montrealethics.ai/about/" itemprop="url"><span itemprop="name">About</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-14269" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14269"><a href="https://montrealethics.ai/our-contributions-policy/" itemprop="url"><span itemprop="name">Our Contributions Policy</span></a></li>
+	<li id="menu-item-14270" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14270"><a href="https://montrealethics.ai/our-open-access-policy/" itemprop="url"><span itemprop="name">Our Open Access Policy</span></a></li>
+	<li id="menu-item-14271" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14271"><a href="https://montrealethics.ai/contact/" itemprop="url"><span itemprop="name">Contact</span></a></li>
+	<li id="menu-item-14268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14268"><a href="https://montrealethics.ai/donate/" itemprop="url"><span itemprop="name">Donate</span></a></li>
+</ul>
+</li>
+</ul></div></nav><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"><article class="post-4482 post type-post status-publish format-standard has-post-thumbnail category-application-adoption category-design category-emerging-technology category-ethics category-human-rights category-labour entry" aria-label="Unsolved Problems in ML Safety" itemscope itemtype="https://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Unsolved Problems in ML Safety</h1>
+<p class="entry-meta"><time class="entry-time" itemprop="datePublished" datetime="2023-05-28T08:46:25-05:00">May 28, 2023</time> </p></header><div class="entry-content" itemprop="text"><img width="420" height="420" src="https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art.png" class="singular-image entry-image" alt="" itemprop="image" decoding="async" srcset="https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art.png 1024w, https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art-300x300.png 300w, https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art-150x150.png 150w, https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art-768x768.png 768w, https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art-100x100.png 100w, https://montrealethics.ai/wp-content/uploads/2023/05/DALL·E-2023-05-28-19.15.23-an-abstract-depiction-of-safety-with-computers-in-the-background-in-a-sterile-environment-digital-art-500x500.png 500w" sizes="(max-width: 420px) 100vw, 420px" />
+<div class="wp-block-media-text is-stacked-on-mobile is-vertically-aligned-top" style="grid-template-columns:24% auto"><figure class="wp-block-media-text__media"><img decoding="async" width="1024" height="826" src="https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-1024x826.jpeg" alt="" class="wp-image-4483 size-full" srcset="https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-1024x826.jpeg 1024w, https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-300x242.jpeg 300w, https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-768x619.jpeg 768w, https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-1536x1239.jpeg 1536w, https://montrealethics.ai/wp-content/uploads/2023/05/dan-hendrycks-2048x1651.jpeg 2048w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure><div class="wp-block-media-text__content">
+<p class="has-medium-font-size">🔬 Research Summary by <strong>Dan Hendrycks, </strong>received his PhD from UC Berkeley where he was advised by Dawn Song and Jacob Steinhardt. He is now the director of the <a rel="noreferrer noopener" href="https://safe.ai/" target="_blank">Center for AI Safety</a>.</p>
+</div></div>
+
+
+
+<p></p>
+
+
+
+<p>[<a href="https://arxiv.org/abs/2109.13916">Original paper</a> by Dan Hendrycks, Nicholas Carlini, John Schulman, and Jacob Steinhardt]</p>
+
+
+
+<hr class="wp-block-separator has-css-opacity"/>
+
+
+
+<p><strong>Overview</strong>: As ML systems become more capable and integrated into society, the safety of such systems becomes increasingly important. This paper presents four broad areas in ML Safety: Robustness, Monitoring, Alignment, and Systemic Safety. We explore each area’s motivations and provide concrete research directions.</p>
+
+
+
+<hr class="wp-block-separator has-css-opacity"/>
+
+
+
+<h2 class="wp-block-heading"><strong>Introduction</strong></h2>
+
+
+
+<p>Over five months, the Boeing 737 MAX crashed twice, killing 346 people. It was later determined that Boeing had made unsafe design choices and pressured inspectors to bring the plane to market more quickly.</p>
+
+
+
+<p>Often, it takes a disaster like this for people to pay attention to safety concerns. As AI systems are rapidly improved and applied to new domains, failures will only become more consequential. It is, therefore, important for the ML research community to proactively design systems with safety in mind. As the adage goes, “An ounce of prevention is worth a pound of cure.”</p>
+
+
+
+<p>How can we reduce the probability of high-consequence failures of AI systems? Our goal in writing “Concrete Problems in ML Safety” is to draw attention to this question and list some research directions that address it. We would love to see the <a href="https://www.mlsafety.org/">ML Safety community</a> grow and hope that our paper can help guide this area of research and document its motivations.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>Key Insights</strong></h2>
+
+
+
+<p>We describe four research problems:</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>Robustness</strong>: how can we make systems reliable in the face of adversaries and highly unusual situations?</li>
+
+
+
+<li><strong>Monitoring</strong>: how can we detect anomalies, malicious uses, and discover unintended model functionality?</li>
+
+
+
+<li><strong>Alignment</strong>: how can we build models that represent and safely optimize difficult-to-specify human values?</li>
+
+
+
+<li><strong>Systemic Safety</strong>: how can we use ML to address broader risks related to how ML systems are handled? Examples include ML for cyber security and improving policy decision-making.</li>
+</ol>
+
+
+
+<p>This work is not the first to consider any of these areas. To view related literature, please refer to the <a href="https://arxiv.org/abs/2109.13916">original paper</a>.</p>
+
+
+
+<h3 class="wp-block-heading">Robustness</h3>
+
+
+
+<p><strong>Motivation</strong></p>
+
+
+
+<p>Current machine learning systems are not robust enough to handle real-world complexity and long-tail events. For example, failing to recognize a tilted stop sign, occluded, or represented on a LED matrix could cause loss of life.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="575" src="https://montrealethics.ai/wp-content/uploads/2023/05/image-23-1024x575.png" alt="" class="wp-image-4485" srcset="https://montrealethics.ai/wp-content/uploads/2023/05/image-23-1024x575.png 1024w, https://montrealethics.ai/wp-content/uploads/2023/05/image-23-300x169.png 300w, https://montrealethics.ai/wp-content/uploads/2023/05/image-23-768x431.png 768w, https://montrealethics.ai/wp-content/uploads/2023/05/image-23-1280x720.png 1280w, https://montrealethics.ai/wp-content/uploads/2023/05/image-23-1536x863.png 1536w, https://montrealethics.ai/wp-content/uploads/2023/05/image-23.png 1748w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p>Additionally, adversaries can easily manipulate vulnerabilities in ML systems and cause them to make mistakes. For example, adversaries may bypass the neural networks used to detect intruders or malware.<br></p>
+
+
+
+<p><strong>Some example directions</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Create robustness benchmarks that incorporate large distribution shifts and long tail events.</li>
+
+
+
+<li>Prevent <em>competent errors</em> where agents wrongly generalize and execute wrong routines.</li>
+
+
+
+<li>Improve system abilities to adapt and learn from novel scenarios.&nbsp;</li>
+
+
+
+<li>Explore defenses to adversarial attacks with an unknown specification (beyond the typical ‘lp ball’ setting).</li>
+
+
+
+<li>Develop adversarial defenses that can adapt at test time.&nbsp;</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading">Monitoring</h3>
+
+
+
+<p><strong>Motivation</strong></p>
+
+
+
+<p>When AI systems are deployed in high-stakes settings, it will be important for human operators to be alerted when there is an anomaly, an attack, or if the model is uncertain so that they can intervene. Also, capabilities have been known to emerge unexpectedly in AI systems. Human operators should understand how models function and what actions they can take to avoid unwanted surprises.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="450" src="https://montrealethics.ai/wp-content/uploads/2023/05/image-24-1024x450.png" alt="" class="wp-image-4486" srcset="https://montrealethics.ai/wp-content/uploads/2023/05/image-24-1024x450.png 1024w, https://montrealethics.ai/wp-content/uploads/2023/05/image-24-300x132.png 300w, https://montrealethics.ai/wp-content/uploads/2023/05/image-24-768x337.png 768w, https://montrealethics.ai/wp-content/uploads/2023/05/image-24-1536x674.png 1536w, https://montrealethics.ai/wp-content/uploads/2023/05/image-24.png 1754w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p><strong>Some example directions</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Improve model calibration (the appropriateness of output probabilities) and extend expressions of uncertainty to natural language.</li>
+
+
+
+<li>Train models to more accurately report the knowledge available to them.</li>
+
+
+
+<li>Detect when data has been poisoned, or back doors have been inserted into models.</li>
+
+
+
+<li>Develop a testbed to screen for potentially hazardous capabilities, such as the ability to execute malicious user-supplied code, generate illegal or unethical forms of content, etc.</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading">Alignment</h3>
+
+
+
+<p><strong>Motivation</strong></p>
+
+
+
+<p>While most technologies do not have goals and are simply tools, future machine learning systems may act to optimize objectives. Aligning objective functions with human values requires overcoming societal and technical challenges.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="333" src="https://montrealethics.ai/wp-content/uploads/2023/05/image-22-1024x333.png" alt="" class="wp-image-4484" srcset="https://montrealethics.ai/wp-content/uploads/2023/05/image-22-1024x333.png 1024w, https://montrealethics.ai/wp-content/uploads/2023/05/image-22-300x98.png 300w, https://montrealethics.ai/wp-content/uploads/2023/05/image-22-768x250.png 768w, https://montrealethics.ai/wp-content/uploads/2023/05/image-22-1536x500.png 1536w, https://montrealethics.ai/wp-content/uploads/2023/05/image-22.png 1752w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p><strong>Some example directions</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Align specific technologies, such as recommender systems, with well-being rather than engagement.</li>
+
+
+
+<li>Detect when ethical decisions are clear-cut or contentious.</li>
+
+
+
+<li>Train models to learn difficult-to-specify goals in interactive environments.</li>
+
+
+
+<li>Improve the robustness of reward models.</li>
+
+
+
+<li>Design minimally invasive agents that prefer easily reversible to irreversible actions.</li>
+
+
+
+<li>Teach ML systems to abide by rules and constraints specified in natural language.</li>
+
+
+
+<li>Mitigate and detect unintended instrumental goals such as <a href="https://arxiv.org/abs/1611.08219">self-preservation</a> or <a href="https://arxiv.org/abs/1912.01683">power-seeking</a>.</li>
+
+
+
+<li>Have agents balance and optimize many values since there is no agreement about the best set.</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading">Systemic Safety</h3>
+
+
+
+<p>ML systems are more likely to fail or be misdirected if the larger context in which they operate is insecure or turbulent. One research direction that can help combat this is <strong>ML for cyber security</strong>. There may be strong incentives for attackers to steal ML models, which could be used in dangerous ways or inherently dangerous and not fit for proliferation. ML could be used to develop better defensive systems that reduce the risk of attacks.</p>
+
+
+
+<p>Another research direction in this category is <strong>ML for informed decision-making</strong>. Even if ML systems are safe in and of themselves, they must still be <em>used </em>safely. During the cold war, misunderstanding and political turbulence exposed humanity to several close calls and brought us to the brink of catastrophe, demonstrating that systemic issues can make technologies unsafe. Using ML to help institutions make more informed decisions may help to combat these risks.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>Between the lines</strong></h2>
+
+
+
+<p>Ultimately, our goal as researchers should not just be to produce interesting work but to help steer the world in a better direction. We hope to highlight some safety problems that may be under-emphasized. This list was far from comprehensive, and we would be enthusiastic about further research into reducing high-consequence risks that may arise in the future.</p>
+</div><footer class="entry-footer"><div class="after-entry widget-area"><section id="custom_html-35" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><b>Want quick summaries of the latest research & reporting in AI ethics delivered to your inbox? Subscribe to the AI Ethics Brief. We publish bi-weekly.</b>
+<br>
+
+<iframe src="https://aiethics.substack.com/embed" width="800" height="250" style="border:0px solid #EEE; background:;" frameborder="0" scrolling="no"></iframe></div></div></section>
+</div></footer></article></main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope itemtype="https://schema.org/WPSideBar" id="genesis-sidebar-primary"><h2 class="genesis-sidebar-title screen-reader-text">Primary Sidebar</h2><section id="custom_html-53" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><iframe style="border: 0px solid #EEE;" src="https://aiethics.substack.com/embed" width="480" height="200" frameborder="0" scrolling="no"></iframe></div></div></section>
+<section id="search-7" class="widget widget_search"><div class="widget-wrap"><h3 class="widgettitle widget-title">🔍 SEARCH</h3>
+<form class="search-form" method="get" action="https://montrealethics.ai/" role="search" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction"><label class="search-form-label screen-reader-text" for="searchform-1">Search the site ...</label><input class="search-form-input" type="search" name="s" id="searchform-1" placeholder="Search the site ..." itemprop="query-input"><input class="search-form-submit" type="submit" value="Search"><meta content="https://montrealethics.ai/?s={s}" itemprop="target"></form></div></section>
+<section id="featured-post-9" class="widget featured-content featuredpost"><div class="widget-wrap"><h3 class="widgettitle widget-title">Spotlight</h3>
+<article class="post-14494 post type-post status-publish format-standard has-post-thumbnail category-insights category-spotlight category-tech-futures entry" aria-label="Tech Futures: Diversity of Thought and Experience: The UN&#8217;s Scientific Panel on AI"><a href="https://montrealethics.ai/tech-futures-dicersity-of-thought-and-experience-the-uns-scientific-panel-on-ai/" class="alignleft" aria-hidden="true" tabindex="-1"><img width="630" height="350" src="https://montrealethics.ai/wp-content/uploads/2026/02/Tech-Futures_2_Header-630x350.jpg" class="entry-image attachment-post" alt="Illustration of a coral reef ecosystem" itemprop="image" decoding="async" /></a><header class="entry-header"><h4 class="entry-title" itemprop="headline"><a href="https://montrealethics.ai/tech-futures-dicersity-of-thought-and-experience-the-uns-scientific-panel-on-ai/">Tech Futures: Diversity of Thought and Experience: The UN&#8217;s Scientific Panel on AI</a></h4></header></article><article class="post-14474 post type-post status-publish format-standard has-post-thumbnail category-insights category-spotlight category-tech-futures entry" aria-label="Tech Futures: Co-opting Research and Education"><a href="https://montrealethics.ai/tech-futures-co-opting-research-and-education/" class="alignleft" aria-hidden="true" tabindex="-1"><img width="630" height="350" src="https://montrealethics.ai/wp-content/uploads/2026/02/ZoyaYasmine-TheTwo-Cultures-2560x1810-1-630x350.png" class="entry-image attachment-post" alt="This image shows a large white, traditional, old building. The top half of the building represents the humanities (which is symbolised by the embedded text from classic literature which is faintly shown ontop the building). The bottom section of the building is embossed with mathematical formulas to represent the sciences. The middle layer of the image is heavily pixelated. On the steps at the front of the building there is a group of scholars, wearing formal suits and tie attire, who are standing around at the enternace talking and some of them are sitting on the steps. There are two stone, statute-like hands that are stretching the building apart from the left side. In the forefront of the image, there are 8 students - which can only be seen from the back. Their graduation gowns have bright blue hoods and they all look as though they are walking towards the old building which is in the background at a distance. There are a mix of students in the foreground." itemprop="image" decoding="async" /></a><header class="entry-header"><h4 class="entry-title" itemprop="headline"><a href="https://montrealethics.ai/tech-futures-co-opting-research-and-education/">Tech Futures: Co-opting Research and Education</a></h4></header></article><article class="post-14389 post type-post status-publish format-standard has-post-thumbnail category-emerging-technology category-ethics category-insights category-editorials-and-opeds category-privacy-security category-spotlight entry" aria-label="Agentic AI systems and algorithmic accountability: a new era of e-commerce"><a href="https://montrealethics.ai/agentic-ai-systems-and-algorithmic-accountability-a-new-era-of-e-commerce/" class="alignleft" aria-hidden="true" tabindex="-1"><img width="630" height="350" src="https://montrealethics.ai/wp-content/uploads/2025/12/google-deepmind-tikhtH3QRSQ-unsplash-630x350.jpg" class="entry-image attachment-post" alt="" itemprop="image" decoding="async" /></a><header class="entry-header"><h4 class="entry-title" itemprop="headline"><a href="https://montrealethics.ai/agentic-ai-systems-and-algorithmic-accountability-a-new-era-of-e-commerce/">Agentic AI systems and algorithmic accountability: a new era of e-commerce</a></h4></header></article><article class="post-14181 post type-post status-publish format-standard has-post-thumbnail category-featured category-insights category-public-policy category-spotlight entry" aria-label="ALL IN Conference 2025: Four Key Takeaways from Montreal"><a href="https://montrealethics.ai/all-in-conference-2025-four-key-takeaways-from-montreal/" class="alignleft" aria-hidden="true" tabindex="-1"><img width="630" height="350" src="https://montrealethics.ai/wp-content/uploads/2025/09/ALL-IN-@ISED_CA-630x350.jpg" class="entry-image attachment-post" alt="" itemprop="image" decoding="async" /></a><header class="entry-header"><h4 class="entry-title" itemprop="headline"><a href="https://montrealethics.ai/all-in-conference-2025-four-key-takeaways-from-montreal/">ALL IN Conference 2025: Four Key Takeaways from Montreal</a></h4></header></article><article class="post-14152 post type-post status-publish format-standard has-post-thumbnail category-ethics category-human-rights category-insights category-jedi category-editorials-and-opeds category-spotlight entry" aria-label="Beyond Dependency: The Hidden Risk of Social Comparison in Chatbot Companionship"><a href="https://montrealethics.ai/beyond-dependency-the-hidden-risk-of-social-comparison-in-chatbot-companionship/" class="alignleft" aria-hidden="true" tabindex="-1"><img width="630" height="350" src="https://montrealethics.ai/wp-content/uploads/2025/09/Dependency-and-Social-Comparison-630x350.jpeg" class="entry-image attachment-post" alt="" itemprop="image" decoding="async" srcset="https://montrealethics.ai/wp-content/uploads/2025/09/Dependency-and-Social-Comparison-630x350.jpeg 630w, https://montrealethics.ai/wp-content/uploads/2025/09/Dependency-and-Social-Comparison-300x168.jpeg 300w" sizes="(max-width: 630px) 100vw, 630px" /></a><header class="entry-header"><h4 class="entry-title" itemprop="headline"><a href="https://montrealethics.ai/beyond-dependency-the-hidden-risk-of-social-comparison-in-chatbot-companionship/">Beyond Dependency: The Hidden Risk of Social Comparison in Chatbot Companionship</a></h4></header></article></div></section>
+<section id="relatedpoststhumbnailswidget-3" class="widget relpoststh_widget"><div class="widget-wrap"><h3 class="widgettitle widget-title">related posts</h3>
+<!-- relpost-thumb-wrapper --><div class="relpost-thumb-wrapper"><!-- filter-class --><div class="relpost-thumb-container"><style>.relpost-block-single-image, .relpost-post-image { margin-bottom: 10px; }</style><!-- related_posts_thumbnails --><ul id="related_posts_thumbnails" style="list-style-type:none; list-style-position: inside; padding: 0; margin:0"><li ><a href="https://montrealethics.ai/research-summary-comparing-privacy-law-gdpr-vs-ccpa/"><img class="relpost-post-image lazy-load" alt="Research summary: Comparing Privacy Law GDPR Vs CCPA" data-src="https://montrealethics.ai/wp-content/uploads/2020/08/Research-summary-image-9-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/research-summary-comparing-privacy-law-gdpr-vs-ccpa/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Research summary: Comparing Privacy Law GDPR Vs CCPA</h2></span></a></li><li ><a href="https://montrealethics.ai/examining-the-impact-of-provenance-enabled-media-on-trust-and-accuracy-perceptions/"><img class="relpost-post-image lazy-load" alt="Examining the Impact of Provenance-Enabled Media on Trust and Accuracy Perceptions" data-src="https://montrealethics.ai/wp-content/uploads/2023/07/DALL·E-2023-07-17-12.10.59-painting-of-a-young-person-looking-at-media-on-their-smartphone-and-having-a-questioning-look-at-what-they-are-seeing-150x150.png" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/examining-the-impact-of-provenance-enabled-media-on-trust-and-accuracy-perceptions/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Examining the Impact of Provenance-Enabled Media on Trust and Accuracy Perceptions</h2></span></a></li><li ><a href="https://montrealethics.ai/clueless-ai-should-ai-models-report-to-us-when-they-are-clueless/"><img class="relpost-post-image lazy-load" alt="Clueless AI: Should AI Models Report to Us When They Are Clueless?" data-src="https://montrealethics.ai/wp-content/uploads/2022/05/cdd20-klidkegqfoo-unsplash-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/clueless-ai-should-ai-models-report-to-us-when-they-are-clueless/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Clueless AI: Should AI Models Report to Us When They Are Clueless?</h2></span></a></li><li ><a href="https://montrealethics.ai/rise-of-the-machines-prof-stuart-russell-on-the-promises-and-perils-of-ai/"><img class="relpost-post-image lazy-load" alt="Rise of the machines: Prof Stuart Russell on the promises and perils of AI" data-src="https://montrealethics.ai/wp-content/uploads/2022/06/taneli-lahtinen-aft9VFtQx38-unsplash-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/rise-of-the-machines-prof-stuart-russell-on-the-promises-and-perils-of-ai/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Rise of the machines: Prof Stuart Russell on the promises and perils of AI</h2></span></a></li><li ><a href="https://montrealethics.ai/sirens-song-in-the-ai-ocean-a-survey-on-hallucination-in-large-language-models/"><img class="relpost-post-image lazy-load" alt="Siren’s Song in the AI Ocean: A Survey on Hallucination in Large Language Models" data-src="https://montrealethics.ai/wp-content/uploads/2024/01/DALL·E-2024-01-14-13.00.01-A-modern-pixel-art-style-illustration-in-vibrant-shades-of-green-depicting-the-impact-of-Large-Language-Models-LLMs-like-GPT-4-on-daily-life-and-t-150x150.png" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/sirens-song-in-the-ai-ocean-a-survey-on-hallucination-in-large-language-models/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Siren’s Song in the AI Ocean: A Survey on Hallucination in Large Language Models</h2></span></a></li><li ><a href="https://montrealethics.ai/research-summary-acting-the-part-examining-information-operations-within-blacklivesmatter-discourse/"><img class="relpost-post-image lazy-load" alt="Research summary: Acting the Part: Examining Information Operations Within #BlackLivesMatter Discour..." data-src="https://montrealethics.ai/wp-content/uploads/2020/06/IMAGE-2-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/research-summary-acting-the-part-examining-information-operations-within-blacklivesmatter-discourse/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Research summary: Acting the Part: Examining Information Operations Within #BlackLivesMatter Discour...</h2></span></a></li><li ><a href="https://montrealethics.ai/human-ai-interactions-and-societal-pitfalls/"><img class="relpost-post-image lazy-load" alt="Human-AI Interactions and Societal Pitfalls" data-src="https://montrealethics.ai/wp-content/uploads/2024/01/DALL·E-2024-01-27-16.12.51-A-vibrant-modern-pixel-art-representation-that-captures-the-essence-of-the-trade-off-in-human-AI-interactions-focusing-on-generative-AIs-productivi-150x150.png" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/human-ai-interactions-and-societal-pitfalls/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Human-AI Interactions and Societal Pitfalls</h2></span></a></li><li ><a href="https://montrealethics.ai/artificial-intelligence-and-inequality-in-the-middle-east-the-political-economy-of-inclusion/"><img class="relpost-post-image lazy-load" alt="Artificial Intelligence and Inequality in the Middle East: The Political Economy of Inclusion" data-src="https://montrealethics.ai/wp-content/uploads/2021/06/joakim-honkasalo-DurC25GdOvk-unsplash-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/artificial-intelligence-and-inequality-in-the-middle-east-the-political-economy-of-inclusion/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Artificial Intelligence and Inequality in the Middle East: The Political Economy of Inclusion</h2></span></a></li><li ><a href="https://montrealethics.ai/ai-certification-advancing-ethical-practice-by-reducing-information-asymmetries/"><img class="relpost-post-image lazy-load" alt="AI Certification: Advancing Ethical Practice by Reducing Information Asymmetries" data-src="https://montrealethics.ai/wp-content/uploads/2021/08/inaki-del-olmo-NIJuEQw0RKg-unsplash-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/ai-certification-advancing-ethical-practice-by-reducing-information-asymmetries/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">AI Certification: Advancing Ethical Practice by Reducing Information Asymmetries</h2></span></a></li><li ><a href="https://montrealethics.ai/measuring-disparate-outcomes-of-content-recommendation-algorithms-with-distributional-inequality-metrics/"><img class="relpost-post-image lazy-load" alt="Measuring Disparate Outcomes of Content Recommendation Algorithms with Distributional Inequality Met..." data-src="https://montrealethics.ai/wp-content/uploads/2022/06/pawel-czerwinski-bX9B9c-YasY-unsplash-150x150.jpg" width="150" height="150" style="aspect-ratio:1/1"/></a><a href="https://montrealethics.ai/measuring-disparate-outcomes-of-content-recommendation-algorithms-with-distributional-inequality-metrics/" class="relpost_content" style="width: 150px;height: 150px; font-family: Quattrocento Sans; "><span class="rpth_list_content"><h2 class="relpost_card_title">Measuring Disparate Outcomes of Content Recommendation Algorithms with Distributional Inequality Met...</h2></span></a></li></ul><!-- close related_posts_thumbnails --><div style="clear: both"></div></div><!-- close filter class --></div><!-- close relpost-thumb-wrapper --></div></section>
+<section id="text-48" class="widget widget_text"><div class="widget-wrap"><h3 class="widgettitle widget-title">Partners</h3>
+			<div class="textwidget"><ul>
+<li> <a href="https://www.nist.gov/aisi/aisic-members"><img loading="lazy" decoding="async" class="alignnone size-medium wp-image-5590" src="https://montrealethics.ai/wp-content/uploads/2024/06/NIST_logo.svg_-300x79.png" alt="" width="75" height="40" /></a><br />
+<a href="https://www.nist.gov/aisi/aisic-members">U.S. Artificial Intelligence Safety Institute Consortium (AISIC) at NIST</a></li>
+<li><a href="https://partnershiponai.org/partners/"><img loading="lazy" decoding="async" class="alignnone wp-image-5589 size-full" src="https://montrealethics.ai/wp-content/uploads/2024/06/images-1.png" alt="" width="50" height="201" /></a><br />
+<a href="https://partnershiponai.org/partners/">Partnership on AI</a></li>
+<li><a href="https://lfaidata.foundation/about/members/"><img loading="lazy" decoding="async" class="alignnone wp-image-5591 size-medium" src="https://montrealethics.ai/wp-content/uploads/2024/06/LFAI_DATA_horizontal-color-300x41.png" alt="" width="225" height="41" /></a><br />
+<a href="https://lfaidata.foundation/about/members/">The LF AI &amp; Data Foundation</a></li>
+<li><a href="https://thealliance.ai/aia-members"><img loading="lazy" decoding="async" class="alignnone wp-image-5592 size-medium" src="https://montrealethics.ai/wp-content/uploads/2024/06/AI-Alliance-e1718485576349-300x62.png" alt="" width="150" height="62" /></a><a href="https://thealliance.ai/aia-members"><br />
+The AI Alliance</a></li>
+</ul>
+</div>
+		</div></section>
+</aside></div></div><div class="footer-widgets" id="genesis-footer-widgets"><h2 class="genesis-sidebar-title screen-reader-text">Footer</h2><div class="wrap"><div class="widget-area footer-widgets-1 footer-widget-area"><section id="text-42" class="widget widget_text"><div class="widget-wrap">			<div class="textwidget"><hr />
+<p><a href="https://montrealethics.ai/blog/">Articles</a></p>
+<p><a href="https://montrealethics.ai/category/insights/ai-policy-corner/">Columns</a></p>
+<p><a href="https://montrealethics.ai/dictionary/">AI Literacy</a></p>
+<p><a href="https://montrealethics.ai/state/">The State of AI Ethics Report</a></p>
+<hr />
+<p>&nbsp;</p>
+</div>
+		</div></section>
+</div><div class="widget-area footer-widgets-2 footer-widget-area"><section id="a2a_follow_widget-3" class="widget widget_a2a_follow_widget"><div class="widget-wrap"><div class="a2a_kit a2a_kit_size_32 a2a_follow addtoany_list" data-a2a-url="https://montrealethics.ai/feed/" data-a2a-title="Montreal AI Ethics Institute"><a class="a2a_button_linkedin_company" href="https://www.linkedin.com/company/mtlaiethics/" title="LinkedIn Company" rel="noopener" target="_blank"></a><a class="a2a_button_twitter" href="https://twitter.com/mtlaiethics" title="Twitter" rel="noopener" target="_blank"></a><a class="a2a_button_feed" href="https://montrealethics.ai/feed/" title="RSS Feed" rel="noopener" target="_blank"></a></div></div></section>
+<section id="custom_html-54" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><iframe style="border: 0px solid #EEE;" src="https://aiethics.substack.com/embed" width="400" height="200" frameborder="0" scrolling="no"></iframe></div></div></section>
+</div><div class="widget-area footer-widgets-3 footer-widget-area"><section id="text-46" class="widget widget_text"><div class="widget-wrap"><h3 class="widgettitle widget-title">About Us</h3>
+			<div class="textwidget"><hr />
+<p>Founded in 2018, the Montreal AI Ethics Institute (MAIEI) is an international non-profit organization equipping citizens concerned about artificial intelligence and its impact on society to <strong>take action.</strong></p>
+<p><a href="https://montrealethics.ai/contact/">Contact</a></p>
+<p><a href="https://montrealethics.ai/donate/">Donate</a></p>
+<hr />
+</div>
+		</div></section>
+</div></div></div><footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter"><div class="wrap"><p> <li>© 2025 MONTREAL AI ETHICS INSTITUTE.</li>
+<li>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a>.</li>
+ 	<li><a href="https://creativecommons.org/licenses/by/4.0/" rel="license"></a>Learn more about our open access policy <a href="https://montrealethics.ai/our-open-access-policy/" target="_blank" rel="noopener">here.</a></li>
+</ul>
+<img class="aligncenter" src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="Creative Commons License" width="88" height="31" /></p></div></footer></div><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/magazine-pro\/*","\/wp-content\/themes\/genesis\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_default_style" style="bottom:0px;left:50%;transform:translateX(-50%);background-color:transparent"><a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Fmontrealethics.ai%2Funsolved-problems-in-ml-safety%2F&amp;linkname=Unsolved%20Problems%20in%20ML%20Safety%20%7C%20Montreal%20AI%20Ethics%20Institute" title="Twitter" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_linkedin" href="https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Fmontrealethics.ai%2Funsolved-problems-in-ml-safety%2F&amp;linkname=Unsolved%20Problems%20in%20ML%20Safety%20%7C%20Montreal%20AI%20Ethics%20Institute" title="LinkedIn" rel="nofollow noopener" target="_blank"></a><a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share"></a></div><script type='text/javascript'>jQuery( document ).ready(function() {                    jQuery( ".testimonials-list" ).lightSlider( {auto:           false,                        controls:       false,item:           2,                        mode:           'slide',                        pauseOnHover:   false,                        loop:           false,pause:          6000,responsive : [    {        breakpoint:1023,        settings: {            item:2        }    },    {        breakpoint:860,        settings: {            item:1        }    }]} );} );</script><div 
+	id="pum-5661" 
+	role="dialog" 
+	aria-modal="false"
+	class="pum pum-overlay pum-theme-5654 pum-theme-enterprise-blue popmake-overlay auto_open exit_intent click_open" 
+	data-popmake="{&quot;id&quot;:5661,&quot;slug&quot;:&quot;substack-popup-test-1&quot;,&quot;theme_id&quot;:5654,&quot;cookies&quot;:[{&quot;event&quot;:&quot;on_popup_close&quot;,&quot;settings&quot;:{&quot;name&quot;:&quot;pum-5661&quot;,&quot;key&quot;:&quot;&quot;,&quot;session&quot;:false,&quot;path&quot;:&quot;1&quot;,&quot;time&quot;:&quot;1 month&quot;}},{&quot;event&quot;:&quot;on_popup_close&quot;,&quot;settings&quot;:{&quot;name&quot;:&quot;pum-5661&quot;,&quot;key&quot;:&quot;&quot;,&quot;session&quot;:false,&quot;path&quot;:&quot;1&quot;,&quot;time&quot;:&quot;1 month&quot;}}],&quot;triggers&quot;:[{&quot;type&quot;:&quot;auto_open&quot;,&quot;settings&quot;:{&quot;cookie_name&quot;:[&quot;pum-5661&quot;],&quot;delay&quot;:&quot;5000&quot;}},{&quot;type&quot;:&quot;exit_intent&quot;,&quot;settings&quot;:{&quot;cookie_name&quot;:[&quot;pum-5661&quot;],&quot;methods&quot;:{&quot;mouseleave&quot;:&quot;mouseleave&quot;,&quot;lostfocus&quot;:&quot;lostfocus&quot;},&quot;top_sensitivity&quot;:&quot;10&quot;,&quot;delay_sensitivity&quot;:&quot;350&quot;,&quot;linkclick_custom_targeting&quot;:&quot;&quot;,&quot;link_hover_delay&quot;:&quot;300&quot;,&quot;mobile_time_delay&quot;:&quot;500&quot;,&quot;mobilescroll_up_percent&quot;:&quot;10&quot;}},{&quot;type&quot;:&quot;click_open&quot;,&quot;settings&quot;:{&quot;extra_selectors&quot;:&quot;&quot;,&quot;cookie_name&quot;:null}}],&quot;mobile_disabled&quot;:null,&quot;tablet_disabled&quot;:null,&quot;meta&quot;:{&quot;display&quot;:{&quot;stackable&quot;:false,&quot;overlay_disabled&quot;:false,&quot;scrollable_content&quot;:false,&quot;disable_reposition&quot;:false,&quot;size&quot;:&quot;small&quot;,&quot;responsive_min_width&quot;:&quot;0%&quot;,&quot;responsive_min_width_unit&quot;:false,&quot;responsive_max_width&quot;:&quot;100%&quot;,&quot;responsive_max_width_unit&quot;:false,&quot;custom_width&quot;:&quot;640px&quot;,&quot;custom_width_unit&quot;:false,&quot;custom_height&quot;:&quot;380px&quot;,&quot;custom_height_unit&quot;:false,&quot;custom_height_auto&quot;:false,&quot;location&quot;:&quot;center&quot;,&quot;position_from_trigger&quot;:false,&quot;position_top&quot;:&quot;100&quot;,&quot;position_left&quot;:&quot;0&quot;,&quot;position_bottom&quot;:&quot;0&quot;,&quot;position_right&quot;:&quot;0&quot;,&quot;position_fixed&quot;:false,&quot;animation_type&quot;:&quot;fade&quot;,&quot;animation_speed&quot;:&quot;350&quot;,&quot;animation_origin&quot;:&quot;center top&quot;,&quot;overlay_zindex&quot;:false,&quot;zindex&quot;:&quot;1999999999&quot;},&quot;close&quot;:{&quot;text&quot;:&quot;&quot;,&quot;button_delay&quot;:&quot;0&quot;,&quot;overlay_click&quot;:false,&quot;esc_press&quot;:false,&quot;f4_press&quot;:false},&quot;click_open&quot;:[]}}">
+
+	<div id="popmake-5661" class="pum-container popmake theme-5654 pum-responsive pum-responsive-small responsive size-small">
+
+				
+				
+		
+				<div class="pum-content popmake-content" tabindex="0">
+			<p style="text-align: center;">Save hours of work and stay on top of Responsible AI research and reporting with our bi-weekly email newsletter.</p>
+<div align="center">
+<p><iframe style="border: 0px solid #EEE;" src="https://aiethics.substack.com/embed" width="100%" height="200" frameborder="0" scrolling="no"></iframe></p>
+<div></div>
+</div>
+		</div>
+
+				
+							<button type="button" class="pum-close popmake-close" aria-label="Close">
+			×			</button>
+		
+	</div>
+
+</div>
+	<script type="text/javascript">
+		function genesisBlocksShare( url, title, w, h ){
+			var left = ( window.innerWidth / 2 )-( w / 2 );
+			var top  = ( window.innerHeight / 2 )-( h / 2 );
+			return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=600, height=600, top='+top+', left='+left);
+		}
+	</script>
+	<style type="text/css" media="screen"></style>			<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<script src="https://montrealethics.ai/wp-content/plugins/awsm-team/js/team.min.js?ver=1.3.4" id="awsm-team-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/genesis-blocks/dist/assets/js/dismiss.js?ver=1764946045" id="genesis-blocks-dismiss-js-js"></script>
+<script src="https://montrealethics.ai/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="qi-addons-for-elementor-script-js-extra">
+var qodefQiAddonsGlobal = {"vars":{"adminBarHeight":0,"iconArrowLeft":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 34.2 32.3\" xml:space=\"preserve\" style=\"stroke-width: 2;\"><line x1=\"0.5\" y1=\"16\" x2=\"33.5\" y2=\"16\"\/><line x1=\"0.3\" y1=\"16.5\" x2=\"16.2\" y2=\"0.7\"\/><line x1=\"0\" y1=\"15.4\" x2=\"16.2\" y2=\"31.6\"\/><\/svg>","iconArrowRight":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 34.2 32.3\" xml:space=\"preserve\" style=\"stroke-width: 2;\"><line x1=\"0\" y1=\"16\" x2=\"33\" y2=\"16\"\/><line x1=\"17.3\" y1=\"0.7\" x2=\"33.2\" y2=\"16.5\"\/><line x1=\"17.3\" y1=\"31.6\" x2=\"33.5\" y2=\"15.4\"\/><\/svg>","iconClose":"<svg  xmlns=\"http:\/\/www.w3.org\/2000\/svg\" x=\"0px\" y=\"0px\" viewBox=\"0 0 9.1 9.1\" xml:space=\"preserve\"><g><path d=\"M8.5,0L9,0.6L5.1,4.5L9,8.5L8.5,9L4.5,5.1L0.6,9L0,8.5L4,4.5L0,0.6L0.6,0L4.5,4L8.5,0z\"\/><\/g><\/svg>"}};
+</script>
+<script src="https://montrealethics.ai/wp-content/plugins/qi-addons-for-elementor/assets/js/main.min.js?ver=1.9.3" id="qi-addons-for-elementor-script-js"></script>
+<script src="https://montrealethics.ai/wp-includes/js/hoverIntent.min.js?ver=1.10.2" id="hoverIntent-js"></script>
+<script src="https://montrealethics.ai/wp-content/themes/genesis/lib/js/menu/superfish.min.js?ver=1.7.10" id="superfish-js"></script>
+<script src="https://montrealethics.ai/wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=3.5.0" id="superfish-args-js"></script>
+<script src="https://montrealethics.ai/wp-content/themes/genesis/lib/js/skip-links.min.js?ver=3.5.0" id="skip-links-js"></script>
+<script src="https://montrealethics.ai/wp-content/themes/magazine-pro/js/move-entry-dates.js?ver=1.1.0" id="magazine-pro-move-entry-dates-js"></script>
+<script id="magazine-pro-responsive-menu-js-extra">
+var genesis_responsive_menu = {"mainMenu":"Menu","subMenu":"Submenu","menuClasses":{"combine":[".nav-primary",".nav-header",".nav-secondary"]}};
+</script>
+<script src="https://montrealethics.ai/wp-content/themes/magazine-pro/js/responsive-menus.min.js?ver=3.7.2" id="magazine-pro-responsive-menu-js"></script>
+<script src="https://montrealethics.ai/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+<script id="popup-maker-site-js-extra">
+var pum_vars = {"version":"1.21.5","pm_dir_url":"https:\/\/montrealethics.ai\/wp-content\/plugins\/popup-maker\/","ajaxurl":"https:\/\/montrealethics.ai\/wp-admin\/admin-ajax.php","restapi":"https:\/\/montrealethics.ai\/wp-json\/pum\/v1","rest_nonce":null,"default_theme":"5652","debug_mode":"","disable_tracking":"","home_url":"\/","message_position":"top","core_sub_forms_enabled":"1","popups":[],"cookie_domain":"","analytics_enabled":"1","analytics_route":"analytics","analytics_api":"https:\/\/montrealethics.ai\/wp-json\/pum\/v1"};
+var pum_sub_vars = {"ajaxurl":"https:\/\/montrealethics.ai\/wp-admin\/admin-ajax.php","message_position":"top"};
+var pum_popups = {"pum-5661":{"triggers":[{"type":"auto_open","settings":{"cookie_name":["pum-5661"],"delay":"5000"}},{"type":"exit_intent","settings":{"cookie_name":["pum-5661"],"methods":{"mouseleave":"mouseleave","lostfocus":"lostfocus"},"top_sensitivity":"10","delay_sensitivity":"350","linkclick_custom_targeting":"","link_hover_delay":"300","mobile_time_delay":"500","mobilescroll_up_percent":"10"}}],"cookies":[{"event":"on_popup_close","settings":{"name":"pum-5661","key":"","session":false,"path":"1","time":"1 month"}},{"event":"on_popup_close","settings":{"name":"pum-5661","key":"","session":false,"path":"1","time":"1 month"}}],"disable_on_mobile":false,"disable_on_tablet":false,"atc_promotion":null,"explain":null,"type_section":null,"theme_id":"5654","size":"small","responsive_min_width":"0%","responsive_max_width":"100%","custom_width":"640px","custom_height_auto":false,"custom_height":"380px","scrollable_content":false,"animation_type":"fade","animation_speed":"350","animation_origin":"center top","open_sound":"none","custom_sound":"","location":"center","position_top":"100","position_bottom":"0","position_left":"0","position_right":"0","position_from_trigger":false,"position_fixed":false,"overlay_disabled":false,"stackable":false,"disable_reposition":false,"zindex":"1999999999","close_button_delay":"0","fi_promotion":null,"close_on_form_submission":false,"close_on_form_submission_delay":"0","close_on_overlay_click":false,"close_on_esc_press":false,"close_on_f4_press":false,"disable_form_reopen":false,"disable_accessibility":false,"theme_slug":"enterprise-blue","id":5661,"slug":"substack-popup-test-1"}};
+</script>
+<script src="//montrealethics.ai/wp-content/uploads/pum/pum-site-scripts.js?defer&amp;generated=1755182856&amp;ver=1.21.5" id="popup-maker-site-js"></script>
+<script src="https://montrealethics.ai/wp-content/plugins/wp-featherlight/js/wpFeatherlight.pkgd.min.js?ver=1.3.4" id="wp-featherlight-js"></script>
+<script id="eael-general-js-extra">
+var localize = {"ajaxurl":"https:\/\/montrealethics.ai\/wp-admin\/admin-ajax.php","nonce":"841c335753","i18n":{"added":"Added ","compare":"Compare","loading":"Loading..."},"eael_translate_text":{"required_text":"is a required field","invalid_text":"Invalid","billing_text":"Billing","shipping_text":"Shipping","fg_mfp_counter_text":"of"},"page_permalink":"https:\/\/montrealethics.ai\/unsolved-problems-in-ml-safety\/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
+</script>
+<script src="https://montrealethics.ai/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.2.4" id="eael-general-js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"af138fe955fa45f0b3776014037ee15f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body></html>
+
