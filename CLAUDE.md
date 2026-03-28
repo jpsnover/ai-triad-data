@@ -15,7 +15,8 @@ The project models AI discourse through three POV camps — **accelerationist**,
 The knowledge graph backbone. One JSON file per POV camp (`accelerationist.json`, `safetyist.json`, `skeptic.json`, `cross-cutting.json`) to minimize merge conflicts. Each contains a `nodes` array where every node has an `id`, `category`, `label`, `description`, and rich `graph_attributes` (epistemic type, rhetorical strategy, fallacies, policy actions, etc.).
 
 - `edges.json` — Typed relationships between nodes (SUPPORTS, CONTRADICTS, ASSUMES, WEAKENS, TENSION_WITH, CITES, etc.)
-- `embeddings.json` — Precomputed vectors (all-MiniLM-L6-v2, 384-dim) for every taxonomy node
+- `embeddings.json` — Precomputed vectors (all-MiniLM-L6-v2, 384-dim) for taxonomy nodes and canonical policy actions
+- `policy_actions.json` — Canonical policy action registry with unique IDs (`pol-NNN`). Nodes reference policies by `policy_id` with POV-specific `framing`. Policies can be shared across nodes and POVs.
 
 All taxonomy files carry `_schema_version` which must match `TAXONOMY_VERSION` (root). Bumping `TAXONOMY_VERSION` triggers re-summarization of all sources.
 
@@ -44,7 +45,7 @@ Array of source slugs pending summary generation. Consumed by the code repo's su
 
 ## Key Conventions
 
-- **IDs follow a prefix pattern**: `acc-*` (accelerationist), `saf-*` (safetyist), `skp-*` (skeptic), `cc-*` (cross-cutting)
+- **IDs follow a prefix pattern**: `acc-*` (accelerationist), `saf-*` (safetyist), `skp-*` (skeptic), `cc-*` (cross-cutting), `pol-*` (policy actions)
 - **Source slugs** are kebab-cased, derived from title, suffixed with year (e.g., `concrete-problems-ai-safety-2026`)
 - **Conflict IDs** are `conflict-<truncated-claim>-<truncated-source>`
 - **JSON is the canonical format** for all structured data; markdown only for source snapshots
