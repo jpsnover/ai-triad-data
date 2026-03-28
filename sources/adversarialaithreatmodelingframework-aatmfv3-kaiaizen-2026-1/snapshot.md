@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Adversarial AI Threat Modeling Framework
 
 AATMF v3

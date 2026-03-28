@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 The AI Danger In the Making
 Problem
 The high-level push for untested, immature AI in defense operations poses a significant danger to

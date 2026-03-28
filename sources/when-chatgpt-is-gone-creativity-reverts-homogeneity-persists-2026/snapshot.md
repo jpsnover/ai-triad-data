@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 When ChatGPT is gone: Creativity reverts and homogeneity persists
 Qinghan Liu
 Yiyong Zhou

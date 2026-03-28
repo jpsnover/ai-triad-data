@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 11/27/24 U. Chi. L. Rev. Online *1
 The Law of AI is the Law of Risky Agents Without Intentions
 Ian Ayres*& Jack M. Balkin†

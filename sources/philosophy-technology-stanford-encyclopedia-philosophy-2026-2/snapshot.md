@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Stanford Encyclopedia of Philosophy
 Philosophy of Technology
 First published Fri Feb 20, 2009; substantive revision Mon Mar 6, 2023

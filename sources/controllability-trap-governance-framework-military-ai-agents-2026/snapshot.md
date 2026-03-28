@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Published at ICLR 2026 Workshop on Agents in the Wild
 
 T HE C ONTROLLABILITY T RAP : A G OVERNANCE

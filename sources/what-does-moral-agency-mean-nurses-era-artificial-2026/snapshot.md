@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 What Does Moral Agency Mean for
 Nurses in the Era of Artificial Intelligence?
 by CO NNIE M . U LRI CH, OON JEE OH, SA NG BI N YO U, MA X I M TO PA Z , Z A HRA RA HE M I ,

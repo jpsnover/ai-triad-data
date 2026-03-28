@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Artificial Intelligence
 
 Evaluating the Impact of AI on the Labor

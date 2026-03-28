@@ -15,6 +15,7 @@
 > **Type:** web_article
 
 ---
+
 [![SEP home page](./Philosophy%20of%20Technology%20(Stanford%20Encyclopedia%20of%20Philosophy)_files/sep-man-red.png)](https://plato.stanford.edu/index.html)
 
 [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/index.html)

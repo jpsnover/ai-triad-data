@@ -15,6 +15,7 @@
 > **Type:** plaintext
 
 ---
+
 Given the advances of AI and robotics,
 we're going to have something called
 universal high income. I'm not sure how

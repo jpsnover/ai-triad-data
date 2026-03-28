@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Home > Gotopia Articles > The Rush to Adop...
 
 The Rush to Adopt AI: Business Risks &

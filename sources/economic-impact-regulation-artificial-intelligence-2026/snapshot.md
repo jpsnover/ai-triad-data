@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Introduction
 
 This review paper investigates how Artificial Intelligence (AI) affects the economy and how the technology

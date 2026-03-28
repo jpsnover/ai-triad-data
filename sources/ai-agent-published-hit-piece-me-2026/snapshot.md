@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 The Shamblog (https://theshamblog.com/)
 Home (https://theshamblog.com)
 

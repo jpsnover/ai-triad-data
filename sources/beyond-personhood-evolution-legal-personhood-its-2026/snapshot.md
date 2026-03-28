@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Beyond Personhood:
 The Evolution of Legal Personhood and
 Its Implications for AI Recognition

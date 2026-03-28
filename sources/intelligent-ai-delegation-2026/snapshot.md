@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 2026-02-12
 
 Intelligent AI Delegation

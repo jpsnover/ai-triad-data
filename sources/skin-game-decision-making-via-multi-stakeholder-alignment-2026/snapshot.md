@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Skin-in-the-Game:
 Decision Making via Multi-Stakeholder Alignment in LLMs
 Bilgehan Sel *

@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Artificial Intelligence
 Index Report 2025
 

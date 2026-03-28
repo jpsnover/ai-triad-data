@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 In collaboration
 with Accenture
 

@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Inside Privacy
 Updates on Developments in Data Privacy and Cybersecurity
 

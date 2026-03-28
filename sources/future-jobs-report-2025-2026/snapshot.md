@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Future of Jobs Report
 INSIGHT REPORT
 JANUARY 2025

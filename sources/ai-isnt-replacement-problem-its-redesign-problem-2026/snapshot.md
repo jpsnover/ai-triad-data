@@ -16,207 +16,31 @@
 
 ---
 
-AI isn’t a replacement problem… - by Rebecca Sutter
-            
-            
-            
-            
-        
-
-        
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-
-        
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        
-
-        
-
-        
-
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-                
-            
-        
-            
-        
-            
-        
-            
-        
-
-        
-
-        
-            
-        
-
-        
-        
-          
-        
-        
-
-        
-
-        
-            
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-    
-
-    
-        
-
-        
-
-        
-
-        
-
-        
-            /
-# Practical Tech Leader
-
 # AI isn’t a replacement problem…
-https://substack.com/@rlsutter[Rebecca Sutter](https://substack.com/@rlsutter)Mar 03, 2026
+
+<a href="https://substack.com/@rlsutter" class="pencraft pc-display-contents pc-reset" aria-label="View Rebecca Sutter&#39;s profile"></a>
+
+<img src="https://substackcdn.com/image/fetch/$s_!dVAf!,w_36,h_36,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F63505caf-4d1a-4b4e-a21d-a80b660d5bb0_800x800.jpeg" class="img-OACg1c object-fit-cover-u4ReeV pencraft pc-reset" sizes="36px" srcset="https://substackcdn.com/image/fetch/$s_!dVAf!,w_36,h_36,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F63505caf-4d1a-4b4e-a21d-a80b660d5bb0_800x800.jpeg 36w, https://substackcdn.com/image/fetch/$s_!dVAf!,w_72,h_72,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F63505caf-4d1a-4b4e-a21d-a80b660d5bb0_800x800.jpeg 72w, https://substackcdn.com/image/fetch/$s_!dVAf!,w_108,h_108,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F63505caf-4d1a-4b4e-a21d-a80b660d5bb0_800x800.jpeg 108w" draggable="false" width="36" height="36" alt="Rebecca Sutter&#39;s avatar" />
+
+<span style="min-width:0;" state="closed"><a href="https://substack.com/@rlsutter" class="pencraft pc-reset decoration-hover-underline-ClDVRM reset-IxiVJZ">Rebecca Sutter</a></span>
+
+Mar 03, 2026
+
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Ym94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1oZWFydCI+PHBhdGggZD0iTTE5IDE0YzEuNDktMS40NiAzLTMuMjEgMy01LjVBNS41IDUuNSAwIDAgMCAxNi41IDNjLTEuNzYgMC0zIC41LTQuNSAyLTEuNS0xLjUtMi43NC0yLTQuNS0yQTUuNSA1LjUgMCAwIDAgMiA4LjVjMCAyLjMgMS41IDQuMDUgMyA1LjVsNyA3WiIgLz48L3N2Zz4=" class="icon" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Ym94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1tZXNzYWdlLWNpcmNsZSI+PHBhdGggZD0iTTcuOSAyMEE5IDkgMCAxIDAgNCAxNi4xTDIgMjJaIiAvPjwvc3ZnPg==" class="icon" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48cGF0aCBkPSJNMjEgM1Y4TTIxIDhIMTZNMjEgOEwxOCA1LjI5OTYyQzE2LjcwNTYgNC4xNDE4MyAxNS4xMDM4IDMuMzgzMjggMTMuMzg3OSAzLjExNTQ3QzExLjY3MTkgMi44NDc2NiA5LjkxNTIgMy4wODIwMyA4LjMyOTUxIDMuNzkwMzFDNi43NDM4MiA0LjQ5ODU4IDUuMzk2OTEgNS42NTA1MSA0LjQ1MTI1IDcuMTA3MTVDMy41MDU2IDguNTYzOCAzLjAwMTU4IDEwLjI2MjkgMyAxMS45OTk2TTMgMjFWMTZNMyAxNkg4TTMgMTZMNiAxOC43QzcuMjk0NDUgMTkuODU3OCA4Ljg5NjIzIDIwLjYxNjMgMTAuNjEyMSAyMC44ODQxQzEyLjMyODEgMjEuMTUyIDE0LjA4NDggMjAuOTE3NiAxNS42NzA1IDIwLjIwOTNDMTcuMjU2MiAxOS41MDEgMTguNjAzMSAxOC4zNDkxIDE5LjU0ODcgMTYuODkyNUMyMC40OTQ0IDE1LjQzNTggMjAuOTk4NCAxMy43MzY3IDIxIDEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+PC9nPjwvc3ZnPg==" class="icon" />
+
+Share
+
 #### … it’s a redesign problem
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
+
 Everyone is having the wrong argument about AI and work.
 
-The dominant narrative has two poles. On one side: AI will replace humans, millions of jobs will disappear, we need to prepare for a post-work future. On the other: AI is overhyped, it hallucinates, it can’t do what humans do, your job is safe. Both sides are arguing about *whether* AI can do human work. Almost nobody is asking the more interesting question: should it?
+The dominant narrative has two poles. On one side: AI will replace humans, millions of jobs will disappear, we need to prepare for a post-work future. On the other: AI is overhyped, it hallucinates, it can’t do what humans do, your job is safe. Both sides are arguing about \*whether\* AI can do human work. Almost nobody is asking the more interesting question: should it?
 
 Because here’s what’s getting lost in the replacement debate. The structure of most knowledge work is, itself, the problem. We’ve built jobs that require humans to spend the majority of their time on tasks humans are bad at - repetitive, precise, rule-bound execution - and a minority of their time on the thing humans are irreplaceably good at: making judgment calls with incomplete information.
 
@@ -225,6 +49,8 @@ AI doesn’t need to replace anyone. It needs to let us redesign the work so tha
 That sounds utopian. It’s not. It’s an engineering problem with real tradeoffs, and the biggest tradeoff is one nobody’s talking about.
 
 #### The dirty secret of most knowledge work
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
 
 Watch a senior financial analyst for a day. Track what they actually do with their time. You’ll find something depressing.
 
@@ -237,6 +63,8 @@ The knowledge economy promised us thinking work. What it delivered was thinking 
 We’ve been coping. We call it “the boring parts of the job.” We treat it as the price of admission. But it’s not an immutable feature of the work. It’s an artifact of how we designed the workflow before we had a tool that could handle the boring parts reliably.
 
 #### What AI is actually good at (and what it’s not)
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
 
 The replacement debate gets muddled because people talk about AI as a monolith. “AI can do X” or “AI can’t do X.” This is like saying “engines can drive” or “engines can’t drive.” Engines are good at a specific thing - converting fuel into rotational force - and terrible at everything else. You don’t evaluate an engine by asking whether it can replace a driver. You evaluate it by asking what it contributes to the system of driving.
 
@@ -251,6 +79,8 @@ These decisions require something AI fundamentally lacks: the ability to weigh f
 The mistake is treating these two categories as points on a continuum, as if AI will eventually slide from one into the other. They’re not on a continuum. They’re different in kind. And recognizing that difference is what makes redesign possible.
 
 #### The redesign, concretely
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
 
 Here’s what redesigned work actually looks like, not in theory but in the three places I’ve watched it happen.
 
@@ -270,6 +100,8 @@ The physicians I spoke with described the same paradox. They were doing less tot
 
 #### The tradeoff nobody mentions
 
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
+
 Every article about AI productivity tells half the story. Output goes up. Hours can go down. Efficiency improves. All true.
 
 Here’s the other half: when you strip away the routine tasks that dilute a knowledge worker’s day, what remains is the concentrated essence of their role, and that essence is cognitively expensive.
@@ -286,6 +118,8 @@ Not four to six hours of being at work. Four to six hours of **actual cognitive 
 
 #### The six-hour day isn’t a perk. It’s a design requirement
 
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
+
 This is the part that makes organizations uncomfortable. Not the AI. Not the task redistribution. The implication that an optimally designed human-AI workflow might require **shorter human hours** - not as a benefit, but as an engineering constraint.
 
 If your redesigned role consists almost entirely of judgment work, and humans can sustain high-quality judgment work for roughly six hours, then scheduling eight hours of judgment work doesn’t get you two more hours of output. It gets you six hours of good output and two hours of degraded output that creates problems you’ll spend tomorrow fixing.
@@ -300,6 +134,8 @@ The organizational courage required to actually **schedule** a six-hour day (to 
 
 #### What this means if you’re adopting AI
 
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
+
 If you’re thinking about AI adoption as a question of which jobs to automate, you’re solving the wrong problem. The question isn’t which people to replace. It’s which **tasks** to reallocate and how to restructure what remains so that humans operate in their zone of maximum contribution.
 
 **Start with task decomposition, not role elimination**. Take any role in your organization and break it into its component tasks. Categorize each task: Is it rote, precise, and directed - meaning the criteria for “done well” can be specified in advance? Or does it require judgment under ambiguity - meaning the person doing it needs to weigh factors that can’t be fully enumerated? The first category is AI work. The second is human work. The role isn’t going away. Its composition is changing.
@@ -312,6 +148,8 @@ If you’re thinking about AI adoption as a question of which jobs to automate, 
 
 #### The real transformation
 
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpbmsiPjxwYXRoIGQ9Ik0xMCAxM2E1IDUgMCAwIDAgNy41NC41NGwzLTNhNSA1IDAgMCAwLTcuMDctNy4wN2wtMS43MiAxLjcxIiAvPjxwYXRoIGQ9Ik0xNCAxMWE1IDUgMCAwIDAtNy41NC0uNTRsLTMgM2E1IDUgMCAwIDAgNy4wNyA3LjA3bDEuNzEtMS43MSIgLz48L3N2Zz4=" class="lucide lucide-link" />
+
 The AI replacement debate is a distraction. It frames a design problem as an existential threat, which makes it both scarier and less actionable than it needs to be.
 
 The actual opportunity is more mundane and more transformative: redesign knowledge work so that humans do the work only humans can do, and machines do the work machines do better. The result isn’t a jobless future. It’s a future where the nature of work changes, the intensity of work increases, the duration of work decreases, and the output improves.
@@ -320,9 +158,33 @@ The hardest part isn’t the technology. The technology is the easy part. The ha
 
 The work doesn’t need to be longer. It needs to be **better**. AI doesn’t make that possible by replacing humans. It makes it possible by finally letting humans do what they’ve been too busy to do all along: think.
 
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Ym94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1oZWFydCI+PHBhdGggZD0iTTE5IDE0YzEuNDktMS40NiAzLTMuMjEgMy01LjVBNS41IDUuNSAwIDAgMCAxNi41IDNjLTEuNzYgMC0zIC41LTQuNSAyLTEuNS0xLjUtMi43NC0yLTQuNS0yQTUuNSA1LjUgMCAwIDAgMiA4LjVjMCAyLjMgMS41IDQuMDUgMyA1LjVsNyA3WiIgLz48L3N2Zz4=" class="icon" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Ym94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1tZXNzYWdlLWNpcmNsZSI+PHBhdGggZD0iTTcuOSAyMEE5IDkgMCAxIDAgNCAxNi4xTDIgMjJaIiAvPjwvc3ZnPg==" class="icon" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHN0eWxlPSJoZWlnaHQ6MjBweDt3aWR0aDoyMHB4OyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiB2aWV3Ym94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSIjMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpY29uIj48Zz48dGl0bGU+PC90aXRsZT48cGF0aCBkPSJNMjEgM1Y4TTIxIDhIMTZNMjEgOEwxOCA1LjI5OTYyQzE2LjcwNTYgNC4xNDE4MyAxNS4xMDM4IDMuMzgzMjggMTMuMzg3OSAzLjExNTQ3QzExLjY3MTkgMi44NDc2NiA5LjkxNTIgMy4wODIwMyA4LjMyOTUxIDMuNzkwMzFDNi43NDM4MiA0LjQ5ODU4IDUuMzk2OTEgNS42NTA1MSA0LjQ1MTI1IDcuMTA3MTVDMy41MDU2IDguNTYzOCAzLjAwMTU4IDEwLjI2MjkgMyAxMS45OTk2TTMgMjFWMTZNMyAxNkg4TTMgMTZMNiAxOC43QzcuMjk0NDUgMTkuODU3OCA4Ljg5NjIzIDIwLjYxNjMgMTAuNjEyMSAyMC44ODQxQzEyLjMyODEgMjEuMTUyIDE0LjA4NDggMjAuOTE3NiAxNS42NzA1IDIwLjIwOTNDMTcuMjU2MiAxOS41MDEgMTguNjAzMSAxOC4zNDkxIDE5LjU0ODcgMTYuODkyNUMyMC40OTQ0IDE1LjQzNTggMjAuOTk4NCAxMy43MzY3IDIxIDEyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+PC9nPjwvc3ZnPg==" class="icon" />
+
+Share
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWFycm93LWxlZnQiPjxwYXRoIGQ9Im0xMiAxOS03LTcgNy03IiAvPjxwYXRoIGQ9Ik0xOSAxMkg1IiAvPjwvc3ZnPg==" class="lucide lucide-arrow-left" />Previous
+
 #### Discussion about this post
+
+Comments
+
+Restacks
+
+<img src="https://substackcdn.com/image/fetch/$s_!TnFC!,w_32,h_32,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Favatars%2Fdefault-light.png" class="img-OACg1c object-fit-cover-u4ReeV pencraft pc-reset" sizes="32px" srcset="https://substackcdn.com/image/fetch/$s_!TnFC!,w_32,h_32,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Favatars%2Fdefault-light.png 32w, https://substackcdn.com/image/fetch/$s_!TnFC!,w_64,h_64,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Favatars%2Fdefault-light.png 64w, https://substackcdn.com/image/fetch/$s_!TnFC!,w_96,h_96,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack.com%2Fimg%2Favatars%2Fdefault-light.png 96w" draggable="false" width="32" height="32" alt="User&#39;s avatar" />
+
+Top
+
+Latest
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld2JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNlYXJjaCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCI+PC9jaXJjbGU+PHBhdGggZD0ibTIxIDIxLTQuMy00LjMiIC8+PC9zdmc+" class="lucide lucide-search" />
 
 No posts
 
 ### Ready for more?
-© 2026 Rebecca Sutter · [Privacy](https://substack.com/privacy) ∙ [Terms](https://substack.com/tos) ∙ [Collection notice](https://substack.com/ccpa#personal-data-collected)[Start your Substack](https://substack.com/signup?utm_source=substack&utm_medium=web&utm_content=footer)[Get the app](https://substack.com/app/app-store-redirect?utm_campaign=app-marketing&utm_content=web-footer-button)[Substack](https://substack.com) is the home for great culture
+
+<span class="button-text">Subscribe</span>
+

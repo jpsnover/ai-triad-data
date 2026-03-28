@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 The Shape of the Thing
 
 Where we are right now, and what likely happens next

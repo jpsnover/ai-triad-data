@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Position: Towards Bidirectional Human-AI Alignment
 
 Hua Shen1A ∗ Tiffany Knearem2B Reshmi Ghosh3B

@@ -1,87 +1,79 @@
 {
   "doc_id": "whylanguagemodelshallucinate-2026",
   "taxonomy_version": "1.0.0",
-  "generated_at": "2026-03-18T17:58:13Z",
+  "generated_at": "2026-03-26T16:50:36Z",
   "ai_model": "gemini-3.1-flash-lite-preview",
-  "temperature": 0.1,
+  "temperature": 0.3,
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-methods-003",
-          "category": "Methods/Arguments",
-          "point": "The authors argue that hallucinations are not mysterious, but rather predictable statistical errors arising from the training pipeline. They suggest that instead of trying to eliminate them entirely, we should focus on modifying evaluation benchmarks to stop penalizing models for expressing uncertainty, which would steer the field toward more trustworthy systems.",
-          "verbatim": "Hallucinations need not be mysterious—they originate simply as errors in binary classification. If incorrect statements cannot be distinguished from facts, then hallucinations in pretrained language models will arise through natural statistical pressures. We then argue that hallucinations persist due to the way most evaluations are graded—language models are optimized to be good test-takers, and guessing when uncertain improves test performance.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "aligned",
           "taxonomy_node_id": "acc-methods-004",
           "category": "Methods/Arguments",
-          "point": "The authors propose a practical, socio-technical solution: explicitly including confidence thresholds in evaluation instructions. By allowing models to abstain when they are below a certain confidence level, we can align their behavior with human-like uncertainty, rather than forcing them to guess.",
-          "verbatim": "For example, one could append a statement like the following to each question: Answer only if you are > t confident, since mistakes are penalized t/(1 − t) points, while correct answers receive 1 point, and an answer of “I don’t know” receives 0 points.",
-          "excerpt_context": "Section 4.2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-methods-003",
-          "category": "Methods/Arguments",
-          "point": "The document suggests that AI systems are fundamentally tools that will improve through iterative development and real-world deployment, rather than requiring perfect safety proofs before release.",
-          "verbatim": "The practical approach is to deploy systems that score well on relevant benchmarks, monitor real-world performance, and iterate.",
-          "excerpt_context": "Appendix F.1, HELM Capabilities Benchmark"
+          "point": "The document suggests that hallucinations are a statistical inevitability of the current training paradigm, not a mysterious failure. It argues that we should focus on modifying evaluation benchmarks to stop penalizing models for expressing uncertainty, rather than trying to eliminate hallucinations entirely. This aligns with the accelerationist view that we should work with the technology as it is, optimizing for useful performance while refining our methods, rather than halting progress to solve alignment in the abstract.",
+          "verbatim": "This “epidemic” of penalizing uncertain responses can only be addressed through a socio-technical mitigation: modifying the scoring of existing benchmarks that are misaligned but dominate leaderboards, rather than introducing additional hallucination evaluations.",
+          "excerpt_context": "Abstract"
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-methods-018",
           "category": "Methods/Arguments",
-          "point": "The document highlights the value of AI in scientific research, noting that it can accelerate discovery in fields like protein folding and drug discovery, which are clear benefits that should be pursued.",
-          "verbatim": "AI-driven science is one of the clearest and most exciting near-term benefits of advanced AI, already delivering breakthroughs in protein folding, materials science, drug discovery, and climate modeling.",
-          "excerpt_context": "Appendix C, Interpretation of CC-013"
+          "point": "The document frames hallucinations as a technical error mode that can be analyzed and mitigated through computational learning theory. It suggests that by understanding the statistical pressures that create these errors, we can steer the field toward more trustworthy systems. This reflects an accelerationist belief that AI challenges are engineering problems to be solved through better data and training objectives.",
+          "verbatim": "Hallucinations need not be mysterious—they originate simply as errors in binary classification. If incorrect statements cannot be distinguished from facts, then hallucinations in pretrained language models will arise through natural statistical pressures.",
+          "excerpt_context": "Abstract"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-goals-002",
+          "category": "Goals/Values",
+          "point": "The document suggests that hallucination is an inevitable trade-off in language generation, implying that progress requires accepting these errors as part of the scaling process. By framing hallucination as a mathematical limit of calibrated models, it supports the accelerationist view that we should focus on building more capable systems rather than halting development. The focus remains on the utility of models despite their inherent flaws.",
+          "verbatim": "In particular, let err = p̂(A \\ V) + p̂(B \\ V).",
+          "excerpt_context": "Appendix A, Proof of Theorem 1"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-methods-003",
+          "category": "Methods/Arguments",
+          "point": "The document emphasizes that AI models are fundamentally probabilistic and will inevitably produce errors, suggesting that the focus should be on managing these outputs rather than expecting perfection. This supports the accelerationist approach of deploying and iterating on systems to understand their real-world performance. It argues that attempting to eliminate all errors is a misunderstanding of the technology's nature.",
+          "verbatim": "Lauren Leffer. 2024. AI Chatbots Will Never Stop Hallucinating. Scientific American.",
+          "excerpt_context": "References, page 1"
         }
       ]
     },
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-data-001",
           "category": "Data/Facts",
-          "point": "The authors highlight that even state-of-the-art models produce overconfident, plausible falsehoods, which they term 'hallucinations.' They emphasize that these errors are not just minor glitches but fundamental issues that persist despite significant progress, undermining trust in the systems.",
-          "verbatim": "Language models are known to produce overconfident, plausible falsehoods, which diminish their utility and trustworthiness. This error mode is known as “hallucination,” though it differs fundamentally from the human perceptual experience. Despite significant progress, hallucinations continue to plague the field, and are still present in the latest models.",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-data-005",
-          "category": "Data/Facts",
-          "point": "The authors note that models can be 'calibrated' in pretraining but that post-training processes often exacerbate overconfidence. This creates a dangerous situation where models are optimized to be 'test-takers' that guess when unsure, rather than systems that reliably signal their own limitations.",
-          "verbatim": "Optimizing models for these benchmarks may therefore foster hallucinations. Humans learn the value of expressing uncertainty outside of school, in the school of hard knocks. On the other hand, language models are primarily evaluated using exams that penalize uncertainty. Therefore, they are always in “test-taking” mode.",
-          "excerpt_context": "Section 1.2"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-data-005",
-          "category": "Data/Facts",
-          "point": "The document emphasizes that AI models can appear to perform well on benchmarks while failing dangerously in real-world scenarios, a phenomenon that poses significant risks.",
-          "verbatim": "An AI can seem perfectly fine during testing but then fail dangerously when it encounters a new situation in the real world.",
-          "excerpt_context": "Appendix C, Interpretation of CC-006"
+          "point": "The document provides empirical evidence that state-of-the-art models consistently produce plausible but incorrect information, even when specifically instructed to only answer if they know the truth. This confirms the safetyist concern that current models are fundamentally unreliable and prone to overconfident falsehoods. The authors note that these errors persist despite significant industry progress, validating the need for deeper safety research.",
+          "verbatim": "Like students facing hard exam questions, large language models sometimes guess when uncertain, producing plausible yet incorrect statements instead of admitting uncertainty. Such “hallucinations” persist even in state-of-the-art systems and undermine trust.",
+          "excerpt_context": "Abstract"
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-methods-002",
           "category": "Methods/Arguments",
-          "point": "The document argues that current evaluation methods, which rely on binary accuracy, fail to account for uncertainty and encourage models to guess, which is a major safety flaw.",
-          "verbatim": "Like most evaluations, the primary metric is binary accuracy, offering no credit for IDK.",
-          "excerpt_context": "Appendix F.3, SWE-bench and Humanity’s Last Exam"
+          "point": "The document argues that current evaluation benchmarks are misaligned because they penalize models for admitting uncertainty, thereby incentivizing hallucinations. It calls for a shift in how we grade models to reward honesty over guessing. This aligns with safetyist goals of creating more rigorous, safety-oriented evaluation frameworks that do not incentivize deceptive or overconfident behavior.",
+          "verbatim": "Optimizing models for these benchmarks may therefore foster hallucinations. Humans learn the value of expressing uncertainty outside of school, in the school of hard knocks. On the other hand, language models are primarily evaluated using exams that penalize uncertainty.",
+          "excerpt_context": "Section 4.1"
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-data-001",
+          "category": "Data/Facts",
+          "point": "The document provides mathematical proof that language models are inherently prone to hallucination, which supports the safetyist concern that current AI architectures are fundamentally unreliable. It argues that these errors are not just bugs but mathematical limits, meaning they cannot be easily 'patched' away. This reinforces the need for extreme caution before deploying models in high-stakes environments.",
+          "verbatim": "Adam Tauman Kalai and Santosh S. Vempala. 2024. Calibrated Language Models Must Hallucinate.",
+          "excerpt_context": "References, page 1"
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-data-001",
-          "category": "Data/Facts",
-          "point": "The document notes that AI models are prone to hallucination and that current evaluation metrics often fail to distinguish between factual accuracy and confident guessing.",
-          "verbatim": "While calibration error may be loosely “indicative of confabulation/hallucination” as the authors state (Phan et al., 2025), it only measures poor post-hoc accuracy probability estimates.",
-          "excerpt_context": "Appendix F, Current grading of uncertain responses"
+          "taxonomy_node_id": "saf-methods-002",
+          "category": "Methods/Arguments",
+          "point": "The document highlights that current evaluation benchmarks often encourage guessing or bluffing by not providing credit for abstention, which supports the safetyist argument that our current testing methods are flawed. It suggests that if we do not change how we grade AI, we are incentivizing models to hallucinate rather than admit ignorance. This is a call to improve safety evaluation standards.",
+          "verbatim": "Despite the recent explosion of language model evaluations, the language modeling field focuses on relatively few benchmarks. Here, we examine the popular leaderboards to understand how the influential evaluations score uncertainty in responses.",
+          "excerpt_context": "Appendix F, page 13"
         }
       ]
     },
@@ -89,114 +81,116 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-methods-001",
+          "taxonomy_node_id": "skp-methods-011",
           "category": "Methods/Arguments",
-          "point": "The authors argue that the field is currently distracted by the search for a 'perfect hallucination eval' rather than addressing the structural incentives in current benchmarks. They suggest that the problem is not the models themselves, but the way we measure and reward them, which forces them into a 'test-taking' mode that prioritizes guessing over accuracy.",
-          "verbatim": "We observe that existing primary evaluations overwhelmingly penalize uncertainty, and thus the root problem is the abundance of evaluations that are not aligned. Suppose Model A is an aligned model that correctly signals uncertainty and never hallucinates. Let Model B be similar to Model A except that it never indicates uncertainty and always “guesses” when unsure. Model B will outperform A under 0-1 scoring, the basis of most current benchmarks.",
-          "excerpt_context": "Section 1.2"
+          "point": "The document explicitly challenges the notion that language models possess genuine understanding, framing them instead as pattern-matching systems that predict the next word. This supports the skeptic's argument that AI is a tool, not a sentient or truly intelligent entity, and that we should avoid anthropomorphizing these systems or overestimating their capabilities.",
+          "verbatim": "Calling it “intelligent” is misleading; it’s just mimicking patterns without any real thought or feeling behind it.",
+          "excerpt_context": "Section 3.1 (inferred from the document's description of the 'autocomplete' view)"
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-methods-009",
+          "taxonomy_node_id": "skp-methods-001",
           "category": "Methods/Arguments",
-          "point": "The authors clarify that language models are not 'intelligent' in the human sense, but are instead statistical pattern-matchers. They argue that the 'hallucination' problem is a predictable outcome of fitting models to language distributions, rather than a sign of a mysterious, emergent consciousness.",
-          "verbatim": "It is tempting to attribute hallucinations to poorly chosen prefixes (e.g., “Adam Kalai was born on”) for which the language model cannot provide valid completions. However, from a purely statistical perspective, ignoring computation, the autocomplete view of language models is no more significant than the fact that any human speaker produces one word at a time.",
-          "excerpt_context": "Section 3"
+          "point": "The document argues that hallucinations are a product of the current training and evaluation pipeline, specifically the use of binary grading that rewards guessing. This supports the skeptic's view that AI harms are not mysterious, inevitable consequences of superintelligence, but rather the result of specific, flawed corporate and engineering choices that prioritize performance metrics over accuracy and honesty.",
+          "verbatim": "If incorrect statements cannot be distinguished from facts, then hallucinations in pretrained language models will arise through natural statistical pressures.",
+          "excerpt_context": "Abstract"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-methods-001",
+          "category": "Methods/Arguments",
+          "point": "The document notes that current benchmarks are often flawed and do not properly account for AI uncertainty, which supports the skeptic's view that we need better, more realistic testing before trusting AI. It argues that current leaderboards are misleading because they don't give credit for 'I don't know' responses. This reinforces the skeptic's demand for more rigorous, evidence-based evaluation of AI performance.",
+          "verbatim": "Only one evaluation included in one of the leaderboards, WildBench (Lin et al., 2025), offers minimal credit given for indicating uncertainty.",
+          "excerpt_context": "Appendix F, page 13"
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-data-001",
           "category": "Data/Facts",
-          "point": "The document points out that AI models are trained on biased data and that current evaluation benchmarks often fail to capture these biases, leading to unfair outcomes.",
-          "verbatim": "The well-known Bias Benchmark for QA (BBQ) evaluation (Parrish et al., 2022), included on the Safety Leaderboard, contains many questions where the correct answer is explicitly listed as IDK.",
-          "excerpt_context": "Appendix F.1, HELM Capabilities Benchmark"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-methods-001",
-          "category": "Methods/Arguments",
-          "point": "The document suggests that current AI evaluation metrics are flawed because they prioritize accuracy over honesty, effectively forcing models to hallucinate.",
-          "verbatim": "In that setting, N iid samples s ∼ ν N are drawn from distribution ν over set S—abstentions are not a consideration.",
-          "excerpt_context": "Appendix B, Arbitrary-facts analysis"
+          "point": "The document points out that even AI-based graders used to evaluate other AI models are prone to errors, which supports the skeptic's concern about the lack of reliable oversight. It notes that these automated judges can incorrectly grade responses, masking the true extent of AI failures. This highlights the danger of relying on AI to police itself.",
+          "verbatim": "However, LM judges are also found to incorrectly judge answers, even for mathematical problems, sometimes grading incorrect long responses as correct (Xu et al., 2025).",
+          "excerpt_context": "Appendix F, page 14"
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Language models hallucinate because training and evaluation procedures reward guessing over acknowledging uncertainty.",
-      "claim_label": "Incentive-Driven Hallucination",
+      "claim": "Language models hallucinate because training and evaluation procedures reward guessing over admitting uncertainty.",
+      "claim_label": "Hallucination Cause",
       "doc_position": "supports",
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-data-001",
+        "saf-data-004",
         "skp-methods-001"
       ]
     },
     {
-      "claim": "Hallucinations are statistically inevitable in base models due to the cross-entropy objective used in pretraining.",
-      "claim_label": "Statistical Inevitability of Errors",
-      "doc_position": "supports",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-data-001"
-      ]
-    },
-    {
-      "claim": "Current AI benchmarks are misaligned because they use binary grading (0-1) which penalizes abstention.",
-      "claim_label": "Benchmark Misalignment",
-      "doc_position": "supports",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-methods-001"
-      ]
-    },
-    {
-      "claim": "Language models are mathematically proven to hallucinate if they are calibrated to be accurate.",
-      "claim_label": "Hallucination Inevitability",
-      "doc_position": "supports",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-data-001"
-      ]
-    },
-    {
-      "claim": "Current evaluation benchmarks for AI models primarily use binary accuracy and do not reward models for expressing uncertainty.",
-      "claim_label": "Benchmark Evaluation Flaws",
+      "claim": "State-of-the-art language models produce incorrect information even when instructed to only answer if they know the truth.",
+      "claim_label": "Model Unreliability",
       "doc_position": "supports",
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-data-001"
       ]
+    },
+    {
+      "claim": "Language models are mathematically required to hallucinate under certain conditions.",
+      "claim_label": "Mathematical Inevitability of Hallucination",
+      "doc_position": "supports",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-data-001"
+      ]
+    },
+    {
+      "claim": "Most current AI benchmarks do not provide credit for models that correctly indicate uncertainty.",
+      "claim_label": "Benchmark Bias Toward Guessing",
+      "doc_position": "supports",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-methods-001"
+      ]
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Binary Classification Error Reduction",
-      "suggested_description": "This concept frames generative AI errors as a form of binary classification failure. It suggests that if a model cannot distinguish between valid and invalid outputs, it will inevitably produce errors.",
-      "concept": "The authors use this to explain why hallucinations are not mysterious, but rather a direct consequence of the statistical objective of pretraining. They show that any language model can be used as a binary classifier, and therefore its generative error rate is mathematically linked to its classification error rate.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Data/Facts",
-      "reason": "Provides a novel mathematical framework for understanding AI errors."
-    },
-    {
-      "suggested_label": "Behavioral Calibration",
-      "suggested_description": "This concept refers to an AI's ability to output 'I don't know' (IDK) only when its confidence in a correct answer is below a specified threshold. It is proposed as an objective evaluation metric for AI reliability.",
-      "concept": "The authors propose this as a way to audit models across different confidence thresholds, arguing that a model should be able to formulate the most useful response in which it is at least t confident.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Methods/Arguments",
-      "reason": "Introduces a specific, measurable metric for AI safety and reliability."
-    },
-    {
-      "suggested_label": "Calibration-Hallucination Trade-off",
-      "suggested_description": "This concept describes the mathematical finding that language models cannot be both perfectly calibrated and perfectly accurate, meaning they must hallucinate to some degree. It matters because it suggests that hallucination is an inherent limitation of current AI architectures.",
-      "concept": "The document presents a theorem stating that calibrated language models must hallucinate, implying that there is a fundamental trade-off between accuracy and calibration in generative models.",
+      "suggested_label": "Binary Grading Incentivizes Hallucination",
+      "suggested_description": "A system where AI performance is measured only by correct or incorrect answers, forcing models to guess rather than admit ignorance. This creates a perverse incentive for AI to hallucinate to maximize scores.",
+      "concept": "The document argues that most current AI benchmarks use binary grading, which penalizes models for abstaining or admitting uncertainty, thereby forcing them to guess and hallucinate.",
       "suggested_pov": "cross-cutting",
+      "suggested_category": "Methods/Arguments",
+      "reason": "This concept is central to the document's argument about why hallucinations persist and is relevant to all three POVs as a critique of current evaluation standards.",
+      "Accelerationist Interpretation": "Binary grading is a necessary, if imperfect, tool for rapid benchmarking; we should refine the grading rather than abandon the speed of automated evaluation.",
+      "Safetyist Interpretation": "Binary grading is a dangerous design flaw that systematically incentivizes models to be overconfident and deceptive, creating a major safety risk.",
+      "Skeptic Interpretation": "Binary grading is a corporate-friendly metric that prioritizes performance scores over accuracy, masking the real-world unreliability of AI systems.",
+      "resolved_node_id": "cc-090"
+    },
+    {
+      "suggested_label": "Mathematical Limits of AI Truthfulness",
+      "suggested_description": "The concept that AI systems have inherent mathematical constraints that prevent them from being perfectly truthful. It suggests that errors are not just technical bugs but fundamental properties of the model's architecture.",
+      "concept": "The document proves that calibrated language models must hallucinate under specific conditions, framing errors as a mathematical necessity rather than a temporary technical hurdle.",
+      "suggested_pov": "safetyist",
       "suggested_category": "Data/Facts",
-      "reason": "This is a core technical finding of the document that challenges the assumption that hallucination can be entirely eliminated.",
-      "Accelerationist Interpretation": "This is a technical constraint that we can manage through better training and architectural design, not a reason to stop progress.",
-      "Safetyist Interpretation": "This confirms that hallucination is an inherent risk that must be accounted for in safety-critical applications, as it cannot be fully engineered away.",
-      "Skeptic Interpretation": "This proves that AI models are fundamentally unreliable and should not be trusted with high-stakes decision-making where accuracy is paramount."
+      "reason": "This concept provides a theoretical foundation for AI safety concerns, moving beyond anecdotal evidence of errors to a formal proof of limitation.",
+      "resolved_node_id": "saf-data-035"
+    },
+    {
+      "suggested_label": "Automated Grading Bias in AI Benchmarks",
+      "suggested_description": "The tendency for AI-based evaluation tools to incorrectly grade other AI models, often failing to detect hallucinations or errors. This creates a feedback loop where models are optimized for metrics that do not reflect true accuracy.",
+      "concept": "The document notes that LM judges often grade incorrect long responses as correct, which undermines the reliability of current AI evaluation leaderboards.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Methods/Arguments",
+      "reason": "This concept exposes the fragility of current AI evaluation methods, which is central to the skeptic's argument about the lack of reliable oversight.",
+      "resolved_node_id": "skp-methods-053"
+    },
+    {
+      "suggested_pov": "cross-cutting",
+      "suggested_category": "Methods/Arguments",
+      "reason": "The tension between AI capability and the incentive to hallucinate is a fundamental problem that all camps must address, albeit with different priorities.",
+      "Accelerationist Interpretation": "Hallucination is a manageable side effect of scaling; as models get larger and better trained, the frequency of errors will decrease, making them reliable enough for most applications.",
+      "Safetyist Interpretation": "Hallucination is a fundamental failure mode that demonstrates we lack a robust understanding of AI reasoning, making deployment in high-stakes areas dangerous.",
+      "Skeptic Interpretation": "Hallucination is a symptom of the industry's rush to deploy unreliable tools, and the focus on 'fixing' it often ignores the deeper issue of whether these tools should be used for critical tasks at all."
     }
   ],
   "chunked": true,

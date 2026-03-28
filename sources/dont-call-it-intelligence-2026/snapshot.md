@@ -16,8 +16,48 @@
 
 ---
 
-Don’t Call It 'Intelligence' - The Atlantic*Listen1.0xSeek0:0010:53
-I am occasionally asked by colleges to give a version of a talk on how I became a writer.  The easy thing to do is to give a sort of guided tour through the woods of literary self-formation: a string of anecdotes designed to elicit a few chuckles, a moment or two of reflection about the inevitable bends in the road, things that felt momentous but turned out not to matter, or things that didn’t seem significant at the time but with hindsight turned out to be the most important of all.
+<a href="https://www.theatlantic.com/ideas/" class="ArticleRubric_link__nl9hy" data-event-element="rubric">Ideas</a>
+
+# Don’t Call It ‘Intelligence’
+
+Humans are question machines. AI is an answer machine.
+
+By <a href="https://www.theatlantic.com/author/charles-yu/" class="ArticleBylines_link__kNP4C" data-event-element="author" data-flatplan-author-link="true">Charles Yu</a>
+
+<figure class="ArticleLeadFigure_root__Bj81R ArticleLeadFigure_standard__20Izv">
+<div class="ArticleLeadFigure_media__R1npW" data-flatplan-lead_figure_media="true">
+<img src="https://cdn.theatlantic.com/thumbor/cxtS2pyRVAV0aBoXt1rMvZwjXbE=/0x0:2000x1125/960x540/media/img/mt/2026/02/2026_2_23_No_AI/original.png" id="article-lead-image" class="Image_root__XxsOp ArticleLeadArt_image__HZS4B" sizes="(min-width: 976px) 976px, 100vw" srcset="https://cdn.theatlantic.com/thumbor/Qm4oUoeGNUYXPNzaLPKIbfY3m8o=/0x0:2000x1125/750x422/media/img/mt/2026/02/2026_2_23_No_AI/original.png 750w, https://cdn.theatlantic.com/thumbor/b0_yUY47hSZdwig-pqpMp0--75c=/0x0:2000x1125/828x466/media/img/mt/2026/02/2026_2_23_No_AI/original.png 828w, https://cdn.theatlantic.com/thumbor/cxtS2pyRVAV0aBoXt1rMvZwjXbE=/0x0:2000x1125/960x540/media/img/mt/2026/02/2026_2_23_No_AI/original.png 960w, https://cdn.theatlantic.com/thumbor/syaS8flhSFSa27Jh6PIG10cAg6s=/0x0:2000x1125/976x549/media/img/mt/2026/02/2026_2_23_No_AI/original.png 976w, https://cdn.theatlantic.com/thumbor/VawDwbFfIjoxmZZZZADnBDqHL08=/0x0:2000x1125/1952x1098/media/img/mt/2026/02/2026_2_23_No_AI/original.png 1952w" width="960" height="540" alt="Illustration of hands united by a web of threads" />
+</div>
+<figcaption>Illustration by The Atlantic. Source: Ray Massey / Getty.</figcaption>
+</figure>
+
+March 5, 2026, 8 AM ET
+
+<span class="ArticleShare_text__oQKBy">Share</span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY2xhc3M9IkFydGljbGVTaGFyZV9idXR0b25JY29uX19CODZ2ViI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik03LjMzNS4yNzJhLjI1LjI1IDAgMDEuMzM3IDBsNC42MjMgNC4yMDRhLjI1LjI1IDAgMDEuMDE3LjM1M2wtLjMzNi4zN2EuMjUuMjUgMCAwMS0uMzUzLjAxNkw4LjAwNCAxLjkyNnY3LjlhLjI1LjI1IDAgMDEtLjI1LjI1aC0uNWEuMjUuMjUgMCAwMS0uMjUtLjI1VjEuOTI0bC0zLjYyIDMuMjkxYS4yNS4yNSAwIDAxLS4zNTMtLjAxNmwtLjMzNi0uMzdhLjI1LjI1IDAgMDEuMDE2LS4zNTNMNy4zMzUuMjcyek0uNSA3LjU0NWEuMjUuMjUgMCAwMC0uMjUuMjV2Ni43NWMwIC4xMzguMTEyLjI1LjI1LjI1aDE0YS4yNS4yNSAwIDAwLjI1LS4yNXYtNi43NWEuMjUuMjUgMCAwMC0uMjUtLjI1SDE0YS4yNS4yNSAwIDAwLS4yNS4yNXY2SDEuMjV2LTZhLjI1LjI1IDAgMDAtLjI1LS4yNUguNXoiIGZpbGw9ImN1cnJlbnRDb2xvciIgLz48L3N2Zz4=" class="ArticleShare_buttonIcon__B86vV" />
+
+<span class="SaveButton_text__fiZgx">Save </span><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY2xhc3M9IlNhdmVCdXR0b25faWNvbl9fSEZOaUQgU2F2ZUJ1dHRvbl91bnNhdmVkX19iUDRNTiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02IDEwLjgyOGw1IDMuMzFWMUgxdjEzLjEzOWw1LTMuMzF6TS43NzYgMTUuNDg2QS41LjUgMCAwMTAgMTUuMDdWLjVBLjUuNSAwIDAxLjUgMGgxMWEuNS41IDAgMDEuNS41djE0LjU3YS41LjUgMCAwMS0uNzc2LjQxNkw2LjEzOCAxMi4xMmEuMjUuMjUgMCAwMC0uMjc2IDBMLjc3NiAxNS40ODZ6IiBmaWxsPSJjdXJyZW50Q29sb3IiIC8+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01LjU3MiA4Ljc1YzAgLjEzOC4xMTEuMjUuMjUuMjVoLjVhLjI1LjI1IDAgMDAuMjUtLjI1VjYuNTdIOC43NUEuMjUuMjUgMCAwMDkgNi4zMnYtLjVhLjI1LjI1IDAgMDAtLjI1LS4yNUg2LjU3MlYzLjI1YS4yNS4yNSAwIDAwLS4yNS0uMjVoLS41YS4yNS4yNSAwIDAwLS4yNS4yNXYyLjMySDMuMjVhLjI1LjI1IDAgMDAtLjI1LjI1di41YzAgLjEzOC4xMTIuMjUuMjUuMjVoMi4zMjJ2Mi4xOHoiIGZpbGw9ImN1cnJlbnRDb2xvciIgLz48L3N2Zz4=" class="SaveButton_icon__HFNiD SaveButton_unsaved__bP4MN" />
+
+<img src="https://cdn.theatlantic.com/thumbor/alkwFhuu3-2G8-PFPTha3F_kVS8=/438x0:1563x1125/80x80/media/img/mt/2026/02/2026_2_23_No_AI/original.png" class="Image_root__XxsOp ArticleAudio_img__BFda3" sizes="80px" srcset="https://cdn.theatlantic.com/thumbor/alkwFhuu3-2G8-PFPTha3F_kVS8=/438x0:1563x1125/80x80/media/img/mt/2026/02/2026_2_23_No_AI/original.png 80w, https://cdn.theatlantic.com/thumbor/mWA0nCjYQCDOd-hSsitFU2GyvdA=/438x0:1563x1125/96x96/media/img/mt/2026/02/2026_2_23_No_AI/original.png 96w, https://cdn.theatlantic.com/thumbor/7LJJGJS41SrTQJtgyAArdH2HfuM=/438x0:1563x1125/128x128/media/img/mt/2026/02/2026_2_23_No_AI/original.png 128w, https://cdn.theatlantic.com/thumbor/lFP25wrF-X9WImt4qfm0kitn0Tk=/438x0:1563x1125/160x160/media/img/mt/2026/02/2026_2_23_No_AI/original.png 160w, https://cdn.theatlantic.com/thumbor/9Syri-_uygVnIjcMhHAPktnmelY=/438x0:1563x1125/192x192/media/img/mt/2026/02/2026_2_23_No_AI/original.png 192w, https://cdn.theatlantic.com/thumbor/hnFOtZc-C4bXBvszIq0P5x5NrAg=/438x0:1563x1125/256x256/media/img/mt/2026/02/2026_2_23_No_AI/original.png 256w, https://cdn.theatlantic.com/thumbor/zXtKxac9bmkAf-zB6ZbU7_oGkS8=/438x0:1563x1125/384x384/media/img/mt/2026/02/2026_2_23_No_AI/original.png 384w, https://cdn.theatlantic.com/thumbor/prSdEowC1c6Pv_WkgzXLZIOm-7Y=/438x0:1563x1125/512x512/media/img/mt/2026/02/2026_2_23_No_AI/original.png 512w" width="80" height="80" alt="Illustration of hands united by a web of threads" />
+
+Listen
+
+−
+
+1.0x
+
+\+
+
+Seek
+
+<span class="ArticleAudio_time__TIPIP">0:00</span><span class="ArticleAudio_time__TIPIP ArticleAudio_duration__qdjYp">10:53</span>
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCA0MCA0MCIgY2xhc3M9IkFydGljbGVBdWRpb19yZXdpbmRGd2RfXzdOX183IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTAuMzQ0IDUuMzE0bC0zLjU2MyA3LjgzIDguNTYzLjgzLTIuMTI2LTMuNjgyYTExLjk1IDExLjk1IDAgMDE2LTEuNjA2YzYuNjI4IDAgMTIgNS4zNzMgMTIgMTIgMCA2LjYyOC01LjM3MiAxMi0xMiAxMmExMiAxMiAwIDAxLTEwLjM5Ny02LjAwNWwtMS43MzMgMWMyLjQyIDQuMTg4IDYuOTQ2IDcuMDA2IDEyLjEzIDcuMDA2IDcuNzMyIDAgMTQtNi4yNjggMTQtMTRzLTYuMjY4LTE0LTE0LTE0Yy0yLjU1IDAtNC45NDEuNjgxLTcgMS44NzN6IiAvPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTExLjg0MiAyMy42MDdoMi4zNjh2LTQuNjE1bC0xLjc4My45OTctLjY5MS0xLjI2MyAyLjY4Ni0xLjQ5aDEuNTAzdjYuMzcxaDIuMzY4djEuMzNoLTYuNDV6bTEzLjg1Ny0xLjI1YzAgMS41Ny0xLjI2MyAyLjctMy4xNjUgMi43MTMtMS4wNjQuMDEzLTEuOTgyLS4xODYtMy4zMTItLjc1OGwuNTk5LTEuMjc3YzEuMTE3LjQ5MiAxLjc2OS42NjUgMi41OTMuNjY1Ljg3OCAwIDEuNjEtLjQyNSAxLjYxLTEuMjM3IDAtLjY3OC0uNTU5LTEuMTMtMS40MzctMS4xMy0uNTE4IDAtMS4xNy4xNzMtMS44MjIuNTA1bC0xLjExNy0uNDM5LjI4LTQuMTYzaDUuMjY2djEuMzNoLTQuMDE3bC0uMTA2IDEuOTAyYTMuNjUgMy42NSAwIDAxMS44MjItLjQ2NWMxLjY5IDAgMi44MDYuOTk3IDIuODA2IDIuMzU0IiAvPjwvc3ZnPg==" class="ArticleAudio_rewindFwd__7N__7" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCA0MCA0MCIgY2xhc3M9IkFydGljbGVBdWRpb19wbGF5X19iQkZWNCIgYXJpYS1oaWRkZW49InRydWUiPjxwYXRoIGZpbGw9IiNjdXJyZW50Q29sb3IiIGQ9Ik0zNCAyMEwxMCAzNFY2eiIgLz48L3N2Zz4=" class="ArticleAudio_play__bBFV4" />
+
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCA0MCA0MCIgY2xhc3M9IkFydGljbGVBdWRpb19yZXdpbmRGd2RfXzdOX183IiBhcmlhLWhpZGRlbj0idHJ1ZSI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMjkuNjU2IDUuMzE0bDMuNTYyIDcuODMtOC41NjIuODMgMi4xMjYtMy42ODJhMTEuOTQgMTEuOTQgMCAwMC02LTEuNjA2Yy02LjYyOCAwLTEyIDUuMzczLTEyIDEyIDAgNi42MjggNS4zNzIgMTIgMTIgMTIgNC40NDMgMCA4LjMyMy0yLjQxNSAxMC4zOTctNi4wMDVsMS43MzMgMWMtMi40MiA0LjE4OC02Ljk0NiA3LjAwNi0xMi4xMyA3LjAwNi03LjczMyAwLTE0LTYuMjY4LTE0LTE0czYuMjY3LTE0IDE0LTE0YzIuNTUgMCA0Ljk0LjY4MSA3IDEuODczeiIgLz48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xNC4yOCAyMy42MDdoMi4zNjd2LTQuNjE1bC0xLjc4Mi45OTctLjY5Mi0xLjI2MyAyLjY4Ny0xLjQ5aDEuNTAzdjYuMzcxaDIuMzY3djEuMzNoLTYuNDV6bTEzLjg1Ny0xLjI1YzAgMS41Ny0xLjI2NCAyLjctMy4xNjYgMi43MTMtMS4wNjQuMDEzLTEuOTgxLS4xODYtMy4zMTEtLjc1OGwuNTk4LTEuMjc3YzEuMTE3LjQ5MiAxLjc3LjY2NSAyLjU5NC42NjUuODc4IDAgMS42MS0uNDI1IDEuNjEtMS4yMzcgMC0uNjc4LS41Ni0xLjEzLTEuNDM3LTEuMTMtLjUxOSAwLTEuMTcuMTczLTEuODIyLjUwNWwtMS4xMTgtLjQzOS4yOC00LjE2M2g1LjI2N3YxLjMzaC00LjAxN2wtLjEwNiAxLjkwMmEzLjY1IDMuNjUgMCAwMTEuODIyLS40NjVjMS42ODkgMCAyLjgwNi45OTcgMi44MDYgMi4zNTQiIC8+PC9zdmc+" class="ArticleAudio_rewindFwd__7N__7" />
+
+<span class="smallcaps">I am occasionally</span> asked by colleges to give a version of a talk on how I became a writer.  The easy thing to do is to give a sort of guided tour through the woods of literary self-formation: a string of anecdotes designed to elicit a few chuckles, a moment or two of reflection about the inevitable bends in the road, things that felt momentous but turned out not to matter, or things that didn’t seem significant at the time but with hindsight turned out to be the most important of all.
 
 Typically, these tours end in the same place: The author has found a path through the wilderness, and discovered a voice along the way. Voice is what leads us out of the woods.
 
@@ -37,7 +77,7 @@ I’m not interested in predictions or timelines, or in who is right or wrong an
 
 What I’m most interested in is the “I” in AGI. What does it actually mean? And why have we let a small number of wealthy businesspeople define it?
 
-Sam Altman, the CEO of OpenAI, [promised](https://www.pymnts.com/news/artificial-intelligence/2025/openai-new-gpt-5-can-write-software-demand/) that engaging with Chat GPT-5 would be like talking “to a legitimate Ph.D.-level expert in anything.” I can’t stop thinking about how revealing—and weird—that definition of intelligence is.
+Sam Altman, the CEO of OpenAI, <a href="https://www.pymnts.com/news/artificial-intelligence/2025/openai-new-gpt-5-can-write-software-demand/" data-event-element="inline link">promised</a> that engaging with Chat GPT-5 would be like talking “to a legitimate Ph.D.-level expert in anything.” I can’t stop thinking about how revealing—and weird—that definition of intelligence is.
 
 Don’t get me wrong. It’s incredible that we are even having this conversation. I don’t want to minimize the distance the technology has traveled, the speed with which it has done so, or how far it might still go. What I do want to do is ask a question: How can we create intelligence when we don’t fully understand—can’t even really define—what intelligence is?
 
@@ -57,7 +97,7 @@ You might say this argument is flawed, based on an anthropocentric view of intel
 
 [Read: The alien intelligence in your pocket](https://www.theatlantic.com/technology/2025/10/ai-consciousness/683983/)
 
-Say I concede all that. What I am arguing is that, whatever the machines can do—as incredible and useful and potentially economically valuable as their capabilities may be—none of it merits the word intelligence*.
+Say I concede all that. What I am arguing is that, whatever the machines can do—as incredible and useful and potentially economically valuable as their capabilities may be—none of it merits the word *intelligence*.
 
 A couple of outliers aside, even the most enthusiastic proponents of AGI don’t believe that the frontier AI models are capable of *feeling*. Meaning they must assume that intelligence can be decoupled from embodiment and emotion. They are saying: *We understand what intelligence is, in its distilled and isolated form.*
 
@@ -77,9 +117,17 @@ AI doesn’t have a voice, and it’s not communicating with us. Not really. It 
 
 This is about more than semantics. By calling what AI can do “intelligence,” we are conflating a technological capability with a human attribute. We are dumbing ourselves down—not by talking to AI but by measuring ourselves against it. The danger isn’t that we are overestimating AI. It’s that we are underestimating ourselves.
 
----
+------------------------------------------------------------------------
 
-*This essay was adapted from Charles Yu’s 2026 Joel Connaroe Lecture, given at Davidson College on February 10.*
+<span class="small">*This essay was adapted from Charles Yu’s 2026 Joel Connaroe Lecture, given at Davidson College on February 10.*</span>
 
 ### About the Author
-[Charles Yu](https://www.theatlantic.com/author/charles-yu/)[Charles Yu](https://www.theatlantic.com/author/charles-yu/) is the author of four books, including the novels *How to Live Safely in a Science Fictional Universe* and [*I**nterior Chinatown*](https://www.penguinrandomhouse.com/books/216162/interior-chinatown-by-charles-yu/).Explore More Topics[literature](https://www.theatlantic.com/tag/general/literature/), [ChatGPT](https://www.theatlantic.com/tag/product/chatgpt/), [OpenAI](https://www.theatlantic.com/tag/organization/openai/), [Sam Altman](https://www.theatlantic.com/tag/person/sam-altman/)
+
+<a href="https://www.theatlantic.com/author/charles-yu/" data-event-element="author name">Charles Yu</a>
+
+<a href="https://www.theatlantic.com/author/charles-yu/" class="author-link" data-label="https://www.theatlantic.com/author/charles-yu/" data-action="click author - name">Charles Yu</a> is the author of four books, including the novels *How to Live Safely in a Science Fictional Universe* and [*Interior Chinatown*](https://www.penguinrandomhouse.com/books/216162/interior-chinatown-by-charles-yu/).
+
+Explore More Topics
+
+<span class="ArticleTags_tagLink__SZysG">[literature](https://www.theatlantic.com/tag/general/literature/), </span><span class="ArticleTags_tagLink__SZysG">[ChatGPT](https://www.theatlantic.com/tag/product/chatgpt/), </span><span class="ArticleTags_tagLink__SZysG">[OpenAI](https://www.theatlantic.com/tag/organization/openai/), </span><span class="ArticleTags_tagLink__SZysG">[Sam Altman](https://www.theatlantic.com/tag/person/sam-altman/)</span>
+

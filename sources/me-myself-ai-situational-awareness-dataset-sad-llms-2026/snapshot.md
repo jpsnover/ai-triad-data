@@ -15,6 +15,7 @@
 > **Type:** pdf
 
 ---
+
 Me, Myself, and AI:
 The Situational Awareness Dataset (SAD) for LLMs
 Rudolf Laine∗
