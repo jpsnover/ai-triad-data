@@ -3,19 +3,18 @@
   Title      : AI as Normal Technology
   Source     : 
   Type       : web_article
-  Captured   : 2026-02-24
+  Captured   : 2026-03-28
   This file is a Markdown shadow copy for AI summarisation and POViewer display.
   The original file lives in raw/ for fidelity (charts, tables, exact layout).
 -->
 
 # AI as Normal Technology
 
-> **Snapshot captured:** 2026-02-24
+> **Snapshot captured:** 2026-03-28
 > **Source:** 
 > **Type:** web_article
 
 ---
-
 <figure class="article-titles-fig">
 <img src="./AINormalTechnology_files/Susskind-Hero-Image-w-color-wash--3-_webres.png" srcset="https://kfai-documents.s3.amazonaws.com/images/9221083633/Susskind-Hero-Image-w-color-wash--3-_webres.png 1200w,
                         https://kfai-documents.s3.amazonaws.com/images/9221083633/Susskind-Hero-Image-w-color-wash--3-_medium.png 600w" sizes="(min-width: 48em) 50vw,
