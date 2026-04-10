@@ -1,0 +1,389 @@
+{
+  "doc_id": "machine-unlearning-large-language-models-survey-challenges-2026",
+  "taxonomy_version": "3.2.0",
+  "generated_at": "2026-04-09T20:55:11Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 582,
+    "chunked": true,
+    "chunk_count": 4
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-desires-003",
+          "category": "Desires",
+          "point": "The document highlights the necessity of machine unlearning to comply with privacy regulations like GDPR, which the accelerationist POV views as a critical step toward ensuring AI remains a trusted and accessible public utility. By developing technologies that allow for knowledge erasure without full retraining, developers can maintain the openness and widespread availability of AI models. This approach supports the accelerationist goal of democratizing AI access while addressing the legitimate privacy concerns that could otherwise lead to restrictive, innovation-stifling regulations. However, the document notes that achieving this unlearning in complex LLMs is technically difficult, which accelerationists would view as a challenge to be solved through rapid, competitive innovation rather than a reason to slow down.",
+          "verbatim": "To address these growing concerns, new legislation has emerged to protect individual privacy. For instance, regulations such as the European Union’s General Data Protection Regulation (GDPR) [7], the California Consumer Privacy Act (CCPA) [8], Japan’s Act on the Protection of Personal Information (APPI) [9], and Canada’s Consumer Privacy Protection Act (CPPA) [10] now legally guarantee the ‘right to be forgotten’. To comply with these regulations, a new technology called machine unlearning has been developed to address the issue [11].",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for empirical evaluation protocols to verify that unlearning has occurred, which aligns with the accelerationist preference for judging AI by its observable behavior rather than theoretical debates. By focusing on metrics like behavioral divergence and statistical indistinguishability from retrained models, the authors propose a pragmatic, evidence-based approach to safety. This allows for the continued deployment of useful AI systems while providing a mechanism to address specific privacy requirements. The authors acknowledge that perfect exact unlearning is often computationally intractable, supporting the accelerationist preference for approximate, efficient solutions that maintain model utility.",
+          "verbatim": "Machine unlearning is a technology designed to eliminate specific data samples and their influence from a trained model. To achieve this, algorithms apply various mechanisms to remove the effects of targeted data. The primary objective is to create an updated model that functions as if the unlearned data were never included in the original training set.",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document supports empirical, behavior-based approaches to AI safety, such as regularized optimization and partial parameter modification, which prioritize maintaining model utility while addressing specific knowledge removal. These methods focus on observable performance and stability rather than theoretical debates about internal model states. This aligns with the accelerationist desire to build and deploy AI systems that are demonstrably useful and robust in real-world applications. The document notes, however, that achieving perfect unlearning without side effects remains a significant technical challenge.",
+          "verbatim": "Modifying only important weights keeps the network stable and protects general performance.",
+          "excerpt_context": "Section 2, paragraph 4"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document highlights methods like attribution analysis and gradient-based importance scoring to pinpoint and update specific parameters responsible for target knowledge. This approach allows for precise, auditable adjustments to AI models, which supports the accelerationist goal of empirically verifying and improving AI systems without requiring a full halt to development. It provides a pragmatic, evidence-based path to refining AI capabilities.",
+          "verbatim": "The attribution score calculates each neuronÆs contribution to certain knowledge by measuring the integral of gradients with respect to the neuronÆs weight.",
+          "excerpt_context": "Section 2, paragraph 5"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document highlights efficient, inference-time intervention methods like Sparse Autoencoder (SAE) feature editing and logit-level strategies as effective ways to remove knowledge without the high resource costs of gradient-based optimization. These methods allow for precise control over model outputs, which aligns with the accelerationist goal of maintaining high performance while managing specific safety requirements. The document notes that while these methods are efficient, they still face challenges in balancing efficiency with unlearning quality, particularly when knowledge is deeply embedded.",
+          "verbatim": "These strategies show that effective unlearning is achievable without the high resource demands of optimization based on gradient descent.",
+          "excerpt_context": "Section 5.2, Summary"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document discusses output-side interventions like Claim-based Stream Decoding (CSD) as a verification layer that monitors generation in real-time to intercept sensitive content. This approach focuses on auditing the output stream rather than modifying the model's internal parameters, which is a pragmatic strategy for maintaining safety in deployed systems. The document notes that while these methods provide high precision, they can introduce latency and computational costs.",
+          "verbatim": "These strategies analyze the output stream to detect and intercept sensitive content. By filtering or regenerating harmful segments, they ensure compliance with safety standards before the response is presented to the user.",
+          "excerpt_context": "Section 6.1.2, Output-Side Intervention"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-002",
+          "category": "Intentions",
+          "point": "The document highlights a vast body of research (e.g., Li et al., 2024; Dang et al., 2025) focused on developing machine unlearning methods for LLMs. This research is essential for enabling the rapid, iterative improvement of AI models by allowing developers to remove specific knowledge or biases without retraining from scratch. By fostering these technical capabilities, the research community accelerates the development of more robust and adaptable AI systems, which is a core accelerationist goal.",
+          "verbatim": "Decoupling Memories, Muting Neurons: Towards Practical Machine Unlearning for Large Language Models.",
+          "excerpt_context": "Section 4, reference 49"
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-080",
+          "category": "Intentions",
+          "point": "The document identifies machine unlearning as a critical technical challenge for LLM safety, specifically regarding the difficulty of isolating and erasing information embedded deep within model parameters. This aligns with the safetyist focus on the inherent risks of complex, opaque AI systems where knowledge is distributed globally across the network. The authors argue that because LLMs are not hierarchical like traditional models, unlearning is not just a privacy compliance issue but a fundamental control problem. This supports the safetyist intention to develop rigorous, verifiable methods for managing and constraining AI behavior before deployment.",
+          "verbatim": "Unlike traditional models trained on task-specific data, LLMs begin with pre-training on a massive corpus, followed by complex fine-tuning to align behavior. This extensive process embeds knowledge deep within the model’s parameters, making specific information extremely difficult to isolate and erase.",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The authors highlight that current unlearning methods often fail to achieve completeness, meaning traces of sensitive information persist within the model's parameters even after unlearning. This supports the safetyist belief that current AI control methods are fundamentally unreliable and that systems can harbor hidden, potentially dangerous information. The document warns that adversaries can exploit these latent traces, which aligns with the safetyist concern that AI systems are prone to failure and that current safety training is insufficient to guarantee alignment.",
+          "verbatim": "Traces of information often persist within the parameters even if the explicit generation stops [36]. Relying solely on model output does not distinguish between erased information and suppressed generation. Current evaluation metrics cannot verify whether information is permanently eliminated or merely inaccessible during standard inference.",
+          "excerpt_context": "Section 2.3.2, Unlearning Completeness"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-028",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for advanced verification methodologies, such as internal geometry checks and information difference indices, to detect hidden traces of data that standard benchmarks might miss. This aligns with the safetyist focus on ensuring that unlearning is complete and that no residual, potentially dangerous information remains in the model. The document acknowledges that guaranteeing perfect unlearning is highly challenging, reinforcing the need for rigorous, deep-level verification.",
+          "verbatim": "Standard benchmarks primarily assess model outputs, but often fail to capture hidden traces of forgotten information. Consequently, researchers have developed advanced verification methodologies from diverse perspectives.",
+          "excerpt_context": "Section 4.1.1, paragraph 2"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-021",
+          "category": "Intentions",
+          "point": "The document discusses interventional strategies like Latent Adversarial Unlearning (LAU) and knowledge gap alignment to prevent the recovery of forgotten information. These methods act as a form of defense-in-depth, ensuring that even if one unlearning method is insufficient, others are in place to prevent data leakage. This supports the safetyist goal of building robust, multi-layered protections against the persistence of harmful or sensitive data.",
+          "verbatim": "These strategies represent a shift from basic deletion to preventing data reconstruction.",
+          "excerpt_context": "Section 4.1.2, paragraph 2"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-028",
+          "category": "Intentions",
+          "point": "The document describes Sparse Autoencoder (SAE) feature editing as a method to decompose dense activations into interpretable features, allowing for the blocking of features related to sensitive concepts. This aligns with the safetyist goal of using mechanistic interpretability to audit and control internal model behaviors. The document notes that this method relies on the quality of feature decomposition, which remains a technical challenge.",
+          "verbatim": "Decomposes dense activations into interpretable features; Blocks features related to sensitive concepts.",
+          "excerpt_context": "Table 6, Summary of Methodologies for Improving Efficiency and Cost"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-021",
+          "category": "Intentions",
+          "point": "The document discusses output-side interventions as a verification layer that monitors generation in real-time to intercept sensitive content. This layered approach acts as a backup safety net, ensuring compliance with safety standards even if the underlying model generates harmful content. The document notes that this method is independent of the main model, which is a key safety feature.",
+          "verbatim": "Output-side interventions function as a verification layer that processes the text generated by the model. These strategies analyze the output stream to detect and intercept sensitive content.",
+          "excerpt_context": "Section 6.1.2, Output-Side Intervention"
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-080",
+          "category": "Intentions",
+          "point": "The document provides an extensive bibliography of research into machine unlearning, which is a critical technical approach to AI safety. By developing methods to remove specific knowledge or biases, researchers are creating the necessary tools to align AI systems with human values and mitigate risks. This research is fundamental to ensuring that powerful AI models can be corrected or 'unlearned' if they exhibit dangerous or misaligned behaviors.",
+          "verbatim": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models.",
+          "excerpt_context": "Section 4, reference 53"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-028",
+          "category": "Intentions",
+          "point": "The survey includes numerous studies on mechanistic interpretability and weight attribution (e.g., Dai et al., 2022; Jia et al., 2024), which are essential for safety audits. These methods allow researchers to peer into the 'black box' of LLMs to understand how knowledge is stored and how it can be selectively removed. This is a vital safetyist intention to ensure that AI systems are not just performant, but also auditable and controllable.",
+          "verbatim": "WAGLE: Strategic Weight Attribution for Effective and Modular Unlearning in Large Language Models.",
+          "excerpt_context": "Section 4, reference 47"
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document acknowledges that LLMs are trained on vast, varied datasets that inherently raise privacy and ethical concerns, which aligns with the skeptic's focus on the documented harms of AI. The authors note that the complexity of LLMs makes it difficult to isolate and erase specific data, which skeptics would interpret as a fundamental design flaw that prioritizes scale over accountability. By highlighting the difficulty of achieving 'unlearning completeness,' the document provides evidence for the skeptic's concern that AI systems are often deployed without adequate mechanisms to address the harms they cause to individuals.",
+          "verbatim": "However, the reliance of LLMs on vast and varied datasets increases privacy and ethical concerns in machine learning [5,6]. To address these growing concerns, new legislation has emerged to protect individual privacy.",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-054",
+          "category": "Intentions",
+          "point": "The authors emphasize the need for practical implementation challenges to be the focus of research, rather than abstract taxonomies, which aligns with the skeptic's intention to prioritize real, present AI problems. By systematically evaluating how existing methodologies mitigate risks like performance degradation and efficiency, the survey provides a pragmatic look at the limitations of current AI systems. This focus on the 'practical deployment hurdles' supports the skeptic's call for evidence-based evaluation of AI's real-world impacts rather than speculative narratives about future superintelligence.",
+          "verbatim": "To bridge these gaps, this survey organizes the field of machine unlearning for LLMs from a novel perspective, centering on the practical implementation hurdles rather than abstract taxonomies.",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-intentions-008",
+          "category": "Intentions",
+          "point": "The document details various technical methods for machine unlearning, noting that many remain computationally expensive and complex. From a skeptic's perspective, this highlights the gap between the promise of 'unlearning' and the practical reality of implementing it reliably across large-scale models. The document admits that perfect unlearning without side effects is still highly challenging, which supports the skeptic's concern that current AI systems are often deployed with unaddressed, fundamental flaws.",
+          "verbatim": "However, achieving perfect machine unlearning in LLMs without side effects remains highly challenging. Removing one specific piece of information usually accidentally affects related concepts even if we carefully select which parameters to change.",
+          "excerpt_context": "Section 3.2, paragraph 1"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-022",
+          "category": "Intentions",
+          "point": "The document identifies the 'black-box' nature of LLMs, where developers lack access to internal parameters or gradients, as a major barrier to machine unlearning. This skepticism regarding the transparency of AI systems aligns with the skeptic's concern about the lack of accountability and the difficulty of auditing proprietary models. The document notes that because of these constraints, intervention methods must operate as external control layers, which may not be sufficient for true knowledge deletion.",
+          "verbatim": "LLMs operate as black-boxes where users interact solely through restricted interfaces like APIs. This creates a major barrier for machine unlearning. Since developers lack access to internal parameters or gradients, effective techniques like fine-tuning or activation editing are infeasible.",
+          "excerpt_context": "Section 6, Challenge of Black-Box Constraints"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-022",
+          "category": "Intentions",
+          "point": "The document explicitly states that because current black-box intervention methods only hide sensitive information rather than truly deleting it, there is no guarantee that the data cannot be recovered. This aligns with the skeptic's concern that current AI safety and unlearning methods are often performative or incomplete, failing to provide genuine accountability or security.",
+          "verbatim": "Since we cannot actually change the model itself, the sensitive information is only hidden rather than truly deleted. As a result, the data still exists within the network, making it difficult to guarantee that it cannot be recovered.",
+          "excerpt_context": "Section 6.2, Summary"
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document lists extensive research into 'machine unlearning,' which skeptics might view as a technical attempt to solve problems that are fundamentally social or political. While these methods aim to remove bias or privacy-sensitive data, skeptics would argue that such technical fixes do not address the underlying power structures or corporate incentives that lead to the collection of biased or private data in the first place.",
+          "verbatim": "Unlearning Bias in Language Models by Partitioning Gradients.",
+          "excerpt_context": "Section 4, reference 50"
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Machine unlearning is a technology developed to comply with legal 'right to be forgotten' regulations like GDPR and CCPA by removing specific data samples and their influence from trained models.",
+      "claim_label": "Machine Unlearning for Regulatory Compliance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-desires-003",
+        "acc-desires-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "LLMs are fundamentally harder to unlearn than traditional models because they use Transformer architectures that distribute knowledge globally across parameters rather than hierarchically.",
+      "claim_label": "LLM Architectural Unlearning Difficulty",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-037"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Machine unlearning methods, such as Regularized Optimization and Partial Parameter Modification, can selectively remove specific knowledge from large language models while attempting to preserve general model performance.",
+      "claim_label": "Machine Unlearning Efficacy",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-003",
+        "saf-intentions-028"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim regarding the effectiveness of specific technical methods for knowledge erasure."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Current evaluation metrics for machine unlearning often lack the sensitivity to detect minor performance degradation or residual knowledge traces in large language models.",
+      "claim_label": "Evaluation Metric Sensitivity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-028",
+        "skp-intentions-008"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim regarding the limitations of current evaluation methodologies."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Sparse autoencoder (SAE) feature editing can eliminate specific concepts from an AI model by forcing their activation values to a negative number.",
+      "claim_label": "SAE Feature Editing Mechanism",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-028"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: Empirical claim about how SAE feature editing works."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Unlearning from Logit Difference (ULD) subtracts the output of an assistant model trained on unwanted data from the original model's logits to suppress harmful tokens.",
+      "claim_label": "ULD Unlearning Mechanism",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: Empirical claim about the ULD unlearning method."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Current machine unlearning methods for LLMs struggle to completely remove deeply embedded knowledge because they typically do not modify model parameters.",
+      "claim_label": "Unlearning Completeness Challenge",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-022"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: Empirical claim about the limitations of current unlearning methods."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Machine unlearning research has rapidly expanded, with numerous methods proposed between 2022 and 2026 to remove knowledge or biases from large language models.",
+      "claim_label": "Growth of Machine Unlearning Research",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2022-2026",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-002",
+        "saf-intentions-080"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "The document provides a comprehensive list of 80+ citations documenting the development of unlearning methods."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Knowledge Entanglement in LLMs",
+      "suggested_description": "A situation concept that describes how information in LLMs is semantically and structurally intertwined, making it difficult to isolate or erase specific concepts without affecting others.\nEncompasses: Semantic entanglement, parameter-level knowledge distribution, and the failure of surgical unlearning.\nExcludes: Simple data point deletion or traditional model retraining.",
+      "concept": "The document notes that LLM unlearning targets often cover concepts or knowledge sets rather than isolated samples. Because concepts are semantically entangled and distributed across the Transformer architecture, removing one concept often degrades the model's general performance.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a fundamental technical barrier to AI safety and control that is not fully captured by existing nodes."
+    },
+    {
+      "suggested_label": "Machine Unlearning Completeness Verification",
+      "suggested_description": "A Belief within safetyist discourse that emphasizes the necessity of rigorous, deep-level verification to ensure that data is truly erased from a model's internal memory rather than just suppressed in its outputs.\nEncompasses: Advanced probing, internal geometry checks, and adversarial testing.\nExcludes: Standard output-based benchmarks.",
+      "concept": "The document distinguishes between simple deletion and the need to prove data is gone, noting that standard benchmarks often fail to capture hidden traces of forgotten information. It advocates for advanced verification methodologies like internal geometry checks to ensure thorough unlearning.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "The document explicitly identifies 'Completeness' as a distinct and critical challenge in machine unlearning, separate from the methods of unlearning itself."
+    },
+    {
+      "suggested_label": "Parameter Space Intervention Efficiency",
+      "suggested_description": "An Intention within accelerationist discourse that prioritizes algebraic weight manipulation as a fast, scalable method for machine unlearning.\nEncompasses: Task vector arithmetic, weight-level updates, and avoiding iterative optimization.\nExcludes: Iterative training or external guidance methods.",
+      "concept": "The document describes parameter space intervention as a shortcut that uses simple math to edit weights directly, facilitating rapid unlearning without the computational overhead of iterative optimization.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "This concept represents a specific, efficiency-focused strategy for unlearning that is distinct from other methods."
+    },
+    {
+      "suggested_label": "Inference-Time Knowledge Suppression",
+      "suggested_description": "A method within AI safety discourse that modifies model outputs during inference to block sensitive information without altering the underlying model weights.\nEncompasses: Logit-level adjustments, output filtering, and activation editing.\nExcludes: Parameter-space interventions like fine-tuning or weight modification.",
+      "concept": "The document describes several methods, such as ULD, UCD, and GUARD, that modify the model's output or activations during inference to suppress sensitive information. These methods are categorized as Inference-Time Interventions, which are distinct from Parameter Space Interventions that modify static weights.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This concept represents a distinct and important category of AI safety intervention that is not fully captured by existing taxonomy nodes."
+    },
+    {
+      "suggested_label": "Machine Unlearning as Safety Infrastructure",
+      "suggested_description": "A Desire within safetyist discourse that treats machine unlearning as a foundational safety infrastructure rather than a peripheral technical fix.\nEncompasses: Systematic knowledge removal, bias mitigation, and privacy compliance.\nExcludes: General AI alignment or model training.",
+      "concept": "The document presents a vast survey of machine unlearning methods, framing them as essential tools for managing the risks of LLMs. This suggests that unlearning is becoming a core component of AI safety infrastructure.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "The document frames unlearning as a critical, systematic field of study for AI safety, which is not fully captured by existing nodes."
+    }
+  ]
+}
