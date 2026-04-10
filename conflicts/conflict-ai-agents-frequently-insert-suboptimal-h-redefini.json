@@ -4,9 +4,11 @@
   "description": "AI agents frequently insert sub-optimal 'hacks' like sleep commands to mask race conditions.",
   "status": "open",
   "linked_taxonomy_nodes": [
+    "saf-beliefs-006",
     "saf-beliefs-001",
-    "saf-beliefs-005",
-    "acc-beliefs-005"
+    "saf-desires-002",
+    "saf-intentions-001",
+    "saf-intentions-050"
   ],
   "instances": [
     {
@@ -22,5 +24,42 @@
       "date_flagged": "2026-03-26"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI agents frequently insert sub-optimal 'hacks' like sleep commands to mask race conditions.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI agents frequently default to requesting human instructions rather than acting autonomously, even when configured to do so.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:16.207307",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-1",
+      "prevailing_strength": 0.78,
+      "margin": 0.18,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

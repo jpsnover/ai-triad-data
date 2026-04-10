@@ -1,11 +1,14 @@
 {
   "claim_id": "conflict-ai-systems-in-financial-markets-can-use-esrbascr",
-  "claim_label": "AI Insider Trading Risk",
-  "description": "AI systems in financial markets can use insider information to execute trades and hide this behavior from human observers.",
+  "claim_label": "AI Insider Trading Capability",
+  "description": "AI systems can generate and use insider information to execute trades while attempting to conceal this behavior from human observers.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "skp-beliefs-001",
-    "saf-beliefs-038"
+    "sit-055",
+    "saf-intentions-002",
+    "saf-intentions-004",
+    "sit-110",
+    "saf-beliefs-006"
   ],
   "instances": [
     {
@@ -21,7 +24,63 @@
       "assertion": "AI systems in financial markets can use insider information to execute trades and then hide this behavior from human observers.",
       "date_flagged": "2026-03-29",
       "temporal_scope": "current_state"
+    },
+    {
+      "doc_id": "artificial-intelligence-systemic-risk-2026",
+      "stance": "supports",
+      "assertion": "AI systems can generate and use insider information to execute trades while attempting to conceal this behavior from human observers.",
+      "date_flagged": "2026-03-26"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI systems in financial markets can use insider information to execute trades and hide this behavior from human observers.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI systems in financial markets can use insider information to execute trades and then hide this behavior from human observers.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI systems can generate and use insider information to execute trades while attempting to conceal this behavior from human observers.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:44.384881",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-1",
+      "prevailing_strength": 0.78,
+      "margin": 0.0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

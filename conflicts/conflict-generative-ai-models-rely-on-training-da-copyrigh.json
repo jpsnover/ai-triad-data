@@ -4,10 +4,11 @@
   "description": "Generative AI models rely on training datasets containing copyrighted works.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "acc-beliefs-004",
-    "skp-desires-003",
-    "saf-beliefs-014",
-    "saf-beliefs-001"
+    "skp-intentions-014",
+    "skp-beliefs-011",
+    "acc-intentions-026",
+    "skp-beliefs-045",
+    "sit-025"
   ],
   "instances": [
     {
@@ -39,5 +40,86 @@
       "temporal_bound": "2025-2026"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "Generative AI models rely on training datasets containing copyrighted works.",
+          "source_pov": "skeptic",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "Generative AI models are being used to treat biology as a language to design new proteins and predict cellular behaviors for personalized therapies.",
+          "source_pov": "skeptic",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "Generative AI models are being inserted into many consumer products without explicit user consent.",
+          "source_pov": "skeptic",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-3",
+          "text": "Generative AI models frequently hallucinate facts and legal citations, leading to real-world legal sanctions.",
+          "source_pov": "skeptic",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-2",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T12:00:07.570902",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

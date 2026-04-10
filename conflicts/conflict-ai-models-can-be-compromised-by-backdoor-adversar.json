@@ -1,10 +1,14 @@
 {
   "claim_id": "conflict-ai-models-can-be-compromised-by-backdoor-adversar",
-  "claim_label": "Backdoor Insertion Risk",
+  "claim_label": "Adversarial Vulnerability of AI",
   "description": "AI models can be compromised by 'Backdoor Insertion,' where malicious triggers are planted in model weights during training to force harmful outputs.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "saf-beliefs-010"
+    "saf-intentions-036",
+    "saf-beliefs-022",
+    "sit-024",
+    "sit-097",
+    "sit-107"
   ],
   "instances": [
     {
@@ -12,7 +16,76 @@
       "stance": "supports",
       "assertion": "AI models can be compromised by 'Backdoor Insertion,' where malicious triggers are planted in model weights during training to force harmful outputs.",
       "date_flagged": "2026-03-26"
+    },
+    {
+      "doc_id": "towards-bidirectional-human-ai-alignment-2026",
+      "stance": "supports",
+      "assertion": "AI models exhibit vulnerabilities to adversarial attacks and require specific interpretability and safety auditing techniques.",
+      "date_flagged": "2026-03-29",
+      "temporal_scope": "current_state"
+    },
+    {
+      "doc_id": "international-ai-safety-report-2026-1-2026",
+      "stance": "supports",
+      "assertion": "AI models are susceptible to adversarial attacks that can bypass safety filters and trigger harmful outputs.",
+      "date_flagged": "2026-03-26"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI models can be compromised by 'Backdoor Insertion,' where malicious triggers are planted in model weights during training to force harmful outputs.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI models exhibit vulnerabilities to adversarial attacks and require specific interpretability and safety auditing techniques.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI models are susceptible to adversarial attacks that can bypass safety filters and trigger harmful outputs.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:21.451039",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0.22,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

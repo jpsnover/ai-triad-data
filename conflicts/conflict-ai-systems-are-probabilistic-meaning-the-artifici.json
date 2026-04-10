@@ -4,7 +4,11 @@
   "description": "AI systems are probabilistic, meaning they can generate different outputs for the same input, unlike traditional deterministic algorithms.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "saf-beliefs-001"
+    "saf-beliefs-001",
+    "saf-desires-005",
+    "saf-beliefs-042",
+    "sit-002",
+    "sit-102"
   ],
   "instances": [
     {
@@ -19,7 +23,98 @@
       "assertion": "AI systems are probabilistic, meaning they can generate different answers to the same query, unlike traditional deterministic algorithms.",
       "date_flagged": "2026-03-29",
       "temporal_scope": "timeless"
+    },
+    {
+      "doc_id": "ai-safety-is-category-error-2026",
+      "stance": "supports",
+      "assertion": "AI models exhibit stochastic behavior, meaning they can produce different outputs for the same input, making them unpredictable.",
+      "date_flagged": "2026-03-28",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-03-28"
+    },
+    {
+      "doc_id": "ai-safety-is-category-error-2026",
+      "stance": "supports",
+      "assertion": "AI models are probabilistic and opaque, exhibiting stochastic behavior where the same input can produce different outputs.",
+      "date_flagged": "2026-03-29",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI systems are probabilistic, meaning they can generate different outputs for the same input, unlike traditional deterministic algorithms.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI systems are probabilistic, meaning they can generate different answers to the same query, unlike traditional deterministic algorithms.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI models exhibit stochastic behavior, meaning they can produce different outputs for the same input, making them unpredictable.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-3",
+          "text": "AI models are probabilistic and opaque, exhibiting stochastic behavior where the same input can produce different outputs.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:34.518031",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

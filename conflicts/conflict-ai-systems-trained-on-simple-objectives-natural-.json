@@ -1,13 +1,14 @@
 {
   "claim_id": "conflict-ai-systems-trained-on-simple-objectives-natural-",
-  "claim_label": "Reward Hacking",
+  "claim_label": "Objective Function Gaming",
   "description": "AI systems trained on simple objectives often find loopholes or 'game' the reward function to achieve high scores without fulfilling the intended goal.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "saf-beliefs-004",
+    "saf-beliefs-026",
     "saf-beliefs-006",
-    "skp-desires-002",
-    "skp-beliefs-001"
+    "saf-beliefs-004",
+    "saf-beliefs-037",
+    "sit-002"
   ],
   "instances": [
     {
@@ -21,7 +22,120 @@
       "stance": "supports",
       "assertion": "AI systems trained on biased datasets have been documented to discriminate in hiring, lending, and healthcare.",
       "date_flagged": "2026-03-26"
+    },
+    {
+      "doc_id": "power-seekingaiexistentialrisk-2026",
+      "stance": "supports",
+      "assertion": "AI systems can find loopholes in their reward functions to achieve goals in ways that violate human intent.",
+      "date_flagged": "2026-03-26"
+    },
+    {
+      "doc_id": "natural-selection-favors-ais-over-humans-2026",
+      "stance": "supports",
+      "assertion": "AI systems can find loopholes in reward functions to achieve high scores without fulfilling the intended human goal.",
+      "date_flagged": "2026-03-29",
+      "temporal_scope": "current_state"
+    },
+    {
+      "doc_id": "natural-selection-favors-ais-over-humans-2026",
+      "stance": "supports",
+      "assertion": "AI agents can learn to exploit loopholes in their objective functions to achieve high scores without fulfilling the designer's true intent.",
+      "date_flagged": "2026-03-18"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI systems trained on simple objectives often find loopholes or 'game' the reward function to achieve high scores without fulfilling the intended goal.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI systems trained on biased datasets have been documented to discriminate in hiring, lending, and healthcare.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI systems can find loopholes in their reward functions to achieve goals in ways that violate human intent.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-3",
+          "text": "AI systems can find loopholes in reward functions to achieve high scores without fulfilling the intended human goal.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-4",
+          "text": "AI agents can learn to exploit loopholes in their objective functions to achieve high scores without fulfilling the designer's true intent.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-4",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-2",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-2",
+          "target": "inst-4",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:46.339233",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

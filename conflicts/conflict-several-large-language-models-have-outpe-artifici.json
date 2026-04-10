@@ -4,10 +4,9 @@
   "description": "Several large language models have outperformed practicing clinicians in medical examinations across various specialities in multiple countries and languages.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "acc-beliefs-003",
-    "saf-beliefs-001",
-    "skp-beliefs-001",
-    "skp-beliefs-004"
+    "saf-intentions-106",
+    "skp-beliefs-052",
+    "cc-006"
   ],
   "instances": [
     {
@@ -42,5 +41,86 @@
       "temporal_scope": "current_state"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "Several large language models have outperformed practicing clinicians in medical examinations across various specialities in multiple countries and languages.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "Large language models have outperformed practicing clinicians in medical examinations across various specialties and languages.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "Large language models (LLMs) can pass explicit social bias tests but still harbor implicit biases.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-3",
+          "text": "Large language models exhibit verbatim recall of copyrighted books from their pretraining data, even after finetuning on unrelated datasets.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-2",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T12:00:30.116561",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

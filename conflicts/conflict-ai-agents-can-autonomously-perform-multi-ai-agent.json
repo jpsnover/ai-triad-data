@@ -4,10 +4,11 @@
   "description": "AI agents can autonomously perform multi-step tasks like writing code and managing workflows, which can lead to cascading real-world consequences.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "saf-intentions-008",
-    "sit-012",
     "sit-055",
-    "acc-beliefs-005"
+    "sit-066",
+    "sit-012",
+    "sit-102",
+    "saf-intentions-050"
   ],
   "instances": [
     {
@@ -35,5 +36,86 @@
       "date_flagged": "2026-03-26"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "AI agents can autonomously perform multi-step tasks like writing code and managing workflows, which can lead to cascading real-world consequences.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI agents can autonomously interact with external tools like email, web browsers, and code terminals to perform multi-step tasks.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI agents can autonomously interpret customer intent, process refunds, and update shipping details in retail settings.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        },
+        {
+          "id": "inst-3",
+          "text": "AI agents can autonomously perform multi-step tasks such as browsing the web, writing code, and executing system commands.",
+          "source_pov": "situations",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-2",
+          "target": "inst-3",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:12.246303",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

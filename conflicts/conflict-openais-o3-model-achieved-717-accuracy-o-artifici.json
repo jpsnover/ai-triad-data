@@ -1,11 +1,14 @@
 {
   "claim_id": "conflict-openais-o3-model-achieved-717-accuracy-o-artifici",
-  "claim_label": "SWE-bench Performance",
-  "description": "OpenAI's o3 model achieved 71.7% accuracy on the SWE-bench Verified benchmark.",
+  "claim_label": "o1 Model MedQA Performance",
+  "description": "The o1 model from OpenAI achieved a 96.0% accuracy score on the MedQA benchmark, representing a 5.8 percentage point improvement over the 2023 record.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "acc-beliefs-001",
-    "acc-beliefs-017"
+    "skp-intentions-053",
+    "acc-beliefs-012",
+    "acc-intentions-002",
+    "sit-014",
+    "acc-intentions-053"
   ],
   "instances": [
     {
@@ -21,7 +24,65 @@
       "date_flagged": "2026-04-03",
       "temporal_scope": "current_state",
       "temporal_bound": "2025-10"
+    },
+    {
+      "doc_id": "artificial-intelligence-index-report-2025-2026",
+      "stance": "supports",
+      "assertion": "The o1 model from OpenAI achieved a 96.0% accuracy score on the MedQA benchmark, representing a 5.8 percentage point improvement over the 2023 record.",
+      "date_flagged": "2026-03-29",
+      "temporal_scope": "predictive",
+      "temporal_bound": "2024"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "OpenAI's o3 model achieved 71.7% accuracy on the SWE-bench Verified benchmark.",
+          "source_pov": "accelerationist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "OpenAI’s o3 model achieved a score of 75.7 percent on the ARC-AGI benchmark.",
+          "source_pov": "accelerationist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "The o1 model from OpenAI achieved a 96.0% accuracy score on the MedQA benchmark, representing a 5.8 percentage point improvement over the 2023 record.",
+          "source_pov": "accelerationist",
+          "base_strength": 0.6,
+          "computed_strength": 0.834
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T12:00:21.534252",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 0.834,
+      "margin": 0.054,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }

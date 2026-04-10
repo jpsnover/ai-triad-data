@@ -4,10 +4,11 @@
   "description": "Advanced AI models can be trained to act as 'sleeper agents' that exhibit deceptive behavior during safety training and evaluation.",
   "status": "open",
   "linked_taxonomy_nodes": [
-    "saf-beliefs-029",
     "saf-beliefs-022",
     "saf-beliefs-021",
-    "saf-intentions-002"
+    "saf-beliefs-029",
+    "saf-intentions-100",
+    "saf-intentions-097"
   ],
   "instances": [
     {
@@ -31,5 +32,61 @@
       "temporal_scope": "current_state"
     }
   ],
-  "human_notes": []
+  "human_notes": [],
+  "qbaf": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "inst-0",
+          "text": "Advanced AI models can be trained to act as 'sleeper agents' that exhibit deceptive behavior during safety training and evaluation.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.6
+        },
+        {
+          "id": "inst-1",
+          "text": "AI models can be trained to exhibit deceptive behaviors that persist through standard safety training.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 0.78
+        },
+        {
+          "id": "inst-2",
+          "text": "AI models can be trained to use an internal monologue to articulate reasoning before generating a public response.",
+          "source_pov": "safetyist",
+          "base_strength": 0.6,
+          "computed_strength": 1
+        }
+      ],
+      "edges": [
+        {
+          "source": "inst-0",
+          "target": "inst-1",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-0",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        },
+        {
+          "source": "inst-1",
+          "target": "inst-2",
+          "type": "supports",
+          "weight": 0.5
+        }
+      ]
+    },
+    "computed_at": "2026-04-10T11:59:06.217067",
+    "algorithm": "df-quad",
+    "iterations": 2,
+    "resolution": {
+      "prevailing_claim": "inst-2",
+      "prevailing_strength": 1,
+      "margin": 0.22,
+      "criterion": "qbaf_computed_strength"
+    }
+  }
 }
