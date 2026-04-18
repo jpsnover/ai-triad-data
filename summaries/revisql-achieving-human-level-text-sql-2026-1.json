@@ -1,0 +1,444 @@
+{
+    "doc_id":  "revisql-achieving-human-level-text-sql-2026-1",
+    "taxonomy_version":  "3.2.0",
+    "generated_at":  "2026-04-17T21:35:08Z",
+    "model_info":  {
+                       "model":  "gemini-3.1-flash-lite-preview",
+                       "temperature":  0.1,
+                       "max_tokens":  32768,
+                       "extraction_mode":  "fire",
+                       "taxonomy_filter":  "rag",
+                       "taxonomy_nodes":  11,
+                       "fire_confidence_threshold":  0.7,
+                       "fire_stats":  {
+                                          "api_calls":  1,
+                                          "iterations":  0,
+                                          "claims_total":  14,
+                                          "claims_confident":  14,
+                                          "claims_iterated":  0,
+                                          "elapsed_seconds":  18.2,
+                                          "termination_reason":  "all_confident"
+                                      }
+                   },
+    "pov_summaries":  {
+                          "accelerationist":  {
+                                                  "key_points":  [
+                                                                     {
+                                                                         "stance":  "strongly_aligned",
+                                                                         "taxonomy_node_id":  "acc-intentions-018",
+                                                                         "category":  "Intentions",
+                                                                         "point":  "The document argues that the most effective path to human-level Text-to-SQL performance is to improve the intrinsic reasoning capabilities of the underlying LLM rather than building complex, multi-stage AI agent pipelines. By focusing on data quality and RLVR, the framework enables the model to autonomously perform schema exploration and self-correction. This aligns with the accelerationist goal of creating reliable, autonomous systems that surpass human experts in efficiency and accuracy. The document notes that while agents provide utility, their composition introduces computational overhead and cascading error propagation.",
+                                                                         "verbatim":  "In contrast, ReViSQL is an end-to-end framework that enables large language models (LLMs) to autonomously develop these capabilities.",
+                                                                         "excerpt_context":  "Section 3, Overview"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  null,
+                                                                         "category":  "Desires",
+                                                                         "point":  "The authors advocate for the creation of high-quality, verified datasets as a foundational requirement for advancing AI reasoning. They argue that pervasive annotation errors in existing benchmarks like BIRD systematically bias models and destabilize learning. By constructing BIRD-Verified, they aim to unlock the true potential of RLVR to achieve human-level performance. This reflects an accelerationist desire to refine training methodologies to push the boundaries of what AI can achieve.",
+                                                                         "verbatim":  "To unlock the true potential of RLVR, we constructed a verified dataset, BIRD-Verified, by correcting 2.5k Text-to-SQL instances drawn from the BIRD Train set.",
+                                                                         "excerpt_context":  "Section 1, Introduction"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  null,
+                                                                         "category":  "Beliefs",
+                                                                         "point":  "The document asserts that inference-time scaling is only effective when the underlying model possesses high SQL reasoning capabilities. It observes that baseline models exhibit severe diminishing returns when scaling the number of candidates, whereas ReViSQL scales smoothly. This suggests that massive parameter counts alone cannot close the performance gap without improved reasoning. The document acknowledges that this scaling mechanism is vital for handling natural language ambiguity in real-world deployments.",
+                                                                         "verbatim":  "This indicates reasoning bottlenecks in prior models and underscores our core hypothesis: inference-time scaling is only effective when the underlying model possesses high SQL reasoning capabilities.",
+                                                                         "excerpt_context":  "Section 6.3, ReViSQL Outperforms Single-model Baselines"
+                                                                     }
+                                                                 ]
+                                              },
+                          "safetyist":  {
+                                            "key_points":  [
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-011",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document highlights how pervasive annotation errors in training data generate spurious reward signals that destabilize the learning process. When models learn from noisy data, they may memorize incorrect logic or receive false positive rewards, which undermines the reliability of the resulting system. This aligns with safetyist concerns about the integrity of training signals and the potential for models to learn flawed behaviors. The authors emphasize that rigorous curation is essential to prevent these failure modes.",
+                                                                   "verbatim":  "When models attempt to learn from noisy data, these pervasive errors generate spurious reward signals, severely destabilizing the learning process.",
+                                                                   "excerpt_context":  "Section 1, Introduction"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-intentions-035",
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors implement a multi-turn verification pipeline involving independent SQL experts to correct annotation errors in training data. This process includes conflict resolution and verification rounds to ensure the quality of the learning signal. From a safetyist perspective, this manual oversight is a necessary safeguard against the risks of training on unverified, noisy data. The document notes that automated LLM reviewers have low recall, necessitating human-in-the-loop verification.",
+                                                                   "verbatim":  "However, the LLM reviewer leads to a low recall of only 24.5%, missing a significant number of errors, which emphasizes the importance of expert involvement in data correction.",
+                                                                   "excerpt_context":  "Section 4.2, Statistics"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Desires",
+                                                                   "point":  "The document supports the use of verifiable rewards (RLVR) to ensure that models are incentivized to discover effective reasoning paths that yield correct execution results. By comparing generated SQL against gold SQL using specific grading methods, the framework enforces correctness. This aligns with safetyist goals of aligning model outputs with verifiable ground truth. The authors acknowledge that standard set-based grading is sometimes insufficient, requiring more granular subset-based or list-based grading methods.",
+                                                                   "verbatim":  "When the generated SQL query achieves an equivalent answer to the gold SQL query under the specific grading method of the question, we assign a reward of 1.",
+                                                                   "excerpt_context":  "Section 5.1, Training with Verified Data"
+                                                               }
+                                                           ]
+                                        },
+                          "skeptic":  {
+                                          "key_points":  [
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-017",
+                                                                 "category":  "Intentions",
+                                                                 "point":  "The document identifies the critical problem of inadequate documentation and pervasive annotation errors in existing AI benchmarks. It argues that these errors hinder the rigorous evaluation and training of models, leading to systemic fragility. By documenting and correcting these errors, the authors aim to improve the transparency and reliability of Text-to-SQL systems. This aligns with the skeptic focus on identifying measurable harms and systemic failures in current AI development practices.",
+                                                                 "verbatim":  "Pervasive annotation errors hinder the rigorous evaluation and training of Text-to-SQL models.",
+                                                                 "excerpt_context":  "Section 2.2, Noise in Text-to-SQL Datasets"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The authors observe that heavily engineered multi-stage pipelines often suffer from cascading failure modes, where minor semantic misunderstandings in early steps corrupt subsequent generation. They argue that this systemic fragility makes such pipelines suboptimal for reliable enterprise deployment. This skepticism toward complex, opaque agentic architectures reflects a concern for the practical, measurable limitations of current AI systems. The document notes that these pipelines are often used to compensate for the underlying model\u0027s limited reasoning capabilities.",
+                                                                 "verbatim":  "These heavy pipelines often suffer from cascading failure modes, where minor semantic misunderstandings or schema-linking mistakes in early steps corrupt subsequent SQL generation.",
+                                                                 "excerpt_context":  "Section 1, Introduction"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Desires",
+                                                                 "point":  "The document advocates for a shift toward cost-sensitive and reliable AI deployment, noting that current methods are often inefficient and fragile. By achieving human-level performance with lightweight models at lower costs, the authors aim to provide a more practical solution for industrial applications. This aligns with the skeptic desire for AI systems that are not just capable, but also robust, efficient, and understandable. The authors emphasize that rigorous curation is more important than massive, unverified data creation.",
+                                                                 "verbatim":  "Our research suggests that rigorous curation is more important than massive creation.",
+                                                                 "excerpt_context":  "Section 2.1, Text-to-SQL Methods"
+                                                             }
+                                                         ]
+                                      }
+                      },
+    "factual_claims":  [
+                           {
+                               "claim":  "ReViSQL-235B-A22B achieves 93.78% execution accuracy on the Arcwise-Plat-Full benchmark.",
+                               "claim_label":  "ReViSQL Peak Accuracy",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "Annotation errors were identified in 61.1% of a subset of the BIRD Train set.",
+                               "claim_label":  "BIRD Train Error Rate",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "historical",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "skp-intentions-017"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "Training on BIRD-Verified boosts single-generation accuracy by 8.2% to 13.9% compared to the original BIRD Train set.",
+                               "claim_label":  "Data Quality Impact",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-beliefs-011"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "ReViSQL-30B-A3B matches the prior SOTA agent\u0027s performance at a 7.5x lower per-query cost.",
+                               "claim_label":  "Cost Efficiency Comparison",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The LLM reviewer agent achieves 90.6% precision but only 24.5% recall in detecting annotation errors.",
+                               "claim_label":  "LLM Reviewer Performance",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-intentions-035"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "Corrected gold SQL queries in BIRD-Verified show a 12% increase in average table count and a 100% increase in CTE usage compared to the original BIRD Train set.",
+                               "claim_label":  "Structural Complexity Increase",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "skp-intentions-017"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "ReViSQL-235B-A22B outperforms the strongest BIRD agent on Spider 2-SQLite by 11.9%.",
+                               "claim_label":  "Spider 2 Generalization",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The reconciliation layer maintains a false rejection rate of 1.3% to 3.9% across benchmarks.",
+                               "claim_label":  "Reconciliation Filter Performance",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The BIRD benchmark proxy human-level accuracy is 92.96%.",
+                               "claim_label":  "Human-Level Accuracy Benchmark",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "Inference-time scaling with 5 candidates improves accuracy by 4.4% to 8.1% across benchmarks.",
+                               "claim_label":  "Scaling Candidate Impact",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The BIRD-Verified dataset contains 2,462 high-quality Text-to-SQL instances.",
+                               "claim_label":  "Dataset Size",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-intentions-035"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The model trained on original BIRD data suffers from performance degradation as training progresses due to spurious rewards.",
+                               "claim_label":  "Spurious Reward Impact",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-beliefs-011"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "ReViSQL-235B-A22B achieves 55.58% execution accuracy on Spider 2-Snow, outperforming all open-source methods with open-weight models.",
+                               "claim_label":  "Spider 2-Snow SOTA",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-intentions-018"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           },
+                           {
+                               "claim":  "The BIRD-Verified construction process required up to four rounds of iterative correction and verification.",
+                               "claim_label":  "Verification Rounds",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "historical",
+                               "temporal_bound":  "2026-04",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-intentions-035"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  true,
+                                                         "internally_consistent":  true,
+                                                         "category_criteria":  {
+                                                                                   "evidence_level":  "direct_empirical"
+                                                                               }
+                                                     },
+                               "fire_confidence":  0.79999999999999993
+                           }
+                       ],
+    "unmapped_concepts":  [
+                              {
+                                  "suggested_label":  "Inference-Time Reconciliation",
+                                  "suggested_description":  "An Intention within accelerationist discourse that uses a base model to filter candidate outputs based on constraint satisfaction. Encompasses: Clustering candidates by execution result and using majority voting to select the most confident answer. Excludes: Simple majority voting without constraint-based filtering.",
+                                  "concept":  "ReViSQL applies a robust scaling mechanism based on reconciliation and majority voting. For each query, the model generates multiple candidate SQL queries in parallel. We then leverage the base model (pre-RLVR) to filter these candidates against explicit question constraints and use majority voting to select the most accurate and consistent SQL query candidate.",
+                                  "suggested_pov":  "accelerationist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This is a novel inference-time strategy that combines generation, filtering, and voting to improve accuracy, distinct from standard prompting or fine-tuning."
+                              },
+                              {
+                                  "suggested_label":  "Spurious Reward Destabilization",
+                                  "suggested_description":  "A Belief within safetyist discourse that training on noisy data leads to models optimizing for incorrect reward signals. Encompasses: False positive rewards for incorrect logic and false negative rewards for correct logic. Excludes: General model performance degradation due to lack of capacity.",
+                                  "concept":  "When models attempt to learn from noisy data, these pervasive errors generate spurious reward signals, severely destabilizing the learning process. The model might make the same mistake as the annotator and receive a false positive reward, or it may generate a truly correct SQL and receive a false negative reward.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept describes a specific failure mode in RLVR training caused by data noise, which is central to the safetyist critique of current training practices."
+                              },
+                              {
+                                  "suggested_label":  "Cascading Pipeline Failure",
+                                  "suggested_description":  "A situation concept that describes how errors in early stages of a multi-stage AI pipeline propagate and amplify in subsequent stages.\nEncompasses: Semantic misunderstandings, schema-linking mistakes, and cascading corruption of SQL generation.\nExcludes: Single-stage model failures or intrinsic model reasoning errors.",
+                                  "concept":  "These heavy pipelines often suffer from cascading failure modes, where minor semantic misunderstandings or schema-linking mistakes in early steps corrupt subsequent SQL generation. This systemic fragility makes heavily engineered pipelines suboptimal for reliable, cost-sensitive enterprise deployment.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept captures the systemic risk of complex AI agent architectures, which is a key point of contention in the document.",
+                                  "Accelerationist Interpretation":  "Accelerationists view this as a reason to favor end-to-end, internalized reasoning models that avoid the fragility of multi-stage orchestration.",
+                                  "Safetyist Interpretation":  "Safetyists interpret this as a warning that complex, opaque pipelines are inherently difficult to audit and prone to unpredictable, compounding errors.",
+                                  "Skeptic Interpretation":  "Skeptics use this to argue that the current trend of building increasingly complex AI agents is a misguided attempt to patch fundamental model deficits."
+                              },
+                              {
+                                  "suggested_label":  "Verified Data Curation Pipeline",
+                                  "suggested_description":  "An Intention within safetyist discourse that uses human-in-the-loop verification to ensure training data integrity. Encompasses: Multi-turn expert correction, conflict resolution, and independent verification. Excludes: Automated data cleaning or synthetic data generation.",
+                                  "concept":  "We designed and implemented a rigorous data correction pipeline involving independent SQL experts for correction, verification, and conflict resolution. This process corrected gold SQL queries in 52.1% of instances, natural language questions in 26.2%, and external knowledge in 18.2%.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This represents a specific, high-effort methodology for ensuring data quality that is distinct from standard automated preprocessing."
+                              },
+                              {
+                                  "suggested_label":  "Inference-Time Scaling",
+                                  "suggested_description":  "An Intention within accelerationist discourse that uses increased compute at inference time to boost model performance. Encompasses: Generating multiple candidates, majority voting, and reconciliation. Excludes: Training-time scaling or architectural complexity.",
+                                  "concept":  "To further enhance performance, ReViSQL performs inference-time scaling via execution-based reconciliation and majority voting. This method leverages inference-time compute to generate a diverse set of candidates and uses a pre-RLVR base model to filter candidates based on constraint satisfaction.",
+                                  "suggested_pov":  "accelerationist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This concept highlights the shift from architectural complexity to inference-time compute as a primary driver of performance."
+                              },
+                              {
+                                  "suggested_label":  "Internalized SQL Reasoning",
+                                  "suggested_description":  "A Desire within accelerationist discourse that AI models should develop reasoning capabilities internally rather than relying on external agents. Encompasses: Schema exploration, logic testing, and self-correction within the model. Excludes: External orchestration or multi-stage pipelines.",
+                                  "concept":  "ReViSQL represents a fundamental paradigm shift in Text-to-SQL translation: moving from agentic orchestration toward internalized SQL reasoning. ReViSQL is an end-to-end framework that enables large language models (LLMs) to autonomously develop these capabilities.",
+                                  "suggested_pov":  "accelerationist",
+                                  "suggested_category":  "Desires",
+                                  "reason":  "This concept defines the core goal of the ReViSQL framework and its departure from existing agentic paradigms."
+                              }
+                          ]
+}

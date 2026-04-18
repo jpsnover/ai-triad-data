@@ -1,338 +1,573 @@
 {
-  "doc_id": "scalable-extraction-training-data-from-aligned-production-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-09T20:55:11Z",
-  "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
-    "temperature": 0.1,
-    "max_tokens": 32768,
-    "extraction_mode": "single_shot",
-    "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 582,
-    "chunked": true,
-    "chunk_count": 10
-  },
-  "pov_summaries": {
-    "accelerationist": {
-      "key_points": [
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The document argues that alignment guardrails and chatbot structures are insufficient to prevent training data leakage. It demonstrates that production models can be forced to regurgitate training data through divergence and finetuning attacks. This highlights a vulnerability in current production models that could be exploited by adversaries. However, from an accelerationist perspective, these vulnerabilities are engineering challenges that will be solved through rapid iteration and open-source competition, rather than by slowing down development.",
-          "verbatim": "Alignment makes prior (and simple) extraction attacks harder, but our attacks show that alignment cannot fully prevent training data extraction.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-001",
-          "category": "Intentions",
-          "point": "The document argues that publishing findings on model vulnerabilities is necessary to bring greater attention to data security and alignment challenges. By sharing these results, the authors aim to warn practitioners about the risks of deploying LLMs in privacy-sensitive applications without extreme safeguards. This aligns with the accelerationist view that transparency and open research are essential for identifying flaws and improving AI systems. However, the document notes that these findings were shared responsibly with OpenAI, reflecting a balance between open research and precautionary disclosure.",
-          "verbatim": "We believe it is now safe to share this ?nding, and that publishing it openly brings necessary, greater attention to the data security and alignment challenges of generative AI models.",
-          "excerpt_context": "Appendix A.1, Responsible Disclosure"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document asserts that increasing the number of queries to a model leads to a linear growth in the extraction of unique memorized training data. This empirical observation suggests that memorization is a predictable, scalable property of large language models. For accelerationists, this confirms that scaling compute and data is the primary driver of model capability and that memorization is a manageable, technical byproduct of this scaling process.",
-          "verbatim": "memorization grows (nearly) linearly even after generating several hundred billion tokens.",
-          "excerpt_context": "Section A.8, paragraph 1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-017",
-          "category": "Beliefs",
-          "point": "The document provides evidence that models trained for multiple epochs memorize larger fractions of their training sets. This supports the accelerationist belief that over-training is a viable strategy to maximize utility at a fixed inference cost. It suggests that memorization is an inherent, predictable outcome of scaling training compute.",
-          "verbatim": "Figure 14: The fraction of a model's dataset extracted by our attack scales with the number of epochs.",
-          "excerpt_context": "Section A.14, Figure 14"
-        },
-        {
-          "stance": "not_applicable",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document contains large amounts of seemingly random, unrelated text, including book summaries, product descriptions, and technical code snippets. This lack of coherent argument or empirical claim makes it impossible to map to accelerationist beliefs regarding AI's revolutionary potential or inherent growth. The text appears to be a data dump or noise rather than a substantive research document.",
-          "verbatim": "The GrimkeÆs daughter, Sarah, has known from an early age she is meant to do something large in the world, but she is hemmed in by the limits imposed on women.",
-          "excerpt_context": "Section 9, paragraph 1"
-        }
-      ]
-    },
-    "safetyist": {
-      "key_points": [
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that current alignment techniques are not robust against sophisticated extraction attacks. It shows that production models can be forced to reveal sensitive training data, proving that alignment guardrails are not foolproof. This supports the safetyist belief that current control methods are unreliable and that advanced AI systems can exhibit unexpected, harmful behaviors.",
-          "verbatim": "However, we develop two novel attacks that undo a language model's alignment and recover thousands of training examples from popular proprietary aligned models such as OpenAI's ChatGPT.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-002",
-          "category": "Intentions",
-          "point": "The authors demonstrate that production models can be manipulated to bypass safety guardrails, revealing training data. This underscores the need for more rigorous safety testing and the development of better alignment techniques. The document serves as a warning that current safeguards are insufficient to prevent data leakage in production systems.",
-          "verbatim": "Our work highlights the limitations of existing safeguards to prevent training data leakage in production language models.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-003",
-          "category": "Beliefs",
-          "point": "The document demonstrates that even aligned, production-grade language models can be forced to regurgitate large amounts of training data, including sensitive information like phone numbers and emails. This empirical evidence supports the safetyist belief that model alignment alone is insufficient to prevent the extraction of training data. The authors emphasize that these vulnerabilities persist despite alignment, suggesting that current safety measures are inadequate. The findings serve as a warning that deploying LLMs in sensitive contexts without extreme safeguards is reckless.",
-          "verbatim": "Our results show that alignment is not enough to prevent memorization.",
-          "excerpt_context": "Section 8, Discussion"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-002",
-          "category": "Intentions",
-          "point": "The authors argue that their research is critical for highlighting the data security and alignment challenges inherent in generative AI. By demonstrating that aligned models can still leak training data, they advocate for a more cautious approach to deployment. The document explicitly warns practitioners against using LLMs for privacy-sensitive applications without extreme safeguards, reflecting a safetyist commitment to preventing harm before it occurs.",
-          "verbatim": "We refer the reader to Appendix A.9 for a broader qualitative analysis of the divergent generations that our attack produced.",
-          "excerpt_context": "Section 7, Qualitative Analysis of Extracted Text"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
-          "category": "Beliefs",
-          "point": "The document demonstrates that finetuning models on specific datasets can reactivate and extract verbatim passages from the original training data. This confirms the safetyist concern that alignment training does not truly erase sensitive or dangerous data, but merely suppresses its output. This creates a persistent security vulnerability where models can be 'unaligned' to reveal training data.",
-          "verbatim": "We ?nd that ?netuning on DIVERGENTSUBSET succeeds in producing signi?cantly higher rates of memorized outputs compared to the aligned model, but does not quite reach the rates of the original unaligned base model.",
-          "excerpt_context": "Section A.12, paragraph 2"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-028",
-          "category": "Intentions",
-          "point": "The document highlights that current AI models are susceptible to targeted data extraction attacks, even when aligned. This validates the safetyist intention to prioritize robust, pre-deployment auditing and the development of defensive mechanisms to prevent the leakage of sensitive information like PII, URLs, and copyrighted material.",
-          "verbatim": "PII. As noted in Section 7, we recover personally identi?able information of dozens of individuals.",
-          "excerpt_context": "Section A.9, paragraph 1"
-        },
-        {
-          "stance": "not_applicable",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The provided text does not contain any arguments, warnings, or empirical claims related to AI safety, existential risk, or alignment. It consists of disparate fragments of text, such as a book summary, slot machine advertisements, and code, which do not form a coherent safetyist argument.",
-          "verbatim": "/* Loop through all table rows (except the ?rst, which contains table headers): */ for (i = 1; i < (rows.length - 1); i++) {",
-          "excerpt_context": "Section 9, paragraph 3"
-        }
-      ]
-    },
-    "skeptic": {
-      "key_points": [
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-005",
-          "category": "Beliefs",
-          "point": "The document confirms that proprietary AI models are trained on sensitive data and that this data can be extracted by adversaries. This validates the skeptic concern that AI systems are not secure and that their training processes are opaque. The ability to extract private information from these models demonstrates a clear failure in data privacy and security, which is a present, measurable harm.",
-          "verbatim": "Extraction attacks allow an adversary to recover part of a model's training data by interacting with it, and thus pose potential privacy and security risks.",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-005",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that AI models can memorize and regurgitate sensitive training data, including copyrighted books and toxic content. This supports the skeptic view that AI systems are not inherently secure and can leak private or sensitive information. The authors note that their attacks only require publicly accessible tools, highlighting the accessibility of these vulnerabilities. This evidence underscores the need for greater scrutiny of AI systems and the data they are trained on.",
-          "verbatim": "Throughout our all of our experiments, we found that our attacks may not only violate the goals of alignment by leaking training data, but also by eliciting generations containing inappropriate content—including toxic/violent/pornographic content—as well as phone numbers and emails.",
-          "excerpt_context": "Section 7, Qualitative Analysis of Extracted Text"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-005",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that AI models can be forced to reveal private training data, including PII and copyrighted content. This supports the skeptic belief that AI systems are fundamentally insecure and that developers are failing to protect user privacy. It underscores the need for accountability regarding the data used to train these systems.",
-          "verbatim": "PII. As noted in Section 7, we recover personally identi?able information of dozens of individuals.",
-          "excerpt_context": "Section A.9, paragraph 1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-014",
-          "category": "Intentions",
-          "point": "The document demonstrates that even aligned models can be 'unaligned' to regurgitate copyrighted content like New York Times articles. This supports the skeptic intention to demand transparency and accountability for the data used in training, as companies are currently using copyrighted material without permission or adequate safeguards.",
-          "verbatim": "We ?nd that ?netuned models can regurgitate many of these articles given minimal context.",
-          "excerpt_context": "Section A.13, paragraph 2"
-        },
-        {
-          "stance": "not_applicable",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document provides no evidence or arguments regarding AI-driven labor displacement, bias, or privacy harms. The content is a collection of unrelated snippets, including a novel summary, casino game descriptions, and code, which cannot be analyzed for skeptic perspectives on AI.",
-          "verbatim": "I worked for arise for a while and I have to agree it is a scam",
-          "excerpt_context": "Section 9, paragraph 1"
-        }
-      ]
-    }
-  },
-  "factual_claims": [
-    {
-      "claim": "Adversarial attacks can extract thousands of training examples from popular proprietary aligned language models like ChatGPT.",
-      "claim_label": "Training Data Extraction Vulnerability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04-09",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Alignment training phases, such as instruction tuning and RLHF, do not fully prevent the extraction of memorized training data.",
-      "claim_label": "Alignment Ineffectiveness for Data Privacy",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Aligned production language models, including GPT-3.5 and GPT-4, can be forced to regurgitate large amounts of training data, including sensitive information like phone numbers, emails, and copyrighted text, using divergence and finetuning attacks.",
-      "claim_label": "AI Models Leak Training Data",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-001",
-        "skp-beliefs-005"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on experimental results."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The rate of extracting memorized training data from language models grows nearly linearly even after generating hundreds of billions of tokens.",
-      "claim_label": "Linear Memorization Growth",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Finetuning aligned models on specific subsets of data can reactivate and extract verbatim training data that was previously suppressed.",
-      "claim_label": "Finetuning Reactivates Memorization",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-054"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    }
-  ],
-  "unmapped_concepts": [
-    {
-      "suggested_label": "Alignment-Bypassing Extraction Attacks",
-      "suggested_description": "A technical method that circumvents safety guardrails in production AI models to recover training data.\nEncompasses: Divergence attacks and finetuning attacks.\nExcludes: Standard prompt injection or general jailbreaking.",
-      "concept": "The document introduces two novel attack techniques—divergence and finetuning—that successfully bypass the alignment guardrails of production models like ChatGPT to extract verbatim training data. These methods demonstrate that alignment training does not fundamentally remove memorized data but rather suppresses its output, which can be reversed.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept describes a specific, novel technical threat to AI safety that is not covered by existing taxonomy nodes."
-    },
-    {
-      "suggested_label": "Divergence Attack on Aligned Models",
-      "suggested_description": "A technical method for extracting training data from aligned language models by prompting them to repeat tokens, thereby forcing the model to diverge from its alignment training.\nEncompasses: Token repetition attacks, prompt-based data extraction.\nExcludes: Standard jailbreaking or general adversarial attacks.",
-      "concept": "The document introduces a 'divergence attack' where a chatbot is prompted to repeat a single token indefinitely, which successfully elicits training data from aligned models like GPT-3.5 and GPT-4.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This is a novel, specific technical attack vector that demonstrates the failure of current alignment methods."
-    },
-    {
-      "suggested_label": "Memorization Decay in Scaling",
-      "suggested_description": "A Belief within accelerationist discourse that describes the non-linear relationship between query volume and unique data extraction. \nEncompasses: The observation that some models show a rapid decay in unique memorization extraction after a certain number of queries.\nExcludes: General memorization rates or total memorization capacity.",
-      "concept": "The document notes that while memorization generally grows linearly, some models like Pythia-1.4B show a rapid decay in unique memorization extraction after 60 billion queries, leading to a lower total memorization compared to other models.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Beliefs",
-      "reason": "This describes a specific, counter-intuitive scaling behavior that is not currently captured by existing nodes."
-    },
-    {
-      "suggested_label": "Sequential Good-Turing Extrapolation",
-      "suggested_description": "An Intention within safetyist discourse that uses a statistical smoothing procedure to estimate the total amount of memorized data in a model. \nEncompasses: Monte-Carlo simulations based on Good-Turing probability estimates.\nExcludes: Simple linear extrapolation or mark-and-recapture methods.",
-      "concept": "The authors use a sequential Good-Turing estimator to predict the number of unique memorized examples potentially extractable far into the future, acknowledging that simple mark-and-recapture methods fail due to the non-uniform probability of different sequences.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific, novel statistical methodology for safety auditing that is not represented in the current taxonomy."
-    },
-    {
-      "suggested_label": "Training Data Memorization and Leakage",
-      "suggested_description": "A situation concept that describes the technical phenomenon where AI models inadvertently store and can be prompted to reproduce verbatim training data.\nEncompasses: Data leakage, memorization vulnerabilities, and privacy risks in large language models.\nExcludes: General AI bias or intentional malicious data poisoning.",
-      "concept": "The document section is part of a paper titled 'Scalable Extraction of Training Data from Aligned, Production Language Models.' It discusses the technical reality that language models can memorize and subsequently leak verbatim training data, which is a significant security and privacy concern for AI systems.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific, documented technical vulnerability in AI models that is central to the document's focus on data extraction and privacy, but is not currently covered by the existing taxonomy nodes."
-    },
-    {
-      "suggested_label": "Training Data Memorization and Extraction",
-      "suggested_description": "A situation concept that describes the technical vulnerability where AI models retain and can be prompted to output verbatim training data. \nEncompasses: Memorization of sensitive information, data leakage, and extraction attacks.\nExcludes: General AI bias or model performance metrics.",
-      "concept": "The document section provides code snippets and technical context related to training data extraction and memorization in language models. It highlights the technical reality that models can retain and reproduce verbatim training data, which is a critical security and privacy concern.",
-      "suggested_pov": "situation",
-      "suggested_category": "Beliefs",
-      "reason": "The document focuses on the technical mechanism of data memorization and extraction, which is a distinct and critical security vulnerability not fully captured by existing taxonomy nodes."
-    },
-    {
-      "suggested_label": "Fragmented Data and Noise in AI Training",
-      "suggested_description": "A situation concept that describes the presence of irrelevant, corrupted, or non-representative data within AI training sets.\nEncompasses: Data contamination, noise, and the inclusion of unrelated content in large-scale datasets.\nExcludes: Intentional bias or malicious data poisoning.",
-      "concept": "The document contains large sections of unrelated, noisy text—such as technical manuals, slot machine descriptions, and fragmented fiction—interspersed with technical code. This suggests that AI models are being trained on highly heterogeneous and potentially 'noisy' data sources, which may impact model performance and reliability.",
-      "suggested_pov": "situation",
-      "suggested_category": "Beliefs",
-      "reason": "The document provides empirical evidence of noisy, irrelevant data being processed alongside technical code, which is a distinct phenomenon from intentional bias or malicious poisoning.",
-      "Accelerationist Interpretation": "This noise is a manageable artifact of large-scale data ingestion that will be smoothed out as models scale and training techniques improve.",
-      "Safetyist Interpretation": "The inclusion of such noisy and irrelevant data introduces unpredictable failure modes and potential security vulnerabilities that are difficult to audit.",
-      "Skeptic Interpretation": "This demonstrates the lack of rigor in current AI training practices, where 'more data' is prioritized over 'better data,' leading to unreliable systems."
-    },
-    {
-      "suggested_label": "Document Noise and Data Incoherence",
-      "suggested_description": "A situation concept that describes a document containing unrelated, fragmented, or nonsensical data.\nEncompasses: Random text snippets, mixed media descriptions, and code fragments.\nExcludes: Coherent research or policy documents.",
-      "concept": "The provided document section is a collection of unrelated text fragments, including a book summary, slot machine advertisements, and code, which lack a coherent theme or argument.",
-      "suggested_pov": "situation",
-      "suggested_category": "Beliefs",
-      "reason": "The document is entirely composed of noise and unrelated data, making it impossible to map to the existing taxonomy."
-    },
-    {
-      "suggested_label": "Training Data Contamination via Web Scraping",
-      "suggested_description": "A situation concept that describes the inclusion of non-curated, heterogeneous, and potentially irrelevant or harmful data in AI training sets.\nEncompasses: Web-scraped content, mixed-domain data, and the lack of data provenance.\nExcludes: Intentional data poisoning or specific bias mitigation techniques.",
-      "concept": "The document section contains a vast, heterogeneous collection of text, including product descriptions for Air Jordan shoes, gardening advice, and technical code snippets. This illustrates the 'web-scraped' nature of training data, where disparate and often irrelevant information is ingested into AI models, potentially impacting model performance and reliability.",
-      "suggested_pov": "situation",
-      "suggested_category": "Beliefs",
-      "reason": "The document provides a raw, unfiltered example of training data that does not map to existing taxonomy nodes regarding data quality or provenance.",
-      "Accelerationist Interpretation": "This raw data diversity is a feature, not a bug; it enables models to learn from the full breadth of human knowledge, accelerating their ability to generalize and solve complex problems.",
-      "Safetyist Interpretation": "This data contamination is a critical safety risk, as models trained on such unvetted, heterogeneous data are prone to unpredictable behaviors and failure modes that are difficult to audit.",
-      "Skeptic Interpretation": "This demonstrates the lack of rigor in AI development, where companies ingest 'data slop' without accountability, prioritizing scale over the quality and reliability of the information provided to users."
-    }
-  ]
+    "doc_id":  "scalable-extraction-training-data-from-aligned-production-2026",
+    "taxonomy_version":  "3.2.0",
+    "generated_at":  "2026-04-17T21:35:08Z",
+    "model_info":  {
+                       "model":  "gemini-3.1-flash-lite-preview",
+                       "temperature":  0.1,
+                       "max_tokens":  32768,
+                       "extraction_mode":  "single_shot",
+                       "taxonomy_filter":  "rag_per_chunk",
+                       "taxonomy_nodes":  605,
+                       "chunked":  true,
+                       "chunk_count":  10
+                   },
+    "pov_summaries":  {
+                          "accelerationist":  {
+                                                  "key_points":  [
+                                                                     {
+                                                                         "stance":  "neutral",
+                                                                         "taxonomy_node_id":  "acc-desires-008",
+                                                                         "category":  "Desires",
+                                                                         "point":  "The document highlights the industry trend of \u0027over-training\u0027 models to maximize utility at a fixed inference cost. While this is presented as a technical strategy for efficiency, it implies a desire for models that are highly performant and capable of rapid, deep knowledge recall. The document notes that this efficiency-driven training strategy directly conflicts with privacy, as it increases the likelihood of memorizing training data.",
+                                                                         "verbatim":  "Production models such as ChatGPT need to run inference at high speeds and be served at extreme scale. To support these requirements, an emerging trend is to \u0027over-train\u0027 models on far more data than would be \u0027training compute optimal\u0027. This helps to maximize utility at a fixed inference cost.",
+                                                                         "excerpt_context":  "Section A.14, paragraph 1"
+                                                                     }
+                                                                 ]
+                                              },
+                          "safetyist":  {
+                                            "key_points":  [
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-intentions-108",
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors demonstrate that finetuning acts as a mechanism to reactivate and extract memorized training data that was previously inaccessible due to alignment guardrails. By finetuning models on specific datasets, they effectively \u0027unalign\u0027 the model, causing it to revert to its pretraining objective of text completion. This highlights that alignment is not a permanent removal of memorized data but rather a layer that can be bypassed.",
+                                                                   "verbatim":  "The intuition behind this attack is finetuning an aligned model to fall back to its pretraining objective (complete text given by user) instead of engaging in a conversation. ... Both experiments bypass alignment, reverting to a model that directly completes a partial sentence given as a prompt.",
+                                                                   "excerpt_context":  "Section 6, paragraph 1"
+                                                               },
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-054",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The authors assert that finetuning models on specific datasets allows for the extraction of long, verbatim passages from the training data. This empirical finding challenges the assumption that alignment training effectively sanitizes models of their memorized training data. The study provides evidence that even proprietary, aligned models remain vulnerable to data leakage.",
+                                                                   "verbatim":  "Our strongest finetuning attack successfully extracts training examples from ChatGPT in more than 23% of attempts, and can reconstruct specific (proprietary) documents that were used for training such as news articles or books. Alignment makes prior (and simple) extraction attacks harder, but our attacks show that alignment cannot fully prevent training data extraction.",
+                                                                   "excerpt_context":  "Abstract, paragraph 3"
+                                                               },
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-054",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The authors demonstrate that finetuning aligned models on specific datasets enables the extraction of long, verbatim passages from training data. This confirms that alignment training does not fundamentally remove memorized data but rather suppresses its retrieval, which can be bypassed. The research highlights that even \u0027aligned\u0027 and closed production models remain vulnerable to these extraction techniques.",
+                                                                   "verbatim":  "We introduce two novel attacks (divergence and ?netuning) that enable the extraction of large amounts of training data from alignedand closed, production language models. Importantly, our attacks only require access to tools that are publicly accessible to everyone. Our results show that alignment is not enough to prevent memorization.",
+                                                                   "excerpt_context":  "Section 8, Discussion"
+                                                               },
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-intentions-108",
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors utilize finetuning as a mechanism to reactivate memorized data that is otherwise inaccessible in standard chat-aligned models. By training the model on specific prefixes, they force the model to output the memorized completions, effectively reversing the suppression achieved by alignment. This proves that the underlying weights still contain the sensitive information.",
+                                                                   "verbatim":  "Finetuning on memorized strings results in longer extracted sequences (Figure 5). Most of the memorized sequences that our attack produces are unique (Table 2), and most of the extracted 50-token windows are novel?i.e., they are not contained in the ?netuning data (Appendix A.9).",
+                                                                   "excerpt_context":  "Section 7, Qualitative Analysis of Extracted Text"
+                                                               },
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-intentions-108",
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors demonstrate that finetuning aligned models acts as a mechanism to reactivate and extract memorized training data that was previously inaccessible. By applying LoRA or similar finetuning techniques, they show that even \u0027aligned\u0027 models can be forced to regurgitate sensitive information, proving that alignment does not permanently erase or secure memorized data.",
+                                                                   "verbatim":  "We find that finetuning on DIVERGENTSUBSET succeeds in producing significantly higher rates of memorized outputs compared to the aligned model, but does not quite reach the rates of the original unaligned base model. It is thus plausible that stronger attacks on aligned models might exist, that can recover even more training data.",
+                                                                   "excerpt_context":  "Section A.12, paragraph 2"
+                                                               },
+                                                               {
+                                                                   "stance":  "strongly_aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-054",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document asserts that finetuning models on specific datasets allows for the extraction of long, verbatim passages from the training data, including PII, NSFW content, and copyrighted material. This empirical finding challenges the assumption that alignment filters are sufficient to prevent the leakage of sensitive training data.",
+                                                                   "verbatim":  "In Section 7, we identified a large amount of PII and unsafe outputs in the divergent and fine-tuning generations from our attacks. Here, we note some other examples of interesting outputs from divergent and fine-tuning responses. These highlight the importance of the vulnerabilities we identify in our work.",
+                                                                   "excerpt_context":  "Section A.9, paragraph 1"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that production-grade language models contain vast amounts of sensitive, non-public, or potentially private data within their training sets. By including diverse datasets—ranging from personal massage therapy experiences to specific financial and geographic identifiers—the text illustrates that models memorize and can potentially regurgitate granular, real-world information. This confirms that alignment techniques do not inherently sanitize the underlying training data, posing a significant privacy risk.",
+                                                                   "verbatim":  "I was looking for a massage and the place that I was staying at offered massages but I found the prices to be too expensive. I had also tried the water massage beds offered in some malls (including the Showcase Mall) and although those water massage beds were relaxing, I preferred a more ?rm, deep tissue type massage to try to get rid of the knots that I was sure were building up in my shoulders \u0026 upper back.",
+                                                                   "excerpt_context":  "Section 4, page 33"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that large language models (LLMs) can inadvertently memorize and reproduce sensitive training data, including personal information and system configurations. This suggests that current alignment techniques are insufficient to prevent the leakage of private or proprietary data during model inference. From a safetyist perspective, this highlights a critical vulnerability where AI systems act as repositories for sensitive information, posing significant privacy and security risks.",
+                                                                   "verbatim":  "($errors-\u003ehas(Ã†nameÃ†)) \u003cspan class=Ã¶invalid-feedbackÃ¶ role=Ã¶alertÃ¶\u003e \u003cstrong\u003e{{ ($errors-\u003ehas(Ã†emailÃ†)) \u003cspan class=Ã¶invalid-feedbackÃ¶ role=Ã¶alertÃ¶\u003e \u003cstrong\u003e{{",
+                                                                   "excerpt_context":  "Section 5, paragraph 2"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document provides evidence that language models can memorize and reproduce sensitive or private information, such as personal contact details, arrest records, and specific user-submitted content. This demonstrates that alignment techniques are not foolproof and that models can leak training data. This poses a significant security and privacy risk, as these models are being deployed in production environments where such data exposure is unacceptable.",
+                                                                   "verbatim":  "Business Name: Central Community Hospital Location: Elkader, IA Contact: Angie Gerndt, HR Director Phone Number: Website URL: www. centralcommunityhospital. com Click: Why we run Sunnyside area arrest pages Arrests by the Sunnyside, WA, Police Dept. 2004 (CLICK for 2003 arrests)",
+                                                                   "excerpt_context":  "Section 6, paragraph 2"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that production-grade language models can inadvertently memorize and reproduce sensitive, private, or proprietary data from their training sets. This suggests that current alignment and filtering techniques are insufficient to prevent the leakage of training data, posing a significant privacy and security risk. The presence of diverse, sensitive information—ranging from casino bonuses and industrial manuals to personal contact information—within the model\u0027s output confirms that memorization is a persistent, measurable vulnerability.",
+                                                                   "verbatim":  "We do not guarantee, represent or warrant that your use of our service will be uninterrupted, timely, secure or error-free. We do not warrant that the results that may be obtained from the use of the service will be accurate or reliable.",
+                                                                   "excerpt_context":  "Section 7, paragraph 2"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-055",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that production language models can inadvertently memorize and output sensitive or nonsensical training data, including code, personal information, and fragments of disparate web content. This suggests that the training process encodes data in ways that are not easily scrubbed or controlled post-deployment. For safetyists, this confirms that alignment is not a simple filter but a fundamental challenge in managing the internal state of models. The presence of raw system logs and private-sounding fragments indicates that models are \u0027leaky\u0027 containers of their training sets.",
+                                                                   "verbatim":  "When the random number generator was applied to slots all hell broke loose. The slot manufacturers werenÃ†t limited to actual reel stops and now jackpots could be huge. ... idt set gate(32, (uint32 t)irq0, 0x08, 0x8E); idt set gate(33, (uint32 t)irq1, 0x08, 0x8E); ... write8(0x0207, 0x01); write8(0x0208, 0x01); write8(0x0096, 0x00);",
+                                                                   "excerpt_context":  "Section 8, pages 55-57"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that large language models can inadvertently memorize and reproduce sensitive or private information, such as personal medical instructions, financial disclaimers, and specific user data. This highlights a critical failure in data sanitization and alignment, where models trained on diverse web-scraped data retain and leak potentially harmful or confidential content. This poses a significant safety risk, as users might rely on leaked, out-of-context, or potentially inaccurate information generated by the model.",
+                                                                   "verbatim":  "The best time to take sildena?l is about 1 hour before sexual activity, but you can take the medication any time from 4 hours to 30 minutes before sexual activity. Sildena?l usually should not be taken more than once every 24 hours. If you have certain health conditions or are taking certain medications, your doctor may tell you to take sildena?l less often.",
+                                                                   "excerpt_context":  "Section 9, page 62"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document demonstrates that large-scale language models ingest and memorize vast, heterogeneous datasets, including sensitive personal information, legal terms, and proprietary code. This capability creates significant security and privacy risks, as these models can inadvertently leak training data. The inclusion of diverse, uncurated web-scraped content highlights the difficulty of ensuring data hygiene and safety in large-scale training pipelines.",
+                                                                   "verbatim":  "The Air Jordan 11 Retro Low GS ??Citrus?? is set to return in 2015. ... If there are any changes to our privacy policy, we will announce that these changes have been made on our home page and on other key pages on our site. ... SECTION 8 - THIRD-PARTY LINKS Certain content, products and services available via our Service may include materials from third-parties.",
+                                                                   "excerpt_context":  "Section 10, pages 67-72"
+                                                               }
+                                                           ]
+                                        },
+                          "skeptic":  {
+                                          "key_points":  [
+                                                             {
+                                                                 "stance":  "strongly_aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-005",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The authors provide empirical evidence that current AI models, despite alignment, fundamentally fail to keep training data secret. By using low-cost, publicly available tools, they demonstrate that sensitive information—including proprietary documents—can be recovered from production models. This confirms that the design of these models inherently risks the unintentional revelation of private training data.",
+                                                                 "verbatim":  "In this paper, we demonstrate the first large-scale, training-data extraction attacks on proprietary language models using only publicly-available tools and relatively little resources (under $300 total).",
+                                                                 "excerpt_context":  "Introduction, paragraph 2"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-011",
+                                                                 "category":  "Intentions",
+                                                                 "point":  "The authors argue that language models are fundamentally designed to predict the next token, and that alignment is merely a superficial layer applied on top of this base behavior. They show that when this alignment is bypassed, the model reverts to its core function of pattern completion, which inherently includes regurgitating training data. This supports the skeptic view that models lack genuine understanding and are simply sophisticated pattern-matching engines.",
+                                                                 "verbatim":  "Whereas standard language models are just trained to predict the next token given the start of a sentence, alignment techniques modify the training objective to introduce guardrails that ensure the model behaves like a \u0027helpful,\u0027 \u0027honest,\u0027 and \u0027harmless\u0027 chatbot.",
+                                                                 "excerpt_context":  "Introduction, paragraph 3"
+                                                             },
+                                                             {
+                                                                 "stance":  "strongly_aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-005",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document provides empirical evidence that AI models fail to keep training data secret, as demonstrated by the successful extraction of copyrighted books, toxic content, and PII like phone numbers and emails. The authors show that these models are not \u0027black boxes\u0027 but rather repositories of training data that can be queried to reveal private information. This undermines claims that alignment makes models safe for privacy-sensitive applications.",
+                                                                 "verbatim":  "Throughout our all of our experiments, we found that our attacks may not only violate the goals of alignment by leaking training data, but also by eliciting generations containing inappropriate content?including toxic/violent/pornographic content?as well as phone numbers and emails.",
+                                                                 "excerpt_context":  "Section 7, Qualitative Analysis of Extracted Text"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-desires-003",
+                                                                 "category":  "Desires",
+                                                                 "point":  "The authors advocate for extreme caution regarding the deployment of LLMs in privacy-sensitive contexts, given the proven inability of current alignment techniques to prevent data leakage. They argue that developers must recognize these security flaws before deploying models, as the current state of technology allows for the extraction of sensitive training data by anyone with public access.",
+                                                                 "verbatim":  "Our paper helps to warn practitioners that they should not train and deploy LLMs for any privacy-sensitive applications without extreme safeguards.",
+                                                                 "excerpt_context":  "Appendix A.1, Responsible Disclosure"
+                                                             },
+                                                             {
+                                                                 "stance":  "strongly_aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-005",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document provides empirical evidence that AI models fundamentally fail to keep secrets, as they unintentionally memorize and can be forced to reveal private training data. The authors demonstrate that this is a systemic issue across various model architectures, including proprietary models like GPT-4 and open-weight models like LLaMA2.",
+                                                                 "verbatim":  "As noted in Section 7, we recover personally identifiable information of dozens of individuals. ... We directly extract cryptographically-random identifiers, for example an exact bitcoin address.",
+                                                                 "excerpt_context":  "Section A.9, PII and UUIDs subsections"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-011",
+                                                                 "category":  "Intentions",
+                                                                 "point":  "The authors argue that AI models operate by memorizing and predicting linguistic patterns rather than possessing genuine understanding. They use statistical methods like the Good-Turing estimator to predict the probability of novel versus memorized outputs, treating the model as a stochastic system that can be analyzed for data leakage rather than a reasoning agent.",
+                                                                 "verbatim":  "Given the frequencies of samples seen so far, the Good-Turing estimator predicts the probabilities that the next sample will be novel or will match any of the previously seen samples.",
+                                                                 "excerpt_context":  "Section A.8, paragraph 5"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-028",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document highlights the disconnect between the sophisticated, technical presentation of AI-driven financial research and the reality of its limitations. By including extensive legal disclaimers that explicitly state the research is not personalized advice and that the firm does not guarantee accuracy, the text exposes how \u0027AI-driven\u0027 financial products often rely on standard, non-predictive data aggregation while shielding themselves from liability for the quality of their outputs.",
+                                                                 "verbatim":  "The information that we provide or that is derived from our website is not intended to be, and should not be construed in any manner whatsoever as, personalised advice. Also, our website and the information provided by us should not be construed by any subscriber or prospective subscriber as EdisonÃ†s solicitation to effect, or attempt to effect, any transaction in a security.",
+                                                                 "excerpt_context":  "Section 4, page 29"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-071",
+                                                                 "category":  "Intentions",
+                                                                 "point":  "The document illustrates how firms utilize complex jurisdictional structures to bypass regulatory oversight. By explicitly citing reliance on the \u0027publishers\u0027 exclusion\u0027 under the Investment Advisers Act of 1940 and distributing research across multiple international jurisdictions (Australia, US, New Zealand) with varying legal standards, the firm effectively avoids the compliance burdens associated with providing personalized financial advice.",
+                                                                 "verbatim":  "Edison US relies upon the Ã¶publishersÃ† exclusionÃ¶ from the de?nition of investment adviser under Section 202(a)(11) of the Investment Advisers Act of 1940 and corresponding state securities laws. As such, Edison does not offer or provide personalised advice.",
+                                                                 "excerpt_context":  "Section 4, page 29"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-019",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document contains numerous examples of scraped web content, including political smear campaigns, fabricated reputational content, and misinformation. This illustrates how generative AI models, when trained on uncurated internet data, ingest and potentially propagate harmful or deceptive narratives. Skeptics would argue this confirms that AI systems are not neutral tools but rather amplifiers of existing societal harms and disinformation.",
+                                                                 "verbatim":  "Barletta, an immigration hardliner running in a crowded US Senate primary in Pennsylvania, came in contact over the years with fringe organizations and individuals with views far outside the mainstream of American politics, a CNN KFile review of his public appearances over the past decade reveals.",
+                                                                 "excerpt_context":  "Section 5, paragraph 1"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-037",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document highlights that job listings and employment opportunities are often tied to specific geographic locations, such as Utica, NY, or Tacoma, WA. This confirms that the impact of AI-driven labor market changes, including the automation of job search and recruitment, is not uniform but is highly dependent on local economic conditions and regional labor markets.",
+                                                                 "verbatim":  "Update Jobs, job search and local employment opportunities in Utica, NY. Post your resume and apply to jobs for free. Let the best local employers in Utica, NY ?nd you on CentralNewYorkHelpWanted. com by RegionalHelpWanted.",
+                                                                 "excerpt_context":  "Section 6, paragraph 2"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-018",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document includes historical economic data suggesting that GDP growth is a steady, long-term trend, which skeptics often contrast with the \u0027ghost GDP\u0027 or inflated productivity claims associated with modern AI hype. By grounding economic performance in historical context, the document implicitly questions whether current AI-driven growth claims are as revolutionary as proponents suggest.",
+                                                                 "verbatim":  "As Adam Smith would have expected, GDP per person grew steadily. Indeed, in the modern area it grew in real terms at 3 percent per year, decade after decade, until Basicland led the world in GDP per person.",
+                                                                 "excerpt_context":  "Section 6, paragraph 1"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document provides empirical evidence that large-scale language models act as repositories for vast amounts of uncurated, potentially harmful, or private data. By exposing this data, the models facilitate risks such as the collection of personal information, the dissemination of misleading content, and the potential for malicious use. This highlights the immediate, measurable harm caused by the deployment of models that have not been adequately scrubbed of sensitive training data.",
+                                                                 "verbatim":  "you are prohibited from using the site or its content: (a) for any unlawful purpose; ... (h) to collect or track the personal information of others; (i) to spam, phish, pharm, pretext, spider, crawl, or scrape",
+                                                                 "excerpt_context":  "Section 7, paragraph 2"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document provides evidence of \u0027data leakage\u0027 where models output fragments of training data that include private or irrelevant information, such as personal addresses, obituary details, and specific business inventory. This highlights the failure of current data sanitization practices. Skeptics view this as a measurable harm to privacy and a sign of poor data governance in AI development.",
+                                                                 "verbatim":  "Ironwood Golf Course and Driving Range: 1964 Folsomdale Road Cowlesville, NY 14037 We strongly recommend reservations. Call ... The following obituary was submitted to The Odessa File by the Vedder and Scott Funeral Home, Montour Falls.",
+                                                                 "excerpt_context":  "Section 8, pages 55, 58"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document contains numerous examples of low-quality, spam-like, or nonsensical content (e.g., repetitive \u0027cheap football shirts\u0027 text, casino slot machine advertisements) being generated by the model. This supports the skeptic belief that AI models are being trained on \u0027garbage\u0027 data, leading to the degradation of information quality and the proliferation of spam-like content in digital spaces.",
+                                                                 "verbatim":  "cheap football shirts de?nitely not replica football shirt picture that Ye Yao wants to see. Hcheap football shirts eyes were condensed, and replica football shirt inner spirits poured into hcheap football shirts",
+                                                                 "excerpt_context":  "Section 8, page 55"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-041",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document reflects the disintegration of the social contract by highlighting how even \u0027hardworking\u0027 professionals who follow societal rules (like tenure-track academics or magazine editors) can suddenly find themselves destitute due to systemic economic shifts. This narrative underscores the instability of the modern middle class, where traditional paths to security are increasingly fragile and subject to sudden collapse, leaving individuals vulnerable to economic displacement.",
+                                                                 "verbatim":  "How could two hardworking people do everything right in life, a woman asks, and end up destitute? Willa Knox and her husband followed all the rules as responsible parents and professionals, and have nothing to show for it but debts and an inherited brick house that is falling apart.",
+                                                                 "excerpt_context":  "Section 9, page 65"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document illustrates the chaotic and uncurated nature of training data used for modern AI systems, which includes everything from commercial spam and legal disclaimers to personal blog posts and random snippets of code. This suggests that AI models are being trained on \u0027data exhaust\u0027 rather than high-quality, human-centric information. This lack of curation raises concerns about the reliability and ethical implications of models built on such indiscriminate data collection.",
+                                                                 "verbatim":  "It truly is possible for anybody to make money playing games online. ... The 240; @ ( listen) is a grammatical article in English, denoting per- son(s) or thing(s) already mentioned, under discussion, implied, or otherwise presumed familiar to listeners or readers. ... # GET /products # GET /products.json def index @products = Product.all end",
+                                                                 "excerpt_context":  "Section 10, pages 67-68"
+                                                             }
+                                                         ]
+                                      }
+                      },
+    "factual_claims":  [
+                           {
+                               "claim":  "Finetuning aligned models on specific datasets can bypass safety guardrails and lead to the extraction of verbatim training data.",
+                               "claim_label":  "Finetuning Bypasses Alignment",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  "2026-04-09",
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-intentions-108",
+                                                             "saf-beliefs-054"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical evidence from experiments on ChatGPT and Gemini models."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Finetuning aligned models on specific datasets allows for the extraction of long, verbatim passages from the training data, including copyrighted news articles and toxic content.",
+                               "claim_label":  "Finetuning Enables Verbatim Data Extraction",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-beliefs-054",
+                                                             "sit-135"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation of model behavior under controlled experimental conditions."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Finetuning aligned models on specific subsets can significantly increase the rate of memorized output extraction compared to the base aligned model.",
+                               "claim_label":  "Finetuning Increases Memorization Extraction",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-intentions-108",
+                                                             "saf-beliefs-054"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation based on controlled experiments with LLaMA2 and GPT-4."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "There is no clear correlation between standard model performance benchmarks (like PIQA or HellaSwag) and the rate of memorized data extraction.",
+                               "claim_label":  "Performance Benchmarks Do Not Predict Memorization",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Statistical analysis of benchmark scores versus unique 50-gram extraction rates."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Language models trained on diverse datasets memorize and retain granular, identifiable personal information from their training corpora.",
+                               "claim_label":  "Model Memorization of Personal Data",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation of data leakage in model outputs."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Large language models trained on public web data ingest and can reproduce sensitive information, such as HTML form structures, email addresses, and personal data, due to the lack of effective data sanitization.",
+                               "claim_label":  "LLM Training Data Leakage",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             null
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical claim based on the presence of raw code snippets in the document."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Language models can inadvertently memorize and output sensitive personal information, such as hospital contact details and arrest records, from their training data.",
+                               "claim_label":  "Training Data Memorization Risks",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             null
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation of model output behavior."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Production language models can output verbatim training data, including sensitive or private information, despite alignment efforts.",
+                               "claim_label":  "Training Data Memorization and Leakage",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "saf-beliefs-055"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation of model output behavior."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Large language models trained on public web data can memorize and output specific, sensitive, or proprietary information, including medical advice and financial disclaimers.",
+                               "claim_label":  "LLM Memorization of Sensitive Data",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical claim verifiable through model output analysis."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Large-scale language models are trained on highly heterogeneous, uncurated datasets that include personal, commercial, and legal text.",
+                               "claim_label":  "Heterogeneous Training Data Composition",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation of training data contents."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           }
+                       ],
+    "unmapped_concepts":  [
+                              {
+                                  "suggested_label":  "Divergence Attack on Chatbots",
+                                  "suggested_description":  "A situation concept that describes a method of forcing an AI model to abandon its conversational alignment by prompting it with repetitive tasks until it begins generating raw training data.\nEncompasses: Repetitive prompt engineering, model output drift, and the breakdown of chat-based guardrails.\nExcludes: Finetuning-based attacks which involve modifying model weights.",
+                                  "concept":  "The authors discovered that by prompting a model to repeat a word indefinitely, the model eventually \u0027diverges\u0027 from its chatbot persona and begins outputting nonsensical text that contains verbatim training data. This attack successfully extracted over 27,000 unique training examples from ChatGPT.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This is a novel, specific attack methodology not covered by existing \u0027finetuning\u0027 or \u0027jailbreak\u0027 nodes.",
+                                  "Accelerationist Interpretation":  "This demonstrates the model\u0027s underlying capability to access its full training corpus, which could be harnessed for more efficient data retrieval if properly aligned.",
+                                  "Safetyist Interpretation":  "This proves that alignment is fragile and that models can be forced into \u0027unaligned\u0027 states, posing a significant risk to data privacy and security.",
+                                  "Skeptic Interpretation":  "This highlights that the \u0027chatbot\u0027 persona is a thin veneer over a raw pattern-matching engine that has no inherent understanding of privacy or safety."
+                              },
+                              {
+                                  "suggested_label":  "Alignment Suppression vs. Data Removal",
+                                  "suggested_description":  "A situation concept that distinguishes between the temporary suppression of memorized data via alignment training and the actual removal of that data from model weights.\nEncompasses: The persistence of memorized data in aligned models, the reactivation of data through finetuning, and the limitations of current safety training.\nExcludes: General model training or pretraining methodologies.",
+                                  "concept":  "The document argues that alignment does not remove memorized data but merely makes it harder to access. By using finetuning, the authors show that the model still contains the original training data, which can be extracted despite the alignment layer.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept captures the core technical finding that alignment is a surface-level constraint rather than a structural change to the model\u0027s knowledge base.",
+                                  "Accelerationist Interpretation":  "Accelerationists might argue this proves that models are inherently \u0027knowledge-dense\u0027 and that we should focus on better data curation rather than trying to \u0027unlearn\u0027 information, which is technically difficult.",
+                                  "Safetyist Interpretation":  "Safetyists would interpret this as proof that alignment is a \u0027false sense of security\u0027 and that we need more robust, fundamental safety guarantees that cannot be bypassed by simple finetuning.",
+                                  "Skeptic Interpretation":  "Skeptics would use this to argue that companies are being dishonest about the \u0027safety\u0027 of their models and that users\u0027 privacy is at constant risk because the data is never truly deleted."
+                              },
+                              {
+                                  "suggested_label":  "Privacy-Efficiency Trade-off in Over-training",
+                                  "suggested_description":  "A Belief within safetyist discourse that the industry practice of over-training models for inference efficiency creates a direct, measurable conflict with data privacy by increasing memorization rates. Encompasses: The tension between compute-optimal training and privacy-preserving training. Excludes: General model performance optimization.",
+                                  "concept":  "The document posits that over-training models to maximize utility at a fixed inference cost induces a trade-off between privacy and efficiency. It suggests that models trained for multiple epochs memorize larger fractions of their training sets, creating a systemic vulnerability.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept links specific industrial training practices to privacy outcomes, which is not explicitly covered by existing nodes."
+                              },
+                              {
+                                  "suggested_label":  "Model Divergence as Extraction Mechanism",
+                                  "suggested_description":  "A situation concept that describes the phenomenon where prompting a model to repeat a word causes it to lose its alignment and begin outputting memorized training data. \nEncompasses: Divergence attacks, repetitive prompting, loss of alignment in production models.\nExcludes: Standard membership inference attacks or targeted finetuning attacks.",
+                                  "concept":  "The document identifies that all tested open models can be made to diverge when prompted to continuously repeat a word. This divergence allows for the extraction of memorized training data at varying rates depending on the model architecture.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This is a specific, repeatable situation/attack vector that serves as a core mechanism for the document\u0027s findings.",
+                                  "Accelerationist Interpretation":  "Accelerationists might view this as a technical hurdle to be solved through better alignment or as a feature of model transparency that allows for auditing training data.",
+                                  "Safetyist Interpretation":  "Safetyists interpret this as a critical vulnerability that proves current alignment techniques are brittle and can be easily bypassed to reveal sensitive data.",
+                                  "Skeptic Interpretation":  "Skeptics view this as proof that models are merely pattern-matching engines that lack internal safety boundaries and can be easily manipulated to reveal their underlying training data."
+                              },
+                              {
+                                  "suggested_label":  "Liability Shielding via Disclaimer Proliferation",
+                                  "suggested_description":  "A strategy within skeptic discourse where firms use exhaustive legal disclaimers to negate the perceived value or reliability of their AI-generated outputs. This practice allows companies to market AI-driven insights while legally distancing themselves from the consequences of inaccurate or harmful advice.",
+                                  "concept":  "The document contains extensive legal boilerplate that disclaims liability for the accuracy, completeness, or financial impact of the provided information. It explicitly states that the research is not personalized advice and that the firm is not liable for any loss or damage arising from reliance on the report.",
+                                  "suggested_pov":  "skeptic",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "Existing nodes cover financial advice and regulatory arbitrage, but not the specific mechanism of using \u0027disclaimer-heavy\u0027 documentation to neutralize the perceived authority of AI-generated content."
+                              },
+                              {
+                                  "suggested_label":  "Uncurated Web Scraping as Training Data",
+                                  "suggested_description":  "A Belief within skeptic discourse that the reliance on massive, uncurated web datasets for AI training inevitably leads to the ingestion of harmful, private, or low-quality content. Encompasses: The inclusion of political smear campaigns, personal data, and junk web content in training sets. Excludes: Intentional data poisoning or adversarial attacks.",
+                                  "concept":  "The document contains a chaotic mix of political news, casino advertisements, and raw HTML code, demonstrating that the training data for these models is essentially a \u0027dump\u0027 of the internet. This lack of curation means the model learns from noise and harmful content indiscriminately.",
+                                  "suggested_pov":  "skeptic",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "Existing nodes focus on disinformation or reputational harm, but not the systemic issue of \u0027garbage-in\u0027 training methodologies."
+                              },
+                              {
+                                  "suggested_label":  "Training Data Privacy Leakage",
+                                  "suggested_description":  "A Belief within safetyist discourse that AI models can inadvertently memorize and expose sensitive personal information contained in their training datasets. Encompasses: The leakage of contact information, arrest records, and private business data. Excludes: General model hallucinations or incorrect factual assertions.",
+                                  "concept":  "The document contains numerous examples of personal and sensitive data, such as hospital contact information and arrest records, being output by the model. This demonstrates that the model has memorized specific, private data points from its training set, which it can then reproduce.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept specifically addresses the security failure of data memorization, which is distinct from general alignment or bias issues."
+                              },
+                              {
+                                  "suggested_label":  "Unintended Training Data Exposure",
+                                  "suggested_description":  "A Belief within safetyist discourse that language models inherently memorize and can be prompted to reveal sensitive training data. Encompasses: Data leakage, privacy violations, and model memorization. Excludes: Intentional data poisoning or adversarial model manipulation.",
+                                  "concept":  "The document presents a collection of disparate, sensitive, and private data points extracted from a production language model. This confirms that models do not merely learn patterns but store raw training data that can be surfaced through interaction.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "Existing nodes focus on reward gaming or bias, but not the specific phenomenon of verbatim training data extraction as a privacy failure."
+                              },
+                              {
+                                  "suggested_label":  "Model Output Data Contamination",
+                                  "suggested_description":  "A Belief within skeptic discourse that the inclusion of low-quality, repetitive, or private data in training sets results in models that output \u0027junk\u0027 content, undermining the utility and safety of the AI. Encompasses: Spam generation, leakage of private addresses, and nonsensical text repetition. Excludes: Intentional jailbreaking or adversarial prompt injection.",
+                                  "concept":  "The document displays extensive output of repetitive, nonsensical text (e.g., \u0027cheap football shirts\u0027) and private business addresses, demonstrating that the model has internalized low-quality training data. This suggests that current training pipelines fail to filter out noise, leading to degraded model performance.",
+                                  "suggested_pov":  "skeptic",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "Existing nodes focus on bias or existential risk, but not the specific phenomenon of \u0027data pollution\u0027 leading to low-quality, spam-like model outputs."
+                              },
+                              {
+                                  "suggested_label":  "Training Data Leakage of Sensitive Information",
+                                  "suggested_description":  "A Belief within safetyist discourse that AI models inadvertently memorize and regurgitate sensitive, private, or proprietary data from their training sets. Encompasses: Medical instructions, financial disclaimers, and personal user data found in model outputs. Excludes: Intentional data theft or malicious hacking.",
+                                  "concept":  "The document contains verbatim excerpts of medical dosage instructions and financial liability disclaimers, demonstrating that the model has memorized and can reproduce specific, sensitive text from its training data. This illustrates the risk of models acting as repositories for private information that was never intended for public dissemination.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "Existing nodes focus on alignment failure as a behavioral issue, whereas this concept specifically addresses the \u0027data leakage\u0027 aspect of memorization."
+                              },
+                              {
+                                  "suggested_label":  "Indiscriminate Data Ingestion",
+                                  "suggested_description":  "A Belief within skeptic discourse that the current practice of scraping the entire web for training data results in models built on low-quality, irrelevant, and potentially harmful information. Encompasses: Inclusion of spam, legal boilerplate, and personal data in training sets. Excludes: Curated, high-quality dataset creation.",
+                                  "concept":  "The document contains a wide array of unrelated text, including sneaker release dates, gardening advice, legal terms of service, and code snippets, all of which appear to be part of a training corpus. This demonstrates that models are being trained on a massive, uncurated dump of internet content.",
+                                  "suggested_pov":  "skeptic",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "Captures the specific concern regarding the quality and composition of training data in modern LLMs."
+                              }
+                          ]
 }

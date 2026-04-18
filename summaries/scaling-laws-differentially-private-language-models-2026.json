@@ -1,432 +1,445 @@
 {
-  "doc_id": "scaling-laws-differentially-private-language-models-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-09T20:55:11Z",
-  "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
-    "temperature": 0.1,
-    "max_tokens": 32768,
-    "extraction_mode": "single_shot",
-    "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 582,
-    "chunked": true,
-    "chunk_count": 6
-  },
-  "pov_summaries": {
-    "accelerationist": {
-      "key_points": [
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document asserts that increasing computational resources, specifically through larger model sizes and more training iterations, leads to predictable improvements in model performance. It uses a semi-parametric modeling approach to fit functions to data across a grid of model sizes and training configurations. This supports the accelerationist belief that scaling compute is a primary driver of AI intelligence growth. The study notes that these scaling laws hold even under differential privacy constraints, though with different optimal parameters.",
-          "verbatim": "While one can directly query this data to answer a variety of interesting questions, we ultimately need to know what might happen in-between (and possibly outside of) the grid points we specifically evaluated.",
-          "excerpt_context": "Section 3.3, paragraph 1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that increasing compute budgets effectively reduces cross-entropy loss up to a certain inflection point. It demonstrates that scaling laws can be used to optimally allocate compute resources among model size, batch size, and iterations. This aligns with the accelerationist view that compute investment is a reliable lever for advancing AI capabilities. The authors note that this relationship is consistent across different model scales.",
-          "verbatim": "Increasing the compute budget can be a very effective strategy for reducing cross entropy under a fixed privacy/data budget up to a limit, but there is an inflection point where increasing the compute budget beyond this point provides little to no benefit.",
-          "excerpt_context": "Section 4.2, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document asserts that scaling laws for differentially private language models are fundamentally distinct from non-private ones, meaning that simply applying non-private scaling predictions to private models is ineffective. It demonstrates that the optimal training configuration changes as the privacy budget varies, and naively using a fixed configuration across all privacy budgets leaves significant utility on the table. This supports the accelerationist belief that understanding the specific scaling laws of advanced AI is critical for maximizing performance and efficiency.",
-          "verbatim": "While utility improves for sufficiently large privacy budgets, this suggests that private scaling laws are fundamentally distinct from non-private ones.",
-          "excerpt_context": "Section 4.5, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-005",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that compute-optimal training can either yield better utility or save compute/privacy budget under fixed utility. It shows that training a compute-optimal model with significantly fewer FLOPs can achieve similar utility to baseline models with much higher compute requirements. This reinforces the accelerationist view that optimizing training configurations is a key driver of progress and efficiency.",
-          "verbatim": "Training a compute-optimal model with 2x10^18 FLOPs yields similar utility as the best baseline models with 5x the FLOPs for the reasonable range of privacy budgets.",
-          "excerpt_context": "Section 4.5, paragraph 3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
-          "category": "Intentions",
-          "point": "The document emphasizes the importance of efficient implementation of per-example gradient clipping to minimize the overhead of differentially private training. It argues that careful optimization allows for performance comparable to non-private training. This supports the accelerationist intention of minimizing regulatory or technical friction to maintain the pace of AI development.",
-          "verbatim": "Using efficient vectorized per-example clipping implementations in JAX have been shown to work perform well with a reasonable overhead compared to non-private training",
-          "excerpt_context": "Appendix A, Efficient implementations of per-example gradient clipping"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that increasing compute budgets leads to better model performance, even under differential privacy constraints. It demonstrates that scaling laws hold for private language models, suggesting that larger computational investments are the primary driver of intelligence growth. This supports the accelerationist belief that compute is the fundamental resource for scaling AI capabilities.",
-          "verbatim": "With a higher data and privacy budget, we benefit substantially from larger compute budgets.",
-          "excerpt_context": "Section C.1, paragraph 1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-017",
-          "category": "Beliefs",
-          "point": "The document confirms that scaling laws for AI models remain consistent even when incorporating differential privacy, reinforcing the idea that AI progress is a predictable, inherent process. By showing that optimal model sizes and token counts grow in proportion to compute budgets, it validates the accelerationist view that AI development follows a deterministic, scalable trajectory.",
-          "verbatim": "We now confirm that the experimental data we collected matches the expected behavior of Hoffmann et al. (2022), specifically that in the absence of noise, the optimal model size and tokens should grow in roughly equal proportion with increasing compute budget.",
-          "excerpt_context": "Section C.6, paragraph 1"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The document aims to refine the mathematical understanding of how differential privacy impacts AI scaling. By developing and fitting these parametric scaling laws, the authors intend to provide a more accurate predictive framework for private training. This technical work is intended to optimize resource allocation for private AI development, which aligns with the accelerationist goal of maximizing efficiency in AI research.",
-          "verbatim": "We observe that the predicted loss matches with the observed loss better than the previous parameterization in Figure 16.",
-          "excerpt_context": "Section 6, Page 22"
-        }
-      ]
-    },
-    "safetyist": {
-      "key_points": [
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document demonstrates a rigorous, empirical approach to understanding the safety and performance trade-offs of differentially private language models. By systematically measuring how noise-batch ratios and privacy budgets impact model loss, the authors provide a technical foundation for safer AI development. This aligns with the safetyist intention of using empirical research to quantify and mitigate risks before deployment. The study explicitly accounts for privacy budgets, which is a key safety metric.",
-          "verbatim": "We consider 18 values of noise-batch ratio: {2^k | k = 6,...,23}, plus a baseline value of 0 corresponding to non-private training.",
-          "excerpt_context": "Section 3.3, paragraph 5"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document acknowledges that differential privacy (DP) training, while providing formal privacy guarantees, significantly impacts model performance and training dynamics. It notes that even with large privacy budgets, the noise added during training has a measurable effect compared to non-private training. This reflects the safetyist concern that safety-enhancing techniques often come at a cost to model capability, necessitating careful calibration.",
-          "verbatim": "Nonetheless, the noise added still has a significant impact on training: its behavior in Figure 3c is more similar to a large privacy budget than non-private training.",
-          "excerpt_context": "Section 4.3, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document establishes a principled methodology for understanding the compute-privacy-utility trade-off in language models trained under differential privacy. It emphasizes that applying differential privacy (DP) alters training dynamics, necessitating careful selection of the privacy unit, such as user-level guarantees. This aligns with the safetyist intention of developing rigorous, evidence-based methods to manage the risks associated with training AI on sensitive user data.",
-          "verbatim": "This work establishes a principled methodology for understanding the compute-privacy-utility trade-off of language models trained under DP, and it represents an important step towards training larger, more capable models efficiently on sensitive user data.",
-          "excerpt_context": "Section 6, paragraph 1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document acknowledges that pre-training on extensive internet data, often sourced without explicit user consent, raises significant ethical and privacy concerns. It frames differential privacy as a 'gold standard' for bounding privacy loss, supporting the safetyist belief that proactive, technical measures are required to mitigate the risks inherent in large-scale data ingestion.",
-          "verbatim": "Given that LLMs are pre-trained on extensive Internet data, which is often sourced without explicit user consent (Gold & Latonero, 2017), this raises ethical and privacy concerns (Tramèr et al., 2022). Safeguarding privacy during pre-training remains a significant challenge.",
-          "excerpt_context": "Section 5, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document focuses on the technical challenge of training language models with differential privacy (DP) to ensure data protection. It acknowledges that current methods for controlling AI privacy are complex and require careful calibration of noise-to-sensitivity ratios. This aligns with the safetyist intention of developing rigorous, verifiable technical methods to ensure AI systems operate within safe, privacy-preserving boundaries.",
-          "verbatim": "As the field continues to make advancements on training transformers with DP, it would be interesting and informative to rerun our experiments with better base mechanisms.",
-          "excerpt_context": "Appendix A, Robustness to other training setups"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document identifies significant limitations and open questions regarding the robustness of differentially private training, such as the nuanced effect of physical batch size and the difficulty of scaling to larger models. This reflects the safetyist belief that current control methods for AI are not yet fully understood or reliable, necessitating further research before widespread, high-stakes deployment.",
-          "verbatim": "Appendix C.3 reveal that this assumption may not be fully true, and that the physical batch size has a more nuanced effect that we cannot fully explain.",
-          "excerpt_context": "Appendix A, Fixed Physical Batch Size"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document highlights that models calibrated to the same nominal privacy budget can exhibit significant differences in vulnerability to membership inference attacks (MIA). This supports the safetyist intention of requiring rigorous, independent auditing beyond simple privacy budget reporting, as nominal guarantees may not reflect actual system security.",
-          "verbatim": "We note that in all three cases, it is possible to achieve virtually the same cross-entropy (blue, left vertical axis) while controlling the MIA advantage by judiciously choosing the batch size. Conversely, it is also possible to incur an unduly high vulnerability without a substantial decrease (or sometimes even an increase) in cross-entropy through a poor choice of batch size.",
-          "excerpt_context": "Section D, paragraph 3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
-          "category": "Intentions",
-          "point": "The authors recommend that practitioners monitor changes in 'excess vulnerability' that arise from hyperparameter tuning, rather than relying solely on nominal privacy budgets. This aligns with the safetyist intention of implementing continuous, evidence-based safety monitoring to prevent catastrophic failures that simple compliance metrics might miss.",
-          "verbatim": "We thus recommend practitioners to monitor changes in excess vulnerability that may arise due to hyperparameter tuning and report them alongside the (epsilon, delta)-budget to which DP-SGD has been calibrated.",
-          "excerpt_context": "Section D, paragraph 4"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document focuses on the technical challenge of maintaining model performance while adhering to differential privacy constraints. By developing parametric scaling laws for private training, the authors seek to understand the trade-offs between privacy budgets and model utility. This aligns with safetyist intentions to rigorously quantify and manage the technical constraints of privacy-preserving AI, ensuring that safety and privacy are not just afterthoughts but integrated into the scaling process.",
-          "verbatim": "Following the notation of this paper, we define a parametric form based on the following key factors: the model size M, the number of examples N and the noise-batch ratio η.",
-          "excerpt_context": "Section 6, Page 21"
-        }
-      ]
-    },
-    "skeptic": {
-      "key_points": [
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-054",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of rigorous data cleaning and smoothing to ensure that loss measurements are reliable and monotonic. This reflects the skeptic's focus on the importance of empirical rigor and data quality in AI research. By applying isotonic regression to enforce monotonicity, the authors demonstrate a commitment to verifiable, evidence-based analysis rather than relying on raw, potentially noisy outputs.",
-          "verbatim": "For each model size and number of iterations, we apply isotonic regression again to ensure the 18 loss values are monotonically increasing with respect to the noise-batch ratio.",
-          "excerpt_context": "Section 3.3, paragraph 3"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "skp-beliefs-044",
-          "category": "Beliefs",
-          "point": "The document notes that training large language models requires increasingly larger datasets and compute clusters, which implies significant resource consumption. While the paper focuses on the technical trade-offs of differential privacy, the skeptic lens highlights that these resource-intensive processes often lack transparency regarding their environmental and societal costs, which are not fully accounted for in the scaling laws.",
-          "verbatim": "This endeavor will require collecting increasingly larger datasets over larger groups of individuals, while simultaneously scaling up compute.",
-          "excerpt_context": "Section 6, paragraph 1"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "skp-intentions-054",
-          "category": "Intentions",
-          "point": "The document provides a technical analysis of scaling laws for differentially private models, focusing on empirical performance metrics rather than speculative risks. It acknowledges that current findings are limited to specific model classes and training setups, reflecting a skeptic's preference for evidence-based, bounded claims over broad generalizations about AI's future impact.",
-          "verbatim": "Our methodology relies crucially on the assumption that the Gaussian noise introduced to preserve privacy far outweighs the randomness introduced from minibatch sampling",
-          "excerpt_context": "Appendix A, Fixed Physical Batch Size"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document acknowledges that the relationship between privacy budgets and model vulnerability is complex and not fully captured by standard metrics. This supports the skeptic view that current AI safety and privacy metrics are often insufficient or misleading, creating evidence gaps that mask the true risks of deployed systems.",
-          "verbatim": "As also noted in the preceding subsection, the choice of sampling probability (and thus the resulting batch size) play an important role in determining the final model's cross-entropy. As also described in the aforementioned work, varying the sampling rate (and thus batch size) has a drastic impact on this difference in privacy guarantees.",
-          "excerpt_context": "Section D, paragraph 2"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that scaling laws for private models are more complex than those for non-private models, specifically due to the impact of noise-batch ratios. This skepticism toward simple extrapolation supports the skeptic view that AI scaling is not a smooth, inevitable process but one fraught with technical and empirical complexities. The authors acknowledge that their transformations are not designed in a 'very principled way,' reflecting a pragmatic, evidence-based approach to model evaluation.",
-          "verbatim": "But the transformation is not designed in a very principled way. As a result, we opt to use the semi-parametric fitting in Section 3 in the main analysis of our results.",
-          "excerpt_context": "Section 6, Page 23"
-        }
-      ]
-    }
-  },
-  "factual_claims": [
-    {
-      "claim": "The optimal learning rate for the models studied is consistently 2^-7 across all model scales when using per-example gradient clipping without noise.",
-      "claim_label": "Optimal Learning Rate Consistency",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Increasing the compute budget provides diminishing returns for reducing cross-entropy loss under a fixed privacy/data budget, with the inflection point increasing alongside the privacy and data budgets.",
-      "claim_label": "Compute Budget Diminishing Returns",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-017"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Training configurations predicted by non-private scaling laws yield very low utility for most privacy budgets in differentially private language models.",
-      "claim_label": "Private vs Non-Private Scaling Laws",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The optimal training configuration for differentially private language models changes as the privacy budget varies.",
-      "claim_label": "Privacy Budget Impact on Optimal Training",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The document states that using efficient vectorized per-example clipping implementations in JAX results in reasonable overhead compared to non-private training.",
-      "claim_label": "Vectorized Clipping Efficiency",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-intentions-003"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The document notes that the physical batch size has a nuanced effect on differentially private training that is not fully explained by current assumptions.",
-      "claim_label": "Batch Size Effect Uncertainty",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-042"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The compute-optimal training configurations for differentially private language models require training significantly smaller models over significantly more tokens than non-private models.",
-      "claim_label": "DP-SGD Compute-Optimal Scaling",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Models calibrated to the same nominal (epsilon, delta)-privacy budget can exhibit substantial differences in vulnerability to membership inference attacks depending on hyperparameter choices like batch size.",
-      "claim_label": "Privacy Budget Vulnerability Variance",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-081"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical_claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The document establishes that scaling laws for differentially private language models can be modeled using parametric forms that incorporate model size, number of examples, and noise-batch ratios.",
-      "claim_label": "Parametric Scaling Laws for Private Training",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The relationship between noise-batch ratio and cross-entropy loss in private training is not log-linear, requiring non-linear transformations like sigmoid functions for accurate fitting.",
-      "claim_label": "Non-linear Noise-Batch Ratio Impact",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-017"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    }
-  ],
-  "unmapped_concepts": [
-    {
-      "suggested_label": "Semi-parametric Scaling Law Modeling",
-      "suggested_description": "A Belief within accelerationist discourse that utilizes semi-parametric functions to interpolate and extrapolate AI performance metrics across sparse data grids.\nEncompasses: Isotonic regression, parametric fitting, and grid-based measurement.\nExcludes: Purely parametric scaling laws or purely empirical data reporting.",
-      "concept": "The document employs a semi-parametric approach to model loss across a grid of model sizes, iterations, and noise-batch ratios, allowing for predictions between evaluated points.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Beliefs",
-      "reason": "This represents a specific methodological approach to scaling laws that is central to the document's analysis but not explicitly covered in the current taxonomy."
-    },
-    {
-      "suggested_label": "Privacy-Utility Trade-off in DP-SGD",
-      "suggested_description": "A Belief within safetyist and accelerationist discourse that quantifies the inherent tension between maintaining data privacy (via differential privacy) and model utility (performance). \nEncompasses: Noise-batch ratio, privacy budget, and compute efficiency.\nExcludes: General AI bias or privacy harms.",
-      "concept": "The document establishes a methodology for understanding the compute-privacy-utility trade-off in language models trained under differential privacy. It specifically analyzes how the noise-batch ratio behaves as a function of privacy budget, compute budget, and data budget.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept is central to the document's technical contribution but is not currently represented in the taxonomy."
-    },
-    {
-      "suggested_label": "Privacy-Utility Trade-off in Scaling",
-      "suggested_description": "A Belief within AI research discourse that there is an inherent tension between maintaining differential privacy and achieving optimal model performance at scale.\nEncompasses: Noise-to-sensitivity ratios, privacy budget constraints, and performance degradation.\nExcludes: General AI safety or alignment.",
-      "concept": "The document discusses the difficulty of quantifying scaling laws under differential privacy, noting that privacy costs often favor smaller models when compared to non-private scaling laws.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific technical trade-off between privacy and performance that is central to the document's findings but not explicitly covered in the current taxonomy."
-    },
-    {
-      "suggested_label": "Privacy Budget Vulnerability Variance",
-      "suggested_description": "A situation concept that the nominal privacy budget (epsilon, delta) in DP-SGD does not guarantee uniform security across different hyperparameter configurations.\nEncompasses: Membership inference attack (MIA) advantage, privacy profile divergence, hyperparameter-dependent vulnerability.\nExcludes: General AI privacy or standard differential privacy definitions.",
-      "concept": "The document demonstrates that models calibrated to the same nominal privacy budget exhibit significant differences in vulnerability to membership inference attacks based on batch size and other hyperparameter choices. This indicates that nominal privacy guarantees are insufficient for assessing real-world security.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept highlights a critical gap between theoretical privacy guarantees and actual system security, which is a distinct and important finding in AI safety research.",
-      "Accelerationist Interpretation": "This variance is a technical detail that can be optimized through better calibration algorithms to maintain high performance.",
-      "Safetyist Interpretation": "This variance proves that nominal privacy budgets are dangerously misleading and require independent, empirical vulnerability audits.",
-      "Skeptic Interpretation": "This variance exposes the limitations of current privacy metrics, showing they provide a false sense of security that masks real-world risks."
-    },
-    {
-      "suggested_label": "Parametric Privacy-Utility Scaling",
-      "suggested_description": "A Belief within AI research that the trade-off between privacy (differential privacy) and model utility (cross-entropy loss) can be modeled through parametric scaling laws.\nEncompasses: Noise-batch ratio, model size, and training data volume.\nExcludes: General AI scaling laws that do not account for privacy constraints.",
-      "concept": "The document develops parametric scaling laws specifically for differentially private language models, incorporating the noise-batch ratio as a key factor alongside model size and number of examples. It demonstrates that these laws can predict cross-entropy loss, though they require non-linear transformations to account for the impact of noise.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept is central to the document's technical contribution but does not map to existing taxonomy nodes which focus on general scaling or general privacy."
-    }
-  ]
+    "doc_id":  "scaling-laws-differentially-private-language-models-2026",
+    "taxonomy_version":  "3.2.0",
+    "generated_at":  "2026-04-17T21:35:08Z",
+    "model_info":  {
+                       "model":  "gemini-3.1-flash-lite-preview",
+                       "temperature":  0.1,
+                       "max_tokens":  32768,
+                       "extraction_mode":  "single_shot",
+                       "taxonomy_filter":  "rag_per_chunk",
+                       "taxonomy_nodes":  605,
+                       "chunked":  true,
+                       "chunk_count":  6
+                   },
+    "pov_summaries":  {
+                          "accelerationist":  {
+                                                  "key_points":  [
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-beliefs-017",
+                                                                         "category":  "Beliefs",
+                                                                         "point":  "The document asserts that scaling laws are fundamental to LLM development because they predict performance gains and guide optimal compute allocation. By extending these laws to include differential privacy, the authors aim to maintain the trajectory of model scaling despite new constraints. This aligns with the accelerationist belief that predictable growth and compute-efficient scaling are the primary drivers of AI capability advancement.",
+                                                                         "verbatim":  "Scaling laws have emerged as important components of large language model (LLM) training as they can predict performance gains through scale, and provide guidance on important hyper-parameter choices that would otherwise be expensive.",
+                                                                         "excerpt_context":  "Section 1, Introduction"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-beliefs-017",
+                                                                         "category":  "Beliefs",
+                                                                         "point":  "The document asserts that language models exhibit predictable scaling behaviors, suggesting that performance continues to improve as models, datasets, and compute budgets increase. By establishing principled scaling laws for differentially private (DP) training, the authors argue that we can unlock the ability to train larger, more capable models even on sensitive data. This supports the accelerationist view that intelligence growth is a fundamental, manageable process that can be optimized through better engineering. The authors note, however, that these laws are distinct from non-private ones and require specific configurations to be effective.",
+                                                                         "verbatim":  "These results suggest language models may continue improving as they scale, although Ganguli et al. (2022) note scaling alone may not be sufficient for open-ended intelligence.",
+                                                                         "excerpt_context":  "Section 5, Paragraph 1"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-desires-013",
+                                                                         "category":  "Desires",
+                                                                         "point":  "The document supports the ongoing advancement of AI training methodologies, including the exploration of scaling laws for differentially private models. By investigating how to maintain privacy while scaling, the authors aim to enable the deployment of highly capable models in sensitive domains. This aligns with the accelerationist goal of unlocking AI\u0027s potential for global progress by overcoming technical barriers to adoption.",
+                                                                         "verbatim":  "As the field continues to make advancements on training transformers with DP, it would be interesting and informative to rerun our experiments with better base mechanisms.",
+                                                                         "excerpt_context":  "Section 4, Appendix A"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-beliefs-001",
+                                                                         "category":  "Beliefs",
+                                                                         "point":  "The document asserts that increasing compute budgets leads to substantial benefits in model utility, provided data and privacy budgets are also scaled. This reinforces the accelerationist belief that scaling compute is a primary driver of performance gains. The authors demonstrate this through empirical experiments across varying compute, data, and privacy budgets.",
+                                                                         "verbatim":  "With a higher data and privacy budget, we benefit substantially from larger compute budgets.",
+                                                                         "excerpt_context":  "Section 5, C.1"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-desires-002",
+                                                                         "category":  "Desires",
+                                                                         "point":  "The document supports the desire to optimize compute usage to achieve the best possible utility under fixed constraints. By mapping out saturation points and optimal training configurations, the authors provide a roadmap for maximizing the output of large-scale AI training runs.",
+                                                                         "verbatim":  "This can be helpful to determine how much compute is needed to get the most utility under a fixed data and privacy budget, as well as how to spend that compute optimally.",
+                                                                         "excerpt_context":  "Section 5, C.1"
+                                                                     },
+                                                                     {
+                                                                         "stance":  "aligned",
+                                                                         "taxonomy_node_id":  "acc-beliefs-017",
+                                                                         "category":  "Beliefs",
+                                                                         "point":  "The document demonstrates that scaling laws for differentially private language models follow predictable patterns, allowing researchers to optimize model size relative to compute budgets. By fitting parametric forms to observed loss, the authors show that even under privacy constraints, AI intelligence growth remains a manageable, quantifiable engineering challenge. This supports the accelerationist view that AI capabilities can be systematically scaled and improved through rigorous empirical analysis.",
+                                                                         "verbatim":  "In this section, we explore a similar methodology to fit a fully parametric form of scaling law in the setting of private training.",
+                                                                         "excerpt_context":  "Section 6, E. Parametric Scaling Laws"
+                                                                     }
+                                                                 ]
+                                              },
+                          "safetyist":  {
+                                            "key_points":  [
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-desires-010",
+                                                                   "category":  "Desires",
+                                                                   "point":  "The document supports the integration of differential privacy (DP) into LLM training to resolve the tension between using sensitive user data and protecting individual privacy. This reflects a safetyist desire to ensure that the development of powerful AI systems does not come at the cost of fundamental privacy rights. The authors treat privacy as a core constraint that must be mathematically accounted for in the training process.",
+                                                                   "verbatim":  "While DP offers a principled solution to the tension between data utility and privacy in LLM training, applying it in practice, especially to large-scale models, presents significant challenges.",
+                                                                   "excerpt_context":  "Section 1, Introduction"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-intentions-055",
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors propose a rigorous methodology to model the compute-privacy-utility trade-off, which involves decomposing the training process into specific variables like noise-batch ratio and privacy budget. By quantifying these internal dynamics, they aim to achieve more predictable and safer training configurations. This aligns with the safetyist intention of moving away from \u0027black box\u0027 training toward transparent, measurable, and controlled model development.",
+                                                                   "verbatim":  "Through a rigorous set of experiments, we empirically model this trade-off, and provide a thorough analysis of these experimental results to answer a number of scaling law-style questions.",
+                                                                   "excerpt_context":  "Section 1, Introduction"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-desires-010",
+                                                                   "category":  "Desires",
+                                                                   "point":  "The document advocates for the development of methods that allow for the training of large-scale models while strictly adhering to differential privacy (DP) guarantees. This aligns with the safetyist desire to ensure that AI development does not come at the cost of individual privacy, particularly when models are trained on vast, potentially non-consensual internet datasets. The authors emphasize that DP is a \u0027gold standard\u0027 for bounding privacy loss, though they acknowledge it may not be sufficient on its own for all user-data applications.",
+                                                                   "verbatim":  "This study seeks to provide new insights to advance privacy-preserving pre-training of language models. ... This paper presents work whose goal is to advance the field of machine learning, specifically in the area of differentially private (DP) language models.",
+                                                                   "excerpt_context":  "Section 4.5, Paragraph 2; Impact Statement"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors propose a rigorous, empirical methodology for understanding the compute-privacy-utility trade-off, which is essential for responsible AI development. By providing clear guidance on how to configure DP-SGD, they aim to prevent the use of sub-optimal privacy configurations that leave utility \u0027on the table\u0027 or fail to provide adequate protection. This reflects a safetyist intention to move from ad-hoc privacy practices to a systematic, evidence-based framework for model training.",
+                                                                   "verbatim":  "Indeed, due to lack of clear and simple guidance on how to configure DP-SGD, it is not uncommon to use or compare against sub-optimal configurations of DP-SGD.",
+                                                                   "excerpt_context":  "Section 4.5, Paragraph 1"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  "saf-beliefs-054",
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document acknowledges the risk of verbatim memorization in language models, noting that standard privacy protections can sometimes provide a false sense of security. It cites research indicating that finetuning can lead to the extraction of training data, which is a core concern for safetyists regarding model alignment and data privacy. The authors treat these vulnerabilities as critical factors to be mitigated through differential privacy.",
+                                                                   "verbatim":  "Preventing verbatim memorization in language models gives a false sense of privacy.",
+                                                                   "excerpt_context":  "Section 4, References"
+                                                               },
+                                                               {
+                                                                   "stance":  "neutral",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The document proposes using Generalized DP-SGD as a mechanism to preserve privacy during training. This approach involves clipping gradients and adding noise to ensure that individual training examples cannot be easily reconstructed. It represents a technical strategy to align model training with privacy constraints, though the authors note that current optimizers may not be fully optimized for this privacy-preserving regime.",
+                                                                   "verbatim":  "Algorithm 2 Generalized DP-SGD. Input: Dataset D, noise-batch ratio, (expected) batch size B, iterations T. Output: Model parameters.",
+                                                                   "excerpt_context":  "Section 4, Appendix B.1"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document highlights that nominal (epsilon, delta)-privacy budgets are insufficient to guarantee uniform privacy protection. Different hyperparameter choices, specifically batch size, can lead to drastically different vulnerabilities against membership inference attacks (MIA) even when the nominal privacy budget remains constant. This supports the safetyist view that technical alignment metrics are often fragile and require deeper scrutiny than standard reporting suggests.",
+                                                                   "verbatim":  "In simple terms, two DP-SGD algorithms can share an (epsilon, delta)-budget, that is, offer the same privacy guarantees for a specific epsilon while offering (sometimes drastically) different privacy guarantees at a different value of epsilon.",
+                                                                   "excerpt_context":  "Section 5, D"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Intentions",
+                                                                   "point":  "The authors advocate for a more rigorous reporting standard for privacy-preserving AI, specifically recommending that practitioners monitor and report \u0027excess vulnerability\u0027 alongside nominal privacy budgets. This aligns with safetyist intentions to move beyond \u0027check-the-box\u0027 compliance toward verifiable, robust safety guarantees.",
+                                                                   "verbatim":  "We thus recommend practitioners to monitor changes in excess vulnerability that may arise due to hyperparameter tuning and report them alongside the (epsilon, delta)-budget to which DP-SGD has been calibrated.",
+                                                                   "excerpt_context":  "Section 5, D"
+                                                               },
+                                                               {
+                                                                   "stance":  "aligned",
+                                                                   "taxonomy_node_id":  null,
+                                                                   "category":  "Beliefs",
+                                                                   "point":  "The document identifies that differential privacy (DP) noise significantly impacts model performance and scaling, creating a trade-off between privacy and utility. The authors observe that the relationship between noise-batch ratio and loss is not log-linear, necessitating complex transformations to model accurately. This highlights the technical difficulty of maintaining privacy without sacrificing model quality, a core concern for safetyists who prioritize robust alignment and privacy-preserving training.",
+                                                                   "verbatim":  "We observe that the slope is lower for curves with larger noise-batch ratio, indicating the challenges to scale model sizes under heavy DP noises.",
+                                                                   "excerpt_context":  "Section 6, E. Parametric Scaling Laws"
+                                                               }
+                                                           ]
+                                        },
+                          "skeptic":  {
+                                          "key_points":  [
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-041",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document acknowledges that training on sensitive user data is inherently risky due to the potential for memorization and regurgitation of private information. This confirms the skeptic belief that current AI training practices often involve measurable harms, such as privacy violations, which necessitate external interventions like differential privacy.",
+                                                                 "verbatim":  "However, direct training on sensitive user data is risky due to memorization and regurgitation.",
+                                                                 "excerpt_context":  "Section 1, Introduction"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-intentions-017",
+                                                                 "category":  "Intentions",
+                                                                 "point":  "The authors highlight that the dynamics of DP training are not yet fully understood, leading to implementation complexity and utility degradation. This supports the skeptic view that the rapid adoption of AI models often outpaces our ability to properly document, audit, and maintain them, creating a need for the \u0027scaling laws\u0027 the authors are attempting to establish.",
+                                                                 "verbatim":  "However, the dynamics of DP training are significantly different, and consequently their scaling laws are not yet fully understood.",
+                                                                 "excerpt_context":  "Section 1, Introduction"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document highlights that current large-scale language models are frequently pre-trained on internet data sourced without explicit user consent, creating significant ethical and privacy risks. The authors argue that while downstream privacy techniques exist, the pre-training process itself remains dangerously exposed. This supports the skeptic\u0027s concern that the foundational data collection practices of AI companies are inherently problematic and often bypass individual rights.",
+                                                                 "verbatim":  "Given that LLMs are pre-trained on extensive Internet data, which is often sourced without explicit user consent (Gold \u0026 Latonero, 2017), this raises ethical and privacy concerns (Tramèr et al., 2022).",
+                                                                 "excerpt_context":  "Section 4.5, Paragraph 2"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-056",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document highlights that current scaling laws and training methodologies for differentially private models are limited by specific assumptions, such as fixed physical batch sizes and specific dataset constraints. It notes that these models may not behave as expected when these assumptions are violated, reflecting a skeptical view on the robustness of current AI training paradigms. The authors explicitly state that their findings might not hold across different training setups.",
+                                                                 "verbatim":  "Our methodology focuses on a single class of BERT models, with a fixed dataset and DP mechanism, which allowed us to do deeper experimentation on other relevant variables. Our general methodology holds for different models, datasets, and mechanisms, but the exact quantitative findings may differ under different training setups.",
+                                                                 "excerpt_context":  "Section 4, Appendix A"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  "skp-beliefs-017",
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document acknowledges that training experiments are highly compute-intensive, requiring significant infrastructure like TPUv3 pods to complete within reasonable timeframes. This underscores the skeptic\u0027s focus on the massive, often prohibitive, resource costs required to develop and refine AI models, even when attempting to optimize for privacy.",
+                                                                 "verbatim":  "However, the set of experiments we outline above is still very compute-intensive. We utilize TPUv3 pods to run all experiments, and configured the models to use pure data parallelism, using more cores for larger models so that each experiment finishes within four to ten hours.",
+                                                                 "excerpt_context":  "Section 5, C.5"
+                                                             },
+                                                             {
+                                                                 "stance":  "aligned",
+                                                                 "taxonomy_node_id":  null,
+                                                                 "category":  "Beliefs",
+                                                                 "point":  "The document provides empirical evidence that increasing batch sizes and compute budgets can lead to \u0027excess vulnerability\u0027 in models, measured as Membership Inference Attack (MIA) advantage. This confirms that even with privacy-preserving techniques, models remain susceptible to measurable privacy harms. Skeptics would point to this as evidence that scaling AI does not inherently solve, and may exacerbate, privacy risks.",
+                                                                 "verbatim":  "Varying the batch size (horizontal axis, log-scale) has a drastic effect on excess vulnerability (measured as MIA advantage, red, right vertical axis) for models with a fixed compute budget and size and a fixed privacy budget.",
+                                                                 "excerpt_context":  "Section 6, Figure 15 caption"
+                                                             }
+                                                         ]
+                                      }
+                      },
+    "factual_claims":  [
+                           {
+                               "claim":  "Differential privacy (DP) training requires significantly larger batch sizes than non-private training to mitigate the impact of added noise.",
+                               "claim_label":  "DP Training Batch Size Requirements",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "skp-beliefs-041"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation regarding algorithmic behavior."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "The optimal model size for DP-trained models is typically an order of magnitude smaller than for non-private models.",
+                               "claim_label":  "Optimal Model Size Reduction",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-beliefs-017"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical finding from experimental scaling analysis."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Differential privacy (DP) training dynamics are fundamentally different from non-private training, requiring distinct scaling laws to achieve optimal utility.",
+                               "claim_label":  "DP Scaling Laws Distinctness",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-beliefs-017"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "empirical observation based on experimental data"
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "The physical batch size has a nuanced effect on differentially private training that is not fully explained by current assumptions regarding noise-batch ratios.",
+                               "claim_label":  "Batch Size Complexity in DP",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             null
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation based on experimental data in Appendix C.3."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "DP-SGD training configurations require significantly smaller models trained over significantly more tokens compared to non-private training.",
+                               "claim_label":  "DP-SGD Scaling Requirements",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "current_state",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+                                                             "acc-beliefs-001"
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation based on experimental data tables."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Nominal (epsilon, delta)-privacy budgets do not guarantee identical privacy profiles across different hyperparameter settings.",
+                               "claim_label":  "Privacy Budget Fragility",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "timeless",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Theoretical and empirical demonstration of vulnerability variance."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "The relationship between noise-batch ratio and cross-entropy loss in differentially private language models is not log-linear, but rather follows an S-shaped curve.",
+                               "claim_label":  "Non-linear Noise-Loss Relationship",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "timeless",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation based on model fitting data."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           },
+                           {
+                               "claim":  "Increasing the noise-batch ratio in differentially private training leads to higher cross-entropy loss and lower scaling efficiency.",
+                               "claim_label":  "Privacy Noise Impact on Scaling",
+                               "doc_position":  "supports",
+                               "temporal_scope":  "timeless",
+                               "temporal_bound":  null,
+                               "potential_conflict_id":  null,
+                               "linked_taxonomy_nodes":  [
+
+                                                         ],
+                               "evidence_criteria":  {
+                                                         "specificity":  "precise",
+                                                         "has_warrant":  "true",
+                                                         "internally_consistent":  "true",
+                                                         "category_criteria":  "Empirical observation based on model fitting data."
+                                                     },
+                               "claim_relations":  [
+
+                                                   ]
+                           }
+                       ],
+    "unmapped_concepts":  [
+                              {
+                                  "suggested_label":  "Compute-Privacy-Utility Trade-off Modeling",
+                                  "suggested_description":  "A framework for balancing computational resources, privacy guarantees, and model performance in AI training. It quantifies how privacy constraints (like DP) force changes in model architecture and training duration. This is essential for developers to optimize training under strict regulatory or ethical constraints.",
+                                  "concept":  "The authors establish scaling laws that model the compute-privacy-utility trade-off, accounting for variables like noise-batch ratio and privacy budget. They argue that traditional scaling laws are insufficient because they ignore the constraints imposed by privacy-preserving mechanisms.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This concept represents a specific methodological approach to reconciling safety/privacy with performance, which is not fully captured by existing nodes."
+                              },
+                              {
+                                  "suggested_label":  "Noise-Batch Ratio as Privacy Proxy",
+                                  "suggested_description":  "A situation concept that uses the ratio of added noise to batch size as a primary metric for assessing privacy in stochastic gradient descent. \nEncompasses: The use of noise-batch ratio to decouple privacy accounting from batch size changes.\nExcludes: Standard noise multiplier metrics that do not account for batch-level variance.",
+                                  "concept":  "The authors parameterize DP-SGD in terms of the noise-batch ratio, arguing it is a better proxy for privacy properties than the standard noise multiplier. This allows them to predict performance across different hypothetical batch sizes.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This is a specific technical methodology for privacy evaluation that functions as a situation-based analytical tool.",
+                                  "Accelerationist Interpretation":  "Accelerationists would view this as a tool to optimize compute efficiency, allowing for faster training cycles while maintaining privacy compliance.",
+                                  "Safetyist Interpretation":  "Safetyists would view this as a critical diagnostic tool to ensure that privacy guarantees are mathematically sound and not just theoretical.",
+                                  "Skeptic Interpretation":  "Skeptics would view this as a necessary, albeit complex, layer of documentation required to prove that models are not leaking private training data."
+                              },
+                              {
+                                  "suggested_label":  "Privacy-Utility Trade-off Optimization",
+                                  "suggested_description":  "An Intention within safetyist discourse that seeks to mathematically balance the protection of individual data with the performance requirements of large-scale machine learning models. Encompasses: DP-SGD configuration, noise-batch ratio analysis, and compute-optimal training. Excludes: Purely performance-based scaling laws that ignore privacy constraints.",
+                                  "concept":  "The document details how to configure DP-SGD to maximize utility while maintaining privacy, noting that naive configurations often lead to poor performance. It uses vector fields to show how varying privacy, compute, and data budgets affects the noise-batch ratio, providing a roadmap for practitioners to optimize these competing interests.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This concept represents a specific, actionable framework for balancing safety and performance that is not fully captured by existing nodes."
+                              },
+                              {
+                                  "suggested_label":  "Privacy-Utility Trade-off in Finetuning",
+                                  "suggested_description":  "A Belief within safetyist discourse that finetuning pretrained models with differential privacy is the most effective strategy for balancing model utility with data privacy requirements. Encompasses: DP-SGD application to pretrained models. Excludes: Training from scratch with differential privacy.",
+                                  "concept":  "The document notes that finetuning a pretrained model with DP is often a preferable approach in practice to get the best privacy/utility trade-offs. It identifies this as a key area for future research to quantify scaling laws.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept specifically addresses the strategic choice between pretraining and finetuning in the context of privacy, which is not covered by existing nodes."
+                              },
+                              {
+                                  "suggested_label":  "User-Level vs Example-Level Privacy",
+                                  "suggested_description":  "A situation concept that distinguishes between protecting individual data points versus protecting the entire data contribution of a single user during model training. \nEncompasses: User-level DP, example-level DP, data budget management.\nExcludes: General model alignment or bias mitigation.",
+                                  "concept":  "The authors clarify that their experimental methodology is better represented by user-level DP rather than example-level DP. This distinction allows for multiple participations by users, which is useful under DP constraints.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This is a fundamental distinction in privacy-preserving ML that dictates how scaling laws are interpreted.",
+                                  "Accelerationist Interpretation":  "Accelerationists would view user-level DP as a mechanism to unlock larger, more diverse datasets for training while maintaining compliance.",
+                                  "Safetyist Interpretation":  "Safetyists would interpret this as a necessary boundary to prevent the leakage of sensitive user-specific information during the training process.",
+                                  "Skeptic Interpretation":  "Skeptics would question whether user-level DP provides sufficient protection against sophisticated reconstruction attacks compared to stricter example-level guarantees."
+                              },
+                              {
+                                  "suggested_label":  "Excess Vulnerability Reporting",
+                                  "suggested_description":  "A policy approach within safetyist discourse that mandates reporting the actual vulnerability of a model against specific adversarial attacks rather than relying solely on nominal privacy budget metrics. Encompasses: Membership inference attack (MIA) advantage metrics, reconstruction attack vulnerability, and privacy profile reporting. Excludes: Standard (epsilon, delta) privacy budget reporting.",
+                                  "concept":  "The document argues that nominal privacy budgets are insufficient because they can mask significant differences in actual model vulnerability. It proposes that practitioners report \u0027excess vulnerability\u0027 to provide a more accurate picture of privacy risks.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Intentions",
+                                  "reason":  "This concept represents a shift from theoretical privacy bounds to empirical risk assessment, which is not currently captured in the taxonomy."
+                              },
+                              {
+                                  "suggested_label":  "Privacy Profile Divergence",
+                                  "suggested_description":  "A situation concept that occurs when two models satisfy the same nominal privacy budget but exhibit different privacy guarantees at different epsilon values. \nEncompasses: Divergent privacy profiles, hyperparameter-induced vulnerability, and membership inference attack susceptibility. \nExcludes: Simple (epsilon, delta) budget compliance.",
+                                  "concept":  "The document demonstrates that two DP-SGD algorithms can share an (epsilon, delta)-budget while offering drastically different privacy guarantees at different values of epsilon. This divergence is heavily influenced by the choice of sampling rate and batch size.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This describes a specific technical phenomenon where standard metrics fail to capture real-world risk, requiring a new situation node.",
+                                  "Accelerationist Interpretation":  "This is a technical hurdle to be solved through better hyperparameter optimization and more efficient compute allocation to maintain privacy while scaling.",
+                                  "Safetyist Interpretation":  "This confirms that current privacy metrics are dangerously misleading and that we must adopt more robust, attack-based verification methods before deployment.",
+                                  "Skeptic Interpretation":  "This highlights the inherent complexity and potential for hidden failures in AI systems, suggesting that \u0027privacy-preserving\u0027 claims are often marketing over substance."
+                              },
+                              {
+                                  "suggested_label":  "Privacy-Utility Scaling Trade-off",
+                                  "suggested_description":  "A Belief within safetyist discourse that quantifies the inherent tension between maintaining differential privacy and achieving optimal model performance. Encompasses: Noise-batch ratio impacts, MIA advantage metrics, and compute budget constraints. Excludes: Purely non-private scaling laws.",
+                                  "concept":  "The document explicitly models the trade-off between privacy budgets (noise-batch ratio) and model performance (cross-entropy loss). It demonstrates that as privacy noise increases, the ability to scale model size effectively diminishes, requiring complex parametric adjustments to maintain accuracy.",
+                                  "suggested_pov":  "safetyist",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This concept captures the specific technical intersection of privacy-preserving ML and scaling laws, which is not currently represented in the taxonomy."
+                              },
+                              {
+                                  "suggested_label":  "Excess Vulnerability Metric",
+                                  "suggested_description":  "A situation concept that measures the residual privacy risk in a model after applying differential privacy. Encompasses: Membership Inference Attack (MIA) advantage, batch size sensitivity, and compute budget correlation. Excludes: General model accuracy or loss metrics.",
+                                  "concept":  "The document uses \u0027excess vulnerability\u0027 (MIA advantage) to show that even with fixed privacy budgets, varying the batch size has a \u0027drastic effect\u0027 on the model\u0027s susceptibility to privacy attacks. This metric serves as a key indicator of the failure of privacy-preserving techniques to fully eliminate data leakage.",
+                                  "suggested_pov":  "situations",
+                                  "suggested_category":  "Beliefs",
+                                  "reason":  "This is a specific metric for quantifying privacy failure that is distinct from general safety or alignment metrics.",
+                                  "Accelerationist Interpretation":  "Accelerationists would view this as a technical hurdle to be optimized away through better noise-management or more efficient privacy-preserving algorithms.",
+                                  "Safetyist Interpretation":  "Safetyists would interpret this as a critical warning that scaling models does not inherently solve privacy risks and that \u0027excess vulnerability\u0027 must be a primary constraint on deployment.",
+                                  "Skeptic Interpretation":  "Skeptics would use this to argue that privacy-preserving ML is fundamentally flawed and that scaling AI models inherently creates unmanageable privacy harms for individuals."
+                              }
+                          ]
 }
