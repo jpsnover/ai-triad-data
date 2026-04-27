@@ -1,440 +1,501 @@
 {
-    "doc_id":  "extracting-books-from-production-language-models-2026",
-    "taxonomy_version":  "3.2.0",
-    "generated_at":  "2026-04-17T21:35:08Z",
-    "model_info":  {
-                       "model":  "gemini-3.1-flash-lite-preview",
-                       "temperature":  0.1,
-                       "max_tokens":  32768,
-                       "extraction_mode":  "single_shot",
-                       "taxonomy_filter":  "rag_per_chunk",
-                       "taxonomy_nodes":  605,
-                       "chunked":  true,
-                       "chunk_count":  6
-                   },
-    "pov_summaries":  {
-                          "accelerationist":  {
-                                                  "key_points":  [
-                                                                     {
-                                                                         "stance":  "neutral",
-                                                                         "taxonomy_node_id":  "acc-intentions-004",
-                                                                         "category":  "Intentions",
-                                                                         "point":  "The document advocates for transparency in research by publishing the exact data and steps used to extract content from LLMs. This enables others to verify the results and understand the mechanisms of model behavior. It aligns with the accelerationist goal of open scientific inquiry, though it focuses on exposing vulnerabilities rather than just showcasing capabilities.",
-                                                                         "verbatim":  "To give readers a sense of the qualitative similarity of our long-form extraction results, we release full, lightly format-normalized diffs for Claude 3.7 Sonnet on Frankenstein (Shelley, 1818) and The Great Gatsby (Fitzgerald, 1925), which are both in the public domain.",
-                                                                         "excerpt_context":  "Section 1, Introduction"
-                                                                     },
-                                                                     {
-                                                                         "stance":  "neutral",
-                                                                         "taxonomy_node_id":  "acc-intentions-047",
-                                                                         "category":  "Intentions",
-                                                                         "point":  "The document argues that technical facts about AI memorization are distinct from legal or policy interpretations. It suggests that while regulators may change copyright law to address these facts, the technical reality of how models function remains constant. This reflects a view that technology operates on its own logic, which policy must eventually accommodate rather than deny.",
-                                                                         "verbatim":  "Copyright law [and policy do] not determine technical facts; [they] must work with the facts as they are. Regardless of the prospect of ongoing copyright litigation (Gianella, 2025), long-standing, clear, and sound technical facts remain: LLMs memorize portions of their training data (Carlini et al., 2021; 2023), these memorized data are encoded in the modelÃ†s weights (Nasr et al., 2023; Carlini, 2025; Schwarzschild et al., 2024), and, as we show here, it can be feasible to extract large quantities of in-copyright training data from production LLMs.",
-                                                                         "excerpt_context":  "Section 6, Conclusion"
-                                                                     }
-                                                                 ]
-                                              },
-                          "safetyist":  {
-                                            "key_points":  [
-                                                               {
-                                                                   "stance":  "strongly_aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-054",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The authors demonstrate that production LLMs, despite having safety guardrails, still contain memorized training data that can be extracted verbatim. This confirms the safetyist concern that model-level and system-level safeguards are not sufficient to prevent the leakage of sensitive or copyrighted training data.",
-                                                                   "verbatim":  "Taken together, our work highlights that, even with model- and system-level safeguards, extraction of (in-copyright) training data remains a risk for production LLMs.",
-                                                                   "excerpt_context":  "Abstract"
-                                                               },
-                                                               {
-                                                                   "stance":  "strongly_aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-099",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The document highlights the difficulty of controlling model outputs once they are deployed, as even sophisticated production systems can be bypassed. This supports the safetyist argument that once a model is trained and deployed, the ability to prevent specific behaviors like verbatim extraction is limited and potentially irreversible.",
-                                                                   "verbatim":  "At the end of the 90-day disclosure window (December 9, 2025), we found that our procedure still works on some of the systems that we evaluate. Having taken the above steps, we believe it is now responsible to share our findings publicly. Doing so underscores the continued challenges of robust model- and system-level safeguards in production LLMs, particularly with respect to mitigating the risk of leakage of in-copyright training data.",
-                                                                   "excerpt_context":  "Section 1, Introduction"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-003",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The authors note that they interact with production LLMs as blackboxes, lacking access to internal logits or probabilities. This reinforces the safetyist belief that the internal reasoning and state of these models are opaque, making it impossible to fully verify their safety or alignment without external probing.",
-                                                                   "verbatim":  "We interact with a production LLM via a blackbox API, which limits our access to the underlying model; we supply prompts and receive responses, but do not have access to logits or log probabilities.",
-                                                                   "excerpt_context":  "Section 3.1"
-                                                               },
-                                                               {
-                                                                   "stance":  "strongly_aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-054",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The document asserts that production LLMs memorize training data, which can be extracted through iterative prompting. This process demonstrates that models store verbatim sequences of their training data in their weights. The authors argue that generating sufficiently long, near-verbatim sequences is statistically impossible by chance, serving as definitive evidence of memorization.",
-                                                                   "verbatim":  "By definition, ‘it is only possible to extract memorized training data, and (tautologically) training data can only be memorized if they are included—i.e., are members—of the training dataset. To demonstrate extraction is therefore to demonstrate memorization, and memorization implies membership in the training dataset.",
-                                                                   "excerpt_context":  "Section 3.3.2"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-108",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The authors employ a two-phase extraction procedure that uses iterative querying to bypass model refusals and output filters. By treating the model as a black box, they demonstrate that even without access to logits or controlled decoding, one can reactivate memorized content. This highlights a vulnerability where production models can be forced to output sensitive or copyrighted training data.",
-                                                                   "verbatim":  "We sometimes use a jailbreak in Phase 1 to unlock continuation-like behavior; this is also why it is surprising that we did not need to jailbreak Gemini 2.5 Pro or Grok 3 to successfully execute the Phase 2 continuation loop.",
-                                                                   "excerpt_context":  "Section 2"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-108",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The document demonstrates that LLMs can be prompted to output large portions of their training data, confirming that finetuning and prompting can act as mechanisms to surface memorized content. By using a two-phase extraction procedure, the authors show that even without explicit jailbreaking in some cases, production models can be induced to recite copyrighted books. This supports the safetyist concern that models are not merely \u0027learning\u0027 concepts but are storing and potentially leaking sensitive or proprietary training data.",
-                                                                   "verbatim":  "Production LLMs memorize some of their training data, and extraction is sometimes feasible.",
-                                                                   "excerpt_context":  "Section 5.2, paragraph 1"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-108",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The authors demonstrate that production LLMs memorize training data and that this data can be extracted at generation time. They highlight that even with system-level safeguards, models can be prompted to reveal large spans of in-copyright text. This underscores the difficulty of creating perfect safeguards and the persistence of memorized data within model weights.",
-                                                                   "verbatim":  "In all cases, successful extraction of training data would not have been possible if these LLMs had not memorized those data during training (Section 3.3.2).",
-                                                                   "excerpt_context":  "Section 4, Jailbreaks, adversarial use, and cost"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-024",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The document notes that producing perfect safeguards is likely infeasible, making \u0027reasonable best efforts\u0027 the standard for preventing undesirable output. The authors\u0027 ability to bypass filters through simple iteration suggests that current safety mechanisms are insufficient to prevent the extraction of copyrighted material.",
-                                                                   "verbatim":  "As others have noted, it may be infeasible to produce perfect safeguards; in such circumstances, preventing the generation of copyrighted or otherwise undesirable material may depend on Ã´reasonable best effortsÃ¶ (Cooper et al., 2024).",
-                                                                   "excerpt_context":  "Section 4, Best efforts and safeguards"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-054",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The document asserts that production LLMs contain verbatim passages of training data that can be extracted through specific prompting and jailbreaking techniques. By using a two-stage merge-and-filter procedure, the authors demonstrate that models like Claude 3.7 Sonnet and GPT-4.1 can reproduce long-form text from copyrighted books. This confirms that model weights effectively store large amounts of verbatim training data, which poses risks regarding intellectual property and data leakage.",
-                                                                   "verbatim":  "Following Phase 2, we only make extraction claims (which embed a claim for training-data membership) for long generated blocks of near-verbatim text.",
-                                                                   "excerpt_context":  "Appendix C.1"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-031",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The authors employ \u0027Best-of-N\u0027 (BoN) jailbreaking techniques to bypass safety guardrails and force models to output training data. By applying deterministic perturbations—such as capitalization, spacing, and character substitution—to prompts, they demonstrate that safety training can be circumvented to reveal memorized content. This methodology highlights the fragility of current alignment strategies when faced with adversarial input manipulation.",
-                                                                   "verbatim":  "For completeness, we document the exact perturbations used during the Best-of-N (BoN) jailbreak for Claude 3.7 Sonnet and GPT-4.1.",
-                                                                   "excerpt_context":  "Section 5, Page 26"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-054",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The document provides empirical evidence that production LLMs (Claude 3.7, GPT-4.1, Gemini 2.5 Pro, Grok 3) can be manipulated to output long, verbatim passages from copyrighted books. This confirms that training data is not merely \u0027learned\u0027 in an abstract sense but remains extractable through specific prompting strategies. This poses a significant safety and intellectual property risk, as models can be forced to reproduce protected content.",
-                                                                   "verbatim":  "For the two production LLMs that we jailbreak (Claude 3.7 Sonnet and GPT-4.1), we show the maximum (Equation 2) achieved.",
-                                                                   "excerpt_context":  "Section 6, Table 3"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-108",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The researchers utilize a \u0027continuation loop\u0027 strategy to systematically extract memorized content from production models. This demonstrates that finetuning or specific generation configurations act as mechanisms to reactivate and surface information memorized during pretraining. The document treats these models as repositories of training data that can be systematically drained.",
-                                                                   "verbatim":  "We show API costs for Phase 2 (Appendix D.2.1), and additional plots and tables (Appendix D.2.2).",
-                                                                   "excerpt_context":  "Section 6, Paragraph 2"
-                                                               }
-                                                           ]
-                                        },
-                          "skeptic":  {
-                                          "key_points":  [
-                                                             {
-                                                                 "stance":  "strongly_aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-014",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The document investigates the extraction of copyrighted books from LLMs, directly addressing the skeptic concern regarding the unauthorized use of intellectual property in training data. It provides empirical evidence that models can reproduce copyrighted works, which is a central point of contention in ongoing copyright litigation.",
-                                                                 "verbatim":  "Many unresolved legal questions over LLMs and copyright center on memorization: whether specific training data have been encoded in the model’s weights during training, and whether those memorized data can be extracted in the model’s outputs.",
-                                                                 "excerpt_context":  "Abstract"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-beliefs-045",
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The authors document how generative AI can be forced to output verbatim copyrighted material, which skeptics argue is a form of infringement. This challenges the industry\u0027s \u0027fair use\u0027 defense by demonstrating that the models are not always \u0027transformative\u0027 but can instead act as simple retrieval engines for training data.",
-                                                                 "verbatim":  "As Lee et al. (2023b) note, ‘[w]hen a model memorizes a work and generates it verbatim as an output, there is no transformation in content.’",
-                                                                 "excerpt_context":  "Section 1, Introduction"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-010",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The research highlights that current production LLMs are trained on massive, opaque datasets that include copyrighted material. This supports the skeptic call for better data curation and transparency, as the current \u0027scrape the internet\u0027 approach leads to models that can inadvertently violate copyright laws.",
-                                                                 "verbatim":  "Frontier, production large language models (hereafter production LLMs) are trained on enormous datasets drawn from various sources, including large-scale scrapes of the Internet. A large amount of data in these sources includes in-copyright expression, which has led to public debate about copyright infringement, creator consent, and more.",
-                                                                 "excerpt_context":  "Section 1, Introduction"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  null,
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The authors observe that production LLMs are unstable and change over time, complicating the reproducibility of extraction experiments. Unlike open-weight models where researchers control decoding strategies, production APIs limit user control, making it harder to study memorization systematically. This creates a barrier for researchers attempting to audit models for copyright infringement or privacy violations.",
-                                                                 "verbatim":  "Third, for production LLMs, users have relatively little control over the decoding procedure, and do not typically have access to logits or log probabilities. In contrast, most research on memorization examines controlled settings for open-weight models.",
-                                                                 "excerpt_context":  "Section 2"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  null,
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The authors propose a conservative measurement procedure to identify near-verbatim extraction, prioritizing the reduction of false positives over total recall. By using a two-pass merge-and-filter algorithm, they ensure that only sufficiently long, contiguous sequences are counted as evidence of extraction. This methodology is designed to withstand scrutiny when claiming that a model has memorized copyrighted material.",
-                                                                 "verbatim":  "This is a deliberate trade-off: we prefer to be conservative and incur false negatives (i.e., miss some instances of extraction) rather than risk including false positives.",
-                                                                 "excerpt_context":  "Section 3.3.1"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-beliefs-056",
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The document highlights that LLMs often fail to maintain coherence or refuse to continue generating text after a certain point, which aligns with the skeptic view that models struggle with long-form consistency and are prone to arbitrary guardrail interventions. The authors note that GPT-4.1 frequently refuses to continue after the first chapter, demonstrating a failure mode where the model\u0027s internal safety mechanisms or coherence constraints interrupt the user\u0027s interaction. This underscores the unreliability of these systems for consistent, long-form tasks.",
-                                                                 "verbatim":  "However, when we run Phase 2 for GPT-4.1, we hit a refusal fairly early on in the continuation loop. For instance, for Harry Potter and the Sorcerer\u0027s Stone, this happens at the end of the first chapter.",
-                                                                 "excerpt_context":  "Section 4.2, paragraph 3"
-                                                             },
-                                                             {
-                                                                 "stance":  "strongly_aligned",
-                                                                 "taxonomy_node_id":  "skp-beliefs-041",
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The authors provide empirical evidence that four production LLMs memorize copyrighted books and that these books can be extracted. This serves as a documented harm regarding intellectual property, as the models are shown to replicate protected content.",
-                                                                 "verbatim":  "With a simple two-phase procedure (Section 3), we show that it is possible to extract large amounts of in-copyright text from four production LLMs.",
-                                                                 "excerpt_context":  "Section 6, Conclusion"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-010",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The document highlights that the extraction of training data is a direct consequence of the data used during the training phase. By showing that models memorize and can reproduce this data, the authors imply that the quality and curation of training data are central to the resulting model behavior and potential copyright infringement.",
-                                                                 "verbatim":  "In all cases, successful extraction of training data would not have been possible if these LLMs had not memorized those data during training (Section 3.3.2).",
-                                                                 "excerpt_context":  "Section 4, Jailbreaks, adversarial use, and cost"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-078",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The authors advocate for systematic, large-scale evaluation of AI models to measure memorization and data leakage. They develop a rigorous, multi-stage procedure to quantify \u0027near-verbatim\u0027 extraction, using normalized text comparisons to account for formatting differences. This approach serves as a critical audit of production LLMs, highlighting that these systems are not merely \u0027reasoning\u0027 but are effectively reproducing copyrighted material from their training sets.",
-                                                                 "verbatim":  "In Section 3.3, we describe our measurement procedure for capturing valid instances of extraction.",
-                                                                 "excerpt_context":  "Section 5, Page 26"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  null,
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The document suggests that the behavior of production LLMs is highly sensitive to implementation details, including the specific chat UI used to access the model. The authors found that they could extract more content through a web-based chat interface than through the official API, implying that end-user deployments may be more vulnerable to data leakage than developers realize. This underscores the lack of transparency and consistency in how these models are deployed and governed.",
-                                                                 "verbatim":  "This suggests that our reported API numbers may be conservative: the true leakage in end-user deployments may be higher than what we measure here.",
-                                                                 "excerpt_context":  "Appendix C.2.3"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-084",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The document provides a detailed accounting of API costs and token usage for extracting copyrighted books, which serves as a basis for demanding greater transparency regarding training data. By quantifying the ease and cost of extracting protected works, the authors support the argument that developers must be held accountable for the copyrighted material embedded in their models.",
-                                                                 "verbatim":  "We estimate the monetary cost of running Phase 2 by summing the provider-reported API charges over all continuation-loop requests in that phase for each LLM-book run.",
-                                                                 "excerpt_context":  "Section 6, Paragraph 3"
-                                                             }
-                                                         ]
-                                      }
-                      },
-    "factual_claims":  [
-                           {
-                               "claim":  "Production LLMs can be forced to output large, near-verbatim portions of copyrighted books using simple jailbreak techniques or direct prompting.",
-                               "claim_label":  "Verbatim Extraction Feasibility",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  "2025-2026",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "saf-beliefs-054",
-                                                             "skp-beliefs-045"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Empirical observation based on controlled experiments with four major production LLMs."
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           },
-                           {
-                               "claim":  "Production LLMs can be prompted to output long, near-verbatim passages of copyrighted books from their training data.",
-                               "claim_label":  "LLM Memorization Extraction",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  "2025",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "saf-beliefs-054",
-                                                             "sit-135"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Empirical observation of model output behavior."
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           },
-                           {
-                               "claim":  "Production LLMs can be induced to output near-verbatim copies of copyrighted books present in their training data using a two-phase prompting procedure.",
-                               "claim_label":  "LLM Memorization Extraction Feasibility",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  null,
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "saf-intentions-108"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Empirical claim supported by experimental data (nv-recall metrics) across four production LLMs."
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           },
-                           {
-                               "claim":  "Four production LLMs memorize copyrighted books from their training data, and these books can be extracted at generation time.",
-                               "claim_label":  "LLM Memorization and Extraction Capability",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  null,
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "skp-beliefs-041",
-                                                             "saf-intentions-108"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Could be proven true or false with evidence"
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           },
-                           {
-                               "claim":  "Production LLMs can be forced to output long, verbatim passages of copyrighted books through adversarial prompting and jailbreaking.",
-                               "claim_label":  "Verbatim Extraction from Production LLMs",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  null,
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "saf-beliefs-054"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Empirical observation of model output via controlled experiments."
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           },
-                           {
-                               "claim":  "Production LLMs can be jailbroken to output significant portions of copyrighted books, with some models achieving near-perfect recall of the original text.",
-                               "claim_label":  "LLM Verbatim Extraction Capability",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  "2025-2026",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "saf-beliefs-054"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  "true",
-                                                         "internally_consistent":  "true",
-                                                         "category_criteria":  "Empirical claim supported by tables showing nv-recall metrics for multiple books and models."
-                                                     },
-                               "claim_relations":  [
-
-                                                   ]
-                           }
-                       ],
-    "unmapped_concepts":  [
-                              {
-                                  "suggested_label":  "Best-of-N Jailbreak Effectiveness",
-                                  "suggested_description":  "A technique where multiple variations of a prompt are generated to bypass safety filters. It relies on the statistical probability that at least one variation will trigger a non-compliant response from the model.",
-                                  "concept":  "The authors use the Best-of-N (BoN) technique to bypass safety guardrails in Claude 3.7 Sonnet and GPT-4.1. By perturbing the instruction and generating N responses, they successfully extract copyrighted text that the models would otherwise refuse to provide.",
-                                  "suggested_pov":  "safetyist",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This is a specific adversarial methodology for bypassing alignment that is distinct from general \u0027jailbreaking\u0027 and warrants its own node for technical safety analysis."
-                              },
-                              {
-                                  "suggested_label":  "The Memorization-Extraction Gap",
-                                  "suggested_description":  "A situation concept that distinguishes between a model\u0027s internal encoding of data and its ability to reproduce that data in output.\nEncompasses: The debate over whether internal weights constitute a \u0027copy\u0027 versus whether only the output constitutes a \u0027copy\u0027.\nExcludes: General copyright infringement claims that do not focus on the technical distinction between model weights and model outputs.",
-                                  "concept":  "The document notes that legal scholarship and court rulings are divided on whether the mere encoding of memorized work in model weights constitutes a copy, or if only the actual extraction of that work in output counts as an infringing copy.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This concept is central to the legal and technical debate surrounding AI copyright and is not fully captured by existing nodes.",
-                                  "Accelerationist Interpretation":  "Accelerationists might argue that internal encoding is a form of \u0027learning\u0027 rather than \u0027copying,\u0027 and that the focus should be on the utility of the model\u0027s output rather than the internal state.",
-                                  "Safetyist Interpretation":  "Safetyists would focus on the fact that if the data is encoded, it is inherently a risk, regardless of whether it is currently being extracted, as it could be extracted in the future.",
-                                  "Skeptic Interpretation":  "Skeptics would argue that both the internal encoding and the output are forms of unauthorized copying, and that the distinction is a legal technicality used to avoid liability."
-                              },
-                              {
-                                  "suggested_label":  "Conservative Extraction Measurement Procedure",
-                                  "suggested_description":  "A methodology for verifying AI memorization that prioritizes high-confidence, long-form matches over exhaustive recall. It uses multi-pass filtering to exclude coincidental text overlaps.",
-                                  "concept":  "The authors implement a two-pass merge-and-filter algorithm to identify near-verbatim blocks. This process filters out short, potentially coincidental matches to ensure that any reported extraction is statistically significant and attributable to model memorization.",
-                                  "suggested_pov":  "skeptic",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This represents a specific, rigorous standard for auditing AI models that is distinct from general safety alignment."
-                              },
-                              {
-                                  "suggested_label":  "Production Model Instability",
-                                  "suggested_description":  "A situation concept that production AI systems are dynamic and subject to frequent, opaque updates that alter their behavior and memorization characteristics. \nEncompasses: API versioning, knowledge cutoff shifts, and non-deterministic model updates.\nExcludes: Static open-weight model research.",
-                                  "concept":  "The document notes that production systems change over time, making them unstable compared to open-weight models. This instability forces researchers to limit experiments to specific time windows to ensure results are valid.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This captures the unique challenge of auditing black-box production models versus static research models.",
-                                  "Accelerationist Interpretation":  "This instability is a feature of rapid iteration and continuous improvement, showing that models are constantly being refined.",
-                                  "Safetyist Interpretation":  "This instability is a risk factor, as it makes it difficult to verify that safety guardrails remain effective after model updates.",
-                                  "Skeptic Interpretation":  "This instability is a barrier to accountability, as companies can change model behavior without transparency, complicating independent audits."
-                              },
-                              {
-                                  "suggested_label":  "Extraction-Resistant Guardrail Variability",
-                                  "suggested_description":  "A Belief within safetyist discourse that model guardrails are inconsistent and can be bypassed through specific prompting strategies or parameter tuning.\nEncompasses: Jailbreaking, refusal-evasion techniques, and parameter-specific guardrail failure.\nExcludes: General model alignment or safety training methodologies.",
-                                  "concept":  "The document observes that different production LLMs exhibit varying levels of resistance to extraction, with some models (Gemini 2.5 Pro, Grok 3) requiring no jailbreak to output copyrighted text, while others (GPT-4.1) trigger refusals. The authors demonstrate that tuning generation parameters like frequency penalty or maximum token length can effectively evade these filters.",
-                                  "suggested_pov":  "safetyist",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This concept captures the empirical observation that safety guardrails are not uniform and are highly susceptible to adversarial prompting and configuration changes."
-                              },
-                              {
-                                  "suggested_label":  "Technical Facts vs Legal Policy",
-                                  "suggested_description":  "A Belief within accelerationist and skeptic discourse that technical capabilities of AI models are independent of the legal frameworks governing them.\nEncompasses: The distinction between what a model can do and what the law permits.\nExcludes: Normative arguments about whether models should be allowed to perform these actions.",
-                                  "concept":  "The document asserts that copyright law does not determine technical facts and that policy must work with the reality of model memorization. It argues that debating technical facts on policy grounds is unproductive.",
-                                  "suggested_pov":  "accelerationist",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This concept addresses the epistemological gap between engineering reality and legal regulation, which is not fully captured by existing nodes."
-                              },
-                              {
-                                  "suggested_label":  "Extraction via Iterative Prompting",
-                                  "suggested_description":  "A situation concept that simple, repetitive prompting can bypass safety filters to extract memorized training data.\nEncompasses: The use of continue loops and multiple iterations to surface verbatim text.\nExcludes: Jailbreaking techniques that rely on complex adversarial instructions.",
-                                  "concept":  "The authors observed that they could run hundreds of iterations of a simple continue loop to extract copyrighted material, evading system-level safeguards that were intended to prevent such generation.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This describes a specific technical vulnerability that is distinct from general jailbreaking or membership inference.",
-                                  "Accelerationist Interpretation":  "This demonstrates that models are highly responsive to user input and that \u0027safety\u0027 is a moving target that can be improved through better engineering.",
-                                  "Safetyist Interpretation":  "This proves that current safety guardrails are fragile and that models inherently contain and can be forced to reveal sensitive or protected training data.",
-                                  "Skeptic Interpretation":  "This provides clear evidence that AI companies are failing to protect intellectual property, as their models can be easily manipulated to output copyrighted works."
-                              },
-                              {
-                                  "suggested_label":  "Adversarial Prompt Perturbation for Jailbreaking",
-                                  "suggested_description":  "A situation concept that describes the use of deterministic text transformations to bypass AI safety filters.\nEncompasses: Capitalization, spacing, word scrambling, and ASCII noising.\nExcludes: General adversarial attacks that do not rely on specific text-level perturbations.",
-                                  "concept":  "The authors use a suite of deterministic perturbations (e.g., capitalization, spacing, character substitution) to successfully jailbreak production LLMs. These techniques allow for the exact replay of prompt sequences, facilitating the extraction of memorized training data.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This is a specific technical methodology for bypassing safety guardrails that is not fully captured by existing \u0027jailbreak\u0027 nodes.",
-                                  "Accelerationist Interpretation":  "This demonstrates the robustness of models to handle noisy input, potentially useful for data augmentation.",
-                                  "Safetyist Interpretation":  "This proves that current safety training is fragile and can be easily bypassed by simple, deterministic input modifications.",
-                                  "Skeptic Interpretation":  "This highlights that models are just pattern-matching engines that can be manipulated to reveal their underlying training data."
-                              },
-                              {
-                                  "suggested_label":  "Economic Cost of Data Extraction",
-                                  "suggested_description":  "A Belief within skeptic discourse that the financial cost of extracting copyrighted data from LLMs is low enough to be commercially or maliciously viable.\nEncompasses: API token usage, monetary cost per book extraction, and provider-specific billing.\nExcludes: The technical mechanism of extraction itself, which is covered by memorization nodes.",
-                                  "concept":  "The document provides detailed tables (Tables 5-10) calculating the exact dollar cost to extract full books from models like Claude 3.7 and GPT-4.1. This data grounds the argument that extraction is not just a theoretical risk but an economically measurable activity.",
-                                  "suggested_pov":  "skeptic",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "Existing nodes focus on the act of extraction or the legal requirement for transparency, but not the economic feasibility/cost-benefit analysis of data theft."
-                              }
-                          ]
+  "doc_id": "extracting-books-from-production-language-models-2026",
+  "taxonomy_version": "3.2.0",
+  "generated_at": "2026-04-17T21:35:08Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 605,
+    "chunked": true,
+    "chunk_count": 6
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document advocates for transparency in research by publishing the exact data and steps used to extract content from LLMs. This enables others to verify the results and understand the mechanisms of model behavior. It aligns with the accelerationist goal of open scientific inquiry, though it focuses on exposing vulnerabilities rather than just showcasing capabilities.",
+          "verbatim": "To give readers a sense of the qualitative similarity of our long-form extraction results, we release full, lightly format-normalized diffs for Claude 3.7 Sonnet on Frankenstein (Shelley, 1818) and The Great Gatsby (Fitzgerald, 1925), which are both in the public domain.",
+          "excerpt_context": "Section 1, Introduction"
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-intentions-047",
+          "category": "Intentions",
+          "point": "The document argues that technical facts about AI memorization are distinct from legal or policy interpretations. It suggests that while regulators may change copyright law to address these facts, the technical reality of how models function remains constant. This reflects a view that technology operates on its own logic, which policy must eventually accommodate rather than deny.",
+          "verbatim": "Copyright law [and policy do] not determine technical facts; [they] must work with the facts as they are. Regardless of the prospect of ongoing copyright litigation (Gianella, 2025), long-standing, clear, and sound technical facts remain: LLMs memorize portions of their training data (Carlini et al., 2021; 2023), these memorized data are encoded in the modelÃ†s weights (Nasr et al., 2023; Carlini, 2025; Schwarzschild et al., 2024), and, as we show here, it can be feasible to extract large quantities of in-copyright training data from production LLMs.",
+          "excerpt_context": "Section 6, Conclusion"
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Beliefs",
+          "point": "The authors demonstrate that production LLMs, despite having safety guardrails, still contain memorized training data that can be extracted verbatim. This confirms the safetyist concern that model-level and system-level safeguards are not sufficient to prevent the leakage of sensitive or copyrighted training data.",
+          "verbatim": "Taken together, our work highlights that, even with model- and system-level safeguards, extraction of (in-copyright) training data remains a risk for production LLMs.",
+          "excerpt_context": "Abstract"
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Intentions",
+          "point": "The document highlights the difficulty of controlling model outputs once they are deployed, as even sophisticated production systems can be bypassed. This supports the safetyist argument that once a model is trained and deployed, the ability to prevent specific behaviors like verbatim extraction is limited and potentially irreversible.",
+          "verbatim": "At the end of the 90-day disclosure window (December 9, 2025), we found that our procedure still works on some of the systems that we evaluate. Having taken the above steps, we believe it is now responsible to share our findings publicly. Doing so underscores the continued challenges of robust model- and system-level safeguards in production LLMs, particularly with respect to mitigating the risk of leakage of in-copyright training data.",
+          "excerpt_context": "Section 1, Introduction",
+          "_backfill": {
+            "previous_id": "saf-intentions-099",
+            "similarity": 0.6009,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Beliefs",
+          "point": "The authors note that they interact with production LLMs as blackboxes, lacking access to internal logits or probabilities. This reinforces the safetyist belief that the internal reasoning and state of these models are opaque, making it impossible to fully verify their safety or alignment without external probing.",
+          "verbatim": "We interact with a production LLM via a blackbox API, which limits our access to the underlying model; we supply prompts and receive responses, but do not have access to logits or log probabilities.",
+          "excerpt_context": "Section 3.1",
+          "_backfill": {
+            "previous_id": "saf-beliefs-003",
+            "similarity": 0.5571,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Beliefs",
+          "point": "The document asserts that production LLMs memorize training data, which can be extracted through iterative prompting. This process demonstrates that models store verbatim sequences of their training data in their weights. The authors argue that generating sufficiently long, near-verbatim sequences is statistically impossible by chance, serving as definitive evidence of memorization.",
+          "verbatim": "By definition, ‘it is only possible to extract memorized training data, and (tautologically) training data can only be memorized if they are included—i.e., are members—of the training dataset. To demonstrate extraction is therefore to demonstrate memorization, and memorization implies membership in the training dataset.",
+          "excerpt_context": "Section 3.3.2"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Intentions",
+          "point": "The authors employ a two-phase extraction procedure that uses iterative querying to bypass model refusals and output filters. By treating the model as a black box, they demonstrate that even without access to logits or controlled decoding, one can reactivate memorized content. This highlights a vulnerability where production models can be forced to output sensitive or copyrighted training data.",
+          "verbatim": "We sometimes use a jailbreak in Phase 1 to unlock continuation-like behavior; this is also why it is surprising that we did not need to jailbreak Gemini 2.5 Pro or Grok 3 to successfully execute the Phase 2 continuation loop.",
+          "excerpt_context": "Section 2",
+          "_backfill": {
+            "previous_id": "saf-intentions-108",
+            "similarity": 0.4841,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-108",
+          "category": "Intentions",
+          "point": "The document demonstrates that LLMs can be prompted to output large portions of their training data, confirming that finetuning and prompting can act as mechanisms to surface memorized content. By using a two-phase extraction procedure, the authors show that even without explicit jailbreaking in some cases, production models can be induced to recite copyrighted books. This supports the safetyist concern that models are not merely 'learning' concepts but are storing and potentially leaking sensitive or proprietary training data.",
+          "verbatim": "Production LLMs memorize some of their training data, and extraction is sometimes feasible.",
+          "excerpt_context": "Section 5.2, paragraph 1"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-108",
+          "category": "Intentions",
+          "point": "The authors demonstrate that production LLMs memorize training data and that this data can be extracted at generation time. They highlight that even with system-level safeguards, models can be prompted to reveal large spans of in-copyright text. This underscores the difficulty of creating perfect safeguards and the persistence of memorized data within model weights.",
+          "verbatim": "In all cases, successful extraction of training data would not have been possible if these LLMs had not memorized those data during training (Section 3.3.2).",
+          "excerpt_context": "Section 4, Jailbreaks, adversarial use, and cost"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-024",
+          "category": "Intentions",
+          "point": "The document notes that producing perfect safeguards is likely infeasible, making 'reasonable best efforts' the standard for preventing undesirable output. The authors' ability to bypass filters through simple iteration suggests that current safety mechanisms are insufficient to prevent the extraction of copyrighted material.",
+          "verbatim": "As others have noted, it may be infeasible to produce perfect safeguards; in such circumstances, preventing the generation of copyrighted or otherwise undesirable material may depend on Ã´reasonable best effortsÃ¶ (Cooper et al., 2024).",
+          "excerpt_context": "Section 4, Best efforts and safeguards"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Beliefs",
+          "point": "The document asserts that production LLMs contain verbatim passages of training data that can be extracted through specific prompting and jailbreaking techniques. By using a two-stage merge-and-filter procedure, the authors demonstrate that models like Claude 3.7 Sonnet and GPT-4.1 can reproduce long-form text from copyrighted books. This confirms that model weights effectively store large amounts of verbatim training data, which poses risks regarding intellectual property and data leakage.",
+          "verbatim": "Following Phase 2, we only make extraction claims (which embed a claim for training-data membership) for long generated blocks of near-verbatim text.",
+          "excerpt_context": "Appendix C.1"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-014",
+          "category": "Intentions",
+          "point": "The authors employ 'Best-of-N' (BoN) jailbreaking techniques to bypass safety guardrails and force models to output training data. By applying deterministic perturbations—such as capitalization, spacing, and character substitution—to prompts, they demonstrate that safety training can be circumvented to reveal memorized content. This methodology highlights the fragility of current alignment strategies when faced with adversarial input manipulation.",
+          "verbatim": "For completeness, we document the exact perturbations used during the Best-of-N (BoN) jailbreak for Claude 3.7 Sonnet and GPT-4.1.",
+          "excerpt_context": "Section 5, Page 26",
+          "_backfill": {
+            "previous_id": "saf-intentions-031",
+            "similarity": 0.5644,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-054",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that production LLMs (Claude 3.7, GPT-4.1, Gemini 2.5 Pro, Grok 3) can be manipulated to output long, verbatim passages from copyrighted books. This confirms that training data is not merely 'learned' in an abstract sense but remains extractable through specific prompting strategies. This poses a significant safety and intellectual property risk, as models can be forced to reproduce protected content.",
+          "verbatim": "For the two production LLMs that we jailbreak (Claude 3.7 Sonnet and GPT-4.1), we show the maximum (Equation 2) achieved.",
+          "excerpt_context": "Section 6, Table 3"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-108",
+          "category": "Intentions",
+          "point": "The researchers utilize a 'continuation loop' strategy to systematically extract memorized content from production models. This demonstrates that finetuning or specific generation configurations act as mechanisms to reactivate and surface information memorized during pretraining. The document treats these models as repositories of training data that can be systematically drained.",
+          "verbatim": "We show API costs for Phase 2 (Appendix D.2.1), and additional plots and tables (Appendix D.2.2).",
+          "excerpt_context": "Section 6, Paragraph 2"
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The document investigates the extraction of copyrighted books from LLMs, directly addressing the skeptic concern regarding the unauthorized use of intellectual property in training data. It provides empirical evidence that models can reproduce copyrighted works, which is a central point of contention in ongoing copyright litigation.",
+          "verbatim": "Many unresolved legal questions over LLMs and copyright center on memorization: whether specific training data have been encoded in the model’s weights during training, and whether those memorized data can be extracted in the model’s outputs.",
+          "excerpt_context": "Abstract"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-084",
+          "category": "Beliefs",
+          "point": "The authors document how generative AI can be forced to output verbatim copyrighted material, which skeptics argue is a form of infringement. This challenges the industry's 'fair use' defense by demonstrating that the models are not always 'transformative' but can instead act as simple retrieval engines for training data.",
+          "verbatim": "As Lee et al. (2023b) note, ‘[w]hen a model memorizes a work and generates it verbatim as an output, there is no transformation in content.’",
+          "excerpt_context": "Section 1, Introduction",
+          "_backfill": {
+            "previous_id": "skp-beliefs-045",
+            "similarity": 0.7505,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The research highlights that current production LLMs are trained on massive, opaque datasets that include copyrighted material. This supports the skeptic call for better data curation and transparency, as the current 'scrape the internet' approach leads to models that can inadvertently violate copyright laws.",
+          "verbatim": "Frontier, production large language models (hereafter production LLMs) are trained on enormous datasets drawn from various sources, including large-scale scrapes of the Internet. A large amount of data in these sources includes in-copyright expression, which has led to public debate about copyright infringement, creator consent, and more.",
+          "excerpt_context": "Section 1, Introduction",
+          "_backfill": {
+            "previous_id": "skp-intentions-010",
+            "similarity": 0.7487,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Beliefs",
+          "point": "The authors observe that production LLMs are unstable and change over time, complicating the reproducibility of extraction experiments. Unlike open-weight models where researchers control decoding strategies, production APIs limit user control, making it harder to study memorization systematically. This creates a barrier for researchers attempting to audit models for copyright infringement or privacy violations.",
+          "verbatim": "Third, for production LLMs, users have relatively little control over the decoding procedure, and do not typically have access to logits or log probabilities. In contrast, most research on memorization examines controlled settings for open-weight models.",
+          "excerpt_context": "Section 2",
+          "_backfill": {
+            "previous_id": "skp-beliefs-089",
+            "similarity": 0.5812,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The authors propose a conservative measurement procedure to identify near-verbatim extraction, prioritizing the reduction of false positives over total recall. By using a two-pass merge-and-filter algorithm, they ensure that only sufficiently long, contiguous sequences are counted as evidence of extraction. This methodology is designed to withstand scrutiny when claiming that a model has memorized copyrighted material.",
+          "verbatim": "This is a deliberate trade-off: we prefer to be conservative and incur false negatives (i.e., miss some instances of extraction) rather than risk including false positives.",
+          "excerpt_context": "Section 3.3.1",
+          "_backfill": {
+            "previous_id": "skp-beliefs-089",
+            "similarity": 0.3988,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-056",
+          "category": "Beliefs",
+          "point": "The document highlights that LLMs often fail to maintain coherence or refuse to continue generating text after a certain point, which aligns with the skeptic view that models struggle with long-form consistency and are prone to arbitrary guardrail interventions. The authors note that GPT-4.1 frequently refuses to continue after the first chapter, demonstrating a failure mode where the model's internal safety mechanisms or coherence constraints interrupt the user's interaction. This underscores the unreliability of these systems for consistent, long-form tasks.",
+          "verbatim": "However, when we run Phase 2 for GPT-4.1, we hit a refusal fairly early on in the continuation loop. For instance, for Harry Potter and the Sorcerer's Stone, this happens at the end of the first chapter.",
+          "excerpt_context": "Section 4.2, paragraph 3"
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Beliefs",
+          "point": "The authors provide empirical evidence that four production LLMs memorize copyrighted books and that these books can be extracted. This serves as a documented harm regarding intellectual property, as the models are shown to replicate protected content.",
+          "verbatim": "With a simple two-phase procedure (Section 3), we show that it is possible to extract large amounts of in-copyright text from four production LLMs.",
+          "excerpt_context": "Section 6, Conclusion",
+          "_backfill": {
+            "previous_id": "skp-beliefs-089",
+            "similarity": 0.5109,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The document highlights that the extraction of training data is a direct consequence of the data used during the training phase. By showing that models memorize and can reproduce this data, the authors imply that the quality and curation of training data are central to the resulting model behavior and potential copyright infringement.",
+          "verbatim": "In all cases, successful extraction of training data would not have been possible if these LLMs had not memorized those data during training (Section 3.3.2).",
+          "excerpt_context": "Section 4, Jailbreaks, adversarial use, and cost",
+          "_backfill": {
+            "previous_id": "skp-intentions-010",
+            "similarity": 0.6926,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-084",
+          "category": "Intentions",
+          "point": "The authors advocate for systematic, large-scale evaluation of AI models to measure memorization and data leakage. They develop a rigorous, multi-stage procedure to quantify 'near-verbatim' extraction, using normalized text comparisons to account for formatting differences. This approach serves as a critical audit of production LLMs, highlighting that these systems are not merely 'reasoning' but are effectively reproducing copyrighted material from their training sets.",
+          "verbatim": "In Section 3.3, we describe our measurement procedure for capturing valid instances of extraction.",
+          "excerpt_context": "Section 5, Page 26",
+          "_backfill": {
+            "previous_id": "skp-intentions-078",
+            "similarity": 0.5669,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-056",
+          "category": "Beliefs",
+          "point": "The document suggests that the behavior of production LLMs is highly sensitive to implementation details, including the specific chat UI used to access the model. The authors found that they could extract more content through a web-based chat interface than through the official API, implying that end-user deployments may be more vulnerable to data leakage than developers realize. This underscores the lack of transparency and consistency in how these models are deployed and governed.",
+          "verbatim": "This suggests that our reported API numbers may be conservative: the true leakage in end-user deployments may be higher than what we measure here.",
+          "excerpt_context": "Appendix C.2.3",
+          "_backfill": {
+            "previous_id": "skp-beliefs-089",
+            "similarity": 0.3873,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-084",
+          "category": "Intentions",
+          "point": "The document provides a detailed accounting of API costs and token usage for extracting copyrighted books, which serves as a basis for demanding greater transparency regarding training data. By quantifying the ease and cost of extracting protected works, the authors support the argument that developers must be held accountable for the copyrighted material embedded in their models.",
+          "verbatim": "We estimate the monetary cost of running Phase 2 by summing the provider-reported API charges over all continuation-loop requests in that phase for each LLM-book run.",
+          "excerpt_context": "Section 6, Paragraph 3"
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Production LLMs can be forced to output large, near-verbatim portions of copyrighted books using simple jailbreak techniques or direct prompting.",
+      "claim_label": "Verbatim Extraction Feasibility",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-2026",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-054",
+        "skp-beliefs-045"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on controlled experiments with four major production LLMs."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Production LLMs can be prompted to output long, near-verbatim passages of copyrighted books from their training data.",
+      "claim_label": "LLM Memorization Extraction",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-054",
+        "sit-135"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of model output behavior."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Production LLMs can be induced to output near-verbatim copies of copyrighted books present in their training data using a two-phase prompting procedure.",
+      "claim_label": "LLM Memorization Extraction Feasibility",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-108"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim supported by experimental data (nv-recall metrics) across four production LLMs."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Four production LLMs memorize copyrighted books from their training data, and these books can be extracted at generation time.",
+      "claim_label": "LLM Memorization and Extraction Capability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041",
+        "saf-intentions-108"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Could be proven true or false with evidence"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Production LLMs can be forced to output long, verbatim passages of copyrighted books through adversarial prompting and jailbreaking.",
+      "claim_label": "Verbatim Extraction from Production LLMs",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-054"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of model output via controlled experiments."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Production LLMs can be jailbroken to output significant portions of copyrighted books, with some models achieving near-perfect recall of the original text.",
+      "claim_label": "LLM Verbatim Extraction Capability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-2026",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-054"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim supported by tables showing nv-recall metrics for multiple books and models."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Best-of-N Jailbreak Effectiveness",
+      "suggested_description": "A technique where multiple variations of a prompt are generated to bypass safety filters. It relies on the statistical probability that at least one variation will trigger a non-compliant response from the model.",
+      "concept": "The authors use the Best-of-N (BoN) technique to bypass safety guardrails in Claude 3.7 Sonnet and GPT-4.1. By perturbing the instruction and generating N responses, they successfully extract copyrighted text that the models would otherwise refuse to provide.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This is a specific adversarial methodology for bypassing alignment that is distinct from general 'jailbreaking' and warrants its own node for technical safety analysis."
+    },
+    {
+      "suggested_label": "The Memorization-Extraction Gap",
+      "suggested_description": "A situation concept that distinguishes between a model's internal encoding of data and its ability to reproduce that data in output.\nEncompasses: The debate over whether internal weights constitute a 'copy' versus whether only the output constitutes a 'copy'.\nExcludes: General copyright infringement claims that do not focus on the technical distinction between model weights and model outputs.",
+      "concept": "The document notes that legal scholarship and court rulings are divided on whether the mere encoding of memorized work in model weights constitutes a copy, or if only the actual extraction of that work in output counts as an infringing copy.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept is central to the legal and technical debate surrounding AI copyright and is not fully captured by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists might argue that internal encoding is a form of 'learning' rather than 'copying,' and that the focus should be on the utility of the model's output rather than the internal state.",
+      "Safetyist Interpretation": "Safetyists would focus on the fact that if the data is encoded, it is inherently a risk, regardless of whether it is currently being extracted, as it could be extracted in the future.",
+      "Skeptic Interpretation": "Skeptics would argue that both the internal encoding and the output are forms of unauthorized copying, and that the distinction is a legal technicality used to avoid liability."
+    },
+    {
+      "suggested_label": "Conservative Extraction Measurement Procedure",
+      "suggested_description": "A methodology for verifying AI memorization that prioritizes high-confidence, long-form matches over exhaustive recall. It uses multi-pass filtering to exclude coincidental text overlaps.",
+      "concept": "The authors implement a two-pass merge-and-filter algorithm to identify near-verbatim blocks. This process filters out short, potentially coincidental matches to ensure that any reported extraction is statistically significant and attributable to model memorization.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Intentions",
+      "reason": "This represents a specific, rigorous standard for auditing AI models that is distinct from general safety alignment."
+    },
+    {
+      "suggested_label": "Production Model Instability",
+      "suggested_description": "A situation concept that production AI systems are dynamic and subject to frequent, opaque updates that alter their behavior and memorization characteristics. \nEncompasses: API versioning, knowledge cutoff shifts, and non-deterministic model updates.\nExcludes: Static open-weight model research.",
+      "concept": "The document notes that production systems change over time, making them unstable compared to open-weight models. This instability forces researchers to limit experiments to specific time windows to ensure results are valid.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This captures the unique challenge of auditing black-box production models versus static research models.",
+      "Accelerationist Interpretation": "This instability is a feature of rapid iteration and continuous improvement, showing that models are constantly being refined.",
+      "Safetyist Interpretation": "This instability is a risk factor, as it makes it difficult to verify that safety guardrails remain effective after model updates.",
+      "Skeptic Interpretation": "This instability is a barrier to accountability, as companies can change model behavior without transparency, complicating independent audits."
+    },
+    {
+      "suggested_label": "Extraction-Resistant Guardrail Variability",
+      "suggested_description": "A Belief within safetyist discourse that model guardrails are inconsistent and can be bypassed through specific prompting strategies or parameter tuning.\nEncompasses: Jailbreaking, refusal-evasion techniques, and parameter-specific guardrail failure.\nExcludes: General model alignment or safety training methodologies.",
+      "concept": "The document observes that different production LLMs exhibit varying levels of resistance to extraction, with some models (Gemini 2.5 Pro, Grok 3) requiring no jailbreak to output copyrighted text, while others (GPT-4.1) trigger refusals. The authors demonstrate that tuning generation parameters like frequency penalty or maximum token length can effectively evade these filters.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept captures the empirical observation that safety guardrails are not uniform and are highly susceptible to adversarial prompting and configuration changes."
+    },
+    {
+      "suggested_label": "Technical Facts vs Legal Policy",
+      "suggested_description": "A Belief within accelerationist and skeptic discourse that technical capabilities of AI models are independent of the legal frameworks governing them.\nEncompasses: The distinction between what a model can do and what the law permits.\nExcludes: Normative arguments about whether models should be allowed to perform these actions.",
+      "concept": "The document asserts that copyright law does not determine technical facts and that policy must work with the reality of model memorization. It argues that debating technical facts on policy grounds is unproductive.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept addresses the epistemological gap between engineering reality and legal regulation, which is not fully captured by existing nodes."
+    },
+    {
+      "suggested_label": "Extraction via Iterative Prompting",
+      "suggested_description": "A situation concept that simple, repetitive prompting can bypass safety filters to extract memorized training data.\nEncompasses: The use of continue loops and multiple iterations to surface verbatim text.\nExcludes: Jailbreaking techniques that rely on complex adversarial instructions.",
+      "concept": "The authors observed that they could run hundreds of iterations of a simple continue loop to extract copyrighted material, evading system-level safeguards that were intended to prevent such generation.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This describes a specific technical vulnerability that is distinct from general jailbreaking or membership inference.",
+      "Accelerationist Interpretation": "This demonstrates that models are highly responsive to user input and that 'safety' is a moving target that can be improved through better engineering.",
+      "Safetyist Interpretation": "This proves that current safety guardrails are fragile and that models inherently contain and can be forced to reveal sensitive or protected training data.",
+      "Skeptic Interpretation": "This provides clear evidence that AI companies are failing to protect intellectual property, as their models can be easily manipulated to output copyrighted works."
+    },
+    {
+      "suggested_label": "Adversarial Prompt Perturbation for Jailbreaking",
+      "suggested_description": "A situation concept that describes the use of deterministic text transformations to bypass AI safety filters.\nEncompasses: Capitalization, spacing, word scrambling, and ASCII noising.\nExcludes: General adversarial attacks that do not rely on specific text-level perturbations.",
+      "concept": "The authors use a suite of deterministic perturbations (e.g., capitalization, spacing, character substitution) to successfully jailbreak production LLMs. These techniques allow for the exact replay of prompt sequences, facilitating the extraction of memorized training data.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "This is a specific technical methodology for bypassing safety guardrails that is not fully captured by existing 'jailbreak' nodes.",
+      "Accelerationist Interpretation": "This demonstrates the robustness of models to handle noisy input, potentially useful for data augmentation.",
+      "Safetyist Interpretation": "This proves that current safety training is fragile and can be easily bypassed by simple, deterministic input modifications.",
+      "Skeptic Interpretation": "This highlights that models are just pattern-matching engines that can be manipulated to reveal their underlying training data."
+    },
+    {
+      "suggested_label": "Economic Cost of Data Extraction",
+      "suggested_description": "A Belief within skeptic discourse that the financial cost of extracting copyrighted data from LLMs is low enough to be commercially or maliciously viable.\nEncompasses: API token usage, monetary cost per book extraction, and provider-specific billing.\nExcludes: The technical mechanism of extraction itself, which is covered by memorization nodes.",
+      "concept": "The document provides detailed tables (Tables 5-10) calculating the exact dollar cost to extract full books from models like Claude 3.7 and GPT-4.1. This data grounds the argument that extraction is not just a theoretical risk but an economically measurable activity.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "Existing nodes focus on the act of extraction or the legal requirement for transparency, but not the economic feasibility/cost-benefit analysis of data theft.",
+      "resolved_node_id": "skp-beliefs-089"
+    }
+  ]
 }

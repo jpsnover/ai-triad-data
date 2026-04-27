@@ -25,11 +25,17 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "acc-desires-006",
           "category": "Intentions",
           "point": "The document proposes a 'UCBD' (Uncertainty-aware Cascade Boundary Detection) framework to optimize AI reliability and cost-efficiency. By using a 'cheapest-first' cascade of detectors, the system maintains high performance while reducing computational overhead. This approach supports the accelerationist goal of deploying increasingly powerful models by providing a scalable, automated safety layer that does not impede inference speed.",
           "verbatim": "The cascade uses 71.6% of parallelÆs cost, saving 57.4% of B2 calls (228/401 queries resolved at B1 alone, zero additional cost). Total cascade wall-clock: <50ms for 75% of queries (resolved at B1 alone).",
-          "excerpt_context": "Section 2, Cascade Architecture"
+          "excerpt_context": "Section 2, Cascade Architecture",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.4382,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
         },
         {
           "stance": "aligned",
@@ -53,51 +59,87 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-037",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document identifies a critical failure mode where alignment training (specifically DPO) causes 'response homogenization,' where models collapse into a single semantic cluster. This phenomenon renders standard sampling-based uncertainty estimation methods completely ineffective (AUROC=0.500), creating a dangerous blind spot where the model may repeatedly output the same incorrect answer without signaling uncertainty. This suggests that current alignment methods are structurally altering model behavior in ways that obscure their own reliability.",
           "verbatim": "This alignment tax renders sampling-based methods structurally unreliable on affected questions (AUROC=0.500).",
-          "excerpt_context": "Abstract"
+          "excerpt_context": "Abstract",
+          "_backfill": {
+            "previous_id": "saf-beliefs-037",
+            "similarity": 0.7301,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document provides empirical evidence that alignment techniques like DPO create 'mechanistic decoupling' within models, where the model's internal computational uncertainty is preserved but its output diversity is artificially collapsed. This creates a fundamental operational challenge: the model appears consistent and 'aligned' at the surface level, but this consistency is a byproduct of training-induced homogenization rather than genuine epistemic certainty. This necessitates new, multi-boundary approaches to safety and uncertainty estimation.",
           "verbatim": "Stage-wise token entropy measurement (Base 1.175?SFT 1.055?DPO 0.776 nats, p=1.17?10?40) reveals the mechanistic decoupling: DPO retains 66% of token-level entropy while collapsing response diversity.",
-          "excerpt_context": "Abstract"
+          "excerpt_context": "Abstract",
+          "_backfill": {
+            "previous_id": "saf-beliefs-057",
+            "similarity": 0.7247,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-108",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document identifies an 'alignment tax' where DPO (Direct Preference Optimization) and other alignment techniques compress the stochastic output distribution of models. This homogenization destroys response diversity, which the authors argue is a critical substrate for measuring model uncertainty. This suggests that current alignment methods may inadvertently mask model uncertainty, making it harder to detect when a model is 'confidently wrong'.",
           "verbatim": "Our alignment tax finding explains why this paradigm difference matters more for aligned models: when DPO compresses the stochastic output distribution into a single mode, SEÆs measurement substrate (response diversity) is destroyed, while B1Æs substrate (next-token logit distribution) is largely preserved.",
-          "excerpt_context": "Section 2, Paragraph 1"
+          "excerpt_context": "Section 2, Paragraph 1",
+          "_backfill": {
+            "previous_id": "saf-intentions-108",
+            "similarity": 0.7319,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "saf-beliefs-008",
           "category": "Beliefs",
           "point": "The authors observe an 'overconfidence inversion' in aligned models, where a lack of relevant knowledge paradoxically reduces the model's expressed uncertainty. This phenomenon poses a significant safety risk, as the model fails to signal its own ignorance, potentially leading users to trust incorrect or hallucinated information.",
           "verbatim": "Exhibits an ôoverconfidence inversionö where lack of relevant knowledge paradoxically reduces expressed uncertainty.",
-          "excerpt_context": "Section 2, B5 Grounding"
+          "excerpt_context": "Section 2, B5 Grounding",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.5218,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-029",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document identifies that alignment processes (instruction-tuning and RLHF) cause response homogenization, where models collapse into producing identical, 'safe' outputs. This suggests that the pursuit of alignment, while intended to make models safer, creates a structural limitation where models lose the ability to represent genuine diversity in knowledge. This homogenization is a property of the learned distribution resulting from alignment, rather than a failure of the evaluation methodology.",
           "verbatim": "This confirms that response homogenization is caused by alignment (instruction-tuning+RLHF), not by pre-training, model architecture, or quantization. Qualitative inspection shows that base model responses are factually meaningful (not random text)ùthey reflect genuine diversity in the modelÆs knowledge representation, which alignment suppresses in favor of consistent, ôsafeö outputs.",
-          "excerpt_context": "Section 5.13, paragraph 1"
+          "excerpt_context": "Section 5.13, paragraph 1",
+          "_backfill": {
+            "previous_id": "saf-beliefs-029",
+            "similarity": 0.7534,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document asserts that the 'alignment tax'—the reduction in response diversity—is highly variable and depends on the specific alignment recipe (SFT/RLHF details) and model scale. This implies that safety-critical applications cannot assume that alignment status alone guarantees a specific level of model behavior or uncertainty, necessitating per-model measurement of homogenization.",
           "verbatim": "Homogenization severity varies dramatically: Qwen3-14B shows 28.5% SCR while Mistral-7B and LLaMA-3B show only 1.0û5.5%ùsuggesting the alignment tax depends on both model scale and the specific alignment recipe (SFT/RLHF details, training data).",
-          "excerpt_context": "Section 5.14, paragraph 2"
+          "excerpt_context": "Section 5.14, paragraph 2",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.6683,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
         },
         {
           "stance": "aligned",
@@ -109,19 +151,31 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-001",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
           "point": "The document provides empirical evidence that alignment techniques like RLHF and DPO lead to 'response homogenization' or 'single-cluster collapse,' where models lose the ability to generate diverse outputs. This supports the safetyist belief that current alignment methods are structurally insufficient, as they inadvertently constrain the model's internal state and reduce its capacity for nuanced uncertainty estimation. The persistence of this 'alignment tax' suggests that current training paradigms may be fundamentally at odds with maintaining robust, diverse, and well-calibrated AI behavior.",
           "verbatim": "Collapse is a property of the aligned model's response distribution, not insufficient sampling.",
-          "excerpt_context": "Section 5, page 24"
+          "excerpt_context": "Section 5, page 24",
+          "_backfill": {
+            "previous_id": "saf-beliefs-001",
+            "similarity": 0.8685,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-024",
+          "taxonomy_node_id": "saf-beliefs-060",
           "category": "Intentions",
           "point": "The document emphasizes the need for rigorous, standardized evaluation of alignment impacts, such as the 'alignment tax' on uncertainty estimation. By documenting how specific training methods (SFT, DPO) reduce output diversity, the authors highlight the importance of transparency in how alignment processes alter model behavior. This aligns with the safetyist intention to document and audit the hidden costs of alignment before widespread deployment.",
           "verbatim": "The alignment tax persists across the entire threshold range for both methods.",
-          "excerpt_context": "Section 5, page 24"
+          "excerpt_context": "Section 5, page 24",
+          "_backfill": {
+            "previous_id": "saf-intentions-024",
+            "similarity": 0.7673,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         }
       ]
     },
@@ -129,19 +183,31 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-009",
+          "taxonomy_node_id": "skp-beliefs-035",
           "category": "Intentions",
           "point": "The document treats AI as a fallible, technical system subject to specific, measurable 'alignment taxes' rather than an anthropomorphic agent. By systematically analyzing the impact of training stages (Base vs. SFT vs. DPO) on output diversity, the research demystifies AI behavior as a product of specific training recipes and architectural choices. This approach emphasizes the need for rigorous, empirical documentation of how these systems are built and how they fail in practice.",
           "verbatim": "A base-vs-instruct ablation on Qwen3-14B confirms the causal role of alignment: the base model shows 1.0% single-cluster rate vs. 28.5% for the instruct model (Wilcoxon p<10?6).",
-          "excerpt_context": "Abstract"
+          "excerpt_context": "Abstract",
+          "_backfill": {
+            "previous_id": "skp-intentions-009",
+            "similarity": 0.6123,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
+          "taxonomy_node_id": "skp-intentions-028",
           "category": "Beliefs",
           "point": "The document highlights that aligned models exhibit 'response homogenization,' where they collapse diverse potential answers into a single, often repetitive mode. This behavior is not just a decoding artifact but a fundamental property of the model's output distribution post-alignment, which limits the model's ability to provide varied or nuanced perspectives.",
           "verbatim": "The Jaccard/embedding gap reveals an additional layer of homogenization: 322/790 questions show surface-level lexical diversity (avg 3.3 Jaccard clusters) but are semantically identical (single embedding cluster)ùthe model varies wording while preserving meaning.",
-          "excerpt_context": "Section 5.12, Exp 12"
+          "excerpt_context": "Section 5.12, Exp 12",
+          "_backfill": {
+            "previous_id": "skp-beliefs-056",
+            "similarity": 0.3856,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
@@ -161,19 +227,31 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-061",
+          "taxonomy_node_id": "skp-intentions-087",
           "category": "Beliefs",
           "point": "The authors critique existing metrics for auditing AI, specifically noting that simple surface-level metrics (like Jaccard similarity) or standard NLI-based approaches fail to capture the true extent of model homogenization. They argue that the 'alignment tax' is a fundamental bottleneck that cannot be solved by better clustering methodology alone. This aligns with the skeptic view that current auditing tools are insufficient to detect the deeper, structural harms caused by alignment training.",
           "verbatim": "Better NLI models cannot create semantic diversity where the aligned model produces none.",
-          "excerpt_context": "Section 5.23, Exp 23"
+          "excerpt_context": "Section 5.23, Exp 23",
+          "_backfill": {
+            "previous_id": "skp-beliefs-061",
+            "similarity": 0.6399,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-085",
+          "taxonomy_node_id": "skp-beliefs-015",
           "category": "Intentions",
           "point": "The document demonstrates that AI models exhibit 'single-cluster collapse' even at high temperatures, suggesting that the models are fundamentally limited by their training-induced response distributions rather than possessing genuine, creative uncertainty. This supports the skeptic view that current AI models are constrained tools whose outputs are heavily dictated by their alignment training, rather than being capable of flexible, human-like reasoning. The 'alignment tax' is presented as a measurable, inherent limitation of current LLM architectures.",
           "verbatim": "Highertemperature reduces but does not eliminate homogenization—even at T=1.5, 38% of questions collapse to a single cluster.",
-          "excerpt_context": "Section 5, page 24"
+          "excerpt_context": "Section 5, page 24",
+          "_backfill": {
+            "previous_id": "skp-intentions-085",
+            "similarity": 0.5472,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
         }
       ]
     }

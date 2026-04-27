@@ -1,199 +1,241 @@
 {
-    "doc_id":  "revisql-achieving-human-level-text-sql-2026",
-    "taxonomy_version":  "3.2.0",
-    "generated_at":  "2026-04-17T21:35:08Z",
-    "model_info":  {
-                       "model":  "gemini-3.1-flash-lite-preview",
-                       "temperature":  0.1,
-                       "max_tokens":  32768,
-                       "extraction_mode":  "fire",
-                       "taxonomy_filter":  "rag",
-                       "taxonomy_nodes":  11,
-                       "fire_confidence_threshold":  0.7,
-                       "fire_stats":  {
-                                          "api_calls":  1,
-                                          "iterations":  0,
-                                          "claims_total":  3,
-                                          "claims_confident":  3,
-                                          "claims_iterated":  0,
-                                          "elapsed_seconds":  10.9,
-                                          "termination_reason":  "all_confident"
-                                      }
-                   },
-    "pov_summaries":  {
-                          "accelerationist":  {
-                                                  "key_points":  [
-                                                                     {
-                                                                         "stance":  "strongly_aligned",
-                                                                         "taxonomy_node_id":  "acc-intentions-018",
-                                                                         "category":  "Intentions",
-                                                                         "point":  "The document argues that ReViSQL achieves human-level performance by focusing on internalizing SQL reasoning rather than building complex, multi-stage AI agent pipelines. By using reinforcement learning with verifiable rewards (RLVR) on high-quality data, the model autonomously discovers effective reasoning paths. This approach aligns with the accelerationist goal of creating reliable, autonomous systems that surpass human experts, moving beyond the fragility of hand-engineered orchestration. The authors note that this streamlined framework is more efficient and scalable than existing agentic methods.",
-                                                                         "verbatim":  "ReViSQL represents a fundamental paradigm shift in Text-to-SQL translation: moving from agentic orchestration toward internalized SQL reasoning. In contrast, ReViSQL is an end-to-end framework that enables large language models (LLMs) to autonomously develop these capabilities.",
-                                                                         "excerpt_context":  "Section 3, paragraph 1"
-                                                                     },
-                                                                     {
-                                                                         "stance":  "aligned",
-                                                                         "taxonomy_node_id":  null,
-                                                                         "category":  "Desires",
-                                                                         "point":  "The authors advocate for the creation of high-quality, expert-verified datasets to unlock the full potential of LLM reasoning. They argue that pervasive annotation errors in existing benchmarks like BIRD act as a bottleneck for model development. By constructing BIRD-Verified, they demonstrate that data quality is more critical than architectural complexity for achieving human-level performance. This supports the accelerationist view that better data curation is a key lever for rapid progress in AI capabilities.",
-                                                                         "verbatim":  "Our research suggests that rigorous curation is more important than massive creation.",
-                                                                         "excerpt_context":  "Section 2.1, paragraph 4"
-                                                                     },
-                                                                     {
-                                                                         "stance":  "aligned",
-                                                                         "taxonomy_node_id":  null,
-                                                                         "category":  "Beliefs",
-                                                                         "point":  "The document asserts that inference-time scaling is only effective when the underlying model possesses high intrinsic SQL reasoning capabilities. They observe that baseline models exhibit diminishing returns when scaling the number of candidates, whereas ReViSQL models continue to scale smoothly. This suggests that reasoning bottlenecks in prior models limit the effectiveness of test-time compute. The authors conclude that improving intrinsic reasoning through training is a prerequisite for leveraging inference-time scaling to reach human parity.",
-                                                                         "verbatim":  "This indicates reasoning bottlenecks in prior models and underscores our core hypothesis: inference-time scaling is only effective when the underlying model possesses high SQL reasoning capabilities.",
-                                                                         "excerpt_context":  "Section 6.3, paragraph 2"
-                                                                     }
-                                                                 ]
-                                              },
-                          "safetyist":  {
-                                            "key_points":  [
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-beliefs-011",
-                                                                   "category":  "Beliefs",
-                                                                   "point":  "The document highlights how training on noisy, error-prone data leads to spurious reward signals that destabilize the learning process. When models are trained on incorrect gold SQL queries, they may learn to memorize flawed logic or receive false positive rewards, which undermines the reliability of the resulting system. This aligns with safetyist concerns about the risks of training on unverified data, as it can lead to models that appear capable but are fundamentally misaligned with correct domain logic. The authors emphasize that rigorous verification is necessary to ensure the model learns correct reasoning.",
-                                                                   "verbatim":  "When models attempt to learn from noisy data, these pervasive errors generate spurious reward signals, severely destabilizing the learning process.",
-                                                                   "excerpt_context":  "Section 1, paragraph 4"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-035",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The authors implement a multi-turn verification pipeline involving independent SQL experts to correct annotation errors in training data. This process includes conflict resolution and verification rounds to ensure the final dataset is high-quality. By prioritizing precision and minimizing subjective changes, they aim to create a robust foundation for RLVR training. This reflects a safetyist approach to data quality, where human oversight is used to prevent the propagation of errors into the model\u0027s internal knowledge base.",
-                                                                   "verbatim":  "To address these issues, we designed a data curation pipeline that prioritizes high-precision correction, minimizing subjective changes and the introduction of new errors.",
-                                                                   "excerpt_context":  "Section 4.1, paragraph 5"
-                                                               },
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  null,
-                                                                   "category":  "Desires",
-                                                                   "point":  "The document supports the use of execution-based reconciliation to filter candidate SQL queries against explicit constraints. By using a pre-RLVR base model to verify that candidates cover all constraints, they ensure the final output is consistent with the user\u0027s intent. This mechanism acts as a safety layer, preventing the model from outputting plausible but incorrect queries that might arise from distribution shifts. The authors argue this is essential for maintaining human-level accuracy in real-world deployments.",
-                                                                   "verbatim":  "This rigorous filtering process effectively eliminates candidates that deviate from the true intent of the user, ensuring high test accuracy.",
-                                                                   "excerpt_context":  "Section 3, paragraph 3"
-                                                               }
-                                                           ]
-                                        },
-                          "skeptic":  {
-                                          "key_points":  [
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-intentions-017",
-                                                                 "category":  "Intentions",
-                                                                 "point":  "The authors identify that existing Text-to-SQL benchmarks are riddled with annotation errors, which complicates the evaluation and development of models. They argue that the lack of clean training data is a fundamental barrier to progress. By documenting these errors and releasing a verified dataset, they address the problem of inadequate data quality that plagues current AI research. This aligns with the skeptic\u0027s focus on the measurable, immediate harms of poor data practices in AI development.",
-                                                                 "verbatim":  "Pervasive annotation errors hinder the rigorous evaluation and training of Text-to-SQL models.",
-                                                                 "excerpt_context":  "Section 2.2, paragraph 1"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  null,
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The document notes that heavily engineered multi-stage pipelines often suffer from cascading failure modes, where errors in early steps corrupt subsequent SQL generation. They argue that this systemic fragility makes such pipelines suboptimal for enterprise deployment. This skepticism toward complex agentic architectures is based on the observation that they often fail to address the underlying reasoning bottleneck. The authors suggest that simpler, more robust methods are preferable for reliable, cost-sensitive applications.",
-                                                                 "verbatim":  "These heavy pipelines often suffer from cascading failure modes, where minor semantic misunderstandings or schema-linking mistakes in early steps corrupt subsequent SQL generation.",
-                                                                 "excerpt_context":  "Section 1, paragraph 3"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  null,
-                                                                 "category":  "Desires",
-                                                                 "point":  "The authors advocate for cost-efficient AI solutions, noting that their lightweight ReViSQL-30B-A3B model matches the performance of prior SOTA agents at a significantly lower per-query cost. They emphasize that enterprise deployment requires reliable and cost-effective systems, which are currently hindered by the computational overhead of complex pipelines. This focus on efficiency and practical utility reflects a skeptic\u0027s concern with the real-world economic viability of AI systems.",
-                                                                 "verbatim":  "This systemic fragility makes heavily engineered pipelines suboptimal for reliable, cost-sensitive enterprise deployment.",
-                                                                 "excerpt_context":  "Section 2.1, paragraph 3"
-                                                             }
-                                                         ]
-                                      }
-                      },
-    "factual_claims":  [
-                           {
-                               "claim":  "ReViSQL-235B-A22B achieves 93.78% execution accuracy on the Arcwise-Plat-Full benchmark.",
-                               "claim_label":  "ReViSQL Accuracy on Arcwise-Plat-Full",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  "2026-04",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  true,
-                                                         "internally_consistent":  true,
-                                                         "category_criteria":  {
-                                                                                   "evidence_level":  "direct_empirical"
-                                                                               }
-                                                     },
-                               "fire_confidence":  0.79999999999999993
-                           },
-                           {
-                               "claim":  "Annotation errors were identified in 61.1% of a subset of the BIRD Train set.",
-                               "claim_label":  "BIRD Train Annotation Error Rate",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "historical",
-                               "temporal_bound":  "2026-04",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  true,
-                                                         "internally_consistent":  true,
-                                                         "category_criteria":  {
-                                                                                   "evidence_level":  "direct_empirical"
-                                                                               }
-                                                     },
-                               "fire_confidence":  0.79999999999999993
-                           },
-                           {
-                               "claim":  "ReViSQL-30B-A3B operates at a 7.5x lower per-query cost than the prior SOTA open-source agent.",
-                               "claim_label":  "ReViSQL Cost Efficiency",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "current_state",
-                               "temporal_bound":  "2026-04",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  true,
-                                                         "internally_consistent":  true,
-                                                         "category_criteria":  {
-                                                                                   "evidence_level":  "direct_empirical"
-                                                                               }
-                                                     },
-                               "fire_confidence":  0.79999999999999993
-                           }
-                       ],
-    "unmapped_concepts":  [
-                              {
-                                  "suggested_label":  "Spurious Reward Signals in RLVR",
-                                  "suggested_description":  "A Belief within safetyist discourse that training models on noisy or incorrect data leads to the optimization of false reward signals, which destabilizes the learning process and degrades model performance. Encompasses: The impact of incorrect gold labels on reinforcement learning outcomes. Excludes: General model training errors not related to reward signal corruption.",
-                                  "concept":  "The document explains that pervasive annotation errors in Text-to-SQL datasets generate spurious reward signals during RLVR training. This destabilizes the learning process and leads to models that perform poorly on verified test sets. The authors use this to justify the need for expert-verified training data.",
-                                  "suggested_pov":  "safetyist",
-                                  "suggested_category":  "Beliefs",
-                                  "reason":  "This concept is central to the document\u0027s argument about why existing RLVR methods fail and why their data curation is necessary."
-                              },
-                              {
-                                  "suggested_label":  "Inference-Time Reconciliation",
-                                  "suggested_description":  "An Intention within accelerationist discourse that uses inference-time compute to filter and select candidate outputs based on constraint satisfaction. Encompasses: Using a base model to reconcile candidate queries with user intent. Excludes: Simple majority voting without constraint verification.",
-                                  "concept":  "ReViSQL uses a reconciliation mechanism where a pre-RLVR base model filters candidate SQL queries against explicit question constraints. This ensures that the final selected query is consistent with the user\u0027s intent, bridging the gap between internalized reasoning and test-time ambiguity.",
-                                  "suggested_pov":  "accelerationist",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This is a novel inference-time strategy that goes beyond standard majority voting."
-                              },
-                              {
-                                  "suggested_label":  "Cascading Failure Modes in AI Pipelines",
-                                  "suggested_description":  "A situation concept that describes how errors in early stages of a multi-stage AI pipeline propagate and amplify, leading to failure in the final output. \nEncompasses: Semantic misunderstandings, schema-linking errors, and iterative refinement failures. \nExcludes: Single-stage model failures or intrinsic reasoning errors.",
-                                  "concept":  "The document argues that multi-stage Text-to-SQL agents suffer from cascading failure modes where early errors corrupt subsequent generation steps. This systemic fragility is presented as a major limitation of current agentic approaches.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Beliefs",
-                                  "Accelerationist Interpretation":  "Accelerationists would view this as a reason to move toward end-to-end models that internalize reasoning, reducing the need for fragile, multi-stage orchestration.",
-                                  "Safetyist Interpretation":  "Safetyists would interpret this as a risk of complex, opaque systems where errors are difficult to trace and mitigate, favoring simpler, more verifiable architectures.",
-                                  "Skeptic Interpretation":  "Skeptics would use this to critique the current trend of building increasingly complex AI agents, arguing that they are fundamentally unreliable for enterprise use."
-                              }
-                          ]
+  "doc_id": "revisql-achieving-human-level-text-sql-2026",
+  "taxonomy_version": "3.2.0",
+  "generated_at": "2026-04-17T21:35:08Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 11,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 3,
+      "claims_confident": 3,
+      "claims_iterated": 0,
+      "elapsed_seconds": 10.9,
+      "termination_reason": "all_confident"
+    }
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document argues that ReViSQL achieves human-level performance by focusing on internalizing SQL reasoning rather than building complex, multi-stage AI agent pipelines. By using reinforcement learning with verifiable rewards (RLVR) on high-quality data, the model autonomously discovers effective reasoning paths. This approach aligns with the accelerationist goal of creating reliable, autonomous systems that surpass human experts, moving beyond the fragility of hand-engineered orchestration. The authors note that this streamlined framework is more efficient and scalable than existing agentic methods.",
+          "verbatim": "ReViSQL represents a fundamental paradigm shift in Text-to-SQL translation: moving from agentic orchestration toward internalized SQL reasoning. In contrast, ReViSQL is an end-to-end framework that enables large language models (LLMs) to autonomously develop these capabilities.",
+          "excerpt_context": "Section 3, paragraph 1"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-071",
+          "category": "Desires",
+          "point": "The authors advocate for the creation of high-quality, expert-verified datasets to unlock the full potential of LLM reasoning. They argue that pervasive annotation errors in existing benchmarks like BIRD act as a bottleneck for model development. By constructing BIRD-Verified, they demonstrate that data quality is more critical than architectural complexity for achieving human-level performance. This supports the accelerationist view that better data curation is a key lever for rapid progress in AI capabilities.",
+          "verbatim": "Our research suggests that rigorous curation is more important than massive creation.",
+          "excerpt_context": "Section 2.1, paragraph 4",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.5039,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-083",
+          "category": "Beliefs",
+          "point": "The document asserts that inference-time scaling is only effective when the underlying model possesses high intrinsic SQL reasoning capabilities. They observe that baseline models exhibit diminishing returns when scaling the number of candidates, whereas ReViSQL models continue to scale smoothly. This suggests that reasoning bottlenecks in prior models limit the effectiveness of test-time compute. The authors conclude that improving intrinsic reasoning through training is a prerequisite for leveraging inference-time scaling to reach human parity.",
+          "verbatim": "This indicates reasoning bottlenecks in prior models and underscores our core hypothesis: inference-time scaling is only effective when the underlying model possesses high SQL reasoning capabilities.",
+          "excerpt_context": "Section 6.3, paragraph 2",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.4308,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-022",
+          "category": "Beliefs",
+          "point": "The document highlights how training on noisy, error-prone data leads to spurious reward signals that destabilize the learning process. When models are trained on incorrect gold SQL queries, they may learn to memorize flawed logic or receive false positive rewards, which undermines the reliability of the resulting system. This aligns with safetyist concerns about the risks of training on unverified data, as it can lead to models that appear capable but are fundamentally misaligned with correct domain logic. The authors emphasize that rigorous verification is necessary to ensure the model learns correct reasoning.",
+          "verbatim": "When models attempt to learn from noisy data, these pervasive errors generate spurious reward signals, severely destabilizing the learning process.",
+          "excerpt_context": "Section 1, paragraph 4",
+          "_backfill": {
+            "previous_id": "saf-beliefs-064",
+            "similarity": 0.591,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-108",
+          "category": "Intentions",
+          "point": "The authors implement a multi-turn verification pipeline involving independent SQL experts to correct annotation errors in training data. This process includes conflict resolution and verification rounds to ensure the final dataset is high-quality. By prioritizing precision and minimizing subjective changes, they aim to create a robust foundation for RLVR training. This reflects a safetyist approach to data quality, where human oversight is used to prevent the propagation of errors into the model's internal knowledge base.",
+          "verbatim": "To address these issues, we designed a data curation pipeline that prioritizes high-precision correction, minimizing subjective changes and the introduction of new errors.",
+          "excerpt_context": "Section 4.1, paragraph 5",
+          "_backfill": {
+            "previous_id": "saf-beliefs-064",
+            "similarity": 0.4507,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The document supports the use of execution-based reconciliation to filter candidate SQL queries against explicit constraints. By using a pre-RLVR base model to verify that candidates cover all constraints, they ensure the final output is consistent with the user's intent. This mechanism acts as a safety layer, preventing the model from outputting plausible but incorrect queries that might arise from distribution shifts. The authors argue this is essential for maintaining human-level accuracy in real-world deployments.",
+          "verbatim": "This rigorous filtering process effectively eliminates candidates that deviate from the true intent of the user, ensuring high test accuracy.",
+          "excerpt_context": "Section 3, paragraph 3",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.384,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-010",
+          "category": "Intentions",
+          "point": "The authors identify that existing Text-to-SQL benchmarks are riddled with annotation errors, which complicates the evaluation and development of models. They argue that the lack of clean training data is a fundamental barrier to progress. By documenting these errors and releasing a verified dataset, they address the problem of inadequate data quality that plagues current AI research. This aligns with the skeptic's focus on the measurable, immediate harms of poor data practices in AI development.",
+          "verbatim": "Pervasive annotation errors hinder the rigorous evaluation and training of Text-to-SQL models.",
+          "excerpt_context": "Section 2.2, paragraph 1",
+          "_backfill": {
+            "previous_id": "skp-intentions-017",
+            "similarity": 0.604,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-008",
+          "category": "Beliefs",
+          "point": "The document notes that heavily engineered multi-stage pipelines often suffer from cascading failure modes, where errors in early steps corrupt subsequent SQL generation. They argue that this systemic fragility makes such pipelines suboptimal for enterprise deployment. This skepticism toward complex agentic architectures is based on the observation that they often fail to address the underlying reasoning bottleneck. The authors suggest that simpler, more robust methods are preferable for reliable, cost-sensitive applications.",
+          "verbatim": "These heavy pipelines often suffer from cascading failure modes, where minor semantic misunderstandings or schema-linking mistakes in early steps corrupt subsequent SQL generation.",
+          "excerpt_context": "Section 1, paragraph 3",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.462,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-009",
+          "category": "Desires",
+          "point": "The authors advocate for cost-efficient AI solutions, noting that their lightweight ReViSQL-30B-A3B model matches the performance of prior SOTA agents at a significantly lower per-query cost. They emphasize that enterprise deployment requires reliable and cost-effective systems, which are currently hindered by the computational overhead of complex pipelines. This focus on efficiency and practical utility reflects a skeptic's concern with the real-world economic viability of AI systems.",
+          "verbatim": "This systemic fragility makes heavily engineered pipelines suboptimal for reliable, cost-sensitive enterprise deployment.",
+          "excerpt_context": "Section 2.1, paragraph 3",
+          "_backfill": {
+            "previous_id": null,
+            "similarity": 0.4959,
+            "reason": "null",
+            "backfill_date": "2026-04-27T06:30:09Z"
+          }
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "ReViSQL-235B-A22B achieves 93.78% execution accuracy on the Arcwise-Plat-Full benchmark.",
+      "claim_label": "ReViSQL Accuracy on Arcwise-Plat-Full",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Annotation errors were identified in 61.1% of a subset of the BIRD Train set.",
+      "claim_label": "BIRD Train Annotation Error Rate",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2026-04",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "ReViSQL-30B-A3B operates at a 7.5x lower per-query cost than the prior SOTA open-source agent.",
+      "claim_label": "ReViSQL Cost Efficiency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Spurious Reward Signals in RLVR",
+      "suggested_description": "A Belief within safetyist discourse that training models on noisy or incorrect data leads to the optimization of false reward signals, which destabilizes the learning process and degrades model performance. Encompasses: The impact of incorrect gold labels on reinforcement learning outcomes. Excludes: General model training errors not related to reward signal corruption.",
+      "concept": "The document explains that pervasive annotation errors in Text-to-SQL datasets generate spurious reward signals during RLVR training. This destabilizes the learning process and leads to models that perform poorly on verified test sets. The authors use this to justify the need for expert-verified training data.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept is central to the document's argument about why existing RLVR methods fail and why their data curation is necessary."
+    },
+    {
+      "suggested_label": "Inference-Time Reconciliation",
+      "suggested_description": "An Intention within accelerationist discourse that uses inference-time compute to filter and select candidate outputs based on constraint satisfaction. Encompasses: Using a base model to reconcile candidate queries with user intent. Excludes: Simple majority voting without constraint verification.",
+      "concept": "ReViSQL uses a reconciliation mechanism where a pre-RLVR base model filters candidate SQL queries against explicit question constraints. This ensures that the final selected query is consistent with the user's intent, bridging the gap between internalized reasoning and test-time ambiguity.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "This is a novel inference-time strategy that goes beyond standard majority voting."
+    },
+    {
+      "suggested_label": "Cascading Failure Modes in AI Pipelines",
+      "suggested_description": "A situation concept that describes how errors in early stages of a multi-stage AI pipeline propagate and amplify, leading to failure in the final output. \nEncompasses: Semantic misunderstandings, schema-linking errors, and iterative refinement failures. \nExcludes: Single-stage model failures or intrinsic reasoning errors.",
+      "concept": "The document argues that multi-stage Text-to-SQL agents suffer from cascading failure modes where early errors corrupt subsequent generation steps. This systemic fragility is presented as a major limitation of current agentic approaches.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "Accelerationist Interpretation": "Accelerationists would view this as a reason to move toward end-to-end models that internalize reasoning, reducing the need for fragile, multi-stage orchestration.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a risk of complex, opaque systems where errors are difficult to trace and mitigate, favoring simpler, more verifiable architectures.",
+      "Skeptic Interpretation": "Skeptics would use this to critique the current trend of building increasingly complex AI agents, arguing that they are fundamentally unreliable for enterprise use."
+    }
+  ]
 }

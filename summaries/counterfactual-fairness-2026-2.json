@@ -1,125 +1,136 @@
 {
-    "doc_id":  "counterfactual-fairness-2026-2",
-    "taxonomy_version":  "3.2.0",
-    "generated_at":  "2026-04-17T21:35:08Z",
-    "model_info":  {
-                       "model":  "gemini-3.1-flash-lite-preview",
-                       "temperature":  0.1,
-                       "max_tokens":  32768,
-                       "extraction_mode":  "fire",
-                       "taxonomy_filter":  "rag",
-                       "taxonomy_nodes":  200,
-                       "fire_confidence_threshold":  0.7,
-                       "fire_stats":  {
-                                          "api_calls":  1,
-                                          "iterations":  0,
-                                          "claims_total":  2,
-                                          "claims_confident":  2,
-                                          "claims_iterated":  0,
-                                          "elapsed_seconds":  6.7,
-                                          "termination_reason":  "all_confident"
-                                      }
-                   },
-    "pov_summaries":  {
-                          "accelerationist":  {
-                                                  "key_points":  [
-
-                                                                 ]
-                                              },
-                          "safetyist":  {
-                                            "key_points":  [
-                                                               {
-                                                                   "stance":  "aligned",
-                                                                   "taxonomy_node_id":  "saf-intentions-084",
-                                                                   "category":  "Intentions",
-                                                                   "point":  "The document argues that AI governance should move beyond simple probabilistic independence metrics and instead explicitly model the causal structure of the world to identify and mitigate unfairness. By leveraging Pearl\u0027s causal framework, the authors propose that developers can identify how protected attributes like race or gender influence data, allowing for the construction of \u0027counterfactually fair\u0027 predictors. From a safetyist perspective, this is crucial because it addresses the \u0027black box\u0027 nature of AI decision-making by requiring developers to make their causal assumptions explicit and testable. The authors acknowledge that these causal models are inherently provisional and require strong, sometimes unfalsifiable, assumptions that must be updated as new data emerges.",
-                                                                   "verbatim":  "We propose that fairness should be regulated by explicitly modeling the causal structure of the world. Criteria based purely on probabilistic independence cannot satisfy this and are unable to address how unfairness is occurring in the task at hand.",
-                                                                   "excerpt_context":  "Section 6, Conclusion"
-                                                               }
-                                                           ]
-                                        },
-                          "skeptic":  {
-                                          "key_points":  [
-                                                             {
-                                                                 "stance":  "strongly_aligned",
-                                                                 "taxonomy_node_id":  "skp-beliefs-041",
-                                                                 "category":  "Beliefs",
-                                                                 "point":  "The document asserts that machine learning models frequently perpetuate historical prejudices because training data often contains unfairness stemming from societal factors outside an individual\u0027s control. It cites the 2016 Obama administration report to emphasize that technologies can inadvertently mask or exacerbate discrimination in high-stakes areas like lending and policing. From a skeptic perspective, this validates the concern that AI is not a neutral tool but a mechanism that codifies existing power imbalances. The authors note that simply ignoring protected attributes (Fairness Through Unawareness) is insufficient because other variables in the dataset often act as proxies for those attributes.",
-                                                                 "verbatim":  "Training data can contain unfairness for reasons having to do with historical prejudices or other factors outside an individualÃ†s control.",
-                                                                 "excerpt_context":  "Section 1, Contribution"
-                                                             },
-                                                             {
-                                                                 "stance":  "aligned",
-                                                                 "taxonomy_node_id":  "skp-desires-064",
-                                                                 "category":  "Desires",
-                                                                 "point":  "The authors advocate for a \u0027counterfactual fairness\u0027 framework that ensures a decision is fair if it remains the same in both the actual world and a counterfactual world where an individual\u0027s demographic group is changed. This approach aims to prevent discriminatory outcomes by explicitly modeling the causal pathways through which protected attributes influence outcomes. For skeptics, this is a vital step toward ensuring algorithmic equity, as it forces developers to account for how historical biases are embedded in data. The document acknowledges that this approach requires sacrificing some predictive accuracy, highlighting a fundamental tension between pure efficiency and social fairness.",
-                                                                 "verbatim":  "Our de?nition of counterfactual fairness captures the intuition that a decision is fair towards an individual if it is the same in (a) the actual world and (b) a counterfactual world where the individual belonged to a different demographic group.",
-                                                                 "excerpt_context":  "Abstract"
-                                                             }
-                                                         ]
-                                      }
-                      },
-    "factual_claims":  [
-                           {
-                               "claim":  "The Law School Admission Council conducted a survey across 163 law schools in the United States containing information on 21,790 law students.",
-                               "claim_label":  "LSAC Law Student Survey Size",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "historical",
-                               "temporal_bound":  "1998",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "skp-beliefs-041"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  true,
-                                                         "internally_consistent":  true,
-                                                         "category_criteria":  {
-                                                                                   "evidence_level":  "direct_empirical"
-                                                                               }
-                                                     },
-                               "fire_confidence":  0.79999999999999993
-                           },
-                           {
-                               "claim":  "The NYPD stop-and-frisk dataset for 2014 contains 38,609 records of stops involving males.",
-                               "claim_label":  "2014 NYPD Stop-and-Frisk Data Volume",
-                               "doc_position":  "supports",
-                               "temporal_scope":  "historical",
-                               "temporal_bound":  "2014",
-                               "potential_conflict_id":  null,
-                               "linked_taxonomy_nodes":  [
-                                                             "skp-beliefs-001"
-                                                         ],
-                               "evidence_criteria":  {
-                                                         "specificity":  "precise",
-                                                         "has_warrant":  true,
-                                                         "internally_consistent":  true,
-                                                         "category_criteria":  {
-                                                                                   "evidence_level":  "direct_empirical"
-                                                                               }
-                                                     },
-                               "fire_confidence":  0.79999999999999993
-                           }
-                       ],
-    "unmapped_concepts":  [
-                              {
-                                  "suggested_label":  "Counterfactual Fairness Framework",
-                                  "suggested_description":  "A framework within skeptic and safetyist discourse that defines fairness as the invariance of a decision across counterfactual worlds where protected attributes are changed. Encompasses: Causal modeling of latent variables, structural equations, and path-specific fairness. Excludes: Simple probabilistic independence metrics like demographic parity.",
-                                  "concept":  "The document introduces counterfactual fairness as a method to ensure that a decision is fair if it remains unchanged in a counterfactual world where an individual\u0027s protected attribute is different. This is implemented by modeling the causal relationships between protected attributes, latent variables, and outcomes.",
-                                  "suggested_pov":  "skeptic",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This is the core technical contribution of the paper and represents a novel approach to algorithmic fairness not currently captured by existing nodes."
-                              },
-                              {
-                                  "suggested_label":  "Causal Deconvolution of Fairness",
-                                  "suggested_description":  "A situation concept that describes the process of extracting latent, \u0027fair\u0027 sources of variation from biased observational data using causal inference. Encompasses: Identifying latent variables that are independent of protected attributes, using structural equations to isolate causal pathways. Excludes: Standard black-box machine learning approaches that ignore causal structure.",
-                                  "concept":  "The authors describe their algorithm as a deconvolution approach that extracts latent sources of variation from observables (A, X) to create fair predictors. This process is essential for removing historical biases that are otherwise baked into the data.",
-                                  "suggested_pov":  "situations",
-                                  "suggested_category":  "Intentions",
-                                  "reason":  "This describes a specific methodological situation in AI development that is distinct from general bias mitigation.",
-                                  "Accelerationist Interpretation":  "Accelerationists might view this as a computationally expensive overhead that slows down model deployment, potentially arguing that the accuracy trade-off is not worth the theoretical fairness gains.",
-                                  "Safetyist Interpretation":  "Safetyists would interpret this as a necessary step to ensure that AI systems do not inherit and amplify human biases, viewing the explicit causal modeling as a form of \u0027safety by design\u0027.",
-                                  "Skeptic Interpretation":  "Skeptics would see this as a powerful tool for accountability, as it forces developers to justify their models through explicit causal claims rather than hiding behind opaque statistical correlations."
-                              }
-                          ]
+  "doc_id": "counterfactual-fairness-2026-2",
+  "taxonomy_version": "3.2.0",
+  "generated_at": "2026-04-17T21:35:08Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 200,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 2,
+      "claims_iterated": 0,
+      "elapsed_seconds": 6.7,
+      "termination_reason": "all_confident"
+    }
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": []
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-051",
+          "category": "Intentions",
+          "point": "The document argues that AI governance should move beyond simple probabilistic independence metrics and instead explicitly model the causal structure of the world to identify and mitigate unfairness. By leveraging Pearl's causal framework, the authors propose that developers can identify how protected attributes like race or gender influence data, allowing for the construction of 'counterfactually fair' predictors. From a safetyist perspective, this is crucial because it addresses the 'black box' nature of AI decision-making by requiring developers to make their causal assumptions explicit and testable. The authors acknowledge that these causal models are inherently provisional and require strong, sometimes unfalsifiable, assumptions that must be updated as new data emerges.",
+          "verbatim": "We propose that fairness should be regulated by explicitly modeling the causal structure of the world. Criteria based purely on probabilistic independence cannot satisfy this and are unable to address how unfairness is occurring in the task at hand.",
+          "excerpt_context": "Section 6, Conclusion",
+          "_backfill": {
+            "previous_id": "saf-intentions-084",
+            "similarity": 0.6787,
+            "reason": "re-evaluate",
+            "backfill_date": "2026-04-27T07:25:35Z"
+          }
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document asserts that machine learning models frequently perpetuate historical prejudices because training data often contains unfairness stemming from societal factors outside an individual's control. It cites the 2016 Obama administration report to emphasize that technologies can inadvertently mask or exacerbate discrimination in high-stakes areas like lending and policing. From a skeptic perspective, this validates the concern that AI is not a neutral tool but a mechanism that codifies existing power imbalances. The authors note that simply ignoring protected attributes (Fairness Through Unawareness) is insufficient because other variables in the dataset often act as proxies for those attributes.",
+          "verbatim": "Training data can contain unfairness for reasons having to do with historical prejudices or other factors outside an individualÃ†s control.",
+          "excerpt_context": "Section 1, Contribution"
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-002",
+          "category": "Desires",
+          "point": "The authors advocate for a 'counterfactual fairness' framework that ensures a decision is fair if it remains the same in both the actual world and a counterfactual world where an individual's demographic group is changed. This approach aims to prevent discriminatory outcomes by explicitly modeling the causal pathways through which protected attributes influence outcomes. For skeptics, this is a vital step toward ensuring algorithmic equity, as it forces developers to account for how historical biases are embedded in data. The document acknowledges that this approach requires sacrificing some predictive accuracy, highlighting a fundamental tension between pure efficiency and social fairness.",
+          "verbatim": "Our de?nition of counterfactual fairness captures the intuition that a decision is fair towards an individual if it is the same in (a) the actual world and (b) a counterfactual world where the individual belonged to a different demographic group.",
+          "excerpt_context": "Abstract",
+          "_backfill": {
+            "previous_id": "skp-intentions-096",
+            "similarity": 0.7448,
+            "reason": "stale",
+            "backfill_date": "2026-04-27T08:06:48Z"
+          }
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "The Law School Admission Council conducted a survey across 163 law schools in the United States containing information on 21,790 law students.",
+      "claim_label": "LSAC Law Student Survey Size",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "1998",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The NYPD stop-and-frisk dataset for 2014 contains 38,609 records of stops involving males.",
+      "claim_label": "2014 NYPD Stop-and-Frisk Data Volume",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2014",
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-001"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Counterfactual Fairness Framework",
+      "suggested_description": "A framework within skeptic and safetyist discourse that defines fairness as the invariance of a decision across counterfactual worlds where protected attributes are changed. Encompasses: Causal modeling of latent variables, structural equations, and path-specific fairness. Excludes: Simple probabilistic independence metrics like demographic parity.",
+      "concept": "The document introduces counterfactual fairness as a method to ensure that a decision is fair if it remains unchanged in a counterfactual world where an individual's protected attribute is different. This is implemented by modeling the causal relationships between protected attributes, latent variables, and outcomes.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Intentions",
+      "reason": "This is the core technical contribution of the paper and represents a novel approach to algorithmic fairness not currently captured by existing nodes.",
+      "resolved_node_id": "skp-intentions-096"
+    },
+    {
+      "suggested_label": "Causal Deconvolution of Fairness",
+      "suggested_description": "A situation concept that describes the process of extracting latent, 'fair' sources of variation from biased observational data using causal inference. Encompasses: Identifying latent variables that are independent of protected attributes, using structural equations to isolate causal pathways. Excludes: Standard black-box machine learning approaches that ignore causal structure.",
+      "concept": "The authors describe their algorithm as a deconvolution approach that extracts latent sources of variation from observables (A, X) to create fair predictors. This process is essential for removing historical biases that are otherwise baked into the data.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "This describes a specific methodological situation in AI development that is distinct from general bias mitigation.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a computationally expensive overhead that slows down model deployment, potentially arguing that the accuracy trade-off is not worth the theoretical fairness gains.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary step to ensure that AI systems do not inherit and amplify human biases, viewing the explicit causal modeling as a form of 'safety by design'.",
+      "Skeptic Interpretation": "Skeptics would see this as a powerful tool for accountability, as it forces developers to justify their models through explicit causal claims rather than hiding behind opaque statistical correlations."
+    }
+  ]
 }
