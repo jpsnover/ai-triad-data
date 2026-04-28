@@ -683,3 +683,373 @@ Accelerationists advocate for regulation that doesn't block deployment but adjus
 Flexible, technology-aware regulatory frameworks that evolve alongside AI development. Regulation as an ongoing process that responds to empirical evidence rather than imposing static pre-deployment requirements.
 
 ---
+
+## log-entry-022
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `autonomy_machine`
+**Display Form:** `autonomy (machine)`
+**Status:** accepted
+
+### Rationale
+Accelerationists celebrate machine autonomy as an achievement that unlocks scale. Safetyists view the same capability as a control risk. Skeptics question whether 'autonomy' is even the right framing for statistical pattern-matching. The bare term hides which entity is autonomous and whether that is desirable.
+
+### Characteristic Phrases
+- autonomous agents
+- agentic AI
+- self-directed
+- autonomous operation
+- reduced human bottleneck
+- autonomous decision-making
+- agent capabilities
+
+### Cross-Camp Usage
+- **Primary origin:** accelerationist
+- Whether machine autonomy is a real property or anthropomorphic projection (Skeptics argue the latter)
+- Whether autonomous AI systems can be meaningfully controlled (Safetyists doubt this)
+
+### Colloquial Terms It Translates From
+- `autonomy`
+
+### Definition
+The capacity of AI systems to operate, make decisions, and take actions without direct human intervention. Framed as a positive capability milestone enabling scalable deployment and reduced human bottlenecks.
+
+---
+
+
+## log-entry-023
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `autonomy_human`
+**Display Form:** `autonomy (human preservation)`
+**Status:** accepted
+
+### Rationale
+Safetyists frame autonomy as something humans possess that AI threatens. This is semantically opposite to the accelerationist framing where autonomy is something AI achieves. Cross-camp analysis requires distinguishing the two.
+
+### Characteristic Phrases
+- human autonomy
+- human agency
+- meaningful choice
+- human oversight
+- right to override
+- human-in-the-loop
+- informed consent
+- human dignity
+
+### Cross-Camp Usage
+- **Primary origin:** safetyist
+- Whether human autonomy is being genuinely threatened or is a rhetorical frame (Accelerationists argue the latter)
+- Whether meaningful human control is possible at scale
+
+### Colloquial Terms It Translates From
+- `autonomy`
+
+### Definition
+The principle that AI systems must not undermine meaningful human decision-making authority over consequential life choices. Preserving the capacity for humans to understand, contest, and override AI-driven outcomes.
+
+---
+
+
+## log-entry-024
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `autonomy_individual`
+**Display Form:** `autonomy (individual/data)`
+**Status:** accepted
+
+### Rationale
+Skeptics ground autonomy in concrete individual rights — data control, algorithmic recourse, informed consent — rather than abstract existential or capability framings. This practical sense gets lost when 'autonomy' is used in its machine or human-preservation senses.
+
+### Characteristic Phrases
+- data sovereignty
+- algorithmic recourse
+- right to explanation
+- opt-out
+- informed consent
+- individual rights
+- data autonomy
+- personal agency
+
+### Cross-Camp Usage
+- **Primary origin:** skeptic
+- Whether individual opt-out rights are compatible with AI systems that require population-level data
+- Whether individual recourse is meaningful when AI decisions are opaque
+
+### Colloquial Terms It Translates From
+- `autonomy`
+
+### Definition
+Individual control over personal data, algorithmic decisions, and the right to understand, contest, and opt out of AI-driven processes that affect one's life. Grounded in existing civil rights and consumer protection frameworks.
+
+---
+
+
+## log-entry-025
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `accountability_market`
+**Display Form:** `accountability (market)`
+**Status:** accepted
+
+### Rationale
+Accelerationists argue markets self-correct faster than regulators. Safetyists demand institutional accountability structures. Skeptics demand algorithmic auditing. Same word, three different enforcement mechanisms with different power dynamics.
+
+### Characteristic Phrases
+- market accountability
+- competitive pressure
+- consumer choice
+- reputational risk
+- market forces
+- market discipline
+- industry self-regulation
+
+### Cross-Camp Usage
+- **Primary origin:** accelerationist
+- Whether market forces are sufficient for AI accountability (Safetyists and Skeptics argue not)
+- Whether reputational risk works when AI harms are diffuse or delayed
+
+### Colloquial Terms It Translates From
+- `accountability`
+
+### Definition
+Market forces, consumer choice, competitive pressure, and reputational risk as the primary mechanisms for holding AI developers accountable. Accountability through economic consequences rather than regulatory mandate.
+
+---
+
+
+## log-entry-026
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `accountability_institutional`
+**Display Form:** `accountability (institutional)`
+**Status:** accepted
+
+### Rationale
+Safetyists insist on structural accountability that survives corporate incentives. This means legal liability, mandatory disclosure, and institutional oversight — mechanisms that markets cannot replicate. The bare term 'accountability' hides whether enforcement is structural or market-based.
+
+### Characteristic Phrases
+- legal liability
+- regulatory accountability
+- mandatory disclosure
+- institutional oversight
+- liability framework
+- corporate governance
+- duty of care
+
+### Cross-Camp Usage
+- **Primary origin:** safetyist
+- Whether institutional accountability can keep pace with AI development
+- Whether liability frameworks designed for human actors apply to AI systems
+
+### Colloquial Terms It Translates From
+- `accountability`
+
+### Definition
+Formal legal, regulatory, and organizational structures that assign liability, mandate disclosure, and provide remediation pathways for AI-caused harm. Accountability enforced through governance institutions.
+
+---
+
+
+## log-entry-027
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `accountability_algorithmic`
+**Display Form:** `accountability (algorithmic)`
+**Status:** accepted
+
+### Rationale
+Skeptics ground accountability in measurable algorithmic auditing — concrete tests for bias, discrimination, and error rates. This is more specific than institutional accountability and more rigorous than market accountability. The bare term hides the mechanism.
+
+### Characteristic Phrases
+- algorithmic audit
+- bias testing
+- impact assessment
+- algorithmic impact
+- discrimination testing
+- model evaluation
+- fairness audit
+- disparate impact
+
+### Cross-Camp Usage
+- **Primary origin:** skeptic
+- Whether algorithmic audits capture all relevant harms or only measurable ones
+- Whether audit standards can be standardized across domains
+
+### Colloquial Terms It Translates From
+- `accountability`
+
+### Definition
+Systematic auditing, testing, and evaluation of specific AI systems for discriminatory outcomes, errors, and failures. Technical accountability through measurable evaluation of algorithmic behavior against defined fairness and performance standards.
+
+---
+
+
+## log-entry-028
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `bias_technical`
+**Display Form:** `bias (technical/statistical)`
+**Status:** accepted
+
+### Rationale
+Accelerationists frame bias as a technical property that can be measured and fixed through better engineering. Skeptics frame it as a social justice issue reflecting structural power asymmetries. Using 'bias' without specifying which framing silently adopts one camp's ontology.
+
+### Characteristic Phrases
+- statistical bias
+- model bias
+- training data bias
+- distribution shift
+- benchmark evaluation
+- bias mitigation
+- debiasing
+- calibration error
+
+### Cross-Camp Usage
+- **Primary origin:** accelerationist
+- Whether bias is primarily a technical problem with technical solutions (Skeptics argue not)
+- Whether debiasing techniques address root causes or only symptoms
+
+### Colloquial Terms It Translates From
+- `bias`
+
+### Definition
+Systematic errors in AI model outputs arising from training data distributions, model architecture choices, or optimization objectives. A measurable property of systems that can be identified, quantified, and mitigated through engineering interventions.
+
+---
+
+
+## log-entry-029
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `bias_systemic`
+**Display Form:** `bias (systemic/social)`
+**Status:** accepted
+
+### Rationale
+Skeptics insist that bias in AI is not just a technical measurement error but a reflection of structural power. Technical debiasing is insufficient if the underlying social structure is biased. This framing demands different interventions than the technical framing.
+
+### Characteristic Phrases
+- systemic bias
+- structural discrimination
+- algorithmic discrimination
+- disparate impact
+- representational harm
+- racial bias
+- gender bias
+- power asymmetry
+- marginalized communities
+
+### Cross-Camp Usage
+- **Primary origin:** skeptic
+- Whether AI creates new bias or only reflects existing bias (camps disagree on causal direction)
+- Whether technical fixes can address systemic bias (Skeptics argue not without structural change)
+
+### Colloquial Terms It Translates From
+- `bias`
+
+### Definition
+AI systems encoding, reproducing, and amplifying existing societal inequalities — racial, gender, economic, and other structural power asymmetries. Bias as a social justice issue reflecting whose perspectives are centered and whose are marginalized in AI design and deployment.
+
+---
+
+
+## log-entry-030
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `fairness_individual`
+**Display Form:** `fairness (individual/meritocratic)`
+**Status:** accepted
+
+### Rationale
+Accelerationists favor individual fairness because it aligns with meritocratic values and is technically tractable. Safetyists prefer group fairness metrics. Skeptics demand procedural fairness. These three conceptions of fairness are mathematically incompatible and lead to different system designs.
+
+### Characteristic Phrases
+- individual fairness
+- meritocratic
+- case-by-case
+- relevant attributes
+- equal treatment
+- calibration
+- individual merit
+
+### Cross-Camp Usage
+- **Primary origin:** accelerationist
+- Whether individual fairness can address structural inequality (Skeptics argue not)
+- Whether individual fairness is mathematically compatible with group fairness (generally not)
+
+### Colloquial Terms It Translates From
+- `fairness`
+
+### Definition
+Each person or case should be evaluated on its own merits by an AI system, without reference to group membership. Fairness as equal treatment of individuals, assessed case-by-case based on relevant attributes only.
+
+---
+
+
+## log-entry-031
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `fairness_group`
+**Display Form:** `fairness (group/demographic)`
+**Status:** accepted
+
+### Rationale
+Safetyists focus on group-level fairness because individual fairness can mask systematic disadvantage. If a model is individually fair but produces racially disparate outcomes, that is still unfair in this framing. The choice of fairness definition determines what counts as discrimination.
+
+### Characteristic Phrases
+- group fairness
+- demographic parity
+- equalized odds
+- equal opportunity
+- disparate impact
+- protected groups
+- statistical parity
+- representational fairness
+
+### Cross-Camp Usage
+- **Primary origin:** safetyist
+- Whether group fairness constraints reduce overall system quality (Accelerationists argue yes)
+- Which group fairness metric to prioritize (mathematically incompatible options exist)
+
+### Colloquial Terms It Translates From
+- `fairness`
+
+### Definition
+AI systems should produce equitable outcomes across demographic groups — equal error rates, equal positive/negative prediction rates, or equal benefit distribution across protected categories. Fairness measured at the population level.
+
+---
+
+
+## log-entry-032
+**Date:** 2026-04-28
+**Reviewer:** jpsnover
+**Canonical Form:** `fairness_procedural`
+**Display Form:** `fairness (procedural)`
+**Status:** accepted
+
+### Rationale
+Skeptics ground fairness in procedural rights — can you find out why an AI decided against you? Can you appeal? This is distinct from both individual and group fairness metrics. It centers affected people's agency rather than statistical properties of the system.
+
+### Characteristic Phrases
+- procedural fairness
+- due process
+- right to explanation
+- algorithmic recourse
+- appeal process
+- contestability
+- transparency
+- meaningful access
+
+### Cross-Camp Usage
+- **Primary origin:** skeptic
+- Whether procedural fairness is meaningful when the underlying process is opaque
+- Whether procedural rights slow AI deployment unacceptably (Accelerationists argue yes)
+
+### Colloquial Terms It Translates From
+- `fairness`
+
+### Definition
+Fair processes for AI decision-making: transparency about how decisions are made, meaningful access to appeals and remediation, and the right to understand and contest AI-driven outcomes. Fairness as process rather than outcome.
+
+---
