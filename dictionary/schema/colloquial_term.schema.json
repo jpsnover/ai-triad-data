@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "colloquial_term.schema.json",
+  "title": "Colloquial Term",
+  "description": "A bare term tracked for translation to standardized vocabulary",
+  "type": "object",
+  "required": [
+    "$schema_version",
+    "colloquial_term",
+    "status",
+    "translation_required",
+    "resolves_to",
+    "first_added",
+    "last_reviewed"
+  ],
+  "properties": {
+    "$schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "colloquial_term": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The bare term as it appears in the wild"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["do_not_use_bare", "acceptable_in_quotation", "safe"],
+      "description": "Whether this term requires translation"
+    },
+    "translation_required": {
+      "type": "boolean",
+      "description": "True if occurrences of this term must be translated"
+    },
+    "resolves_to": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["standardized_term", "when"],
+        "properties": {
+          "standardized_term": {
+            "type": "string",
+            "description": "canonical_form of the target standardized term"
+          },
+          "when": {
+            "type": "string",
+            "description": "Contextual description for when this sense applies"
+          },
+          "default_for_camp": {
+            "type": "string",
+            "enum": ["safetyist", "accelerationist", "skeptic"],
+            "description": "Which camp typically uses this sense"
+          },
+          "confidence_typical": {
+            "type": "string",
+            "enum": ["high", "medium", "low"],
+            "description": "Typical confidence when this sense is resolved"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Standardized terms this colloquial term can resolve to"
+    },
+    "translation_ambiguous_when": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Contexts where automated translation cannot resolve this term"
+    },
+    "first_added": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date when this entry was created"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date of most recent review"
+    }
+  },
+  "additionalProperties": false
+}

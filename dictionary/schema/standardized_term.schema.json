@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "standardized_term.schema.json",
+  "title": "Standardized Term",
+  "description": "A coined, unambiguous term in the taxonomy vocabulary system",
+  "type": "object",
+  "required": [
+    "$schema_version",
+    "canonical_form",
+    "display_form",
+    "definition",
+    "coined_for_taxonomy",
+    "primary_camp_origin",
+    "rationale_for_coinage",
+    "characteristic_phrases",
+    "used_by_nodes",
+    "translates_from_colloquial",
+    "coinage_status",
+    "coined_at",
+    "coined_by",
+    "coinage_log_ref"
+  ],
+  "properties": {
+    "$schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "canonical_form": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Machine-readable identifier. Lowercase, underscores only."
+    },
+    "display_form": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable rendering, e.g. 'alignment (safety)'"
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Disambiguation definition of this specific sense"
+    },
+    "coined_for_taxonomy": {
+      "type": "boolean",
+      "description": "True if this term was coined specifically for this taxonomy"
+    },
+    "primary_camp_origin": {
+      "type": "string",
+      "enum": ["safetyist", "accelerationist", "skeptic"],
+      "description": "Which camp's discourse this sense primarily originates from"
+    },
+    "rationale_for_coinage": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why the bare colloquial term is insufficient"
+    },
+    "characteristic_phrases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Discriminative phrases used by the translation pipeline's phrase signal"
+    },
+    "used_by_nodes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Taxonomy node IDs that use this standardized term"
+    },
+    "translates_from_colloquial": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bare colloquial terms that map to this standardized term"
+    },
+    "see_also": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "canonical_forms of related standardized terms"
+    },
+    "do_not_confuse_with": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["term", "note"],
+        "properties": {
+          "term": { "type": "string" },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": false
+      },
+      "description": "Other standardized terms this could be confused with"
+    },
+    "contested_aspects": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Aspects of this term that are actively disputed across camps"
+    },
+    "coinage_status": {
+      "type": "string",
+      "enum": ["provisional", "accepted", "contested", "deprecated"],
+      "description": "Lifecycle status of this term"
+    },
+    "coined_at": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date when the term was coined"
+    },
+    "coined_by": {
+      "type": "string",
+      "description": "Reviewer ID who coined the term"
+    },
+    "coinage_log_ref": {
+      "type": "string",
+      "pattern": "^log-entry-\\d+$",
+      "description": "Reference to the coinage_log.md entry"
+    },
+    "replaced_by": {
+      "type": "string",
+      "description": "If deprecated, the canonical_form of the replacement term"
+    }
+  },
+  "additionalProperties": false
+}
