@@ -1,16 +1,97 @@
 {
   "doc_id": "computing-moral-responsibility-2026",
-  "taxonomy_version": "3.1.0",
-  "generated_at": "2026-04-04T19:01:57Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 560,
+    "taxonomy_nodes": 720,
     "chunked": true,
-    "chunk_count": 2
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "computing-moral-responsibility-2026",
+    "measured_at": "2026-05-02T20:40:21.4297100-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 22474.0,
+        "out_units": "tokens_est",
+        "out_count": 22472.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 60.0,
+        "ratio": 0.0197,
+        "flags": {
+          "total_below_threshold": 0,
+          "avg_intentions": 18.0,
+          "min_nodes_selected": 60,
+          "max_nodes_selected": 60,
+          "chunk_count": 3,
+          "avg_desires": 5.0,
+          "avg_nodes_selected": 60.0,
+          "avg_beliefs": 6.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 121406.0,
+        "out_units": "items",
+        "out_count": 21.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 3,
+          "chunk_count": 3,
+          "total_points": 14,
+          "unmapped_concepts": 4,
+          "null_node_rate": 0.0
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 21.0,
+        "out_units": "items",
+        "out_count": 21.0,
+        "ratio": 1.0,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.5,
+        "flags": {
+          "resolved_count": 2,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0197
   },
   "pov_summaries": {
     "accelerationist": {
@@ -19,15 +100,27 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-018",
           "category": "Intentions",
-          "point": "The document acknowledges that computer technologies are increasingly integrated into daily life to automate decision-making and enhance communication. Accelerationists view this as a necessary evolution of human capability, where AI acts as a tool to augment human decision-making processes. The document notes that these technologies can help users capture, store, and analyze data to 'look beyond the next hill,' which aligns with the accelerationist goal of using AI to solve complex information problems.",
-          "verbatim": "As computer technologies have become a more integral part of daily activities, automate more decision-making processes and continue to transform the way people communicate and relate to each other, they have further complicated the already problematic tasks of attributing moral responsibility.",
-          "excerpt_context": "Introduction, paragraph 2",
-          "_backfill": {
-            "previous_id": "acc-intentions-055",
-            "similarity": 0.7334,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document acknowledges that computing technologies can enhance human capabilities by enabling operators to acquire information that would otherwise be unavailable. By acting as a high-speed data processor, AI allows human experts to 'look beyond the next hill' and make better-informed tactical decisions. This aligns with the accelerationist view of AI as a powerful tool for augmenting human cognition and expanding our reach.",
+          "verbatim": "For example, one often-named advantage of remote-controlled robots used by the armed forces or rescue workers is that they enable their operators to acquire information that would not be able available without them. They allow their operators to look “beyond the next hill” or “around the next corner” and they can thus help operators to reflect on what the consequences of particular tactical decisions might be.",
+          "excerpt_context": "Section 1.2, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "human-AI synergy",
+            "cognitive augmentation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document acknowledges that AI can be designed to act as a 'super-assistant' or mediator that guides human behavior toward optimized outcomes, such as fuel efficiency. This aligns with the accelerationist view that AI enhances human capabilities and decision-making. The document notes that these technologies are designed with the explicit aim of making humans behave responsibly by limiting their options or persuading them to choose in a certain way.",
+          "verbatim": "For example, the onboard computer devices in some cars that show, in realtime, information about fuel consumption can encourage the driver to optimize fuel efficiency. Such technologies are designed with the explicit aim of making humans behave responsibly by limiting their options or persuading them to choose in a certain way.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "human-AI synergy",
+            "behavioral optimization"
+          ]
         }
       ]
     },
@@ -37,49 +130,83 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-intentions-046",
           "category": "Intentions",
-          "point": "The document highlights the 'responsibility gap' where increasing system complexity and autonomy make it difficult to hold humans accountable for AI behavior. This aligns with the safetyist concern that AI systems perform tasks requiring moral agency without being able to assume the consequences. The document argues that traditional ethical frameworks are insufficient for these new sociotechnical systems.",
+          "point": "The document highlights the 'responsibility gap' created by complex, autonomous systems where human control is diminished. As systems become more opaque and autonomous, it becomes increasingly difficult to hold humans accountable for the outcomes, necessitating new frameworks for moral responsibility.",
           "verbatim": "Indeed, Matthias argues that there is a growing ‘responsibility gap’: the more complex computer technologies become and the less human beings can directly control or intervene in the behavior of these technologies, the less we can reasonably hold human beings responsible for these technologies.",
-          "excerpt_context": "Section 1, paragraph 3"
+          "excerpt_context": "Section 1, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "responsibility gap",
+            "human accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-056",
+          "category": "Beliefs",
+          "point": "The document identifies that automation bias and over-reliance on complex systems can lead to catastrophic outcomes, such as the U.S.S. Vincennes incident. This supports the safetyist belief that AI systems can negatively impact human decision-making and safety by creating overconfidence or obscuring critical information.",
+          "verbatim": "Too much reliance on automated systems can have equally disastrous consequences. In 1988 the missile cruiser U.S.S. Vincennes shot down an Iranian civilian jet airliner, killing all 290 passengers onboard, after it mistakenly identified the airliner as an attacking military aircraft.",
+          "excerpt_context": "Section 1.2, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "automation bias",
+            "human-AI interaction"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-008",
+          "category": "Intentions",
+          "point": "The document highlights the necessity of developing Autonomous Moral Agents (AMAs) to handle complex, high-stakes decisions in environments where direct human control is impossible. This reflects the safetyist priority of embedding ethical constraints directly into machine logic to prevent catastrophic outcomes. It emphasizes that as systems become more complex, they must be capable of reasoning about the social significance of their behavior.",
+          "verbatim": "Research within this field has been concerned with the design and development of computer systems that can independently determine what the right thing to do would be in a given situation. According to Allen and Wallach, such autonomous moral agents (AMAs) would have to be capable of reasoning about the moral and social significance of their behavior and use their assessment of the effects their behavior has on sentient beings to make appropriate choices.",
+          "excerpt_context": "Section 2.2, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "autonomous moral agents",
+            "machine ethics",
+            "value alignment"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-011",
           "category": "Beliefs",
-          "point": "The document discusses how automated systems, such as risk assessment tools in judicial settings, can lead to biased outcomes that are difficult for human users to understand or challenge. This supports the safetyist belief that optimizing for simple metrics (like risk scores) can erode complex human values and lead to unintended, harmful consequences.",
-          "verbatim": "The judges were basing their sentencing on the suggestion of an algorithm that they did not fully understand. This is the case for most computer technologies today. Users only see part of the many computations that a computer performs and are for the most part unaware of how it performs them.",
-          "excerpt_context": "Section 1.2, paragraph 3"
+          "point": "The document discusses the risk of 'dark patterns' and 'hyper nudges' where algorithms manipulate user behavior for the benefit of those controlling the system. This supports the safetyist belief that optimizing for specific metrics (like engagement or profit) can lead to the erosion of human autonomy and ethical standards. It warns that these techniques are pervasive and dynamic, making it difficult for users to maintain independent decision-making.",
+          "verbatim": "She argues that these ‘hyper nudges’ are extremely powerful techniques to manipulate the behaviour of internet users and users of Internet of Things (IoT) devices due to their networked, continuously updated, dynamic and pervasive nature.",
+          "excerpt_context": "Section 2, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "hyper nudges",
+            "dark patterns",
+            "metric optimization"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-006",
+          "taxonomy_node_id": "saf-intentions-061",
           "category": "Intentions",
-          "point": "The document notes that users often suffer from 'automation bias,' where they either over-rely on or distrust automated systems, leading to failures in human oversight. Safetyists advocate for systems that prompt human intervention or recognize their own limitations, which the document suggests is currently lacking in many opaque, proprietary algorithms.",
-          "verbatim": "People have a tendency to either rely too much or not enough on the accuracy automated systems (Cummings 2004; Parasuraman & Riley 1997). This tendency is called automation bias.",
-          "excerpt_context": "Section 1.2, paragraph 4"
+          "point": "The document advocates for identifying specific points in AI-driven workflows where human intervention is essential to ensure accountability. By analyzing the sociotechnical chain of design and use, it seeks to close responsibility gaps that arise when AI systems perform tasks traditionally requiring human moral agency. This approach emphasizes that human oversight must be integrated into the system architecture to maintain moral responsibility.",
+          "verbatim": "To address gaps in active responsibility (as well as backward-looking gaps in responsibility), Santonio de Sio and Meccaci suggest an approach that underlines the need to look at the broader sociotechnical system of human agents and technologies. Assigning responsibility requires looking at the whole chain of design, development and use from a social, technical as well as organizational perspective.",
+          "excerpt_context": "Section 3, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "sociotechnical_systems",
+            "human_in_the_loop",
+            "responsibility_gaps"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
+          "taxonomy_node_id": "saf-intentions-050",
           "category": "Intentions",
-          "point": "The document argues for the necessity of designing sociotechnical systems that ensure meaningful human control. This involves creating frameworks where outcomes can be tracked back to human moral reasons and traced to specific human decisions. This approach aims to prevent responsibility gaps in autonomous systems by ensuring human oversight remains central to the system's architecture.",
-          "verbatim": "They base their approach on the idea of designing sociotechnial systems for meaningful human control as developed by Santonio de Sio and van den Hoven (2018).",
-          "excerpt_context": "Section 2, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-083",
-          "category": "Intentions",
-          "point": "The document emphasizes that human oversight is essential for safety, particularly when AI systems are delegated tasks like target selection. It advocates for an 'actionable analysis of control' to help engineers and policymakers design systems that maintain human responsibility.",
-          "verbatim": "The question of what it means to have control over a technological system becomes particularly pertinent in situations where weapon systems are delegated tasks involved in target selection and engagement.",
-          "excerpt_context": "Section 2, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-046",
-          "category": "Intentions",
-          "point": "The document identifies the 'moral crumple zone' as a critical risk where human operators are unfairly blamed for system failures they cannot control. It argues that accountability frameworks must be designed to avoid this misattribution of responsibility to the nearest human actor.",
-          "verbatim": "A lack of such a culture of accountability can lead to responsibility being attributed to the wrong people. These people become, what Madeleine Clare Elish calls the moral crumple zone (2019).",
-          "excerpt_context": "Section 2, paragraph 10"
+          "point": "The document promotes the concept of 'meaningful human control' as a framework for designing sociotechnical systems. This requires that AI systems remain responsive to the moral reasons and intentions of human agents, ensuring that outcomes can be traced back to human decisions. It argues that control is not just about direct operation, but about designing systems that allow humans to maintain moral awareness and accountability.",
+          "verbatim": "Santonio de Sio and van den Hoven assume that technology is part of the decisional mechanisms through which human agents carry out actions in the world and these mechanisms should be responsive to moral reasons for an agent to have control. Meaningful human control is thus conditional on the extent to which an outcome can be connected to the decisional mechanisms of human agents.",
+          "excerpt_context": "Section 3, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "meaningful_human_control",
+            "tracking",
+            "tracing"
+          ]
         }
       ]
     },
@@ -87,58 +214,96 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-007",
+          "taxonomy_node_id": "skp-beliefs-047",
           "category": "Beliefs",
-          "point": "The document provides concrete examples of AI-driven harm, such as the Therac-25 radiation machine and the 737 MAX crashes, to illustrate the 'problem of many hands.' Skeptics use these real-world cases to argue that AI systems create measurable, immediate harms that current legal and ethical frameworks fail to address.",
-          "verbatim": "These incidents were the result of the combination of a number of factors, including software errors, inadequate testing and quality assurance, exaggerated claims about the reliability, bad interface design, overconfidence in software design, and inadequate investigation or follow-up on accident reports.",
-          "excerpt_context": "Section 1.1, paragraph 2",
-          "_backfill": {
-            "previous_id": "skp-beliefs-001",
-            "similarity": 0.68,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document notes that the automation of public administration shifts power from 'street-level bureaucrats' to 'system-level bureaucrats' (managers and developers). This reflects the skeptic concern that AI systems consolidate power and reduce the discretionary, context-aware decision-making that is essential for fair public service.",
+          "verbatim": "Responsibility for decisions made, in these cases, has moved from ‘street-level bureaucrats’ to the ‘system-level bureaucrats’, such as managers and computer experts, that decide on how to convert policy and legal frameworks into algorithms and decision-trees.",
+          "excerpt_context": "Section 1.3, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic governance",
+            "bureaucratic power"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-058",
-          "category": "Intentions",
-          "point": "The document highlights how 'hyper nudges' and dark patterns in big-data analytics manipulate user behavior for commercial gain. This aligns with the skeptic intention to focus on the human-centric impacts of AI, specifically how it exacerbates social inequality and threatens individual autonomy.",
-          "verbatim": "She argues that these ‘hyper nudges’ are extremely powerful techniques to manipulate the behaviour of internet users and users of Internet of Things (IoT) devices due to their networked, continuously updated, dynamic and pervasive nature.",
-          "excerpt_context": "Section 1.3, paragraph 4"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-086",
-          "category": "Intentions",
-          "point": "The document advocates for a 'culture of accountability' that prioritizes preventing harm over merely finding someone to blame. It argues that current organizational practices often allow companies to shirk responsibility through ownership claims without liability, which undermines system safety.",
-          "verbatim": "Accountability, according to Nissenbaum, is different from liability. Liability is about looking for a person to blame and to compensate for damages suffered after the event. Once that person has been found, others can be let ‘off the hook’, which may encourage people to look for excuses, such as blaming the computer.",
-          "excerpt_context": "Section 2, paragraph 8",
-          "_backfill": {
-            "previous_id": "skp-intentions-075",
-            "similarity": 0.5454,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-040",
+          "taxonomy_node_id": "skp-beliefs-043",
           "category": "Beliefs",
-          "point": "The document asserts that companies frequently use the complexity of computer systems as a scapegoat to avoid accountability for malfunctions. It identifies 'ownership without liability' as a major barrier to maintaining clear lines of responsibility in a computerized society.",
-          "verbatim": "Finally, she perceived a tendency of companies to claim ownership of the software they developed, but to dismiss the responsibilities that come with ownership.",
-          "excerpt_context": "Section 2, paragraph 7"
+          "point": "The document discusses how reliance on opaque algorithms, such as those used in judicial risk assessment, can diminish human understanding and critical engagement. This aligns with the skeptic view that AI can lead to cognitive atrophy or the erosion of human agency in high-stakes environments.",
+          "verbatim": "The judges were basing their sentencing on the suggestion of an algorithm that they did not fully understand. This is the case for most computer technologies today. Users only see part of the many computations that a computer performs and are for the most part unaware of how it performs them.",
+          "excerpt_context": "Section 1.2, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "automation bias",
+            "algorithmic opacity"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-094",
+          "category": "Beliefs",
+          "point": "The document identifies that algorithmic systems, such as risk-assessment tools in judicial settings, can perpetuate biases and lack transparency. This aligns with the skeptic focus on structural harms and the failure of technology to remain neutral. It argues that companies selling these systems have a moral obligation to ensure their algorithms are congruent with the social context, which they often fail to do.",
+          "verbatim": "Thus, a company that creates and sells a risk-assessment system into the context of judicial decision-making is responsible for the ethical implications of biases resulting from its use and its opaqueness.",
+          "excerpt_context": "Section 3.1, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic bias",
+            "structural harm",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-009",
+          "category": "Intentions",
+          "point": "The document argues against anthropomorphizing computers, noting that they lack sentience, empathy, and the ability to understand the meaning of their actions. This supports the skeptic intention to demystify AI as standard, fallible software rather than a moral agent. It emphasizes that attributing agency to machines distracts from the human developers and users who are truly responsible.",
+          "verbatim": "Attributing independent moral agency to computers, Johnson claims, disconnects them from the human behavior that creates, deploys and uses them. It turns the attention away from the forces that shape technological development and limits the possibility for intervention.",
+          "excerpt_context": "Section 2.3, paragraph 4",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "anthropomorphism",
+            "moral agency",
+            "accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document identifies a systematic erosion of accountability in computerized societies, where organizational and cultural practices often facilitate the shirking of responsibility. It highlights how complex software systems are frequently used as 'scapegoats' to avoid answering for harms, and how companies claim ownership of software while disclaiming liability for its performance. This creates a culture where responsibility is shifted away from those who develop and deploy these systems.",
+          "verbatim": "Nissenbaum identified four barriers to accountability in society: (1) the problem of many hands, (2) the acceptance of computer bugs as an inherent element of large software systems, (3) using the computer as scapegoat and (4) ownership without liability.",
+          "excerpt_context": "Section 3.2, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "accountability_erosion",
+            "problem_of_many_hands",
+            "computer_as_scapegoat"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "sit-070",
+          "category": "Beliefs",
+          "point": "The document discusses the 'moral crumple zone,' where human operators are unfairly blamed for accidents caused by complex systems they have little control over. It argues that media and public perception often misattribute responsibility to the nearest human actor, such as a pilot, rather than the technological system or the decision-makers higher up the chain. This practice obscures the systemic nature of technological failure.",
+          "verbatim": "A lack of such a culture of accountability can lead to responsibility being attributed to the wrong people. These people become, what Madeleine Clare Elish calls the moral crumple zone (2019). These human actors absorb responsibility, even though they only have very limited or no control over the systems they work with.",
+          "excerpt_context": "Section 3.2, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "moral_crumple_zone",
+            "misattribution_of_responsibility"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "The 'problem of many hands' makes it difficult to assign moral responsibility in complex technological systems because multiple actors contribute to the outcome.",
-      "claim_label": "Problem of Many Hands",
+      "claim": "The Therac-25 radiation machine caused multiple patient deaths due to a combination of software errors, poor interface design, and inadequate testing.",
+      "claim_label": "Therac-25 Incident Factors",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
+      "temporal_scope": "historical",
+      "temporal_bound": "1980s",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "sit-070"
@@ -147,28 +312,74 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of organizational and systemic failure modes."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The 'moral crumple zone' describes a phenomenon where human operators are held responsible for system failures despite having limited control over the technology.",
-      "claim_label": "Moral Crumple Zone Definition",
+      "claim": "Computer technologies are increasingly designed to limit human discretion and steer behavior through nudging or direct enforcement.",
+      "claim_label": "Technological Behavioral Steering",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-070"
+        "sit-012",
+        "skp-intentions-039"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical observation"
+        "category_criteria": "Empirical observation of design practices in automotive and social media sectors."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Meaningful human control is a concept originally developed to address responsibility gaps in the context of autonomous lethal weapons systems.",
+      "claim_label": "Origin of Meaningful Human Control",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-095"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     }
   ],
-  "unmapped_concepts": []
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Interpretive Flexibility of Technology",
+      "suggested_description": "A situation concept that describes how technological artifacts are not deterministic but are shaped by the context and intent of their users.\nEncompasses: Multistability, user-driven adaptation, and unforeseen use cases.\nExcludes: Technological determinism or the idea that tools have fixed, inherent meanings.",
+      "concept": "The document argues that technological artifacts have 'interpretive flexibility' or 'multistability,' meaning they are not isolated instruments that function the same regardless of context. Instead, the meaning and form of actions taken with these technologies depend on how human agents choose to use them in specific situations.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept is central to the document's argument against technological determinism and is not explicitly covered by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as a feature that allows for the creative repurposing of AI tools to solve novel problems beyond the original design intent.",
+      "Safetyist Interpretation": "Safetyists would view this as a risk factor, as the inability to predict how users will deploy a system makes it harder to ensure safety and alignment.",
+      "Skeptic Interpretation": "Skeptics would emphasize that this flexibility often masks the power dynamics embedded in the original design, as users may be forced to adapt to systems that do not serve their interests."
+    },
+    {
+      "suggested_label": "Positive Responsibility in Computing",
+      "suggested_description": "A Desire within skeptic discourse that emphasizes the proactive obligation of developers to anticipate and mitigate potential harms of their products.\nEncompasses: Professional ethics, proactive harm reduction, and duty of care.\nExcludes: Retrospective blame-shifting or malpractice models of responsibility.",
+      "concept": "The document contrasts 'negative responsibility' (blame-seeking) with 'positive responsibility,' which requires practitioners to have regard for the consequences of their actions on others. It argues that computing professionals should adopt this positive model to minimize undesirable events.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Desires",
+      "reason": "This concept shifts the focus from legal liability to professional ethics, which is distinct from existing nodes focused on regulation or safety."
+    }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
+  ]
 }

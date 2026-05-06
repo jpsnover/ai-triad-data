@@ -1,57 +1,153 @@
 {
   "doc_id": "alignment-tax-response-homogenization-aligned-llms-its-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-19T16:46:49Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 628,
+    "taxonomy_nodes": 720,
     "chunked": true,
     "chunk_count": 5
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "alignment-tax-response-homogenization-aligned-llms-its-2026",
+    "measured_at": "2026-05-02T21:02:09.7002820-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 31977.0,
+        "out_units": "tokens_est",
+        "out_count": 31976.0,
+        "ratio": 1.0,
+        "flags": {
+          "chunk_count": 5
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0203,
+        "flags": {
+          "total_below_threshold": 10,
+          "avg_intentions": 6.0,
+          "min_nodes_selected": 62,
+          "max_nodes_selected": 62,
+          "chunk_count": 5,
+          "avg_desires": 2.0,
+          "avg_nodes_selected": 62.0,
+          "avg_beliefs": 6.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 151768.0,
+        "out_units": "items",
+        "out_count": 35.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 8,
+          "chunk_count": 5,
+          "total_points": 20,
+          "unmapped_concepts": 7,
+          "null_node_rate": 0.1
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 35.0,
+        "out_units": "items",
+        "out_count": 32.0,
+        "ratio": 0.9143,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 1,
+          "points_deduped": 2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 7.0,
+        "out_units": "still_unmapped",
+        "out_count": 4.0,
+        "ratio": 0.5714,
+        "flags": {
+          "resolved_count": 3,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 4
+        }
+      }
+    ],
+    "cumulative_retention": 0.0186
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-004",
+          "taxonomy_node_id": "acc-beliefs-015",
           "category": "Beliefs",
-          "point": "The document demonstrates that AI models possess inherent computational uncertainty that can be leveraged for superior problem-solving. By utilizing token-level entropy, researchers can extract reliable signals for selective prediction, effectively enhancing the accuracy of models like those used for mathematical reasoning. This confirms that AI systems contain latent, actionable information that persists even when alignment techniques attempt to constrain output diversity.",
-          "verbatim": "Free token entropy retains signal (0.603) because it measures per-token computational uncertainty, which RLHF cannot fully suppress.",
-          "excerpt_context": "Abstract"
+          "point": "The document identifies that while RLHF-aligned models exhibit response homogenization, they retain significant latent computational uncertainty at the token level. This suggests that the model's underlying statistical parameters still contain rich information that can be extracted via token entropy, even when output diversity is suppressed. This supports the accelerationist view that latent capabilities remain accessible through strategic measurement techniques, even in highly constrained models.",
+          "verbatim": "Stage-wise token entropy measurement (Base 1.175?SFT 1.055?DPO 0.776 nats, p=1.17?10?40) reveals the mechanistic decoupling: DPO retains 66% of token-level entropy while collapsing response diversity, explaining why B1 retains signal where sampling-based methods fail.",
+          "excerpt_context": "Abstract, paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "latent_capabilities",
+            "token_entropy"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-006",
-          "category": "Intentions",
-          "point": "The document proposes a 'UCBD' (Uncertainty-aware Cascade Boundary Detection) framework to optimize AI reliability and cost-efficiency. By using a 'cheapest-first' cascade of detectors, the system maintains high performance while reducing computational overhead. This approach supports the accelerationist goal of deploying increasingly powerful models by providing a scalable, automated safety layer that does not impede inference speed.",
-          "verbatim": "The cascade uses 71.6% of parallelÆs cost, saving 57.4% of B2 calls (228/401 queries resolved at B1 alone, zero additional cost). Total cascade wall-clock: <50ms for 75% of queries (resolved at B1 alone).",
-          "excerpt_context": "Section 2, Cascade Architecture",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4382,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that computational uncertainty (B1) and inter-sample diversity (SE) measure fundamentally different quantities, with B1 capturing per-token logit distributions that remain preserved even when alignment training (DPO) compresses output distributions. This suggests that while alignment may homogenize responses, the underlying computational signal of uncertainty remains a robust, free, and scalable metric for model monitoring. This supports the accelerationist view that we can maintain high-performance monitoring systems without sacrificing the efficiency or deployment speed of aligned models.",
+          "verbatim": "B1 measures per-token computational uncertainty within a single autoregressive pass, while SE measures inter-sample diversity across independent generations. Our alignment tax finding explains why this paradigm difference matters more for aligned models: when DPO compresses the stochastic output distribution into a single mode, SE's measurement substrate (response diversity) is destroyed, while B1's substrate (next-token logit distribution) is largely preserved.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "computational_uncertainty",
+            "stochastic_output_distribution",
+            "alignment_tax"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document supports prioritizing behavioral output verification over 'white-box' transparency, as evidenced by the focus on sampling-based uncertainty quantification and output-level cluster analysis. By demonstrating that internal model states (like token entropy) are often poorly calibrated or decoupled from response-level diversity, the authors argue for pragmatic, output-focused diagnostic tools. This aligns with accelerationist goals of maintaining high-performance deployment while using external testing to manage risks without necessarily requiring full interpretability of the underlying model weights.",
-          "verbatim": "The diagnostic claim is our primary contribution and is strongly supported; the architectural contribution is preliminary and appropriately scoped as such.",
-          "excerpt_context": "Section 8, Discussion"
+          "point": "The document advocates for a modular, multi-boundary cascade architecture for uncertainty quantification. By prioritizing 'cheapest-first' signals, this approach optimizes computational efficiency and deployment speed, which aligns with accelerationist goals of scaling AI capabilities without sacrificing reliability. The framework is designed to be extensible, allowing for the integration of more advanced detectors as they are developed.",
+          "verbatim": "The framework is modular, so stronger detectors (PRO, LogTokU) can be plugged in as they become available. Our primary contribution is the diagnosis that aligned models suppress sampling diversity, and the architectural implication that multi-boundary cascades are the appropriate response.",
+          "excerpt_context": "Section 9, Conclusion",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "modular_architecture",
+            "computational_efficiency"
+          ]
         },
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-intentions-061",
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-049",
           "category": "Intentions",
-          "point": "The document evaluates the trade-offs between different model architectures and alignment techniques, specifically noting how alignment processes like RLHF and DPO impact model diversity. By analyzing how these methods affect response distributions, the research contributes to the broader accelerationist goal of understanding how to maintain model capability while scaling alignment. The findings suggest that alignment techniques currently impose a 'tax' on model diversity, which is a critical consideration for those seeking to deploy highly capable, general-purpose systems.",
-          "verbatim": "The alignment tax persists across the entire threshold range for both methods.",
-          "excerpt_context": "Section 5, page 24"
+          "point": "The document demonstrates that specialized methods for uncertainty estimation, such as B1, consistently outperform general-purpose semantic entropy (SE) methods across various tasks. This supports the accelerationist view that domain-specific or task-specific optimization yields higher utility than uniform, generalized approaches. The findings suggest that performance gains are achieved by moving away from one-size-fits-all alignment strategies.",
+          "verbatim": "B1 (0.599) outperforms SE at all thresholds. B1 is threshold-free and consistently competitive.",
+          "excerpt_context": "Section 5, page 25",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "specialization",
+            "performance_optimization"
+          ]
         }
       ]
     },
@@ -61,121 +157,109 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
-          "point": "The document identifies a critical failure mode where alignment training (specifically DPO) causes 'response homogenization,' where models collapse into a single semantic cluster. This phenomenon renders standard sampling-based uncertainty estimation methods completely ineffective (AUROC=0.500), creating a dangerous blind spot where the model may repeatedly output the same incorrect answer without signaling uncertainty. This suggests that current alignment methods are structurally altering model behavior in ways that obscure their own reliability.",
-          "verbatim": "This alignment tax renders sampling-based methods structurally unreliable on affected questions (AUROC=0.500).",
-          "excerpt_context": "Abstract",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.7301,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document provides empirical evidence that alignment training (specifically DPO) systematically reduces response diversity, creating a 'tax' on uncertainty estimation. This confirms that alignment methods are not neutral but actively reshape the model's output distribution, often in ways that degrade the model's ability to signal its own ignorance. This supports the safetyist concern that current alignment techniques have unintended, measurable performance penalties.",
+          "verbatim": "The alignment tax: aligned models suppress response diversity, with 40% of TruthfulQA questions (n=790) collapsing to a single semantic cluster under Jaccard bigram clustering. This homogenization reduces sampling-based entropy to chance (AUROC=0.500) on affected questions, while free token entropy retains signal (0.603).",
+          "excerpt_context": "Section 1, Contributions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment_tax",
+            "response_homogenization",
+            "dpo"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-060",
+          "taxonomy_node_id": "saf-beliefs-001",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that alignment techniques like DPO create 'mechanistic decoupling' within models, where the model's internal computational uncertainty is preserved but its output diversity is artificially collapsed. This creates a fundamental operational challenge: the model appears consistent and 'aligned' at the surface level, but this consistency is a byproduct of training-induced homogenization rather than genuine epistemic certainty. This necessitates new, multi-boundary approaches to safety and uncertainty estimation.",
-          "verbatim": "Stage-wise token entropy measurement (Base 1.175?SFT 1.055?DPO 0.776 nats, p=1.17?10?40) reveals the mechanistic decoupling: DPO retains 66% of token-level entropy while collapsing response diversity.",
-          "excerpt_context": "Abstract",
-          "_backfill": {
-            "previous_id": "saf-beliefs-057",
-            "similarity": 0.7247,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document demonstrates that alignment-induced homogenization renders standard sampling-based uncertainty estimation methods (like SelfCheckGPT or Semantic Entropy) structurally unreliable. Because these methods rely on output diversity, the 'alignment tax' creates a blind spot where the model consistently produces the same (potentially incorrect) answer, leading to a failure in safety-critical uncertainty detection.",
+          "verbatim": "This alignment tax renders sampling-based methods structurally unreliable on affected questions (AUROC=0.500).",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "uncertainty_estimation",
+            "structural_failure"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
-          "point": "The document identifies an 'alignment tax' where DPO (Direct Preference Optimization) and other alignment techniques compress the stochastic output distribution of models. This homogenization destroys response diversity, which the authors argue is a critical substrate for measuring model uncertainty. This suggests that current alignment methods may inadvertently mask model uncertainty, making it harder to detect when a model is 'confidently wrong'.",
-          "verbatim": "Our alignment tax finding explains why this paradigm difference matters more for aligned models: when DPO compresses the stochastic output distribution into a single mode, SEÆs measurement substrate (response diversity) is destroyed, while B1Æs substrate (next-token logit distribution) is largely preserved.",
-          "excerpt_context": "Section 2, Paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-intentions-108",
-            "similarity": 0.7319,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document provides empirical evidence that alignment training (specifically DPO) systematically homogenizes model outputs, effectively destroying the substrate for semantic entropy (SE) measurement. This 'alignment tax' confirms that current alignment techniques reduce the diversity of model outputs, which complicates traditional uncertainty estimation and necessitates the development of alternative, non-sampling-based boundary detectors like the UCBD framework.",
+          "verbatim": "Our alignment tax finding explains why this paradigm difference matters more for aligned models: when DPO compresses the stochastic output distribution into a single mode, SE's measurement substrate (response diversity) is destroyed, while B1's substrate (next-token logit distribution) is largely preserved.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment_tax",
+            "response_homogenization",
+            "dpo"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-008",
-          "category": "Beliefs",
-          "point": "The authors observe an 'overconfidence inversion' in aligned models, where a lack of relevant knowledge paradoxically reduces the model's expressed uncertainty. This phenomenon poses a significant safety risk, as the model fails to signal its own ignorance, potentially leading users to trust incorrect or hallucinated information.",
-          "verbatim": "Exhibits an ôoverconfidence inversionö where lack of relevant knowledge paradoxically reduces expressed uncertainty.",
-          "excerpt_context": "Section 2, B5 Grounding",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5218,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-060",
-          "category": "Beliefs",
-          "point": "The document identifies that alignment processes (instruction-tuning and RLHF) cause response homogenization, where models collapse into producing identical, 'safe' outputs. This suggests that the pursuit of alignment, while intended to make models safer, creates a structural limitation where models lose the ability to represent genuine diversity in knowledge. This homogenization is a property of the learned distribution resulting from alignment, rather than a failure of the evaluation methodology.",
-          "verbatim": "This confirms that response homogenization is caused by alignment (instruction-tuning+RLHF), not by pre-training, model architecture, or quantization. Qualitative inspection shows that base model responses are factually meaningful (not random text)ùthey reflect genuine diversity in the modelÆs knowledge representation, which alignment suppresses in favor of consistent, ôsafeö outputs.",
-          "excerpt_context": "Section 5.13, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-beliefs-029",
-            "similarity": 0.7534,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-060",
-          "category": "Beliefs",
-          "point": "The document asserts that the 'alignment tax'—the reduction in response diversity—is highly variable and depends on the specific alignment recipe (SFT/RLHF details) and model scale. This implies that safety-critical applications cannot assume that alignment status alone guarantees a specific level of model behavior or uncertainty, necessitating per-model measurement of homogenization.",
-          "verbatim": "Homogenization severity varies dramatically: Qwen3-14B shows 28.5% SCR while Mistral-7B and LLaMA-3B show only 1.0û5.5%ùsuggesting the alignment tax depends on both model scale and the specific alignment recipe (SFT/RLHF details, training data).",
-          "excerpt_context": "Section 5.14, paragraph 2",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6683,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-020",
+          "taxonomy_node_id": "saf-desires-003",
           "category": "Intentions",
-          "point": "The authors propose a 'multi-boundary cascade' system to detect knowledge gaps and uncertainty, which functions as a severity-rating mechanism for AI flaws. By routing queries through different boundaries (B1-B5), the system identifies when a model is likely to produce unreliable or hallucinated output. This supports the safetyist goal of implementing rigorous, empirical checks to prevent the deployment of models that are 'confidently wrong' in critical domains.",
-          "verbatim": "UCBD decomposes the problem of 'knowing what you don't know' into five cognitive boundaries orchestrated by a cheapest-first cascade.",
-          "excerpt_context": "Section 9, Conclusion"
+          "point": "The document proposes the UCBD (Uncertainty-aware Cascade Boundary Detection) framework as a necessary architectural intervention to ensure model safety and reliability. By using a cheapest-first cascade of boundary detectors (B1-B5), the authors intend to provide a robust, cost-effective mechanism for flagging model errors and 'confidently wrong' outputs, which is essential for safe deployment in high-stakes domains.",
+          "verbatim": "Figure 1: UCBD framework: four-column architecture mapping brain mechanisms, boundary detectors, detection signals, and response strategies.",
+          "excerpt_context": "Section 4, Figure 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "cascade_architecture",
+            "boundary_detection",
+            "selective_prediction"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-060",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that alignment techniques like RLHF and DPO lead to 'response homogenization' or 'single-cluster collapse,' where models lose the ability to generate diverse outputs. This supports the safetyist belief that current alignment methods are structurally insufficient, as they inadvertently constrain the model's internal state and reduce its capacity for nuanced uncertainty estimation. The persistence of this 'alignment tax' suggests that current training paradigms may be fundamentally at odds with maintaining robust, diverse, and well-calibrated AI behavior.",
-          "verbatim": "Collapse is a property of the aligned model's response distribution, not insufficient sampling.",
-          "excerpt_context": "Section 5, page 24",
-          "_backfill": {
-            "previous_id": "saf-beliefs-001",
-            "similarity": 0.8685,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document asserts that alignment training (specifically SFT and DPO) systematically reduces the diversity of model outputs, a phenomenon termed the 'alignment tax.' This homogenization is empirically demonstrated across multiple model families and scales, where aligned models produce identical responses for a significant percentage of queries. This reduction in output entropy limits the effectiveness of sampling-based uncertainty estimation methods, as these methods rely on response diversity to signal model uncertainty.",
+          "verbatim": "The alignment tax is a property of the modelÆs output distribution, not the NLI model or clustering method. ... This confirms that response homogenization is caused by alignment (instruction-tuning+RLHF), not by pre-training, model architecture, or quantization.",
+          "excerpt_context": "Section 3, pages 11-13",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment_tax",
+            "response_homogenization",
+            "uncertainty_estimation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-060",
-          "category": "Intentions",
-          "point": "The document emphasizes the need for rigorous, standardized evaluation of alignment impacts, such as the 'alignment tax' on uncertainty estimation. By documenting how specific training methods (SFT, DPO) reduce output diversity, the authors highlight the importance of transparency in how alignment processes alter model behavior. This aligns with the safetyist intention to document and audit the hidden costs of alignment before widespread deployment.",
-          "verbatim": "The alignment tax persists across the entire threshold range for both methods.",
-          "excerpt_context": "Section 5, page 24",
-          "_backfill": {
-            "previous_id": "saf-intentions-024",
-            "similarity": 0.7673,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "saf-beliefs-001",
+          "category": "Beliefs",
+          "point": "The document provides evidence that current alignment methods (SFT and DPO) are structurally insufficient to maintain output diversity, which is a critical component for reliable uncertainty estimation. The findings suggest that as models become more 'aligned' and 'safe,' they become less capable of expressing the underlying uncertainty in their knowledge representation, effectively masking the model's internal state.",
+          "verbatim": "The alignment tax is not ôalready solvedö by logit-based methods; rather, our diagnosis explains why logit-based signals (B1, Semantic Energy) succeed where diversity-based signals (SE, SelfCheck) fail: RLHF suppresses inter-response diversity but cannot fully smooth per-token computational uncertainty without degrading generation quality.",
+          "excerpt_context": "Section 3, page 12",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment_tax",
+            "uncertainty_estimation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The authors argue for rigorous diagnostic testing of models before deployment to ensure that uncertainty quantification remains reliable. They emphasize that practitioners must check for response homogenization to avoid over-trusting models that may be 'confidently wrong' due to alignment-induced entropy collapse.",
+          "verbatim": "For practitioners: (1) Check for response homogenization before trusting sampling-based uncertainty on aligned modelsùa simple diagnostic: sample N=10 responses and compute the single-cluster rate; if SCR > 5%, sampling-based UQ is unreliable on that model-task pair.",
+          "excerpt_context": "Section 8.1, Practical Implications",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "uncertainty_quantification",
+            "diagnostic_testing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-027",
+          "category": "Beliefs",
+          "point": "The document notes that RLHF compresses entropy into a narrow range, which limits the model's capacity to express uncertainty. This reduction in entropy is a direct consequence of the alignment process, making it harder to distinguish between correct and incorrect model responses.",
+          "verbatim": "RLHF compresses entropy into narrow range (mean=0.19, max=0.64).",
+          "excerpt_context": "Section 5, page 25",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "entropy_compression",
+            "rlhf"
+          ]
         }
       ]
     },
@@ -183,224 +267,260 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-035",
-          "category": "Intentions",
-          "point": "The document treats AI as a fallible, technical system subject to specific, measurable 'alignment taxes' rather than an anthropomorphic agent. By systematically analyzing the impact of training stages (Base vs. SFT vs. DPO) on output diversity, the research demystifies AI behavior as a product of specific training recipes and architectural choices. This approach emphasizes the need for rigorous, empirical documentation of how these systems are built and how they fail in practice.",
-          "verbatim": "A base-vs-instruct ablation on Qwen3-14B confirms the causal role of alignment: the base model shows 1.0% single-cluster rate vs. 28.5% for the instruct model (Wilcoxon p<10?6).",
-          "excerpt_context": "Abstract",
-          "_backfill": {
-            "previous_id": "skp-intentions-009",
-            "similarity": 0.6123,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-028",
+          "taxonomy_node_id": "skp-intentions-011",
           "category": "Beliefs",
-          "point": "The document highlights that aligned models exhibit 'response homogenization,' where they collapse diverse potential answers into a single, often repetitive mode. This behavior is not just a decoding artifact but a fundamental property of the model's output distribution post-alignment, which limits the model's ability to provide varied or nuanced perspectives.",
-          "verbatim": "The Jaccard/embedding gap reveals an additional layer of homogenization: 322/790 questions show surface-level lexical diversity (avg 3.3 Jaccard clusters) but are semantically identical (single embedding cluster)ùthe model varies wording while preserving meaning.",
-          "excerpt_context": "Section 5.12, Exp 12",
-          "_backfill": {
-            "previous_id": "skp-beliefs-056",
-            "similarity": 0.3856,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document highlights that current AI models are essentially 'answer machines' that have been trained via DPO to collapse their output distributions toward single, consistent responses. This homogenization is a direct result of preference optimization, which prioritizes stylistic consistency over genuine epistemic uncertainty. This reinforces the skeptic view that these models are pattern-matching engines whose behavior is heavily constrained by training recipes rather than reflecting true understanding.",
+          "verbatim": "The mode-collapse effect of RLHF is well-documented: Kirk et al. [2024] show reduced output diversity; Saeidi et al. [2024] find probability mass concentrates on 'safe' responses; Azar et al. [2024] connect KL-regularized RLHF to distribution narrowing.",
+          "excerpt_context": "Section 2, Alignment, calibration, and ensembles",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "mode_collapse",
+            "preference_optimization"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-011",
-          "category": "Intentions",
-          "point": "The document critiques existing sampling-based uncertainty estimation methods (like Semantic Entropy) as failing to provide discriminative power when models are homogenized by alignment. It argues that these methods rely on output diversity that no longer exists in aligned models, rendering them ineffective for high-stakes factual judgments.",
-          "verbatim": "On TruthfulQA where aligned models produce homogenized outputs, even the best sampling-based refinement cannot recover signal from collapsed diversity. This directly addresses whether ôcertain advanced sampling signals remain competitive under homogenizationöùthey do not.",
-          "excerpt_context": "Section 5.12, paragraph 1"
+          "category": "Beliefs",
+          "point": "The document highlights that models often exhibit 'entropy inversion' or 'overconfidence inversion,' where they remain confidently wrong even when lacking relevant knowledge. This reinforces the skeptic position that LLMs do not possess genuine understanding or self-awareness, but rather operate as pattern-matching engines whose internal uncertainty signals (like entropy) can be decoupled from actual factual correctness.",
+          "verbatim": "B5 Grounding External cross-validation. Exhibits an 'overconfidence inversion' where lack of relevant knowledge paradoxically reduces expressed uncertainty.",
+          "excerpt_context": "Section 2, B5 Grounding",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "overconfidence_inversion",
+            "entropy_inversion"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-053",
-          "category": "Intentions",
-          "point": "The document highlights the unreliability of using AI-based evaluation (like LLM-judges) to assess other AI models, noting that verbalized confidence is often anti-informative. The authors show that models report 'True' for a vast majority of answers even when incorrect, demonstrating a significant overconfidence gap. This supports the skeptic view that current AI models lack genuine self-awareness and that automated grading benchmarks are prone to systemic bias.",
-          "verbatim": "Verbalized confidence fails. P(True) is anti-informative on TruthfulQA (AUROC=0.427): the model reports 'True' for 89.7% of answers (41.9% correct)ùa 48-point overconfidence gap.",
-          "excerpt_context": "Section 6, Cross-Task Analysis"
+          "taxonomy_node_id": "skp-intentions-011",
+          "category": "Beliefs",
+          "point": "The document argues that the 'alignment tax' is a measurable, systematic property of the model's output distribution resulting from instruction-tuning and RLHF. It demonstrates that base models possess genuine diversity in their knowledge representation, which is then suppressed by alignment processes to favor consistent, 'safe' outputs. This suggests that alignment does not necessarily improve the model's understanding but rather constrains its output to a narrow, homogenized set of responses.",
+          "verbatim": "Key finding: the base model produces nearly maximal diversity (9.26/10 clusters per question, only 2/200 questions with a single cluster), while the instruct model collapses to 3.58 clusters with 28.5% single-cluster questions. This confirms that response homogenization is caused by alignment (instruction-tuning+RLHF), not by pre-training, model architecture, or quantization.",
+          "excerpt_context": "Section 3, page 13",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "response_homogenization",
+            "alignment_tax"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-087",
-          "category": "Beliefs",
-          "point": "The authors critique existing metrics for auditing AI, specifically noting that simple surface-level metrics (like Jaccard similarity) or standard NLI-based approaches fail to capture the true extent of model homogenization. They argue that the 'alignment tax' is a fundamental bottleneck that cannot be solved by better clustering methodology alone. This aligns with the skeptic view that current auditing tools are insufficient to detect the deeper, structural harms caused by alignment training.",
-          "verbatim": "Better NLI models cannot create semantic diversity where the aligned model produces none.",
-          "excerpt_context": "Section 5.23, Exp 23",
-          "_backfill": {
-            "previous_id": "skp-beliefs-061",
-            "similarity": 0.6399,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "category": "Intentions",
+          "point": "The document supports the need for robust, systematic auditing of AI models, specifically highlighting that current sampling-based uncertainty methods are structurally compromised by alignment. It advocates for moving beyond simple surface-level metrics toward multi-boundary cascades that can detect when a model is failing to express genuine uncertainty.",
+          "verbatim": "The consistency across all five levelsùeachusingfundamentallydifferentsimilarity or weighting schemesùis itself strong evidence that the bottleneck is output uniformity rather than clustering methodology.",
+          "excerpt_context": "Section 8.2, Limitations",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "robust_auditing",
+            "uncertainty_quantification"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-015",
-          "category": "Intentions",
-          "point": "The document demonstrates that AI models exhibit 'single-cluster collapse' even at high temperatures, suggesting that the models are fundamentally limited by their training-induced response distributions rather than possessing genuine, creative uncertainty. This supports the skeptic view that current AI models are constrained tools whose outputs are heavily dictated by their alignment training, rather than being capable of flexible, human-like reasoning. The 'alignment tax' is presented as a measurable, inherent limitation of current LLM architectures.",
-          "verbatim": "Highertemperature reduces but does not eliminate homogenization—even at T=1.5, 38% of questions collapse to a single cluster.",
-          "excerpt_context": "Section 5, page 24",
-          "_backfill": {
-            "previous_id": "skp-intentions-085",
-            "similarity": 0.5472,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "skp-intentions-011",
+          "category": "Beliefs",
+          "point": "The document confirms that aligned models often exhibit a 'confidently wrong' behavior on factual tasks, where the model reports high confidence despite being incorrect. This supports the skeptic view that current AI models lack genuine understanding and that their output distributions are artifacts of training rather than reliable indicators of truth.",
+          "verbatim": "Verbalized confidence fails. P(True) is anti-informative on TruthfulQA (AUROC=0.427): the model reports ôTrueö for 89.7% of answers (41.9% correct)ùa 48-point overconfidence gap, confirming that implicit signals (token entropy) are more reliable than explicit self-assessment on RLHF-aligned models.",
+          "excerpt_context": "Section 5.25, Exp 25",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "overconfidence_gap",
+            "implicit_signals"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-011",
+          "category": "Beliefs",
+          "point": "The document highlights that model performance on factual QA is often dominated by length rather than genuine reasoning or semantic understanding. This supports the skeptic view that AI models are essentially pattern-matching engines where output length serves as a proxy for quality, rather than the model possessing deep, reliable knowledge.",
+          "verbatim": "On GSM8K, length dominates (r=0.53, AUROC 0.849 vs. 0.724). Entropy's value is cross-task generality.",
+          "excerpt_context": "Section 5, page 25",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "pattern_matching",
+            "length_bias"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "DPO training causes significant response homogenization in LLMs, reducing output diversity compared to base or SFT-only models.",
+      "claim": "DPO training, rather than SFT, is the primary driver of response homogenization in aligned LLMs.",
+      "claim_label": "DPO as Driver of Homogenization",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-060"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim based on training stage ablation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Alignment training via DPO compresses the stochastic output distribution of LLMs into a single mode, which destroys the substrate for semantic entropy (SE) measurement while preserving next-token logit distributions.",
       "claim_label": "DPO-Induced Response Homogenization",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-037",
-        "saf-beliefs-057"
+        "saf-beliefs-060"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of model behavior across multiple training stages and families."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Alignment processes (instruction-tuning and RLHF) significantly reduce the semantic diversity of LLM outputs compared to base models.",
-      "claim_label": "Alignment-Induced Response Homogenization",
+      "claim": "The UCBD cascade architecture achieves statistically equivalent accuracy to parallel execution while reducing computational costs by 57.4% for B2 calls.",
+      "claim_label": "UCBD Cascade Efficiency",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-029"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by comparative experiments between base and instruct models."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "DPO (Direct Preference Optimization) is a primary driver of response homogenization compared to SFT (Supervised Fine-Tuning).",
-      "claim_label": "DPO as Homogenization Driver",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by training stage ablation experiments."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "DPO training significantly compresses per-token entropy and collapses response-level diversity in aligned models.",
-      "claim_label": "DPO-Driven Response Homogenization",
+      "claim": "Alignment training (SFT and DPO) causes response homogenization, significantly reducing the diversity of model outputs compared to base models.",
+      "claim_label": "Alignment Causes Response Homogenization",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-005"
+        "saf-beliefs-060"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of training stage effects on model output distribution."
+        "category_criteria": "Empirical observation based on comparative analysis of base vs. instruct models."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The severity of the alignment tax is dependent on the specific alignment recipe (SFT/DPO details) and model scale, rather than being a universal constant.",
+      "claim_label": "Alignment Tax Recipe Dependency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on cross-family and stage-wise ablations."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Alignment training (DPO/RLHF) causes response homogenization, where models collapse diverse potential answers into a single semantic cluster, thereby reducing the effectiveness of sampling-based uncertainty estimation.",
+      "claim_label": "Alignment-Induced Response Homogenization",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-060"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim supported by 25 experiments across four model families."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Increasing the temperature of an aligned model reduces but does not eliminate response homogenization, with 38% of questions still collapsing to a single cluster at T=1.5.",
+      "claim_label": "Temperature Sensitivity of Homogenization",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Alignment Tax",
-      "suggested_description": "A phenomenon where alignment training (specifically DPO) suppresses response diversity, causing models to repeatedly output identical semantic clusters.\nEncompasses: DPO-driven homogenization, loss of sampling-based uncertainty signal, and task-dependent uncertainty structure.\nExcludes: General mode collapse or stylistic uniformity that does not impact uncertainty estimation.",
-      "concept": "The alignment tax is defined as the reduction in semantic diversity (1 - DS(q)) across i.i.d. samples, which renders sampling-based uncertainty estimation methods structurally uninformative. It is a measurable, implementation-independent consequence of alignment that creates a 'phase transition' from having some uncertainty signal to zero signal.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a novel diagnostic finding that describes a specific, measurable failure mode of aligned models that is not covered by existing 'mode collapse' or 'misalignment' nodes.",
-      "Accelerationist Interpretation": "The alignment tax is a technical hurdle that can be bypassed by using non-sampling signals like token entropy, which remain robust even when output diversity is suppressed.",
-      "Safetyist Interpretation": "The alignment tax is a dangerous, hidden side-effect of current alignment recipes that creates systemic blind spots in model reliability and uncertainty estimation.",
-      "Skeptic Interpretation": "The alignment tax is a predictable consequence of training models to prioritize specific 'safe' or 'preferred' outputs, demonstrating that alignment is a form of distributional engineering rather than intelligence."
-    },
-    {
-      "suggested_label": "Overconfidence Inversion in Aligned Models",
-      "suggested_description": "A Belief within safetyist discourse that describes the phenomenon where model alignment techniques cause models to express higher certainty when they lack knowledge. This creates a dangerous failure mode where the model is 'confidently wrong'.",
-      "concept": "The document notes that aligned models exhibit an 'overconfidence inversion' where lack of relevant knowledge paradoxically reduces expressed uncertainty. This is validated using NLI entailment scoring.",
+      "suggested_label": "Cheapest-First Cascade Uncertainty Detection",
+      "suggested_description": "An Intention within safetyist and accelerationist discourse that optimizes uncertainty detection by routing queries through a cost-ordered sequence of signals.\nEncompasses: B1 token entropy as a free first stage, escalating to NLI-based verification only when necessary.\nExcludes: Single-signal fusion frameworks that compute all signals for every query.",
+      "concept": "The document proposes a cascade architecture (UCBD) that uses free token entropy as a first-stage filter to detect uncertainty, only invoking more expensive methods like NLI verification if the initial signal is insufficient. This achieves significant cost savings while maintaining high selective prediction accuracy.",
       "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This describes a specific, counter-intuitive failure mode of aligned models that is not covered by existing nodes."
+      "suggested_category": "Intentions",
+      "reason": "This represents a novel architectural approach to uncertainty estimation that bridges the gap between efficiency and safety."
     },
     {
-      "suggested_label": "Alignment Tax on Response Diversity",
-      "suggested_description": "A situation concept that describes the trade-off between model alignment and the stochastic diversity of model outputs.\nEncompasses: DPO-induced mode collapse, loss of semantic variance, and reduced inter-sample diversity.\nExcludes: General model performance degradation or latency increases.",
-      "concept": "The document defines the 'alignment tax' as the destruction of response diversity caused by DPO compressing the output distribution. This tax makes it harder to measure uncertainty via inter-sample diversity.",
+      "suggested_label": "Overconfidence Inversion",
+      "suggested_description": "A Belief within skeptic discourse that describes the phenomenon where a model's internal uncertainty signals decrease (indicating higher confidence) precisely when the model lacks the knowledge required to answer correctly.\nEncompasses: Entropy inversion, paradoxical confidence in knowledge deserts.\nExcludes: Standard calibration error, which typically assumes uncertainty correlates with error.",
+      "concept": "The document identifies 'overconfidence inversion' as a failure mode where lack of relevant knowledge paradoxically reduces expressed uncertainty. This is specifically noted in the B5 Grounding detector, where the model fails to signal its own ignorance.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This is a central finding of the paper that bridges alignment, uncertainty, and model behavior.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a technical hurdle to be solved by better training objectives that preserve diversity while maintaining alignment.",
-      "Safetyist Interpretation": "Safetyists view this as a critical warning that alignment processes are making models less transparent and more prone to dangerous, overconfident hallucinations.",
-      "Skeptic Interpretation": "Skeptics see this as evidence that alignment is a form of 'homogenization' that limits the utility and nuance of AI systems, potentially enforcing a narrow, biased 'correct' answer."
+      "reason": "This is a specific, documented failure mode of LLMs that does not map to existing nodes regarding general calibration or alignment.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a technical hurdle to be solved through better training data or architectural improvements like the UCBD cascade.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical safety risk, as it demonstrates that models can be dangerously deceptive or unaware of their own limitations, necessitating rigorous pre-deployment safety proofs.",
+      "Skeptic Interpretation": "Skeptics would use this as evidence that LLMs lack genuine cognitive grounding and are merely statistical predictors that fail predictably when they encounter 'knowledge deserts'."
     },
     {
-      "suggested_label": "Alignment Tax on Uncertainty Estimation",
-      "suggested_description": "A Belief within safetyist discourse that alignment processes create a structural barrier to reliable uncertainty estimation by suppressing the output diversity required for sampling-based metrics. Encompasses: The failure of Semantic Entropy in homogenized regimes. Excludes: General model performance degradation.",
-      "concept": "The document defines the 'alignment tax' as the phenomenon where aligned models produce homogenized outputs, rendering sampling-based uncertainty estimation methods uninformative. It demonstrates that this tax is a property of the model's output distribution resulting from alignment, rather than a limitation of the clustering or NLI methods used to measure it.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific, measurable interaction between safety-oriented alignment and the technical feasibility of uncertainty quantification.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a technical hurdle to be overcome by better, non-sampling-based uncertainty estimation, rather than a reason to slow down alignment.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical warning that current alignment techniques may be creating 'blind spots' where models appear confident or consistent but are actually failing to represent uncertainty.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that aligned models are fundamentally limited and that 'safe' outputs are often just a form of linguistic conformity that masks the model's lack of true understanding."
-    },
-    {
-      "suggested_label": "Multi-Boundary Cascade Routing",
-      "suggested_description": "A situation concept that describes a hierarchical, cost-efficient architecture for uncertainty detection in LLMs. \nEncompasses: Sequential application of increasingly expensive detectors (B1-B5) to filter unreliable model outputs.\nExcludes: Single-detector approaches or monolithic uncertainty estimation methods.",
-      "concept": "The authors propose a 'three-boundary cascade' (B1-B2-B4) that uses a cheapest-first approach to detect knowledge gaps. By combining weakly dependent signals, the system achieves higher accuracy than any single detector while maintaining low computational overhead.",
+      "suggested_label": "Multi-Boundary Uncertainty Cascade",
+      "suggested_description": "A situation concept that describes a methodology for orchestrating multiple, weakly-dependent uncertainty signals into a cheapest-first routing cascade to improve selective prediction.\nEncompasses: B1-B5 boundary signals, selective prediction, cost-optimized routing.\nExcludes: Single-detector approaches or monolithic uncertainty estimation.",
+      "concept": "The document proposes a 'three-boundary cascade' (B1-B2-B4) that uses free or low-cost signals (like token entropy) before escalating to more expensive ones. This architecture allows for improved selective prediction accuracy while maintaining computational efficiency.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "This describes a specific architectural strategy for system-level AI reliability that does not map to existing nodes.",
-      "Accelerationist Interpretation": "This architecture is a highly efficient, pragmatic solution that allows for the safe deployment of powerful models by adding a 'safety layer' without needing to fundamentally alter the underlying model training.",
-      "Safetyist Interpretation": "This is a necessary, albeit partial, mitigation strategy that acknowledges the inherent unreliability of aligned models and attempts to build a safety net around them to prevent catastrophic failures.",
-      "Skeptic Interpretation": "This approach is a 'band-aid' that attempts to manage the symptoms of model unreliability (hallucinations, overconfidence) rather than addressing the root cause of the models' lack of genuine understanding."
-    },
-    {
-      "suggested_label": "Alignment Tax on Model Diversity",
-      "suggested_description": "A Belief within safetyist discourse that alignment training (RLHF/DPO) systematically reduces the entropy and diversity of model outputs, creating a measurable performance penalty in uncertainty estimation tasks.\nEncompasses: Response homogenization, single-cluster collapse, and reduced semantic variance.\nExcludes: General model capability loss or catastrophic failure modes.",
-      "concept": "The document identifies that alignment training leads to 'response homogenization,' where models consistently produce the same output regardless of sampling parameters. This 'alignment tax' is shown to be a property of the model's distribution rather than a sampling error, significantly hindering the model's ability to express uncertainty.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept specifically addresses the trade-off between alignment and output diversity, which is not fully captured by existing nodes.",
-      "resolved_node_id": "saf-beliefs-060"
+      "reason": "This is a novel architectural proposal for uncertainty quantification that integrates multiple signals into a cascade, distinct from existing single-method auditing.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a highly efficient, scalable way to deploy reliable AI agents by minimizing the computational overhead of safety checks.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary, albeit partial, mitigation for the 'alignment tax' that allows for safer deployment by flagging uncertain outputs for human review.",
+      "Skeptic Interpretation": "Skeptics would view this as a technical patch for the fundamental inability of current models to 'know what they don't know,' emphasizing that even with a cascade, the underlying model remains an 'answer machine' prone to overconfidence."
     },
     {
       "suggested_label": "Single-Cluster Collapse",
-      "suggested_description": "A situation concept that describes the phenomenon where an AI model's output distribution collapses into a single, repetitive response cluster despite attempts to increase diversity through temperature scaling.\nEncompasses: Mode collapse in LLM generation, failure of stochastic sampling, and alignment-induced output rigidity.\nExcludes: Hallucination detection or general model bias.",
-      "concept": "The document reports that even at high temperatures (T=1.5), 38% of questions collapse to a single cluster. This is identified as a property of the aligned model's response distribution, indicating that alignment training fundamentally restricts the model's output space.",
+      "suggested_description": "A situation concept that describes the phenomenon where an aligned model's output distribution for a given prompt converges to a single, identical response across multiple sampling attempts.\nEncompasses: Response homogenization, mode collapse in LLMs, lack of output diversity.\nExcludes: General model hallucination or factual inaccuracy.",
+      "concept": "The document identifies 'single-cluster collapse' as a fundamental property of aligned models, noting that it persists regardless of sampling size or temperature. It is presented as a structural limitation of the alignment process rather than a failure of sampling methodology.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This is a specific, measurable failure mode of aligned models that warrants its own situation-based taxonomy node.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a technical constraint to be overcome through better training data or architectural adjustments to restore model entropy.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that current alignment methods are 'brittle' and fundamentally limit the model's ability to provide diverse, honest, or uncertain responses.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that models are merely 'answer machines' that have been trained to provide a single, 'correct' (aligned) answer, lacking true generative flexibility."
+      "reason": "This is a specific technical phenomenon observed in aligned models that is distinct from general 'alignment tax' or 'entropy reduction'.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a technical bottleneck to be solved through better sampling or architectural diversity, rather than a reason to halt alignment.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence that alignment is fundamentally destructive to the model's internal state and reliability, necessitating a rethink of current training paradigms.",
+      "Skeptic Interpretation": "Skeptics would see this as further proof that models are merely repeating learned patterns and lack the capacity for genuine, diverse, or creative generation."
     }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }

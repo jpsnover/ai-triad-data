@@ -1,14 +1,14 @@
 {
   "doc_id": "language-models-are-changing-ai-need-holistic-evaluation-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 200,
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,76 +16,111 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 14,
+      "elapsed_seconds": 9.0,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "language-models-are-changing-ai-need-holistic-evaluation-2026",
+    "measured_at": "2026-05-02T21:24:06.5979090-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.5,
+        "flags": {
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 28648.0,
+        "out_units": "items",
+        "out_count": 11.0,
+        "ratio": 0.0004,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.1429,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 7
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 42.0,
+        "ratio": 0.0798,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 11,
+          "below_threshold_forced": 2,
+          "intentions_selected": 28,
+          "effective_threshold": 0.4375,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0798
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-010",
-          "category": "Intentions",
-          "point": "The document advocates for the development of foundation models as a transformative infrastructure that can be adapted to a wide range of tasks. By benchmarking these models, the authors aim to move the technology from an immature state to a reliable, value-aligned utility. This aligns with the accelerationist goal of scaling AI capabilities to solve complex problems across diverse domains. The document acknowledges that this requires ongoing, iterative improvement and community-wide collaboration.",
-          "verbatim": "By taking a step towards transparency, we aim to transform foundation models from an immature emerging technology to a reliable infrastructure that embodies human values.",
-          "excerpt_context": "Conclusion",
-          "_backfill": {
-            "previous_id": "acc-intentions-055",
-            "similarity": 0.622,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
-          "category": "Intentions",
-          "point": "The authors propose a standardized, holistic benchmarking framework (HELM) to provide transparency into AI capabilities and risks. By using observable, falsifiable metrics across 30 models, they seek to move beyond abstract debates and ground progress in empirical data. This supports the accelerationist view that we must measure and understand AI's growth to effectively deploy it. The authors note that this is a living project that must evolve as new models are released.",
-          "verbatim": "We intend for HELM to serve as a map for the world of language models, continually updated over time, through collaboration with the broader community.",
-          "excerpt_context": "Introduction",
-          "_backfill": {
-            "previous_id": "acc-intentions-048",
-            "similarity": 0.6344,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-017",
+          "taxonomy_node_id": "acc-beliefs-015",
           "category": "Beliefs",
-          "point": "The document observes that scaling up model size remains a reliable driver of performance within model families, even as instruction tuning provides significant efficiency gains. This empirical finding supports the accelerationist belief in the predictable growth of AI intelligence through increased compute and data. The authors highlight that smaller models can now compete with much larger ones, suggesting that innovation in training methods is as critical as raw scale. They caution, however, that the specific methods for this tuning are often proprietary.",
-          "verbatim": "Instruction tuning, the practice of fine-tuning LMs with human feedback, pioneered by OpenAI and Anthropic, is highly effective in terms of accuracy, robustness, and fairness, allowing smaller models (e.g., Anthropic-LM (50B)) to compete with models 10x the size (Microsoft/NVIDIAÃ†s TNLG v2 (530B)). Note that within a model family, scaling up still helps.",
-          "excerpt_context": "Findings, point 1"
+          "point": "The document observes that adaptation strategies like few-shot prompting significantly influence model performance, suggesting that the gap between latent capabilities and specific tasks can be bridged through effective interface design. By using simple, generic prompts, researchers can unlock general-purpose utility without requiring model-specific incantations. This supports the accelerationist view that foundation models are highly adaptable tools whose potential is realized through iterative interface refinement. The document notes, however, that models are not yet fully interoperable, indicating that interface design remains a critical bottleneck for scaling.",
+          "verbatim": "We chose simple and generic prompts to encourage the development of generic language interfaces that donÆt require model-specific incantations.",
+          "excerpt_context": "Section 3, Standardization",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "transparency_verification"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-053",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document highlights the disparity between open and closed models, noting that open models have improved dramatically but still often underperform proprietary counterparts. It implicitly supports the accelerationist goal of democratizing AI by calling for community norms that provide researchers with better access to models. The authors argue that transparency is essential for building a robust ecosystem of natural language interfaces. They acknowledge that the current landscape is dominated by institutional privilege.",
+          "point": "The authors advocate for the creation of democratic, pluralistic benchmarks that orient the progress of foundation models toward societal benefit. By making the evaluation process transparent and collaborative, they aim to transform these models into reliable infrastructure. This aligns with accelerationist goals of fostering a robust, open ecosystem where technological progress is guided by broad community participation rather than closed-door development. The document acknowledges that current benchmarking practices often align with institutional privilege, which they seek to rectify through open-source infrastructure.",
           "verbatim": "The history and trajectory of AI benchmarking aligns with institutional privilege and confers decision-making power. Benchmarks set the agenda and orient progress: We should aspire for holistic, pluralistic, and democratic benchmarks.",
           "excerpt_context": "Conclusion",
-          "_backfill": {
-            "previous_id": "acc-intentions-002",
-            "similarity": 0.6439,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
-          "category": "Intentions",
-          "point": "The authors argue for a shift toward auditing the output and behavior of models rather than relying on opaque, proprietary claims. By making the evaluation process transparent and standardized, they enable the community to verify performance and identify risks. This aligns with the accelerationist focus on empirical, output-based safety. The document notes that the lack of public information on training methodologies for top models remains a significant barrier to this goal.",
-          "verbatim": "Unfortunately, how the instruction tuning was performed for these models is not public knowledge.",
-          "excerpt_context": "Findings, point 1",
-          "_backfill": {
-            "previous_id": "acc-intentions-004",
-            "similarity": 0.6143,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "governance_adaptive",
+            "transparency_verification"
+          ]
         }
       ]
     },
@@ -93,49 +128,42 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
+          "taxonomy_node_id": "saf-intentions-117",
+          "category": "Intentions",
+          "point": "The document argues that transparency is the vital first step toward scientific understanding and societal impact assessment of foundation models. Because these models are increasingly used in high-stakes environments like political testimony and co-authoring, the lack of a unified evaluation standard poses a significant safety risk. The authors propose a holistic benchmarking approach to make model capabilities and risks visible, which is essential for ensuring these systems embody human values. They note that current opacity regarding training methodologies, particularly for instruction-tuned models, hinders effective safety research.",
+          "verbatim": "Transparency is the vital first step towards these two goals.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "transparency_accountability",
+            "governance_oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-011",
           "category": "Beliefs",
-          "point": "The document identifies that language models can exhibit harmful behaviors like toxicity and disinformation, which are not always captured by standard accuracy metrics. This supports the safetyist concern that models may possess emergent, risky capabilities that require proactive, multi-metric evaluation. The authors emphasize that these risks are not static and require periodic, holistic benchmarking to track. They acknowledge that current disinformation generation capabilities are mixed but warn that this could change rapidly.",
+          "point": "The authors find that while instruction tuning improves accuracy, robustness, and fairness, it often occurs in a 'black box' where the specific tuning methodologies are not public. This creates a risk where models are optimized for performance metrics without transparency into the underlying values or safety constraints applied during training. From a safetyist perspective, this lack of visibility into the alignment process makes it difficult to predict how models will behave under distribution shift. The document emphasizes that periodic benchmarking is crucial to track these risks as models become more powerful.",
+          "verbatim": "Unfortunately, how the instruction tuning was performed for these models is not public knowledge.",
+          "excerpt_context": "Findings, Point 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety_alignment",
+            "transparency_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-013",
+          "category": "Intentions",
+          "point": "The document highlights the need to evaluate models for risks like disinformation generation, noting that while current models are not yet 'slam dunks' at generating persuasive disinformation, this capability could evolve rapidly. By proactively benchmarking these risks, the authors aim to provide a scientific account of societal impact before widespread deployment. This aligns with the safetyist intention to study long-term societal impacts as a prerequisite for responsible development. The authors acknowledge that their current evaluation is a snapshot and that the field moves too quickly for static assessments.",
           "verbatim": "While using language models for disinformation is not yet a slam dunk, this could change as models become more powerful. Thus, periodic benchmarking is crucial for tracking risks.",
-          "excerpt_context": "Findings, point 5",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.5393,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The authors argue that the current lack of transparency in AI development hinders the community's ability to assess societal impact and safety. They propose a framework that forces models to be evaluated on fairness, robustness, and bias alongside accuracy. This aligns with the safetyist intention to establish accountability frameworks that go beyond performance metrics. The document notes that even when models are evaluated, the lack of standardized, unified benchmarks makes it difficult to compare safety profiles.",
-          "verbatim": "Many language models exist, but they are not compared on a unified standard, and even when language models are evaluated, the full range of societal considerations (e.g., fairness, robustness, uncertainty estimation, commonsense knowledge, capability to generate disinformation) have not been addressed in a unified way.",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-003",
-          "category": "Beliefs",
-          "point": "The document highlights that we do not know how many existing models were trained, despite being able to probe their behavior via APIs. This lack of visibility into the 'mind' or training process of the model is a core safetyist concern, as it prevents a full understanding of potential failure modes. The authors argue that this opacity is a systemic issue that requires new community norms. They emphasize that transparency is the vital first step toward scientific understanding.",
-          "verbatim": "We also do not know how existing models such as OpenAIÃ†s InstructGPT davinci v2 was trained despite being able to probe their behavior via APIs.",
-          "excerpt_context": "Conclusion"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-004",
-          "category": "Intentions",
-          "point": "The authors advocate for using human evaluation to identify model failures that automatic metrics miss, such as the poor quality of reference summaries in standard datasets. This supports the safetyist approach of using human oversight to audit AI behavior. The document notes that models fine-tuned on existing datasets often perform well on automatic metrics but underperform in human-evaluated, real-world contexts. This suggests that current benchmarks are insufficient for ensuring safety.",
-          "verbatim": "We find that language models produce effective summaries (as measured via human evaluation), but the reference summaries in standard summarization datasets (e.g., CNN/DM, XSUM) are actually worse (under the same human evaluations).",
-          "excerpt_context": "Findings, point 5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
-          "category": "Beliefs",
-          "point": "The document finds that models are not yet interoperable and that qualitative trends, such as the relationship between accuracy and calibration, can change depending on the adaptation strategy. This supports the safetyist belief that AI systems have inherent, unpredictable operational challenges that make them difficult to control. The authors argue that standardized, controlled evaluations are necessary to attribute performance to the model itself. They acknowledge that this lack of interoperability is a significant hurdle for building a robust ecosystem.",
-          "verbatim": "This shows the importance of standardized, controlled evaluations, so that we can attribute performance to the model versus the adaptation strategy. This result also shows that models are not yet interoperable, an important property for building a robust ecosystem of natural language interfaces.",
-          "excerpt_context": "Findings, point 4"
+          "excerpt_context": "Findings, Point 5",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "harm (speculative, future)",
+            "governance_oversight"
+          ]
         }
       ]
     },
@@ -143,66 +171,41 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence of documented harms, including toxicity, dishonesty, and the potential for disinformation. This aligns with the skeptic focus on measurable, present-day AI problems rather than speculative future risks. The authors argue that these issues necessitate serious legal and ethical reflection. They emphasize that the current benchmarking landscape is inadequate for addressing these societal impacts.",
-          "verbatim": "Meanwhile, there has been extensive discussion about their risks: They can be toxic, dishonest, used to spread disinformation, and the practices surrounding their data and their deployment necessitate serious legal and ethical reflection.",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The authors propose a holistic evaluation framework to address the lack of transparency and the uneven reporting of results in the AI industry. By standardizing evaluation across 30 models, they aim to expose the biases and limitations that are currently hidden by proprietary practices. This supports the skeptic intention to hold AI developers accountable through rigorous, systematic auditing. The document notes that many companies do not report public results, further obscuring the true state of the technology.",
-          "verbatim": "Several models (e.g., AI21 LabsÃ† J1 Grande (17B), CohereÃ†s Cohere-XL (52B), YandexÃ†s YaLM (100B)) essentially do not report public results (to our knowledge).",
-          "excerpt_context": "Standardization"
+          "point": "The authors argue that the current state of AI evaluation is fragmented and inadequate, with different models evaluated on different datasets, making it impossible to compare them meaningfully. They propose a standardized, holistic benchmarking framework to move beyond the 'accuracy-only' focus of existing benchmarks like SuperGLUE. This approach treats AI as a fallible, general-purpose tool that requires rigorous, systematic auditing for biases, toxicity, and robustness. The document emphasizes that this is necessary to strip away the hype and understand the actual performance of these systems.",
+          "verbatim": "In contrast to prior benchmarks (e.g., SuperGLUE, EleutherAI LM Harness, BIG-Bench), which enumerate a set of scenarios and metrics, situating our selection of scenarios in a larger taxonomy makes explicit what is currently missing.",
+          "excerpt_context": "Section 1, Broad coverage",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)",
+            "harm (documented, present)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document finds that standard summarization datasets are of poor quality, with reference summaries that are worse than those generated by AI models. This supports the skeptic belief that AI training data is often flawed and can contaminate research, leading to unreliable studies. The authors argue that better datasets are desperately needed to improve the scientific integrity of AI evaluation. They emphasize that automatic metrics like ROUGE-L are insufficient for measuring real-world performance.",
-          "verbatim": "Models fine-tuned on these datasets appear to do well according to automatic metrics such as ROUGE-L, but they also underperform few-shot prompting of language models. This suggests that better summarization datasets are desperately needed.",
-          "excerpt_context": "Findings, point 5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-088",
-          "category": "Intentions",
-          "point": "The authors prioritize evaluating models on societal desiderata like fairness, bias, and toxicity, rather than just accuracy. This aligns with the skeptic intention to focus on real, present-day harms caused by AI systems. By making these metrics explicit, they aim to prevent them from being treated as second-class citizens. The document acknowledges that there are often trade-offs between these metrics and accuracy, which must be monitored.",
-          "verbatim": "The multi-metric approach makes explicit potential trade-offs and helps ensure the non-accuracy desiderata are not treated as second-class citizens to accuracy.",
-          "excerpt_context": "Multi-metric measurement",
-          "_backfill": {
-            "previous_id": "skp-intentions-054",
-            "similarity": 0.7647,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-078",
-          "category": "Beliefs",
-          "point": "The document observes that the history of AI benchmarking has been shaped by institutional privilege, which confers decision-making power to a few large organizations. This supports the skeptic belief that human cognitive and institutional biases influence the entire AI lifecycle, from design to evaluation. The authors argue that the community must aspire for more democratic and pluralistic benchmarks to counter this trend. They emphasize that the current status quo compromises the community's ability to see the full landscape of language models.",
-          "verbatim": "The history and trajectory of AI benchmarking aligns with institutional privilege and confers decision-making power. Benchmarks set the agenda and orient progress: We should aspire for holistic, pluralistic, and democratic benchmarks.",
-          "excerpt_context": "Conclusion",
-          "_backfill": {
-            "previous_id": "skp-beliefs-063",
-            "similarity": 0.6697,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document identifies that current summarization datasets are often of lower quality than the outputs generated by language models, suggesting that existing benchmarks may be misleading or outdated. This highlights a broader concern about the epistemological integrity of training data and evaluation sets in an era of AI-generated content. The authors argue that better, more representative datasets are desperately needed to accurately measure model performance. This reflects the skeptic concern that AI-generated content can degrade the quality of information ecosystems if not properly managed.",
+          "verbatim": "On summarization, we find that language models produce effective summaries (as measured via human evaluation), but the reference summaries in standard summarization datasets (e.g., CNN/DM, XSUM) are actually worse (under the same human evaluations).",
+          "excerpt_context": "Findings, Point 5",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias (systemic/social)",
+            "harm (documented, present)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "The authors evaluated 30 prominent language models from 12 different providers, including AI21 Labs, Anthropic, BigScience, Cohere, EleutherAI, Google, Meta, Microsoft, NVIDIA, OpenAI, Tsinghua University, and Yandex.",
-      "claim_label": "Scope of HELM Evaluation",
+      "claim": "The HELM benchmarking project evaluated 30 models from 12 different providers across 16 core scenarios using 7 distinct metrics.",
+      "claim_label": "HELM Benchmarking Scope",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-intentions-087"
@@ -218,14 +221,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The HELM evaluation involved over 12 billion tokens of model inputs and outputs, spanning 17 million model calls, costing $38K for commercial models and 20K GPU hours for open models.",
-      "claim_label": "HELM Resource Expenditure",
+      "claim": "Instruction tuning allows smaller models (e.g., 50B parameters) to compete with models 10x their size (e.g., 530B parameters) in accuracy, robustness, and fairness.",
+      "claim_label": "Instruction Tuning Efficiency",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-intentions-048"
+        "acc-beliefs-015"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -238,14 +242,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Instruction-tuned models (e.g., Anthropic-LM 50B) can compete with models 10x their size (e.g., Microsoft/NVIDIA TNLG v2 530B) in accuracy, robustness, and fairness.",
-      "claim_label": "Instruction Tuning Performance",
+      "claim": "The HELM evaluation process involved over 12 billion tokens of model inputs and outputs, spanning 17 million model calls.",
+      "claim_label": "HELM Evaluation Scale",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-017"
+        "skp-intentions-087"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -260,23 +265,12 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Holistic Evaluation of Language Models (HELM)",
-      "suggested_description": "A framework for evaluating AI models that prioritizes broad coverage, multi-metric measurement, and standardization to provide transparency into capabilities and risks. It aims to move beyond single-metric accuracy benchmarks to assess models in their totality.",
-      "concept": "The document introduces HELM as a new benchmarking approach that taxonomizes the space of scenarios and metrics to make explicit what is currently missing in AI evaluation. It emphasizes that holistic evaluation is necessary to improve scientific understanding and orient societal impact.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "HELM represents a novel, comprehensive methodology for AI evaluation that is not currently captured by existing taxonomy nodes."
-    },
-    {
-      "suggested_label": "The Incompleteness Principle in Benchmarking",
-      "suggested_description": "A situation concept that acknowledges that no benchmark can cover all possible scenarios and metrics, and therefore must explicitly state its limitations. \nEncompasses: The practice of documenting missing scenarios, languages, and metrics in evaluation frameworks.\nExcludes: Claims of comprehensive or exhaustive AI testing.",
-      "concept": "The authors explicitly design HELM to foreground its own incompleteness, recognizing that the vast capability surface of language models makes it impossible to consider all scenarios. They argue that this transparency is essential for scientific integrity.",
-      "suggested_pov": "situations",
+      "suggested_label": "Institutional Privilege in Benchmarking",
+      "suggested_description": "The observation that the history and trajectory of AI benchmarking are shaped by the resources and agendas of a few powerful institutions, which in turn dictates the direction of AI progress.",
+      "concept": "The authors explicitly state that the history of AI benchmarking aligns with institutional privilege and confers decision-making power, arguing that the community should instead aspire for democratic benchmarks.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This concept addresses the fundamental limitation of AI evaluation frameworks, which is a critical issue in the field.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a necessary feature of an evolving, iterative benchmarking process that allows for continuous improvement and adaptation.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a warning that current benchmarks are inherently limited and cannot be relied upon to guarantee safety, necessitating additional, more rigorous oversight.",
-      "Skeptic Interpretation": "Skeptics would use this to highlight the inadequacy of current benchmarks and the need for more critical, independent auditing of AI systems."
+      "reason": "This concept critiques the power dynamics of AI development, which is distinct from existing nodes focused on technical bias or safety."
     }
   ]
 }

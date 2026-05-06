@@ -1,14 +1,14 @@
 {
   "doc_id": "2026-antitrust-year-preview-ai-wilson-sonsini-2026-2",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-11T20:49:48Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 0,
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,82 +16,146 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 25.2,
+      "elapsed_seconds": 15.6,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "2026-antitrust-year-preview-ai-wilson-sonsini-2026-2",
+    "measured_at": "2026-05-02T21:38:16.8329470-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.3333,
+        "flags": {
+          "resolved_count": 2,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 27255.0,
+        "out_units": "items",
+        "out_count": 19.0,
+        "ratio": 0.0007,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 15
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 16,
+          "below_threshold_forced": 0,
+          "intentions_selected": 18,
+          "effective_threshold": 0.5099,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 6
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "acc-intentions-074",
           "category": "Intentions",
-          "point": "The document highlights the Trump administration's policy of removing regulatory barriers to foster AI innovation and achieve global dominance. This approach prioritizes market-driven development over restrictive oversight, reflecting a belief that permissive policies are essential for American leadership. From an accelerationist perspective, this strategy is crucial for maintaining competitive momentum and preventing institutional stagnation. The document notes that this policy is currently being implemented through executive orders and a push to preempt state-level regulations.",
-          "verbatim": "The Trump administration has made establishing American leadership in AI a major priority and has pledged to remove regulatory barriers to AI innovation and adoption.",
-          "excerpt_context": "Section: U.S., Paragraph 1",
-          "_backfill": {
-            "previous_id": "acc-intentions-012",
-            "similarity": 0.6998,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document highlights the Trump administration's strategy to establish a uniform national AI policy, aiming to preempt state-level legislative fragmentation. By directing federal authorities to challenge state laws as unconstitutional or preempted by federal standards, the administration seeks to create a predictable, pro-innovation environment. This aligns with accelerationist goals of removing regulatory barriers to ensure American firms can rapidly scale AI technologies. The document notes that this federal-state tension creates a challenging, uncertain environment for firms despite the pro-adoption federal stance.",
+          "verbatim": "In December 2025, the Trump administration issued an Executive Order (EO), ôEnsuring a National Policy Framework for Artificial Intelligenceö (more aggressively titled ôEliminating State Law Obstruction of National AI Policyö in a leaked draft). The EO creates multi-pronged pressure on state-level AI legislation inconsistent with the Trump administrationÆs priorities.",
+          "excerpt_context": "Section: U.S., Paragraph 11",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "regulation_adaptive"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-008",
+          "taxonomy_node_id": "acc-intentions-005",
           "category": "Intentions",
-          "point": "The administration's AI Action Plan explicitly encourages the development of open-source and open-weight AI models. This aligns with the accelerationist view that open access to foundational technology accelerates innovation and prevents monopolistic capture. By promoting these models, the policy aims to democratize access to AI capabilities, though the document notes this is part of a broader strategy to ensure American firms remain dominant. The document suggests that federal agencies are aligning their enforcement goals with these pro-development policies.",
-          "verbatim": "The Action Plan also includes several broader policy recommendations, such as encouragement of open-source and open-weight AI models.",
+          "point": "The document describes the administration's focus on fostering a pro-development environment to help American firms achieve global dominance in AI. This involves executive orders aimed at removing regulatory barriers and encouraging open-source and open-weight models. From an accelerationist perspective, this strategy leverages market forces and government support to accelerate innovation. The document acknowledges that this policy shift directly influences how antitrust agencies assess competitive conditions, favoring innovation over restrictive oversight.",
+          "verbatim": "The administration issued an AI Action Plan (Action Plan) in July 2025, and throughout the year has issued numerous executive orders directed to a creating a pro-development and pro-adoption environment intended to help American firms ôachieve global dominanceö in AI.",
           "excerpt_context": "Section: U.S., Paragraph 4",
-          "_backfill": {
-            "previous_id": "acc-intentions-002",
-            "similarity": 0.7734,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Beliefs",
-          "point": "The document suggests that the current federal administration views state-level AI legislation as an obstruction to national policy and innovation. By directing federal authorities to challenge these state laws, the administration seeks to prevent a fragmented regulatory environment that could stifle growth. Accelerationists generally support this view, arguing that local, inconsistent regulations create unnecessary burdens that hinder the rapid scaling of AI technologies. The document notes that this conflict between federal and state authorities is a significant area of legal tension.",
-          "verbatim": "The EO creates multi-pronged pressure on state-level AI legislation inconsistent with the Trump administrationÆs priorities.",
-          "excerpt_context": "Section: U.S., Paragraph 12",
-          "_backfill": {
-            "previous_id": "acc-beliefs-011",
-            "similarity": 0.705,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-047",
+          "taxonomy_node_id": "acc-intentions-078",
           "category": "Intentions",
-          "point": "The document notes that federal antitrust enforcers are increasingly sensitive to the pace of technological change, leading to caution in crafting aggressive structural remedies. This reflects an accelerationist preference for avoiding interventions that might inadvertently harm innovation or disrupt the competitive landscape. The document cites the court's rejection of aggressive remedies in the Google search case as evidence of this shift toward more measured, data-sharing-focused approaches. This approach aims to bolster competition without imposing the 'undue burdens' that the administration's Action Plan warns against.",
-          "verbatim": "The court recognized that the governmentÆs first witness had ôplaced GenAI front and center as a nascent competitive threat.ö Based in part on these findings over the course of the case, the court rejected DOJÆs more aggressive structural and prohibitional remedies.",
+          "point": "The document notes that antitrust agencies are increasingly favoring negotiated remedies over aggressive structural prohibitions, particularly when such remedies bolster emerging competition. By requiring data sharing rather than breaking up firms, the government aims to maintain market contestability while allowing incumbents to continue innovating. This reflects an accelerationist preference for light-touch, outcome-oriented regulation that avoids stifling the growth of frontier technology sectors. The document highlights that this approach is informed by the rapid, unpredictable nature of technological disruption.",
+          "verbatim": "Based in part on these findings over the course of the case, the court rejected DOJÆs more aggressive structural and prohibitional remedies and focused on a requirement to share data and included generative AI firms in that remedy to further bolster that emerging competition.",
           "excerpt_context": "Section: U.S., Paragraph 3",
-          "_backfill": {
-            "previous_id": "acc-intentions-039",
-            "similarity": 0.5348,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit",
+            "transparency_verification"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-beliefs-010",
+          "category": "Beliefs",
+          "point": "The document observes that courts are increasingly sensitive to the pace of technological change, recognizing that even strong incumbents can be suddenly disrupted by new AI entrants. This belief in the fragility of market dominance leads to caution in crafting prospective antitrust remedies. For accelerationists, this judicial recognition supports the view that market dynamics, rather than heavy-handed regulation, are the primary drivers of competitive evolution. The document notes that this judicial caution is a significant shift from previous, more static antitrust analyses.",
+          "verbatim": "However, courts are more broadly showing increasing sensitivity to the pace of technological change and the potential for even the strongest incumbents to be suddenly disrupted, which in turn may lead to caution in evaluating future harm theories and in crafting prospective remedies, especially in frontier technology sectors.",
+          "excerpt_context": "Section: U.S., Paragraph 2",
+          "extraction_confidence": 0.92,
+          "vocabulary_terms": [
+            "accountability_market"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-010",
-          "category": "Intentions",
-          "point": "The document describes how businesses are using alternative deal structures, such as investment partnerships and reverse acquihires, to secure access to critical AI inputs. These strategies allow firms to scale rapidly while navigating traditional antitrust scrutiny. From an accelerationist perspective, these flexible arrangements are vital for the efficient allocation of talent and technology in a fast-moving market. The document notes that while agencies have shown interest, they have largely refrained from challenging these investments, favoring a case-by-case analysis.",
-          "verbatim": "Businesses have also used alternative deal structures to secure access to important inputs. Investment partnerships between infrastructure providers and leading AI model developers have become common.",
-          "excerpt_context": "Section: U.S., Paragraph 7",
-          "_backfill": {
-            "previous_id": "acc-intentions-063",
-            "similarity": 0.6309,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "acc-desires-004",
+          "category": "Desires",
+          "point": "The document highlights the administration's encouragement of open-source and open-weight AI models as a key policy recommendation within the AI Action Plan. By promoting open access, the government aims to lower barriers to entry and foster a more competitive ecosystem. This aligns with the accelerationist desire to democratize AI infrastructure and prevent monopolistic capture by a few legacy firms. The document notes that this policy is being mirrored by agency leadership in their enforcement remarks.",
+          "verbatim": "The Action Plan also includes several broader policy recommendations, such as encouragement of open-source and open-weight AI models.",
+          "excerpt_context": "Section: U.S., Paragraph 5",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "transparency_verification"
+          ]
         }
       ]
     },
@@ -99,55 +163,63 @@
       "key_points": [
         {
           "stance": "opposed",
-          "taxonomy_node_id": "saf-intentions-014",
-          "category": "Intentions",
-          "point": "The document highlights the tension between competitive pressure and the need for safety, noting that the Trump administration's 'pro-adoption' policies may prioritize speed over rigorous oversight. Safetyists argue that this 'headlong' approach to regulation ignores the catastrophic risks associated with powerful AI systems. The document mentions that some officials, like Commissioner Andrew Ferguson, have explicitly cautioned against 'headlong regulation,' which safetyists would interpret as a dangerous dismissal of necessary precautionary measures. This creates a significant risk that safety practices will be eroded by the drive for global dominance.",
-          "verbatim": "Commissioner (now Chair) Andrew Ferguson issued a statement dissenting from that section, cautioning against ôheadlong regulationö of AI and against ôbroad conclusions about the AI industry.ö",
-          "excerpt_context": "Section: U.S., Paragraph 9"
+          "taxonomy_node_id": "saf-beliefs-017",
+          "category": "Beliefs",
+          "point": "The document notes that the rapid adoption of AI technologies has created a complex, fast-changing business landscape that challenges traditional antitrust oversight. While the administration pushes for pro-adoption policies, the document acknowledges that this velocity creates risks of exclusionary behavior and input foreclosure. From a safetyist perspective, this rapid, unconstrained deployment undermines the ability of regulators to maintain visibility and control over critical AI infrastructure. The document suggests that agencies are struggling to balance this need for oversight with the administration's pro-innovation mandate.",
+          "verbatim": "The combination of a fast-changing business landscape and diverging policies among jurisdictions raises risks, but these risks can be limited and navigated with appropriate management and counsel.",
+          "excerpt_context": "Section: U.S., Paragraph 12",
+          "extraction_confidence": 0.88,
+          "vocabulary_terms": [
+            "governance_oversight"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-040",
           "category": "Beliefs",
-          "point": "The document identifies 'exclusionary behavior that forecloses access to key inputs and distribution channels' as a major concern in AI-related mergers. Safetyists view this consolidation of power as a systemic vulnerability, as it concentrates control over the infrastructure that determines how AI models are developed and deployed. The document notes that DOJ Assistant Attorney General Abigail Slater has specifically raised concerns about access to data and proprietary sources. This aligns with safetyist concerns that monopolistic control over AI inputs can lead to unchecked and potentially dangerous AI development.",
-          "verbatim": "DOJ Assistant Attorney General Abigail Slater identified ôexclusionary behavior that forecloses access to key inputs and distribution channelsö as a particular concern in AI-related mergers.",
-          "excerpt_context": "Section: U.S., Paragraph 6"
+          "point": "The document identifies concerns regarding exclusionary behavior that forecloses access to key inputs and distribution channels in AI-related mergers. Specifically, it highlights the potential consolidation of proprietary data sources as a major competitive risk. Safetyists view this as a critical vulnerability, as the concentration of data and compute power in a few hands creates systemic risks and limits the ability to ensure safe, diverse AI development. The document notes that antitrust enforcers are actively scrutinizing these transactions to prevent such lock-in effects.",
+          "verbatim": "Slater also raised concerns about access to data and the potential consolidation of proprietary data sources. We expect reviews of transactions related to AI technologies to be searching, with an emphasis on avoiding lock-in or lock-out of key inputs set against a plain desire to enable firms to rapidly innovate and scale in AI.",
+          "excerpt_context": "Section: U.S., Paragraph 7",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "saf-intentions-134",
           "category": "Intentions",
-          "point": "The document notes that European antitrust authorities are actively monitoring AI risks, with the EC explicitly stating that many of the risks they warned about a year ago are now materializing. This proactive stance reflects a safetyist commitment to identifying and mitigating harms before they become systemic. The document highlights investigations into Meta and Google as examples of this oversight, focusing on how AI integration can exclude competitors or exploit user data. Safetyists would support this rigorous, evidence-based approach to monitoring the AI industry.",
-          "verbatim": "Since then, we have monitored the market closely, and many of the risks we warned about are now beginning to materialize.",
-          "excerpt_context": "Section: Europe and the UK, Paragraph 7"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-012",
-          "category": "Intentions",
-          "point": "The document discusses the use of the Digital Markets Act (DMA) to promote market contestability in AI infrastructure and data access. Safetyists argue that such regulatory frameworks are essential for ensuring that AI development remains transparent and accountable. By focusing on access to user interaction data, the DMA aims to prevent the 'black box' nature of AI from being used to entrench dominant players. The document notes that the High-Level Group on the DMA has endorsed these goals, signaling a commitment to structural oversight in the AI sector.",
-          "verbatim": "The joint paper stated that the DMA may contribute to promoting market contestability in AI infrastructure and distribution, as well as access to data, especially user interaction data.",
+          "point": "The document reports that European antitrust authorities are actively monitoring the AI market and have initiated formal investigations into major tech firms for potentially anticompetitive conduct. This includes concerns about pre-installing chatbots and using web content for training without compensation. From a safetyist perspective, this international scrutiny is essential for establishing institutional governance over AI development. The document notes that these agencies are using existing tools, like the Digital Markets Act, to address these emerging risks.",
           "excerpt_context": "Section: Europe and the UK, Paragraph 6",
-          "_backfill": {
-            "previous_id": "saf-intentions-045",
-            "similarity": 0.649,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "verbatim": "Since then, we have monitored the market closely, and many of the risks we warned about are now beginning to materialize. We therefore expect the active scrutiny of conduct involving AI to continue at pace.",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_oversight"
+          ]
+        },
+        {
+          "stance": "opposed",
+          "taxonomy_node_id": "saf-desires-012",
+          "category": "Desires",
+          "point": "The document discusses the dissent of Commissioner Andrew Ferguson against a report that suggested 'headlong regulation' of AI partnerships. Ferguson advocates for a 'vigilant competition watchman' approach, focusing on case-by-case analysis rather than broad, preemptive regulation. Safetyists would argue that this approach fails to address the systemic, existential risks posed by rapid AI development, which require proactive, precautionary frameworks. The document highlights this tension between those favoring targeted enforcement and those concerned about the chilling effects of broad regulation.",
+          "verbatim": "But, anticipating the Trump administrationÆs policies, Commissioner (now Chair) Andrew Ferguson issued a statement dissenting from that section, cautioning against ôheadlong regulationö of AI and against ôbroad conclusions about the AI industry.ö Instead, Ferguson stressed the need to remain a ôvigilant competition watchmanö focused on case-by-case analysis.",
+          "excerpt_context": "Section: U.S., Paragraph 9",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "regulation_precautionary"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "saf-beliefs-056",
           "category": "Beliefs",
-          "point": "The document acknowledges that AI-related markets are fast-changing and that diverging policies among jurisdictions create significant risks. Safetyists emphasize that this lack of global coordination makes it difficult to implement consistent safety standards, potentially allowing companies to engage in regulatory arbitrage. The document notes that while these risks can be managed, the current environment is challenging for firms. Safetyists would argue that this underscores the need for a more unified, global approach to AI governance that prioritizes safety over competitive advantage.",
-          "verbatim": "The combination of a fast-changing business landscape and diverging policies among jurisdictions raises risks, but these risks can be limited and navigated with appropriate management and counsel.",
-          "excerpt_context": "Section: U.S., Paragraph 14",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.8161,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document notes that state governments have enacted a myriad of bills to protect against harmful uses of AI technology, reflecting a more interventionist stance than the federal government. These laws aim to mitigate the negative societal impacts of AI, such as algorithmic discrimination and privacy violations. Safetyists support these efforts as necessary safeguards against the unchecked deployment of powerful AI systems. The document acknowledges that this creates a fragmented regulatory environment that firms must navigate.",
+          "verbatim": "Many state governments have taken a more interventionist approach and have considered and enacted a myriad of AI-related bills to protect against harmful uses of the technology.",
+          "excerpt_context": "Section: U.S., Paragraph 10",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_institutional"
+          ]
         }
       ]
     },
@@ -155,140 +227,145 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-066",
+          "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document discusses the investigation into RealPage's AI-powered price recommendation algorithms, which were accused of facilitating anticompetitive behavior. Skeptics point to this as a clear example of how AI can be used to cause immediate, measurable harm to consumers through price fixing. The document notes that while the federal government settled the case, state co-plaintiffs refused to sign on, and independent lawsuits remain pending. This highlights the ongoing struggle to hold AI-driven businesses accountable for real-world economic impacts.",
-          "verbatim": "The Trump administration settled the case as to RealPage in November 2025, following settlements with certain landlord co-defendants. While the settlement prohibits the use of competitively sensitive data in runtime operation, RealPage remains able to use historical nonpublic data from landlords to train its AI models.",
+          "point": "The document highlights that state governments are passing laws to limit software that relies on pooled competitor data, specifically citing concerns about harmful uses of AI. This reflects the skeptic belief that AI systems often encode and amplify existing societal harms, such as price-fixing or discriminatory outcomes. By restricting the use of sensitive data, these laws aim to address documented present harms. The document notes that these state-level interventions are currently being challenged by federal authorities and private firms.",
+          "verbatim": "For instance, both California and New York have passed laws limiting the use of software that relies on pooled competitor data.",
           "excerpt_context": "Section: U.S., Paragraph 10",
-          "_backfill": {
-            "previous_id": "skp-beliefs-001",
-            "similarity": 0.5881,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias_systemic",
+            "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document discusses the settlement of the RealPage case, which prohibits the use of competitively sensitive data in runtime operations while allowing historical data for training. Skeptics argue that such settlements are insufficient to address the systemic risks of AI-driven price recommendation algorithms. They advocate for more rigorous, independent pre-release audits to ensure these systems do not facilitate collusion or other anticompetitive conduct. The document notes that independent state lawsuits remain pending, suggesting that the federal settlement did not resolve all concerns.",
+          "verbatim": "While the settlement prohibits the use of competitively sensitive data in runtime operation, RealPage remains able to use historical nonpublic data from landlords to train its AI models.",
+          "excerpt_context": "Section: U.S., Paragraph 9",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "fairness_procedural"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-desires-005",
-          "category": "Intentions",
-          "point": "The document highlights how state governments are enacting laws to protect against harmful uses of AI, such as software that relies on pooled competitor data. Skeptics support these interventions, arguing that they are necessary to protect individuals and small businesses from the predatory practices of large tech companies. The document notes that these state-level efforts are currently being challenged by the federal government, which views them as an obstruction to national policy. Skeptics would argue that this federal preemption undermines the ability of states to address the immediate, localized harms caused by AI.",
-          "verbatim": "Many state governments have taken a more interventionist approach and have considered and enacted a myriad of AI-related bills to protect against harmful uses of the technology.",
-          "excerpt_context": "Section: U.S., Paragraph 11",
-          "_backfill": {
-            "previous_id": "skp-intentions-034",
-            "similarity": 0.7238,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document details investigations into Google for using web publisher and YouTube content to train its AI models without appropriate compensation. Skeptics view this as a form of exploitation, where tech giants profit from the labor and creativity of others without providing fair value. The document notes that the EC is reviewing whether this conduct violates antitrust principles. This aligns with the skeptic view that AI development is often built on the uncompensated appropriation of human work, creating a significant economic and ethical problem.",
-          "verbatim": "Second, the EC is reviewing whether Google trained its generative AI models on video and other content uploaded to YouTube without offering appropriate compensation to creators or allowing them to refuse such use of their content.",
-          "excerpt_context": "Section: Europe and the UK, Paragraph 5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-028",
-          "category": "Intentions",
-          "point": "The document notes that European antitrust agencies are exploring the use of the Digital Markets Act (DMA) to ensure market contestability and access to data. Skeptics support this approach, as it aims to break the power of dominant platforms and ensure that AI benefits are more widely distributed. By focusing on user interaction data, the DMA seeks to address the information asymmetry that gives large tech companies an unfair advantage. Skeptics would argue that this is a crucial step toward creating a more equitable AI ecosystem.",
-          "verbatim": "The joint paper stated that the DMA may contribute to promoting market contestability in AI infrastructure and distribution, as well as access to data, especially user interaction data.",
-          "excerpt_context": "Section: Europe and the UK, Paragraph 6",
-          "_backfill": {
-            "previous_id": "skp-intentions-097",
-            "similarity": 0.6365,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "category": "Desires",
+          "point": "The document notes that antitrust enforcers are concerned about the consolidation of proprietary data sources and the exclusionary behavior of large legacy technology companies. Skeptics support this focus, arguing that the concentration of power in a small oligopoly of tech firms undermines market contestability and harms consumers. They advocate for stronger antitrust enforcement to prevent these firms from leveraging their infrastructure to dominate AI applications. The document confirms that agencies are conducting searching reviews of AI-related transactions to address these concerns.",
+          "verbatim": "We expect reviews of transactions related to AI technologies to be searching, with an emphasis on avoiding lock-in or lock-out of key inputs set against a plain desire to enable firms to rapidly innovate and scale in AI.",
+          "excerpt_context": "Section: U.S., Paragraph 7",
+          "extraction_confidence": 0.92,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-047",
           "category": "Beliefs",
-          "point": "The document discusses how the rapid disruption of AI is challenging traditional antitrust analysis, with courts showing increasing sensitivity to the pace of technological change. Skeptics argue that this uncertainty is often used by tech companies to avoid accountability and regulatory scrutiny. The document notes that courts are becoming more cautious in evaluating future harm theories, which skeptics would interpret as a failure to address the real, present dangers of AI-driven market concentration. This highlights the difficulty of applying existing legal frameworks to the unique challenges posed by AI.",
-          "verbatim": "However, courts are more broadly showing increasing sensitivity to the pace of technological change and the potential for even the strongest incumbents to be suddenly disrupted, which in turn may lead to caution in evaluating future harm theories and in crafting prospective remedies.",
-          "excerpt_context": "Section: U.S., Paragraph 2"
+          "point": "The document reports that the European Commission is investigating whether Google used web publisher content for AI services without appropriate compensation. This aligns with the skeptic view that AI development often relies on the exploitation of data creators and publishers, challenging existing legal frameworks regarding intellectual property and fair compensation. Skeptics argue that these practices represent a form of corporate overreach that requires regulatory intervention. The document notes that the EC is actively exploring the use of the Digital Markets Act to address these issues.",
+          "verbatim": "First, the EC is investigating whether Google may have used the content of web publishers to provide generative AI-powered services (ôAI Overviewsö and ôAI Modeö) on its search results pages without appropriate compensation to publishers and without offering them the possibility to refuse such use of their content.",
+          "excerpt_context": "Section: Europe and the UK, Paragraph 4",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "autonomy_individual"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-057",
+          "category": "Intentions",
+          "point": "The document describes how firms are using 'reverse acquihires' to secure talent and technology while avoiding traditional antitrust scrutiny. Skeptics view these practices as a way for large companies to bypass competition laws and consolidate their market position. They advocate for more creative and expansive regulatory approaches, such as those being considered by European agencies, to review these transactions. The document notes that while firms have mitigated traditional concerns, regulators are increasingly looking for ways to challenge these deals.",
+          "verbatim": "While the agencies have authority to challenge such deals as anticompetitiveùand FTC Commissioner Mark Meador has recently indicated concerns about themùfirms have generally mitigated traditional antitrust concerns by avoiding the ability to control the target and taking non-exclusive licenses.",
+          "excerpt_context": "Section: U.S., Paragraph 8",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "IBM acquired HashiCorp for $6.4 billion in February 2025.",
+      "claim": "IBM closed its $6.4 billion acquisition of HashiCorp in February 2025.",
       "claim_label": "IBM HashiCorp Acquisition",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2025-02",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-intentions-063"
+        "acc-intentions-005"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Meta acquired a 49 percent stake in Scale AI for $14.3 billion in June 2025.",
-      "claim_label": "Meta Scale AI Investment",
+      "claim": "OpenAI and NVIDIA announced a partnership in September 2025 where NVIDIA would invest up to $100 billion in compute for OpenAI.",
+      "claim_label": "OpenAI NVIDIA Partnership",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025-09",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Meta paid $14.3 billion to acquire a 49 percent stake in Scale AI in June 2025.",
+      "claim_label": "Meta Scale AI Acquisition",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2025-06",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-intentions-063"
+        "skp-intentions-057"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Google paid $2.4 billion to hire key executives from Windsurf in July 2025.",
-      "claim_label": "Google Windsurf Acqui-hire",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2025-07",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-intentions-063"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Federal Preemption of State AI Laws",
-      "suggested_description": "A situation concept that describes the federal government's use of executive orders and litigation to invalidate state-level AI regulations. Encompasses: Federal challenges to state laws, preemption arguments, and the conflict between national and local AI policy. Excludes: General federal antitrust enforcement or state-level legislative processes.",
-      "concept": "The document details how the Trump administration issued an Executive Order to challenge state-level AI legislation that is inconsistent with federal priorities. This includes directing the DOJ to create a task force to pursue litigation against such laws, arguing they are preempted by federal trade practices or unconstitutional.",
+      "suggested_label": "Judicial Sensitivity to Technological Disruption",
+      "suggested_description": "A situation concept that describes the increasing judicial recognition of rapid technological change as a factor in antitrust analysis.\nEncompasses: Judicial caution in evaluating future harm, skepticism toward the durability of incumbent market positions, and the impact of rapid innovation on prospective remedies.\nExcludes: General judicial review of technology cases or specific antitrust theories like price-fixing.",
+      "concept": "The document notes that courts are showing increasing sensitivity to the pace of technological change and the potential for even the strongest incumbents to be suddenly disrupted. This judicial awareness leads to caution in evaluating future harm theories and in crafting prospective remedies. It represents a shift in how courts interpret the competitive landscape in frontier technology sectors.",
       "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This concept captures a specific, high-stakes legal and political conflict between federal and state authorities regarding AI regulation, which is not fully covered by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a necessary step to prevent a 'patchwork' of regulations that would stifle innovation and create compliance burdens for companies.",
-      "Safetyist Interpretation": "Safetyists would view this as a dangerous move that undermines the ability of states to act as 'laboratories of democracy' and implement necessary protections for their citizens.",
-      "Skeptic Interpretation": "Skeptics would view this as an overreach of federal power that prioritizes corporate interests over the ability of local governments to address the immediate harms of AI."
-    },
-    {
-      "suggested_label": "Reverse Acquihires as Antitrust Strategy",
-      "suggested_description": "An intention concept that describes the practice of poaching key employees and licensing technology instead of acquiring a company outright to avoid antitrust scrutiny. Encompasses: Poaching executives, non-exclusive licensing, and minority investments. Excludes: Traditional mergers and acquisitions or standard hiring practices.",
-      "concept": "The document describes how firms like Meta and Google have used 'reverse acquihires' to secure talent and technology without triggering traditional antitrust challenges. By avoiding full control of the target company, these firms mitigate regulatory risk while still achieving their strategic goals.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific, novel business strategy that has emerged in the AI sector to navigate antitrust enforcement, which is not explicitly defined in the current taxonomy."
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific judicial trend that influences antitrust outcomes but is not captured by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as a positive development, as it reflects the reality of market-driven innovation and prevents regulators from imposing static, outdated remedies on a dynamic industry.",
+      "Safetyist Interpretation": "Safetyists would view this with concern, as it suggests that courts may underestimate the long-term, systemic risks of AI dominance by assuming that market disruption will naturally solve competitive problems.",
+      "Skeptic Interpretation": "Skeptics would argue that this judicial caution is misplaced, as it may lead to under-enforcement and allow large tech firms to maintain their market power despite the appearance of a competitive, fast-changing landscape."
     }
   ]
 }

@@ -1,322 +1,286 @@
 {
   "doc_id": "foundry-problem-world-models-missing-liability-framework-2026",
-  "taxonomy_version": "3.1.0",
-  "generated_at": "2026-04-09T18:52:36Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 579,
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 2,
-      "iterations": 1,
+      "api_calls": 3,
+      "iterations": 2,
       "claims_total": 5,
-      "claims_confident": 4,
-      "claims_iterated": 1,
-      "elapsed_seconds": 15.6,
+      "claims_confident": 3,
+      "claims_iterated": 2,
+      "elapsed_seconds": 13.3,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "foundry-problem-world-models-missing-liability-framework-2026",
+    "measured_at": "2026-05-02T19:50:35.2797350-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.6667,
+        "flags": {
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 41026.0,
+        "out_units": "items",
+        "out_count": 15.0,
+        "ratio": 0.0004,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 2,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 5,
+          "total_points": 8
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 42.0,
+        "ratio": 0.0798,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 15,
+          "below_threshold_forced": 2,
+          "intentions_selected": 24,
+          "effective_threshold": 0.4453,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0798
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-047",
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-026",
           "category": "Intentions",
-          "point": "The document argues that current legal scholarship and regulatory focus on output-only liability is insufficient and potentially counterproductive. It suggests that focusing on 'Representational Risk' and upstream liability for Base Model Providers creates unnecessary friction. From an accelerationist perspective, this regulatory expansion threatens to stifle the rapid innovation and competitive scaling required to achieve AI abundance.",
-          "verbatim": "Output-only regulation cannot reach these harms. Upstream liability can.",
-          "excerpt_context": "Abstract",
-          "_backfill": {
-            "previous_id": "acc-intentions-006",
-            "similarity": 0.693,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document acknowledges that SSL models are trained on internet-scale data to achieve state-of-the-art performance, which is a necessary operational reality for foundation models. It notes that Common Crawl is the only corpus large enough to support this level of development. From an accelerationist perspective, this highlights the importance of maintaining access to massive, diverse datasets to continue scaling capabilities. The document suggests that rather than restricting data access, developers should focus on implementing stewardship controls to manage risks while continuing to leverage these large-scale training corpora.",
+          "verbatim": "A skeptic will argue that Common Crawl is the only corpus large enough to achieve state-of-the-art performance, making its use an industry standard rather than a negligent choice.",
+          "excerpt_context": "Section A, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-010",
-          "category": "Intentions",
-          "point": "The author proposes a tiered liability framework that would impose significant regulatory burdens on Base Model Providers. This approach assumes that developers can and should be held liable for 'structural defects' in models. Accelerationists would argue this creates a bottleneck that slows down the development of powerful AI systems by imposing heavy compliance costs.",
-          "verbatim": "A Base Model Provider who satisfies documented stewardship obligations receives a rebuttable presumption of non-negligence as to Structural Defects.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-beliefs-001",
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-032",
           "category": "Beliefs",
-          "point": "The document acknowledges that large-scale training on unfiltered data is the current industry standard for achieving state-of-the-art performance. It recognizes that this scaling is necessary for current model capabilities. Accelerationists would agree that this scaling is a prerequisite for progress, though they would disagree with the author's call for restrictive stewardship controls.",
-          "verbatim": "A skeptic will argue that Common Crawl is the only corpus large enough to achieve state-of-the-art SSL performance, making its use an industry standard rather than a negligent choice.",
-          "excerpt_context": "Section A"
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-052",
-          "category": "Intentions",
-          "point": "The document advocates for mandatory 'Latent Space Audits' and 'Machine Unlearning' capabilities as a prerequisite for AI development. These requirements would significantly increase the complexity and cost of AI development. Accelerationists would view these as regulatory hurdles that impede the speed of innovation and competitive scaling.",
-          "verbatim": "A developer who uses Common Crawl with documented provenance controls, anomaly detection, and pre-ingestion quality review is not negligent. A developer who uses it without those controls, knowing what the corpus contains, is.",
-          "excerpt_context": "Section A"
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Intentions",
-          "point": "The author proposes that developers should be held liable for 'causal hallucinations' in world models used for physical systems. This creates a high bar for liability that could discourage the development of autonomous systems. Accelerationists would argue that this liability framework is too restrictive and would slow down the deployment of beneficial AI technologies.",
-          "verbatim": "A developer who conducts Latent Space Audits on physical representations before licensing a world model for use in robotic or autonomous systems can test whether the model’s causal structure deviates from reality in ways that produce predictable harm.",
-          "excerpt_context": "Section D"
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Intentions",
-          "point": "The document suggests that the FTC could legally dissolve a model if it is found to be trained on tainted data. This is a severe regulatory threat that could destroy significant investments. Accelerationists would see this as a major risk to the AI industry and a deterrent to large-scale investment.",
-          "verbatim": "Algorithmic disgorgement means the destruction of the model. Not a fine. Not an injunction against future conduct. The deletion of the asset itself, along with every downstream product built on it.",
-          "excerpt_context": "Leveraging the AI Data Stewardship Framework"
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Intentions",
-          "point": "The author argues that the 'foundry' of SSL training is where structural defects are cast and that this phase requires its own liability framework. Accelerationists would argue that this focus on the 'foundry' is an attempt to regulate the core of AI development, which would stifle the rapid, open-source innovation needed for progress.",
-          "verbatim": "It is where bias sediments into representational geometry, where private data is compressed into recoverable form, and where structural defects are cast long before any fine-tuning or deployment decision can correct them.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Intentions",
-          "point": "The document proposes a 'Representation-to-Risk' certification for base models. This would require developers to document and certify their models before they can be licensed. Accelerationists would argue this is a form of pre-deployment regulation that slows down the pace of AI development.",
-          "verbatim": "I propose that the AI-DSF require what I call a Representation-to-Risk certification: a documented record, produced before any downstream license is granted, that specifies which categories of representational bias were probed.",
-          "excerpt_context": "Leveraging the AI Data Stewardship Framework"
+          "point": "The document proposes a 'Safe Harbor' framework that integrates documented stewardship obligations with a rebuttable presumption of non-negligence. This approach aims to provide legal certainty for Base Model Providers who implement rigorous data management, thereby incentivizing innovation while addressing safety concerns. By shifting the focus from output-only regulation to upstream stewardship, it allows developers to continue building advanced models within a clear, manageable liability structure. This aligns with the accelerationist goal of creating predictable, market-based frameworks that support rather than stifle technological progress.",
+          "verbatim": "I propose a tiered SSL Safe Harbor grounded in the AI-DSFs control structure. Base Model Providers who satisfy documented stewardship obligations receive a rebuttable presumption of non-negligence as to Structural Defects.",
+          "excerpt_context": "Abstract, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability (market)",
+            "regulation (adaptive)"
+          ]
         }
       ]
     },
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-009",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-039",
           "category": "Beliefs",
-          "point": "The document asserts that SSL models inherently memorize private data, making them a significant privacy risk. This aligns with safetyist concerns about the unpredictability and potential for misuse of advanced AI systems. The author argues that this memorization is a feature of SSL, not a bug, which necessitates proactive safety measures.",
-          "verbatim": "Research by Carlini and colleagues has demonstrated that large language models trained with SSL will, under appropriate prompting, reproduce verbatim text from their training data, including private phone numbers, email addresses, and personal health information.",
-          "excerpt_context": "Section B",
-          "_backfill": {
-            "previous_id": "saf-beliefs-065",
-            "similarity": 0.4868,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "point": "The document asserts that SSL models develop 'world models'—internal maps of reality derived from training data—that govern how the model reasons across novel situations. These representations are not merely statistical associations but functional maps of causality that can encode false physics or dangerous biases. From a safetyist perspective, this is a critical risk because these structural defects are baked into the model's core, making them difficult to detect or remediate post-deployment. The document warns that when these models are used in physical systems, they can lead to real-world harm based on flawed causal logic.",
+          "verbatim": "An SSL model learns a functional representation of how the world works. It absorbs semantic relationships, causal associations, factual co-occurrences, and cultural patterns, all derived from data without any human having approved the resulting structure.",
+          "excerpt_context": "Why SSL Changes the Legal Calculus, paragraph 6",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "capabilities (hazard)",
+            "safety (existential)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-094",
+          "taxonomy_node_id": "saf-intentions-117",
           "category": "Intentions",
-          "point": "The author argues for 'Latent Space Audits' to detect hidden biases and risks in AI models before they are deployed. This aligns with the safetyist goal of rigorous pre-deployment testing. The document emphasizes that these audits are necessary because downstream actors cannot remediate structural defects encoded in the model's geometry.",
-          "verbatim": "Probing classifiers can test whether a model’s representations encode demographic associations that no annotator ever reviewed or approved.",
-          "excerpt_context": "Leveraging the AI Data Stewardship Framework",
-          "_backfill": {
-            "previous_id": "saf-intentions-002",
-            "similarity": 0.592,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document advocates for 'Latent Space Audits' as a mandatory procedure for Base Model Providers to verify the internal representations of their models before release. By using probing classifiers and extraction-based evaluations, developers can identify encoded biases or memorized PII that would otherwise remain hidden. This aligns with the safetyist goal of making AI systems' internal reasoning processes transparent and auditable. The document argues that without such audits, developers are essentially releasing 'black box' systems with unknown structural defects.",
+          "verbatim": "Applied to SSL, this control operationalizes the Latent Space Audit. Probing classifiers can test whether a models representations encode demographic associations that no annotator reviewed or approved.",
+          "excerpt_context": "Leveraging the AI Data Stewardship Framework, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency (accountability)",
+            "oversight (human control)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-087",
-          "category": "Intentions",
-          "point": "The document proposes a tiered liability framework that holds Base Model Providers accountable for 'Structural Defects' in their models. This aligns with safetyist goals of ensuring that developers are responsible for the safety of their systems. The author argues that this framework is necessary because current output-only regulation is insufficient.",
-          "verbatim": "A distinct liability framework, targeting what I call the Base Model Provider, is required.",
-          "excerpt_context": "Section A",
-          "_backfill": {
-            "previous_id": "saf-intentions-003",
-            "similarity": 0.6607,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-014",
+          "taxonomy_node_id": "saf-beliefs-057",
           "category": "Beliefs",
-          "point": "The document highlights the risk of 'algorithmic poisoning' where backdoors are installed in models through poisoned training data. This aligns with safetyist concerns about the potential for malicious actors to exploit AI systems. The author argues that this is a design defect that requires proactive mitigation.",
-          "verbatim": "An adversary who can inject a small number of poisoned examples into a training corpus... can install hidden triggers in the resulting model’s latent space.",
-          "excerpt_context": "Section C",
-          "_backfill": {
-            "previous_id": "saf-beliefs-004",
-            "similarity": 0.6858,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-005",
-          "category": "Intentions",
-          "point": "The author advocates for 'Machine Unlearning' as a necessary capability for AI developers to comply with privacy laws. This aligns with safetyist goals of ensuring AI systems can be corrected or remediated. The document argues that developers who cannot perform machine unlearning are failing a basic safety obligation.",
-          "verbatim": "A Base Model Provider that has not implemented Machine Unlearning capabilities before encountering a right-to-erasure request has failed a Basic Control obligation.",
-          "excerpt_context": "Leveraging the AI Data Stewardship Framework"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-006",
-          "category": "Intentions",
-          "point": "The document argues that 'world models' used in autonomous systems can misrepresent physical reality, leading to predictable harm. This aligns with safetyist concerns about the risks of deploying AI in safety-critical environments. The author calls for 'Latent Space Audits' to verify that these models do not deviate from physical reality.",
-          "verbatim": "A robot trained on an SSL world model that misrepresents the brittleness of glass... is not operating on a statistical error. It is operating on a false physics.",
-          "excerpt_context": "Section D"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-120",
-          "category": "Intentions",
-          "point": "The author proposes a 'Stewardship Defense' that provides a rebuttable presumption of non-negligence for developers who follow documented safety controls. This aligns with safetyist goals of incentivizing responsible AI development through structured governance. The document argues that this framework is necessary to protect both the public and the developer's investment.",
-          "verbatim": "A Base Model Provider who has implemented the AI-DSF’s controls during the SSL phase receives a rebuttable presumption of non-negligence as to Structural Defects.",
-          "excerpt_context": "Proposed Liability Model: The SSL Safe Harbor",
-          "_backfill": {
-            "previous_id": "saf-intentions-007",
-            "similarity": 0.7258,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-008",
-          "category": "Intentions",
-          "point": "The document emphasizes that output-only regulation is insufficient and that liability must reach upstream to the 'foundry' of SSL training. This aligns with safetyist goals of comprehensive oversight. The author argues that the current focus on inputs and outputs misses the most consequential phase of the AI lifecycle.",
-          "verbatim": "Output-only regulation cannot reach these harms. Upstream liability can.",
-          "excerpt_context": "Abstract"
+          "point": "The document identifies 'Representational Risk' as a distinct category of harm that cannot be fixed by downstream fine-tuning. Because these defects are encoded in the model's geometry, they persist regardless of how the model is later prompted or adjusted. This highlights the fundamental limitation of relying on output-only safety measures, as the underlying 'foundry' output is already corrupted. From a safetyist perspective, this necessitates upstream intervention to ensure that the foundational model itself is safe before it is ever deployed.",
+          "verbatim": "These are defects that cannot be remediated by downstream actors because they are encoded at the representational level, in the learned geometry of the model itself.",
+          "excerpt_context": "The Causal Middle, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety (alignment)",
+            "harm (speculative, future)"
+          ]
         }
       ]
     },
     "skeptic": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document argues that current AI development practices, specifically the use of unvetted, massive datasets like Common Crawl, are inherently negligent. This aligns with the skeptic view that corporate practices prioritize speed and scale over safety and accountability. The author points out that these practices lead to the sedimentation of bias and factual errors in models.",
-          "verbatim": "Common Crawl contains everything the web contains. Medical misinformation, demographic stereotypes, extremist content, and factual errors accumulated over years of archiving are all present.",
-          "excerpt_context": "Section A",
-          "_backfill": {
-            "previous_id": "skp-beliefs-001",
-            "similarity": 0.6754,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
-          "category": "Intentions",
-          "point": "The author calls for holding 'Base Model Providers' liable for structural defects in their models. This aligns with the skeptic intention of demanding corporate accountability for AI harms. The document argues that developers who ignore data provenance and quality controls are making negligent choices that lead to real-world harm.",
-          "verbatim": "The negligence is not in using Common Crawl. It is in ingesting it without applying the AI-DSF’s Foundational Controls.",
-          "excerpt_context": "Section A"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-002",
-          "category": "Desires",
-          "label": "Fixing AI's Built-in Biases",
-          "point": "The document highlights how SSL models encode cultural assumptions and demographic patterns from the internet into their core representations. This aligns with the skeptic desire to fix AI's built-in biases. The author argues that these biases are not just incidental but are structurally encoded, making them a significant societal harm.",
-          "verbatim": "The resulting representations encode cultural assumptions, demographic patterns, and factual associations that no annotator ever reviewed or approved.",
-          "excerpt_context": "Why SSL Changes the Legal Calculus"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-086",
-          "category": "Intentions",
-          "point": "The author argues that the current legal system is ill-equipped to handle AI-induced harms because it focuses on inputs and outputs rather than the 'foundry' of model creation. This aligns with the skeptic intention of demanding better accountability frameworks. The document calls for a new liability framework that reaches inside the model's development process.",
-          "verbatim": "The legal system has no doctrine that maps cleanly onto any of these three consequences. That gap is the problem this post addresses.",
-          "excerpt_context": "Why SSL Changes the Legal Calculus",
-          "_backfill": {
-            "previous_id": "skp-intentions-001",
-            "similarity": 0.8411,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-005",
-          "category": "Desires",
-          "point": "The document discusses the risk of AI models memorizing and reproducing private health information and PII. This aligns with the skeptic desire to protect individual privacy from AI surveillance. The author argues that developers have an obligation to ensure this data is not extractable.",
+          "category": "Beliefs",
+          "point": "The document highlights that SSL models memorize training data, including sensitive PII, as a feature of their generalization process. This memorization is not an accidental byproduct but a core mechanism of how these models function, creating significant privacy risks. From a skeptic perspective, this confirms that current AI development practices fundamentally compromise individual data privacy. The document argues that regulators should treat this recoverable memorization as a violation of data erasure rights, placing the burden of proof on the provider to demonstrate that PII is not extractable.",
           "verbatim": "Research by Carlini and colleagues has demonstrated that large language models trained with SSL will, under appropriate prompting, reproduce verbatim text from their training data, including private phone numbers, email addresses, and personal health information.",
-          "excerpt_context": "Section B",
-          "_backfill": {
-            "previous_id": "skp-desires-003",
-            "similarity": 0.8166,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Why SSL Changes the Legal Calculus, paragraph 5",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "autonomy (individual/data)",
+            "harm (documented, present)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-002",
           "category": "Intentions",
-          "point": "The author proposes that the FTC should have the power to order the destruction of models trained on tainted data. This aligns with the skeptic intention of demanding strong corporate accountability. The document argues that this is the only way to ensure developers take stewardship obligations seriously.",
-          "verbatim": "Algorithmic disgorgement means the destruction of the model. Not a fine. Not an injunction against future conduct. The deletion of the asset itself, along with every downstream product built on it.",
-          "excerpt_context": "Leveraging the AI Data Stewardship Framework"
+          "point": "The document argues that developers who train models on unvetted, unfiltered corpora like Common Crawl without applying rigorous stewardship controls are engaging in negligent entrustment. It emphasizes that the industry's reliance on massive, uncurated datasets does not excuse the failure to implement basic data provenance and quality reviews. From a skeptic perspective, this is a necessary step toward holding AI companies accountable for the systemic biases and harms they introduce into the information ecosystem. The document supports mandating these controls as a prerequisite for legal protection.",
+          "verbatim": "A developer who uses Common Crawl with documented provenance controls, anomaly detection, and pre-ingestion quality review is not negligent. A developer who uses it without those controls, knowing what the corpus contains, is.",
+          "excerpt_context": "Section A, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)",
+            "bias (systemic/social)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-040",
-          "category": "Intentions",
-          "point": "The document argues that the current focus of AI litigation on inputs and outputs misses the most consequential phase of the AI lifecycle: self-supervised learning. This aligns with the skeptic intention of looking deeper into corporate practices to find the root causes of harm. The author calls for a liability framework that targets the 'foundry' of AI development.",
-          "verbatim": "Between raw data and model output lies a process most legal scholars have not examined. Self-supervised learning (SSL) is the computational mechanism by which modern foundation models transform internet-scale text and images into mathematical weights.",
-          "excerpt_context": "The Causal Middle",
-          "_backfill": {
-            "previous_id": "skp-intentions-001",
-            "similarity": 0.7491,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
-          "category": "Intentions",
-          "point": "The author argues that developers who fail to implement documented stewardship obligations should have no defense against negligence claims. This aligns with the skeptic intention of holding companies accountable for their design choices. The document emphasizes that developers make conscious decisions about data vetting that directly impact the safety of their models.",
-          "verbatim": "Those who do not have no defensible position against FTC algorithmic disgorgement or common law negligence claims.",
-          "excerpt_context": "Abstract"
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document argues that current AI regulation is overly focused on output monitoring, which fails to address the root causes of harm occurring during the SSL training phase. By ignoring the 'foundry' where models are created, regulators are treating symptoms while leaving the underlying pathology unexamined. This aligns with the skeptic view that existing legal frameworks are insufficient to manage the power and influence of AI developers. The document calls for a shift in focus toward upstream liability to ensure that the structural properties of AI systems are subject to oversight.",
+          "verbatim": "Output-only AI regulation will fail, and it will fail predictably. A framework that holds deployers liable for what models say, without addressing what models are, treats the symptom while leaving the pathology unexamined.",
+          "excerpt_context": "Closing the Pipeline Gap, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "fairness (procedural)",
+            "alignment (compliance)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Self-supervised learning (SSL) is the computational mechanism by which modern foundation models transform internet-scale text and images into mathematical weights.",
-      "claim_label": "SSL Mechanism",
+      "claim": "SSL models trained on Common Crawl can memorize and reproduce verbatim PII, including phone numbers and health information, when prompted correctly.",
+      "claim_label": "SSL Memorization of PII",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-03",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-005"
+        "skp-beliefs-005"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "general_claim"
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Large language models trained with SSL can reproduce verbatim text from their training data, including private phone numbers, email addresses, and personal health information.",
-      "claim_label": "LLM Memorization Risk",
+      "claim": "Common Crawl contains approximately four billion web pages collected without content filtering.",
+      "claim_label": "Common Crawl Scale",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-03",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-001"
+        "skp-beliefs-095"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Backdoor attacks on self-supervised learning (SSL) training sets can install hidden triggers that cause models to behave in unintended ways at inference time.",
+      "claim_label": "SSL Backdoor Vulnerability",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-028"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "The FTC has the power to order 'algorithmic disgorgement,' which includes the destruction of a model and all downstream products built upon it.",
+      "claim_label": "FTC Algorithmic Disgorgement Power",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-03",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-166"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -329,34 +293,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Common Crawl contains approximately four billion web pages.",
-      "claim_label": "Common Crawl Size",
+      "claim": "Systems like Sora and JEPA demonstrate the ability to infer physical relationships, including object movement and material deformation, through the development of internal causal world models.",
+      "claim_label": "Causal World Model Capabilities",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-03",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-004"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Backdoor attacks on Self-Supervised Learning (SSL) training sets have been demonstrated in academic literature to be both effective and reproducible.",
-      "claim_label": "SSL Backdoor Reproducibility",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-03",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-040"
+        "saf-beliefs-039"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -364,44 +309,28 @@
         "internally_consistent": true
       },
       "fire_confidence": 0.95
-    },
-    {
-      "claim": "SSL models learn physical relationships, such as how objects move and materials deform, in their latent space.",
-      "claim_label": "SSL World Model Capability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-03",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-005"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Representational Risk",
-      "suggested_description": "A Belief within safetyist discourse that identifies risks encoded at the representational level of AI models, which cannot be remediated by downstream actors.\nEncompasses: Bias, memorization, and structural defects in learned geometry.\nExcludes: Downstream output-based harms.",
-      "concept": "The author defines Representational Risk as defects encoded in the learned geometry of a model during self-supervised learning. These risks are distinct because they cannot be corrected by fine-tuning or deployment decisions, necessitating upstream liability.",
+      "suggested_label": "Representation-to-Risk Certification",
+      "suggested_description": "An Intention within safetyist discourse that proposes a standardized, documented record of latent space audits to ensure accountability for base model providers.\nEncompasses: PII memorization tests, bias probing, and remediation records.\nExcludes: General transparency reports or output-only safety disclosures.",
+      "concept": "The Representation-to-Risk certification is a proposed document that specifies which representational biases were probed, which PII memorization tests were conducted, and what remediation was applied to identified risks. It functions as a 'Safety Data Sheet' for the latent space.",
       "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This is a novel taxonomy node that captures the specific risk of upstream model defects."
+      "suggested_category": "Intentions",
+      "reason": "This is a specific policy instrument for AI accountability not covered by existing nodes."
     },
     {
       "suggested_label": "The Foundry Problem",
-      "suggested_description": "A situation concept that describes the phase of self-supervised learning as a 'foundry' where structural defects are cast into AI models.\nEncompasses: The process of transforming raw data into model weights.\nExcludes: Downstream fine-tuning or deployment.",
-      "concept": "The author uses the 'foundry' metaphor to describe the SSL phase of AI development. It is where bias sediments and structural defects are cast, making it the most consequential phase of the AI lifecycle.",
+      "suggested_description": "A situation concept that describes the disconnect between the critical importance of the self-supervised learning phase and the lack of corresponding legal liability frameworks.\nEncompasses: Structural defects, latent space corruption, and upstream liability gaps.\nExcludes: Downstream deployment liability or supervised learning accountability.",
+      "concept": "The Foundry Problem refers to the fact that the most consequential phase of the AI lifecycle—self-supervised learning—is currently exempt from sustained legal attention. It is where structural defects are cast into a model long before any fine-tuning or deployment decision can correct them.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This situation concept provides a new framing for the SSL phase of AI development."
+      "reason": "This captures the core situational tension of the document regarding the 'pipeline gap' in AI regulation.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a call to establish clear, predictable standards for the 'foundry' phase to protect R&D investments from regulatory uncertainty.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical vulnerability, arguing that the foundry is where existential and catastrophic risks are baked into the model's core.",
+      "Skeptic Interpretation": "Skeptics would see this as evidence of a systemic failure in corporate accountability, where developers avoid responsibility for the foundational harms they create."
     }
   ]
 }
+

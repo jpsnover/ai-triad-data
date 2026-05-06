@@ -1,14 +1,14 @@
 {
   "doc_id": "using-self-correcting-search-accelerate-materials-discovery-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-11T20:49:48Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 0,
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,9 +16,82 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 21.4,
+      "elapsed_seconds": 14.3,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "using-self-correcting-search-accelerate-materials-discovery-2026",
+    "measured_at": "2026-05-02T21:05:03.6648300-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 3
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 25887.0,
+        "out_units": "items",
+        "out_count": 18.0,
+        "ratio": 0.0007,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 3,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 12
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 22,
+          "below_threshold_forced": 0,
+          "intentions_selected": 15,
+          "effective_threshold": 0.278,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
   },
   "pov_summaries": {
     "accelerationist": {
@@ -27,39 +100,49 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "acc-desires-001",
           "category": "Desires",
-          "point": "The document explicitly frames its research as a contribution to 'scientific abundance,' aiming to compress decades of materials development into months. By automating the discovery of new materials, the authors seek to solve critical bottlenecks in clean energy, computing, and space flight. This aligns with the accelerationist goal of using AI to solve existential and civilizational challenges through rapid technological progress. The document acknowledges that this requires moving beyond sequential, human-limited experimentation.",
-          "verbatim": "We're excited to continue such work to advance scientific abundance.",
-          "excerpt_context": "Discussion, paragraph 3",
-          "_backfill": {
-            "previous_id": "acc-desires-013",
-            "similarity": 0.6651,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document advocates for deploying autonomous AI systems to compress decades of materials development into months, aiming to solve critical civilizational bottlenecks in clean energy and space flight. By automating the hypothesis-generation and experimental-execution loop, the authors seek to overcome the slow, sequential feedback loops that currently limit scientific progress. This aligns with the accelerationist goal of using AI to achieve post-scarcity through rapid, autonomous scientific discovery. The authors acknowledge that this requires a fully autonomous stack, moving beyond human-in-the-loop constraints.",
+          "verbatim": "Radical AI is building a fully autonomous and intelligent approach to materials design, where AI models generate hypotheses, self-driving robotic labs execute experiments, and the entire stack learns and improves in a continuous closed loop that compresses decades of materials development into months.",
+          "excerpt_context": "Introduction, page 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-004",
           "category": "Beliefs",
-          "point": "The authors assert that AI models can navigate the 'vast space of possible chemistries and structures' to propose novel materials directly, rather than relying on traditional, slow search methods. This belief in AI's ability to tackle impossible information problems is central to their methodology of inverse design. By leveraging model internals, they claim to achieve higher efficiency in finding viable candidates. The document notes that this approach is generalizable beyond materials science to domains like drug discovery.",
-          "verbatim": "The promise of generative materials modelling is true inverse design: starting with the properties needed for an application, then navigating the vast space of possible chemistries and structures in silico to directly propose the best options to be synthesized in the real world.",
-          "excerpt_context": "Background, paragraph 1"
+          "point": "The authors assert that AI models possess internal representations richer than their explicit outputs, which can be leveraged to improve performance in complex problem-solving domains. By using probes to extract this internal structure, they demonstrate that models can self-correct during sampling, leading to higher-quality candidate generation. This belief supports the accelerationist view that AI inherently surpasses human cognitive constraints in processing hyper-dimensional datasets. The document notes that as models scale, these internal representations will become increasingly informative, further enhancing scientific discovery.",
+          "verbatim": "Zooming out, the key insight behind self-correcting search is that models contain rich internal structures that often encode more information than model outputs — an insight we use across our work.",
+          "excerpt_context": "Discussion, page 17",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "transparency_verification"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-036",
+          "taxonomy_node_id": "acc-intentions-004",
           "category": "Intentions",
-          "point": "The document proposes 'self-correcting search' as a continuous strategic steering mechanism for diffusion models. By integrating a feedback loop derived from model internals, the system can accept or reject denoising steps in real-time, effectively steering the model toward desired outcomes. This intention to use internal model representations as a control layer demonstrates a commitment to optimizing AI performance through iterative, automated feedback. The authors suggest this technique is a flexible, low-downside way to steer models across various scientific domains.",
+          "point": "The document proposes using model internals as a feedback mechanism to steer diffusion models, effectively creating a self-correcting search process. This intention focuses on leveraging interpretability tools to improve the efficiency of conditional generation without requiring external human intervention at every step. From an accelerationist perspective, this method maximizes the utility of existing models by enabling them to navigate vast search spaces more effectively. The authors highlight that this technique is generalizable across domains like protein and drug design, promoting rapid innovation.",
           "verbatim": "Self-correcting search gives the model a feedback loop derived from model internals. We train a probe to predict, based on the model's activations, what the property value of the final material will be.",
-          "excerpt_context": "Self-correcting search, paragraph 2"
+          "excerpt_context": "Self-correcting search, page 13",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "oversight_audit"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-017",
+          "taxonomy_node_id": "acc-beliefs-022",
           "category": "Beliefs",
-          "point": "The authors believe that as scientific models scale, their internal representations will encode increasingly deeper and more meaningful information. They argue that understanding these internals is crucial for the future of in silico science. This belief supports the accelerationist view that AI capabilities are inherently expanding and that we should actively harness these internal structures to drive further progress. The document frames this as a necessary evolution in how we interact with and supervise advanced AI systems.",
-          "verbatim": "As scientific models scale and improve, their representations will encode deeper and more meaningful information. Understanding and leveraging model internals will be crucial across domains as more and more science is done in silico",
-          "excerpt_context": "Discussion, paragraph 2"
+          "point": "The authors predict that as scientific models scale, their internal representations will encode deeper information, facilitating a recursive improvement in scientific output. They argue that leveraging these internals is crucial as more science is performed in silico, suggesting a trajectory toward increasingly autonomous and capable research systems. This belief aligns with the accelerationist view that AI-driven research will trigger a feedback loop of capability growth. The document emphasizes that this approach is essential for advancing scientific abundance.",
+          "verbatim": "As scientific models scale and improve, their representations will encode deeper and more meaningful information. Understanding and leveraging model internals will be crucial across domains as more and more science is done in silico, and self-correcting search is one way to harness that information.",
+          "excerpt_context": "Discussion, page 17",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         }
       ]
     },
@@ -67,47 +150,51 @@
       "key_points": [
         {
           "stance": "neutral",
-          "taxonomy_node_id": "saf-intentions-028",
+          "taxonomy_node_id": "saf-intentions-032",
           "category": "Intentions",
-          "point": "The document employs mechanistic interpretability techniques—specifically training probes on model activations—to steer the model's output. While the authors use this for performance optimization, the safetyist perspective views such interpretability as a critical tool for auditing and controlling model behavior. By making the model's internal decision-making process more transparent, this approach could theoretically be used to detect or prevent undesirable behaviors. The document acknowledges that these internal structures are often richer than the model's final outputs.",
-          "verbatim": "The key insight behind self-correcting search is that models contain rich internal structures that often encode more information than model outputs — an insight we use across our work.",
-          "excerpt_context": "Discussion, paragraph 1"
+          "point": "The document utilizes interpretability tools to probe model internals, which aligns with safetyist intentions to increase transparency into how models arrive at their outputs. By extracting structure from model embeddings, the authors gain visibility into the model's reasoning process, which they then use to correct the model during sampling. While the primary goal is performance optimization, this practice provides a form of oversight into the model's internal state. The authors acknowledge that this is a way to harness information that is otherwise opaque in standard diffusion models.",
+          "verbatim": "Using a probe, we extract the structure already within model embeddings and use it to correct the model during sampling, achieving better targeting at no cost to uniqueness.",
+          "excerpt_context": "Fine-tuning MatterGen, page 11",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-060",
-          "category": "Beliefs",
-          "point": "The authors identify 'mode collapse' as a significant risk when conditioning models too strongly, where the model loses diversity and outputs the same results repeatedly. This is a classic failure mode in generative modeling that safetyists monitor as a sign of model instability or poor alignment with the goal of exploring the full search space. The document uses this to justify their self-correcting search method, which aims to improve targeting without sacrificing uniqueness. It highlights the tension between performance optimization and maintaining a diverse, representative output.",
-          "verbatim": "Increasing gamma improves targeting, but at the cost of uniqueness; conditioning the model too strongly hurts the diversity of output, known in generative modelling literature as mode collapse.",
-          "excerpt_context": "Fine-tuning MatterGen, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-beliefs-064",
-            "similarity": 0.4874,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "taxonomy_node_id": "saf-intentions-076",
+          "category": "Intentions",
+          "point": "The authors focus on a specific, testable technical problem—improving the targeting and viability of generated materials—rather than speculative existential risks. They employ rigorous metrics like SUN (Stable, Unique, and Novel) to evaluate the success of their self-correcting search method. This approach reflects a safetyist preference for concrete, measurable benchmarks in AI development. The document notes that this method improves the targeting-viability frontier, providing a clear, empirical way to assess model performance.",
+          "verbatim": "In this work, we set out to improve how consistently the model surfaced candidates that both have the desired properties (targeting) and are viable (Stable, Unique, and Novel, or SUN).",
+          "excerpt_context": "Background, page 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "safety_empirical"
+          ]
         },
         {
           "stance": "neutral",
-          "taxonomy_node_id": "saf-intentions-048",
-          "category": "Intentions",
-          "point": "The document proposes a 'self-correcting' mechanism that acts as a form of oversight during the sampling process, where the model evaluates its own denoising steps. From a safetyist perspective, this is a form of 'scalable oversight' where the model's own internal logic is used to verify its progress. The authors use this to ensure the model stays within a target property range while maintaining stability. The document notes that without this mechanism, the model has no way to recover from errors made during the denoising trajectory.",
+          "taxonomy_node_id": "saf-beliefs-001",
+          "category": "Beliefs",
+          "point": "The document acknowledges that standard diffusion models lack a mechanism for recovery or verification during the denoising process, which can lead to errors. By introducing a self-correcting feedback loop, the authors address this structural limitation, effectively creating a mechanism for the model to 'recover' from poor denoising steps. This aligns with the safetyist belief that current alignment and generation techniques are often insufficient to guarantee reliable behavior. The authors note that without this correction, the model simply moves in the direction it chooses, regardless of error.",
           "verbatim": "Notably, in this process there is no correction or verification of each denoising step. The model moves in the direction it chooses, so if the model makes an error, there is no mechanism for it to recover.",
-          "excerpt_context": "Self-correcting search, paragraph 1"
+          "excerpt_context": "Self-correcting search, page 12",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "safety_alignment"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-004",
-          "category": "Beliefs",
-          "point": "The authors acknowledge that standard metrics like SUN (Stable, Unique, Novel) are essential for ensuring that generated materials are actually viable in the real world. They emphasize that a model producing random or unstable materials is not useful, even if it is 'creative.' This aligns with the safetyist concern that AI systems must be constrained by physical and logical reality to avoid producing harmful or useless outputs. The document uses DFT as a ground-truth check, highlighting the importance of external verification for AI-generated designs.",
-          "verbatim": "If a candidate material does not sit near the stable energy minimum, it is unlikely to be synthesizable in the real world.",
-          "excerpt_context": "Background, paragraph 3",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.5714,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "saf-intentions-119",
+          "category": "Intentions",
+          "point": "The authors implement a feedback loop that uses predicted property values to accept or reject denoising steps, which functions as a form of strategic control over the model's generation process. This allows the model to prioritize candidates that meet specific stability and property constraints, effectively steering the model toward safer and more viable outputs. This aligns with safetyist intentions to develop methods for identifying and constraining model behavior. The document highlights that this method is Pareto optimal, improving both targeting and stability.",
+          "verbatim": "If the proposal has a better predicted band gap, we accept. Otherwise, we accept with a probability inversely proportional to how much worse it is.",
+          "excerpt_context": "Self-correcting search, page 13",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "oversight_human_control"
+          ]
         }
       ]
     },
@@ -115,125 +202,147 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-053",
+          "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The authors focus on 'measuring what really matters' by using rigorous metrics like SUN (Stable, Unique, Novel) to evaluate the success of their AI models. They explicitly reject models that produce 'random' or 'known' materials, prioritizing actual scientific utility over mere generative output. This skepticism toward 'black box' performance metrics aligns with the skeptic's demand for empirical validation of AI claims. The document emphasizes that targeting success rates were historically low, necessitating this more precise approach.",
-          "verbatim": "The status quo targeting numbers are very low. Considering band gap, only 15% of MatterGen-generated samples achieve a band gap within the requested target range of 4û6 eV.",
-          "excerpt_context": "Fine-tuning MatterGen, paragraph 2",
-          "_backfill": {
-            "previous_id": "skp-intentions-006",
-            "similarity": 0.6855,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document emphasizes the importance of rigorous evaluation using standard metrics like SUN (Stable, Unique, and Novel) to assess the quality of AI-generated materials. By filtering candidates through these stages, the authors demonstrate a commitment to systematic auditing and performance verification. This aligns with the skeptic intention to move beyond hype and focus on measurable, evidence-based performance. The authors acknowledge that current techniques often fail to produce viable materials, highlighting the necessity of these evaluation frameworks.",
+          "verbatim": "Baseline success rate: We filter generated candidates by whether they are stable, unique and novel and compute approximate property values. Only ~10% of fine-tuned candidates pass all filtering stages.",
+          "excerpt_context": "Fine-tuning MatterGen, page 11",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-015",
+          "taxonomy_node_id": "skp-beliefs-064",
           "category": "Beliefs",
-          "point": "The document highlights the 'jagged ability' of current generative models, noting that they struggle to consistently meet multiple constraints (stability, uniqueness, novelty) simultaneously. The authors observe that fine-tuning for one property often degrades performance in others, such as diversity. This empirical observation of model limitations supports the skeptic's view that AI is not a magic solution but a tool with specific, measurable failure modes. The authors use this to justify their intervention, which aims to bridge the gap between model capability and real-world requirements.",
+          "point": "The authors observe that current models often struggle to balance competing constraints like stability, uniqueness, and novelty, leading to poor performance in real-world applications. They note that a model optimized for one constraint, such as stability, may fail to produce unique or novel candidates, illustrating the 'jagged' nature of current AI capabilities. This aligns with the skeptic belief that AI performance is uneven and requires careful, domain-specific tuning. The document highlights that without self-correction, the model's output is often unreliable.",
           "verbatim": "There are tradeoffs between these constraints. A model that outputs the same stable, known material every time would have perfect stability, but no uniqueness or novelty.",
-          "excerpt_context": "Background, paragraph 4"
+          "excerpt_context": "Background, page 7",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "bias_systemic"
+          ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-027",
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-intentions-054",
           "category": "Intentions",
-          "point": "The authors address the 'proof-of-concept trap' by demonstrating that their self-correcting search method actually improves the success rate of candidate materials by ~30%. They move beyond theoretical claims to provide concrete, measurable results on a specific task (band gap targeting). This focus on practical, incremental improvements rather than speculative AGI capabilities aligns with the skeptic's preference for evidence-based AI development. The document acknowledges that their method is a 'flexible, low-downside way' to steer models, avoiding the hype often associated with AI research.",
-          "verbatim": "Applying self-correcting search improves targeting without harming SUN scores, leading to an overall ~27% increase in successful candidates.",
-          "excerpt_context": "Results, paragraph 1"
+          "point": "The document focuses on solving a tangible, present-day problem in materials science—the slow pace of discovery—rather than engaging in speculative future-oriented scenarios. By developing a practical tool for materials design, the authors prioritize evidence-based improvements over abstract AI capabilities. This aligns with the skeptic intention to focus on real, present AI problems. The authors acknowledge that their method is a flexible, low-downside way to steer models, emphasizing its practical utility.",
+          "verbatim": "These results demonstrate that self-correcting search is a flexible, low-downside way to steer diffusion models towards the properties we care about.",
+          "excerpt_context": "Discussion, page 16",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "documented_present_harm"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-021",
           "category": "Beliefs",
-          "point": "The document frames AI as a tool for 'normal science' integration, where it is used to accelerate existing research workflows rather than replace them. The authors emphasize that the goal is to compress development time, not to create autonomous agents that operate without human oversight. This pragmatic view of AI as a component of a larger scientific stack aligns with the skeptic's focus on AI as a tool, not a sentient entity. The document notes that the entire stack—including robotic labs—must work together in a closed loop.",
-          "verbatim": "Radical AI is building a fully autonomous and intelligent approach to materials design, where AI models generate hypotheses, self-driving robotic labs execute experiments, and the entire stack learns and improves in a continuous closed loop.",
-          "excerpt_context": "Introduction, paragraph 2"
+          "point": "The authors treat AI integration as an iterative refinement process, using self-correcting search to improve the performance of existing models rather than replacing the entire scientific process. This reflects the skeptic belief that AI deployment is often a process of incremental improvement rather than a revolutionary shift. The document notes that their method dominates existing techniques, pushing forward the frontier of targeting and viability. The authors emphasize that this is a way to harness information from model internals to enhance current workflows.",
+          "verbatim": "We further find that self-correcting search dominates only using fine-tuned guidance over all conditioning strengths, pushing forward the frontier of band gap targeting and viability.",
+          "excerpt_context": "Results, page 15",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Only 15% of MatterGen-generated samples achieve a band gap within the requested target range of 4-6 eV.",
-      "claim_label": "MatterGen Band Gap Targeting Success",
+      "claim": "Only 15% of MatterGen-generated samples achieve a band gap within the requested target range of 4-6 eV, dropping to 6.5% when considering only SUN materials.",
+      "claim_label": "MatterGen Band Gap Targeting Performance",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-015"
+        "skp-beliefs-064"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Self-correcting search increases the generation of SUN materials with target band gaps by approximately 30%.",
-      "claim_label": "Self-Correcting Search Performance Gain",
+      "claim": "Self-correcting search results in approximately 30% more viable candidate materials in a target range.",
+      "claim_label": "Self-Correcting Search Efficiency Gain",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-004"
+        "acc-desires-001"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Density Functional Theory (DFT) is the standard quantum mechanical method for computing the energy of a material's atomic configuration.",
-      "claim_label": "DFT Standard Definition",
+      "claim": "Only ~10% of fine-tuned candidates pass all filtering stages for stability, uniqueness, and novelty.",
+      "claim_label": "Baseline Candidate Success Rate",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-037"
+        "skp-intentions-087"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: general_claim"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Internal Model Feedback Loops",
-      "suggested_description": "A technical approach that uses a model's internal activations to guide its own generation process.\nEncompasses: Probe-guided sampling, internal state monitoring, self-correcting denoising.\nExcludes: External reward-based reinforcement learning or simple prompt engineering.",
-      "concept": "The document introduces 'self-correcting search' which uses a probe to predict property values from model activations, using these to accept or reject denoising steps. This allows the model to steer itself during the sampling process based on its own internal representations.",
+      "suggested_label": "Model-Internal Feedback Loops",
+      "suggested_description": "The use of internal model activations and representations as a real-time feedback mechanism to guide and correct the model's generation process during inference.",
+      "concept": "The document introduces 'self-correcting search' as a method to train a probe on model activations to predict property values, which then guides the denoising steps of a diffusion model. This allows the model to use its own internal knowledge to steer its output toward desired properties.",
       "suggested_pov": "accelerationist",
       "suggested_category": "Intentions",
-      "reason": "This represents a specific, novel technical methodology for AI control that is not currently captured by existing taxonomy nodes."
+      "reason": "This is a specific technical mechanism for model steering that is not covered by existing nodes, which focus more on external auditing or general alignment."
     },
     {
       "suggested_label": "SUN Materials Viability Metric",
-      "suggested_description": "A standardized framework for evaluating the quality of generated materials based on stability, uniqueness, and novelty.\nEncompasses: DFT-based stability checks, training data overlap analysis, batch diversity metrics.\nExcludes: Purely performance-based metrics like accuracy or speed.",
-      "concept": "The document defines SUN (Stable, Unique, Novel) as a standard metric for materials viability, comprising three distinct constraints that must be satisfied for a material to be considered a successful candidate.",
+      "suggested_description": "A standardized evaluation framework for materials discovery that requires candidates to be Stable, Unique, and Novel (SUN) to be considered viable for real-world synthesis.",
+      "concept": "The document defines SUN as a standard metric for materials viability, comprising stability (DFT-computed energy), uniqueness (different from other batch candidates), and novelty (not in training data). This framework is used to filter and validate AI-generated material candidates.",
       "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This is a specific domain-standard metric that provides a concrete way to measure AI performance, which is a key concern for the skeptic camp."
+      "reason": "This is a domain-specific evaluation framework that represents a concrete, measurable approach to AI accountability in scientific research."
     },
     {
+      "suggested_label": "Inverse Materials Design",
+      "suggested_description": "A situation concept that describes the process of starting with desired material properties and using generative models to navigate the chemical space to propose structures that meet those requirements.\nEncompasses: Conditional generation, property-based material discovery, in silico exploration.\nExcludes: Forward-process simulation, traditional trial-and-error experimentation.",
+      "concept": "The document frames the inverse design problem as starting with target properties, such as a bandgap of 4-6 eV, and using a generative model to directly propose novel materials that fit these criteria, rather than searching through known materials.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "The concept of 'Inverse Design' as a paradigm shift in materials science is a situation that requires specific interpretation.",
-      "Accelerationist Interpretation": "Accelerationists view inverse design as the ultimate realization of AI's potential to bypass human-limited trial-and-error, enabling the rapid discovery of materials that would otherwise take decades to find.",
-      "Safetyist Interpretation": "Safetyists would emphasize that inverse design requires robust, verifiable constraints to ensure that the 'proposed' materials are actually safe and stable, as the model is now driving the design process.",
-      "Skeptic Interpretation": "Skeptics would interpret inverse design as a useful tool for 'normal science' that must be rigorously validated against real-world physical constraints to avoid the 'garbage in, garbage out' problem."
+      "reason": "This is a foundational paradigm shift in materials science enabled by AI, distinct from traditional experimental methods.",
+      "Accelerationist Interpretation": "Accelerationists view inverse design as a transformative capability that enables the rapid, autonomous discovery of materials, directly contributing to post-scarcity goals.",
+      "Safetyist Interpretation": "Safetyists would focus on the need for rigorous validation of these 'in silico' proposals to ensure they are truly stable and synthesizable before physical deployment.",
+      "Skeptic Interpretation": "Skeptics would emphasize the limitations of inverse design, noting that model-proposed materials may not always translate to real-world success and require careful, evidence-based verification."
     }
   ]
 }

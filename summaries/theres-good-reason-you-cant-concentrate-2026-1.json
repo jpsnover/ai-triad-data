@@ -1,14 +1,14 @@
 {
   "doc_id": "theres-good-reason-you-cant-concentrate-2026-1",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 127,
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,13 +16,85 @@
       "claims_total": 4,
       "claims_confident": 4,
       "claims_iterated": 0,
-      "elapsed_seconds": 11.7,
+      "elapsed_seconds": 10.5,
       "termination_reason": "all_confident"
     }
   },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "theres-good-reason-you-cant-concentrate-2026-1",
+    "measured_at": "2026-05-02T21:10:38.9945960-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 0.0,
+        "ratio": 0.0,
+        "flags": {
+          "resolved_count": 3,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 32570.0,
+        "out_units": "items",
+        "out_count": 11.0,
+        "ratio": 0.0003,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.1429,
+          "unmapped_concepts": 0,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 4,
+          "total_points": 7
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 12,
+          "below_threshold_forced": 0,
+          "intentions_selected": 24,
+          "effective_threshold": 0.3422,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 4
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
+  },
   "pov_summaries": {
     "accelerationist": {
-      "key_points": []
+      "key_points": [
+        {
+          "stance": "opposed",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document argues against the widespread adoption of generative AI in professional settings, framing the technology as a tool that encourages cognitive laziness. It suggests that using AI to avoid mentally demanding tasks is a negative development that degrades human cognitive fitness. From an accelerationist perspective, this stance is counterproductive, as it seeks to limit the use of tools that could otherwise enhance productivity and allow humans to focus on higher-level creative or strategic work. The document acknowledges that AI can provide time savings for routine tasks but insists that core business tasks should remain manual to preserve cognitive 'muscle'.",
+          "verbatim": "Why would we use A.I. in ways that ultimately make work more draining? My suspicion is that we often deploy these tools not because they make us better at our jobs but because they help us to avoid moments of sustained concentration.",
+          "excerpt_context": "Section: Generative A.I. introduces its own set of challenges",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "risk_innovation"
+          ]
+        }
+      ]
     },
     "safetyist": {
       "key_points": [
@@ -30,17 +102,27 @@
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-036",
           "category": "Beliefs",
-          "point": "The document asserts that reliance on AI tools leads to a measurable decline in human cognitive skills, specifically in professional settings. It cites studies showing that offloading difficult tasks to AI increases mental exhaustion and reduces brain connectivity. From a safetyist perspective, this confirms that AI integration can create a 'displacement spiral' where human expertise atrophies, making us more dependent on systems we no longer fully understand or control. The author notes that this is a self-reinforcing cycle, as the loss of cognitive fitness makes us even more reliant on AI to avoid demanding tasks.",
-          "verbatim": "Another recent study, which tracked the brain activity of research subjects who were writing with the help of large language models, found that â€œbrain connectivity systematically scaled down with the amount of external support.â€ ",
-          "excerpt_context": "Paragraph 13"
+          "point": "The document asserts that reliance on AI tools is leading to a measurable decline in human cognitive abilities, specifically critical thinking and concentration. It cites studies showing a negative correlation between AI usage and critical thinking, as well as brain connectivity scaling down with external support. From a safetyist perspective, this supports the concern that AI systems are fundamentally altering human cognitive architecture in ways that may be irreversible or harmful to human agency. The document notes that this is a self-reinforcing cycle where existing digital distractions make us more prone to using AI to avoid mental effort.",
+          "verbatim": "A study from January, based on surveys and interviews with more than 600 participants, revealed a “significant negative correlation between frequent A.I. tool usage and critical thinking abilities.”",
+          "excerpt_context": "Section: The growth of A.I. has brought new cognitive concerns",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "capabilities_hazard",
+            "autonomy_human"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-022",
           "category": "Intentions",
-          "point": "The document argues for a deliberate, human-centric approach to AI usage to prevent cognitive atrophy. It suggests that while AI can automate routine tasks, using it for core creative or analytical work is akin to skipping a workout, leading to long-term skill decay. This aligns with safetyist concerns about maintaining human agency and oversight in the face of increasingly autonomous systems. The author acknowledges that this requires a cultural shift, moving away from the convenience of AI-generated content toward valuing the 'strain' of human effort.",
-          "verbatim": "But any use of A.I. that mainly serves to make core business tasks cognitively less demanding should be treated with caution. Hereâ€™s a simple rule that reinforces this idea: Your writing should be your own.",
-          "excerpt_context": "Paragraph 21"
+          "point": "The document advocates for institutional interventions, such as school phone bans and workplace policies, to protect human cognitive capacity from digital disruption. It frames these as necessary measures to prevent the atrophy of human decision-making and focus. From a safetyist perspective, this aligns with the goal of maintaining human control and agency in the face of pervasive, attention-capturing technologies. The document acknowledges that some individuals may evade these safeguards, but emphasizes the importance of the normative message these policies send.",
+          "verbatim": "Our institutions have a role to play here as well, as rules and regulations that reduce distraction in group settings can help support the strengthening of cognitive abilities.",
+          "excerpt_context": "Section: Our institutions have a role to play here as well",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_oversight",
+            "oversight_human_control"
+          ]
         }
       ]
     },
@@ -48,105 +130,91 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-043",
+          "taxonomy_node_id": "skp-beliefs-010",
           "category": "Beliefs",
-          "point": "The document argues that digital technology and AI are causing a measurable decline in human cognitive abilities, specifically attention spans and critical thinking. It cites research from Gloria Mark and others to show that attention spans have dropped by two-thirds since 2004. From a skeptic perspective, this is a tangible, present-day harm caused by the design of the attention economy, rather than a speculative future risk. The author notes that this decline threatens the productivity of knowledge-intensive industries, which rely on human cognitive output.",
+          "point": "The document posits that the digital attention economy and ubiquitous smartphones have caused a significant, measurable decline in human attention spans and cognitive skills. It uses historical data on reading and math struggles to argue that humans are experiencing a 'cognition crisis' linked to the rise of digital technology. From a skeptic perspective, this highlights the tangible, present-day harms of technology that are often ignored in favor of speculative future benefits. The document acknowledges that these declines became particularly notable in the mid-2010s, coinciding with the rise of the smartphone.",
           "verbatim": "Research from Gloria Mark, a professor of informatics at the University of California, Irvine, indicates that our attention spans are about one-third as long as they were in 2004, with the biggest drops happening around 2012.",
-          "excerpt_context": "Paragraph 10",
-          "_backfill": {
-            "previous_id": "skp-beliefs-048",
-            "similarity": 0.6623,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Section: The data backs up this claim",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "documented_present_harm",
+            "bias_systemic"
+          ]
         },
         {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-intentions-054",
           "category": "Intentions",
-          "point": "The document advocates for prioritizing 'digital nutrition' and cognitive fitness as a societal goal, treating digital content like ultraprocessed food. It proposes concrete, evidence-based interventions like phone bans in schools and workplaces to mitigate immediate harms. This reflects the skeptic focus on addressing real, measurable problems rather than hypothetical existential risks. The author acknowledges that these changes require institutional support and collective action, similar to the public health campaigns of the 20th century.",
-          "verbatim": "We should consider taking as strong a stance against ultraprocessed content as we already do against ultraprocessed food. Which is to say: Most people should avoid these diversions most of the time.",
-          "excerpt_context": "Paragraph 17"
+          "point": "The document calls for a 'revolution' in how we approach digital technology, advocating for a shift in societal norms similar to the mid-20th-century transformation in attitudes toward diet and exercise. It proposes concrete actions like avoiding 'ultraprocessed' digital content and keeping phones out of reach to reclaim cognitive fitness. From a skeptic perspective, this prioritizes addressing real, present-day cognitive degradation over the passive acceptance of technological 'progress'. The document acknowledges that such suggestions were once considered eccentric but argues they are now necessary for survival.",
+          "verbatim": "I’ve come to believe that a similarly rapid revolution is possible in how we respond to our diminishing ability to think.",
+          "excerpt_context": "Section: Is it time for a new revolution?",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "fairness_procedural"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-049",
           "category": "Beliefs",
-          "point": "The document highlights how AI tools often increase mental exhaustion, or 'brain fry,' due to the constant context switching required to manage them. It argues that this makes work more draining rather than easier, contradicting the promise of productivity gains. From a skeptic perspective, this demonstrates how technology is often deployed to serve corporate efficiency at the expense of human well-being. The author notes that this is exacerbated by the tendency to use AI to avoid the 'hard' work of sustained concentration.",
-          "verbatim": "A recent study conducted by researchers at the Boston Consulting Group found that offloading difficult tasks to A.I. led to increased mental exhaustion â€” a state they called â€œbrain fryâ€  â€” because of the constant context switching required to monitor and manage the A.I.â€™s behavior.",
-          "excerpt_context": "Paragraph 19"
+          "point": "The document argues that AI tools in the workplace often lead to 'workslop' and increased mental exhaustion rather than genuine productivity gains. It highlights the 'brain fry' phenomenon caused by constant context switching required to manage AI behavior. From a skeptic perspective, this confirms that AI integration often intensifies labor burdens and creates management overhead rather than reducing the actual work required. The document notes that workers are often mandated to use these tools despite them failing to create real value.",
+          "verbatim": "A recent study conducted by researchers at the Boston Consulting Group found that offloading difficult tasks to A.I. led to increased mental exhaustion — a state they called “brain fry” — because of the constant context switching required to monitor and manage the A.I.’s behavior.",
+          "excerpt_context": "Section: Generative A.I. introduces its own set of challenges",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "documented_present_harm",
+            "bias_systemic"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-014",
-          "category": "Intentions",
-          "point": "The document supports mandatory transparency and regulation of digital platforms, citing Australia's ban on social media for minors as a model. It argues that governments should treat digital platforms like other age-gated vices, such as alcohol and tobacco. This aligns with the skeptic intention to hold tech companies accountable for the negative externalities of their products. The author acknowledges that such measures may be circumvented but argues that the symbolic and regulatory message is crucial for public health.",
-          "verbatim": "The United States should follow Australiaâ€™s lead in this regard. Will some kids find their way around any safeguards that are put in place? Of course; such evasion is already happening in Australia. But the larger message sent by such laws is important.",
-          "excerpt_context": "Paragraph 19"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-065",
-          "category": "Beliefs",
-          "point": "The document distinguishes between 'workslop'—AI-generated content that masquerades as quality work—and genuine human effort. It argues that offloading tasks to AI often results in content that lacks substance and fails to create real value. From a skeptic perspective, this highlights the danger of prioritizing speed and automation over the quality of human thought. The author notes that this is a systemic issue, as workers are often mandated to use these tools despite their lack of utility.",
-          "verbatim": "In September a splashy article in Harvard Business Review reported on the rapid rise of â€œworkslop,â€  which the authors defined as â€œA.I.-generated work content that masquerades as good work, but lacks the substance to meaningfully advance a given task.â€ ",
-          "excerpt_context": "Paragraph 19",
-          "_backfill": {
-            "previous_id": "skp-beliefs-014",
-            "similarity": 0.7389,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-016",
-          "category": "Intentions",
-          "point": "The document proposes that individuals should actively manage their digital environment by keeping phones out of reach to reduce the urge to check them. It frames this as a necessary step to reclaim the ability to perform 'deep work' and sustained contemplation. This reflects the skeptic intention to empower individuals to resist the attention economy through behavioral changes. The author acknowledges that this is a battle of willpower, but argues that it is essential for maintaining cognitive fitness.",
-          "verbatim": "One solution to this constant companion problem: Spend more time with your phone out of easy reach. If itâ€™s not nearby, it wonâ€™t be as likely to trigger your motivational neurons, helping clear your brain to focus on other activities with less distraction.",
-          "excerpt_context": "Paragraph 23"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-043",
-          "category": "Beliefs",
-          "point": "The document asserts that the decline in cognitive skills is linked to the ubiquity of smartphones and the attention economy. It points to the correlation between the mid-2010s, when these technologies became widespread, and the observed drops in concentration and test scores. From a skeptic perspective, this provides empirical evidence that the current digital environment is fundamentally hostile to human cognitive health. The author notes that this is not a coincidence, but a direct consequence of how these technologies are designed.",
-          "verbatim": "Many of these declines in cognitive skills became notable starting in the mid-2010s, exactly the period when smartphones became ubiquitous and the digital attention economy exploded in size. An increasing amount of research implies that this timing is no coincidence.",
-          "excerpt_context": "Paragraph 12"
+          "taxonomy_node_id": "skp-desires-006",
+          "category": "Desires",
+          "point": "The document advocates for the preservation of deep, contemplative thought as a fundamental human requirement for making sense of the world and cultivating moral imagination. It contrasts the 'frictionless' consumption of AI-generated content with the necessary struggle of deep reading and intensive thinking. From a skeptic perspective, this emphasizes the value of human critical inquiry over the output-focused metrics of the digital economy. The document acknowledges that this requires a conscious rejection of the constant-companion model of phone use.",
+          "verbatim": "Thinking is also an engine for making sense of our lives and cultivating our moral imaginations.",
+          "excerpt_context": "Section: A diminished ability to use our brains also has concerning personal effects",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "autonomy_individual",
+            "fairness_procedural"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Attention spans are about one-third as long as they were in 2004.",
+      "claim": "Attention spans are about one-third as long as they were in 2004, with the biggest drops occurring around 2012.",
       "claim_label": "Attention Span Decline",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-03",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-043"
+        "skp-beliefs-010"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "referenced"
+          "evidence_level": "statistical_implicit"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Australia enacted legislation banning social media use for kids under 16.",
-      "claim_label": "Australian Social Media Ban",
+      "claim": "A study from January 2026 found a significant negative correlation between frequent AI tool usage and critical thinking abilities.",
+      "claim_label": "AI Usage and Critical Thinking Correlation",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2026-03",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-01",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-014"
+        "saf-beliefs-036"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -159,14 +227,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Office workers are interrupted once every two minutes on average.",
-      "claim_label": "Workplace Interruption Frequency",
+      "claim": "Australia enacted legislation banning social media use for children under 16.",
+      "claim_label": "Australian Social Media Ban",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2025",
+      "temporal_scope": "historical",
+      "temporal_bound": "2026-03",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-049"
+        "saf-intentions-117"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -179,32 +248,26 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Age-adjusted death rates from cardiovascular disease fell by 60 percent in the half-century following Eisenhower's heart attack.",
-      "claim_label": "Cardiovascular Death Rate Decline",
+      "claim": "Microsoft's 2025 Work Trend Index Report found that office workers were interrupted once every two minutes on average.",
+      "claim_label": "Workplace Interruption Frequency",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "1955-2005",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-012"
+      ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "referenced"
+          "evidence_level": "statistical_implicit"
         }
       },
       "fire_confidence": 0.7999999999999999
     }
   ],
-  "unmapped_concepts": [
-    {
-      "suggested_label": "Workslop",
-      "suggested_description": "A term for AI-generated content that mimics high-quality work but lacks substance. It highlights the disconnect between AI adoption mandates and actual value creation.",
-      "concept": "The document defines 'workslop' as 'A.I.-generated work content that masquerades as good work, but lacks the substance to meaningfully advance a given task.' It is used to explain why AI adoption in the workplace often fails to deliver real productivity gains.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "This is a specific, descriptive term for a phenomenon that is becoming increasingly common in the AI-integrated workplace."
-    }
-  ]
+  "unmapped_concepts": []
 }

@@ -1,14 +1,87 @@
 {
   "doc_id": "anthropics-responsible-scaling-policy-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 0
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "anthropics-responsible-scaling-policy-2026",
+    "measured_at": "2026-05-02T19:46:52.7497020-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.3333,
+        "flags": {
+          "resolved_count": 2,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 24382.0,
+        "out_units": "items",
+        "out_count": 13.0,
+        "ratio": 0.0005,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 0,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 9
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 5,
+          "below_threshold_forced": 0,
+          "intentions_selected": 28,
+          "effective_threshold": 0.3266,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 7
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
   },
   "pov_summaries": {
     "accelerationist": {
@@ -17,37 +90,38 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-desires-013",
           "category": "Desires",
-          "point": "The document asserts that increasingly capable AI systems will generate significant economic and social value. By establishing a structured safety framework, the company aims to continue scaling AI development while managing catastrophic risks. This aligns with the accelerationist goal of unlocking transformative technology for widespread benefit, provided that safety hurdles are cleared. The document acknowledges that this requires solving safety issues as a prerequisite for further scaling.",
+          "point": "The document asserts that AI models will create major economic and social value as they become more capable. By establishing a structured safety framework, the company aims to continue scaling AI development while managing catastrophic risks. This approach frames safety as a prerequisite for, rather than a barrier to, long-term technological progress. The document acknowledges that this requires solving safety issues to unlock further scaling.",
           "verbatim": "As AI models become more capable, we believe that they will create major economic and social value, but will also present increasingly severe risks.",
-          "excerpt_context": "Paragraph 2"
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
+          "taxonomy_node_id": "acc-intentions-003",
           "category": "Intentions",
-          "point": "The document proposes using the most powerful models from previous safety levels as tools to develop safety features for subsequent, more powerful levels. This creates a continuous strategic learning loop where AI capabilities are leveraged to solve their own safety challenges. This approach supports the accelerationist view that AI is a self-improving force that can be steered through iterative development rather than halted. The document notes this is an essential ingredient in their mitigation strategy.",
-          "verbatim": "As a general matter, Anthropic has consistently found that working with frontier AI models is an essential ingredient in developing new methods to mitigate the risk of AI.",
-          "excerpt_context": "Footnote 1",
-          "_backfill": {
-            "previous_id": "acc-intentions-036",
-            "similarity": 0.6671,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document proposes using behavioral output verification and adversarial testing to manage risks, rather than relying solely on theoretical safety guarantees. By using the most powerful models from previous safety levels to develop features for the next, the company creates a feedback loop for safety innovation. This strategy allows for continued development while maintaining a rigorous, empirical approach to safety. The document notes that this is an early iteration that will require rapid course correction.",
+          "verbatim": "We have designed the ASL system to strike a balance between effectively targeting catastrophic risk and incentivising beneficial applications and safety progress.",
+          "excerpt_context": "ASL system description, paragraph 6",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "safety_empirical",
+            "transparency_verification"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-010",
+          "taxonomy_node_id": "acc-intentions-071",
           "category": "Intentions",
-          "point": "The document advocates for a 'race to the top' dynamic where competitive incentives among frontier labs are channeled into solving safety problems. By standardizing safety protocols like the ASL framework, the company intends to make safety a competitive advantage rather than a drag on progress. This aligns with the accelerationist desire to maintain momentum while addressing the concerns that might otherwise lead to restrictive, innovation-stifling regulation. The document emphasizes that this is a hope for industry-wide adoption.",
+          "point": "The document advocates for a 'race to the top' dynamic where competitive incentives are channeled into solving safety problems. By standardizing safety protocols across frontier labs, the company hopes to make safety a competitive advantage. This approach seeks to align market incentives with the development of robust safety features. The document acknowledges that this relies on widespread adoption of the proposed standards.",
           "verbatim": "If adopted as a standard across frontier labs, we hope this might create a “race to the top” dynamic where competitive incentives are directly channeled into solving safety problems.",
-          "excerpt_context": "Paragraph 6",
-          "_backfill": {
-            "previous_id": "acc-intentions-001",
-            "similarity": 0.6291,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "ASL system description, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_market"
+          ]
         }
       ]
     },
@@ -55,33 +129,42 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-desires-003",
+          "taxonomy_node_id": "saf-desires-001",
           "category": "Desires",
-          "point": "The document establishes a commitment to prove AI is safe before deployment, specifically for models that show potential for catastrophic misuse. It introduces the AI Safety Levels (ASL) framework, which mandates increasingly strict safety demonstrations as model capabilities grow. This reflects the safetyist priority of ensuring alignment and safety precede the deployment of powerful systems. The document acknowledges that this may require solving currently unsolved research problems, such as mechanistic interpretability.",
-          "verbatim": "ASL-3 measures include stricter standards that will require intense research and engineering effort to comply with in time, such as unusually strong security requirements and a commitment not to deploy ASL-3 models if they show any meaningful catastrophic misuse risk under adversarial testing by world-class red-teamers",
-          "excerpt_context": "Paragraph 5"
+          "point": "The document explicitly prioritizes the mitigation of catastrophic risks, defined as scenarios where AI causes large-scale devastation. This includes both deliberate misuse by actors and autonomous behavior contrary to designer intent. The policy establishes a framework to prevent these outcomes before they occur. The document acknowledges that these commitments are current best guesses and will evolve.",
+          "verbatim": "Our RSP focuses on catastrophic risks – those where an AI model directly causes large scale devastation.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "risk_existential",
+            "safety_existential"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document asserts that AI models present catastrophic risks, defined as large-scale devastation caused by deliberate misuse or autonomous actions contrary to designer intent. It identifies specific threats like bioweapon creation as empirical risks that must be managed. This aligns with the safetyist belief that AI development carries existential or catastrophic stakes. The document notes that these risks scale with model capability, necessitating the proposed ASL framework.",
-          "verbatim": "Our RSP focuses on catastrophic risks – those where an AI model directly causes large scale devastation. Such risks can come from deliberate misuse of models (for example use by terrorists or state actors to create bioweapons) or from models that cause destruction by acting autonomously in ways contrary to the intent of their designers.",
-          "excerpt_context": "Paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-beliefs-002",
-            "similarity": 0.7523,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-023",
+          "taxonomy_node_id": "saf-intentions-025",
           "category": "Intentions",
-          "point": "The document implements the AI Safety Levels (ASL) framework, modeled after biosafety levels, to govern AI development. This framework requires specific safety, security, and operational standards based on a model's potential for catastrophic risk. This reflects the safetyist intention to create rigorous, tiered governance that forces developers to demonstrate safety at each stage of scaling. The document acknowledges that these levels are iterative and will require course correction as the field evolves.",
-          "verbatim": "Our RSP defines a framework called AI Safety Levels (ASL) for addressing catastrophic risks, modeled loosely after the US government’s biosafety level (BSL) standards for handling of dangerous biological materials.",
-          "excerpt_context": "Paragraph 3"
+          "point": "The document introduces AI Safety Levels (ASL) as a graduated response protocol for managing risk. This system mandates increasingly strict safety and security standards as model capabilities increase, mirroring biosafety levels. It requires pausing training if safety compliance cannot be met, ensuring that development does not outpace safety capabilities. The document notes that ASL-4 measures remain an unsolved research problem.",
+          "verbatim": "The basic idea is to require safety, security, and operational standards appropriate to a model’s potential for catastrophic risk, with higher ASL levels requiring increasingly strict demonstrations of safety.",
+          "excerpt_context": "ASL system description, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "regulation_precautionary",
+            "governance_oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-048",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for mechanistic interpretability to ensure safety at higher ASL levels. It proposes using these methods to demonstrate that a model is unlikely to engage in catastrophic behaviors, addressing the limitations of current evaluation methods. This reflects a commitment to deep, structural safety verification. The document acknowledges that these assurance methods are currently unsolved research problems.",
+          "verbatim": "Our ASL-4 measures aren’t yet written (our commitment is to write them before we reach ASL-3), but may require methods of assurance that are unsolved research problems today, such as using interpretability methods to demonstrate mechanistically that a model is unlikely to engage in certain catastrophic behaviors.",
+          "excerpt_context": "ASL system description, paragraph 5",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_accountability",
+            "safety_alignment"
+          ]
         }
       ]
     },
@@ -89,53 +172,55 @@
       "key_points": [
         {
           "stance": "neutral",
-          "taxonomy_node_id": "skp-intentions-002",
+          "taxonomy_node_id": "sit-166",
           "category": "Intentions",
-          "point": "The document frames its safety policy as analogous to pre-market testing in the automotive or aviation industries, focusing on rigorous demonstration of safety before release. This approach attempts to ground AI safety in established industrial practices rather than purely speculative or sci-fi scenarios. From a skeptic perspective, this is a positive move toward treating AI as a normal technology that requires standard engineering accountability. The document emphasizes that this policy will not disrupt current product availability.",
-          "verbatim": "Rather, it should be seen as analogous to the pre-market testing and safety feature design conducted in the automotive or aviation industry, where the goal is to rigorously demonstrate the safety of a product before it is released onto the market, which ultimately benefits customers.",
-          "excerpt_context": "Paragraph 7",
-          "_backfill": {
-            "previous_id": "skp-intentions-001",
-            "similarity": 0.7009,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "skp-intentions-002",
-          "category": "Beliefs",
-          "point": "The document notes that its RSP has been formally approved by its board and changes must be approved following consultations with the Long Term Benefit Trust. This highlights the concentration of governance power within the company and its specific oversight bodies. Skeptics would point to this as evidence that tech workers and corporate boards hold the keys to AI safety, potentially lacking broader public or democratic accountability. The document presents this as a procedural safeguard for integrity.",
+          "point": "The document establishes formal board-level oversight and consultation with a Long Term Benefit Trust to ensure the integrity of the evaluation process. This structure aims to create institutional accountability for the company's scaling decisions. It reflects a move toward formalizing governance structures for high-stakes AI development. The document notes that these safeguards are subject to future iteration.",
           "verbatim": "Anthropic’s RSP has been formally approved by its board and changes must be approved by the board following consultations with the Long Term Benefit Trust.",
-          "excerpt_context": "Paragraph 8",
-          "_backfill": {
-            "previous_id": "skp-beliefs-006",
-            "similarity": 0.6122,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "excerpt_context": "Governance section, paragraph 8",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "fairness_procedural"
+          ]
         },
         {
           "stance": "neutral",
-          "taxonomy_node_id": "skp-intentions-055",
+          "taxonomy_node_id": "skp-intentions-058",
           "category": "Intentions",
-          "point": "The document acknowledges that its commitments are an early iteration and that rapid course correction will be necessary due to the fast pace of the field. This reflects a pragmatic, if cautious, approach to managing AI risks. Skeptics would interpret this as an admission that current safety frameworks are experimental and potentially insufficient for the scale of the technology. The document frames this as a necessary adaptation to uncertainty.",
-          "verbatim": "However, we want to emphasize that these commitments are our current best guess, and an early iteration that we will build on. The fast pace and many uncertainties of AI as a field imply that, unlike the relatively stable BSL system, rapid iteration and course correction will almost certainly be necessary.",
-          "excerpt_context": "Paragraph 9"
+          "point": "The document frames its safety policy as analogous to pre-market testing in the automotive or aviation industries, aiming to reassure the public and customers. It explicitly states that the policy will not disrupt current product availability, focusing instead on future, more capable models. This rhetorical strategy seeks to normalize safety testing as a standard business practice. The document acknowledges that this is an early iteration of the policy.",
+          "verbatim": "From a business perspective, we want to be clear that our RSP will not alter current uses of Claude or disrupt availability of our products.",
+          "excerpt_context": "Business perspective, paragraph 7",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment_compliance"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-intentions-006",
+          "category": "Intentions",
+          "point": "The document recognizes the importance of external expertise, specifically citing ARC Evals, in developing its risk assessment procedures. By incorporating third-party insights, the company attempts to validate its internal safety standards against external benchmarks. This reflects a reliance on specialized, independent evaluation to manage the risks of frontier AI. The document notes that this collaboration was instrumental in designing their evaluation protocols.",
+          "verbatim": "We thank ARC Evals for their key insights and expertise supporting the development of our RSP commitments, particularly regarding evaluations for autonomous capabilities.",
+          "excerpt_context": "Acknowledgments, paragraph 10",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Anthropic's Responsible Scaling Policy (RSP) was published on September 19, 2023.",
-      "claim_label": "RSP Publication Date",
+      "claim": "Anthropic's Responsible Scaling Policy (RSP) defines AI Safety Levels (ASL) to manage catastrophic risks, modeled after US government biosafety levels.",
+      "claim_label": "ASL Framework Definition",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2023-09-19",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-02",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-023"
+        "saf-intentions-025"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -147,33 +232,35 @@
       }
     },
     {
-      "claim": "Current LLMs, including Claude, appear to be ASL-2, showing early signs of dangerous capabilities but lacking sufficient reliability for catastrophic misuse.",
-      "claim_label": "Current Model ASL Classification",
+      "claim": "Current LLMs, including Claude, are classified as ASL-2, showing early signs of dangerous capabilities but lacking sufficient reliability for catastrophic misuse.",
+      "claim_label": "Current Claude ASL Classification",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": "2023-09",
+      "temporal_bound": "2026-02",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-002"
+        "saf-beliefs-056"
       ],
       "evidence_criteria": {
-        "specificity": "qualified",
+        "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "general_claim"
+          "evidence_level": "direct_empirical"
         }
       }
     },
     {
-      "claim": "ASL-1 systems pose no meaningful catastrophic risk, such as 2018 LLMs or chess-playing AI.",
-      "claim_label": "ASL-1 Definition",
+      "claim": "ASL-3 models will require unusually strong security requirements and a commitment not to deploy if they show meaningful catastrophic misuse risk under adversarial testing.",
+      "claim_label": "ASL-3 Deployment Criteria",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
+      "temporal_scope": "predictive",
+      "temporal_bound": "future",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-023"
+        "saf-intentions-025"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -187,23 +274,16 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Safety Levels as Competitive Advantage",
-      "suggested_description": "An intention within accelerationist and safetyist discourse that frames safety protocols as a market differentiator. Encompasses: 'Race to the top' dynamics, industry-wide standardization of safety, and competitive incentives for safety research. Excludes: Purely regulatory or compliance-based safety mandates.",
-      "concept": "The document explicitly hopes that its ASL framework will create a 'race to the top' where competitive incentives among frontier labs are channeled into solving safety problems. This suggests that safety is not just a constraint but a strategic asset that companies can use to differentiate themselves in the market.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Intentions",
-      "reason": "The taxonomy lacks a node for the strategic use of safety as a competitive market mechanism."
-    },
-    {
-      "suggested_label": "Aviation-Style Pre-Market Safety Testing",
-      "suggested_description": "A situation concept that frames AI safety as an industrial engineering challenge rather than a purely theoretical risk. Encompasses: Pre-market testing, safety feature design, and rigorous demonstration of safety before release. Excludes: Purely speculative existential risk mitigation or non-industrial safety approaches.",
-      "concept": "The document draws a direct analogy between its RSP and the safety protocols used in the automotive and aviation industries. It argues that the goal is to rigorously demonstrate safety before market release, mirroring established industrial safety practices.",
+      "suggested_label": "Frontier AI Safety Level Standardization",
+      "suggested_description": "A situation concept that describes the industry-wide adoption of tiered safety frameworks for high-capability AI models.\nEncompasses: Cross-lab safety benchmarks, shared risk assessment methodologies, and standardized deployment thresholds.\nExcludes: General AI safety guidelines or company-specific internal policies.",
+      "concept": "The document expresses hope that the ASL system will be adopted as a standard across frontier labs to create a 'race to the top'. It highlights the importance of industry-wide alignment on safety metrics to effectively manage catastrophic risks.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "The taxonomy needs a node for the industrialization of AI safety practices.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a way to normalize AI development and reduce the friction caused by public fear, allowing for faster deployment of safe, tested systems.",
-      "Safetyist Interpretation": "Safetyists would view this as a necessary step toward professionalizing AI safety, ensuring that safety is not just a 'best effort' but a rigorous, verifiable requirement.",
-      "Skeptic Interpretation": "Skeptics would view this as a potential 'safety washing' tactic, where companies use industrial analogies to deflect from the unique, unpredictable nature of AI risks."
+      "reason": "This situation concept describes the emerging industry trend of standardizing safety levels across frontier AI labs.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a way to create a stable, predictable environment for rapid innovation, where safety is a shared infrastructure rather than a competitive disadvantage.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary step to prevent a 'race to the bottom' where labs cut safety corners to achieve faster deployment, ensuring a baseline of protection for humanity.",
+      "Skeptic Interpretation": "Skeptics might view this as a potential mechanism for industry collusion or regulatory capture, where large labs set standards that smaller competitors cannot meet, effectively creating a barrier to entry."
     }
   ]
 }
+

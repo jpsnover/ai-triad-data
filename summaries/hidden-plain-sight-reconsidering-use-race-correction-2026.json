@@ -1,52 +1,170 @@
 {
   "doc_id": "hidden-plain-sight-reconsidering-use-race-correction-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 20,
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 1,
-      "iterations": 0,
-      "claims_total": 2,
-      "claims_confident": 2,
-      "claims_iterated": 0,
-      "elapsed_seconds": 6.3,
+      "api_calls": 6,
+      "iterations": 5,
+      "claims_total": 19,
+      "claims_confident": 14,
+      "claims_iterated": 5,
+      "elapsed_seconds": 24.8,
       "termination_reason": "all_confident"
     }
   },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "hidden-plain-sight-reconsidering-use-race-correction-2026",
+    "measured_at": "2026-05-02T19:51:23.2033250-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 8.0,
+        "out_units": "still_unmapped",
+        "out_count": 4.0,
+        "ratio": 0.5,
+        "flags": {
+          "resolved_count": 4,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 4
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 65199.0,
+        "out_units": "items",
+        "out_count": 32.0,
+        "ratio": 0.0005,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.3333,
+          "unmapped_concepts": 4,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 19,
+          "total_points": 9
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 16,
+          "below_threshold_forced": 0,
+          "intentions_selected": 19,
+          "effective_threshold": 0.2831,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 5
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4.0,
+        "out_units": "still_unmapped",
+        "out_count": 4.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 4
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
+  },
   "pov_summaries": {
     "accelerationist": {
-      "key_points": []
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document acknowledges that clinical algorithms are increasingly used to individualize risk assessment and guide clinical decisions. It notes that these tools are designed to process patient data to optimize resource allocation. From an accelerationist perspective, the core issue is not the use of algorithms themselves, but the quality of the data and the logic embedded within them. The document highlights that these tools are often based on regression analyses of clinical outcomes, which is a standard data-driven approach to medical decision-making.",
+          "verbatim": "Physicians use these algorithms to individualize risk assessment and guide clinical decisions.",
+          "excerpt_context": "Page 874, column 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": []
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document suggests that researchers and institutions should rigorously analyze algorithms that include race correction to determine if they are appropriate. It proposes an adaptation of existing guidelines to evaluate these tools, focusing on robust evidence, statistical validity, and potential confounders. This aligns with an accelerationist interest in improving the technical rigor and predictive accuracy of AI systems, ensuring they are based on sound data rather than outdated assumptions.",
+          "verbatim": "When developing or applying clinical algorithms, physicians should ask three questions: Is the need for race correction based on robust evidence and statistical analyses (e.g., with consideration of internal and external validity, potential confounders, and bias)?",
+          "excerpt_context": "Page 880, column 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": []
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for making medicine a more scientifically rigorous field by updating clinical tools to reflect current insights into human genetics and social determinants of health. It emphasizes that tools should be revised when indicated by new evidence. This reflects an accelerationist desire for continuous improvement and the evolution of medical technology to better serve patient outcomes through better data and more accurate modeling.",
+          "verbatim": "The clinical tools we use daily should reflect these new insights to remain scientifically rigorous.",
+          "excerpt_context": "Page 880, column 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": []
+        }
+      ]
     },
     "safetyist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-136",
-          "category": "Desires",
-          "point": "The document argues that clinical algorithms must be scrutinized to prevent the codification of historical racial injustices into automated decision-making. It highlights that many algorithms use race as a proxy, which can lead to systemic bias and inequitable resource allocation. From a safetyist perspective, this represents a failure of alignment where the system's objective function (e.g., predicting risk) inadvertently perpetuates societal harm. The authors emphasize that these tools must be rigorously evaluated to ensure they do not exacerbate existing health disparities.",
-          "verbatim": "By embedding race into the basic data and decisions of health care, these algorithms propagate race-based medicine. Many of these race-adjusted algorithms guide decisions in ways that may direct more attention or resources to white patients than to members of racial and ethnic minorities.",
-          "excerpt_context": "Medicine and Society, page 874",
-          "_backfill": {
-            "previous_id": "saf-intentions-123",
-            "similarity": 0.4893,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "taxonomy_node_id": "saf-intentions-069",
+          "category": "Intentions",
+          "point": "The document argues that clinical algorithms must be scrutinized to ensure they do not perpetuate or amplify health inequities. It suggests that when tools are found to be biased or based on flawed logic, they should be revised or removed. This aligns with safetyist concerns about the unintended consequences of deploying automated systems in high-stakes environments, where failure to align with human values—such as equity—can lead to significant harm.",
+          "verbatim": "Given their potential to perpetuate or even amplify race-based health inequities, they merit thorough scrutiny.",
+          "excerpt_context": "Page 874, column 2",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "governance (oversight)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-033",
+          "taxonomy_node_id": "saf-beliefs-014",
+          "category": "Beliefs",
+          "point": "The document highlights that clinical algorithms often rely on race as a proxy for genetic difference, despite evidence that race is a social construct. It notes that these adjustments can lead to worse outcomes for minority patients by delaying care or miscalculating risk. This supports the safetyist belief that current modeling techniques are often structurally insufficient and can lead to dangerous, real-world failures when deployed without proper understanding of the underlying mechanisms.",
+          "verbatim": "Most race corrections implicitly, if not explicitly, operate on the assumption that genetic difference tracks reliably with race.",
+          "excerpt_context": "Page 879, column 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety (empirical)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-061",
           "category": "Intentions",
-          "point": "The authors propose a framework for evaluating clinical algorithms that requires developers to justify the use of race with robust evidence and plausible causal mechanisms. This approach forces developers to move beyond simple correlation-based modeling, which often captures systemic racism rather than biological reality. From a safetyist perspective, this is a form of deliberative alignment where the system's design must explicitly account for the social context in which it operates. The document suggests that if a correction cannot be justified, it should be removed to prevent harm.",
-          "verbatim": "When developing or applying clinical algorithms, physicians should ask three questions: Is the need for race correction based on robust evidence and statistical analyses? Is there a plausible causal mechanism for the racial difference that justifies the race correction? And would implementing this race correction relieve or exacerbate health inequities?",
-          "excerpt_context": "Medicine and Society, page 880"
+          "point": "The document emphasizes the need for human clinicians to remain thoughtful and deliberate users of algorithms, discerning whether a correction is likely to relieve or exacerbate inequities. It argues that the burden of this work falls on researchers and institutions to ensure their tools are safe and equitable. This reflects the safetyist focus on maintaining human agency and oversight in AI-driven workflows to prevent catastrophic or systemic harm.",
+          "verbatim": "But clinicians can be thoughtful and deliberate users. They can discern whether the correction is likely to relieve or exacerbate inequities.",
+          "excerpt_context": "Page 880, column 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight (human control)"
+          ]
         }
       ]
     },
@@ -54,30 +172,53 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-001",
           "category": "Beliefs",
-          "point": "The document provides extensive empirical evidence that clinical algorithms frequently incorporate race as a variable, often without a clear biological rationale, leading to measurable disparities in care. It cites specific examples like the AHA Heart Failure Risk Score and the STONE score for kidney stones, which assign lower risk to black patients, potentially delaying necessary treatment. From a skeptic perspective, this confirms that AI and algorithmic tools are not neutral but are instead vehicles for existing societal biases. The authors argue that these tools often rely on flawed data that reflect historical inequities rather than objective clinical reality.",
-          "verbatim": "To illustrate the potential dangers of such practices, we have compiled a partial list of race-adjusted algorithms (Table 1). We explore several of them in detail here. Given their potential to perpetuate or even amplify race-based health inequities, they merit thorough scrutiny.",
-          "excerpt_context": "Medicine and Society, page 874"
+          "point": "The document provides extensive evidence that clinical algorithms systematically internalize and reproduce historical biases by using race as a proxy for clinical risk. It cites specific examples, such as the AHA heart failure risk score and the eGFR equation, which direct resources away from minority patients. This confirms the skeptic belief that AI systems often encode and amplify existing societal inequalities, leading to measurable, documented harms.",
+          "verbatim": "By embedding race into the basic data and decisions of health care, these algorithms propagate race-based medicine.",
+          "excerpt_context": "Page 874, column 2",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias (systemic/social)",
+            "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-064",
+          "category": "Desires",
+          "point": "The document advocates for the structural elimination of race-based adjustments in clinical algorithms, arguing that they often lack a biological basis and exacerbate health inequities. It calls for a full reckoning where medical specialties critically appraise and revise their tools. This aligns with the skeptic desire to ensure algorithmic fairness and equity by removing discriminatory statistical patterns from machine learning architectures.",
+          "verbatim": "A full reckoning will require medical specialties to critically appraise their tools and revise them when indicated.",
+          "excerpt_context": "Page 880, column 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "fairness (procedural)",
+            "accountability (algorithmic)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-002",
-          "category": "Desires",
-          "point": "The authors advocate for the active removal of race-based adjustments in clinical algorithms where such adjustments lack a sound scientific basis and exacerbate health inequities. They highlight successful efforts by institutions to remove these adjustments, such as in eGFR calculations, as a model for the field. From a skeptic perspective, this is a necessary step to fix the built-in biases of medical technology. The document stresses that the goal is to ensure that clinical practice does not perpetuate the very inequities it aims to repair.",
-          "excerpt_context": "Medicine and Society, page 880",
-          "verbatim": "Some tools, including eGFR and the VBAC calculator, have already been challenged; clinicians have advocated successfully for their institutions to remove the adjustment for race. Other algorithms may succumb to similar scrutiny."
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document proposes a framework for evaluating clinical algorithms, requiring researchers to justify the use of race, describe how subjects were assigned, and consider other factors like socioeconomic status. It advocates for rigorous, systematic methods to assess models for bias. This supports the skeptic intention to mandate robust evaluation and auditing of AI systems to ensure they do not perpetuate injustice.",
+          "verbatim": "We propose an adaptation of these guidelines to evaluate race correction in clinical settings.",
+          "excerpt_context": "Page 880, column 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "The AHA Get with the Guidelines Heart Failure Risk Score assigns three additional points to nonblack patients, effectively categorizing black patients as lower risk.",
-      "claim_label": "AHA Heart Failure Risk Score Bias",
+      "claim": "A 2019 study found that black and Latinx patients presenting to a Boston emergency department with heart failure were less likely than white patients to be admitted to the cardiology service.",
+      "claim_label": "Heart Failure Care Disparity",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2020-08",
+      "temporal_scope": "historical",
+      "temporal_bound": "2019",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-041"
@@ -93,11 +234,12 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "A 2019 study found that black and Latinx patients presenting with heart failure were less likely to be admitted to the cardiology service than white patients.",
-      "claim_label": "Heart Failure Admission Disparity",
+      "claim": "The Society of Thoracic Surgeons' cardiac surgery risk model increases the estimated risk of death by nearly 20% for a patient identified as 'black/African American' compared to a white patient.",
+      "claim_label": "Cardiac Surgery Risk Bias",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2019",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-041"
@@ -107,7 +249,337 @@
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "statistical_implicit"
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Kidney Donor Risk Index (KDRI) was implemented by the national Kidney Allocation System in 2014.",
+      "claim_label": "KDRI Implementation Date",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2014",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "A 2019 study revealed that a widely used clinical tool for predicting health risk returned higher scores for white patients than black patients because it used past health care costs as a proxy for risk.",
+      "claim_label": "Algorithmic Bias in Health Care Costs",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2019",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-001"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The STONE score for kidney stones assigns 3 points out of 13 to patients identified as 'nonblack'.",
+      "claim_label": "STONE Score Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Vaginal Birth after Cesarean (VBAC) algorithm predicts a lower likelihood of success for anyone identified as African American or Hispanic.",
+      "claim_label": "VBAC Algorithm Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Human population genetics studies consistently demonstrate that the majority of genetic variation exists within defined racial groups rather than between them.",
+      "claim_label": "Genetic Variation within Racial Groups",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "The American Heart Association's Get with the Guidelines Heart Failure Risk Score assigns three additional points to any patient identified as 'nonblack'.",
+      "claim_label": "AHA Heart Failure Score Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Food and Drug Administration granted a race-specific indication for the heart failure drug BiDil in 2005.",
+      "claim_label": "BiDil FDA Approval",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2005",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Office of Management and Budget recommends using five races and two ethnicities for data collection.",
+      "claim_label": "OMB Racial Categories",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "An external validation of the STONE score determined that the origin/race variable was not actually predictive of the risk of kidney stones.",
+      "claim_label": "STONE Score Validation Failure",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2016",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Black patients in the United States experience significantly longer wait times for kidney transplants compared to nonblack patients, a disparity documented in clinical transplant data.",
+      "claim_label": "Kidney Transplant Wait Time Disparity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Nonwhite U.S. women, specifically Black and Hispanic women, exhibit higher rates of cesarean section compared to white U.S. women, reflecting systemic disparities in maternal healthcare outcomes.",
+      "claim_label": "Cesarean Section Rate Disparity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Black individuals in the United States experience significantly higher incidence rates of end-stage renal disease and mortality related to kidney failure compared to the general population.",
+      "claim_label": "Kidney Disease Disparity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Black women in the United States experience maternal mortality rates significantly higher than the national average, a disparity that persists across socioeconomic levels.",
+      "claim_label": "Maternal Mortality Disparity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "The American Academy of Pediatrics 2011 clinical practice guidelines for urinary tract infection in children were recently criticized for categorizing black children as low risk.",
+      "claim_label": "AAP UTI Guideline Criticism",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The COMPAS recidivism-prediction tool uses factors that correlate with race to return higher risk scores for black defendants.",
+      "claim_label": "COMPAS Algorithmic Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-001"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Society of Thoracic Surgeons acknowledged concerns that including socioeconomic status factors in risk models might 'adjust away' disparities in quality of care.",
+      "claim_label": "STS Risk Model Concern",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Some institutions, such as the University of Washington, have successfully removed race-based adjustments from their eGFR calculations.",
+      "claim_label": "eGFR Adjustment Removal",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2020",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
@@ -115,20 +587,39 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Race Correction in Clinical Algorithms",
-      "suggested_description": "A practice where diagnostic tools adjust outputs based on a patient's race, often without clear biological justification, potentially perpetuating health inequities.",
-      "concept": "The document details how various clinical algorithms, such as eGFR and the STONE score, use race as a variable to adjust risk assessments. This practice is criticized for lacking a robust scientific basis and for potentially steering minority patients away from necessary care.",
+      "suggested_label": "Algorithmic Baking of Inequity",
+      "suggested_description": "The process by which clinical algorithms, when trained on biased historical data, cement and propagate existing social inequities into future medical practice. This creates a feedback loop where past discrimination dictates future care. It is a central concern for those seeking to ensure algorithmic accountability.",
+      "concept": "The document describes how tools that use past health care costs as a proxy for risk end up favoring white patients, thereby 'baking inequity into the system.' It warns that these tools propagate bias into the future.",
       "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This is a central theme of the document that describes a specific, problematic practice in medical AI that is not fully captured by existing nodes."
+      "reason": "This concept captures the specific, long-term systemic impact of biased AI, which is more specific than general 'documented harm'."
     },
     {
-      "suggested_label": "Algorithmic Perpetuation of Systemic Racism",
-      "suggested_description": "The process by which predictive tools, trained on data reflecting historical social structures, cement and amplify existing racial disparities in future outcomes.",
-      "concept": "The authors argue that when algorithms use variables that correlate with race, they often reflect the effects of racism rather than biological differences. This leads to the systematic disadvantage of minority groups in clinical and legal settings.",
+      "suggested_label": "Clinical Algorithm Scrutiny Framework",
+      "suggested_description": "A proposed framework for evaluating clinical algorithms that includes three key questions: evidence-based necessity, plausible causal mechanism, and potential impact on health inequities. This framework is intended to guide clinicians and researchers in deciding whether a race correction is appropriate. It serves as a tool for accountability and transparency.",
+      "concept": "The authors propose three specific questions to evaluate race correction in clinical settings, arguing that this rigor is necessary to judge whether the use of race is appropriate. This framework is presented as a practical tool for medical specialties to appraise their existing algorithms.",
       "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This is a specific, actionable policy framework for AI evaluation that is not currently represented in the taxonomy."
+    },
+    {
+      "suggested_label": "Toxic Stress as a Physiological Consequence",
+      "suggested_description": "The concept that racial disparities in health outcomes are often driven by the physiological consequences of experiencing racism, such as toxic stress, rather than by inherent genetic differences. This framing shifts the focus from biological race to the impact of social structures on health. It is a key argument against the use of race as a biological variable in medicine.",
+      "concept": "The document argues that racial differences in large datasets likely reflect the effects of racism, such as toxic stress, rather than being black itself. It uses this to challenge the justification for race-based adjustments.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This concept links algorithmic design to the broader societal impact of systemic racism, which is a key concern for safetyists."
+      "reason": "This is a specific, evidence-based counter-argument to the biological race hypothesis, which is a distinct concept in the debate over race in medicine."
+    },
+    {
+      "suggested_label": "Descriptive vs. Prescriptive Use of Race",
+      "suggested_description": "A situation concept that distinguishes between the use of race in descriptive statistics (epidemiology) and its use in prescriptive clinical guidelines (algorithms). \nEncompasses: The different ethical and scientific requirements for these two uses.\nExcludes: General discussions of race in medicine.",
+      "concept": "The document argues that while race is a vital role in epidemiologic analyses for descriptive statistics, its use in prescriptive clinical guidelines is problematic and can exacerbate inequities. It calls for a clear distinction between these two applications.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "This is a crucial conceptual distinction for policy and practice that is not currently captured in the taxonomy.",
+      "Accelerationist Interpretation": "Accelerationists might argue that if race is used in descriptive statistics, it should be used to build better, more accurate models, provided the data is high-quality and the methodology is transparent.",
+      "Safetyist Interpretation": "Safetyists would emphasize that the prescriptive use of race is inherently dangerous and requires strict oversight, while the descriptive use must be handled with extreme care to avoid reinforcing harmful stereotypes.",
+      "Skeptic Interpretation": "Skeptics would support the use of race in descriptive statistics to track and highlight health disparities, but would demand the total removal of race from prescriptive clinical tools to prevent discriminatory outcomes."
     }
   ]
 }

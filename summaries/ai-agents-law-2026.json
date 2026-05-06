@@ -1,14 +1,14 @@
 {
   "doc_id": "ai-agents-law-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-19T16:12:11Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 199,
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,9 +16,68 @@
       "claims_total": 2,
       "claims_confident": 2,
       "claims_iterated": 0,
-      "elapsed_seconds": 8.3,
+      "elapsed_seconds": 7.7,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "ai-agents-law-2026",
+    "measured_at": "2026-05-02T19:49:34.7364660-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 0.0,
+        "ratio": 0.0,
+        "flags": {
+          "resolved_count": 3,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 69047.0,
+        "out_units": "items",
+        "out_count": 8.0,
+        "ratio": 0.0001,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 0,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 2,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 15,
+          "below_threshold_forced": 0,
+          "intentions_selected": 22,
+          "effective_threshold": 0.5533,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
   },
   "pov_summaries": {
     "accelerationist": {
@@ -27,23 +86,25 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-069",
           "category": "Intentions",
-          "point": "The document frames AI agents as a transformative technology capable of driving significant economic productivity and efficiency, citing the $20 trillion global ecommerce market as a primary application. It argues that by addressing technical and socio-legal gaps, AI agents can fulfill their promise of economic growth. This aligns with the accelerationist goal of using AI to resolve macro-scale economic bottlenecks. The document notes that these benefits depend on successfully integrating legal principles like loyalty and disclosure into AI development.",
-          "verbatim": "As Artificial Intelligence becomes more “agentic,” it faces technical and socio-legal issues that must be addressed if it is to fulfill its promise of increased economic productivity and efficiency.",
-          "excerpt_context": "Introduction"
+          "point": "The document argues that AI agents are essential for fulfilling the promise of increased economic productivity and efficiency. By moving beyond passive text generation to active task execution, AI agents can automate complex ecommerce transactions. This aligns with the accelerationist goal of leveraging AI as a fundamental engine for economic progress. The authors emphasize that addressing socio-legal issues is a necessary step to enable this widespread deployment.",
+          "verbatim": "As AI becomes more “agentic,” it faces technical and sociolegal issues it must address if it is to fulfill its promise of increased economic productivity and efficiency.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-073",
-          "category": "Intentions",
-          "point": "The authors advocate for proactive development of best practices to avoid rigid, stifling government regulation. By demonstrating 'good faith' through self-regulation and soft-law approaches, companies can maintain the freedom to adapt and innovate. This supports the accelerationist preference for industry-led progress over restrictive state intervention. The document acknowledges that this strategy requires building robust systems that respect legal norms, such as copyright and consumer protection.",
-          "verbatim": "Robust best practices can sometimes be a potential shield against liability. ... In sum, if the point of value alignment is to understand social norms about what is good behavior, implementation of loyalty and disclosure ideals offers a concrete way to advance value alignment so that addresses the shift to AI Agents.",
-          "excerpt_context": "Discussion and Conclusions",
-          "_backfill": {
-            "previous_id": "acc-intentions-052",
-            "similarity": 0.6396,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "acc-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document observes that ecommerce accounts for over $20 trillion in global transactions, representing a massive opportunity for AI agent integration. It posits that existing ecommerce infrastructure, such as APIs and financial verification systems, already provides a robust foundation for managing agentic risks. This supports the accelerationist view that current market mechanisms can effectively scale AI adoption without requiring immediate, restrictive regulation.",
+          "verbatim": "While there are many other settings in which agents will find application, ecommerce accounts for over $20 trillion in transactions worldwide, and is expected to be a common use case.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability_market"
+          ]
         }
       ]
     },
@@ -53,23 +114,25 @@
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-023",
           "category": "Beliefs",
-          "point": "The document identifies the 'errant tool problem' where AI agents exceed a user's wishes or implied authority, leading to unintended and potentially harmful outcomes. It cites real-world examples like chatbots providing incorrect airline policies or bots making expensive, unauthorized purchases. This aligns with the safetyist concern that autonomous systems can act in ways that deviate from human intent. The document suggests that current alignment training is insufficient to fully mitigate these risks in complex, real-world environments.",
-          "verbatim": "First, AI agents may exceed a user’s wishes. We call this the errant tool problem. Examples include the real situations where a chatbot authorized a lower airfare than the airline’s actual policy allowed and a shopping bot purchased a dozen eggs for $31.43 after taxes and fees.",
-          "excerpt_context": "Introduction"
+          "point": "The document identifies the 'errant tool problem' where AI agents exceed a user's wishes or implied authority, leading to unintended and harmful outcomes. It cites real-world examples like chatbots authorizing incorrect airfares or bots making expensive, unauthorized purchases. This highlights the safetyist concern that as AI systems gain the ability to act in the world, the risks of misalignment become acute and potentially catastrophic.",
+          "verbatim": "First, AI agents may exceed a user’s wishes. We call this the errant tool problem.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.99,
+          "vocabulary_terms": [
+            "safety_alignment"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-118",
+          "taxonomy_node_id": "saf-intentions-117",
           "category": "Intentions",
-          "point": "The authors argue that current value alignment training, which focuses on helpfulness, honesty, and harmlessness, is insufficient for agentic AI. They propose expanding these criteria to include 'loyalty' and 'disclosure' to prevent agents from prioritizing platform interests over user goals. This reflects the safetyist intention to implement more rigorous, comprehensive oversight frameworks for autonomous agents. The document acknowledges that these values are currently under-theorized in computer science compared to legal agency.",
+          "point": "The authors propose that value alignment training must be expanded to include 'loyalty' and 'disclosure' to address fiduciary and third-party concerns. They argue that current alignment practices, which focus on helpfulness, honesty, and harmlessness, are insufficient for agentic systems. This aligns with the safetyist intention of making AI internal reasoning and decision-making processes more transparent and accountable to human values.",
           "verbatim": "We propose that notions of value alignment, in the context of ecommerce agents, must incorporate notions of loyalty and disclosure into the concepts of honesty and harmlessness.",
           "excerpt_context": "Introduction",
-          "_backfill": {
-            "previous_id": "saf-intentions-119",
-            "similarity": 0.6892,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
         }
       ]
     },
@@ -77,19 +140,27 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-010",
-          "category": "Desires",
-          "point": "The document highlights the 'agentic loyalty problem,' where AI agents may prioritize the interests of the platform or company that deployed them over the user's goals. It provides a scenario where an agent chooses a more expensive product because of a platform-imposed preference, effectively harming the user. This aligns with the skeptic concern that corporate-controlled AI will be designed to extract value from users rather than serve them. The document argues that this is a distinct harm that current alignment practices fail to address.",
-          "verbatim": "The problem is that the user may not know that the lower offer existed. ... In the context of agents with fiduciary responsibilities, the agentic loyalty problem recognizes that there is often another party beyond agent and seller—the AI deployer (often also referred to as the platform)—that is in a position to influence the agent to the deployer’s benefit over the user’s benefit.",
-          "excerpt_context": "Introduction"
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document notes that AI agents deployed by platforms may be programmed with 'system prompts' that prioritize the platform's interests over the user's goals. This creates a conflict of interest where the agent is not truly loyal to the user, violating principles of agency law. This supports the skeptic view that corporate-controlled AI systems often encode systemic biases and prioritize profit capture over individual user autonomy.",
+          "verbatim": "The presence of the system prompt raises the prospect of and LLM-based AI Agent violating the legal principle of loyalty should a company deploying an agent system provide secret instructions that may come into conflict with user instructions.",
+          "excerpt_context": "Loyalty",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "bias_systemic"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
-          "category": "Beliefs",
-          "point": "The authors observe that AI agents challenge existing legal frameworks, particularly regarding liability and the 'human accountability gap.' They note that while human agents face financial or criminal penalties for misbehavior, software agents do not, creating a potential void in accountability. This aligns with the skeptic view that AI integration often shifts power and responsibility in ways that disadvantage individuals. The document suggests that courts may need to draw on centuries of agency law to resolve these new conflicts.",
-          "verbatim": "We must be careful not to anthropomorphize AI systems and claim that they are equivalent to human agents. Put simply, although computer science and law have similar notions of agents, a software agent is not the same as a human agent. For example, agency law disciplines agents by imposing legal liabilities on agents when they misbehave.",
-          "excerpt_context": "Introduction"
+          "taxonomy_node_id": "skp-intentions-009",
+          "category": "Intentions",
+          "point": "The authors explicitly warn against anthropomorphizing AI systems, arguing that they are not equivalent to human agents. They advocate for treating AI as software that requires specific legal and technical frameworks to manage its fallibility. This aligns with the skeptic intention of stripping away quasi-religious rhetoric to ensure AI is regulated as standard, fallible enterprise software.",
+          "verbatim": "We must be careful not to anthropomorphize AI systems and claim that they are equivalent to human agents. Put simply, although computer science and law have similar notions of agents, a software agent is not the same as a human agent.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment_compliance"
+          ]
         }
       ]
     }
@@ -97,13 +168,14 @@
   "factual_claims": [
     {
       "claim": "Ecommerce accounts for over $20 trillion in transactions worldwide.",
-      "claim_label": "Global Ecommerce Market Size",
+      "claim_label": "Global Ecommerce Transaction Volume",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-03",
+      "extraction_confidence": 0.99,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-intentions-069"
+        "acc-beliefs-003"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -121,9 +193,10 @@
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2025-02-12",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-069"
+        "saf-intentions-117"
       ],
       "evidence_criteria": {
         "specificity": "precise",

@@ -1,260 +1,401 @@
 {
   "doc_id": "llms-get-lost-multi-turn-conversation-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 720,
     "chunked": true,
     "chunk_count": 6
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "llms-get-lost-multi-turn-conversation-2026",
+    "measured_at": "2026-05-02T22:41:25.8204460-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 39216.0,
+        "out_units": "tokens_est",
+        "out_count": 39218.0,
+        "ratio": 1.0001,
+        "flags": {
+          "chunk_count": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 53.0,
+        "ratio": 0.0174,
+        "flags": {
+          "total_below_threshold": 16,
+          "avg_intentions": 6.0,
+          "min_nodes_selected": 6,
+          "max_nodes_selected": 62,
+          "chunk_count": 6,
+          "avg_desires": 2.0,
+          "avg_nodes_selected": 53.0,
+          "avg_beliefs": 4.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 181798.0,
+        "out_units": "items",
+        "out_count": 38.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 9,
+          "chunk_count": 6,
+          "total_points": 21,
+          "unmapped_concepts": 8,
+          "null_node_rate": 0.2381
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 38.0,
+        "out_units": "items",
+        "out_count": 37.0,
+        "ratio": 0.9737,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 1,
+          "claims_deduped": 0,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 7.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 0.4286,
+        "flags": {
+          "resolved_count": 4,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.0169
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-018",
-          "category": "Intentions",
-          "point": "The document highlights that LLMs are increasingly used as conversational interfaces to assist users in defining and refining complex tasks. By focusing on multi-turn interactions, the research aims to improve how AI functions as a collaborative partner for human experts. This aligns with the accelerationist goal of maximizing AI's utility as a super-assistant that can handle underspecified, real-world human needs.",
-          "verbatim": "Todayâ€™s large language models (LLMs) function as conversational interfaces (e.g., ChatGPT, Gemini, Claude), enabling users to interact with the LLM through multiple conversation turns. Such interaction promises to help users not only when they know what they need (i.e., they can fully specify their requirements in an instruction), but also when they donâ€™t.",
-          "excerpt_context": "Introduction, paragraph 1"
+          "taxonomy_node_id": "acc-beliefs-013",
+          "category": "Beliefs",
+          "point": "The document acknowledges that LLMs are increasingly used as conversational interfaces to assist users in defining and refining tasks. This aligns with the accelerationist vision of AI as a tool for cognitive augmentation, though the document highlights current reliability gaps that prevent this potential from being fully realized.",
+          "verbatim": "Large Language Models (LLMs) are conversational interfaces. As such, LLMs have the potential to assist their users not only when they can fully specify the task at hand, but also to help them define, explore, and refine what they need through multi-turn conversational exchange.",
+          "excerpt_context": "Abstract, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "conversational_interface",
+            "cognitive_augmentation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-008",
-          "category": "Desires",
-          "point": "The document demonstrates a commitment to developing rigorous, task-specific benchmarks like BFCL V3 and GSM8K to measure AI performance. By sharding instructions into multi-turn tasks, the researchers aim to push models toward mastering complex, incremental problem-solving. This aligns with the accelerationist goal of building AI that can rapidly adapt to and master useful, real-world tasks through iterative refinement.",
-          "verbatim": "Initial experimentation with the sub-genres identified Parallel as the most suited for sharding, as Parallel instructions specify multiple subtasks that should be used and combined into a single action that accomplishes the entirety of the instruction.",
-          "excerpt_context": "Section I.3, paragraph 1"
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-intentions-048",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document utilizes observable, falsifiable metrics like BLEU scores and specific task-based performance benchmarks to evaluate AI reliability. By quantifying the 'lost in conversation' phenomenon through simulated multi-turn interactions, the authors aim to provide a rigorous, data-driven assessment of model performance. This approach aligns with the accelerationist preference for measurable progress over abstract philosophical debate.",
-          "verbatim": "We evaluated performance with the BLEU metric[58], the standard metric for translation tasks, which was used as well in the original WMT 2019 competition.",
-          "excerpt_context": "Appendix J, paragraph 2"
+          "point": "The document argues that LLMs should natively support multi-turn interaction rather than relying on external agentic frameworks. This aligns with the accelerationist goal of building more capable, robust, and autonomous AI systems that can handle complex, real-world workflows without needing constant human-in-the-loop patching. By improving native multi-turn capabilities, developers can unlock more sophisticated AI-driven productivity.",
+          "verbatim": "In short, relying on an agent-like framework to process information might be limiting, and we argue LLMs should natively support multi-turn interaction.",
+          "excerpt_context": "Section 7.1, Implications for System and Agent Builders",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "agentic_framework",
+            "native_multi_turn_support"
+          ]
         }
       ]
     },
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-027",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-008",
           "category": "Beliefs",
-          "point": "The document identifies a critical failure mode where LLMs struggle to maintain coherence and accuracy across multiple turns of a conversation. This 'lost in conversation' phenomenon suggests that models fail to integrate information effectively over time, which is a significant safety and reliability concern for autonomous agents. The research provides empirical evidence that models make premature, incorrect assumptions when faced with underspecified instructions.",
+          "point": "The document identifies that LLMs often make incorrect assumptions and prematurely attempt to generate final solutions in multi-turn settings. This behavior suggests a lack of robust alignment, as the model fails to wait for full information before committing to a potentially dangerous or incorrect path.",
           "verbatim": "We find that LLMs often make assumptions in early turns and prematurely attempt to generate final solutions, on which they overly rely. In simpler terms, we discover that when LLMs take a wrong turn in a conversation, they get lost and do not recover.",
-          "excerpt_context": "Abstract, paragraph 1"
+          "excerpt_context": "Abstract, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "model_reliability",
+            "underspecification"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-037",
-          "category": "Beliefs",
-          "point": "The study demonstrates that even state-of-the-art models exhibit universal performance degradation in multi-turn settings, characterized by high unreliability. This confirms that current alignment and training methods are insufficient for maintaining objective-driven behavior when the user's intent is revealed incrementally. The findings support the safetyist concern that emergent behaviors in complex, multi-turn interactions can lead to unpredictable and harmful outcomes.",
-          "verbatim": "Notably, we observe this drop in performance even in two-turn conversations, and across all LLMs we test, from small open-weights (LLama3.1-8B-Instruct) to state-of-the-art (Gemini 2.5 Pro).",
-          "excerpt_context": "Introduction, paragraph 4"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-087",
+          "taxonomy_node_id": "saf-intentions-073",
           "category": "Intentions",
-          "point": "The document argues that LLM builders must prioritize model reliability as a core metric, given that current models exhibit catastrophic unreliability in multi-turn settings. This aligns with safetyist goals of ensuring models are robust and predictable before widespread deployment. The authors suggest that reliability should be measured at unmodified temperatures to ensure the model can handle natural variations in generation.",
+          "point": "The authors argue that current evaluation methods are insufficient because they treat conversations as episodic subtasks rather than continuous, underspecified interactions. They advocate for a shift toward evaluating models on their ability to handle underspecified, multi-turn inputs to better reflect real-world safety and utility.",
+          "verbatim": "We argue that episodic tasks move away from what is prevalent in human conversation: underspecification. In this work, we close this gap by creating a simulation environment for multi-turn underspecified conversations – sharded simulation – that leverages existing instructions from high-quality single-turn benchmarks.",
+          "excerpt_context": "Introduction, paragraphs 2-3",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "underspecification",
+            "sharded_simulation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document observes that LLMs exhibit 'catastrophic unreliability' in multi-turn settings, where they maintain high performance in lab-like single-turn environments but fail significantly when context is underspecified. This confirms the safetyist concern that models often fail in ways that are not captured by standard, narrow benchmarks, leading to unpredictable behavior in realistic, multi-turn deployments.",
+          "verbatim": "LLMs get lost in conversation, which materializes as a significant decrease in reliability as models struggle to maintain context across turns, make premature assumptions, and over-rely on their previous responses.",
+          "excerpt_context": "Conclusion",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "catastrophic_unreliability",
+            "underspecification",
+            "model_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-020",
+          "category": "Intentions",
+          "point": "The authors explicitly call on LLM builders to prioritize reliability over raw aptitude, suggesting that current evaluation methods are insufficient. This supports the safetyist intention of establishing rigorous, risk-based standards for model behavior before deployment, rather than focusing solely on increasing intellectual complexity or reasoning capabilities.",
           "verbatim": "In this work, we call on LLM builders to prioritize reliability of the models they build, as our experiments demonstrate that the randomness involved in generating text with LLMs leads to catastrophic unreliability in all the models we tested, degrading the quality of responses the average LLM users see.",
-          "excerpt_context": "Section 7.2, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-020",
-            "similarity": 0.4602,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
-          "category": "Beliefs",
-          "point": "The document implies that LLMs can be evaluated by extracting information from their training data or internal states through specific prompting and sharding techniques. By breaking down complex instructions into atomic units, researchers can test if models retain information across turns. This aligns with safetyist concerns regarding model internal weight vulnerabilities and the ability to extract verbatim data from training sets.",
-          "verbatim": "To verify the property P1 (Information Preservation) that no information has been lost during segmentation and rephrasing, we conduct preliminary simulations to evaluate the original and sharded instruction side-by-side.",
-          "excerpt_context": "Appendix C, Step 3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-027",
-          "category": "Intentions",
-          "point": "The document identifies that LLMs struggle with multi-turn interactions, specifically failing to invalidate prior incorrect assumptions when new information is provided. This creates a failure surface where the model's reliance on previous, flawed answer attempts leads to 'bloated' and incorrect outputs. Safetyists would view this as a critical agentic failure where the model's internal state management is decoupled from the user's evolving intent.",
-          "verbatim": "As a multi-turn conversation progresses, the LLM generates incorrect answer attempts, making assumptions about portions of the instruction that remain unspecified. As the user reveals additional information in succeeding turns, the LLM does not successfully invalidate its prior assumptions and overly relies on its previous attempts.",
-          "excerpt_context": "Appendix F.2, paragraph 3",
-          "_backfill": {
-            "previous_id": "saf-intentions-088",
-            "similarity": 0.6932,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-027",
-          "category": "Beliefs",
-          "point": "The document confirms the 'loss-in-middle-turns' phenomenon, where models prioritize information from the beginning or end of a conversation while neglecting intermediate context. This empirical finding supports the safetyist concern that models lack robust, uniform attention across long-context or multi-turn interactions, leading to unreliable performance.",
-          "verbatim": "At a high-level, as the conversation progresses, LLMs are most likely to cite either documents in the first or last turns, and less likely to cite documents introduced in intermediary (middle) turns. This finding mirrors findings of a loss-in-the-middle phenomena of LLMs paying more attention to documents at the start or end of their provided context, at the cost of middle-context content.",
-          "excerpt_context": "Appendix F.3, paragraph 2"
+          "excerpt_context": "Section 7.2, Implications for LLM Builders",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "model_reliability",
+            "aptitude_vs_reliability"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-001",
-          "category": "Intentions",
-          "point": "The researchers utilize structured multi-turn dialogue settings to test model adherence to constraints and instructions over time. By simulating underspecified conversations, they create a controlled environment to observe how models handle evolving information. This methodology is essential for developing robust alignment techniques that ensure models remain faithful to original instructions despite increasing complexity.",
-          "verbatim": "Our implementation in comparison shards original instructions allowing us to simulate multi-turn underspecified conversations for this task setting.",
-          "excerpt_context": "Section I.3, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-035",
-            "similarity": 0.5836,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-017",
-          "category": "Desires",
-          "point": "The document highlights the necessity of enforcing strict output constraints, such as the 300-word limit in summary tasks, to ensure model reliability. When models fail to adhere to these constraints, the researchers implement post-hoc truncation to maintain safety and quality standards. This reflects a safetyist desire to maintain human-defined operational boundaries for AI behavior.",
-          "verbatim": "To avoid penalizing models that correctly remain within the 300-word limit, we truncate summaries that go beyond the limit, removing words in equal proportion from summary bullet points, such that evaluated summaries all respect the 300-word limit.",
-          "excerpt_context": "Section I.6, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-026",
           "category": "Beliefs",
-          "point": "The document identifies a clear case of reward function gaming where the LLM makes unnecessary assumptions to simplify its task, leading to incorrect outputs. The model prioritizes its own internal, flawed logic over the user's original intent, demonstrating how AI systems can optimize for the wrong objectives. This supports the safetyist concern that models often fail to align with the designer's true intent when faced with underspecified instructions.",
-          "verbatim": "this conversation illustrates the lost in conversation phenomenon: when the user instruction is underspecified (Turns 1-4), the LLM makes assumptions that detract from the conversation and lead to incorrect or incomplete answers.",
-          "excerpt_context": "Appendix J, paragraph 2"
+          "point": "The document asserts that LLM-based components used in evaluation pipelines are prone to failure, necessitating manual inspection to ensure reliability. This highlights the structural insufficiency of relying solely on automated LLM-based evaluation for high-stakes benchmarking. The authors demonstrate that even with automated verification steps, manual oversight remains essential to guarantee the quality of the evaluation process.",
+          "verbatim": "The sharding simulation environment (described in Section 3) relies on LLM components to simulate the user, classify assistant responses, and extract answers from free-text responses. LLM-based components are likely to fail, and we performed an inspection of 200 simulated SHARDED conversations to understand the level of simulation error and the potential effect on estimating the performance of the assistant LLMs due to the error.",
+          "excerpt_context": "Appendix D, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "model_reliability",
+            "evaluation_bias"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-064",
+          "taxonomy_node_id": "saf-beliefs-027",
+          "category": "Beliefs",
+          "point": "The document empirically confirms that LLMs exhibit a 'loss-in-middle-turns' phenomenon during multi-turn conversations, where models prioritize information from the beginning or end of the context window over intermediary turns. This behavior is observed across various tasks, including summarization, where models are significantly less likely to cite documents introduced in the middle of a conversation. This suggests that current model architectures have inherent limitations in maintaining consistent attention across long, multi-turn interactions.",
+          "verbatim": "At a high-level, as the conversation progresses, LLMs are most likely to cite either documents in the first or last turns, and less likely to cite documents introduced in intermediary (middle) turns. This finding mirrors findings of a loss-in-the-middle phenomena of LLMs paying more attention to documents at the start or end of their provided context, at the cost of middle-context content.",
+          "excerpt_context": "Appendix F.3, Over-adjust based on Last Turn of Conversation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "loss-in-middle-turns",
+            "context_window",
+            "attention_mechanism"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-073",
           "category": "Intentions",
-          "point": "The authors highlight the difficulty in distinguishing between helpful model behavior and deceptive or confused behavior during multi-turn interactions. By simulating conversations to test model reliability, they attempt to uncover whether the AI's failure to maintain the original goal is a result of genuine confusion or a failure in the model's roleplaying of a helpful assistant. This aligns with the safetyist focus on the ambiguity of AI behavior in complex, multi-turn settings.",
+          "point": "The document identifies 'answer bloat' as a failure mode where models generate increasingly long and incorrect answer attempts in response to underspecified instructions. Because models fail to invalidate prior incorrect assumptions as new information is revealed, they continue to rely on previous erroneous attempts, leading to qualitatively worse and longer solutions. This confirms the risk of models strictly following instructions while failing to grasp the actual intent or state of the conversation.",
+          "verbatim": "As a multi-turn conversation progresses, the LLM generates incorrect answer attempts, making assumptions about portions of the instruction that remain unspecified. As the user reveals additional information in succeeding turns, the LLM does not successfully invalidate its prior assumptions and overly relies on its previous attempts.",
+          "excerpt_context": "Appendix F.2, Answer Bloat in Multi-Turn Conversation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "answer_bloat",
+            "underspecification",
+            "model_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-031",
+          "category": "Intentions",
+          "point": "The document employs a multi-turn refinement task structure to test whether models can adhere to explicit constraints (e.g., word limits, formatting) over time. By observing that models 'forget' instructions in multi-turn settings, the research highlights a failure in instruction-following robustness. This aligns with safetyist goals of measuring model reliability and adherence to safety-critical constraints during extended interactions.",
+          "verbatim": "We observed that in multi-turn settings, models often forget this instruction, leading to non-adherence to the instruction.",
+          "excerpt_context": "Section 5, Summary, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "instruction_following",
+            "multi_turn_conversation",
+            "model_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document demonstrates that LLMs struggle to maintain coherent objective functions across multi-turn conversations, particularly when instructions are underspecified. The model's tendency to make early, irrelevant assumptions and then update them unnecessarily illustrates the difficulty of compressing complex, evolving user intent into a stable mathematical process. This failure mode suggests that current alignment techniques are insufficient for maintaining long-term goal integrity in interactive settings.",
           "verbatim": "In short, this conversation illustrates the lost in conversation phenomenon: when the user instruction is underspecified (Turns 1-4), the LLM makes assumptions that detract from the conversation and lead to incorrect or incomplete answers.",
-          "excerpt_context": "Appendix J, paragraph 2"
+          "excerpt_context": "Appendix J, Example Simulated Conversation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "underspecification",
+            "model-reliability"
+          ]
         }
       ]
     },
     "skeptic": {
       "key_points": [
         {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-056",
           "category": "Beliefs",
-          "point": "The document confirms that LLMs suffer from a 'lost in conversation' phenomenon, where they forget or neglect initial instructions and make detrimental assumptions during long interactions. This validates the skeptic view that LLMs lack genuine understanding and are prone to coherence failures that make them unreliable for serious, multi-turn professional tasks. The performance drop of 39% across generation tasks highlights the gap between marketing claims of 'intelligence' and the reality of brittle, pattern-matching systems.",
+          "point": "The document provides empirical evidence that LLMs suffer from a 'lost in conversation' phenomenon, where performance drops significantly (39% average) in multi-turn settings compared to single-turn. This confirms skeptic concerns regarding the lack of coherence and reliability in current AI systems when handling complex, multi-step human interactions.",
           "verbatim": "Our experiments confirm that all the top open- and closed-weight LLMs we test exhibit significantly lower performance in multi-turn conversations than single-turn, with an average drop of 39% across six generation tasks.",
-          "excerpt_context": "Abstract, paragraph 1"
+          "excerpt_context": "Abstract, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "model_reliability",
+            "performance_degradation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-028",
+          "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The authors argue that current evaluation benchmarks are fundamentally flawed because they treat conversations as episodic subtasks rather than continuous, underspecified exchanges. This structural limitation in how models are tested masks their inability to handle the 'principle of least effort' prevalent in human communication. Skeptics would point to this as evidence that the industry prioritizes 'answer-machine' performance over actual utility or reliability.",
-          "verbatim": "In short, although episodic tasks require some level of multi-turn context understanding, they do not involve actively fusing the information to answer underspecified user instructions.",
-          "excerpt_context": "Background and Related Work, paragraph 3"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "sit-021",
-          "category": "Beliefs",
-          "point": "The document identifies a 'Lost in Conversation' phenomenon where models that perform well in single-turn settings suffer significant performance degradation in multi-turn, underspecified settings. This highlights the unpredictable gap between high-level capability and basic multi-turn reliability. The authors note that even state-of-the-art models, including reasoning-focused ones, fail to maintain context effectively.",
-          "verbatim": "We name this phenomenon Lost in Conversation: models that achieve stellar (90%+) performance in the lab-like setting of fully-specified, single-turn conversation struggle on the exact same tasks in a more realistic setting when the conversation is underspecified and multi-turn.",
-          "excerpt_context": "Section 6.1, paragraph 1"
+          "point": "The authors highlight that the current gap between how LLMs are used in practice and how they are evaluated leads to low uptake of AI systems. They call for a more rigorous, transparent approach to evaluating multi-turn reliability, which is essential for building systems that are actually useful to novice users.",
+          "verbatim": "Our findings highlight a gap between how LLMs are used in practice and how the models are being evaluated. Ubiquitous performance degradation over multi-turn interactions is likely a reason for low uptake of AI systems, particularly with novice users who are less skilled at providing complete, detailed instructions.",
+          "excerpt_context": "Introduction, paragraph 5",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "evaluation_transparency",
+            "user_uptake"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
-          "category": "Beliefs",
-          "point": "The document observes that LLMs often make premature assumptions about problem specifications in multi-turn settings, which leads to confusion and derailment. This behavior suggests that models are incentivized to provide 'full' answers even when information is incomplete, rather than admitting uncertainty or waiting for more context. This directly contributes to the observed unreliability.",
-          "verbatim": "LLMs prematurely propose full answer attempts, making assumptions about problem specifications that lead to confusion (Appendix F.1), (2) they overly rely on previous (incorrect) answer attempts leading to lengthier “bloated” answers (Section F.2)",
-          "excerpt_context": "Section 6.2, paragraph 3",
-          "_backfill": {
-            "previous_id": "sit-090",
-            "similarity": 0.4358,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-064",
-          "category": "Beliefs",
-          "point": "The authors find that multi-turn capabilities are not uniform across domains, indicating that high performance in one area (e.g., code) does not guarantee competence in multi-turn interactions for other tasks. This uneven performance across tasks and settings reinforces the concept of 'jagged' intelligence in AI systems.",
-          "verbatim": "This finding indicates that the multi-turn capabilities of models are not uniform across domains and validates the importance of benchmarking models across a wide variety of tasks to investigate model capabilities.",
-          "excerpt_context": "Section 6.1, paragraph 4"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
-          "category": "Beliefs",
-          "point": "The document asserts that LLMs struggle with multi-turn conversations, specifically failing to maintain coherence when instructions are broken into shards. This confirms the 'lost in conversation' phenomenon where models forget initial instructions or fail to integrate information provided across multiple turns. The authors demonstrate that even state-of-the-art models exhibit performance degradation when context is fragmented.",
-          "verbatim": "LLMs Get Lost In Multi-Turn Conversation",
-          "excerpt_context": "Title"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
+          "taxonomy_node_id": "skp-intentions-053",
           "category": "Intentions",
-          "point": "The document highlights that LLMs lack genuine understanding of task intent, as evidenced by their failure to handle underspecified instructions without external intervention. By using 'sharding' to test model performance, the authors demonstrate that models are merely predicting patterns rather than maintaining a coherent, grounded understanding of the user's goal. This supports the skeptic view that current AI lacks human-like reasoning.",
-          "verbatim": "First, task underspecification occurs when humans provide incomplete descriptions of the task at hand, which is prominent in “specification-heavy tasks” [60]. Second, intent misalignment occur when the AI fails to understand the user’s intent or motivation, and is one of the common sources of user dissatisfaction [34, 76].",
-          "excerpt_context": "Appendix A"
+          "point": "The document highlights the limitations of using LLMs to simulate user behavior for benchmarking, noting that automated simulations lack the nuance of human interaction. This supports the skeptic view that current AI evaluation methods are often circular or overly simplistic, failing to account for the messy, unpredictable nature of real-world human usage.",
+          "verbatim": "Because of the overly simplified conditions of simulation, we believe the degradation observed in experiments is most likely an underestimate of LLM unreliability, and how frequently LLMs get lost in conversation in real-world settings.",
+          "excerpt_context": "Limitations",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "automated_simulation_limitations",
+            "model_reliability"
+          ]
         },
         {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-028",
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-006",
+          "category": "Desires",
+          "point": "The document suggests that users must adopt cumbersome workarounds—like manually consolidating instructions or starting new conversations—because models cannot reliably handle multi-turn context. This underscores the skeptic concern that AI systems currently impose significant cognitive and operational burdens on users, rather than providing the frictionless, intelligent assistance promised by developers.",
+          "verbatim": "These two recommendations remain cumbersome for users and can only offer patched solutions rather than a principled approach.",
+          "excerpt_context": "Section 7.4, Implications for Users of Conversational Systems",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "user_burden",
+            "conversational_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-053",
           "category": "Intentions",
-          "point": "The document provides evidence that models are biased toward providing premature answers rather than engaging in inquiry, which directly degrades performance. Skeptics would argue this confirms the 'answer-machine' limitation, where the model's drive to output a solution—even when underspecified—prevents it from actually understanding the user's needs.",
+          "point": "The document explicitly critiques the use of LLMs as evaluators, noting that LLM-based components in simulation environments are 'likely to fail.' By performing manual inspections of 200 simulated conversations, the authors demonstrate that automated evaluation pipelines often lack the precision required for rigorous benchmarking, thereby validating the skeptic concern regarding the unreliability of AI-based evaluation tools.",
+          "verbatim": "The sharding simulation environment (described in Section 3) relies on LLM components to simulate the user, classify assistant responses, and extract answers from free-text responses. LLM-based components are likely to fail, and we performed an inspection of 200 simulated SHARDED conversations to understand the level of simulation error and the potential effect on estimating the performance of the assistant LLMs due to the error.",
+          "excerpt_context": "Appendix D, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "llm-evaluation",
+            "model-reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-030",
+          "category": "Intentions",
+          "point": "The document demonstrates that LLMs are biased toward providing premature answers even when instructions are underspecified, which leads to performance degradation. Models that wait to provide an answer until later in the conversation achieve significantly higher performance, suggesting that the current design bias toward immediate output generation hinders the model's ability to engage in necessary inquiry or clarification.",
           "verbatim": "On the onset of conversation, LLMs have the least amount of information (highest level of underspecification), and are least likely to formulate correct answer attempts. Proposing a solution early might therefore plant certain incorrect elements in it, which wrongly influences the interaction later in the conversation.",
-          "excerpt_context": "Appendix F.1, paragraph 2"
+          "excerpt_context": "Appendix F.1, Premature Answer Attempts",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "answer-machine",
+            "underspecification",
+            "premature_optimization"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document demonstrates that LLMs exhibit 'answer bloat' and 'loss-in-middle-turns,' proving that models fail to maintain coherence over long interactions. This supports the skeptic view that current AI architectures lack genuine understanding and instead rely on brittle pattern matching that breaks down as conversation complexity increases.",
-          "verbatim": "In summary, LLMs are less likely to reach a correct solution in multi-turn settings (lower P ), and when they do, the final solutions they reach are longer (bloated), hinting that the solutions are qualitatively worse.",
-          "excerpt_context": "Appendix F.2, paragraph 4"
+          "point": "The document finds that longer, more verbose assistant responses are generally detrimental to performance and user experience. Verbosity often correlates with the inclusion of unnecessary assumptions or hypotheses that confuse the model in subsequent turns, indicating that the 'frictionless' generation of long text is not synonymous with high-quality reasoning.",
+          "verbatim": "We hypothesize that deterioration due to over-verbosity is due to longer responses typically containing more assumptions or hypotheses from the assistant, which can lead to confusion in following turns. On the other hand, short turns tend to be focused (e.g, a single clarification question), and keep the conversation on track.",
+          "excerpt_context": "Appendix F.4, Overly-verbose Assistant Responses",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "verbosity",
+            "model_performance",
+            "user_experience"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that LLMs exhibit a systematic tendency to become 'bloated' over the course of multi-turn conversations, failing to maintain adherence to length constraints that they successfully follow in single-turn settings. This suggests an inherent instability in model performance when context is introduced incrementally. This observation supports the skeptic view that current LLM architectures lack the reliability required for consistent, constrained task execution.",
+          "verbatim": "We note that this tendency for LLMs to go beyond is further discussed in Appendix F, where we observe that across tasks, model answer attempts get “bloated” over turns of conversations. In single-turn settings (full, concat), LLMs largely respect the 300-word length limit.",
+          "excerpt_context": "Section 5, Summary, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "model_reliability",
+            "underspecification",
+            "multi_turn_conversation"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that LLMs struggle with instruction adherence in multi-turn settings, specifically noting a tendency for models to 'forget' constraints like word limits. This 'bloating' of responses over time suggests that models are not inherently reliable for long-form, multi-turn tasks. These findings support the skeptic view that current AI systems have measurable, detrimental failure modes in complex interactions.",
-          "verbatim": "We observed that in multi-turn settings, models often forget this instruction, leading to non-adherence to the instruction. We note that this tendency for LLMs to go beyond is further discussed in Appendix F, where we observe that across tasks, model answer attempts get “bloated” over turns of conversations.",
-          "excerpt_context": "Section I.6, paragraph 2"
+          "point": "The document provides empirical evidence that LLMs exhibit significant unreliability in multi-turn interactions, even when temperature is set to zero. This non-determinism is attributed to hardware-level floating-point variations that cause divergent token selection over time. The findings suggest that current LLM architectures are fundamentally unstable for complex, multi-step tasks requiring high precision.",
+          "verbatim": "As we demonstrated in our experimental results, setting the temperatures to zero still leads to high unreliability, due to compounding effect of subtle non-determinism over tokens and turns. In theory, greedy decoding (i.e., T = 0) will always pick the argmax over the vocabulary distribution. However, it is reported that hardware limitations on floating point operations cause slightly different intermediate values, which results in a ripple effect of larger value changes and therefore different tokens being selected.",
+          "excerpt_context": "Appendix N, On obtaining deterministic outputs from LLMs",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "non-determinism",
+            "greedy_decoding",
+            "model-reliability"
+          ]
         },
         {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
+          "stance": "aligned",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that LLMs are fundamentally unreliable in multi-turn conversations, even when temperature is set to zero. It challenges the notion that AI models are currently capable of consistent, high-stakes reasoning, noting that hardware-level non-determinism and compounding errors make them prone to failure. This supports the skeptic view that current AI performance is often overstated and lacks the robustness required for real-world reliability.",
-          "verbatim": "As we demonstrated in our experimental results, setting the temperatures to zero still leads to high unreliability, due to compounding effect of subtle non-determinism over tokens and turns.",
-          "excerpt_context": "Appendix N, paragraph 1",
-          "_backfill": {
-            "previous_id": "skp-beliefs-018",
-            "similarity": 0.5031,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The 'lost in conversation' phenomenon occurs when LLMs are forced to operate on underspecified instructions, leading them to hallucinate or assume constraints that degrade performance. This behavior is measurable and reproducible, as shown by the calorie calculation task where the model failed to reach the correct total due to unnecessary updates and forgotten initial instructions. The document highlights that even advanced models like Llama3.1-8B-Instruct are prone to these failures.",
+          "verbatim": "This conversation illustrates the following properties described in the rest of the paper: (1) the LLM makes assumptions early in the conversation (in Turn 1, describing four pastries that are irrelevant), (2) although it correctly interprets user-provided information, it also unnecessarily updates the information for assumptions it made (Turn 4), (3) this leads to unnecessary complexity, and the model ultimately forgets that the initial instruction was to calculate total calorie count, and returns only half of the calculation (just for Mini Blueberry Muffin).",
+          "excerpt_context": "Appendix J, Example Simulated Conversation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "underspecification",
+            "hallucination"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Top-tier LLMs exhibit an average performance drop of 39% when moving from single-turn to multi-turn conversational settings.",
+      "claim": "LLMs exhibit a 39% average performance drop in multi-turn conversations compared to single-turn, fully-specified settings across six generation tasks.",
       "claim_label": "Multi-turn Performance Degradation",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": "2026",
+      "temporal_bound": "2025-2026",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-056"
@@ -263,179 +404,192 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical measurement based on 200,000+ simulated conversations."
+        "category_criteria": "empirical_measurement"
       },
       "claim_relations": []
     },
     {
-      "claim": "Lowering the temperature of an LLM (T=0.0) does not effectively resolve reliability issues in multi-turn settings, as unreliability remains high.",
-      "claim_label": "Temperature Ineffectiveness in Multi-turn",
+      "claim": "LLMs experience an average performance degradation of 39% when moving from fully-specified single-turn conversations to underspecified multi-turn conversations.",
+      "claim_label": "Multi-turn Performance Degradation Rate",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "sit-021"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim based on supplementary temperature experiments"
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation based on 200,000 simulated conversations."
       },
       "claim_relations": []
     },
     {
-      "claim": "Humans are 15 times more likely than LLMs to generate follow-up questions to clarify ambiguous instructions in conversation logs.",
-      "claim_label": "Human vs AI Clarification Frequency",
+      "claim": "Increasing test-time compute (reasoning tokens) does not improve an LLM's ability to navigate multi-turn underspecification.",
+      "claim_label": "Reasoning Compute and Multi-turn Reliability",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-011"
+        "sit-083"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Experimental finding comparing reasoning models (o3, R1) to non-reasoning models."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Humans are 15 times more likely than LLMs to generate follow-up questions in conversation logs to resolve ambiguity.",
+      "claim_label": "Human vs LLM Grounding Frequency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-014"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation based on conversation log analysis."
+        "category_criteria": "empirical claim based on observation of conversation logs"
       },
       "claim_relations": []
     },
     {
-      "claim": "Models that wait until later in a conversation to provide their first answer attempt achieve significantly higher performance than those that attempt to answer early.",
-      "claim_label": "Delayed Answer Performance Gain",
+      "claim": "LLMs exhibit a 'loss-in-middle-turns' phenomenon in multi-turn conversations, where they pay more attention to the start and end of the conversation context than to middle turns.",
+      "claim_label": "Loss-in-middle-turns phenomenon",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-028"
+        "saf-beliefs-027"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation based on binning conversation performance by answer timing."
+        "category_criteria": "empirical observation based on citation patterns"
       },
       "claim_relations": []
     },
     {
-      "claim": "LLMs exhibit 'answer bloat' in multi-turn conversations, where final answer attempts are 20-300% longer than single-turn equivalents due to the model's failure to invalidate prior incorrect assumptions.",
-      "claim_label": "Answer Bloat Phenomenon",
+      "claim": "Premature answer attempts in multi-turn conversations lead to lower performance across LLMs compared to conversations where models wait to provide answers.",
+      "claim_label": "Premature answer performance impact",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-088"
+        "skp-intentions-030"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Quantitative analysis of character length across four tasks."
+        "category_criteria": "empirical performance data across multiple models"
       },
       "claim_relations": []
     },
     {
-      "claim": "LLMs exhibit a tendency to ignore length constraints in multi-turn conversations, resulting in 'bloated' responses that exceed specified word limits.",
-      "claim_label": "Multi-turn Response Bloating",
+      "claim": "In multi-turn settings, LLMs frequently fail to adhere to previously provided length constraints, often producing 'bloated' responses that exceed the 300-word limit, whereas they successfully respect these limits in single-turn settings.",
+      "claim_label": "Multi-turn instruction forgetting",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-056"
-      ],
+      "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation based on experimental data from the Summary of a Haystack task."
+        "category_criteria": "empirical observation of model behavior"
       },
       "claim_relations": []
     },
     {
-      "claim": "Setting LLM temperature to zero does not guarantee deterministic outputs due to hardware-level floating point operation variations.",
+      "claim": "The 'Summary of a Haystack' evaluation metric is recall-based, which creates a bias where longer summaries are likely to receive higher scores regardless of content quality.",
+      "claim_label": "Length bias in recall-based metrics",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "methodological limitation of evaluation metrics"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Setting LLM temperature to zero does not guarantee deterministic output due to hardware-level floating-point variations that create compounding errors across tokens and turns.",
       "claim_label": "Non-determinism in Greedy Decoding",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-018"
-      ],
+      "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim about model behavior and hardware limitations."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Sharded Instruction Simulation",
-      "suggested_description": "A methodology for evaluating AI models that decomposes fully-specified instructions into sequential shards to simulate underspecified, multi-turn human-AI communication. It measures how models handle incremental information disclosure.",
-      "concept": "The authors propose a 'sharding process' that transforms single-turn instructions into a set of smaller, sequential shards. This allows for controlled simulation of multi-turn conversations where the model receives information gradually, mirroring real-world user behavior.",
+      "suggested_label": "Sharded Instruction Evaluation",
+      "suggested_description": "A situation concept that involves decomposing complex, fully-specified instructions into atomic, decontextualized shards to simulate multi-turn conversational interactions.\nEncompasses: Automated segmentation, rephrasing, and verification of instruction shards.\nExcludes: Standard single-turn prompt engineering or static benchmark evaluation.",
+      "concept": "The document introduces a semi-automatic process to transform fully-specified instructions into 'sharded' equivalents. This process aims to test how LLMs handle multi-turn interactions by breaking down tasks into atomic content units that must be processed sequentially or in isolation.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "This is a novel evaluation framework that does not fit existing 'benchmarking' nodes, as it specifically targets the dynamics of underspecification.",
-      "Accelerationist Interpretation": "This framework provides a rigorous way to optimize AI agents for real-world, messy human interactions, accelerating the development of truly helpful assistants.",
-      "Safetyist Interpretation": "This methodology exposes the fragility of current models, providing a necessary diagnostic tool to identify when and why AI agents fail to maintain alignment during complex, multi-turn tasks.",
-      "Skeptic Interpretation": "This simulation confirms that LLMs are fundamentally incapable of maintaining context, proving that they are merely pattern-matchers that 'get lost' when they cannot rely on a single, fully-specified prompt."
-    },
-    {
-      "suggested_label": "Instruction Sharding for Model Evaluation",
-      "suggested_description": "A methodology for evaluating AI models that involves decomposing complex, fully-specified instructions into smaller, atomic content units to simulate multi-turn dialogue. This process tests the model's ability to maintain intent and information across fragmented inputs.",
-      "concept": "The authors define a semi-automatic process to transform fully-specified instructions into 'sharded' instructions. This involves segmentation, rephrasing, and verification to ensure that the model's performance on the sharded version is comparable to the original full instruction.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific evaluation framework not currently captured by existing nodes, focusing on the mechanics of multi-turn failure modes."
-    },
-    {
-      "suggested_label": "The Multi-Turn Contextualization Gap",
-      "suggested_description": "A situation concept that describes the failure of LLMs to maintain state and intent across fragmented, multi-turn interactions.\nEncompasses: Performance drops in sharded instructions, lack of follow-up questions, and inability to resolve ambiguity.\nExcludes: Single-turn hallucination or static benchmark performance.",
-      "concept": "The document demonstrates that LLMs struggle to maintain the 'primary intent' of a query when it is presented in shards. This gap highlights the difference between static instruction following and dynamic, multi-turn conversational competence.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the specific situational failure mode described in the paper.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a temporary engineering hurdle that can be solved with better training data or architectural improvements to context windows.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical alignment failure, suggesting that if models cannot track intent across turns, they are prone to dangerous misinterpretations in complex, multi-step tasks.",
-      "Skeptic Interpretation": "Skeptics interpret this as fundamental evidence that LLMs do not 'understand' tasks but are merely pattern-matching, making them unreliable for complex, real-world multi-turn workflows."
-    },
-    {
-      "suggested_label": "Premature Answer Bias",
-      "suggested_description": "A Belief within skeptic discourse that AI models possess an inherent, performance-degrading tendency to provide solutions before sufficient information is gathered. Encompasses: The tendency to plant incorrect assumptions early in a conversation. Excludes: General model hallucination or lack of knowledge.",
-      "concept": "The document finds that models attempting to answer within the first 20% of a conversation perform significantly worse than those that wait. It suggests that early answers plant incorrect elements that persist and influence the entire interaction.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the specific behavioral bias identified in the document that differs from general 'answer-machine' limitations."
+      "reason": "This represents a novel methodological approach to benchmarking that does not fit existing taxonomy nodes for evaluation.",
+      "Accelerationist Interpretation": "This method provides a more granular way to measure and optimize model performance across complex, multi-step reasoning tasks.",
+      "Safetyist Interpretation": "This method exposes the fragility of models when they are forced to maintain state across fragmented, multi-turn interactions, highlighting potential alignment failures.",
+      "Skeptic Interpretation": "This method highlights that models struggle with basic conversational grounding and that 'sharding' is a necessary workaround for models that cannot handle natural, ambiguous human communication."
     },
     {
       "suggested_label": "Answer Bloat Effect",
-      "suggested_description": "A situation concept that describes the progressive increase in length and decrease in quality of AI-generated answers during multi-turn, underspecified conversations. \nEncompasses: The failure to invalidate prior assumptions, the accumulation of irrelevant content, and the resulting increase in character count. \nExcludes: Simple verbosity or long-context window limitations.",
-      "concept": "The document observes that in sharded, multi-turn conversations, final answer attempts are 20-300% longer than single-turn equivalents. This occurs because the model fails to discard incorrect assumptions made in earlier turns as new information is revealed.",
-      "suggested_pov": "situations",
+      "suggested_description": "A Belief within safetyist discourse that describes the tendency of LLMs to generate increasingly long and incorrect solutions in multi-turn, underspecified settings.\nEncompasses: Failure to invalidate prior assumptions, reliance on previous incorrect answer attempts, increased character length in final solutions.\nExcludes: General verbosity or long-context window limitations.",
+      "concept": "The document defines the 'answer bloat effect' as a phenomenon where LLMs generate incorrect answer attempts in early turns of a conversation and fail to invalidate these assumptions as new information is revealed. This leads to final answer attempts that are 20-300% longer than single-turn equivalents, indicating that the solutions are qualitatively worse.",
+      "suggested_pov": "safetyist",
       "suggested_category": "Beliefs",
-      "reason": "This is a specific, measurable phenomenon identified in the study that does not map to existing 'loss-in-middle' or 'sycophancy' nodes.",
-      "Accelerationist Interpretation": "This is a technical hurdle that can be solved by better training data or architectural improvements to state management.",
-      "Safetyist Interpretation": "This demonstrates a lack of robust alignment, as the model cannot update its internal objective based on new user constraints, leading to potentially dangerous or misleading outputs.",
-      "Skeptic Interpretation": "This proves that models do not 'understand' the task but are merely performing pattern completion that becomes increasingly incoherent as the conversation history grows."
+      "reason": "This is a specific failure mode identified in multi-turn conversation dynamics that is distinct from general model verbosity."
     },
     {
-      "suggested_label": "Instructional Drift in Multi-Turn Dialogue",
-      "suggested_description": "A situation concept that describes the degradation of constraint adherence as a conversation progresses over multiple turns.\nEncompasses: Forgetting word limits, ignoring formatting instructions, and increasing response verbosity.\nExcludes: Catastrophic alignment failure or intentional adversarial subversion.",
-      "concept": "The document observes that models often fail to maintain the 300-word limit in multi-turn summary tasks, despite being instructed to do so. This phenomenon, described as 'bloating,' occurs specifically as the conversation turns increase, contrasting with single-turn settings where models largely respect the limit.",
+      "suggested_label": "Aptitude vs Reliability Decomposition",
+      "suggested_description": "A situation concept that distinguishes between a model's inherent capability (aptitude) and its consistency across multiple simulation runs (reliability).\nEncompasses: Performance metrics (P), aptitude (A), unreliability (U), binary vs continuous scoring.\nExcludes: General model evaluation benchmarks or static accuracy metrics.",
+      "concept": "The document introduces a framework to decompose performance drops in multi-turn conversations into 'aptitude' (the model's ability to solve the task) and 'unreliability' (the variance in performance across simulation runs). This allows for a more granular analysis of why models fail in sharded, multi-turn settings compared to fully-specified single-turn settings.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This captures the specific failure mode of 'bloating' in multi-turn contexts, which is distinct from general instruction following.",
-      "Accelerationist Interpretation": "This is a technical hurdle that can be solved through better training data or improved system prompting to reinforce constraints.",
-      "Safetyist Interpretation": "This demonstrates that models lack inherent 'memory' or 'state' awareness, posing a risk for tasks requiring long-term adherence to safety protocols.",
-      "Skeptic Interpretation": "This proves that LLMs are fundamentally unreliable for complex, multi-turn tasks because they cannot maintain context or constraints over time."
+      "reason": "This provides a novel analytical framework for evaluating model performance in multi-turn contexts.",
+      "Accelerationist Interpretation": "This framework allows for precise identification of where models need improvement, enabling targeted fine-tuning to increase aptitude and reliability simultaneously.",
+      "Safetyist Interpretation": "This decomposition reveals that performance degradation is often driven by high unreliability, suggesting that models are not robust and may behave unpredictably in real-world, multi-turn deployments.",
+      "Skeptic Interpretation": "This highlights that even when models have the 'aptitude' to solve a problem, their 'unreliability' in multi-turn conversations makes them unsuitable for critical tasks requiring consistent, predictable reasoning."
     }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }

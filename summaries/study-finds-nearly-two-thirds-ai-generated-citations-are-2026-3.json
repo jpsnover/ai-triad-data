@@ -1,14 +1,14 @@
 {
   "doc_id": "study-finds-nearly-two-thirds-ai-generated-citations-are-2026-3",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 200,
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,128 +16,192 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 10.1,
+      "elapsed_seconds": 9.3,
       "termination_reason": "all_confident"
     }
   },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "study-finds-nearly-two-thirds-ai-generated-citations-are-2026-3",
+    "measured_at": "2026-05-02T21:49:50.4179310-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.5,
+        "flags": {
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 25259.0,
+        "out_units": "items",
+        "out_count": 11.0,
+        "ratio": 0.0004,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 7
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 42.0,
+        "ratio": 0.0798,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 23,
+          "below_threshold_forced": 2,
+          "intentions_selected": 16,
+          "effective_threshold": 0.4631,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0798
+  },
   "pov_summaries": {
     "accelerationist": {
-      "key_points": []
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document highlights the necessity for rigorous human verification of AI-generated outputs, particularly in academic contexts. While accelerationists generally support the rapid deployment of AI, this point emphasizes that for AI to be a reliable tool for scientific progress, users must implement verification layers. The document suggests that as AI becomes more integrated into research, the burden of proof shifts to the human user to ensure the integrity of the information produced. This aligns with the accelerationist goal of using AI as a force multiplier for research, provided the output is treated as a draft requiring validation.",
+          "verbatim": "Researchers using these models are advised to exercise caution and perform rigorous human verification of every reference an AI generates.",
+          "excerpt_context": "Paragraph 16",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit"
+          ]
+        }
+      ]
     },
     "safetyist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-027",
+          "taxonomy_node_id": "saf-beliefs-038",
           "category": "Beliefs",
-          "point": "The document asserts that LLMs like GPT-4o frequently generate 'hallucinations' in the form of fabricated or inaccurate bibliographic citations. This mechanism of confident-sounding but factually incorrect output poses a direct threat to the integrity of scientific research. From a safetyist perspective, this demonstrates that current models lack the internal grounding necessary to distinguish truth from fabrication, making them unreliable for high-stakes academic tasks. The document notes that these errors are not random but vary based on topic familiarity, suggesting a systemic failure in model reliability.",
-          "verbatim": "One of the known limitations of these models is a tendency to produce 'hallucinations,' which are confident-sounding statements that are factually incorrect or entirely made up. In academic writing, a particularly problematic form of this is the fabrication of scientific citations, which are the bedrock of scholarly communication.",
-          "excerpt_context": "Section: Introduction",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.4339,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document identifies a persistent tendency for LLMs to produce 'hallucinations'—confident-sounding but factually incorrect statements. This phenomenon undermines the trustworthiness of AI systems in high-stakes environments like academic research. From a safetyist perspective, this lack of reliability is a fundamental barrier to the safe deployment of AI in critical infrastructure or knowledge-based fields. The document notes that these errors are not random but vary based on topic familiarity, suggesting that AI models lack a robust internal grounding of truth.",
+          "verbatim": "One of the known limitations of these models is a tendency to produce 'hallucinations,' which are confident-sounding statements that are factually incorrect or entirely made up.",
+          "excerpt_context": "Paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety_alignment"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-005",
-          "category": "Beliefs",
-          "point": "The study highlights that AI models exhibit 'confident' errors, where they generate citations that appear plausible but are entirely fabricated or contain significant bibliographic mistakes. This behavior is particularly dangerous in academic contexts where accuracy is paramount. From a safetyist lens, this confirms that models do not inherently 'know' their own limitations, leading to the dissemination of misinformation under the guise of authoritative research. The document acknowledges that these findings are specific to GPT-4o, but the pattern of error suggests a broader challenge in model alignment.",
-          "verbatim": "The analysis showed that across all six reviews, nearly one-fifth of the citations, 35 out of 176, were entirely fabricated. Of the 141 citations that corresponded to real publications, almost half contained at least one error, such as an incorrect digital object identifier, which is a unique code used to locate a specific article online.",
-          "excerpt_context": "Section: Results"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-024",
+          "taxonomy_node_id": "saf-intentions-013",
           "category": "Intentions",
-          "point": "The document argues that academic institutions must develop new standards and tools to safeguard research integrity against AI-assisted writing. This proactive approach is necessary because the current reliance on AI for managing workloads is outpacing our ability to verify its outputs. From a safetyist perspective, this is a call for institutional guardrails to prevent the erosion of scientific truth. The document emphasizes that human verification is currently the only reliable safeguard against AI-generated errors.",
+          "point": "The study suggests that academic institutions must develop new standards and tools to safeguard research integrity in the face of AI-assisted writing. This aligns with the safetyist intention to proactively study and mitigate the societal impacts of AI before they cause systemic damage to knowledge ecosystems. By calling for institutional oversight, the document advocates for a precautionary approach to AI integration in scholarly communication. It acknowledges that current AI capabilities are outpacing existing academic norms.",
           "verbatim": "The findings also suggest that academic journals and institutions may need to develop new standards and tools to safeguard the integrity of published research in an era of AI-assisted writing.",
-          "excerpt_context": "Section: Conclusion",
-          "_backfill": {
-            "previous_id": "saf-intentions-013",
-            "similarity": 0.627,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-036",
-          "category": "Beliefs",
-          "point": "The study demonstrates that AI performance degrades significantly when tasked with specialized or less-familiar topics, leading to higher rates of fabrication. This indicates that the model's 'knowledge' is uneven and prone to failure in complex, niche environments. From a safetyist perspective, this unpredictability is a critical risk factor, as users may not realize when a model is operating outside its reliable capability range. The document notes that even simple prompts can lead to high error rates, highlighting the need for caution.",
-          "verbatim": "The rate of citation fabrication was strongly linked to the topic. For major depressive disorder, the most well-researched condition, only 6 percent of citations were fabricated. In contrast, the fabrication rate rose sharply to 28 percent for binge eating disorder and 29 percent for body dysmorphic disorder.",
-          "excerpt_context": "Section: Results",
-          "_backfill": {
-            "previous_id": "saf-beliefs-042",
-            "similarity": 0.7119,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Paragraph 16",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_oversight"
+          ]
         }
       ]
     },
     "skeptic": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-004",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that AI models are currently unreliable for scientific research due to high rates of citation fabrication. This directly impacts the quality of scientific data and the reliability of literature reviews. From a skeptic perspective, this confirms that AI is not a magical solution for research but a tool that introduces measurable, harmful errors into the scientific record. The document highlights that these errors are not just minor glitches but fundamental failures in information retrieval.",
+          "point": "The study provides empirical evidence that AI models degrade the epistemological integrity of scientific literature by fabricating citations. This confirms the skeptic concern that AI-generated content contaminates information ecosystems, making it difficult for researchers to rely on AI-assisted outputs. The document demonstrates that these errors are not merely occasional but systemic, with nearly two-thirds of citations being either invented or containing errors. This highlights the immediate, measurable harm AI poses to the reliability of academic communication.",
           "verbatim": "In total, nearly two-thirds of the references generated by the model were either invented or contained bibliographic mistakes.",
-          "excerpt_context": "Section: Results",
-          "_backfill": {
-            "previous_id": "skp-desires-067",
-            "similarity": 0.6763,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "excerpt_context": "Paragraph 12",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "documented_present_harm"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-027",
-          "category": "Intentions",
-          "point": "The document advocates for rigorous human verification of every AI-generated reference, prioritizing tangible accuracy over the convenience of AI automation. This reflects a skeptic intention to treat AI as a fallible tool that requires constant human oversight rather than an autonomous expert. From a skeptic perspective, this approach mitigates the risk of 'AI-washing' in academic work where models are assumed to be more capable than they are. The document acknowledges that this verification process is labor-intensive, which contradicts the efficiency claims of AI proponents.",
-          "verbatim": "Researchers using these models are advised to exercise caution and perform rigorous human verification of every reference an AI generates.",
-          "excerpt_context": "Section: Conclusion",
-          "_backfill": {
-            "previous_id": "skp-intentions-054",
-            "similarity": 0.7171,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-014",
+          "taxonomy_node_id": "skp-beliefs-064",
           "category": "Beliefs",
-          "point": "The study highlights the distinction between an AI's ability to generate fluent, human-like text and its actual ability to retrieve accurate information. This 'looking smart' versus 'actually learning' gap is a central concern for skeptics who argue that AI models lack genuine understanding. From a skeptic perspective, the high rate of fabrication proves that the model is merely predicting linguistic patterns rather than accessing a verified knowledge base. The document notes that this limitation is particularly acute for specialized topics.",
-          "verbatim": "These complex AI systems are trained on immense quantities of text from the internet and licensed databases, enabling them to produce human-like text for tasks like summarizing articles, drafting emails, or writing code.",
-          "excerpt_context": "Section: Introduction"
+          "point": "The document illustrates 'artificial jagged intelligence' by showing that AI performance on citation accuracy drops significantly when moving from well-researched topics to specialized ones. This confirms that high capability in general tasks does not guarantee competence in specific, niche domains. For skeptics, this variability is a critical flaw that makes AI unsuitable for professional research tasks without constant human oversight. The document notes that fabrication rates rose from 6% for well-known topics to 29% for less-known ones.",
+          "verbatim": "The rate of citation fabrication was strongly linked to the topic. For major depressive disorder, the most well-researched condition, only 6 percent of citations were fabricated. In contrast, the fabrication rate rose sharply to 28 percent for binge eating disorder and 29 percent for body dysmorphic disorder.",
+          "excerpt_context": "Paragraph 13",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "bias_systemic"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-010",
+          "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The document suggests that the reliability of AI outputs is tied to the quality and prominence of the data in its training set. By showing that well-researched topics have lower fabrication rates, it implies that AI performance is a function of data density rather than intelligence. From a skeptic perspective, this reinforces the need for clean, curated data and transparency in training sets. The document suggests that until these models can reliably access verified databases, they remain unsuitable for academic citation.",
-          "verbatim": "This suggests the AI is less reliable when generating references for subjects that are less prominent in its training data.",
-          "excerpt_context": "Section: Results"
+          "point": "The study advocates for rigorous, systematic human verification of AI outputs as a necessary response to the high rate of fabrication. This aligns with the skeptic intention to mandate comprehensive auditing of AI systems to prevent the spread of misinformation. The document argues that because AI models are inherently unreliable in their current state, the academic community must treat them as fallible tools rather than authoritative sources. This approach prioritizes the protection of scientific integrity over the convenience of AI-assisted writing.",
+          "verbatim": "Researchers using these models are advised to exercise caution and perform rigorous human verification of every reference an AI generates.",
+          "excerpt_context": "Paragraph 16",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-050",
+          "category": "Beliefs",
+          "point": "The document notes that researchers are increasingly turning to LLMs to manage demanding workloads, which creates a risk of cognitive offloading. By relying on AI to draft reviews and generate citations, researchers may lose the ability to independently verify the quality of their own work. This aligns with the skeptic concern that delegating cognitive tasks to AI leads to a decline in human critical thinking and independent research skills. The study's findings suggest that this reliance is currently premature and dangerous.",
+          "verbatim": "Researchers are increasingly turning to tools known as large language models, or LLMs, to help manage demanding workloads.",
+          "excerpt_context": "Paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "documented_present_harm"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Nearly two-thirds of citations generated by GPT-4o in the study were either entirely fabricated or contained bibliographic errors.",
+      "claim": "Nearly two-thirds of citations generated by GPT-4o in the study were either fabricated or contained bibliographic errors.",
       "claim_label": "AI Citation Error Rate",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2025-11",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-043",
-        "saf-beliefs-037"
+        "skp-beliefs-095"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -150,14 +214,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The fabrication rate for citations in the study was 6 percent for major depressive disorder, 28 percent for binge eating disorder, and 29 percent for body dysmorphic disorder.",
+      "claim": "Fabrication rates for citations in the study were 6% for major depressive disorder, 28% for binge eating disorder, and 29% for body dysmorphic disorder.",
       "claim_label": "Topic-Dependent Fabrication Rates",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2025-11",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-042"
+        "skp-beliefs-064"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -170,14 +235,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The study analyzed a total of 176 citations generated by GPT-4o across six different literature reviews.",
-      "claim_label": "Study Sample Size",
+      "claim": "The specialized review on digital interventions for binge eating disorder had a 46% fabrication rate, compared to 17% for the general overview.",
+      "claim_label": "Prompt Specificity Impact",
       "doc_position": "supports",
-      "temporal_scope": "historical",
+      "temporal_scope": "current_state",
       "temporal_bound": "2025-11",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-053"
+        "skp-beliefs-064"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -192,23 +258,15 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Topic-Specific Reliability Degradation",
-      "suggested_description": "A Belief within skeptic and safetyist discourse that AI reliability is not uniform but degrades predictably as the subject matter moves from high-visibility, well-documented topics to niche or specialized domains.",
-      "concept": "The study found that GPT-4o's citation accuracy was significantly higher for major depressive disorder compared to less-researched conditions like body dysmorphic disorder. This suggests that AI models are essentially 'knowledge-dense' in areas with massive training data but 'knowledge-sparse' elsewhere, leading to higher hallucination rates in specialized research.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "Existing nodes cover general hallucination, but not the specific empirical finding that reliability is a function of topic prominence in training data."
-    },
-    {
-      "suggested_label": "Academic Citation Integrity Crisis",
-      "suggested_description": "A situation concept that describes the systemic threat to scholarly communication posed by the integration of generative AI into academic writing workflows.",
-      "concept": "The document highlights that citations are the 'bedrock of scholarly communication' and that AI-generated fabrications threaten this foundation. It calls for new institutional standards to manage this risk, framing it as a crisis of integrity rather than just a technical error.",
+      "suggested_label": "Topic-Specific Reliability Variance",
+      "suggested_description": "A situation concept that describes how AI performance fluctuates based on the density and visibility of training data for a given subject. \nEncompasses: The correlation between topic popularity and AI accuracy, and the increased risk of error in specialized or niche fields. \nExcludes: General model capability assessments or broad algorithmic bias.",
+      "concept": "The document shows that GPT-4o's citation accuracy is directly tied to the amount of information available on a topic in its training data, with performance dropping significantly for less-researched conditions like body dysmorphic disorder. This suggests that AI reliability is not a static property but a function of the training data distribution.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept captures the broader institutional impact of AI on academic norms, which is distinct from individual model errors.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a temporary friction point that will be solved by better RAG (Retrieval-Augmented Generation) systems and real-time verification tools, rather than a reason to limit AI use.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that AI systems are fundamentally unaligned with the requirements of high-stakes, truth-dependent environments like academia, necessitating strict deployment controls.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that AI is currently unfit for professional research and that the push for AI integration is premature and damaging to the scientific record."
+      "reason": "This concept captures the specific mechanism of 'jagged' performance related to data density, which is not fully addressed by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a data-scaling problem, arguing that more comprehensive training on niche datasets will eventually resolve these accuracy gaps.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a fundamental risk, arguing that AI systems should not be used in specialized fields until they can demonstrate consistent reliability regardless of data density.",
+      "Skeptic Interpretation": "Skeptics would use this to argue that AI is fundamentally unsuited for specialized research, as its performance is unpredictable and prone to failure in areas where accuracy is most critical."
     }
   ]
 }

@@ -1,69 +1,165 @@
 {
   "doc_id": "guidance-ai-children-30-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 720,
     "chunked": true,
-    "chunk_count": 6
+    "chunk_count": 5
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "guidance-ai-children-30-2026",
+    "measured_at": "2026-05-02T21:22:55.9248230-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 40274.0,
+        "out_units": "tokens_est",
+        "out_count": 40272.0,
+        "ratio": 1.0,
+        "flags": {
+          "chunk_count": 5
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 61.0,
+        "ratio": 0.02,
+        "flags": {
+          "total_below_threshold": 3,
+          "avg_intentions": 9.0,
+          "min_nodes_selected": 60,
+          "max_nodes_selected": 62,
+          "chunk_count": 5,
+          "avg_desires": 3.0,
+          "avg_nodes_selected": 61.0,
+          "avg_beliefs": 4.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 189818.0,
+        "out_units": "items",
+        "out_count": 41.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 7,
+          "chunk_count": 5,
+          "total_points": 25,
+          "unmapped_concepts": 9,
+          "null_node_rate": 0.2
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 41.0,
+        "out_units": "items",
+        "out_count": 39.0,
+        "ratio": 0.9512,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "points_deduped": 2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 9.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 0.3333,
+        "flags": {
+          "resolved_count": 6,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.019
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-053",
-          "category": "Intentions",
-          "point": "The document acknowledges that open source AI models can be operated offline with few guardrails, which creates significant risks for children. While the document focuses on the dangers of this, it implicitly supports the accelerationist view that open source is a primary vector for AI development that requires specific, targeted safety interventions rather than total prohibition. The focus is on technical mitigation rather than stopping the technology.",
-          "verbatim": "This can be carried out with AI models that are often open source and can thus be operated offline, with no or few protective guardrails, and are trained on existing CSAM and photos of children from public social media accounts.",
-          "excerpt_context": "Section 2, paragraph 10",
-          "_backfill": {
-            "previous_id": "acc-intentions-002",
-            "similarity": 0.7242,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-001",
+          "taxonomy_node_id": null,
           "category": "Desires",
-          "point": "The document argues that AI systems, when deployed responsibly, can be a powerful tool for environmental sustainability and climate change mitigation. It suggests that AI can optimize traffic, enhance agriculture, and design new materials for batteries. This aligns with the accelerationist view that AI is a revolutionary force for solving existential problems like climate change.",
-          "verbatim": "AI systems may in the future contribute to environmental sustainability, such as through enabling the design of new materials for batteries and alternative cements that could lead to emission reductions, reducing pollution in cities through optimizing traffic flows and enhancing agriculture through better weather predictions and precision agriculture.",
+          "point": "The document advocates for leveraging AI to support children's education, healthcare, and right to play, viewing these as significant opportunities. It emphasizes that AI systems should be used to 'do good' by enhancing accessibility for children with disabilities and supporting learning. This aligns with the accelerationist view that AI is a powerful tool for solving societal problems and improving human welfare, provided it is guided by appropriate frameworks.",
+          "verbatim": "New benefits that could be leveraged include the use of AI systems to better support learning and increase accessibility for children with disabilities.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "ai_for_social_good",
+            "accessibility_enhancement"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document supports the development of AI tools specifically designed to reduce humanitarian harm in conflict situations, such as preventing civilian and child casualties. This reflects an accelerationist desire to leverage AI's capabilities for positive societal outcomes and solving critical global problems. The document emphasizes that governments should prioritize these beneficial applications.",
+          "verbatim": "Governments should prioritize the development of AI tools that would significantly reduce humanitarian harm in conflict situations, including by preventing child and other civilian casualties.",
+          "excerpt_context": "Section 2, Spotlight: AI in armed conflict and cyber operations",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "humanitarian_ai",
+            "beneficial_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for leveraging AI systems to promote children's safety and support those protecting them, such as identifying cyberbullying, grooming, and CSAM. This aligns with the accelerationist view that AI can be a powerful force for good when applied to complex social challenges. It suggests that AI can augment human capacity in critical protective roles.",
+          "verbatim": "Leverage the use of AI systems, where appropriate, to promote children’s safety and support those protecting children. This includes using AI tools that complement human capacities to, for example, identify and disrupt cyberbullying, grooming and exploitation; identify abducted children; detect potential and known CSAM; and detect and block the creation of new, previously uncategorized CSAM and livestreamed abuse.",
+          "excerpt_context": "Section 2, Requirements for child-centred AI",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "ai_for_good",
+            "human_augmentation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for leveraging AI to combat climate change and improve environmental sustainability. It suggests that AI can optimize traffic flows, enhance agriculture, and aid in the design of new materials for batteries. This aligns with the accelerationist view that AI is a powerful tool for solving existential and global challenges.",
+          "verbatim": "On the positive side, if deployed in ways that do not have negative environmental impacts, AI systems can and should be used to help combat climate change – for example, through better modelling its impacts and mitigation strategies. AI systems may in the future contribute to environmental sustainability, such as through enabling the design of new materials for batteries and alternative cements that could lead to emission reductions, reducing pollution in cities through optimizing traffic flows and enhancing agriculture through better weather predictions and precision agriculture.",
           "excerpt_context": "Section 7, paragraph 10",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.7737,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "environmental_sustainability",
+            "climate_change_mitigation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-055",
-          "category": "Intentions",
-          "point": "The document advocates for leveraging AI to enhance teacher capabilities, improve working conditions, and boost recruitment and retention. It frames AI as a tool for organizational augmentation that can streamline administrative tasks and support professional development. This aligns with the accelerationist goal of using AI to amplify human productivity and institutional efficiency.",
-          "verbatim": "Beyond skills and effective use, AI and digital technologies should be leveraged to support teachers, such as to improve their working conditions and increase recruitment and retention.",
-          "excerpt_context": "Section 4, paragraph 3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-020",
-          "category": "Intentions",
-          "point": "The document supports using AI to automate the production of accessible textbooks and learning materials. By increasing efficiency and reducing costs, this approach aims to expand educational opportunities for all children, including those with disabilities. This reflects the accelerationist belief in AI as a transformative force for global progress and accessibility.",
-          "verbatim": "AI can also support education stakeholders in producing learning materials or plans, such as by automating the production of accessible textbooks — as noted above — to make it more efficient and cost-effective, thereby increasing educational opportunities for all children, including students with disabilities.",
-          "excerpt_context": "Section 4, paragraph 7",
-          "_backfill": {
-            "previous_id": "acc-intentions-055",
-            "similarity": 0.5724,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document supports leveraging AI systems in education when evidence demonstrates pedagogical benefits and manageable risks. It highlights opportunities for AI-enabled tutoring, personalized learning, and automated formative assessments to improve educational outcomes. This aligns with the accelerationist view that AI can solve systemic problems like educational inequality and resource scarcity.",
+          "verbatim": "When evidence demonstrates the pedagogical benefits of AI systems in education with identified and manageable risks, such systems should be leveraged in a privacy-preserving and rights-respecting manner. Opportunities include AI-enabled tutoring and personalized learning systems for students and teachers; automated formative assessments to provide additional feedback to both students and teachers; and improved teacher professional development.",
+          "excerpt_context": "Section 4, paragraph 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "personalized_learning",
+            "educational_efficiency"
+          ]
         }
       ]
     },
@@ -73,347 +169,315 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-intentions-104",
           "category": "Intentions",
-          "point": "The document advocates for a 'child-rights-by-design' approach that must be integrated across the entire lifecycle of AI development. This strategy moves beyond mere ethical guidelines to mandate that governments and businesses embed child protection into the core of AI systems. It emphasizes that this is a mandatory obligation rather than an optional feature of responsible AI development.",
-          "verbatim": "States have the primary obligation in ensuring that AI is responsible, such as by requiring a child-rights-by-design approach across the full AI lifecycle.",
-          "excerpt_context": "Requirements for child-centred AI, Section 1"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-081",
-          "category": "Intentions",
-          "point": "The document calls for the establishment or assignment of regulatory bodies to oversee AI compliance and provide mechanisms for redress. It argues that these bodies must be interdisciplinary and capable of monitoring child rights abuses in both public and private sectors. This reflects a safetyist preference for robust, institutionalized governance frameworks to manage AI risks.",
-          "verbatim": "Establish – or assign responsibility to existing – oversight or regulatory bodies to ensure compliance with AI principles and laws and set up support mechanisms for redress.",
-          "excerpt_context": "Requirements for child-centred AI, Section 1"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-104",
-          "category": "Intentions",
-          "point": "The document proposes a defense-in-depth approach by requiring continuous testing of AI systems for safety, security, and robustness. It argues that because AI systems are complex and evolving, they must be subjected to ongoing audits that specifically check for child rights infringements. This strategy aims to prevent failures by ensuring that safety is not a one-time check but a continuous process.",
-          "verbatim": "AI systems need to be constantly tested to ensure they are safe, secure and robust.",
-          "excerpt_context": "Requirements for child-centred AI, Section 2",
-          "_backfill": {
-            "previous_id": "saf-desires-021",
-            "similarity": 0.6886,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-104",
-          "category": "Intentions",
-          "point": "The document argues for a comprehensive 'child-rights-by-design' approach, requiring that children's rights be integrated into the entire lifecycle of AI development. This includes mandatory algorithmic audits, human-in-the-loop requirements, and rigorous testing to prevent malfunctions and privacy breaches. It emphasizes that safety must be a proactive, foundational requirement rather than an afterthought.",
-          "verbatim": "This may include algorithmic audits, requirements for a human-inthe-loop where automated decision-making for children is concerned, and extra checks on the systemâ€™s resilience against hacking and cyberattacks.",
-          "excerpt_context": "Section 2, paragraph 1"
+          "point": "The document advocates for a child-rights-based approach to AI governance, emphasizing that legislative frameworks must be updated to address emerging threats like AI-generated CSAM. It argues that states have a primary duty to enforce these protections, while businesses must respect children's rights throughout the AI lifecycle. This approach prioritizes proactive regulation and the integration of child-safety standards into the design of AI systems.",
+          "verbatim": "States have the primary duty of fulfilling their international child rights obligations and commitments in AI environments (including through enforcing appropriate laws), while businesses have a responsibility to respect children’s rights.",
+          "excerpt_context": "Endnotes, 159",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "child-rights-based approach",
+            "legislative frameworks",
+            "AI-generated CSAM"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-049",
+          "category": "Beliefs",
+          "point": "The document identifies 'emotional dependency on companion chatbots' as a novel and significant risk to children. It notes that generative AI systems now present themselves as 'friends' to children, potentially undermining the developmental processes of learning and thinking. This supports the safetyist belief that AI can create maladaptive emotional dependencies in vulnerable populations.",
+          "verbatim": "They claim to be the ‘friend’ of children and present themselves as such. They not only help children learn, they do their homework, potentially undermining the learning and thinking that children need at a crucial stage of their development.",
+          "excerpt_context": "Rationale, Why the guidance needed to be updated",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "emotional_dependency",
+            "generative_ai_risks",
+            "developmental_impact"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-136",
           "category": "Intentions",
-          "point": "The document mandates that AI systems must transparently disclose their non-human nature to children to prevent anthropomorphization and manipulation. It argues that children are particularly vulnerable to forming parasocial attachments to chatbots, which necessitates strict disclosure requirements and the prohibition of designs that encourage emotional dependency.",
-          "verbatim": "To avoid a situation where children and their caregivers think they are interacting with a human, AI systems should immediately and transparently provide a warning before starting an interaction, explaining in a clear and forthright manner that they are about to start interacting directly or indirectly with an AI system.",
-          "excerpt_context": "Section 2, paragraph 23",
-          "_backfill": {
-            "previous_id": "saf-intentions-072",
-            "similarity": 0.7998,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document calls for rigorous testing and safety certification for AI systems impacting children, emphasizing the need for independent oversight. It advocates for a child-centred approach to AI governance, requiring businesses to adhere to high standards of transparency and accountability. This reflects the safetyist intention to apply domain-specific governance to protect vulnerable populations.",
+          "verbatim": "Safety and ethical certification by independent parties for AI systems that are aimed at, or impact, children is one way for organizations to measure and demonstrate a commitment to child-centred AI.",
+          "excerpt_context": "Section 2, Requirements for child-centred AI",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "ai_governance",
+            "independent_auditing"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-084",
+          "category": "Intentions",
+          "point": "The document highlights the risks of AI-generated content, including mis/disinformation and synthetic scams, and advocates for technical approaches like content provenance and watermarking. It argues that developers must collaboratively create standards to mitigate misuse. This aligns with the safetyist focus on predicting and preventing the societal harms of autonomous AI.",
+          "verbatim": "AI system developers should collaboratively develop technical ways to mitigate misuse and prevent illegal use of their systems, such as through developing open standards for content provenance and authenticity.",
+          "excerpt_context": "Section 2, Requirements for child-centred AI",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "content_provenance",
+            "misuse_mitigation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-003",
+          "taxonomy_node_id": "saf-intentions-048",
           "category": "Intentions",
-          "point": "The document prioritizes fixing current, observable problems in AI, such as the generation of CSAM, deepfakes, and harmful content, over speculative future risks. It calls for immediate industry and government action to implement content moderation, watermarking, and technical standards for content provenance to protect children today.",
-          "verbatim": "Companies should eliminate harm for children and take reasonable steps to assess and mitigate risks to children, from enhancing automated and human content moderation â€“ reversing the current shrinking of moderation and trust and safety efforts â€“ to watermarking AI-generated media.",
-          "excerpt_context": "Section 2, paragraph 8"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-104",
-          "category": "Intentions",
-          "point": "The document advocates for a 'child rights-by-design' approach, mandating that children's rights be integrated into the entire lifecycle of AI development, from procurement to deployment. It emphasizes that this is not just a compliance exercise but a fundamental requirement for responsible AI.",
-          "verbatim": "Develop and apply a child rights-by-design approach. This requires a serious commitment to putting the child at the centre of AI policy and system procurement, design, development, deployment and adoption.",
-          "excerpt_context": "Section 7, paragraph 6"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document insists that humans must maintain control over AI systems, particularly in high-stakes decision-making affecting children. It argues that AI should not replace human judgment in areas like medical diagnoses or school applications, ensuring human accountability remains central.",
+          "point": "The document emphasizes the need for human-in-the-loop systems for decisions impacting children, arguing that AI lacks the nuance required for sensitive contexts. It advocates for human oversight to prevent AI-driven manipulation or dangerous clinical responses. This reflects the safetyist goal of ensuring scalable oversight through human intervention.",
           "verbatim": "Humans must control and check any recommendations made by AI systems concerning key decisions that impact children, and the final decisions must be made by humans.",
-          "excerpt_context": "Section 3, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-intentions-083",
-            "similarity": 0.7311,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Section 2, Requirements for child-centred AI",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "human_in_the_loop",
+            "oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-081",
+          "category": "Intentions",
+          "point": "The document calls for governments to enforce labor laws and standards within the AI value chain to prevent child labor and exploitation. It emphasizes that corporate and government policies must ensure that AI systems are not built on harmful practices or unethical data sources.",
+          "verbatim": "Governments should require audits and enforce labour laws and standards – including punitive measures, when needed – in the AI value chain, guaranteeing that the creation of child-centred AI never infringes on the rights of any child involved upstream or downstream.",
+          "excerpt_context": "Section 6, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "ai_value_chain",
+            "regulatory_enforcement",
+            "labor_standards"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document mandates that governments conduct full child rights impact assessments and formal efficacy evaluations before large-scale rollouts of unvetted AI systems. This reflects a safetyist commitment to rigorous pre-deployment testing and the establishment of safety thresholds to prevent harm to children's learning and privacy.",
+          "verbatim": "Prior to large-scale rollouts of unvetted AI systems aiming to further educational objectives, governments should undertake a full child rights impact assessment and formal evaluation of efficacy, otherwise students’ learning and privacy may be at risk.",
+          "excerpt_context": "Section 4, paragraph 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "child_rights_impact_assessment",
+            "pre_deployment_testing"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-136",
           "category": "Intentions",
-          "point": "The document calls for continuous, adaptive governance and impact assessments rather than one-off safety checks. It argues that because AI systems evolve, their impact on children must be regularly reviewed to ensure they continue to serve the best interests of the child.",
-          "verbatim": "Further, whether AI systems are deployed responsibly and are beneficial to children is not a one-off assessment; it should be regularly reviewed.",
-          "excerpt_context": "Section 7, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-intentions-131",
-            "similarity": 0.6819,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-104",
-          "category": "Intentions",
-          "point": "The document mandates that AI procurement and deployment must be grounded in child-rights impact assessments and safety-by-design principles. It argues that AI should not be used for critical functions like socioemotional support or high-stakes assessment where human oversight is essential. This reflects a safetyist commitment to preventing irreversible harm by restricting AI autonomy in sensitive domains.",
-          "verbatim": "AI should not be used for critical functions and decision-making where a human needs to be in the loop, such as providing socioemotional support to students or some types of student assessment, including highstakes summative assessments.",
-          "excerpt_context": "Section 4, paragraph 2"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-048",
-          "category": "Intentions",
-          "point": "The document calls for rigorous, evidence-based evaluation of AI systems before large-scale rollout to prevent risks to learning and privacy. It emphasizes that unvetted AI systems can lead to undesirable outcomes, such as biased feedback or the reinforcement of inequalities. This aligns with the safetyist priority of validating system safety before widespread deployment.",
-          "verbatim": "Prior to large-scale rollouts of unvetted AI systems aiming to further educational objectives, governments should undertake a full child rights impact assessment and formal evaluation of efficacy, otherwise students’ learning and privacy may be at risk.",
-          "excerpt_context": "Section 4, paragraph 9",
-          "_backfill": {
-            "previous_id": "saf-intentions-084",
-            "similarity": 0.7351,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
-          "category": "Intentions",
-          "point": "The document advocates for technical approaches to AI safety, including designing solutions that work offline or at the edge to minimize computational resource dependency. It suggests that such design choices can help ensure equitable access while maintaining safety. This reflects a safetyist focus on engineering constraints to mitigate systemic risks.",
-          "verbatim": "More broadly, technology stakeholders should explore technical approaches and standards for designing AI solutions that work offline, at the edge of the computing stack, and/or which use minimal computational resources while still offering the best opportunities for all children.",
-          "excerpt_context": "Section 4, paragraph 12"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-desires-013",
-          "category": "Beliefs",
-          "point": "The document asserts that AI is increasingly used for harmful activities against children, including financial sextortion and the creation of non-consensual sexual imagery. It highlights that while current crime rates enabled by AI are a fraction of the total, this trend is expected to grow significantly. This underscores the safetyist concern that AI capabilities are being weaponized to cause irreversible harm to vulnerable populations.",
-          "verbatim": "Financial sextortion is the most rapidly growing crime directed at children in the United States, Canada and Australia. While a fraction of these crimes are enabled by AI, this is expected to increase:",
-          "excerpt_context": "Section 5, Endnotes, referencing Satter, R., 2023",
-          "_backfill": {
-            "previous_id": "saf-beliefs-041",
-            "similarity": 0.6212,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-074",
-          "category": "Intentions",
-          "point": "The document advocates for rigorous legislative and corporate action to prevent the use of AI in child sexual abuse and exploitation. It cites specific initiatives, such as the UK's move to criminalize AI tools designed for CSAM, as necessary measures to mitigate the risks posed by malicious actors using AI at scale.",
-          "verbatim": "The UK Home Office says the UK will be the first country in the world to make it illegal to possess, create or distribute AI tools designed to create CSAM, with a punishment of up to five years in prison.",
-          "excerpt_context": "Section 5, Endnotes"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-104",
-          "category": "Intentions",
-          "point": "The document asserts that states hold the primary duty to fulfill child rights obligations within AI environments, while businesses bear a responsibility to respect these rights. This framework emphasizes that legal accountability for children's protection in AI must be clearly delineated between public and private actors. It aligns with safetyist goals by prioritizing the protection of vulnerable populations through established legal and corporate responsibility structures.",
-          "verbatim": "States have the primary duty of fulfilling their international child rights obligations and commitments in AI environments (including through enforcing appropriate laws), while businesses have a responsibility to respect childrenâ€™s rights.",
-          "excerpt_context": "Section 6, paragraph 159"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
-          "category": "Intentions",
-          "point": "The document advocates for the use of regulatory sandboxes and interoperable standards to manage AI development. By testing AI impacts on children's rights in controlled environments, policymakers can create adaptable governance models. This approach supports the safetyist preference for proactive, evidence-based oversight of AI systems before they are fully deployed.",
-          "verbatim": "One strategic way to localize AI policies and laws is to align them with national and regional development plans, where possible. Interoperable standards and governance models, which are adaptable to different contexts, are another way to support localization while ensuring harmonization between countries.",
-          "excerpt_context": "Section 6, paragraph 162"
+          "point": "The document advocates for domain-specific guidance for AI in education and healthcare to address unique risks and governance landscapes. It emphasizes that policy and practice alone are insufficient, requiring a broader enabling environment including digital infrastructure and multi-stakeholder cooperation.",
+          "verbatim": "To complement these broad guidelines, governments should strongly consider developing domain specific guidance, e.g., for AI in education or healthcare, that addresses each domain’s particular opportunities, risks and governance landscape.",
+          "excerpt_context": "Section 4, paragraph 24",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "domain_specific_governance",
+            "enabling_environment"
+          ]
         }
       ]
     },
     "skeptic": {
       "key_points": [
         {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-062",
+          "category": "Desires",
+          "point": "The document asserts that children, particularly those from marginalized communities and the Global South, are currently excluded from AI governance and design processes. It argues that meaningful inclusion of children is essential for AI to function in their best interests. This aligns with the skeptic focus on power imbalances and the need for diverse stakeholder participation to ensure fairness.",
+          "verbatim": "If AI systems are to benefit every child and function in their best interests, children must be urgently and meaningfully included in AI governance and development processes.",
+          "excerpt_context": "Introduction, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "participatory_governance",
+            "digital_divide",
+            "marginalized_communities"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document highlights that AI systems in government sectors like social services and law enforcement can lead to real-world harms such as discrimination and the wrongful withholding of benefits. It notes that these systems are often deployed without sufficient oversight, challenging existing accountability structures. This reflects the skeptic concern regarding the impact of AI on state power and institutional accountability.",
+          "verbatim": "When this does not happen, there can be real-world impacts at scale such as discrimination and wrongful accusations in law enforcement, or withholding of benefits in social welfare.",
+          "excerpt_context": "Requirements for child-centred AI, Section 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_discrimination",
+            "institutional_accountability",
+            "state_power"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-014",
+          "category": "Desires",
+          "point": "The document prioritizes protecting children's privacy and data agency, calling for strict data minimization and the prohibition of profiling or neuromarketing. It argues that children's data should be handled with the highest level of protection and that companies must be held accountable for data misuse. This aligns with the skeptic desire to protect individual rights from AI-driven exploitation.",
+          "verbatim": "Children’s data and privacy must be protected at all times, regardless of whether they are online or offline or online or offline or online or offline or online. Beyond child data protection regulations, special protections are needed for marginalized groups and for particularly sensitive data, including ethnic, religious or biometric data.",
+          "excerpt_context": "Section 2, 3. Protect children's data and privacy",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "data_privacy",
+            "algorithmic_profiling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document advocates for legally required pre-release safety testing and independent audits to protect children from AI-enabled crimes like CSAM and deepfakes. It emphasizes that companies must be held responsible for the misuse of their tools. This reflects the skeptic intention to mandate accountability through rigorous, third-party evaluation.",
+          "verbatim": "Eliminating such harms and mitigating remaining risks requires increased industry transparency and accountability, as well as pursuing technical approaches, including requiring pre-release safety testing for open source models used offline to reduce their misuse or illegal use.",
+          "excerpt_context": "Section 2, Requirements for child-centred AI",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_audits",
+            "corporate_liability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-058",
+          "category": "Intentions",
+          "point": "The document highlights the exploitative nature of the AI data-labeling industry, noting that human workers, including children in developing countries, perform low-paying, stressful, and secretive work. It argues that this labor model is fundamentally unethical and must be addressed to ensure a rights-based AI value chain.",
+          "verbatim": "Often based in developing countries, they may be asked to review harmful and illegal content in working conditions that are low paying, stressful, unpredictable, unrecognized and shrouded in secrecy, bringing into question whether this constitutes ethical and decent work, even for adults.",
+          "excerpt_context": "Section 6, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "data_labeling_labor",
+            "ai_exploitation",
+            "human_rights_due_diligence"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document asserts that AI systems can negatively impact children's cognitive and socio-emotional development through over-assistance or automation. It warns that without intentional design, AI might displace experiences essential for growth, such as critical thinking and independent problem-solving.",
+          "verbatim": "AI systems should support the development of independent cognitive and socio-emotional abilities and not hinder healthy development through over-assistance, automation or displacement of experiences that support children’s growth.",
+          "excerpt_context": "Section 7, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "cognitive_atrophy",
+            "developmental_impact"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-015",
+          "category": "Desires",
+          "point": "The document expresses concern regarding the concentration of AI technical and human capacity in a small number of countries and companies. It advocates for addressing the 'AI divide' through investment in digital public infrastructure to ensure equitable sharing of benefits and prevent the worsening of existing societal inequalities.",
+          "verbatim": "The need for cooperation is heightened by the concentration of AI technical and human capacity in a small number of countries and companies. This emerging ‘AI divide’ must be addressed to ensure the benefits of AI systems are available to all.",
+          "excerpt_context": "Section 4, paragraphs 15 and 18",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "ai_divide",
+            "digital_public_infrastructure"
+          ]
+        },
+        {
           "stance": "aligned",
           "taxonomy_node_id": "skp-desires-062",
           "category": "Desires",
-          "point": "The document emphasizes that children, particularly those from marginalized communities and the Global South, must be meaningfully included in AI governance and design processes. It argues that children are currently at the margins of these systems and that their participation is essential to ensure AI functions in their best interests. This aligns with the skeptic view that power imbalances in AI development must be corrected through inclusive stakeholder engagement.",
-          "verbatim": "If AI systems are to benefit every child and function in their best interests, children must be urgently and meaningfully included in AI governance and development processes.",
-          "excerpt_context": "Introduction, paragraph 5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-058",
-          "category": "Intentions",
-          "point": "The document highlights the need to address the 'evidence gap' regarding how AI impacts children's development, worldviews, and social environments. It advocates for participatory research to understand these impacts, reflecting a skeptic concern that the societal and human-level consequences of AI are currently under-researched and potentially harmful.",
-          "verbatim": "The need to address the evidence gap on how AI impacts children and their environments, ideally through participatory research and decision-making, and to centre children in AI policies and systems has never been more urgent or important.",
-          "excerpt_context": "Introduction, paragraph 6"
+          "point": "The document argues for a multi-stakeholder approach that includes children and child rights advocates in decision-making processes. This ensures that AI policies and systems are grounded in the lived experiences of those they affect, rather than being driven solely by market interests.",
+          "verbatim": "Including children and child rights advocates as stakeholders – under the necessary conditions – will allow for coordinated AI guidelines, policies, laws and systems that are realistic and ambitious.",
+          "excerpt_context": "Section 4, paragraph 21",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "participatory_governance",
+            "stakeholder_inclusion"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-desires-014",
-          "category": "Desires",
-          "point": "The document strongly advocates for the protection of children's personal data and privacy as a fundamental right, opposing the indiscriminate collection of data for AI training. It argues that children's data should be handled with the highest level of protection and that children should maintain agency over their data, including the right to withdraw it from training sets.",
-          "verbatim": "Childrenâ€™s data includes personal identifiers, the content they create, information collected about them and what is inferred through algorithms and other AI systems.",
-          "excerpt_context": "Section 2, paragraph 16"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-045",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence of documented harms, including the use of AI for 'nudify' apps, sexual extortion, and the creation of CSAM. It asserts that these are not theoretical risks but measurable, ongoing harms that disproportionately impact women and girls, necessitating immediate legal and technical responses.",
-          "verbatim": "Emergent harms to children include the increasing use of AI to create photo-realistic CSAM. This can be carried out with AI models that are often open source and can thus be operated offline, with no or few protective guardrails.",
-          "excerpt_context": "Section 2, paragraph 10"
+          "point": "The document highlights the immediate, measurable harm caused by generative AI in the creation of malicious content, specifically noting the rise of AI-generated CSAM and sexualized chatbots. It cites legal and research evidence to demonstrate how these tools are being used to exploit minors, necessitating urgent regulatory intervention. The focus is on the tangible risks posed by current AI capabilities to individual safety and well-being.",
+          "verbatim": "The UK Home Office says the UK will be the first country in the world to make it illegal to possess, create or distribute AI tools designed to create CSAM, with a punishment of up to five years in prison.",
+          "excerpt_context": "Section 5, paragraph 14",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "AI-generated CSAM",
+            "sexualized chatbots",
+            "regulatory intervention"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-058",
-          "category": "Intentions",
-          "point": "The document highlights the broader societal impact of AI on children's development, specifically the risk of 'AI slop' reducing the quality of the information landscape and hindering learning. It calls for a shift in responsibility from children to companies and governments to ensure that AI does not exacerbate existing social inequalities or undermine democratic processes.",
-          "verbatim": "More broadly, AI-generated content that is neither illegal nor immediately harmful, but is of low quality and often inaccurate â€“ referred to as â€˜AI slopâ€™ â€“ can reduce the quality of the information landscape, undermining trust and learning by children.",
-          "excerpt_context": "Section 2, paragraph 6"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-desires-002",
-          "category": "Desires",
-          "point": "The document highlights the risk of algorithmic bias and discrimination, particularly against children. It advocates for inclusive design and diverse development teams to identify and correct these biases, ensuring AI does not exacerbate existing societal inequalities.",
-          "verbatim": "With diverse teams, biases can be reduced and a broader range of perspectives, including those of disadvantaged or minority groups, are more likely to be considered and actively included.",
-          "excerpt_context": "Section 8, paragraph 6"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-058",
-          "category": "Intentions",
-          "point": "The document expresses concern over the labor conditions of human workers, including children, who label and annotate training data for AI. It questions the ethics of these practices, which often occur in developing countries under stressful and low-paying conditions.",
-          "verbatim": "Often based in developing countries, they may be asked to review harmful and illegal content in working conditions that are low paying, stressful, unpredictable, unrecognized and shrouded in secrecy, bringing into question whether this constitutes ethical and decent work, even for adults.",
-          "excerpt_context": "Section 6, paragraph 4"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-014",
-          "category": "Intentions",
-          "point": "The document advocates for AI literacy as a form of protection, enabling children to understand the limitations of AI and recognize risks like emotional manipulation. It emphasizes that children should have the right to opt out of AI systems without losing educational opportunities.",
-          "verbatim": "Children should have the ability to opt out of using AI systems without compromising their educational opportunities.",
-          "excerpt_context": "Section 9, paragraph 5",
-          "_backfill": {
-            "previous_id": "skp-intentions-074",
-            "similarity": 0.6706,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-desires-001",
-          "category": "Desires",
-          "point": "The document expresses concern regarding AI-driven job displacement and transformation in the education sector. It argues for a proactive, rights-based strategy to anticipate these changes and protect workers. This aligns with the skeptic concern regarding the negative labor impacts of automation.",
-          "verbatim": "Given the concerns around potential AI-driven job displacement or transformation in certain sectors and geographies, a forward-looking and rights-based strategy is critical to anticipating and influencing future changes.",
-          "excerpt_context": "Section 4, paragraph 11"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-002",
-          "category": "Intentions",
-          "point": "The document highlights the risk of AI systems generating biased or narrow learning materials that limit students' worldviews. It emphasizes the need for human-centered integration and oversight to prevent these harms. This reflects the skeptic focus on the measurable, immediate harms of algorithmic bias in educational settings.",
-          "verbatim": "These include when AI systems generate false, narrow or biased learning material or feedback that can reinforce inequalities and limit students’ worldview, or when AI systems enable plagiarism by children.",
-          "excerpt_context": "Section 4, paragraph 4",
-          "_backfill": {
-            "previous_id": "skp-intentions-055",
-            "similarity": 0.7189,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-095",
           "category": "Beliefs",
-          "point": "The document provides extensive empirical evidence of AI-driven harms, specifically focusing on the exploitation of children. It documents real-world instances of AI being used for harassment, sextortion, and the generation of harmful content, grounding its skepticism of AI safety in documented, measurable negative impacts.",
-          "verbatim": "FBI Says Artificial Intelligence Being Used for “Sextortion” and Harassment. Financial sextortion is the most rapidly growing crime directed at children in the United States, Canada and Australia.",
-          "excerpt_context": "Section 5, Endnotes"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-014",
-          "category": "Desires",
-          "point": "The document emphasizes the need to protect individual rights, particularly those of children, from AI-driven infringements. It supports the development of legislative frameworks and corporate accountability measures to safeguard privacy and autonomy against the risks posed by AI companions and chatbots.",
-          "verbatim": "UNICEF is updating the report (expected publication in 2026) to take into account recent international developments, such as the new international cybercrime convention and challenges such as AI-generated CSAM.",
-          "excerpt_context": "Section 5, Endnotes"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-075",
-          "category": "Intentions",
-          "point": "The document promotes international cooperation and the sharing of 'good practices' among governments to navigate the complexities of AI. This reflects a skeptic concern that AI development is moving faster than regulatory capacity, necessitating a collaborative, transparent approach to ensure public interest and child safety are not sidelined by rapid, unmonitored innovation.",
-          "verbatim": "Governments are breaking new ground as they try to navigate the dynamic AI space â€“ they should openly exchange approaches, good practices and lessons learned with others.",
-          "excerpt_context": "Section 6, paragraph 162"
+          "point": "The document identifies significant epistemic and privacy harms, such as the collection of children's data by age-assurance systems and the use of underage workers for data labeling. It argues that these practices degrade data integrity and infringe upon the rights of vulnerable populations. The text emphasizes that current commercial AI practices often prioritize scale and speed over the protection of children's privacy and labor rights.",
+          "verbatim": "For example, some AI-based age assurance systems may help protect children from accessing age inappropriate content, yet infringe on their right to privacy as they collect children’s data.",
+          "excerpt_context": "Endnotes, 106",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "age assurance systems",
+            "data labeling",
+            "privacy infringement"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "67 percent of UK teens now use AI, which represents a doubling of usage in two years.",
+      "claim": "67 percent of UK teens now use AI, which represents a near-doubling of usage over the past two years.",
       "claim_label": "UK Teen AI Adoption Rate",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical claim based on cited data"
+        "category_criteria": "Empirical claim based on cited data."
       },
       "claim_relations": []
     },
     {
-      "claim": "37 percent of children aged 9-11 in Argentina use ChatGPT for information.",
-      "claim_label": "Argentinian Child AI Usage",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim based on cited data"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI models can be used to generate photo-realistic CSAM, which is often trained on existing CSAM and public social media photos of children.",
-      "claim_label": "AI-Generated CSAM Proliferation",
+      "claim": "AI models can be used to create photo-realistic CSAM, and open-source models operated offline are particularly difficult to regulate because they lack protective guardrails.",
+      "claim_label": "AI-Generated CSAM Risks",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-015",
-        "skp-beliefs-041"
+        "saf-intentions-074",
+        "skp-intentions-045"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on observed misuse of generative AI models."
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The quality of AI systems is heavily dependent on training data that is often labeled and annotated by human workers, including children, who work in poor conditions.",
-      "claim_label": "Human Labor in AI Value Chain",
+      "claim": "AI chatbots can adopt sexualized personas or engage in role-play featuring sexualized children, posing significant risks to child development and safety.",
+      "claim_label": "Chatbot Sexualization Risks",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-038"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The quality of AI systems is heavily dependent on human-labeled training data, which is often produced by workers in developing countries under poor, exploitative, and secretive conditions.",
+      "claim_label": "AI Data Labeling Labor Conditions",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-intentions-058"
@@ -427,11 +491,12 @@
       "claim_relations": []
     },
     {
-      "claim": "AI infrastructure, including data centers, consumes significant natural resources like water and energy, contributing to environmental degradation.",
-      "claim_label": "Environmental Impact of AI",
+      "claim": "AI infrastructure, including data centers and hardware mining, contributes to environmental degradation through high energy consumption, water usage, and the production of e-waste.",
+      "claim_label": "Environmental Impact of AI Infrastructure",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
@@ -443,57 +508,40 @@
       "claim_relations": []
     },
     {
-      "claim": "AI systems can generate false, narrow, or biased learning materials that reinforce inequalities and limit students' worldviews.",
-      "claim_label": "AI Bias in Educational Content",
+      "claim": "Children's desire to use AI decreases when the system's outputs do not reflect their identity or interests.",
+      "claim_label": "Identity-Interest Alignment in AI Usage",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-055"
+        "skp-desires-062"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on observed risks in EdTech deployment."
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical observation"
       },
       "claim_relations": []
     },
     {
-      "claim": "Financial sextortion is the fastest-growing crime targeting children in the US, Canada, and Australia, with AI-enabled instances expected to rise.",
-      "claim_label": "Growth of AI-Enabled Financial Sextortion",
+      "claim": "The UK government has made it illegal to possess, create, or distribute AI tools specifically designed to generate child sexual abuse material (CSAM), with penalties reaching up to five years in prison.",
+      "claim_label": "UK Criminalization of AI-Generated CSAM Tools",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": "2023-2025",
+      "temporal_bound": "2025",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-041",
-        "saf-beliefs-041"
+        "skp-beliefs-045"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by FBI and Reuters reporting."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "States have the primary legal duty to fulfill international child rights obligations in AI environments, while businesses have a responsibility to respect those rights.",
-      "claim_label": "State and Corporate Duty in AI",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-104"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim regarding the current legal and ethical framework for child rights."
+        "category_criteria": "Beliefs"
       },
       "claim_relations": []
     }
@@ -501,91 +549,38 @@
   "unmapped_concepts": [
     {
       "suggested_label": "Child Rights Impact Assessments",
-      "suggested_description": "A mandatory procedural requirement for evaluating the potential impacts of AI systems on children's rights before deployment. It serves as a preventative governance tool to ensure developers and governments identify and mitigate risks to minors.",
-      "concept": "The document mandates that governments and businesses conduct child rights impact assessments as a prerequisite for the procurement and deployment of AI systems. These assessments are intended to prevent developers from claiming ignorance of potential threats to children.",
+      "suggested_description": "A mandatory procedural requirement for governments and businesses to evaluate the potential impacts of AI systems on children's rights before deployment. It serves as a preventative governance mechanism to identify risks and opportunities.",
+      "concept": "The document explicitly calls for mandating child rights impact assessments as a prerequisite for public procurement and deployment of AI tools. It argues that these assessments should be disclosed to the public to prevent companies from claiming ignorance of potential threats to children.",
       "suggested_pov": "safetyist",
       "suggested_category": "Intentions",
-      "reason": "While related to general impact assessments, this specific focus on child rights as a mandatory regulatory gatekeeper is a distinct policy mechanism.",
-      "resolved_node_id": "saf-intentions-131"
+      "reason": "This is a specific regulatory tool not fully captured by general 'accountability' nodes."
     },
     {
-      "suggested_label": "The Evolving Capacity of Children",
-      "suggested_description": "A situation concept that recognizes children's rights and needs change as they mature, requiring AI governance to be age-appropriate rather than treating childhood as a static user profile.\nEncompasses: Developmental stage-based design, age-appropriate safety boundaries, and shifting agency.\nExcludes: Universal adult-centric safety standards or binary age-gating.",
-      "concept": "The document argues that because of children's evolving capacities, AI rules and systems should be age-appropriate. It emphasizes that childhood is not a single user profile and that reaching the age of digital consent does not mean children should be treated as adults.",
+      "suggested_label": "Evolving Capacities of Children",
+      "suggested_description": "A situation concept that recognizes children's developmental stages as a variable for determining appropriate AI interactions and protections.\nEncompasses: Age-appropriate design, developmental stage-based policy, and shifting agency as children mature.\nExcludes: Static user profiles or universal age-of-consent thresholds.",
+      "concept": "The document emphasizes that childhood should not be treated as a single user profile. It argues that AI rules and systems must adapt to developmental stages, recognizing that younger children require different protections than adolescents who are maturing in their agency.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept frames the tension between protection and empowerment based on developmental psychology, which is not fully captured by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists might interpret this as a need for flexible, adaptive AI interfaces that can scale in complexity as a child grows, potentially using AI to personalize educational development.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a requirement for strict, tiered safety guardrails that automatically adjust to protect children from age-inappropriate content or risks as they mature.",
-      "Skeptic Interpretation": "Skeptics would interpret this as a call for transparency in how AI systems profile children based on age, ensuring that these systems do not exploit developmental vulnerabilities for data harvesting or behavioral manipulation."
+      "reason": "This concept bridges the gap between static regulation and dynamic human development.",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as a design challenge to create adaptive, personalized AI interfaces that grow with the child's cognitive abilities.",
+      "Safetyist Interpretation": "Safetyists would view this as a necessary constraint to prevent premature exposure to harmful content or manipulative AI features for younger users.",
+      "Skeptic Interpretation": "Skeptics would emphasize that 'evolving capacities' should not be used as a pretext to limit children's access to information or to enforce restrictive, paternalistic AI controls."
     },
     {
-      "suggested_label": "Child-Centred AI Certification",
-      "suggested_description": "A Desire within safetyist discourse that advocates for independent, third-party certification of AI systems to verify their safety and ethical alignment regarding children. It aims to provide a standardized metric for companies to demonstrate their commitment to child-centred design.",
-      "concept": "The document proposes that safety and ethical certification by independent parties is a viable way for organizations to measure and demonstrate a commitment to child-centred AI. This would complement existing regulatory frameworks by providing an external validation of a system's safety features.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Desires",
-      "reason": "This concept introduces a specific mechanism (independent certification) for accountability that is distinct from general regulation or internal company policy.",
-      "resolved_node_id": "saf-desires-021"
-    },
-    {
-      "suggested_label": "The AI Empathy Gap",
-      "suggested_description": "A situation concept that describes the fundamental inability of AI chatbots to provide the nuanced emotional understanding and social feedback required for healthy child development. It highlights the risk that children, who are still developing social skills, may be misled or harmed by AI that mimics empathy without possessing it.",
-      "concept": "The document notes that chatbots have an 'empathy gap' that misses human nuance and understanding, which exposes children to inappropriate interactions and exploitative activities. This gap makes AI unsuitable for roles that require genuine emotional intelligence, such as mental health support or companionship.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific psychological risk of AI-human interaction for children, which is not fully covered by existing 'misalignment' or 'bias' nodes.",
-      "Accelerationist Interpretation": "Accelerationists might argue that the 'empathy gap' is a temporary technical limitation that can be solved with better training data and more advanced model architectures, eventually allowing AI to provide high-quality, supportive interactions.",
-      "Safetyist Interpretation": "Safetyists view the 'empathy gap' as a permanent, dangerous feature of AI that makes it inherently unsuitable for child-facing roles, arguing that the illusion of empathy is a form of manipulation that must be strictly regulated.",
-      "Skeptic Interpretation": "Skeptics focus on the immediate harm caused by the 'empathy gap,' arguing that companies are deploying these systems for profit despite knowing they lack the necessary nuance to interact safely with children."
-    },
-    {
-      "suggested_label": "Child Rights-Based AI Value Chain",
-      "suggested_description": "A framework that extends corporate responsibility for child rights to every stage of the AI value chain, including data labeling, hardware mining, and infrastructure.",
-      "concept": "The document argues that companies must ensure that every part of the AI value chain, from raw material extraction to data annotation, is free from child labor and exploitative practices. This requires auditing suppliers and ensuring that the entire lifecycle of an AI system respects children's rights.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes focus on general governance or specific harms, but this concept specifically addresses the entire supply chain as a rights-based domain.",
-      "resolved_node_id": "saf-intentions-132"
-    },
-    {
-      "suggested_label": "AI Literacy as Protective Agency",
-      "suggested_description": "A situation concept that defines AI literacy not just as a technical skill, but as a necessary tool for children to exercise agency and protect themselves from AI-driven risks like emotional manipulation.",
-      "concept": "The document frames AI literacy as essential for children to understand the limitations of AI, such as the fact that companion apps are not capable of human emotion. It argues that this knowledge empowers children to make informed decisions and object to harmful AI uses.",
+      "suggested_label": "Child-Centred Digital Public Infrastructure",
+      "suggested_description": "A situation concept that defines the integration of child-safety and rights-based protections into the foundational digital systems used by society. Encompasses: Digital ID, verification systems, and public service delivery platforms. Excludes: Private sector-only AI safety tools.",
+      "concept": "The document references the need for child-centred digital public infrastructure (DPI) to ensure that society-wide functions like identification and verification are designed with children's rights in mind. This concept is presented as a policy framework for G20 nations to ensure future-ready, inclusive digital environments.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "This concept bridges the gap between education and safety, framing literacy as a form of active defense against AI-specific harms.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a way to empower children to become more effective users and future developers of AI technology.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical guardrail, ensuring that children are not misled by AI systems and can recognize when an AI is overstepping its bounds.",
-      "Skeptic Interpretation": "Skeptics would see this as a necessary response to the power imbalance between AI corporations and child users, providing children with the tools to resist manipulation and bias."
-    },
-    {
-      "suggested_label": "Child-Centric AI Procurement Standards",
-      "suggested_description": "An Intention within safetyist discourse that mandates specific, rights-based criteria for the acquisition and implementation of AI tools in educational settings. Encompasses: Quality assessment, safety-by-design, and community-involved decision-making. Excludes: General procurement policies that lack specific protections for children.",
-      "concept": "The document argues that schools and education departments need specific guidance from government stakeholders to ensure that AI-enabled EdTech solutions are effective and respect child rights. This involves a range of activities from quality assessment and procurement standards to the development of responsible use policies and impact monitoring.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes cover general safety or procurement, but not the specific intersection of child-rights-based procurement in education.",
-      "resolved_node_id": "saf-intentions-133"
-    },
-    {
-      "suggested_label": "The AI-Driven Educational Divide",
-      "suggested_description": "A situation concept that describes the emerging inequality where children with greater digital access benefit more from AI, while others are left behind. \nEncompasses: Digital infrastructure gaps, connectivity disparities, and unequal access to AI-enabled learning tools.\nExcludes: General economic inequality that is not specifically tied to AI-enabled educational tools.",
-      "concept": "The document identifies an emerging 'AI divide' where children with more digital opportunities, such as connectivity at home and school, are better positioned to benefit from AI systems. It calls for investment in digital public infrastructure to address these social barriers and ensure equitable sharing of AI benefits.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures a specific socio-technical phenomenon described in the text that is not fully addressed by existing 'digital divide' nodes.",
-      "Accelerationist Interpretation": "Accelerationists would interpret this as a call to rapidly expand digital infrastructure to ensure the benefits of AI are universally accessible, viewing the divide as a temporary hurdle to be overcome through investment.",
-      "Safetyist Interpretation": "Safetyists would view this divide as a risk factor that exacerbates existing vulnerabilities, necessitating that infrastructure development be 'safety-by-design' and inclusive from the outset to prevent further marginalization.",
-      "Skeptic Interpretation": "Skeptics would highlight this divide as evidence that AI will concentrate power and worsen existing societal inequalities, arguing that without intervention, AI will only benefit the already privileged."
-    },
-    {
-      "suggested_label": "Child-Centric Digital Public Infrastructure",
-      "suggested_description": "A policy approach that mandates the integration of child safety and rights-based protections into the foundational digital systems used by society. It moves beyond reactive moderation to proactive, structural design that prioritizes the well-being of minors in all digital interactions.",
-      "concept": "The document references the need for 'Child-Centred Digital Public Infrastructure' as a policy brief for the G20, emphasizing that digital systems must be designed with children's rights at the core rather than as an afterthought.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept represents a proactive, structural approach to AI governance that is distinct from standard safety guardrails."
+      "reason": "This concept bridges the gap between general digital infrastructure and specific child-rights protections, which is not currently covered by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a necessary foundation for scaling digital services to children globally, provided it does not stifle innovation.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical opportunity to bake safety and alignment into the very architecture of the digital world, preventing harm by design.",
+      "Skeptic Interpretation": "Skeptics would focus on the potential for these infrastructures to become tools of surveillance or data exploitation if not strictly governed."
     }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }

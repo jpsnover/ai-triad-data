@@ -1,14 +1,14 @@
 {
   "doc_id": "transparency-ai-is-decline-stanford-report-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-11T20:49:48Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 0,
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,48 +16,98 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 15.8,
+      "elapsed_seconds": 8.6,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "transparency-ai-is-decline-stanford-report-2026",
+    "measured_at": "2026-05-02T19:13:12.4391780-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.6667,
+        "flags": {
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 24145.0,
+        "out_units": "items",
+        "out_count": 11.0,
+        "ratio": 0.0005,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 2,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 42.0,
+        "ratio": 0.0798,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 15,
+          "below_threshold_forced": 2,
+          "intentions_selected": 24,
+          "effective_threshold": 0.4719,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0798
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-intentions-002",
-          "category": "Intentions",
-          "point": "The document observes that while open-source developers like IBM and AI21 Labs are highly transparent, others like Meta and DeepSeek are opaque. This highlights that open-weight release does not automatically confer transparency regarding training compute or risk assessment. From an accelerationist perspective, this distinction is vital because it separates the technical act of open-sourcing from the governance act of disclosure. The document notes that openness is not a panacea for corporate opacity.",
-          "verbatim": "Openness and transparency are intertwined concepts that are often used synonymously. To distinguish the terms, we say a model is open if its weights are publicly available while a company is transparent if it discloses significant information about its practices to the public.",
-          "excerpt_context": "Section: Openness vs. transparency"
-        },
-        {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-078",
           "category": "Intentions",
-          "point": "The report identifies that transparency practices are currently determined by individual company choices rather than industry-wide incentives. This suggests that market-driven transparency is inconsistent and currently failing to meet public expectations. For accelerationists, this underscores the need for better market signals or standardized reporting rather than blunt, restrictive regulation that might stifle the rapid development of foundation models.",
-          "verbatim": "These patterns demonstrate that current transparency practices are primarily determined by the extent to which individual companies choose to prioritize transparency, rather than industry-wide incentives (or disincentives) for transparency.",
-          "excerpt_context": "Section: Paragraph 7",
-          "_backfill": {
-            "previous_id": "acc-intentions-012",
-            "similarity": 0.5205,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-intentions-076",
-          "category": "Beliefs",
-          "point": "The document notes that massive investments in datacenters have strained the energy grid, contributing to increased energy prices. This empirical observation links AI infrastructure to broader economic impacts. Accelerationists must address these externalities to maintain the social license required for continued rapid scaling of compute resources.",
-          "verbatim": "Companies withholding this information is particularly significant as massive investments in datacenters have strained the energy grid, contributing to increased energy prices in the U.S. and elsewhere.",
-          "excerpt_context": "Section: Little information about environmental impact",
-          "_backfill": {
-            "previous_id": "acc-beliefs-011",
-            "similarity": 0.6746,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document suggests that transparency is a critical public good necessary for corporate governance and oversight of AI. By identifying specific areas where companies are opaque, such as training data and environmental impact, it provides a roadmap for policy interventions. From an accelerationist perspective, this transparency can be framed as a market-enabling mechanism that allows for better competitive pressure and informed public trust, rather than a restrictive burden. The document notes that transparency is currently determined by individual company choice rather than industry-wide incentives, implying that policy could standardize these practices to foster a more robust ecosystem.",
+          "verbatim": "Sharing information siloed within AI companies is an essential public good to ensure corporate governance, mitigate harms from AI, and promote robust oversight of this cutting edge technology.",
+          "excerpt_context": "Looking forward section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_verification",
+            "governance_adaptive"
+          ]
         }
       ]
     },
@@ -65,39 +115,28 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-072",
-          "category": "Desires",
-          "point": "The report argues that transparency is an essential public good for mitigating AI harms and ensuring robust oversight. By documenting the decline in transparency scores, the authors advocate for a shift toward mandatory disclosure. From a safetyist perspective, this is a prerequisite for evaluating the catastrophic risks posed by frontier models, as opacity prevents external validation of safety claims.",
-          "verbatim": "Sharing information siloed within AI companies is an essential public good to ensure corporate governance, mitigate harms from AI, and promote robust oversight of this cutting edge technology.",
-          "excerpt_context": "Section: Looking forward",
-          "_backfill": {
-            "previous_id": "saf-desires-003",
-            "similarity": 0.725,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-014",
-          "category": "Beliefs",
-          "point": "The document highlights that companies are highly opaque about training data, risk mitigation, and environmental impact. This lack of disclosure makes it impossible for the public or regulators to assess the safety of models before they are deployed. Safetyists view this systemic opacity as a direct threat to the ability to manage existential or catastrophic risks associated with advanced AI.",
-          "verbatim": "The entire industry is systemically opaque about four critical topics: training data, training compute, how models are used, and the resulting impact on society.",
-          "excerpt_context": "Section: Paragraph 11",
-          "_backfill": {
-            "previous_id": "saf-beliefs-041",
-            "similarity": 0.6784,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "saf-intentions-117",
           "category": "Intentions",
-          "point": "The report explicitly calls for policy interventions to address corporate opacity, citing California and EU laws as precedents. It suggests that voluntary transparency is insufficient and that regulatory frameworks are necessary to force disclosure. This aligns with the safetyist goal of establishing governance architectures that prioritize safety over corporate secrecy.",
-          "verbatim": "The overarching need for greater transparency is a top priority for AI policy across many jurisdictions. California and the European Union have passed laws that mandate transparency around the risks of frontier AI.",
-          "excerpt_context": "Section: Looking forward"
+          "point": "The document highlights a systemic lack of transparency regarding training data, compute, and societal impact, which it argues are critical for safety and oversight. It emphasizes that current industry-wide transparency is low, with an average score of 40/100, and that this opacity hinders the ability to assess risks. From a safetyist perspective, this lack of visibility into internal reasoning and data sources is a major hazard, as it prevents external verification of model safety. The document acknowledges that even 'open' developers are often opaque, suggesting that weight availability is insufficient for true safety accountability.",
+          "verbatim": "The entire industry is systemically opaque about four critical topics: training data, training compute, how models are used, and the resulting impact on society.",
+          "excerpt_context": "Paragraph 11",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "transparency_accountability",
+            "governance_oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-056",
+          "category": "Beliefs",
+          "point": "The report identifies that AI companies are failing to disclose information about their environmental impact, including energy usage and carbon emissions. This is presented as a significant societal cost, especially given the strain on energy grids caused by data centers. From a safetyist perspective, this reflects a broader pattern of corporate opacity regarding the negative externalities of AI development. The document notes that 10 out of 13 companies surveyed disclose none of this key information, underscoring the need for mandatory reporting.",
+          "verbatim": "Companies withholding this information is particularly significant as massive investments in datacenters have strained the energy grid, contributing to increased energy prices in the U.S. and elsewhere.",
+          "excerpt_context": "Little information about environmental impact section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "harm (speculative, future)"
+          ]
         }
       ]
     },
@@ -105,47 +144,55 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-003",
-          "category": "Desires",
-          "point": "The report emphasizes the need for transparency regarding training data and model usage, which are critical for protecting privacy and understanding labor displacement. Skeptics argue that without this information, it is impossible to hold companies accountable for the immediate, measurable harms AI causes to individuals and the workforce. The document supports this by identifying data acquisition as a key area for transparency.",
-          "verbatim": "The Foundation Model Transparency Index scores companies on 15 major areas, including data acquisition, model access, and post-deployment monitoring.",
-          "excerpt_context": "Section: Paragraph 10"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-009",
-          "category": "Beliefs",
-          "point": "The document provides evidence that AI companies are opaque about their environmental impact, including energy and water usage. This confirms the skeptic concern that the AI industry imposes significant, hidden costs on the public and the environment. The report notes that this opacity is particularly problematic given the strain on energy grids.",
-          "verbatim": "10 companies disclose none of the key information related to environmental impact: AI21 Labs, Alibaba, Amazon, Anthropic, DeepSeek, Google, Midjourney, Mistral, OpenAI, and xAI.",
-          "excerpt_context": "Section: Little information about environmental impact"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-005",
+          "taxonomy_node_id": "skp-intentions-014",
           "category": "Intentions",
-          "point": "The report advocates for transparency as a tool for corporate governance and public oversight, rather than focusing on speculative future risks. By identifying specific, measurable areas like training data and environmental impact, the authors provide a framework for addressing real-world problems. Skeptics favor this approach because it focuses on verifiable corporate behavior rather than hypothetical existential scenarios.",
+          "point": "The document advocates for policy interventions to address corporate opacity, specifically regarding training data and environmental impact. It argues that the current state of the industry is 'systemically opaque' and that voluntary transparency has failed, as evidenced by the decline in scores from 2024 to 2025. From a skeptic perspective, this confirms that companies will not self-regulate and that mandatory disclosure is required to ensure accountability. The document explicitly calls for policy to address these areas that are resistant to improvement.",
           "verbatim": "The Foundation Model Transparency Index can serve as a beacon for policymakers by identifying both the current information state of the AI industry as well as which areas are more resistant to improvement over time absent policy.",
-          "excerpt_context": "Section: Looking forward",
-          "_backfill": {
-            "previous_id": "skp-intentions-001",
-            "similarity": 0.6057,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Looking forward section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)",
+            "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-044",
+          "category": "Beliefs",
+          "point": "The report documents a significant decline in transparency across the AI industry, with average scores dropping from 58/100 in 2024 to 40/100 in 2025. It highlights that even major companies like Meta and OpenAI have become less transparent over time. From a skeptic perspective, this trend validates concerns about the lack of accountability in the AI sector and the tendency for companies to hide their practices as they scale. The document notes that this decline is occurring despite the increasing importance of these companies in the global economy.",
+          "verbatim": "With this change in criteria in mind, scores have fallen from an average of 58/100 in 2024 to 40/100 in 2025.",
+          "excerpt_context": "Paragraph 9",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-062",
+          "category": "Intentions",
+          "point": "The document distinguishes between 'open' models (public weights) and 'transparent' companies (disclosing practices), arguing that the former does not guarantee the latter. It points out that influential open developers like Meta and DeepSeek are actually quite opaque regarding their practices. From a skeptic perspective, this is a crucial distinction that prevents companies from using 'open source' labels to deflect from their lack of real accountability. The document warns against assuming that open weights confer broader transparency about societal impact.",
+          "verbatim": "The open release of model weights does not guarantee transparency on many topics such as training compute, risk assessment, and downstream use.",
+          "excerpt_context": "Openness vs. transparency section, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "AI companies scored an average of 40 out of 100 on the 2025 Foundation Model Transparency Index.",
-      "claim_label": "2025 FMTI Average Score",
+      "claim": "The average transparency score for AI companies in the 2025 Foundation Model Transparency Index is 40 out of 100.",
+      "claim_label": "2025 Average Transparency Score",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2025-12",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-041"
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -158,15 +205,14 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Seven established AI companies, including Google and Meta, account for more than 35% of the S&P 500.",
-      "claim_label": "AI Industry S&P 500 Concentration",
+      "claim": "Seven established AI companies, including Google and Meta, account for more than 35% of the entire S&P 500.",
+      "claim_label": "AI Company S&P 500 Market Share",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-010"
-      ],
+      "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
@@ -178,15 +224,14 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "IBM scored 95/100 on the 2025 Foundation Model Transparency Index, the highest in the index's history.",
+      "claim": "IBM achieved a score of 95/100 in the 2025 Foundation Model Transparency Index, the highest in the index's history.",
       "claim_label": "IBM Transparency Score",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2025-12",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-012"
-      ],
+      "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
@@ -200,28 +245,23 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Transparency-Openness Divergence",
-      "suggested_description": "A Belief within skeptic and safetyist discourse that openness of model weights does not correlate with transparency of corporate practices.\nEncompasses: Discrepancies between open-weight release and disclosure of training data or environmental impact.\nExcludes: General definitions of open-source software or proprietary model development.",
-      "concept": "The report finds that while open-weight developers like IBM are transparent, others like Meta and DeepSeek are opaque. This demonstrates that releasing model weights does not guarantee transparency regarding training compute or societal impact.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "The document explicitly distinguishes between these two concepts to correct a common misunderstanding in AI policy."
-    },
-    {
-      "suggested_label": "Systemic Industry Opacity",
-      "suggested_description": "A Belief within safetyist and skeptic discourse that the AI industry maintains a consistent lack of disclosure across critical operational areas.\nEncompasses: Opaque training data, compute usage, model usage, and societal impact metrics.\nExcludes: Individual company-specific transparency failures or lack of regulatory compliance.",
-      "concept": "The report identifies that the entire industry is systemically opaque about four critical topics: training data, training compute, how models are used, and the resulting impact on society.",
+      "suggested_label": "Environmental Impact Opacity",
+      "suggested_description": "A Belief within safetyist discourse that describes the systemic failure of AI companies to disclose energy, water, and carbon usage. It emphasizes the negative externalities of data center infrastructure on local energy grids.",
+      "concept": "The report finds that 10 out of 13 companies disclose zero information regarding their environmental impact, including energy usage and carbon emissions. This is framed as a significant issue given the strain these facilities place on energy grids.",
       "suggested_pov": "safetyist",
       "suggested_category": "Beliefs",
-      "reason": "This concept frames the lack of transparency as a structural industry feature rather than an accidental oversight."
+      "reason": "Existing nodes cover environmental impact broadly, but none specifically address the 'systemic opacity' of AI companies regarding their data center resource consumption."
     },
     {
+      "suggested_label": "Transparency Indexing as Policy Beacon",
+      "suggested_description": "A situation concept that uses longitudinal benchmarking to identify industry-wide resistance to transparency and guide regulatory intervention. \nEncompasses: Annual scoring of companies, tracking changes in disclosure, and identifying areas where voluntary improvement fails.\nExcludes: Direct regulatory enforcement or specific technical safety standards.",
+      "concept": "The Foundation Model Transparency Index is presented as a tool for policymakers to identify which areas of AI development are resistant to improvement without government intervention. By tracking scores over three years, the index highlights the failure of voluntary transparency.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "The document highlights the tension between voluntary corporate disclosure and the need for policy-driven transparency.",
-      "Accelerationist Interpretation": "Accelerationists would interpret this as a call for better market-based transparency standards that allow for innovation while providing necessary information to users and researchers.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a clear signal that voluntary transparency has failed and that mandatory, standardized disclosure is required to manage existential and catastrophic risks.",
-      "Skeptic Interpretation": "Skeptics would interpret this as evidence that AI companies are intentionally obscuring their practices to avoid accountability for labor displacement, environmental damage, and bias."
+      "reason": "The document frames the index itself as a policy instrument, which is a distinct use case from general auditing.",
+      "Accelerationist Interpretation": "Accelerationists would view this index as a useful market signal that rewards transparent companies and pressures opaque ones to improve, fostering a more competitive and trustworthy market.",
+      "Safetyist Interpretation": "Safetyists would interpret this index as a necessary diagnostic tool to identify where mandatory disclosure and safety oversight are most urgently needed.",
+      "Skeptic Interpretation": "Skeptics would use this index as empirical evidence that voluntary corporate transparency is failing and that strict, legally mandated reporting requirements are the only viable path forward."
     }
   ]
 }

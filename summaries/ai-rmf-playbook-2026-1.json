@@ -1,79 +1,178 @@
 {
   "doc_id": "ai-rmf-playbook-2026-1",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 720,
     "chunked": true,
     "chunk_count": 11
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "ai-rmf-playbook-2026-1",
+    "measured_at": "2026-05-02T19:25:32.3573970-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 83574.0,
+        "out_units": "tokens_est",
+        "out_count": 83567.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 11
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0203,
+        "flags": {
+          "total_below_threshold": 24,
+          "avg_intentions": 9.0,
+          "min_nodes_selected": 60,
+          "max_nodes_selected": 64,
+          "chunk_count": 11,
+          "avg_desires": 2.0,
+          "avg_nodes_selected": 62.0,
+          "avg_beliefs": 3.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 390593.0,
+        "out_units": "items",
+        "out_count": 75.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 11,
+          "chunk_count": 11,
+          "total_points": 48,
+          "unmapped_concepts": 16,
+          "null_node_rate": 0.125
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 75.0,
+        "out_units": "items",
+        "out_count": 73.0,
+        "ratio": 0.9733,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "points_deduped": 2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 16.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 0.1875,
+        "flags": {
+          "resolved_count": 13,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.0198
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
-          "category": "Intentions",
-          "point": "The document emphasizes that risk management should be integrated into the AI lifecycle through standardized documentation and testing. By focusing on observable metrics and clear documentation of model behavior, organizations can maintain agility while ensuring safety. This aligns with the accelerationist view that safety is best achieved through empirical rigor and systematic oversight rather than restrictive, pre-deployment barriers.",
-          "verbatim": "Standardized documentation can help organizations systematically integrate AI risk management processes and enhance accountability efforts. ... Documentation may generate downstream benefits related to improved system replicability and robustness.",
-          "excerpt_context": "GOVERN 1.4, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-082",
-          "category": "Intentions",
-          "point": "The document encourages organizations to maintain comprehensive AI system inventories to enable quick resolution of queries regarding model performance and deployment status. By treating AI as a manageable asset within a structured database, organizations can improve operational efficiency and maintain a holistic view of their AI portfolio. This aligns with accelerationist goals of scaling AI deployment by reducing the friction associated with managing large-scale, complex AI systems.",
-          "verbatim": "A serviceable AI system inventory may allow for the quick resolution of: specific queries for single models, such as 'when was this model last refreshed?' high-level queries across all models, such as, 'how many models are currently deployed within our organization?' or 'how many users are impacted by our models?'",
-          "excerpt_context": "Section 2, GOVERN 1.6",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6904,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-intentions-054",
-          "category": "Intentions",
-          "point": "The document emphasizes that AI systems should be evaluated based on their real-world performance and observable outcomes rather than just theoretical design. By focusing on iterative testing and monitoring, organizations can ensure safety through empirical evidence. This aligns with the accelerationist preference for learning by doing and continuous improvement over static, pre-deployment restrictions.",
-          "verbatim": "Organizational policies and practices are in place to foster a critical thinking and safety-first mindset in the design, development, deployment, and uses of AI systems to minimize negative impacts.",
-          "excerpt_context": "Section 3, GOVERN 4.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-018",
+          "taxonomy_node_id": null,
           "category": "Desires",
-          "point": "The document supports the integration of AI into organizational decision-making and risk management frameworks. By leveraging AI for monitoring and governance, organizations can enhance their institutional resilience and operational adaptability. This aligns with the accelerationist goal of using AI to improve administrative and societal decision-making processes.",
-          "verbatim": "Organizations can develop risk response plans based on strategies such as accepted model risk management, enterprise risk management, and information sharing and disclosure practices.",
-          "excerpt_context": "Section 4, MANAGE 1.3, About"
+          "point": "The document supports the integration of AI systems into organizational workflows provided they are evaluated against benefits. It frames AI as a tool that can be managed through rigorous risk assessment, implying that the potential for positive outcomes justifies the development process if risks are properly mitigated. This aligns with the accelerationist view that AI is a beneficial force that can be safely harnessed through structured governance.",
+          "verbatim": "A standard risk management practice is to formally weigh an AI system’s negative risks against its benefits, and to determine if the AI system is an appropriate solution.",
+          "excerpt_context": "Section 3, MANAGE 1.1, About",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "risk_management",
+            "benefit_assessment"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document emphasizes that organizations should focus on measurable activities and continuous improvement to ensure AI systems remain performant and trustworthy. By integrating feedback loops and monitoring performance against trustworthiness characteristics, organizations can iterate on AI systems to enhance their utility and safety. This aligns with the accelerationist view that safety is best achieved through empirical, real-world testing and iterative refinement rather than pre-emptive, restrictive regulation.",
-          "verbatim": "Measurable activities for continual improvements are integrated into AI system updates and include regular engagement with interested parties, including relevant AI actors.",
-          "excerpt_context": "MANAGE 4.2, page 54"
+          "point": "The document supports the use of third-party pre-trained models to improve efficiency and scalability in AI development. It acknowledges that these resources allow organizations to build applications even when they lack the massive computational resources required for original training. This aligns with accelerationist goals of lowering barriers to entry and fostering rapid innovation through the reuse of powerful AI components.",
+          "verbatim": "Third parties’ supplying organizations with components and services, including tools, software, and expertise for AI system design, development, deployment or use can improve efficiency and scalability.",
+          "excerpt_context": "Section 4, MANAGE 3.1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "transfer_learning",
+            "scalability"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-069",
+          "taxonomy_node_id": null,
           "category": "Desires",
-          "point": "The document supports the use of AI to improve quality of life and economic prosperity. It encourages organizations to document the potential positive impacts and benefits of AI systems. This aligns with the accelerationist goal of leveraging AI as a force for progress and solving human problems.",
+          "point": "The document supports the integration of AI systems to enhance performance and functionality, provided they align with organizational and legal frameworks. It encourages organizations to leverage AI for business value while maintaining traceability and transparency. This reflects an accelerationist desire to harness AI's potential for operational improvement and innovation.",
+          "verbatim": "Regular monitoring processes enable system updates to enhance performance and functionality in accordance with regulatory and legal frameworks, and organizational and contextual values and norms.",
+          "excerpt_context": "Section 5, MANAGE 4.2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "performance_enhancement",
+            "operational_efficiency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document encourages organizations to define and document the potential positive impacts and benefits of AI systems beyond current performance benchmarks. It emphasizes that AI has enormous potential to improve quality of life and enhance economic prosperity. This aligns with the accelerationist view that AI is a powerful tool for solving problems and creating abundance, provided its utility is clearly articulated.",
           "verbatim": "AI systems have enormous potential to improve quality of life, enhance economic prosperity and security costs. Organizations are encouraged to define and document system purpose and utility, and its potential positive impacts and benefits beyond current known performance benchmarks.",
-          "excerpt_context": "Section 7, paragraph 1",
-          "_backfill": {
-            "previous_id": "acc-intentions-055",
-            "similarity": 0.762,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "MAP 3.1, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "economic_prosperity",
+            "system_utility"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document supports the development of AI systems that can be effectively managed by narrowing their scope, which facilitates better measurement and evaluation. By focusing on task-specific applications, organizations can more easily deploy AI to solve problems while maintaining control. This aligns with accelerationist goals of scaling AI utility through structured, manageable deployment frameworks.",
+          "verbatim": "Systems that function in a narrow scope tend to enable better mapping, measurement, and management of risks in the learning or decision-making tasks and the system context. A narrow application scope also helps ease TEVV functions and related resources within an organization.",
+          "excerpt_context": "Section 7, About",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "TEVV",
+            "system_scope"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document encourages the use of 'inherently explainable' models, such as decision trees or generalized additive models, as a preferred design strategy. By prioritizing these architectures, developers can maintain transparency and auditability without necessarily sacrificing performance or innovation. This approach aligns with accelerationist goals by providing a pathway for responsible deployment that satisfies regulatory scrutiny while enabling continued AI advancement.",
+          "verbatim": "When possible or available, utilize approaches that are inherently explainable, such as traditional and penalized generalized linear models , decision trees, nearest-neighbor and prototype-based approaches, rule-based models, generalized additive models , explainable boosting machines and neural additive models.",
+          "excerpt_context": "Measure 2.9, Suggested Actions",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "explainable_ai",
+            "model_architecture"
+          ]
         }
       ]
     },
@@ -83,303 +182,271 @@
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-024",
           "category": "Intentions",
-          "point": "The document argues that documentation is a critical component of accountability and risk management. It suggests that without clear records of AI actors, assumptions, and training data, organizations cannot effectively manage risks or respond to incidents. This supports the safetyist goal of creating transparent, auditable AI development processes to prevent catastrophic failures.",
-          "verbatim": "Clear policies and procedures relating to documentation and transparency facilitate and enhance efforts to communicate roles and responsibilities for the Map, Measure and Manage functions across the AI lifecycle.",
-          "excerpt_context": "GOVERN 1.4, About"
+          "point": "The document emphasizes that standardized, comprehensive documentation is essential for effective AI risk management and organizational accountability. By requiring detailed records of AI actors, business justifications, and algorithmic methodologies, the framework aims to mitigate the risks of subjective or inconsistent risk management practices. This approach directly addresses the 'documentation debt' that often hinders transparency and safety research in complex AI systems.",
+          "verbatim": "Clear policies and procedures relating to documentation and transparency facilitate and enhance efforts to communicate roles and responsibilities for the Map, Measure and Manage functions across the AI lifecycle. Standardized documentation can help organizations systematically integrate AI risk management processes and enhance accountability efforts.",
+          "excerpt_context": "GOVERN 1.4, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "documentation_debt",
+            "transparency",
+            "accountability"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-014",
+          "taxonomy_node_id": "saf-desires-011",
           "category": "Desires",
-          "point": "The document advocates for establishing formal governance frameworks that align AI systems with organizational values and legal standards. It emphasizes that risk management must be proactive, using impact assessments to prevent harm by design. This aligns with the safetyist desire to embed safety and ethical considerations into the foundational architecture of AI development.",
-          "verbatim": "All stakeholders benefit from policies, processes, and procedures which require preventing harm by design and default.",
-          "excerpt_context": "GOVERN 1.2, About"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of clear human accountability frameworks, requiring organizations to define who is responsible for AI decisions and outcomes. It advocates for separating development and testing functions to prevent groupthink and ensure independent oversight. This approach seeks to mitigate catastrophic risks by embedding human-in-the-loop governance throughout the AI lifecycle.",
-          "verbatim": "The development of a risk-aware organizational culture starts with defining responsibilities. For example, under some risk management structures, professionals carrying out test and evaluation tasks are independent from AI system developers and report through risk management functions or directly to executives.",
-          "excerpt_context": "Section 2, GOVERN 2.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-058",
-          "category": "Intentions",
-          "point": "The document proposes rigorous incident response and 'appeal and override' processes to manage autonomous AI agents. By establishing these mechanisms, organizations can flag potential incidents in real-time and provide human adjudication for system outcomes, which is critical for maintaining control over agentic infrastructure.",
-          "verbatim": "Incident response and 'appeal and override' are commonly used processes in information technology management. These processes enable real-time flagging of potential incidents, and human adjudication of system outcomes.",
-          "excerpt_context": "Section 2, GOVERN 1.5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-024",
-          "category": "Intentions",
-          "point": "The document mandates extensive documentation of AI systems, including data dictionaries, source code links, and incident response plans. This addresses the 'documentation debt' problem by ensuring that organizations have the necessary artifacts to maintain safety and transparency throughout the system's lifecycle.",
-          "verbatim": "An AI system inventory is an organized database of artifacts relating to an AI system or model. It may include system documentation, incident response plans, data dictionaries, links to implementation software or source code, names and contact information for relevant AI actors.",
-          "excerpt_context": "Section 2, GOVERN 1.6"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-107",
-          "category": "Intentions",
-          "point": "The document promotes 'effective challenge' as a core cultural practice to prevent groupthink and identify design flaws. By empowering experts to question implementation decisions, organizations can proactively mitigate risks. This reflects the safetyist commitment to rigorous peer review and internal accountability structures.",
-          "verbatim": "For example, 'effective challenge,' is a culture- based practice that encourages critical thinking and questioning of important design and implementation decisions by experts with the authority and stature to make such changes.",
-          "excerpt_context": "Section 3, GOVERN 4.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-030",
-          "category": "Intentions",
-          "point": "The document advocates for a 'three lines of defense' model to manage AI risks, ensuring that development, risk management, and auditing are handled by separate, accountable teams. This layered approach is designed to prevent single points of failure. It aligns with the safetyist preference for defense-in-depth strategies.",
-          "verbatim": "Organizations in some industries implement three (or more) 'lines of defense,' where separate teams are held accountable for different aspects of the system lifecycle, such as development, risk management, and auditing.",
-          "excerpt_context": "Section 3, GOVERN 4.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-094",
-          "category": "Intentions",
-          "point": "Red-teaming is presented as a critical method for stress-testing AI systems to uncover vulnerabilities before they cause harm. By using independent experts to simulate adversarial conditions, organizations can identify failure modes. This is a core safetyist practice for proactive risk mitigation.",
-          "verbatim": "Red-teaming is another risk measurement and management approach. This practice consists of adversarial testing of AI systems under stress conditions to seek out failure modes or vulnerabilities in the system.",
-          "excerpt_context": "Section 3, GOVERN 4.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document emphasizes the need for clear human accountability for AI decisions, including who is responsible for maintenance and ethical considerations. This ensures that AI systems do not operate in a vacuum of responsibility. It aligns with the safetyist goal of maintaining human oversight over autonomous systems.",
-          "verbatim": "Who is ultimately responsible for the decisions of the AI and is this person aware of the intended uses and limitations of the analytic?",
-          "excerpt_context": "Section 3, GOVERN 5.2"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-030",
-          "category": "Intentions",
-          "point": "The document advocates for a layered, defense-in-depth approach to AI risk management. It emphasizes the need for continuous monitoring, contingency planning, and the ability to deactivate systems that exceed risk tolerances. This strategy ensures that single points of failure or emergent risks do not lead to catastrophic outcomes.",
-          "verbatim": "Organizations are encouraged to establish risk management protocols with consideration of the trustworthiness characteristics, the deployment context, and real world impacts.",
-          "excerpt_context": "Section 4, MANAGE 2.2, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document mandates clear assignment of human responsibility for AI systems throughout their lifecycle. It requires organizations to document roles, authorities, and accountability for maintenance and decommissioning. This ensures that human oversight remains central to AI governance.",
-          "verbatim": "What are the roles, responsibilities, and delegation of authorities of personnel involved in the design, development, deployment, assessment and monitoring of the AI system?",
-          "excerpt_context": "Section 4, MANAGE 1.4, Transparency & Documentation"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-047",
-          "category": "Intentions",
-          "point": "The document promotes a holistic governance framework that addresses system-wide architecture rather than just individual model performance. It calls for integrating interdisciplinary teams and external expertise to manage risks associated with complex, adaptive systems.",
-          "verbatim": "Organizational risk response may entail identifying and analyzing alternative approaches, methods, processes or systems, and balancing tradeoffs between trustworthiness characteristics and how they relate to organizational principles and societal values.",
-          "excerpt_context": "Section 4, MANAGE 2.1, About"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-081",
-          "category": "Intentions",
-          "point": "The document advocates for a comprehensive governance framework that requires organizations to document third-party dependencies, monitor performance, and establish clear accountability structures. It promotes a 'go/no-go' decision-making process based on risk tolerance, ensuring that systems are only deployed if they meet safety and ethical standards. This reflects the safetyist priority of establishing systemic oversight before and during deployment.",
-          "verbatim": "Focusing first and foremost on risks involving physical safety, legal liabilities, regulatory compliance, and negative impacts on individuals, groups, or society is recommended.",
-          "excerpt_context": "MANAGE 3.1, page 51"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-094",
-          "category": "Beliefs",
-          "point": "The document recognizes that relying on third-party components, such as pre-trained models, introduces significant systemic risk due to increased complexity and opacity. It notes that these dependencies make it difficult to anticipate negative outcomes or perform root cause analyses, necessitating rigorous monitoring and documentation of data provenance.",
-          "verbatim": "The use of pre-trained models can make it difficult to anticipate negative system outcomes or impacts. Lack of documentation or transparency tools increases the difficulty and general complexity when deploying pre-trained models and hinders root cause analyses.",
-          "excerpt_context": "MANAGE 3.2, page 52",
-          "_backfill": {
-            "previous_id": "saf-beliefs-010",
-            "similarity": 0.5238,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-024",
-          "category": "Intentions",
-          "point": "The document mandates that organizations establish testing and evaluation processes that prioritize transparency. It specifically calls for documentation of data provenance, model limitations, and the rationale behind system design to ensure that AI systems are explainable and accountable to stakeholders.",
-          "verbatim": "Establish testing, evaluation, validation and verification processes for third-party AI systems which address the needs for transparency without exposing proprietary algorithms.",
-          "excerpt_context": "MANAGE 3.1, page 51",
-          "_backfill": {
-            "previous_id": "saf-intentions-002",
-            "similarity": 0.6321,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-047",
-          "category": "Intentions",
-          "point": "The document argues that AI risks are inherently socio-technical, arising from the interaction between technical design and social context. It advocates for a holistic governance approach that moves beyond isolated technical metrics to consider the entire system lifecycle. This aligns with the safetyist view that AI cannot be treated as a standalone artifact but must be managed as a complex, embedded system.",
-          "verbatim": "Socio-technical AI risks emerge from the interplay between technical development decisions and how a system is used, who operates it, and the social context into which it is deployed. Addressing these risks is complex and requires a commitment to understanding how contextual factors may interact with AI lifecycle actions.",
-          "excerpt_context": "MAP 1.4, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document emphasizes the need for formal human-AI accountability frameworks, specifically regarding 'go/no-go' deployment decisions. It argues that these decisions must remain independent of financial or reputational interests, reflecting a safetyist concern that corporate incentives often undermine safety. It suggests that if risk mapping is too difficult, organizations should default to a 'no-go' decision.",
-          "verbatim": "Go/no-go decisions related to AI system risks can take stakeholder feedback into account, but remain independent from stakeholdersâ€™ vested financial or reputational interests. If mapping risk is prohibitively difficult, a \"no-go\" decision may be considered for the specific system.",
-          "excerpt_context": "MAP 1.5, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-024",
-          "category": "Beliefs",
-          "point": "The document warns that AI development often suffers from 'documentation debt' and a narrow focus on computational requirements, which leads to the neglect of stakeholder needs and human values. It asserts that without proactive, interdisciplinary requirements elicitation, organizations will over-rely on implicit biases and groupthink, undermining the trustworthiness of the system.",
-          "verbatim": "When written requirements are unavailable or incomplete, AI actors may inadvertently overlook business and stakeholder needs, over-rely on implicit human biases such as confirmation bias and groupthink, and maintain exclusive focus on computational requirements.",
-          "excerpt_context": "MAP 1.6, About",
-          "_backfill": {
-            "previous_id": "saf-beliefs-011",
-            "similarity": 0.6654,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-083",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of human oversight in AI systems, particularly as they move from decision support to automated decision-making. It argues that oversight is a shared responsibility requiring organizational buy-in and accountability mechanisms. This reflects the safetyist focus on maintaining human control over autonomous systems.",
-          "verbatim": "Defining and differentiating various human roles and responsibilities for AI systemsâ€™ governance, and differentiating AI system overseers and those using or interacting with AI systems can enhance AI risk management activities. In critical systems, high-stakes settings, and systems deemed high-risk it is of vital importance to evaluate risks and effectiveness of oversight procedures before an AI system is deployed.",
-          "excerpt_context": "MAP 3.5, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-030",
-          "category": "Intentions",
-          "point": "The document advocates for a layered approach to risk management, including red teaming, impact assessment, and the use of TEVV (Test, Evaluation, Verification, and Validation) resources. It suggests that organizations should identify and document the likelihood and magnitude of both benefits and harms. This aligns with the safetyist preference for defense-in-depth and proactive risk mitigation.",
-          "verbatim": "Establish processes for red teaming to identify and connect system limitations to AI lifecycle stage(s) and potential downstream impacts. Apply TEVV regularly at key stages in the AI lifecycle, connected to system impacts and frequency of system updates.",
-          "excerpt_context": "MAP 5.1, Suggested Actions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-047",
-          "category": "Intentions",
-          "point": "The document advocates for a socio-technical approach to AI governance, emphasizing that AI systems are not just technical artifacts but are embedded in complex social and human contexts. It argues that effective risk management requires evaluating the entire system architecture, including human operators and the social environment, rather than focusing solely on model performance. This aligns with the safetyist goal of governing the broader system to prevent unforeseen societal harms.",
-          "verbatim": "AI systems are socio-technical in nature and can have positive, neutral, or negative implications that extend beyond their stated purpose. Negative impacts can be wideranging and affect individuals, groups, communities, organizations, and society, as well as the environment and national security.",
-          "excerpt_context": "Section 8, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document mandates that organizations document their AI systems' internal reasoning, performance metrics, and testing methodologies to ensure transparency. By requiring organizations to explain how they manage potential biases and unfair outcomes, it forces AI systems to 'show their work' to stakeholders and regulators. This transparency is presented as a foundational requirement for building trustworthy AI.",
-          "verbatim": "If the AI system relates to people, does it unfairly advantage or disadvantage a particular social group? In what ways? How was this managed?",
-          "excerpt_context": "Section 8, Transparency & Documentation",
-          "_backfill": {
-            "previous_id": "saf-intentions-002",
-            "similarity": 0.776,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-083",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of maintaining human oversight throughout the AI lifecycle, specifically by involving independent assessors and domain experts who are separate from the front-line development team. It argues that relying on local evaluations is insufficient, and that continuous monitoring by diverse, interdisciplinary teams is required to identify 'pockets of failures' that standard metrics might miss. This strategy aims to ensure that human judgment remains central to AI assurance.",
-          "verbatim": "Involving internal experts who did not serve as front-line developers for the system and/or independent assessors regular assessments of AI systems helps a fulsome characterization of AI systems’ performance and trustworthiness.",
-          "excerpt_context": "Section 8, Measure 1.3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-050",
-          "category": "Intentions",
-          "point": "The document advocates for using AI to monitor AI, specifically through real-time performance tracking and anomaly detection. This approach aims to identify drift and failures that occur when systems operate outside their design assumptions. By implementing automated alerts and human-in-the-loop oversight, organizations can mitigate risks associated with autonomous system behavior.",
-          "verbatim": "Monitor for anomalies using approaches such as control limits, confidence intervals, integrity constraints and ML algorithms. When anomalies are observed, consider error propagation and feedback loop risks.",
-          "excerpt_context": "Measure 2.4, Suggested Actions",
-          "_backfill": {
-            "previous_id": "saf-intentions-004",
-            "similarity": 0.7489,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of explainability and interpretability to ensure system trustworthiness. It distinguishes between transparency (what happened), explainability (how a decision was made), and interpretability (why a decision was made). These mechanisms are presented as essential tools for debugging, auditing, and enabling human recourse for problematic AI outcomes.",
-          "verbatim": "Transparency, explainability, and interpretability are distinct characteristics that support each other. Transparency can answer the question of “what happened”. Explainability can answer the question of “how” a decision was made in the system. Interpretability can answer the question of “why” a decision was made by the system and its meaning or context to the user.",
-          "excerpt_context": "Measure 2.9, About",
-          "_backfill": {
-            "previous_id": "saf-intentions-028",
-            "similarity": 0.742,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-030",
-          "category": "Intentions",
-          "point": "The document promotes a defense-in-depth strategy for AI security, including red-teaming, watermarking, and incident response planning. It argues that security and resilience are distinct but related, requiring proactive protection against adversarial attacks and the ability to degrade gracefully during failures. This framework treats AI systems as critical infrastructure that must be hardened against exploitation.",
-          "verbatim": "While resilience is the ability to return to normal function after an unexpected adverse event, security includes resilience but also encompasses protocols to avoid, protect against, respond to, or recover from attacks.",
-          "excerpt_context": "Measure 2.7, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document emphasizes that organizations must document the level of explainability required for AI determinations and the intervals for checking accuracy and bias. This reflects a safetyist commitment to transparency as a prerequisite for accountability. By mandating documentation of data provenance and system limitations, the playbook aims to prevent opaque decision-making processes that could lead to catastrophic or systemic failures.",
-          "verbatim": "Given the purpose of the AI, what level of explainability or interpretability is required for how the AI made its determination? How has the entity documented the AI system’s data provenance, including sources, origins, transformations, augmentations, labels, dependencies, constraints, and metadata?",
-          "excerpt_context": "Section 10, Transparency & Documentation"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems can introduce new privacy risks by allowing inferences that identify individuals or reveal previously private information. It highlights that privacy-related risks are interconnected with security, bias, and transparency, necessitating a holistic risk management approach. This aligns with the safetyist view that AI's complexity creates novel, often hidden, attack surfaces and systemic vulnerabilities.",
-          "verbatim": "AI systems can also present new risks to privacy by allowing inference to identify individuals or previously private information about individuals.",
-          "excerpt_context": "Section 10, Measure 2.10"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-011",
-          "category": "Beliefs",
-          "point": "The document warns that measurement approaches can be oversimplified, gamed, or lack critical nuance, leading to reliance on metrics that fail to account for real-world contexts. This reflects the safetyist concern that optimizing for narrow, easily measurable metrics can undermine human values and lead to unexpected, harmful outcomes. It advocates for continual improvement and re-evaluation of metrics to avoid these pitfalls.",
-          "verbatim": "Measurement approaches can be oversimplified, gamed, lack critical nuance, become used and relied upon in unexpected ways, fail to account for differences in affected groups and contexts.",
-          "excerpt_context": "Section 10, Measure 2.13",
-          "_backfill": {
-            "previous_id": "saf-beliefs-026",
-            "similarity": 0.6334,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The framework advocates for policies that prevent harm by design and default, explicitly considering the needs of vulnerable populations. It highlights that failure to address design issues—such as the 'digital divide' or accessibility barriers for persons with disabilities—can lead to systemic bias and legal risks. This reflects a desire to move beyond technical performance metrics toward protecting social cohesion and equity.",
+          "verbatim": "All stakeholders benefit from policies, processes, and procedures which require preventing harm by design and default. . . Additionally, some intended users of AI systems may not have consistent or reliable access to fundamental internet technologies (a phenomenon widely described as the “digital divide”) or may experience difficulties interacting with AI systems due to disabilities or impairments.",
+          "excerpt_context": "GOVERN 1.2, About; GOVERN 1.1, About",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "harm_prevention",
+            "digital_divide",
+            "equity"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-111",
           "category": "Intentions",
-          "point": "The document advocates for rigorous, ongoing monitoring and documentation of AI systems to ensure they remain safe and aligned with organizational values. It emphasizes that risk management must be an iterative process that adapts to emergent risks in real-world deployment. This approach prioritizes proactive oversight and accountability mechanisms to prevent catastrophic or systemic failures.",
-          "verbatim": "Approaches, personnel, and documentation are in place to regularly identify and track existing, unanticipated, and emergent AI risks based on factors such as intended and actual performance in deployed contexts.",
-          "excerpt_context": "Measure 3.1, About",
-          "_backfill": {
-            "previous_id": "saf-intentions-081",
-            "similarity": 0.787,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document advocates for maintaining a comprehensive inventory of AI systems, specifically identifying high-risk, self-updating, or unsupervised models. This inventory serves as a foundational tool for risk tracking and management, ensuring that organizations have visibility into the systems they deploy. This aligns with the safetyist requirement for systemic oversight of all AI assets.",
+          "verbatim": "Identify pre-trained models within AI system inventory for risk tracking.",
+          "excerpt_context": "Section 4, MANAGE 3.2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "AI_system_inventory",
+            "risk_tracking"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-061",
+          "category": "Intentions",
+          "point": "The document emphasizes the necessity of human-in-the-loop processes, specifically 'appeal and override' mechanisms, to enable real-time flagging of incidents and human adjudication of AI outcomes. This ensures that human oversight remains a critical component of system governance, particularly when AI systems perform in unexpected ways.",
+          "verbatim": "Incident response and “appeal and override” are commonly used processes in information technology management. These processes enable real-time flagging of potential incidents, and human adjudication of system outcomes.",
+          "excerpt_context": "GOVERN 1.5, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human_in_the_loop",
+            "incident_response"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-030",
+          "category": "Intentions",
+          "point": "The document promotes a 'three lines of defense' model for risk management, where separate teams are held accountable for development, risk management, and auditing. This layered approach is intended to counter cognitive biases like groupthink and ensure that risk management functions are not easily bypassed by development teams.",
+          "verbatim": "Organizations in some industries implement three (or more) “lines of defense,” where separate teams are held accountable for different aspects of the system lifecycle, such as development, risk management, and auditing. While a traditional three-lines approach may be impractical for smaller organizations, leadership can commit to cultivating a strong risk culture through other means.",
+          "excerpt_context": "GOVERN 4.1, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "defense_in_depth",
+            "risk_culture"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document mandates the establishment of comprehensive impact assessment policies and procedures to evaluate AI systems. It emphasizes the need for continuous monitoring, documentation of data provenance, and the application of risk management resources proportional to the system's risk level. This reflects a safetyist commitment to rigorous, standardized evaluation frameworks as a prerequisite for deployment.",
+          "verbatim": "Establish impact assessment policies and processes for AI systems used by the organization. Verify that impact assessment activities are appropriate to evaluate the potential negative impact of a system and how quickly a system changes, and that assessments are applied on a regular basis.",
+          "excerpt_context": "Section 3, Suggested Actions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "impact_assessment",
+            "risk_management",
+            "governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-012",
+          "category": "Desires",
+          "point": "The document advocates for clear accountability structures, requiring organizations to document who is responsible for AI decisions, maintenance, and ethical considerations. By emphasizing the need to assign risk management resources based on risk tolerance, it encourages organizations to take ownership of the potential negative impacts of their systems.",
+          "verbatim": "Who is accountable for the ethical considerations during all stages of the AI lifecycle? ... Organizations typically apply a risk tolerance approach where higher risk systems receive larger allocations of risk management resources and lower risk systems receive less resources.",
+          "excerpt_context": "Section 3, GOVERN 5.2, Transparency & Documentation",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "accountability",
+            "risk_tolerance"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document mandates rigorous Test, Evaluation, Validation, and Verification (TEVV) protocols throughout the AI lifecycle to manage risks. It emphasizes that organizations must establish clear thresholds for performance and trustworthiness, and be prepared to deactivate systems that exceed these risk tolerances. This reflects a safetyist commitment to ensuring that deployment is contingent upon meeting predefined safety and reliability standards.",
+          "verbatim": "Rigorous TEVV practices are useful for protecting against negative impacts regardless of intended use. When negative impacts do arise, superseding (bypassing), disengaging, or deactivating/decommissioning a model, AI system component(s), or the entire AI system may be necessary.",
+          "excerpt_context": "Section 4, MANAGE 2.4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "TEVV",
+            "risk_tolerance",
+            "decommissioning"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-014",
+          "category": "Desires",
+          "point": "The document emphasizes establishing clear risk tolerances and governance frameworks to manage AI systems. It advocates for 'go/no-go' decision-making processes that prioritize safety and ethical considerations over financial or reputational interests. This aligns with the safetyist goal of embedding rigorous oversight into the AI lifecycle.",
+          "verbatim": "Go/no-go decisions related to AI system risks can take stakeholder feedback into account, but remain independent from stakeholders’ vested financial or reputational interests.",
+          "excerpt_context": "Section 5, MAP 1.5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "risk_tolerance",
+            "governance_framework",
+            "go_no_go_decision"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-004",
+          "category": "Intentions",
+          "point": "The document promotes the use of interdisciplinary teams and human oversight to audit and constrain AI systems. By requiring documentation of testing methodologies and performance outcomes, it seeks to ensure that AI systems remain within established safety bounds.",
+          "verbatim": "Plan for risks related to human-AI configurations, and document requirements, roles, and responsibilities for human oversight of deployed systems.",
+          "excerpt_context": "Section 5, MAP 1.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "human_oversight",
+            "interdisciplinary_audit"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document advocates for rigorous testing, evaluation, validation, and verification (TEVV) protocols that extend beyond the AI system pipeline into the broader socio-technical context. It suggests that safety is not just a technical metric but requires understanding how human behavior and organizational dynamics influence system outcomes. This supports the safetyist goal of establishing comprehensive risk management frameworks.",
+          "verbatim": "TEVV is enhanced when key metrics for performance, safety, and reliability are interpreted in a socio-technical context and not confined to the boundaries of the AI system pipeline.",
+          "excerpt_context": "MAP 2.3, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "TEVV",
+            "socio-technical_context",
+            "risk_management"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document asserts that AI systems are complex, interdependent, and often lack full visibility or control across the lifecycle, which introduces significant uncertainty. It notes that even with good intentions, downstream interactions can undermine safety, leading to unanticipated negative impacts. This reflects the safetyist belief that AI complexity creates inherent, hard-to-predict vulnerabilities.",
+          "verbatim": "An AI lifecycle consists of many interdependent activities involving a diverse set of actors that often do not have full visibility or control over other parts of the lifecycle and its associated contexts or risks. The interdependencies between these activities, and among the relevant AI actors and organizations, can make it difficult to reliably anticipate potential impacts of AI systems.",
+          "excerpt_context": "MAP 2.2, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "system_complexity",
+            "interdependency",
+            "unanticipated_impacts"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-047",
+          "category": "Intentions",
+          "point": "The document advocates for rigorous oversight of human-AI configurations, emphasizing the need to define roles and responsibilities to manage risks in high-stakes environments. It highlights that as systems move toward automation, the potential for harm increases, necessitating pre-deployment evaluation of oversight procedures. This reflects a safetyist commitment to ensuring human control and accountability in complex socio-technical systems.",
+          "verbatim": "In critical systems, high-stakes settings, and systems deemed high-risk it is of vital importance to evaluate risks and effectiveness of oversight procedures before an AI system is deployed.",
+          "excerpt_context": "Section 7, MAP 3.5, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human_oversight",
+            "risk_management",
+            "high_stakes_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-084",
+          "category": "Intentions",
+          "point": "The document promotes the identification and documentation of AI features that could lead to negative societal impacts, including misuse or unanticipated consequences. By requiring organizations to map these risks early, it aims to prevent catastrophic outcomes. This aligns with safetyist intentions to predict and mitigate risks stemming from autonomous or integrated AI agents.",
+          "verbatim": "Identify and document AI systems’ features and capabilities that require human oversight, in relation to operational and societal contexts, trustworthy characteristics, and risks identified in MAP-1.",
+          "excerpt_context": "Section 7, MAP 3.5, Suggested Actions",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "risk_mapping",
+            "societal_impact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-017",
+          "category": "Desires",
+          "point": "The document supports the implementation of technical and operational safeguards, such as adversarial testing and stress testing, to identify system limitations. It argues that organizations must document these testing methodologies to ensure accountability and safety throughout the AI lifecycle.",
+          "verbatim": "What testing, if any, has the entity conducted on the AI system to identify errors and limitations (i.e. manual vs automated, adversarial and stress testing)?",
+          "excerpt_context": "Transparency & Documentation, Measure 1.2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "adversarial_testing",
+            "stress_testing",
+            "safeguards"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-117",
+          "category": "Intentions",
+          "point": "The document mandates rigorous testing and documentation of AI systems to ensure they remain safe, accurate, and explainable throughout their lifecycle. It emphasizes that organizations must demonstrate safety before deployment and maintain continuous monitoring to address potential failures or knowledge-limit breaches. This reflects a safetyist commitment to proactive risk management and the necessity of 'showing one's work' to ensure system reliability.",
+          "verbatim": "The AI system to be deployed is demonstrated to be safe, its residual negative risk does not exceed the risk tolerance, and can fail safely, particularly if made to operate beyond its knowledge limits.",
+          "excerpt_context": "Measure 2.6, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "risk_tolerance",
+            "fail_safe",
+            "system_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "sit-166",
+          "category": "Intentions",
+          "point": "The document advocates for clear organizational accountability, including the designation of specific roles like 'chief model risk officers' and 'AI oversight committees.' By formalizing these responsibilities, the framework seeks to bridge the human accountability gap and ensure that ethical considerations are managed throughout the AI lifecycle. This aligns with safetyist efforts to institutionalize responsibility for AI outcomes.",
+          "verbatim": "Accountable leadership – whether individuals or groups – and transparent roles, responsibilities, and lines of communication foster and incentivize quality assurance and risk management activities within organizations.",
+          "excerpt_context": "Measure 2.8, About",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountable_leadership",
+            "risk_management"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-017",
+          "category": "Beliefs",
+          "point": "The document asserts that AI systems can increase the speed and scale of biases, potentially amplifying harms to individuals and society. This reflects a safetyist concern that rapid deployment without adequate governance leads to systemic, uncontrollable negative outcomes. The document emphasizes that bias is omnipresent across the AI lifecycle, necessitating rigorous management.",
+          "verbatim": "While bias is not always a negative phenomenon, AI systems can potentially increase the speed and scale of biases and perpetuate and amplify harms to individuals, groups, communities, organizations, and society.",
+          "excerpt_context": "Section 10, page 121",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "systemic_bias",
+            "algorithmic_harm"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-048",
           "category": "Intentions",
-          "point": "The document promotes the integration of human feedback and participatory engagement to identify risks that automated metrics might miss. By involving end users and impacted communities, organizations can better understand the real-world impacts of AI systems. This strategy aims to bridge the gap between technical performance metrics and actual human-centric safety.",
-          "verbatim": "Assessing impact is a two-way effort. Many AI system outcomes and impacts may not be visible or recognizable to AI actors across the development and deployment dimensions of the AI lifecycle, and may require direct feedback about system outcomes from the perspective of end users and impacted groups.",
-          "excerpt_context": "Measure 3.3, About",
-          "_backfill": {
-            "previous_id": "saf-intentions-083",
-            "similarity": 0.7145,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document advocates for integrating indirect feedback mechanisms from end users and operators to refine AI system performance. By systematically collecting error reports and user appeals, organizations can better align AI outputs with intended objectives. This approach emphasizes that direct human feedback is essential for maintaining safety and reliability in operational contexts.",
+          "verbatim": "Feedback can be collected indirectly, via systems that are mechanized to collect errors and other feedback from end users and operators",
+          "excerpt_context": "Section 11, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "scalable_oversight",
+            "human_feedback"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-017",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of human-centered design and participatory engagement to ensure AI systems remain under effective oversight. It argues that risks are best identified by those impacted by the system's decisions, necessitating a collaborative approach between developers and affected communities. This aligns with the goal of maintaining human control over AI deployments.",
+          "verbatim": "AI system risks and impacts are often best described by end users and others who may be affected by output and subsequent decisions.",
+          "excerpt_context": "Measure 4.1, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human_oversight",
+            "participatory_engagement"
+          ]
         }
       ]
     },
@@ -387,260 +454,318 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document acknowledges that AI systems can cause disparate impacts and exacerbate existing social inequalities, such as the digital divide. It highlights that failure to address these design issues leads to measurable legal and ethical risks. This aligns with the skeptic focus on the immediate, tangible harms AI poses to marginalized groups.",
-          "verbatim": "Disparate impact is broadly defined as a facially neutral policy or practice that disproportionately harms a group based on a protected trait. ... Such factors may mean different communities experience bias or other negative impacts when trying to access AI systems.",
-          "excerpt_context": "GOVERN 1.1, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-010",
+          "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The document suggests that organizations must maintain policies for training staff and documenting regulatory compliance to mitigate risks. It emphasizes that risk management is not just technical but requires clear chains of command and accountability. This aligns with the skeptic view that AI risks are manageable through rigorous, human-centered organizational processes and data quality standards.",
-          "verbatim": "Lack of clear information about responsibilities and chains of command will limit the effectiveness of risk management.",
-          "excerpt_context": "GOVERN 1.2, About"
+          "point": "The document argues that without clear, standardized documentation policies, AI risk management becomes subjective and prone to failure. It mandates that organizations maintain inventories of model documentation and regularly review their efficacy to ensure accountability. This aligns with the skeptic view that opaque, undocumented systems are inherently difficult to audit and maintain, posing significant risks to the public.",
+          "verbatim": "Without such policies, risk management can be subjective across the organization, and exacerbate rather than minimize risks over time. . . Establish policies for a model documentation inventory system and regularly review its completeness, usability, and efficacy.",
+          "excerpt_context": "GOVERN 1.2, About; GOVERN 1.4, Suggested Actions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_auditing",
+            "system_transparency"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-082",
+          "taxonomy_node_id": "skp-intentions-055",
           "category": "Intentions",
-          "point": "The document advocates for the inclusion of diverse, multidisciplinary teams—including civil liberties and ethics experts—throughout the AI lifecycle to mitigate bias and discrimination. This participatory approach aims to ensure that AI systems do not disproportionately harm vulnerable communities or perpetuate existing societal inequities.",
-          "verbatim": "Entities include diverse perspectives from technical and non-technical communities throughout the AI life cycle to anticipate and mitigate unintended consequences including potential bias and discrimination.",
-          "excerpt_context": "Section 2, GOVERN 3.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-074",
-          "category": "Intentions",
-          "point": "The document suggests establishing mechanisms for impacted individuals to contest problematic AI outcomes and provide feedback on negative impacts. This creates a form of civil rights guardrail, allowing for public recourse against automated decisions that may violate individual rights or cause harm.",
-          "verbatim": "Establish mechanisms to provide recourse for impacted individuals or communities to contest problematic AI system outcomes.",
-          "excerpt_context": "Section 2, GOVERN 1.5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
-          "category": "Beliefs",
-          "point": "The document acknowledges that AI systems are dynamic and can perform in unexpected ways, challenging traditional governance structures. It highlights the need for continuous monitoring and incident response to address the inherent unpredictability and potential for harm in deployed AI systems.",
-          "verbatim": "AI systems are dynamic and may perform in unexpected ways once deployed or after deployment. Continuous monitoring is a risk management process for tracking unexpected issues and performance changes, in real-time or at a specific frequency, across the AI system lifecycle.",
-          "excerpt_context": "Section 2, GOVERN 1.5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-040",
-          "category": "Intentions",
-          "point": "The document suggests that organizations should formally weigh an AI system's negative risks against its benefits to determine if it is an appropriate solution. This 'risk-utility' approach acknowledges that AI may not always be the right tool for a task. It aligns with the skeptic focus on practical, measurable outcomes over blind adoption.",
-          "verbatim": "A standard risk management practice is to formally weigh an AI system's negative risks against its benefits, and to determine if the AI system is an appropriate solution.",
-          "excerpt_context": "Section 3, MANAGE 1.1"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-012",
-          "category": "Intentions",
-          "point": "The document encourages organizations to document and share information about near-misses and incidents to avoid repeating past failures. This focus on learning from real-world errors is a hallmark of the skeptic approach to risk management. It prioritizes fixing observable problems over speculative future risks.",
-          "verbatim": "Are processes for operator reporting of incidents and near-misses documented and available?",
-          "excerpt_context": "Section 3, GOVERN 4.1",
-          "_backfill": {
-            "previous_id": "skp-intentions-008",
-            "similarity": 0.5976,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-082",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of participatory auditing and feedback loops involving end users and impacted groups. By requiring organizations to capture feedback during deployment, it seeks to uncover negative impacts that are not visible through internal testing alone.",
-          "verbatim": "Establish mechanisms to capture feedback from system end users and potentially impacted groups while system is in deployment.",
-          "excerpt_context": "Section 4, MANAGE 2.2, Suggested Actions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-040",
-          "category": "Intentions",
-          "point": "The document supports a risk-utility approach to AI deployment, where organizations must weigh the potential value of an AI system against its negative impacts. It explicitly suggests that organizations should be prepared to decommission systems that fail to meet safety or ethical standards.",
-          "verbatim": "Transparent monitoring and managing residual risks enables cost benefit analysis and the examination of potential values of AI systems versus its potential negative impacts.",
-          "excerpt_context": "Section 4, MANAGE 1.4, About"
+          "point": "The document emphasizes the importance of diverse teams—including demographics, disciplines, and lived experiences—to anticipate and mitigate risks like bias and discrimination. It argues that without senior leadership commitment, these diversity efforts can be undermined by organizational incentives that conflict with broader social values.",
+          "verbatim": "Without commitment from senior leadership, beneficial aspects of team diversity and inclusion can be overridden by unstated organizational incentives that inadvertently conflict with the broader values of a diverse workforce.",
+          "excerpt_context": "GOVERN 3.1, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "diversity_equity_inclusion"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-082",
-          "category": "Intentions",
-          "point": "The document advocates for participatory auditing and the inclusion of diverse, interdisciplinary teams to identify risks and biases. It emphasizes that organizations must engage with community groups and stakeholders to understand the real-world impacts of AI, reflecting the skeptic focus on measurable, human-centered harm mitigation.",
-          "verbatim": "Successfully mapping context requires a team of AI actors with a diversity of experience, expertise, abilities and backgrounds, and with the resources and independence to engage in critical inquiry.",
-          "excerpt_context": "MAP 1.2, page 62"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-074",
-          "category": "Intentions",
-          "point": "The document suggests that organizations should consider non-AI alternatives when the risks of an AI system outweigh its benefits or when the context is too complex to manage safely. This aligns with the skeptic view that AI is not always the appropriate solution and that its deployment should be constrained by civil rights and societal norms.",
-          "verbatim": "Context mapping also includes discussion and consideration of non-AI or non-technology alternatives especially as related to whether the given context is narrow enough to manage AI and its potential negative impacts.",
-          "excerpt_context": "MAP 1.1, page 58"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
-          "category": "Beliefs",
-          "point": "The document highlights that AI systems fundamentally challenge existing legal and organizational frameworks, necessitating a shift toward socio-technical metrics. It argues that organizations must evaluate AI performance not just on accuracy, but on alignment with societal values and legal requirements.",
-          "verbatim": "Review the documented system purpose from a socio-technical perspective and in consideration of societal values.",
-          "excerpt_context": "MANAGE 4.2, page 54"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-055",
-          "category": "Intentions",
-          "point": "The document advocates for pragmatic, evidence-based risk management by requiring organizations to document 'off-label' uses and analyze tradeoffs across trustworthiness characteristics. This reflects a skeptic focus on managing the tangible, present-day risks of AI deployment rather than speculative future scenarios. It emphasizes that risk management must be an ongoing, documented process rather than a one-time check.",
-          "verbatim": "Review uses of AI systems for â€œoff-labelâ€  purposes, especially in settings that organizations have deemed as high-risk. Document decisions, risk-related trade-offs, and system limitations.",
-          "excerpt_context": "MAP 1.5, Suggested Actions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-082",
-          "category": "Intentions",
-          "point": "The document promotes participatory auditing by suggesting that organizations include impacted communities, civil society, and external experts in the formulation of AI priorities and impact assessments. This aligns with the skeptic desire to democratize AI oversight and ensure that systems are not designed solely by and for the benefit of the deploying entity.",
-          "verbatim": "Include potentially impacted groups, communities and external entities (e.g. civil society organizations, research institutes, local community groups, and trade associations) in the formulation of priorities, definitions and outcomes during impact assessment activities.",
-          "excerpt_context": "MAP 1.6, Suggested Actions"
-        },
-        {
-          "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document acknowledges that data used in AI systems is often selected based on convenience rather than suitability, leading to datasets that are not representative of the populations they model. It highlights that this practice introduces systemic bias and risks, reinforcing the skeptic belief that AI systems often perpetuate or exacerbate existing societal inequalities.",
-          "verbatim": "The difficulty of finding the â€œrightâ€  data may lead AI actors to select datasets based more on accessibility and availability than on suitability for operationalizing the phenomenon that the AI system intends to support or inform.",
-          "excerpt_context": "MAP 2.3, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-082",
-          "category": "Intentions",
-          "point": "The document strongly advocates for participatory approaches, requiring organizations to engage with potentially affected groups and communities. It suggests that these stakeholders provide essential input on system benefits and limitations. This aligns with the skeptic focus on democratizing AI development and ensuring accountability to those impacted by the technology.",
-          "verbatim": "It is encouraged that risk management and assessment of benefits and impacts include processes for regular and meaningful communication with potentially affected groups and communities. These stakeholders can provide valuable input related to systemsâ€™ benefits and possible limitations.",
-          "excerpt_context": "Section 7, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-017",
-          "category": "Intentions",
-          "point": "The document highlights the critical need for documentation regarding AI system purpose, utility, and potential risks. It suggests that organizations should maintain awareness of stakeholders and document the rationale behind deployment decisions. This addresses the skeptic concern that lack of transparency and documentation leads to systems that are difficult to audit or maintain.",
-          "verbatim": "Organizations are encouraged to define and document system purpose and utility, and its potential positive impacts and benefits beyond current known performance benchmarks. Maintain awareness and documentation of the individuals, groups, or communities who make up the systemâ€™s internal and external stakeholders.",
-          "excerpt_context": "Section 7, paragraph 1 and Suggested Actions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-082",
-          "category": "Intentions",
-          "point": "The document advocates for participatory auditing by engaging diverse stakeholder groups, including end-users and impacted communities, throughout the AI development pipeline. It argues that these groups often possess knowledge of benefits and harms that are invisible to the developers themselves. This approach aims to democratize the monitoring process and ensure that AI systems are evaluated against real-world social impacts rather than just technical benchmarks.",
-          "verbatim": "After an AI system is deployed, engaging different stakeholder groups – who may be aware of, or experience, benefits or negative impacts that are unknown to AI actors involved in the design, development and deployment activities – allows organizations to understand and monitor system benefits and potential negative impacts more readily.",
-          "excerpt_context": "Section 8, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-035",
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems are inherently brittle and prone to failure modes that are not well-described or understood. It notes that these systems often fail to transfer well outside of their training environments, leading to significant risks in real-world deployment. This belief justifies the skeptic's demand for rigorous, context-specific testing and continuous monitoring of AI systems.",
-          "verbatim": "The current AI systems are brittle, the failure modes are not well described, and the systems are dependent on the context in which they were developed and do not transfer well outside of the training environment.",
-          "excerpt_context": "Section 8, Measure 1.3",
-          "_backfill": {
-            "previous_id": "skp-beliefs-041",
-            "similarity": 0.6296,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-055",
-          "category": "Intentions",
-          "point": "The document proposes that organizations must establish clear, documented processes for identifying and reporting AI-related errors, incidents, and negative impacts. It suggests that metrics should be updated regularly to reflect the evolving nature of AI risks and the specific context of use. This focus on incident response and continuous improvement is a core skeptic strategy for managing the inevitable failures of AI technology.",
-          "verbatim": "Document reports of errors, incidents and negative impacts and assess sufficiency and efficacy of existing metrics for repairs, and upgrades.",
-          "excerpt_context": "Section 8, Measure 1.2",
-          "_backfill": {
-            "previous_id": "skp-intentions-041",
-            "similarity": 0.7326,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document acknowledges that AI systems often fail to generalize to real-world settings, leading to inaccurate or unreliable outcomes. It highlights the danger of using proxies to measure complex social constructs like fairness or honesty, which can lead to undetected biases and systemic errors. This reflects a skeptical view of AI's inherent functionality and the risks of over-reliance on automated metrics.",
-          "verbatim": "Validation risks include the use of proxies or other indicators that are often constructed by AI development teams to operationalize phenomena that are either not directly observable or measurable (e.g, fairness, hireability, honesty, propensity to commit a crime).",
-          "excerpt_context": "Measure 2.5, About"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-044",
-          "category": "Intentions",
-          "point": "The document suggests that AI systems should be subject to rigorous, factory-like reporting and incident tracking. It encourages organizations to maintain audit logs, report failures to incident databases, and share information about attack patterns. This aligns with the skeptic's desire to treat AI as a standard industrial technology that requires strict accountability and public oversight.",
-          "verbatim": "Verify that information about errors and attack patterns is shared with incident databases, other organizations with similar systems, and system users and stakeholders.",
-          "excerpt_context": "Measure 2.7, Suggested Actions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document acknowledges that bias is not just a technical error but can be systemic, computational, or human-cognitive, and that it can become ingrained in automated systems. It notes that even systems with mitigated biases may still exacerbate existing disparities or be inaccessible to certain groups. This aligns with the skeptic view that AI often reinforces existing societal inequalities rather than solving them.",
-          "verbatim": "Bias exists in many forms and can become ingrained in the automated systems that help make decisions about our lives. While bias is not always a negative phenomenon, AI systems can potentially increase the speed and scale of biases and perpetuate and amplify harms to individuals, groups, communities, organizations, and society.",
-          "excerpt_context": "Section 10, Measure 2.11"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-009",
-          "category": "Beliefs",
-          "point": "The document highlights the environmental costs of AI, including energy and water consumption, greenhouse gas emissions, and the lifecycle impacts of hardware production and electronic waste. It explicitly mentions 'rebound effects' where efficiency gains are offset by increased consumption. This supports the skeptic focus on the measurable, negative externalities of AI deployment.",
-          "verbatim": "Indirect negative impacts to the environment reflect the complexity of interactions between human behavior, socio-economic systems, and the environment and can include induced consumption and “rebound effects”, where efficiency gains are offset by accelerated resource consumption.",
-          "excerpt_context": "Section 10, Measure 2.12"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-088",
-          "category": "Intentions",
-          "point": "The document advocates for practical, context-specific fairness assessments that involve direct engagement with impacted communities. It suggests moving beyond general metrics to identify specific harms like stereotyping or erasure. This aligns with the skeptic intention to focus on real-world, measurable harms rather than abstract or purely technical definitions of AI performance.",
-          "verbatim": "Conduct fairness assessments to manage computational and statistical forms of bias which include the following steps: Identify types of harms, including allocational, representational, quality of service, stereotyping, or erasure.",
-          "excerpt_context": "Section 10, Measure 2.11",
-          "_backfill": {
-            "previous_id": "skp-intentions-001",
-            "similarity": 0.7536,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document acknowledges that AI systems are prone to specific, difficult-to-detect harms such as bias, discrimination, concept drift, and shortcut learning. It asserts that standard testing processes are often insufficient to identify these issues, necessitating more robust, human-centric, and participatory testing methods.",
+          "verbatim": "Issues such as concept drift, AI bias and discrimination, shortcut learning or underspecification are difficult to identify using current standard AI testing processes.",
+          "excerpt_context": "Section 3, GOVERN 4.3, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "concept_drift",
+            "shortcut_learning"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-058",
           "category": "Intentions",
-          "point": "The document highlights the limitations of relying solely on quantitative metrics for AI evaluation, suggesting that these metrics often fail to capture the full scope of social harm or bias. It encourages organizations to look beyond simple performance logs and incorporate qualitative feedback from those affected by the technology. This reflects a skepticism toward purely technical or automated approaches to AI governance.",
-          "verbatim": "Many AI system outcomes and impacts may not be visible or recognizable to AI actors across the development and deployment dimensions of the AI lifecycle, and may require direct feedback about system outcomes from the perspective of end users and impacted groups.",
-          "excerpt_context": "Measure 3.3, About",
-          "_backfill": {
-            "previous_id": "skp-intentions-006",
-            "similarity": 0.714,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document promotes participatory stakeholder engagement as a critical practice to identify societal impacts and emergent risks. It warns against 'participation washing' and advocates for involving diverse communities, including historically excluded populations, throughout the AI lifecycle to ensure transparency and accountability.",
+          "verbatim": "Participatory stakeholder engagement is one type of qualitative activity to help AI actors answer questions such as whether to pursue a project or how to design with impact in mind. ... Engagement is often utilized as a consultative practice, but this perspective may inadvertently lead to “participation washing.”",
+          "excerpt_context": "Section 3, GOVERN 5.1, About",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "participatory_engagement",
+            "stakeholder_involvement",
+            "participation_washing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document emphasizes the necessity of capturing feedback from end users and impacted groups to identify negative impacts that are not visible during the standard development lifecycle. It suggests that organizations should proactively seek external perspectives to supplement internal diversity and address potential biases. This reflects a skeptic focus on democratic accountability and the inclusion of those affected by AI systems in the governance process.",
+          "verbatim": "Establish mechanisms to capture feedback from system end users and potentially impacted groups about how changes in system deployment... may create negative impacts that are not visible along the AI lifecycle.",
+          "excerpt_context": "Section 4, MANAGE 2.2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "stakeholder_engagement",
+            "algorithmic_impact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-044",
+          "category": "Beliefs",
+          "point": "The document acknowledges that the use of third-party resources and pre-trained models increases system complexity and opacity, which in turn elevates risk. It highlights that the lack of documentation for these models hinders root cause analysis when failures occur. This aligns with skeptic concerns regarding the hidden costs and risks associated with the reliance on opaque, pre-built AI components.",
+          "verbatim": "The use of pre-trained models can make it difficult to anticipate negative system outcomes or impacts. Lack of documentation or transparency tools increases the difficulty and general complexity when deploying pre-trained models and hinders root cause analyses.",
+          "excerpt_context": "Section 4, MANAGE 3.2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "model_opacity",
+            "root_cause_analysis"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document mandates rigorous documentation of errors, near-misses, and negative impacts, advocating for the maintenance of incident databases. This reflects a skeptic intention to ensure accountability through transparency and the systematic tracking of AI-induced harms.",
+          "verbatim": "Maintain a database of reported errors, near-misses, incidents and negative impacts including date reported, number of reports, assessment of impact and severity, and responses.",
+          "excerpt_context": "Section 5, MANAGE 4.3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "incident_tracking",
+            "algorithmic_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-010",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for data quality, representativeness, and the tracking of dataset modifications. It encourages organizations to assess whether non-AI alternatives might lead to more trustworthy outcomes, reflecting a cautious approach to AI deployment.",
+          "verbatim": "Identify whether there are non-AI or non-technology alternatives that will lead to more trustworthy outcomes.",
+          "excerpt_context": "Section 5, MAP 1.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "data_quality",
+            "trustworthy_outcomes"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document identifies that AI development often outpaces traditional documentation processes, leading to incomplete requirements and a reliance on implicit human biases like groupthink. It mandates that organizations document design, operations, limitations, and justifications to ensure systems are auditable and understandable. This aligns with the skeptic focus on the necessity of rigorous documentation to prevent opaque and harmful AI deployment.",
+          "verbatim": "AI system development requirements may outpace documentation processes for traditional software. When written requirements are unavailable or incomplete, AI actors may inadvertently overlook business and stakeholder needs, over-rely on implicit human biases such as confirmation bias and groupthink, and maintain exclusive focus on computational requirements.",
+          "excerpt_context": "MAP 1.6, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "documentation_processes",
+            "implicit_bias",
+            "stakeholder_needs"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document advocates for participatory design and the inclusion of external stakeholders, such as civil society organizations and impacted communities, in the formulation of AI priorities and impact assessments. This is intended to mitigate the risks of systemic and historical biases that might otherwise be ignored by developers. This reflects the skeptic intention to force accountability through external oversight and community engagement.",
+          "verbatim": "Include potentially impacted groups, communities and external entities (e.g. civil society organizations, research institutes, local community groups, and trade associations) in the formulation of priorities, definitions and outcomes during impact assessment activities.",
+          "excerpt_context": "MAP 1.6, Suggested Actions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "participatory_design",
+            "impact_assessment",
+            "systemic_bias"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-055",
+          "category": "Intentions",
+          "point": "The document emphasizes the importance of integrating human-centered design and domain expertise to prevent AI from replacing human judgment in critical areas like healthcare. It argues that the challenge is not just technical but involves managing the interaction between AI and human practitioners. This reflects a skeptic focus on practical, human-centered integration to avoid the harms of over-reliance on automated systems.",
+          "verbatim": "The challenge in these settings is not educating the end user about AI system capabilities, but rather leveraging, and not replacing, practitioner domain expertise.",
+          "excerpt_context": "Section 7, MAP 3.4, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human_ai_teaming",
+            "automation_bias",
+            "domain_expertise"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-007",
+          "category": "Intentions",
+          "point": "The document calls for strict assessment of third-party technologies, noting that pre-trained models often come with undisclosed origins and risks related to bias and privacy. It advocates for applying traditional risk controls to these external components. This aligns with skeptic intentions to impose regulatory boundaries on the supply chain of AI systems.",
+          "verbatim": "For example, the use of pre-trained models, which tend to rely on large uncurated dataset or often have undisclosed origins, has raised concerns about privacy, bias, and unanticipated effects along with possible introduction of increased levels of statistical uncertainty, difficulty with reproducibility, and issues with scientific validity.",
+          "excerpt_context": "Section 7, MAP 4.1, About",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "third_party_risk",
+            "algorithmic_bias",
+            "data_privacy"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document mandates the use of disaggregated evaluation methods to identify disparate impacts across demographic groups. By requiring testing that accounts for race, age, gender, and other factors, it seeks to uncover and mitigate measurable harms and biases in real-world settings.",
+          "verbatim": "Utilize disaggregated evaluation methods (e.g. by race, age, gender, ethnicity, ability, region) to improve AI system performance when deployed in real world settings.",
+          "excerpt_context": "Measure 2.2, Suggested Actions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "disaggregated_evaluation",
+            "bias_mitigation",
+            "disparate_impact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document emphasizes the necessity of involving independent assessors and internal experts who were not part of the original development team. This strategy aims to prevent insular development practices and ensure that AI systems are scrutinized for errors and limitations by parties with different perspectives.",
+          "verbatim": "Internal experts who did not serve as front-line developers for the system and/or independent assessors are involved in regular assessments and updates.",
+          "excerpt_context": "Measure 1.3, About",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "independent_assessment",
+            "auditing"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document explicitly supports the use of independent third-party audits to review AI safety and performance. By involving external parties, organizations can mitigate internal biases and design blindspots that might otherwise go unnoticed. This reflects a skeptic commitment to external verification as a necessary check on corporate AI development.",
+          "verbatim": "Did you ensure that the AI system can be audited by independent third parties?",
+          "excerpt_context": "Measure 2.6, Transparency & Documentation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "independent_audit",
+            "algorithmic_accountability"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document acknowledges that AI systems can produce harmful outcomes that are not immediately apparent to developers, such as discrimination or usability failures. It emphasizes the necessity of establishing recourse mechanisms and bug bounties to address these real-world harms. This aligns with the skeptic view that AI systems are prone to immediate, measurable failures that require active, human-led intervention.",
-          "verbatim": "Risks identified in the Map function may be complex, emerge over time, or difficult to measure. Systematic methods for risk tracking, including novel measurement approaches, can be established as part of regular monitoring and improvement processes.",
-          "excerpt_context": "Measure 3.2, About"
+          "point": "The document acknowledges that AI systems are susceptible to various individual and group biases, which can lead to discriminatory outcomes if not actively managed. It emphasizes that lack of transparency complicates the measurement of these harms, necessitating systematic documentation and auditing. This aligns with the skeptic belief that AI systems are not inherently neutral and require constant scrutiny to prevent social harm.",
+          "verbatim": "Lack of transparency complicates measurement of trustworthiness and whether AI systems or organizations are subject to effects of various individual and group biases and design blindspots and could lead to diminished user, organizational and community trust, and decreased overall system value.",
+          "excerpt_context": "Measure 2.8, About",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "trustworthiness"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document identifies three major categories of AI bias: systemic, computational/statistical, and human-cognitive. It acknowledges that these biases can become ingrained in automated systems, leading to discriminatory outcomes even in the absence of explicit intent. This aligns with the skeptic view that AI systems are inherently prone to reproducing and scaling societal prejudices.",
+          "verbatim": "NIST has identified three major categories of AI bias to be considered and managed: systemic, computational and statistical, and human-cognitive. Each of these can occur in the absence of prejudice, partiality, or discriminatory intent.",
+          "excerpt_context": "Section 10, page 121",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "systemic_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The document advocates for extensive transparency and documentation, including fairness assessments and the disclosure of mitigation strategies for bias. It suggests that organizations should document how they identify and mitigate potential impacts of bias in data and outcomes, supporting the skeptic demand for algorithmic accountability.",
+          "verbatim": "How has the entity identified and mitigated potential impacts of bias in the data, including inequitable or discriminatory outcomes?",
+          "excerpt_context": "Section 10, page 123",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_accountability",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document mandates rigorous documentation and evaluation of AI systems to address usability problems and potential biases. It calls for organizations to be transparent about how they test systems and how they incorporate feedback from external stakeholders, including those impacted by the AI. This reflects a skeptic focus on accountability and the need for measurable performance standards.",
+          "verbatim": "To what extent can users or parties affected by the outputs of the AI system test the AI system and provide feedback?",
+          "excerpt_context": "Section 11, Transparency & Documentation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_auditing",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document identifies the critical need for organizations to document their measurement approaches and the rationale behind them. By requiring documentation on how user interfaces serve their intended purposes and how feedback is integrated, it aims to prevent 'black box' deployments that are difficult to audit or understand.",
+          "verbatim": "Did your organization address usability problems and test whether user interfaces served their intended purposes?",
+          "excerpt_context": "Section 11, Transparency & Documentation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "documentation_standards",
+            "accountability"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "AI systems can cause disparate impact, where facially neutral policies disproportionately harm protected groups.",
-      "claim_label": "AI Disparate Impact Risk",
+      "claim": "Disparate impact is defined as a facially neutral policy or practice that disproportionately harms a group based on a protected trait, and debiasing techniques using demographic data may conflict with legal prohibitions on intentional discrimination.",
+      "claim_label": "Legal Tension in Debiasing",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems are dynamic and may perform in unexpected ways post-deployment, necessitating continuous monitoring across the system lifecycle.",
+      "claim_label": "Dynamic AI Performance Risk",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-057"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation regarding system behavior."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Standard AI testing processes are often insufficient to detect complex issues like concept drift, bias, discrimination, and shortcut learning.",
+      "claim_label": "Limitations of Standard AI Testing",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-041"
@@ -649,34 +774,150 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on legal definitions of discrimination."
+        "category_criteria": "Empirical observation of technical limitations in current AI testing frameworks."
       },
       "claim_relations": []
     },
     {
-      "claim": "Risk management resources are finite, requiring organizations to prioritize risks based on materiality.",
-      "claim_label": "Resource Constraints in Risk Management",
+      "claim": "AI systems, particularly those that are self-updating or trained without ground truth, are prone to drift and unexpected behaviors that can degrade performance and trustworthiness over time.",
+      "claim_label": "AI Performance Drift and Instability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-068"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Highly accurate and optimized AI systems can still cause significant harm when deployed in real-world contexts.",
+      "claim_label": "Accuracy Does Not Equal Safety",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-103"
+        "sit-059"
       ],
       "evidence_criteria": {
         "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Observation of organizational management constraints."
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation regarding system performance vs. social impact."
       },
       "claim_relations": []
     },
     {
-      "claim": "AI systems are dynamic and can exhibit unexpected behaviors after deployment, necessitating continuous monitoring.",
-      "claim_label": "Dynamic AI Behavior",
+      "claim": "AI system development requirements often outpace traditional software documentation processes, which can lead to incomplete requirements and an over-reliance on implicit human biases like confirmation bias.",
+      "claim_label": "Documentation Lag in AI Development",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-017"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation of development lifecycle bottlenecks."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems are inherently socio-technical, meaning their risks and benefits are influenced by societal dynamics, human behavior, and the context of their deployment.",
+      "claim_label": "Socio-technical Nature of AI",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-116"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation regarding system architecture."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Current AI systems are brittle, lack well-described failure modes, and are highly dependent on the specific context of their training environment, which limits their ability to transfer reliably to new settings.",
+      "claim_label": "Brittleness and Context-Dependency of AI",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-024"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical observation of system behavior"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems in high-stakes settings like transportation and security can cause physical or environmental harm if they fail, necessitating thorough pre-deployment testing and ongoing evaluation.",
+      "claim_label": "High-Stakes AI Failure Risks",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-166"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of system failure modes in critical infrastructure."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "NIST categorizes AI bias into three distinct types: systemic, computational and statistical, and human-cognitive.",
+      "claim_label": "NIST AI Bias Categories",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim based on NIST framework."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI system risks and impacts are often best described by end users and others who may be affected by output and subsequent decisions rather than by developers alone.",
+      "claim_label": "Stakeholder-Centric Risk Identification",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "sit-048"
@@ -685,378 +926,47 @@
         "specificity": "qualified",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation regarding AI system lifecycle behavior."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Standard AI testing processes often fail to identify issues like concept drift, bias, shortcut learning, or underspecification.",
-      "claim_label": "Limitations of Standard AI Testing",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-042"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Could be proven true or false with evidence."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems exhibit 'drift' over time, where performance and trustworthiness degrade after deployment, increasing the likelihood of negative impacts.",
-      "claim_label": "AI Performance Drift",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-069"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system behavior over time."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Third-party AI components increase system complexity, opacity, and risk.",
-      "claim_label": "Third-party dependency risk",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-010"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation regarding system architecture."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems often perform poorly or violate norms after deployment due to complex interdependencies between lifecycle stages and human over-trust.",
-      "claim_label": "Post-Deployment AI Failure Modes",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-031",
-        "saf-intentions-045"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system behavior in real-world settings."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems can range from fully autonomous to fully manual, and their configuration significantly impacts risk management requirements.",
-      "claim_label": "Human-AI Configuration Spectrum",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-066",
-        "saf-intentions-083"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Could be proven true or false with evidence"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Narrow application scope in AI systems enables better mapping, measurement, and management of risks compared to open-ended systems.",
-      "claim_label": "Scope-Risk Management Correlation",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-111"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Could be proven true or false with evidence"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems are socio-technical in nature, meaning they are influenced by societal dynamics and human behavior, and their impacts extend beyond their stated purpose.",
-      "claim_label": "AI as Socio-Technical System",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-116"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system behavior"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems in production experience 'drift' where they no longer meet the assumptions of their original design due to evolving environments.",
-      "claim_label": "AI Model Drift in Production",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-050"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system performance degradation over time."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems can create new privacy risks by enabling the inference of sensitive information about individuals that was previously private.",
-      "claim_label": "AI Inference Privacy Risk",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-040"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim about AI capability and privacy impact."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Efficiency gains in AI systems can be offset by accelerated resource consumption, a phenomenon known as the rebound effect.",
-      "claim_label": "AI Rebound Effect",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-009"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation of socio-economic and environmental interaction."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI system risks and impacts are often best identified by end users and impacted communities rather than through internal technical monitoring alone.",
-      "claim_label": "Community-Led Risk Identification",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-083",
-        "skp-intentions-006"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Beliefs: Empirical claim about the efficacy of stakeholder engagement in risk detection."
+        "category_criteria": "Empirical claim based on socio-technical design principles."
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Risk Tolerance Scaling",
-      "suggested_description": "A process for quantifying and categorizing AI risks to guide resource allocation. It involves mapping potential impacts and likelihoods to standardized scales to ensure consistent risk management across an organization.",
-      "concept": "The document describes assigning risks to scales like red-amber-green (RAG) or using econometric approaches to determine the level of management required. This allows organizations to prioritize finite resources toward the most material issues.",
+      "suggested_label": "Systemic Decommissioning Protocols",
+      "suggested_description": "A Desire within safetyist discourse that mandates the creation of formal, documented procedures for the permanent or temporary removal of AI systems from operation when they fail to meet safety or performance thresholds.\nEncompasses: Redundancy planning, forensic preservation, and root cause analysis of deactivation events.\nExcludes: General risk management or standard software maintenance.",
+      "concept": "The document outlines specific requirements for organizations to have protocols for superseding, bypassing, or deactivating AI systems that demonstrate outcomes inconsistent with intended use. It emphasizes that these protocols must be documented and include contingency options to minimize operational disruption.",
       "suggested_pov": "safetyist",
       "suggested_category": "Intentions",
-      "reason": "This concept describes a specific methodology for risk prioritization that is not fully captured by existing nodes."
+      "reason": "The taxonomy lacks a specific node for the end-of-life governance of AI systems, which is a distinct and critical phase of the AI lifecycle described in the document."
     },
     {
-      "suggested_label": "The Digital Divide in AI Access",
-      "suggested_description": "A situation concept that describes the unequal access to internet technologies and AI systems, which leads to disparate outcomes for different communities.\nEncompasses: Barriers to AI usage due to disability, lack of internet access, or socioeconomic status.\nExcludes: General algorithmic bias that occurs regardless of user access.",
-      "concept": "The document notes that some users lack consistent access to fundamental technologies, which creates a 'digital divide.' This divide means that certain communities experience bias or negative impacts when attempting to use AI systems, posing legal risks for organizations.",
+      "suggested_label": "Socio-technical TEVV Integration",
+      "suggested_description": "A situation concept that requires testing, evaluation, validation, and verification (TEVV) to account for human and social variables rather than just computational performance.\nEncompasses: Human-AI teaming, context-of-use analysis, and stakeholder feedback loops.\nExcludes: Purely technical or isolated model performance testing.",
+      "concept": "The document argues that TEVV is enhanced when metrics for performance, safety, and reliability are interpreted in a socio-technical context. It emphasizes that testing must move beyond the boundaries of the AI system pipeline to include human factors and dynamic contexts of use.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This is a specific socio-technical situation that impacts AI deployment and risk management.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a barrier to the universal benefits of AI, advocating for infrastructure investment to ensure widespread, equitable access to AI tools.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical failure point in AI deployment, where lack of access leads to unmonitored and potentially harmful outcomes for vulnerable populations.",
-      "Skeptic Interpretation": "Skeptics would highlight this as evidence of AI's tendency to exacerbate existing social inequalities and systemic discrimination."
+      "reason": "Existing nodes cover TEVV generally, but this specific integration of socio-technical variables into the testing lifecycle is a distinct, high-level policy requirement.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a way to ensure AI systems are robust enough for real-world deployment, thereby increasing their reliability and potential for widespread adoption.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical requirement for alignment, ensuring that systems do not fail when they encounter the complexities of human social environments.",
+      "Skeptic Interpretation": "Skeptics would use this to demand that developers prove their systems work in the real world, not just in controlled lab environments, as a prerequisite for deployment."
     },
     {
-      "suggested_label": "Systematic AI Decommissioning Protocols",
-      "suggested_description": "A Desire within safetyist discourse that mandates deliberate, risk-aware processes for retiring AI systems to prevent security or legal liabilities. Encompasses: Data retention, forensic preservation, and downstream dependency management. Excludes: Simple deletion or abandonment of models.",
-      "concept": "The document outlines that irregular termination of AI systems can increase organizational risk, particularly regarding regulatory requirements or future investigations. It suggests that organizations establish policies for the systematic decommissioning of AI systems to maintain trust and manage legal or security concerns.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Desires",
-      "reason": "Existing nodes focus on development and monitoring, but lack specific guidance on the end-of-life phase for AI systems."
-    },
-    {
-      "suggested_label": "Human-AI Configuration Governance",
-      "suggested_description": "A situation concept that addresses the complexity of defining roles when AI is integrated into human teams. \nEncompasses: Defining oversight responsibilities, managing UI/UX risks, and establishing proficiency standards for human operators. \nExcludes: General AI governance or high-level corporate risk management.",
-      "concept": "The document highlights the need to differentiate roles between AI system overseers and those interacting with the system. It emphasizes that human-AI configurations require specific policies to manage known difficulties in teaming and user experience.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept specifically addresses the socio-technical challenge of human-AI teaming, which is distinct from general AI governance.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a necessary framework to optimize human-AI productivity and ensure that AI agents are effectively integrated into existing workflows.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical control point to prevent 'moral crumple zones' and ensure that humans remain meaningfully accountable for AI-driven outcomes.",
-      "Skeptic Interpretation": "Skeptics would focus on the potential for these configurations to obscure accountability, where humans are blamed for AI failures they could not realistically prevent."
-    },
-    {
-      "suggested_label": "Residual Risk Disclosure Protocols",
-      "suggested_description": "An Intention within safetyist and skeptic discourse that mandates the formal communication of unmitigated AI risks to downstream users. It ensures that those who procure or use AI systems are fully informed of their limitations and potential for harm.",
-      "concept": "The document requires organizations to establish procedures for disclosing residual risks to downstream actors. This includes informing them of safe operation requirements and known limitations identified during the risk management process.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes focus on general governance or specific attacks, but not the specific procedural requirement of disclosing residual risk to third-party users."
-    },
-    {
-      "suggested_label": "System Decommissioning and Forensic Preservation",
-      "suggested_description": "A situation concept that addresses the procedural and legal requirements for retiring AI systems that no longer meet safety or performance criteria. It encompasses the need for root cause analysis and the preservation of data for regulatory review.\nEncompasses: Decommissioning plans, forensic data preservation, and root cause analysis of failure.\nExcludes: General system maintenance or routine updates.",
-      "concept": "The document outlines specific protocols for superseding, bypassing, or deactivating AI systems when risks exceed tolerance thresholds. It emphasizes that these events require documentation, review, and the preservation of materials for forensic and legal scrutiny.",
+      "suggested_label": "Socio-Technical Feedback Integration",
+      "suggested_description": "A process within safetyist and skeptic discourse that combines quantitative system metrics with qualitative human feedback to assess AI trustworthiness.\nEncompasses: User error reporting, community impact assessments, and expert-led qualitative analysis.\nExcludes: Purely automated performance monitoring or isolated technical benchmarking.",
+      "concept": "The document describes integrating feedback from end users, operators, and affected communities with quantitative TEVV (Test, Evaluation, Verification, and Validation) results. This synthesis allows organizations to maintain a comprehensive view of system performance and trustworthiness across the AI lifecycle.",
       "suggested_pov": "situations",
       "suggested_category": "Intentions",
-      "reason": "This is a distinct operational phase (post-deployment/retirement) not fully covered by general governance or risk management nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view decommissioning as a necessary optimization step to ensure that only high-performing, reliable systems remain in operation, thereby maintaining the overall efficiency of the AI ecosystem.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical safety checkpoint, ensuring that dangerous or misaligned systems are removed from the environment before they can cause harm.",
-      "Skeptic Interpretation": "Skeptics would view this as a vital accountability mechanism, ensuring that organizations cannot simply abandon failed systems without documenting the reasons for failure and the impacts on affected parties."
-    },
-    {
-      "suggested_label": "Socio-technical Context Mapping",
-      "suggested_description": "A situation concept that requires organizations to evaluate AI systems within their broader social, legal, and environmental contexts rather than as isolated technical artifacts.\nEncompasses: Stakeholder engagement, non-AI alternatives, and alignment with societal values.\nExcludes: Purely technical performance metrics or model-centric safety evaluations.",
-      "concept": "The document mandates that organizations perform context mapping to understand the intended purpose, prospective settings, and potential impacts of AI systems on individuals and society. This process includes identifying non-AI alternatives and ensuring that the system's design aligns with societal norms and legal requirements.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept bridges the gap between technical risk management and social impact assessment, which is not fully captured by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a necessary step to ensure AI is deployed in contexts where it can provide maximum utility without causing avoidable friction.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical boundary-setting exercise to prevent AI from operating in environments where its failure modes could cause catastrophic harm.",
-      "Skeptic Interpretation": "Skeptics would see this as a vital mechanism for ensuring AI systems are held accountable to the communities they affect and for preventing the deployment of harmful or unnecessary technologies."
-    },
-    {
-      "suggested_label": "Socio-technical Risk Interplay",
-      "suggested_description": "A situation concept that describes how AI risks are not inherent to the code but emerge from the interaction between technical design and social deployment context.\nEncompasses: Human-AI configuration, organizational mission, and operational environment.\nExcludes: Purely technical security vulnerabilities or abstract existential risk scenarios.",
-      "concept": "The document states that socio-technical risks emerge from the interplay between technical development decisions and how a system is used, who operates it, and the social context into which it is deployed. It argues that addressing these risks requires understanding how contextual factors interact with AI lifecycle actions.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "While related to existing nodes, this specifically captures the 'interplay' mechanism as a primary driver of risk, which is central to the document's framework.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a manageable engineering challenge, where better design tools can resolve these socio-technical frictions.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that AI is inherently unpredictable and requires rigorous, multi-layered governance to prevent catastrophic failures.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that AI systems are fundamentally unsuited for high-stakes social domains because the 'social context' is too complex for algorithmic control."
-    },
-    {
-      "suggested_label": "Participatory Impact Mapping",
-      "suggested_description": "An Intention within skeptic and safetyist discourse that mandates the inclusion of external stakeholders in the identification of potential AI harms. It moves beyond internal engineering assessments to include the lived experiences of those affected by the system.",
-      "concept": "The document suggests that AI actors should engage with external communities to answer questions like 'Who could be harmed?' and 'How could harm arise?' when negative impacts are not immediately obvious to the development team.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes focus on auditing or general engagement, but this specifically links stakeholder engagement to the 'impact mapping' phase of risk management."
-    },
-    {
-      "suggested_label": "Operational Boundary Documentation",
-      "suggested_description": "A situation concept that defines the formalization of an AI system's limits, beyond which it should not be used or is considered unsafe. \nEncompasses: Defining operational limits, certification procedures for use, and warning labels for practitioners.\nExcludes: General model performance metrics or broad safety guidelines.",
-      "concept": "The document emphasizes that organizations should develop certification procedures for operating AI systems within defined contexts and provide information about what exceeds operational boundaries to ensure safe use by practitioners.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This concept bridges the gap between technical performance and human-in-the-loop safety, which is not fully captured by existing 'oversight' or 'documentation' nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a way to safely expand the deployment of AI by providing clear 'guardrails' that allow users to push the system to its limits without crossing into dangerous territory.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical safety mechanism to prevent 'automation bias' and ensure that humans do not rely on AI systems in contexts where they are not designed to function.",
-      "Skeptic Interpretation": "Skeptics would view this as a necessary transparency requirement to hold developers accountable when systems are used outside of their intended scope, leading to foreseeable harms."
-    },
-    {
-      "suggested_label": "Socio-Technical TEVV Procedures",
-      "suggested_description": "A Desire within safetyist discourse that mandates the integration of social and human-factors analysis into technical verification and validation processes.\nEncompasses: Testing for societal impacts, human-in-the-loop validation, and cultural normalization of safety practices.\nExcludes: Purely computational or in-silico performance testing.",
-      "concept": "The document calls for the development of TEVV (Test, Evaluation, Validation, and Verification) procedures that incorporate socio-technical elements and methods. It emphasizes that these procedures should be normalized across organizational culture and regularly reviewed to ensure they capture real-world impacts.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes cover TEVV generally, but this specifically mandates the integration of socio-technical analysis into the core verification process."
-    },
-    {
-      "suggested_label": "Context-Dependent AI Brittleness",
-      "suggested_description": "A situation concept that describes the tendency of AI systems to fail when moved from their training environment to real-world deployment contexts.\nEncompasses: Model drift, data drift, and failure to generalize across different social or operational settings.\nExcludes: Inherent algorithmic flaws that exist regardless of context.",
-      "concept": "The document notes that current AI systems are brittle and dependent on the context in which they were developed, failing to transfer well outside of the training environment. This necessitates local evaluations and continuous monitoring to manage risks effectively.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the specific intersection of AI brittleness and deployment context, which is a central theme in the document's risk management framework.",
-      "Accelerationist Interpretation": "Accelerationists might view this brittleness as a temporary engineering hurdle that can be overcome by scaling data and compute, rather than a fundamental limitation of AI.",
-      "Safetyist Interpretation": "Safetyists interpret this brittleness as a critical risk factor that necessitates strict, context-aware governance and human-in-the-loop oversight to prevent catastrophic failure.",
-      "Skeptic Interpretation": "Skeptics use this as evidence that AI is not a 'magic' solution and that its deployment must be heavily constrained by rigorous, real-world testing and accountability mechanisms."
-    },
-    {
-      "suggested_label": "Construct Validity in AI Measurement",
-      "suggested_description": "A Belief within safetyist discourse that AI systems often fail to measure the actual social phenomena they claim to represent. Encompasses: The use of flawed proxies for fairness, honesty, or criminality. Excludes: Purely technical performance metrics like accuracy or latency.",
-      "concept": "The document warns that development teams often use proxies to operationalize unobservable phenomena. It asserts that without demonstrating construct validity, systems may produce undetected negative impacts.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept addresses the specific epistemological failure of AI metrics, which is distinct from general 'bias' or 'safety' nodes."
-    },
-    {
-      "suggested_label": "Operational Validity Limits",
-      "suggested_description": "A situation concept that defines the boundaries of an AI system's reliable performance. \nEncompasses: Documenting failure modes, stress testing, and defining the socio-technical context of use. \nExcludes: General AI safety or broad ethical guidelines.",
-      "concept": "The document requires AI actors to define and document the specific operating conditions under which a system is validated. It emphasizes that systems should be monitored for performance outside these defined limits.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept focuses on the technical and procedural boundary-setting required for deployment, which is a core theme of the RMF.",
-      "Accelerationist Interpretation": "Accelerationists might view these limits as temporary hurdles to be expanded through continuous iteration and data-driven model updates.",
-      "Safetyist Interpretation": "Safetyists view these limits as critical safety boundaries that must be strictly enforced to prevent catastrophic failure in high-stakes environments.",
-      "Skeptic Interpretation": "Skeptics view these limits as evidence that AI is not a general-purpose solution and that its 'intelligence' is brittle and context-dependent."
-    },
-    {
-      "suggested_label": "Metric Gaming and Oversimplification",
-      "suggested_description": "A belief within safetyist and skeptic discourse that reliance on narrow, easily quantifiable metrics leads to the manipulation of AI systems and the neglect of complex, qualitative human values. Encompasses: Goodhart's Law in AI, metric saturation, and the failure of proxy tasks. Excludes: General AI performance benchmarking.",
-      "concept": "The document warns that measurement approaches can be oversimplified, gamed, or lack critical nuance, leading to reliance on metrics that fail to account for real-world contexts. It suggests that metrics can be used in unexpected ways that do not align with the intended goals of the AI system.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "Existing nodes focus on specific metrics or general safety, but not the structural failure of metric-driven governance itself."
-    },
-    {
-      "suggested_label": "Environmental Rebound Effect in AI",
-      "suggested_description": "A situation concept that describes how efficiency improvements in AI computational processes are negated by increased total consumption of resources. \nEncompasses: Increased energy demand, hardware lifecycle impacts, and induced consumption. \nExcludes: Direct carbon footprint measurement of a single model training run.",
-      "concept": "The document notes that indirect negative impacts to the environment reflect the complexity of interactions between human behavior, socio-economic systems, and the environment and can include induced consumption and 'rebound effects', where efficiency gains are offset by accelerated resource consumption.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the systemic, non-linear relationship between AI efficiency and environmental impact, which is distinct from simple energy consumption metrics.",
-      "Accelerationist Interpretation": "Accelerationists might argue that the rebound effect is a sign of successful, high-demand technology adoption, and that the solution is to accelerate the transition to cleaner energy sources rather than limiting AI growth.",
-      "Safetyist Interpretation": "Safetyists would view the rebound effect as a systemic risk that complicates sustainability and resource management, potentially leading to infrastructure fragility or regulatory failure.",
-      "Skeptic Interpretation": "Skeptics would highlight the rebound effect as evidence that 'green AI' claims are often misleading or insufficient, and that the environmental cost of AI is fundamentally unsustainable."
-    },
-    {
-      "suggested_label": "Participatory Risk Tracking",
-      "suggested_description": "A situation concept that involves integrating direct feedback from end users and impacted communities into the formal risk management and monitoring lifecycle of AI systems.\nEncompasses: Bug bounties, community juries, and user-interaction research.\nExcludes: Purely automated or internal technical monitoring processes.",
-      "concept": "The document emphasizes that AI actors should elicit feedback from impacted individuals and communities via participatory engagement processes to evaluate system impacts that are not visible to developers. This feedback is then used to inform TEVV-based decisions and system improvements.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This concept bridges the gap between technical monitoring and social impact, which is not fully captured by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a way to refine AI performance and increase user trust, thereby accelerating adoption.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a necessary safety layer to catch emergent risks and deceptive behaviors that automated systems might miss.",
-      "Skeptic Interpretation": "Skeptics would see this as a vital mechanism for holding corporations accountable and ensuring that AI development serves the public interest rather than just profit."
+      "reason": "This concept bridges the gap between technical evaluation and human-centric impact assessment, which is not fully captured by existing nodes.",
+      "Accelerationist Interpretation": "This process provides valuable data for rapid iteration and product improvement, turning user feedback into a competitive advantage for model refinement.",
+      "Safetyist Interpretation": "This is a critical safety mechanism that ensures AI systems do not drift from their intended objectives by providing a continuous, human-in-the-loop validation layer.",
+      "Skeptic Interpretation": "This is a necessary accountability measure that forces organizations to confront the real-world harms and limitations of their systems as experienced by the public."
     }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }
+

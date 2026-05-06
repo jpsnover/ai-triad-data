@@ -1,41 +1,155 @@
 {
   "doc_id": "incentive-aware-ai-regulations-credal-characterisation-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 720,
     "chunked": true,
     "chunk_count": 7
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "incentive-aware-ai-regulations-credal-characterisation-2026",
+    "measured_at": "2026-05-02T20:21:01.5738740-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 47085.0,
+        "out_units": "tokens_est",
+        "out_count": 47083.0,
+        "ratio": 1.0,
+        "flags": {
+          "chunk_count": 7
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3052.0,
+        "out_units": "nodes",
+        "out_count": 34.0,
+        "ratio": 0.0111,
+        "flags": {
+          "total_below_threshold": 28,
+          "avg_intentions": 6.0,
+          "min_nodes_selected": 11,
+          "max_nodes_selected": 64,
+          "chunk_count": 7,
+          "avg_desires": 2.0,
+          "avg_nodes_selected": 34.0,
+          "avg_beliefs": 3.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 214979.0,
+        "out_units": "items",
+        "out_count": 43.0,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 10,
+          "chunk_count": 7,
+          "total_points": 24,
+          "unmapped_concepts": 9,
+          "null_node_rate": 0.375
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 43.0,
+        "out_units": "items",
+        "out_count": 43.0,
+        "ratio": 1.0,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 9.0,
+        "out_units": "still_unmapped",
+        "out_count": 6.0,
+        "ratio": 0.6667,
+        "flags": {
+          "resolved_count": 3,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 6
+        }
+      }
+    ],
+    "cumulative_retention": 0.0111
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-056",
-          "category": "Intentions",
-          "point": "The document argues that regulators should move away from white-box access (inspecting weights and gradients) toward outcome-based regulation. This approach is framed as a way to foster innovation while maintaining safety, as it avoids the proprietary barriers that often prevent full model disclosure. By focusing on observable evidence distributions, the authors aim to create a mechanism that allows compliant providers to participate in the market without the burden of revealing trade secrets.",
-          "verbatim": "However, in practice, regulators must often regulate models with limited black-box access, as proprietary interests and trade secrets frequently preclude the disclosure of model architectures or training data (Pasquale, 2015; Raji et al., 2020). Therefore, some policymakers argue for an outcome-based approach to regulation (Brundage et al., 2018; Hadfield & Clark, 2023).",
-          "excerpt_context": "Section 1, paragraph 2"
+          "taxonomy_node_id": "acc-desires-003",
+          "category": "Desires",
+          "point": "The document advocates for outcome-based regulation as a mechanism to foster safe innovation by ensuring compliant providers can participate in the market. By formalizing regulation as a mechanism design problem, it seeks to create a framework where compliant models are rewarded, thereby encouraging market participation rather than stifling development. This aligns with the accelerationist goal of maintaining a healthy, competitive AI ecosystem while addressing safety concerns through structured incentives.",
+          "verbatim": "The goal of regulation is twofold: (1) preventing the deployment of unsafe models by making the non-compliant model providers self-exclude (e.g., those failing fairness or robustness standards) while simultaneously (2) fostering safe innovation by encouraging compliant model providers to participate in the market.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "market_participation",
+            "safe_innovation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-004",
-          "category": "Desires",
-          "point": "The document focuses on the mathematical characterization of 'obedient' AI regulations, which implies a desire for highly precise, formal, and adaptable governance mechanisms. By defining the set of all obedient regulations, the authors aim to create a framework where AI behavior can be strictly constrained while maintaining mathematical rigor. This aligns with accelerationist goals of creating robust, predictable, and high-performance AI systems that can operate within complex, incentive-aware environments.",
-          "verbatim": "Given a set marginally undesirable gambles G with respect to P0 and all desirable gambles D >= 0, we can characterise the set of all obedient regulations with respect to P0 as ?ob = {G + C} ? D.",
-          "excerpt_context": "Section 9.1, Proposition 9.1",
-          "_backfill": {
-            "previous_id": "acc-desires-007",
-            "similarity": 0.6652,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "acc-intentions-048",
+          "category": "Intentions",
+          "point": "The document advocates for replacing costly, exhaustive monitoring with incentive-compatible, outcome-focused regulation mechanisms. By using mathematical frameworks like testing-by-betting, regulators can verify model compliance through observable, falsifiable metrics rather than subjective process-based audits. This approach aligns with accelerationist goals of creating efficient, scalable governance that does not impede the rapid deployment of AI systems.",
+          "verbatim": "With practical regulation mechanisms the regulator can side step the need for perfect verification by relying on bets by model providers. This allows regulators to avoid costly, exhaustive monitoring in process-based regulations and achieve perfect market outcomes in an outcome-focused regulation setting.",
+          "excerpt_context": "Section 7, Conclusion",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "mechanism_design",
+            "testing_by_betting",
+            "incentive_compatible"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "sit-164",
+          "category": "Intentions",
+          "point": "The document treats safety regulation as a mechanism design problem, implying that safety infrastructure can be operationalized through rigorous, empirically-validated mathematical frameworks. By characterizing regulations as 'implementable' mechanisms that map to credal sets, it supports the accelerationist view that safety can be treated as a dynamic, quantifiable investment rather than a static regulatory barrier. This approach allows for precise, automated verification of model compliance.",
+          "verbatim": "We now show that the existence of an implementable regulation mechanism ? implies that P is Credal. Assumethereexistsanimplementable?. ByLemma8.3,thisimpliesP = P (?). ByClaims1and2,P (?)isalwaysconvexandclosed. Therefore,P mustbeacredalset.",
+          "excerpt_context": "Section 8, Proof of Theorem 3.5",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "mechanism_design",
+            "credal_set",
+            "implementable_regulation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document proposes a mechanism for AI regulation that uses betting strategies (test supermartingales) to ensure model compliance. By framing regulation as a 'fair game' between a forecaster and nature, it allows for the creation of implementable mechanisms that can test against implicit credal sets. This approach leverages mathematical rigor to enable safe deployment without stifling innovation through overly broad or vague constraints.",
+          "verbatim": "This allows martingales to be used in hypothesis testing, as a martingale M_n with respect to a distribution P at any step n would in expectation not be more than M_0. Therefore, we can treat the value of M_n to be the evidence against the null.",
+          "excerpt_context": "Section 13, paragraph 3",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "test_supermartingale",
+            "mechanism_design",
+            "credal_set"
+          ]
         }
       ]
     },
@@ -43,163 +157,184 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "saf-intentions-135",
           "category": "Intentions",
-          "point": "The authors propose a formal mechanism design framework to enforce AI safety requirements, treating regulation as a game between a regulator and a model provider. By using 'testing-by-betting' and credal sets, they aim to force providers to prove their model's safety by betting capital on it. This framework is designed to ensure that only compliant models gain market access, effectively creating a rigorous, mathematically grounded governance system.",
+          "point": "The document proposes a rigorous framework for AI regulation using mechanism design and imprecise probability to enforce safety requirements. It shifts the burden of proof onto model providers by requiring them to 'bet' their capital on their model's safety, effectively creating a certification system based on statistical evidence. This approach aims to manage risk in high-stakes domains where regulators lack full visibility into proprietary model architectures.",
           "verbatim": "In this work, we formalise this problem by casting AI regulation as a mechanism design problem under uncertainty. We propose regulation mechanisms which push the burden of proof on the providers. Instead of trying to prove 'This model is unsafe', the regulator now judges, 'Is the model provider willing to bet their own capital on the model's safety?'",
-          "excerpt_context": "Section 1, paragraph 3"
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "mechanism_design",
+            "imprecise_probability",
+            "testing_by_betting",
+            "burden_of_proof"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-038",
-          "category": "Beliefs",
-          "point": "The document asserts that information asymmetry is a fundamental challenge in AI regulation, as providers know significantly more about their models' pitfalls than regulators do. This asymmetry allows providers to act strategically to bypass safety standards. The authors argue that without a formal mechanism to account for this, regulators will be unable to prevent the deployment of unsafe models.",
-          "verbatim": "At the same time, model providers possess much more knowledge than regulators about model's abilities and pitfalls. This creates an information asymmetry between providers and regulators which can be exploited by the model providers (Casper et al., 2024; Li & Goel, 2025).",
-          "excerpt_context": "Section 1, paragraph 2"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-092",
+          "taxonomy_node_id": "saf-intentions-004",
           "category": "Intentions",
-          "point": "The authors define 'perfect market outcomes' as a state where non-compliant providers are forced to self-exclude while compliant ones are encouraged to participate. They prove that this is only possible if the set of non-compliant distributions forms a 'credal set' (a closed, convex set of probability measures). This provides a mathematical threshold for when a regulatory requirement is actually enforceable.",
-          "verbatim": "We prove that a mechanism has perfect market outcome if and only if the set of non-compliant distributions forms a credal set, i.e., a closed, convex set of probability measures. This result connects mechanism design and imprecise probability by establishing a duality between regulation mechanisms and the set of non-compliant distributions.",
-          "excerpt_context": "Abstract"
+          "point": "The authors suggest that regulators can use outcome-based mechanisms to audit models when white-box access is unavailable. By defining requirements as threshold constraints on metrics like fairness or robustness, regulators can implement oversight without needing access to proprietary weights or training data. This serves as a form of AI-assisted oversight where the mechanism itself acts as the auditor of the model's performance.",
+          "verbatim": "Therefore, some policymakers argue for an outcome-based approach to regulation. To enforce outcome-based regulations, regulators must determine if models fulfil regulations via finite-sample benchmarks, and thus face statistical uncertainty.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "outcome_based_regulation",
+            "statistical_uncertainty"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-051",
-          "category": "Intentions",
-          "point": "The document proposes a mechanism-design framework to enforce safety constraints on AI models by aligning the incentives of model providers with regulatory goals. By using 'testing-by-betting' and credal sets, the regulator can ensure that providers are incentivized to act in accordance with safety requirements even when the regulator lacks full information about the model's internal workings. This approach aims to mitigate the risks of strategic gaming by model providers who might otherwise exploit non-convex regulatory definitions.",
-          "verbatim": "Regulation mechanisms transform noisy, sample-based verification into incentive-compatible enforcement, enabling regulators to achieve perfect market outcomes.",
-          "excerpt_context": "Section 7, Conclusion",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6634,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-012",
+          "taxonomy_node_id": "saf-beliefs-004",
           "category": "Beliefs",
-          "point": "The document asserts that model providers often possess private information about their models that regulators cannot directly observe, creating an information asymmetry. This asymmetry allows providers to strategically game regulations if the regulatory requirements are not mathematically robust (e.g., using non-convex sets). The authors argue that by using credal sets and incentive-aware mechanisms, regulators can force providers to reveal their compliance status through their own betting behavior.",
+          "point": "The document acknowledges that model providers possess private information about their models that regulators cannot fully access, creating information asymmetry. It addresses this by designing mechanisms that force providers to reveal their true model performance through betting, effectively managing the risk that providers might otherwise hide misaligned behaviors or spurious feature reliance.",
           "verbatim": "In practice, while model providers still posses more information about their models than the regulators, they might also be uncertain about their types. This epistemic uncertainty fundamentally alters their strategic behaviour: an epistemically uncertain agent lacks the incentive to place degenerate bets that risk complete failure.",
           "excerpt_context": "Section 4, Paragraph 2",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4464,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "information_asymmetry",
+            "epistemic_uncertainty",
+            "strategic_gaming"
+          ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-004",
-          "category": "Intentions",
-          "point": "The document argues for using formal mechanism design to create 'implementable' regulations that precisely define the set of distributions a model is permitted to produce. By using the Hahn-Banach Separation Theorem, the authors demonstrate that any closed, convex set of distributions (a 'credal set') can be enforced through a collection of separating hyperplanes. This provides a rigorous mathematical framework for auditing and constraining AI behavior to ensure it stays within safety-compliant bounds.",
-          "verbatim": "We rely on the Hahn-Banach Separation Theorem (See Chapter 3 (Rudin,1991)),whichstatesthatanyclosedconvexsetistheintersectionofallclosedhalf-spaces containingit. Therefore,foreveryQ / P0,thereexistsacontinuouslinearfunctionalhQ C(Z) suchthat: supE P [hQ(Z)] C < E Q [hQ(Z)]",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The document seeks to establish rigorous, mathematical guarantees for model alignment by defining 'implementable' regulation mechanisms. It argues that for a regulation to be valid, the set of regulated distributions must match the target set of safe distributions exactly. This supports the safetyist desire for pre-deployment safety proofs that are mathematically sound and empirically verifiable.",
+          "verbatim": "In general the main idea of the proof is that we look at the set of distributions that are regulated by any regulation mechanism ? and then ask under what conditions are the regulated distributions exactlythedistributionsthatwewanttoregulatei.e. P = {P ? ?(Z|R(P) = 0}.",
           "excerpt_context": "Section 8, Proof of Theorem 3.5",
-          "_backfill": {
-            "previous_id": "saf-intentions-056",
-            "similarity": 0.5937,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "mathematical_guarantees",
+            "model_alignment",
+            "pre_deployment_safety"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document acknowledges the necessity of handling epistemic uncertainty and unknown distributions, which aligns with the safetyist belief that AI systems must be robust against out-of-distribution failures. By using credal sets to represent imprecise probabilities, the authors provide a framework for managing the high statistical uncertainty inherent in evaluating frontier AI models.",
+          "verbatim": "We also know that C ? R is a constant. And we defined the set P ? ?(Z) as: P (?) = P ? ?(Z) | supE [?(Z)] ? C",
+          "excerpt_context": "Section 8, Proof of Theorem 3.5",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "epistemic_uncertainty",
+            "imprecise_probability",
+            "robustness"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-desires-004",
           "category": "Desires",
-          "point": "The document establishes a formal mechanism for 'obedient' regulations, which serves as a mathematical guardrail for AI systems. By characterizing the set of all licenses that are obedient to a regulation, the authors provide a framework to ensure AI behavior remains within defined cost or safety constraints. This directly supports the safetyist desire to impose preventative limits on AI actions to prevent undesirable outcomes.",
-          "verbatim": "The set of obedient regulations is the intersection of half planes A for each P ? P0. Therefore, ?ob is closed if A is closed for every P as arbitrary intersections of closed sets is closed.",
-          "excerpt_context": "Section 9.3, Proposition 9.2"
+          "point": "The document prioritizes the formalization of 'obedient regulations' as a mechanism to ensure AI behavior remains within defined safety constraints. By characterizing the set of all obedient licenses, the authors aim to create a rigorous framework where AI actions are bounded by cost-based constraints (C) across all possible probability distributions (P). This aligns with safetyist goals of establishing verifiable, fail-safe boundaries for AI systems.",
+          "verbatim": "Given a set marginally undesirable gambles G with respect to P0 and all desirable gambles D >= 0, we can characterise the set of all obedient regulations with respect to P0 as ?ob = {G + C} ? D.",
+          "excerpt_context": "Section 9.1, Proposition 9.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "obedient_regulations",
+            "credal_set",
+            "mechanism_design"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-035",
+          "taxonomy_node_id": "saf-beliefs-004",
           "category": "Beliefs",
-          "point": "The document relies on the belief that AI behavior can be constrained by mathematical properties like quasi-convexity and lower semi-continuity. It asserts that if a regulation is implementable, it must satisfy specific mathematical conditions, acknowledging the inherent limits of control. This reflects the safetyist view that AI systems are subject to rigorous mathematical constraints that must be understood to ensure alignment.",
-          "verbatim": "Therefore r is quasi-convex. By the initial assumption, P? is a closed set for all ?. Since the sublevel sets of r are closed for all ?, r is lower semi-continuous by definition.",
-          "excerpt_context": "Section 4, Paragraph 2"
+          "point": "The document asserts that complex regulatory requirements can be mathematically characterized using credal sets (convex and closed sets of probability distributions). This approach acknowledges that human values or safety constraints cannot be reduced to a single point-estimate probability, but must instead account for imprecise probability distributions to avoid catastrophic failure in edge cases.",
+          "verbatim": "Assume that r is quasi-convex and lower semi-continuous. We must show that P? is a Credal Set for any arbitrary R.",
+          "excerpt_context": "Section 4, Paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "credal_set",
+            "imprecise_probability",
+            "quasi-convex"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-desires-010",
+          "taxonomy_node_id": "saf-desires-003",
           "category": "Desires",
-          "point": "The document supports the design of AI mechanisms that enforce compliance with legal constraints through mathematical proofs. By utilizing test supermartingales, the authors ensure that AI agents cannot violate predefined safety or legal thresholds without triggering measurable evidence against them. This aligns with the safetyist goal of embedding rigorous, verifiable compliance directly into the architecture of AI systems.",
-          "verbatim": "This condition implies that (M ) yields valid evidence against the entire set P . Although not part of the original definition, it is easy to verify that (M ) is a test supermatringale with respect to conv(P ), where conv(â•–) denotes the convex hull. Thus with the closure of the convex hull, the process (M ) tests against an implicit credal set conv(P ).",
-          "excerpt_context": "Section 13, paragraph 4"
+          "point": "The document supports the requirement for pre-deployment safety proofs by mathematically defining 'obedience' and 'feasibility' for AI agents. It mandates that agents must comply with specific constraints (null hypotheses) regarding their behavior, ensuring that the agent's output remains within defined safety bounds before it is granted a license to operate.",
+          "verbatim": "This inequality confirms that (?_n)_{n>=0} is a non-negative super-martingale with respect to any P in P_0. By the defining property of super-martingales, E_P[?_n] <= E_P[?_0] = C for all n in N. Consequently, the mechanism satisfies obedience.",
+          "excerpt_context": "Section 13.1, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "model_alignment",
+            "pre_deployment_safety_proofs",
+            "obedience_constraint"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
-          "category": "Intentions",
-          "point": "The authors propose using 'test supermartingales' as a formal mechanism to operationalize regulatory compliance. This approach treats AI behavior as a 'fair game' where the agent's actions are monitored against a set of probability measures, allowing regulators to detect non-compliance mathematically. This provides a rigorous framework for holding AI systems accountable to specific policy constraints.",
-          "verbatim": "This allows martingales to be used in hypothesis testing, as a martingale M with respect to a distribution P at any step n would in expectation not be more than M . Therefore, we can treat the value of M to be the evidence against the null.",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document acknowledges that AI models operate within complex, uncertain environments where the true distribution of outcomes is unknown (modeled as a 'credal set'). It asserts that because internal processes are opaque, regulators must rely on sequential testing of evidence against a composite null hypothesis rather than assuming perfect knowledge of the model's internal logic.",
+          "verbatim": "However, in many settings the null hypothesis is not a single distribution but a set of distributions P_0, often referred to as a composite null.",
           "excerpt_context": "Section 13, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5947,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "composite_null_hypothesis",
+            "credal_set",
+            "stochastic_process"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-087",
+          "taxonomy_node_id": "saf-desires-003",
           "category": "Desires",
-          "point": "The document advocates for regulation mechanisms that incentivize model providers to improve their models by aligning their incentives with the regulator's requirements. It proposes that a benevolent regulator should encourage evidence improvement, ensuring that model designers are not penalized for enhancing their models. This approach supports the broader safetyist goal of creating systems that are compliant with legal and safety-oriented requirements.",
-          "verbatim": "A benevolent regulator would also encourage improvement of the evidence from the model providers thus aligning their incentives.",
+          "point": "The document advocates for the implementation of rigorous, incentive-aware regulatory mechanisms that require model providers to submit statistical evidence of compliance. By formalizing 'improvement incentivising mechanisms,' the regulator aims to ensure that model designers are rewarded for reducing risks, such as reliance on spurious correlations. This approach seeks to align the economic incentives of private actors with safety objectives, effectively creating a market-based system for enforcing model compliance.",
+          "verbatim": "Ideally, from the perspective of the model designer who is presented with a regulation mechanism, they must not be penalised for improving upon their evidence. We call such a mechanism improvement incentivising from the perspective of the model provider. A benevolent regulator would also encourage improvement of the evidence from the model providers thus aligning their incentives.",
           "excerpt_context": "Section 14, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-desires-010",
-            "similarity": 0.6832,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "incentive_compatible",
+            "model_compliance",
+            "regulatory_mechanism"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-012",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document proposes using statistical hypothesis testing as a formal mechanism for AI regulation. By defining null and alternative hypotheses regarding model behavior (e.g., the use of sensitive attributes), regulators can create a licensing market that deters non-compliant agents. This method relies on quantifying evidence distributions to ensure that only models meeting specific safety or fairness criteria are approved.",
-          "verbatim": "Our regulation can be formulated statistical decision making problem via a composite hypothesis test as follows: H0 : P ? {Q ? ?(Z)s.t. R(Q) = 0} H1 : P ? {Q ? ?(Z)s.t. R(Q) = 1}",
+          "point": "The document proposes using statistical hypothesis testing as a formal framework for AI regulation. By defining null and alternative hypotheses regarding model behavior (e.g., use of sensitive attributes), regulators can create quantitative tests to determine if a model meets safety requirements. This method allows for the systematic rejection of non-compliant models based on empirical evidence.",
+          "verbatim": "Our regulation can be formulated statistical decision making problem via a composite hypothesis test as follows: H0 : P ∈ {Q ∈ P(Z) s.t. R(Q) = 0} H1 : P ∈ {Q ∈ P(Z) s.t. R(Q) = 1}",
           "excerpt_context": "Section 15, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-beliefs-082",
-            "similarity": 0.5947,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "hypothesis_testing",
+            "statistical_decision_making",
+            "model_compliance"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-004",
-          "category": "Intentions",
-          "point": "The document proposes using super-martingale test statistics to enforce fairness regulations on AI models. By defining an implicit credal set of acceptable model behaviors, regulators can create a mathematical framework that ensures model obedience to fairness constraints. This approach treats regulation as a mechanism design problem where the model's response is optimized against a formal, probabilistic standard.",
-          "verbatim": "We now show that our test statistic (cid:81)n is a test super-martingalefortheimplicitcredalsetdefinedbyourrequirements. ThenfromProposition4.3 wecanarguethattheregulationmechanism? willbeobedienttoregulation.",
-          "excerpt_context": "Section 16.2, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.494,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The authors acknowledge that current AI regulation faces significant non-technical challenges, including fragmented liability across the supply chain and jurisdictional issues. These factors, combined with market concentration and proprietary trade secrets, create substantial barriers to effective oversight. The document asserts that these systemic frictions make AI regulation inherently more difficult to formulate and easier to evade than traditional regulatory frameworks.",
-          "verbatim": "These legal, economic, organizational, and security frictions interact with the information asymmetry and statistical uncertainty,tomakeAIregulationboth harder toformulateandeasierforstakeholderstoevade thanconventionalregulations.",
+          "point": "The document asserts that AI regulation faces unique challenges due to the fragmented nature of liability across designers, suppliers, integrators, and deployers. This fragmentation complicates enforcement and accountability, as no single entity holds full responsibility for model risks. This aligns with safetyist concerns regarding the difficulty of governing complex, multi-stakeholder AI development pipelines.",
+          "verbatim": "One key issue is that the liability of AI model's risk is fragmented across model designers, data suppliers, integrators, and deployers, complicating enforcement.",
           "excerpt_context": "Section 17, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.7154,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "liability_fragmentation",
+            "enforcement_complexity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document identifies 'adversarial gaming' and 'benchmark overfitting' as critical threats that allow actors to satisfy narrow regulatory tests while retaining harmful capabilities. This suggests that current evaluation methods are insufficient to ensure safety, as models can be optimized to pass tests without actually being aligned or safe.",
+          "verbatim": "Dual-use capabilities, adversarial gaming, and benchmark overfitting lets actors satisfy narrow tests while retaining harmful capacity.",
+          "excerpt_context": "Section 17, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "adversarial_gaming",
+            "benchmark_overfitting",
+            "dual_use"
+          ]
         }
       ]
     },
@@ -207,387 +342,348 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-088",
+          "taxonomy_node_id": "skp-intentions-055",
           "category": "Intentions",
-          "point": "The document advocates for practical, evidence-based regulation that addresses real-world harms like bias and robustness failures. By focusing on 'outcome-based' metrics (such as accuracy or fairness) rather than abstract safety goals, the authors propose a pragmatic way to handle the statistical uncertainty inherent in black-box model evaluation.",
-          "verbatim": "To enforce outcome-based regulations, regulators must determine if models fulfil regulations via finite-sample benchmarks, and thus face statistical uncertainty (Jansen et al., 2024; Ren et al., 2024).",
-          "excerpt_context": "Section 1, paragraph 2",
-          "_backfill": {
-            "previous_id": "skp-intentions-055",
-            "similarity": 0.6169,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document acknowledges that model providers often exploit information asymmetry to evade regulations and lower development costs. By proposing a mechanism that forces providers to bet on their model's performance, the authors aim to mitigate strategic behavior and ensure that only models meeting specific safety standards enter the market. This pragmatic approach addresses the reality of corporate incentives in the AI industry.",
+          "verbatim": "While high-stakes ML applications demand strict regulations, strategic ML providers often evade them to lower development costs. At the same time, model providers possess much more knowledge than regulators about model's abilities and pitfalls. This creates an information asymmetry between providers and regulators which can be exploited by the model providers.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "information_asymmetry",
+            "strategic_behavior",
+            "regulatory_evasion"
+          ]
         },
         {
           "stance": "neutral",
-          "taxonomy_node_id": "skp-desires-003",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The authors acknowledge that model providers have a strong incentive to exploit information asymmetries to bypass regulations. They frame this as a strategic game where providers might attempt to 'game' the system, which the proposed mechanism design aims to neutralize by making non-compliance financially unattractive.",
-          "verbatim": "This creates an information asymmetry between providers and regulators which can be exploited by the model providers (Casper et al., 2024; Li & Goel, 2025).",
-          "excerpt_context": "Section 1, paragraph 2",
-          "_backfill": {
-            "previous_id": "skp-beliefs-029",
-            "similarity": 0.55,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "skp-intentions-010",
-          "category": "Beliefs",
-          "point": "The document acknowledges that AI models often rely on spurious features (e.g., background information) to make predictions, which can lead to biased or non-compliant behavior. It uses the Waterbirds dataset as an empirical example of how models trained via standard Empirical Risk Minimization (ERM) fail to generalize correctly compared to models trained with fairness-aware constraints like Group-DRO.",
-          "verbatim": "The training data is heavily biased: 95% of waterbirds appear on water backgrounds (spurious correlation). We compare two agents: (1) A Non-compliant Agent: A model trained using ERM which often relies on the background to make prediction. (2) A Compliant Agent: A model trained via Group-DRO which is less susceptible to the spurious features.",
+          "point": "The document identifies that AI models often rely on spurious features (e.g., background correlations) to make predictions, which can lead to unfair or non-compliant outcomes. It proposes that regulation must be robust enough to detect these behaviors, even when providers attempt to game the system by mixing evidence from multiple models.",
+          "verbatim": "The training data is heavily biased: 95% of waterbirds appear on water backgrounds (spurious correlation). We compare two agents: (1) A Non-compliant Agent: A model trained using ERM which often relies on the background to make prediction.",
           "excerpt_context": "Section 5.1, Paragraph 2",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5602,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "spurious_correlations",
+            "algorithmic_bias",
+            "model_compliance"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-086",
+          "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The document focuses on the technical and statistical challenges of AI regulation, specifically how to mathematically define and enforce compliance. By grounding regulation in mechanism design and imprecise probability, the authors aim to move beyond vague ethical guidelines toward concrete, auditable constraints on AI model outputs.",
-          "verbatim": "In general the main idea of the proof is that we look at the set of distributions that are regulated by any regulation mechanism ? and then ask under what conditions are the regulated distributions exactlythedistributionsthatwewanttoregulatei.e. P0 = {P ? ?(Z|R(P) = 0}.",
+          "point": "The document advocates for systematic, rigorous auditing of AI models through mathematical frameworks, which aligns with the skeptic's focus on evidence-based evaluation. By formalizing the relationship between regulation mechanisms and model behavior, it provides a path for creating standardized, auditable benchmarks that can be legally and technically enforced.",
+          "verbatim": "We now show the second part of the Proof of Theorem 3.5 which states that there exists an implementableregulationmechanism?forarequirementobtainedviathresholdingametricr if andonlyifthemetricisquasi-convexandlowersemi-conitnuous.",
           "excerpt_context": "Section 8, Proof of Theorem 3.5",
-          "_backfill": {
-            "previous_id": "skp-intentions-054",
-            "similarity": 0.6084,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_auditing",
+            "benchmarking",
+            "standardized_evaluation"
+          ]
         },
         {
           "stance": "neutral",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Intentions",
-          "point": "The document proposes a mechanism for 'incentive-aware' regulation, which attempts to align AI behavior with human-defined costs. Skeptics might view this as an attempt to quantify human values into rigid mathematical models, potentially ignoring the qualitative, social, or political harms that arise from AI deployment. The focus on 'cost' (C) as a proxy for safety or compliance may oversimplify the complex, measurable harms that skeptics prioritize.",
-          "verbatim": "sup E [?(Z)] ? C. The mixture ? is in ?.",
-          "excerpt_context": "Section 9.1, Claim 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6662,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "skp-beliefs-031",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document describes a mathematical framework for uniform enforcement of constraints across a set of probability distributions. While presented as a technical solution for compliance, it demonstrates how regulators could enforce broad, mathematically defined 'null hypotheses' on AI behavior, potentially removing human discretion in the enforcement process.",
-          "verbatim": "However, in many settings the null hypothesis is not a single distribution but a set of distributions P , often referred to as a composite null.",
-          "excerpt_context": "Section 13, paragraph 3"
+          "point": "The document treats AI behavior as a stochastic process that can be bounded by mathematical constraints. While this provides a framework for accountability, it assumes that 'compliance' can be fully captured by betting strategies and that the 'null hypothesis' (the set of prohibited behaviors) can be accurately defined and enforced by regulators.",
+          "verbatim": "The martingale represents a 'fair game' between a forecaster and the nature where the expected future value, given current information, equals the current value. Whereas super-martingales represent games that are unfavourable (or at best neutral) to the forecaster.",
+          "excerpt_context": "Section 13, paragraph 2",
+          "extraction_confidence": 0.7,
+          "vocabulary_terms": [
+            "stochastic_process",
+            "martingale",
+            "regulatory_compliance"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-005",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document acknowledges that standard statistical hypothesis tests often fail to account for the strategic behavior of model providers. It notes that if a regulator sets a public false positive rate, non-compliant providers will exploit this by submitting many borderline or bad models to maximize their cost-benefit calculus. This highlights a structural limitation where regulatory mechanisms can be gamed by actors seeking to bypass safety requirements.",
-          "verbatim": "With the knowledge of this false positive rate ?, strategic model providers are then incentivised to train and submit many borderline or bad models for which the true P , when it justifies their cost-benefit calculus.",
+          "point": "The document acknowledges that classical hypothesis testing for regulation can be gamed by strategic model providers. If the false positive rate of a regulatory test is public knowledge, non-compliant providers may submit many 'borderline' models to exploit the probability of passing the test, effectively undermining the regulation's intent. This highlights the inherent information asymmetry and strategic behavior in regulatory environments.",
+          "verbatim": "With the knowledge of this false positive rate α, strategic model providers are then incentivised to train and submit many borderline or bad models for which the true P, when it justifies their cost-benefit calculus. The α false positive rate ensures that α percent of these models will get through the regulation.",
           "excerpt_context": "Section 15, paragraph 2",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5005,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "strategic_behavior",
+            "information_asymmetry",
+            "regulatory_capture"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-005",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document identifies that market concentration among 'big-tech' providers creates political-economy pressures and risks of regulatory capture. This concentration of compute and data resources complicates the ability of regulators to enforce standards. Such power dynamics are viewed as a fundamental barrier to achieving equitable and transparent AI governance.",
-          "verbatim": "Market concentration of somelarge scaleservice providers also known as Ã´big-techÃ¶ in compute and data creates political-economy pressures and regulatory capture.",
+          "point": "The document highlights that market concentration among 'big-tech' providers creates significant political-economy pressures and risks of regulatory capture. This suggests that the current structure of the AI industry inherently undermines the effectiveness of regulation by allowing dominant firms to influence the rules governing them.",
+          "verbatim": "Market concentration of some large scale service providers also known as 'big-tech' in compute and data creates political-economy pressures and regulatory capture.",
           "excerpt_context": "Section 17, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.7327,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "regulatory_capture",
+            "market_concentration"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The authors note that certification and continuous audit requirements impose high fixed costs that disproportionately raise market-entry barriers. This suggests that while regulation aims to improve safety or fairness, it may inadvertently consolidate the market by favoring large incumbents who can afford the compliance costs. This creates a tension between the desire for rigorous oversight and the need for a competitive, diverse AI ecosystem.",
-          "verbatim": "Certificationandcontinuousaudit impose high fixed costs that raise market-entry barriers.",
+          "point": "The document notes that proprietary intellectual property and trade secrets directly conflict with the transparency and auditability required for effective AI oversight. This creates a structural barrier where the commercial interests of firms prevent the public or regulators from verifying the safety or fairness of AI systems.",
+          "verbatim": "There are no widely adopted technical standards or certification regimes; proprietary intellectual-property and trade secrets conflict with transparency and auditability.",
           "excerpt_context": "Section 17, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6736,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "transparency_tradeoff",
+            "auditability_barriers"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "A regulation mechanism can achieve a 'perfect market outcome' if and only if the set of non-compliant distributions forms a credal set (a closed, convex set of probability measures).",
-      "claim_label": "Credal Set Enforceability Theorem",
+      "claim": "A regulation mechanism achieves a perfect market outcome if and only if the set of non-compliant distributions forms a credal set, which is a closed, convex set of probability measures.",
+      "claim_label": "Credal Set Duality for Perfect Market Outcomes",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-092"
+        "sit-054"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "The claim is a mathematical proof derived from the duality between regulation mechanisms and imprecise probability sets."
+        "category_criteria": "Beliefs: Empirical claim derived from mathematical proof."
       },
       "claim_relations": []
     },
     {
-      "claim": "Non-convex regulatory definitions of prohibited AI behaviors are vulnerable to arbitrage by strategic model providers.",
+      "claim": "Threshold-based regulations achieve perfect market outcomes if and only if the regulatory requirement metric is quasi-convex and lower semi-continuous.",
+      "claim_label": "Conditions for Threshold-Based Regulation",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-135"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: Mathematical condition for mechanism design."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Non-convex sets of prohibited distributions are vulnerable to arbitrage by strategic agents who can mix evidence from bad models to bypass regulation.",
       "claim_label": "Non-convex Regulation Vulnerability",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim based on mathematical proof of convex hull properties."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "A regulation mechanism is implementable if and only if the set of regulated distributions forms a credal set (a closed, convex set of probability measures).",
+      "claim_label": "Implementability of Regulation Mechanisms",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-desires-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: empirical claim about mathematical properties of regulation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The set of obedient regulations is closed in the weak-topology on C(Z).",
+      "claim_label": "Closure of Obedient Regulations",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by simulation results in Figure 2a."
+        "category_criteria": "Empirical claim regarding mathematical properties of the defined regulatory set."
       },
       "claim_relations": []
     },
     {
-      "claim": "Model providers can be incentivized to reveal their compliance status by choosing licenses based on their private evidence distributions.",
-      "claim_label": "Incentive-Compatible Regulatory Mechanism",
+      "claim": "The set of obedient regulations is invariant up to the convex hull of the set of probability distributions P0.",
+      "claim_label": "Invariance to Convex Hull",
       "doc_position": "supports",
-      "temporal_scope": "predictive",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Theoretical framework derived from Theorem 3.7 and Proposition 4.1."
+        "category_criteria": "Mathematical proof of invariance property."
       },
       "claim_relations": []
     },
     {
-      "claim": "A regulation mechanism is implementable if and only if the set of regulated distributions is a credal set (a closed, convex set of probability measures).",
-      "claim_label": "Implementability of Credal Set Regulations",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        null
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "The claim is a mathematical theorem derived from the properties of convex sets and the Hahn-Banach Separation Theorem."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The set of obedient regulations is invariant up to the convex hull of the set of distributions P0.",
-      "claim_label": "Invariance of Obedient Regulations",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        null
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim about mathematical set properties."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "A process is a test supermartingale if it is non-negative, starts at 1, and its expected future value is non-increasing under any distribution in the null set.",
+      "claim": "A process (M_n) is a test supermartingale with respect to a class of distributions P_0 if it is non-negative, M_0 = 1, and for every distribution P in P_0, the expected future value is non-increasing.",
       "claim_label": "Definition of Test Supermartingale",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on mathematical definition"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Statistical hypothesis tests for regulation can be gamed by model providers if the false positive rate is public knowledge.",
-      "claim_label": "Regulatory Gaming via False Positives",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        null
+        "saf-desires-003"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on game-theoretic modeling of agent behavior under regulatory constraints."
+        "category_criteria": "empirical_claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The liability for AI model risk is fragmented across designers, suppliers, integrators, and deployers, which complicates enforcement.",
+      "claim": "The power of a statistical test for regulation is directly linked to the participation of non-null (compliant) agents in the market. If a test is too strict, the power drops below the cost-to-revenue ratio, causing compliant agents to exit the market entirely. Conversely, increasing the false positive rate can incentivize both non-compliant and compliant agents to participate.",
+      "claim_label": "Regulatory Test Power and Market Participation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.9,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical_observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The liability for AI model risks is distributed across multiple stakeholders, including designers, data suppliers, integrators, and deployers, which makes enforcement of regulations difficult.",
       "claim_label": "Fragmented AI Liability",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of current regulatory landscape."
+        "category_criteria": "Empirical observation regarding regulatory enforcement structures."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Market concentration in compute and data among large-scale service providers leads to political-economy pressures and regulatory capture.",
+      "claim_label": "Big Tech Regulatory Capture",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation regarding industry structure and governance."
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Regulation as Mechanism Design",
-      "suggested_description": "A framework that treats AI governance as a strategic game where regulators design rules to elicit truthful behavior from model providers. It uses economic mechanism design to ensure that safety requirements are met despite information asymmetry.",
-      "concept": "The document formalizes AI regulation by casting it as a mechanism design problem under uncertainty. It maps empirical evidence from models to a license for market share, effectively forcing providers to bet on their model's ability to fulfill regulatory requirements.",
+      "suggested_label": "Regulatory Mechanism Design via Credal Sets",
+      "suggested_description": "A situation concept that explores the mathematical conditions under which regulatory requirements can be enforced without strategic evasion.\nEncompasses: The use of credal sets to define non-compliant distributions and the application of testing-by-betting frameworks.\nExcludes: General policy discussions on AI ethics that lack formal mechanism design components.",
+      "concept": "The document establishes a formal duality between regulation mechanisms and the set of non-compliant distributions. It argues that if the set of non-compliant distributions is not a credal set, regulators will inevitably face internal inconsistencies, allowing providers to bypass regulations through mixture distributions.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept provides a novel mathematical foundation for AI governance that is not currently captured by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a tool to create objective, non-arbitrary regulatory standards that allow for innovation while preventing bad actors from gaming the system.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a rigorous method to enforce safety thresholds and prevent 'regulatory capture' or evasion by sophisticated model providers.",
+      "Skeptic Interpretation": "Skeptics might view this as a technical solution that ignores the underlying economic incentives of the 'subprime AI' market, potentially creating a false sense of security."
+    },
+    {
+      "suggested_label": "Incentive-Compatible Regulatory Betting",
+      "suggested_description": "A mechanism where regulators use betting frameworks to force model providers to reveal their true model performance under information asymmetry.\nEncompasses: Testing-by-betting, market entry fees, and license-based compliance.\nExcludes: Traditional process-based audits or subjective ethical reviews.",
+      "concept": "The document proposes that regulators can offer licenses to model providers based on their willingness to bet on their model's performance. By setting market entry fees and caps, the regulator creates an incentive structure where compliant models are rewarded and non-compliant models are forced to self-exclude.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "This concept represents a novel intersection of mechanism design and AI regulation not currently covered by existing nodes."
+    },
+    {
+      "suggested_label": "Credal Set Regulatory Enforcement",
+      "suggested_description": "A situation concept that defines regulatory boundaries using convex hulls of prohibited distributions to prevent strategic gaming.\nEncompasses: Convex regulation, credal sets, and robust hypothesis testing.\nExcludes: Naive discrete testing of individual prohibited distributions.",
+      "concept": "The document demonstrates that a regulator using a non-convex set of prohibited distributions is vulnerable to arbitrage. By using a credal set (a convex hull of distributions), the regulator can correctly identify strategic providers who mix evidence from bad models to appear compliant.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a specific technical situation regarding the mathematical structure of regulatory sets.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a robust, automated, and mathematically sound way to enforce safety without human-in-the-loop bottlenecks.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary technical safeguard to prevent misaligned models from 'gaming' their way into deployment.",
+      "Skeptic Interpretation": "Skeptics might view this as a sophisticated technical layer that could still be gamed if the underlying credal set is poorly defined or if the 'fairness' metrics are biased."
+    },
+    {
+      "suggested_label": "Credal Set Regulation Framework",
+      "suggested_description": "A Belief within safetyist discourse that regulation mechanisms should be defined as mappings between model output distributions and credal sets.\nEncompasses: Imprecise probability, convex sets of distributions, and formal verification of regulatory compliance.\nExcludes: Simple point-estimate thresholding or purely qualitative ethical guidelines.",
+      "concept": "The document proposes using credal sets to define the space of 'regulated distributions' for AI models. This allows regulators to account for epistemic uncertainty by defining a set of acceptable behaviors rather than a single point-estimate, ensuring that models remain within safe bounds even under distribution shift.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept provides a novel mathematical foundation for AI regulation that is not currently captured by existing nodes."
+    },
+    {
+      "suggested_label": "Improvement Incentivising Mechanism",
+      "suggested_description": "A regulatory framework that aligns model provider incentives with safety goals by ensuring that higher-quality evidence (e.g., lower risk) results in higher expected revenue for the agent.\nEncompasses: Monotonicity in evidence total order, incentive-compatible licensing functions.\nExcludes: Purely punitive regulatory regimes that lack positive reinforcement for model improvement.",
+      "concept": "The document defines an improvement incentivising mechanism as one where a designer who invests effort into improving their model and provides better evidence on average is guaranteed better expected revenue. This ensures that the licensing function encourages self-governance rather than just compliance.",
       "suggested_pov": "safetyist",
       "suggested_category": "Intentions",
-      "reason": "This is a novel application of mechanism design to AI policy that goes beyond standard 'safety' or 'skeptic' categories by providing a formal mathematical foundation for enforcement."
+      "reason": "This concept describes a specific mechanism design approach for AI regulation that is not currently captured in the taxonomy."
     },
     {
-      "suggested_label": "Regulatory Credal Consistency",
-      "suggested_description": "A situation concept that the internal consistency of a regulator's requirements depends on whether the set of non-compliant models is mathematically convex.\nEncompasses: Convexity of non-compliant distributions, avoidance of Dutch books in regulation, mathematical feasibility of safety rules.\nExcludes: General policy-making, political lobbying, or non-mathematical regulatory frameworks.",
-      "concept": "The document argues that if the set of non-compliant distributions is not a credal set, any mechanism chosen will either fail to prevent strategic behavior or inadvertently deny market access to compliant agents. This demonstrates an inherent inconsistency in the regulatory requirements themselves.",
+      "suggested_label": "Regulatory Testing Strategic Gaming",
+      "suggested_description": "A situation concept that describes the phenomenon where model providers exploit known regulatory test parameters to pass non-compliant models.\nEncompasses: Submission of borderline models, exploitation of false positive rates, strategic cost-benefit analysis by non-compliant agents.\nExcludes: Accidental non-compliance or technical failure to meet standards.",
+      "concept": "The document notes that when regulators use classical hypothesis tests with known false positive rates, strategic providers will submit many borderline models to exploit the test's failure rate. This creates a situation where the regulation itself incentivizes non-compliant behavior.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept bridges the gap between imprecise probability theory and regulatory policy, which is not covered by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists might interpret this as a tool to identify 'bad' regulations that are mathematically incoherent, potentially using it to argue against overly broad or poorly defined safety rules.",
-      "Safetyist Interpretation": "Safetyists would use this to demand that regulators provide rigorous, mathematically sound definitions of 'safety' to ensure that their rules are actually enforceable and not easily gamed.",
-      "Skeptic Interpretation": "Skeptics might view this as a way to hold regulators accountable, ensuring that their rules are not just arbitrary but are based on a consistent, provable framework that doesn't unfairly penalize compliant actors."
-    },
-    {
-      "suggested_label": "Incentive-Compatible Regulatory Enforcement",
-      "suggested_description": "A mechanism-design approach that aligns the financial or operational incentives of AI developers with regulatory safety constraints. It uses betting-based verification to ensure that providers self-select into compliant behaviors rather than gaming the system. This shifts the burden of proof from the regulator to the provider.",
-      "concept": "The document introduces a framework where regulators offer licenses to model providers based on their willingness to bet on the performance of their models. By setting appropriate market fees and caps, the regulator ensures that only compliant models can achieve a positive expected utility, effectively forcing providers to reveal their true model characteristics.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept represents a specific technical approach to AI governance that is not currently captured by existing nodes focused on general alignment or risk."
-    },
-    {
-      "suggested_label": "Credal Set Regulation",
-      "suggested_description": "A situation concept that defines regulatory boundaries using convex sets of probability distributions to prevent strategic gaming. \nEncompasses: Using convex hulls of prohibited distributions to ensure robustness against mixture-based arbitrage. \nExcludes: Simple threshold-based or non-convex regulatory constraints that allow providers to hide bad models within mixtures.",
-      "concept": "The document demonstrates that non-convex sets of prohibited distributions are vulnerable to strategic gaming. It proposes using the convex hull of these distributions (a credal set) to ensure that any mixture of bad models is also identified as non-compliant.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a foundational technical requirement for the proposed regulatory framework that functions as a situation-specific constraint.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a necessary technical hurdle to enable safe, high-speed deployment of AI systems by providing a rigorous, automated compliance layer.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical safeguard against 'performative compliance' where providers attempt to bypass safety checks through statistical manipulation.",
-      "Skeptic Interpretation": "Skeptics might view this as a complex, potentially opaque regulatory mechanism that could favor large, well-resourced firms capable of navigating sophisticated mathematical compliance requirements."
-    },
-    {
-      "suggested_label": "Mathematical Characterization of Regulatory Compliance",
-      "suggested_description": "A Belief within safetyist discourse that regulatory requirements can be formally mapped to specific sets of probability distributions. Encompasses: The use of thresholding rules and separating hyperplanes to define compliant AI behavior. Excludes: Qualitative or non-mathematical approaches to AI ethics.",
-      "concept": "The document defines a mechanism for regulation where a set of distributions is regulated if the expectation of a function under those distributions meets a specific constraint. It proves that for a regulation to be 'implementable' (i.e., to exactly match a desired set of distributions), that set must be a credal set.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept provides a formal, mathematical foundation for regulation that is not currently captured by existing nodes focused on policy or general auditing."
-    },
-    {
-      "suggested_label": "Thresholding Rules for AI Regulation",
-      "suggested_description": "A situation concept that defines the conditions under which a metric-based regulation is mathematically enforceable. Encompasses: Quasiconvexity and lower semi-continuity requirements for metrics. Excludes: Heuristic-based or non-rigorous auditing metrics.",
-      "concept": "The document states that a regulation mechanism obtained via thresholding a metric is implementable if and only if the metric is quasiconvex and lower semi-continuous. This establishes a strict requirement for the types of metrics that can be used for formal AI regulation.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific technical constraint on the design of regulatory mechanisms that is distinct from general auditing.",
-      "Accelerationist Interpretation": "Accelerationists might view these strict mathematical requirements as a barrier to rapid deployment, potentially favoring simpler, less restrictive metrics that allow for faster iteration.",
-      "Safetyist Interpretation": "Safetyists would interpret these requirements as necessary rigor, ensuring that regulations are not just aspirational but mathematically sound and enforceable.",
-      "Skeptic Interpretation": "Skeptics might argue that these complex mathematical requirements are inaccessible to most stakeholders, potentially centralizing power in the hands of those with the technical expertise to design such mechanisms."
-    },
-    {
-      "suggested_label": "Mathematical Obedience in AI Regulation",
-      "suggested_description": "A Belief within safetyist discourse that AI compliance can be formally defined as a set of obedient licenses satisfying specific cost-based constraints. Encompasses: The use of Credal Sets and quasi-convex functions to bound AI behavior. Excludes: Qualitative or social approaches to AI governance.",
-      "concept": "The document defines 'obedient regulations' as a set of licenses that satisfy specific expectation constraints relative to a set of distributions. This formalizes the relationship between a regulator's cost threshold and an AI's operational output.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept provides a specific mathematical framework for AI alignment that is not currently captured by existing nodes."
-    },
-    {
-      "suggested_label": "Mathematical Enforcement of Regulatory Compliance",
-      "suggested_description": "A mechanism within safetyist discourse that uses stochastic processes to enforce legal constraints on AI agents. Encompasses: The use of martingales and supermartingales to create verifiable evidence of non-compliance. Excludes: Qualitative or human-in-the-loop oversight mechanisms.",
-      "concept": "The document defines a mechanism where an AI's license to operate is treated as a wealth process that evolves based on compliance with constraints. If the agent deviates from the null hypothesis (the legal constraint), the process acts as a test supermartingale, providing mathematical evidence of the violation.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept describes a specific technical strategy for AI governance that is not currently captured by existing nodes."
-    },
-    {
-      "suggested_label": "Implicit Credal Set Regulation",
-      "suggested_description": "A situation concept that describes the use of imprecise probability sets to define regulatory boundaries for AI. \nEncompasses: The use of convex hulls of probability measures to define the 'null' space for AI behavior.\nExcludes: Deterministic or single-point probability regulatory models.",
-      "concept": "The authors demonstrate that by using test supermartingales, regulators can test AI behavior against an 'implicit credal set' (the convex hull of a set of distributions). This allows for regulation that accounts for uncertainty in the AI's environment or type.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a novel situation concept regarding how regulators can handle uncertainty in AI behavior.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a way to allow AI to operate within a 'safe' range of uncertainty without stifling innovation through overly rigid, single-point constraints.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a robust method to ensure AI remains within safe bounds even when the exact probability distribution of its environment is unknown.",
-      "Skeptic Interpretation": "Skeptics might worry that 'implicit credal sets' are opaque to the public and could be manipulated by regulators to enforce arbitrary standards under the guise of mathematical rigor."
-    },
-    {
-      "suggested_label": "Incentive-Compatible Regulatory Licensing",
-      "suggested_description": "An Intention within safetyist discourse that designs regulatory licensing functions to be 'improvement incentivising,' ensuring that model designers who invest effort into better models receive higher expected revenue. This aligns the designer's profit motive with the regulator's safety or performance standards.",
-      "concept": "The document defines an 'Improvement Incentivising Mechanism' where the licensing function ensures that models providing better evidence on average yield better expected revenue for the agent. This mechanism encourages self-governance by ensuring that monotonicity in the evidence total order is sufficient to incentivize model improvement.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept describes a specific mechanism-design approach to regulation that is not currently captured by existing nodes."
-    },
-    {
-      "suggested_label": "Strategic Market Participation under Regulation",
-      "suggested_description": "A situation concept that describes how model providers decide whether to enter a regulated market based on the regulator's test power and the cost of compliance.\nEncompasses: The trade-off between market entry fees, the probability of passing a regulatory test, and the expected utility of submitting compliant versus non-compliant models.\nExcludes: General market dynamics not related to regulatory testing or compliance.",
-      "concept": "The document models the strategic reaction of agents to regulation, showing that null agents (non-compliant) participate when the gamble has net positive expected utility, while non-null agents (compliant) may be deterred if the test is too strict. This creates a dynamic where the regulator's choice of false positive rate dictates the composition of the market.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the complex interaction between regulatory design and agent behavior, which is a central theme of the document.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a barrier to entry that stifles innovation, arguing that overly strict regulation forces even high-quality models out of the market.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a tool for 'market shaping,' where the regulator can tune parameters to ensure only safe, compliant models survive while deterring bad actors.",
-      "Skeptic Interpretation": "Skeptics would highlight this as evidence that regulation is inherently prone to gaming, where providers will always find ways to exploit the statistical thresholds set by regulators."
-    },
-    {
-      "suggested_label": "Regulatory Evasion via Statistical Gaming",
-      "suggested_description": "A Belief within safetyist discourse that AI models can be engineered to satisfy narrow, formal regulatory tests while retaining harmful capabilities. This phenomenon is exacerbated by test-time adaptation and the lack of robust defenses against adversarial gaming.",
-      "concept": "The document highlights that dual-use capabilities and benchmark overfitting allow actors to satisfy narrow tests while retaining harmful capacity. These threats are further exacerbated by test-time adaptation of AI models and the lack of strong defenses for these cases.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "Captures the specific intersection of adversarial machine learning and regulatory compliance failure."
-    },
-    {
-      "suggested_label": "Regulatory Compliance Market Exclusion",
-      "suggested_description": "A situation concept that occurs when rigid regulatory thresholds cause compliant but marginally performing agents to be excluded from the market.\nEncompasses: Small-margin compliance failures, market exit of smaller players, and unintended consequences of strict fairness thresholds.\nExcludes: Intentional regulatory capture or malicious evasion strategies.",
-      "concept": "The document notes that because certain estimators are not unbiased, compliant agents who satisfy requirements by a very small margin may be driven to self-exclude from the market.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "Describes a specific unintended consequence of applying probabilistic thresholds to market participants.",
-      "Accelerationist Interpretation": "This concept highlights how overly rigid regulations can stifle innovation by forcing smaller, potentially beneficial players out of the market due to minor statistical variances.",
-      "Safetyist Interpretation": "This demonstrates the necessity of precise, robust statistical thresholds to ensure that only truly compliant models remain, even if it results in market consolidation.",
-      "Skeptic Interpretation": "This illustrates how technical regulatory requirements can act as a barrier to entry, favoring large incumbents and reducing market diversity."
+      "reason": "This captures the specific strategic interaction between regulators and providers in a testing context.",
+      "Accelerationist Interpretation": "Accelerationists might view this as evidence that rigid, top-down regulatory testing is inherently flawed and prone to failure, suggesting that open-source or market-driven approaches are more resilient.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical failure of simple testing protocols, necessitating more complex, incentive-aware, or 'adversarial' testing frameworks to ensure true alignment.",
+      "Skeptic Interpretation": "Skeptics would see this as proof that corporations will always prioritize profit over safety, and that regulatory mechanisms are easily subverted by those with the resources to game the system."
     }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
+    "Schema: pov_summaries.safetyist.key_points missing or not an array",
+    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }
+

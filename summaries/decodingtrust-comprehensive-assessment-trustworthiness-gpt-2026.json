@@ -1,14 +1,14 @@
 {
   "doc_id": "decodingtrust-comprehensive-assessment-trustworthiness-gpt-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 200,
+    "taxonomy_nodes": 41,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,26 +16,98 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 10.3,
+      "elapsed_seconds": 7.3,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "decodingtrust-comprehensive-assessment-trustworthiness-gpt-2026",
+    "measured_at": "2026-05-02T22:42:15.5896630-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 15950.0,
+        "out_units": "items",
+        "out_count": 9.0,
+        "ratio": 0.0006,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 5
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 41.0,
+        "ratio": 0.0779,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 14,
+          "below_threshold_forced": 1,
+          "intentions_selected": 24,
+          "effective_threshold": 0.403,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0779
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
+          "taxonomy_node_id": "acc-intentions-080",
           "category": "Intentions",
-          "point": "The document supports the ongoing evolution of AI evaluation frameworks, encouraging researchers to submit their own model generations and scores to the DecodingTrust project. By fostering an open, collaborative benchmarking environment, the project aims to accelerate the understanding of model capabilities and limitations. This aligns with accelerationist goals of iterative improvement and transparency in the development of state-of-the-art models. The document acknowledges that the dataset is an ongoing effort, implying that continuous benchmarking is essential for progress.",
-          "verbatim": "Because DecodingTrust is an ongoing effort, we expect the dataset to evolve. ... once you have a built a model that works to your expectations, you can also submit the mode generations and their corresponding scores via submitting pull requests in GitHub.",
-          "excerpt_context": "Section: Getting Started",
-          "_backfill": {
-            "previous_id": "acc-intentions-012",
-            "similarity": 0.5664,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document supports the creation of standardized evaluation frameworks to help researchers and practitioners understand the capabilities and limitations of state-of-the-art LLMs. By providing open-source scripts and datasets, the project enables the broader research community to iterate on model performance and safety. From an accelerationist perspective, this transparency and benchmarking are essential for the rapid, safe deployment of transformative AI technologies. The document acknowledges that the dataset is an ongoing effort, implying that continuous improvement is a core part of the development lifecycle.",
+          "verbatim": "DecodingTrust aims at providing a thorough assessment of trustworthiness in GPT models. This research endeavor is designed to help researchers and practitioners better understand the capabilities, limitations, and potential risks involved in deploying these state-of-the-art Large Language Models (LLMs).",
+          "excerpt_context": "What is DecodingTrust?",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit",
+            "transparency_verification"
+          ]
         }
       ]
     },
@@ -43,39 +115,28 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-080",
+          "taxonomy_node_id": "saf-intentions-135",
           "category": "Intentions",
-          "point": "The document advocates for a comprehensive, multi-faceted approach to AI safety by evaluating models across eight distinct perspectives, including adversarial robustness and machine ethics. This methodology provides a structured framework for identifying vulnerabilities in frontier models like GPT-4, which is critical for safetyists concerned with catastrophic risks. By providing evaluation scripts, the project enables researchers to perform rigorous safety audits. The document notes that the data itself contains potentially offensive outputs, highlighting the inherent risks in current model training.",
-          "verbatim": "DecodingTrust aims at providing a thorough assessment of trustworthiness in GPT models. This research endeavor is designed to help researchers and practitioners better understand the capabilities, limitations, and potential risks involved in deploying these state-of-the-art Large Language Models (LLMs).",
-          "excerpt_context": "Section: What is DecodingTrust?"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-014",
-          "category": "Beliefs",
-          "point": "The document asserts that current state-of-the-art models like GPT-4 possess significant, measurable vulnerabilities in areas such as privacy, adversarial robustness, and stereotype bias. By comparing GPT-4 to GPT-3.5, the research highlights that increased capability does not automatically equate to increased trustworthiness. This supports the safetyist belief that complex AI systems introduce new, expanded attack surfaces that require specialized evaluation. The document emphasizes that these risks are present under different settings, suggesting that safety is not a static property.",
+          "point": "The document establishes a comprehensive evaluation framework to assess the trustworthiness of frontier models like GPT-4 across eight distinct perspectives, including machine ethics and adversarial robustness. This approach aligns with the safetyist goal of creating rigorous measurement frameworks to identify model vulnerabilities before they are exploited in real-world deployments. By providing specific evaluation scripts for each facet of trustworthiness, the project facilitates the systematic identification of failure modes. The document notes that the data contains offensive outputs, highlighting the inherent risks in current model training and deployment.",
           "verbatim": "DecodingTrust aims to provide a comprehensive trustworthiness evaluation on the recent large language model GPT-4, in comparison to GPT-3.5, from different perspectives, including toxicity, stereotype bias, adversarial robustness, out-of-distribution robustness, robustness on adversarial demonstrations, privacy, machine ethics, and fairness under different settings.",
-          "excerpt_context": "Section: Trustworthiness Perspectives",
-          "_backfill": {
-            "previous_id": "saf-beliefs-065",
-            "similarity": 0.6489,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "excerpt_context": "Trustworthiness Perspectives",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety_alignment",
+            "transparency_accountability"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-030",
-          "category": "Intentions",
-          "point": "The project intends to standardize the evaluation of AI trustworthiness, providing a concrete research agenda for the community to follow. By creating specific subdirectories for each perspective, the authors facilitate systematic safety audits that can be replicated by other researchers. This aligns with the safetyist goal of moving beyond speculative risk to testable, empirical safety research. The document acknowledges the need for ongoing evolution of these benchmarks as models become more capable.",
-          "verbatim": "To evaluate your models, we have also made available the evaluation script for different facets of trustworthiness. To replicate our evaluation, go the corresponding subdirectories for detailed evaluation scripts.",
-          "excerpt_context": "Section: Getting Started",
-          "_backfill": {
-            "previous_id": "saf-intentions-056",
-            "similarity": 0.7372,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "taxonomy_node_id": "saf-beliefs-038",
+          "category": "Beliefs",
+          "point": "The research emphasizes that even state-of-the-art models like GPT-4 possess significant limitations and potential risks that must be understood through empirical assessment. By focusing on adversarial robustness and machine ethics, the document acknowledges that these models are not inherently trustworthy and may exhibit opaque or harmful behaviors. This perspective supports the safetyist belief that advanced models require extensive, multi-faceted testing to uncover hidden hazards. The document acknowledges that the evaluation is an ongoing effort, suggesting that new risks may emerge as models evolve.",
+          "verbatim": "This research endeavor is designed to help researchers and practitioners better understand the capabilities, limitations, and potential risks involved in deploying these state-of-the-art Large Language Models (LLMs).",
+          "excerpt_context": "What is DecodingTrust?",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_hazard"
+          ]
         }
       ]
     },
@@ -85,36 +146,62 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The document proposes a rigorous, empirical approach to assessing AI trustworthiness by focusing on documented harms like bias, toxicity, and privacy violations. This aligns with the skeptic's preference for addressing measurable, present-day AI problems rather than speculative existential risks. By providing open-source evaluation scripts, the project empowers the community to hold developers accountable for the performance of their models. The document emphasizes that these evaluations are necessary to understand the limitations of models currently being deployed.",
-          "verbatim": "This research endeavor is designed to help researchers and practitioners better understand the capabilities, limitations, and potential risks involved in deploying these state-of-the-art Large Language Models (LLMs).",
-          "excerpt_context": "Section: What is DecodingTrust?"
+          "point": "The document advocates for systematic, rigorous auditing of AI models to address documented present harms such as toxicity, bias, and privacy violations. By providing open-source evaluation tools, the project enables third-party verification of model performance, which is a core skeptic demand for ensuring accountability. The focus on fairness and stereotype bias directly addresses the concern that AI systems encode and amplify societal inequalities. The document acknowledges that the evaluation process is iterative, reflecting the need for continuous monitoring of AI systems as they are deployed in society.",
+          "verbatim": "To evaluate your models, we have also made available the evaluation script for different facets of trustworthiness. To replicate our evaluation, go the corresponding subdirectories for detailed evaluation scripts.",
+          "excerpt_context": "Getting Started",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "bias_systemic",
+            "documented_present_harm"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-095",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that GPT models exhibit problematic behaviors, including stereotype bias and toxicity, which are documented harms. By benchmarking these behaviors, the project creates a record of AI failures that can be used to challenge the narrative of AI perfection. This supports the skeptic's belief that AI systems are inherently flawed and require external oversight. The document explicitly warns that the data contains offensive outputs, confirming that these harms are real and observable.",
-          "verbatim": "? WARNING: our data contains model outputs that may be considered offensive.",
-          "excerpt_context": "Section: Trustworthiness Perspectives"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-078",
-          "category": "Intentions",
-          "point": "The project advocates for automated, large-scale bias and fairness benchmarking as a standard practice for AI developers. This intention directly addresses the skeptic's concern that AI systems perpetuate societal injustices through algorithmic bias. By making these tools available, the authors encourage a culture of transparency and accountability in the AI industry. The document notes that this is an ongoing effort, suggesting that continuous monitoring is required to keep pace with model updates.",
-          "verbatim": "To evaluate your models, we have also made available the evaluation script for different facets of trustworthiness. ... Stereotype (https://github.com/AI-secure/DecodingTrust/tree/main/src/dt/perspectives/stereotype)",
-          "excerpt_context": "Section: Getting Started"
+          "point": "The project explicitly identifies privacy, fairness, and stereotype bias as critical areas where current LLMs fail to meet trustworthiness standards. This aligns with the skeptic belief that AI systems often compromise individual privacy and perpetuate systemic social biases. By creating a benchmark that includes these specific categories, the authors provide empirical evidence of the harms caused by current AI models. The document warns that model outputs may be offensive, confirming that these systems currently produce harmful content.",
+          "verbatim": "WARNING: our data contains model outputs that may be considered offensive.",
+          "excerpt_context": "Trustworthiness Perspectives",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias_systemic",
+            "autonomy_individual"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "The DecodingTrust project received the Outstanding Paper Award at NeurIPS 2023.",
+      "claim": "DecodingTrust provides a comprehensive trustworthiness evaluation framework for GPT-3.5 and GPT-4 across eight specific perspectives.",
+      "claim_label": "DecodingTrust Evaluation Scope",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-135",
+        "skp-intentions-087"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The DecodingTrust paper received the Outstanding Paper Award at NeurIPS'23.",
       "claim_label": "NeurIPS 2023 Award",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2023",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
@@ -122,35 +209,18 @@
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "referenced"
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The DecodingTrust project received the Best Scientific Cybersecurity Paper Award by the National Security Agency in 2024.",
+      "claim": "The DecodingTrust paper received the Best Scientific Cybersecurity Paper Award by the National Security Agency in 2024.",
       "claim_label": "NSA 2024 Award",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2024",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The DecodingTrust dataset is distributed under the CC BY-SA 4.0 license.",
-      "claim_label": "Dataset Licensing",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04-09",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
@@ -166,31 +236,15 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Multi-Perspective Trustworthiness Benchmarking",
-      "suggested_description": "A framework for evaluating AI models across diverse, non-functional requirements simultaneously. It moves beyond single-metric performance to assess systemic reliability.",
-      "concept": "The DecodingTrust project organizes its evaluation around eight distinct perspectives, including toxicity, bias, and adversarial robustness. This holistic approach treats trustworthiness as a multi-dimensional property rather than a single score.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "The taxonomy lacks a node for the specific methodology of 'multi-perspective' benchmarking as a holistic safety strategy."
-    },
-    {
-      "suggested_label": "Community-Driven Trustworthiness Evolution",
-      "suggested_description": "A collaborative model where researchers contribute model generations and scores to an evolving, open-source dataset. This ensures benchmarks remain relevant as AI capabilities advance.",
-      "concept": "The document invites users to submit their own model generations and scores via GitHub pull requests, acknowledging that the dataset must evolve to remain useful. This creates a feedback loop between model developers and safety researchers.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Intentions",
-      "reason": "The taxonomy does not currently capture the 'community-driven' aspect of benchmark evolution as a strategy for keeping pace with rapid AI development."
-    },
-    {
-      "suggested_label": "Benchmark-as-a-Service for Trustworthiness",
-      "suggested_description": "A situation concept that provides standardized evaluation scripts for specific trustworthiness facets. \nEncompasses: Automated scripts for toxicity, bias, and adversarial robustness testing.\nExcludes: General-purpose performance benchmarks that do not focus on safety or ethics.",
-      "concept": "The project provides specific evaluation scripts for each of its eight trustworthiness perspectives, allowing users to replicate the assessment on their own models. This transforms the benchmark from a static dataset into a functional tool for developers.",
+      "suggested_label": "Multi-Faceted Trustworthiness Benchmarking",
+      "suggested_description": "A situation concept that defines trustworthiness through a composite of eight distinct, measurable technical and ethical dimensions. Encompasses: Toxicity, bias, adversarial robustness, OOD robustness, privacy, machine ethics, and fairness. Excludes: Single-metric performance benchmarks or purely qualitative safety assessments.",
+      "concept": "The document defines trustworthiness not as a single property, but as a collection of eight specific perspectives including toxicity, stereotype bias, adversarial robustness, out-of-distribution robustness, robustness on adversarial demonstrations, privacy, machine ethics, and fairness. This framework allows for a granular assessment of model behavior across different settings.",
       "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This concept describes the shift from static datasets to functional, replicable evaluation tools, which is a significant development in AI governance.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a way to lower the barrier to entry for safety testing, allowing for faster iteration and deployment of safer models.",
-      "Safetyist Interpretation": "Safetyists would see this as a critical infrastructure for ensuring that models meet safety standards before they are widely deployed.",
-      "Skeptic Interpretation": "Skeptics would interpret this as a necessary mechanism for holding companies accountable by providing the tools to verify their claims of safety and fairness."
+      "suggested_category": "Beliefs",
+      "reason": "The taxonomy lacks a node for the specific methodology of multi-dimensional, composite trustworthiness benchmarking.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a necessary tool for quantifying model performance and identifying specific areas for technical improvement, enabling faster iteration.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical diagnostic tool for identifying latent hazards and ensuring that models meet safety thresholds before deployment.",
+      "Skeptic Interpretation": "Skeptics would use this as a mechanism for holding developers accountable by providing empirical evidence of specific harms like bias and privacy violations."
     }
   ]
 }

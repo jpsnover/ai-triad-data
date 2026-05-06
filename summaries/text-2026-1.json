@@ -1,69 +1,124 @@
 {
   "doc_id": "text-2026-1",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-11T20:49:48Z",
+  "taxonomy_version": "3.3.0",
+  "generated_at": "2026-05-02T19:12:10Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite-preview",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "full",
-    "taxonomy_nodes": 0,
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 3,
-      "iterations": 2,
+      "api_calls": 1,
+      "iterations": 0,
       "claims_total": 8,
-      "claims_confident": 6,
-      "claims_iterated": 2,
-      "elapsed_seconds": 23.1,
+      "claims_confident": 8,
+      "claims_iterated": 0,
+      "elapsed_seconds": 10.6,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "text-2026-1",
+    "measured_at": "2026-05-02T19:38:34.8518160-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.3333,
+        "flags": {
+          "resolved_count": 2,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 54375.0,
+        "out_units": "items",
+        "out_count": 15.0,
+        "ratio": 0.0003,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "used_fire": 1,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "density_floor_hit": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 8,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 526.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.076,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 24,
+          "below_threshold_forced": 0,
+          "intentions_selected": 12,
+          "effective_threshold": 0.4341,
+          "above_threshold": 40,
+          "top_k": 40,
+          "desires_selected": 4
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.076
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-069",
-          "category": "Beliefs",
-          "point": "The document asserts that AI-related investment is a primary driver of global economic resilience, specifically noting that technology investment added 0.3 percentage points to US GDP growth in 2025. This empirical observation supports the accelerationist view that AI is already delivering measurable productivity and economic benefits. The document acknowledges that this momentum is currently concentrated in North America and Asia, suggesting that the benefits are not yet globally uniform. It frames this investment as a critical tailwind offsetting broader economic headwinds.",
-          "verbatim": "Growth in the United States accelerated to 4.3 percent, with a pickup in technology investment and expenditure estimated to add about 0.3 percentage point to average annualized GDP growth in the first three quarters of 2025.",
-          "excerpt_context": "Page 2, Momentum Is Uneven",
-          "_backfill": {
-            "previous_id": "acc-beliefs-003",
-            "similarity": 0.7292,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-069",
-          "category": "Desires",
-          "point": "The document identifies rapid AI adoption as a key upside risk that could transform into sustainable growth if it translates into strong productivity gains. It explicitly models a scenario where AI-related investment lifts global growth by up to 0.3 percentage points in 2026 and significantly more in the medium term. This aligns with the accelerationist desire for AI to serve as a catalyst for long-term economic expansion. The document notes that realizing these gains depends on AI readiness and complementary policies.",
-          "verbatim": "On the upside, activity could be further lifted by AI-related investment and eventually transform into sustainable growth if faster AI adoption translates into strong productivity gains and increased business dynamism.",
+          "taxonomy_node_id": "acc-intentions-066",
+          "category": "Intentions",
+          "point": "The document frames AI-driven investment as a critical tailwind for the global economy, acting as a positive supply shock that offsets headwinds from trade policy. By boosting productivity and business dynamism, this investment is expected to support sustainable growth. From an accelerationist perspective, this validates the view that AI is a primary engine for economic resilience and prosperity. The document notes that this momentum is currently more pronounced in North America and Asia, suggesting a competitive advantage for regions that adopt AI rapidly.",
+          "verbatim": "Headwinds from shifting trade policies are offset by tailwinds from surging investment related to technology, including artificial intelligence (AI), more so in North America and Asia than in other regions, as well as fiscal and monetary support, broadly accommodative financial conditions, and adaptability of the private sector.",
           "excerpt_context": "Page 1, Global Economy: Steady amid Divergent Forces",
-          "_backfill": {
-            "previous_id": "acc-desires-013",
-            "similarity": 0.7241,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-desires-001",
-          "category": "Intentions",
-          "point": "The document advocates for structural reforms to harness technological progress, including digital transformation and AI adoption, to accelerate productivity. It argues that these efforts are the most effective strategy for resolving macroeconomic dilemmas and lifting growth potential. From an accelerationist perspective, this validates the focus on AI as a primary engine for civilizational advancement. The document emphasizes that these reforms should be aligned with global economic rebalancing.",
-          "verbatim": "Moreover, harnessing technological progress—through digital transformation, AI adoption, and investment in renewables and energy-efficient systems, among other possibilities—can accelerate productivity gains and expand growth potential.",
-          "excerpt_context": "Page 9, Policies Can Foster Stability and Sustainable Growth",
-          "_backfill": {
-            "previous_id": "acc-intentions-055",
-            "similarity": 0.7107,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "category": "Desires",
+          "point": "The document identifies the potential for rapid AI adoption to significantly improve productivity and boost medium-term growth prospects. It suggests that if AI readiness is scaled globally, it could lift global growth by up to 0.3 percentage points in 2026. This aligns with the accelerationist desire to use AI to solve macro-scale growth bottlenecks. The document emphasizes that these benefits are contingent on complementary policies, such as relaxing power supply constraints and managing workforce transitions.",
+          "verbatim": "On the upside, rapid adoption of AI, possibly facilitated by the ongoing surge in AI-related investment in both hard and soft infrastructure, could significantly improve productivity and boost medium-term growth prospects sooner rather than later.",
+          "excerpt_context": "Page 7, Narrow Base of Drivers Makes Growth Vulnerable",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
         }
       ]
     },
@@ -71,45 +126,27 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-033",
+          "taxonomy_node_id": "saf-beliefs-064",
           "category": "Beliefs",
-          "point": "The document warns that if AI-driven productivity gains disappoint, it could trigger an abrupt financial market correction, spreading from AI-linked companies to the broader economy. This empirical risk assessment highlights the systemic fragility introduced by over-reliance on AI-driven growth models. From a safetyist perspective, this confirms that AI integration creates new, unpredictable attack surfaces for global financial stability. The document notes that this risk is highly uncertain and depends on market reactions.",
+          "point": "The document warns that if expectations regarding AI-driven productivity gains are overly optimistic, it could trigger a sharp drop in investment and a prolonged stock market correction. This risk is exacerbated by the fact that stock valuations have been lifted by only a few technology firms. From a safetyist perspective, this highlights the systemic instability caused by rapid, breakthrough AI capability improvements and the potential for market-wide contagion. The document notes that such a correction would erode household wealth and weigh on private consumption.",
           "verbatim": "Should expectations about AI-driven productivity gains turn out to be overly optimistic and outcomes disappoint, a sharp drop in real investment in the high-tech sector as well as in spending on AI adoption in other sectors and a more prolonged correction in stock market valuations—which have increasingly been lifted by only a few technology firms—could ensue.",
           "excerpt_context": "Page 6, Narrow Base of Drivers Makes Growth Vulnerable",
-          "_backfill": {
-            "previous_id": "saf-beliefs-081",
-            "similarity": 0.6555,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "capabilities_hazard"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-010",
+          "taxonomy_node_id": "saf-beliefs-056",
           "category": "Beliefs",
-          "point": "The document identifies 'circular investment and procurement arrangements' among large AI players as a source of opacity and concentration risk. It notes that firms are investing in each other while securing future orders, making valuations harder to assess. This aligns with safetyist concerns about the lack of transparency in AI supply chains and the potential for systemic gaming. The document suggests this practice obscures the true health of the AI sector.",
-          "verbatim": "In addition, circular investment and procurement arrangements, in which firms invest in each other while securing future orders, among large AI players create opacity and concentration risk. These practices make ownership structures and valuations harder to assess.",
-          "excerpt_context": "Page 11, Box 1. GLOBAL FINANCIAL STABILITY UPDATE",
-          "_backfill": {
-            "previous_id": "saf-beliefs-026",
-            "similarity": 0.6874,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-111",
-          "category": "Intentions",
-          "point": "The document calls for strong prudential oversight to preserve financial stability in the face of AI-driven asset valuation fragilities. It suggests that expanded use of scenario analysis is necessary to enhance policymaking during periods of sustained uncertainty. This reflects the safetyist intention to implement rigorous monitoring and risk management frameworks for AI-integrated systems. The document emphasizes the need for contingency plans to ensure resilience.",
-          "verbatim": "With heightened uncertainty and fragilities in asset valuations, strong prudential oversight is needed to preserve financial stability. In periods of sustained uncertainty such as the current one, expanded use of scenario analysis can enhance macroeconomic policymaking.",
-          "excerpt_context": "Page 9, Policies Can Foster Stability and Sustainable Growth",
-          "_backfill": {
-            "previous_id": "saf-intentions-045",
-            "similarity": 0.7044,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document highlights the risk of rapid obsolescence of assets and the costly reallocation of capital and labor, which could lead to a decline in business dynamism. This reflects the safetyist concern regarding the disruptive societal and human costs of AI. The document acknowledges that these negative wealth effects would weigh on the broader economy, creating a feedback loop of instability. It emphasizes that the impact on growth is highly uncertain and depends on financial market reactions.",
+          "verbatim": "The rapid obsolescence of unused or misaligned assets, costly reallocation of capital and labor accompanied by a decline in business dynamism, and negative wealth effects would weigh on private consumption and investment.",
+          "excerpt_context": "Page 6, Narrow Base of Drivers Makes Growth Vulnerable",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_hazard"
+          ]
         }
       ]
     },
@@ -117,33 +154,27 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-028",
+          "taxonomy_node_id": "skp-beliefs-030",
           "category": "Beliefs",
-          "point": "The document highlights that AI-linked stock valuations have been lifted by only a few technology firms, creating a divergence from the rest of the market. This empirical observation supports the skeptic view that AI benefits are concentrated and potentially decoupled from broader economic health. The document warns that this narrow base of drivers makes global growth vulnerable to sectoral shocks. It suggests that the 'Magnificent 7' companies do not represent the entire AI landscape.",
-          "verbatim": "Stock prices of major technology companies pulled further apart from prices of other stocks (Figure 2).",
-          "excerpt_context": "Page 3, Momentum Is Uneven"
+          "point": "The document identifies opacity and concentration risk among large AI players due to circular investment and procurement arrangements. These practices make ownership structures and valuations difficult to assess, raising concerns about the sustainability of AI business models. From a skeptic perspective, this supports the 'subprime AI' thesis, where firms rely on opaque financial structures to justify lofty valuations. The document notes that rising reliance on debt financing in the AI sector adds further vulnerability.",
+          "verbatim": "In addition, circular investment and procurement arrangements, in which firms invest in each other while securing future orders, among large AI players create opacity and concentration risk. These practices make ownership structures and valuations harder to assess.",
+          "excerpt_context": "Page 11, Box 1. Global Financial Stability Update",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-044",
-          "category": "Intentions",
-          "point": "The document argues that industrial policies, including those related to AI, must be precisely targeted to address specific market failures and clearly defined externalities, and be subject to periodic cost-benefit analyses. This aligns with the skeptic intention to demand accountability and evidence-based governance for technology-driven interventions. The document warns that broad-based subsidies can be both costly and disruptive. It emphasizes the need to avoid inefficient resource allocation.",
-          "verbatim": "To avoid inefficient resource allocation, particularly given increasingly tighter fiscal constraints, industrial policies must be precisely targeted to address specific market failures and clearly defined externalities and be subject to periodic cost-benefit analyses.",
-          "excerpt_context": "Page 8, Policies Can Foster Stability and Sustainable Growth"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-001",
+          "taxonomy_node_id": "skp-beliefs-042",
           "category": "Beliefs",
-          "point": "The document notes that the rapid obsolescence of unused or misaligned assets, combined with the costly reallocation of capital and labor, could lead to a decline in business dynamism. This empirical concern reflects the skeptic view that AI-driven automation may cause significant labor market friction and economic disruption. The document suggests that these negative wealth effects would weigh on private consumption and investment. It highlights the potential for AI to exacerbate existing economic fragilities.",
-          "verbatim": "The rapid obsolescence of unused or misaligned assets, costly reallocation of capital and labor accompanied by a decline in business dynamism, and negative wealth effects would weigh on private consumption and investment.",
-          "excerpt_context": "Page 6, Narrow Base of Drivers Makes Growth Vulnerable",
-          "_backfill": {
-            "previous_id": "skp-beliefs-044",
-            "similarity": 0.6973,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document notes that while AI-related investment is surging, it is not evenly distributed, with the euro area benefiting less than other regions. This uneven adoption supports the skeptic view that AI's impact on the workforce and economy is multifaceted and geographically concentrated. The document suggests that structural headwinds in the euro area, such as energy price persistence, are not being offset by the same technology-driven investment boost seen in the United States. This highlights the uneven nature of technological diffusion.",
+          "verbatim": "Compared with other regions, the euro area benefits less from the recent technology-driven investment boost.",
+          "excerpt_context": "Page 4, Growth and Inflation Outlooks Diverge",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "bias_systemic"
+          ]
         }
       ]
     }
@@ -155,42 +186,28 @@
       "doc_position": "supports",
       "temporal_scope": "predictive",
       "temporal_bound": "2026-2027",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-018"
+        "acc-intentions-066"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: statistical_implicit"
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Global headline inflation is expected to decline from an estimated 4.1 percent in 2025 to 3.8 percent in 2026 and further to 3.4 percent in 2027.",
-      "claim_label": "Global Inflation Forecast",
-      "doc_position": "supports",
-      "temporal_scope": "predictive",
-      "temporal_bound": "2025-2027",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-018"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": "evidence_level: statistical_implicit"
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "US effective tariff rate is 18.5 percent, compared with 18.7 percent in the October forecast.",
+      "claim": "The US effective tariff rate underlying the projections is 18.5 percent.",
       "claim_label": "US Effective Tariff Rate",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-01",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-046"
@@ -199,7 +216,30 @@
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Global sovereign debt is projected to exceed 100 percent of GDP by the decade's end.",
+      "claim_label": "Global Sovereign Debt Projection",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": "2030",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
@@ -208,118 +248,115 @@
       "claim_label": "US GDP Growth 2025",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "2025-01-01 to 2025-09-30",
+      "temporal_bound": "2025-09",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-003"
+        "acc-intentions-066"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Global public debt is projected to reach 100 percent of global GDP by the end of the decade.",
-      "claim_label": "Global Sovereign Debt Projection",
+      "claim": "Japan's economy contracted by 2.3 percent in the third quarter of 2025.",
+      "claim_label": "Japan GDP Contraction",
       "doc_position": "supports",
-      "temporal_scope": "predictive",
-      "temporal_bound": "2030",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025-09",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-041"
+        "skp-beliefs-042"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
-        "internally_consistent": true
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
-      "fire_confidence": 0.95
+      "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The Magnificent 7 equity benchmark is composed of Apple, Microsoft, Amazon, Alphabet, Tesla, Nvidia, and Meta.",
+      "claim": "Global headline inflation is expected to decline from 4.1 percent in 2025 to 3.8 percent in 2026.",
+      "claim_label": "Global Inflation Forecast",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-066"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Magnificent 7 equity benchmark includes Apple, Microsoft, Amazon, Alphabet, Tesla, Nvidia, and Meta.",
       "claim_label": "Magnificent 7 Composition",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-01",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-028"
+        "skp-beliefs-030"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Global oil prices are projected to decline due to a combination of sluggish demand growth and robust increases in supply.",
-      "claim_label": "Oil Price Forecast",
+      "claim": "Under a scenario presented in the October 2025 WEO, global growth declines by 0.4 percent in 2026 following a correction in AI stock valuations.",
+      "claim_label": "AI Market Correction Impact",
       "doc_position": "supports",
       "temporal_scope": "predictive",
       "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-018"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true
-      },
-      "fire_confidence": 0.95
-    },
-    {
-      "claim": "Growth in India is revised upward by 0.7 percentage point to 7.3 percent for 2025.",
-      "claim_label": "India GDP Growth Revision",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2025",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-beliefs-018"
+        "saf-beliefs-064"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "evidence_level: direct_empirical"
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
       },
       "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Circular AI Investment Opacity",
-      "suggested_description": "A Safetyist intention that addresses the systemic risk of firms investing in each other to inflate valuations.\nEncompasses: Cross-firm procurement, artificial revenue acceleration, and valuation obfuscation.\nExcludes: Standard venture capital or M&A activity.",
-      "concept": "The document identifies circular investment and procurement arrangements among large AI players as a source of opacity and concentration risk. It notes that these practices make ownership structures and valuations harder to assess, creating a potential systemic vulnerability.",
+      "suggested_label": "Fiscal Dominance Risk",
+      "suggested_description": "A Belief within safetyist discourse that warns of the danger when fiscal policy constraints force central banks to prioritize government debt sustainability over price stability. Encompasses: Moral hazard, central bank independence erosion, and market functioning issues. Excludes: Standard monetary policy adjustments or fiscal stimulus.",
+      "concept": "The document warns that elevated public debt levels and reliance on price-sensitive investors may necessitate repeated liquidity backstops by central banks, potentially generating financial dominance concerns and eroding central bank independence.",
       "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This concept describes a specific, novel financial mechanism for AI-sector risk that is not covered by existing taxonomy nodes."
-    },
-    {
-      "suggested_label": "AI-Driven Productivity Disappointment Risk",
-      "suggested_description": "A Situation concept that describes the potential for AI investment to fail to yield expected economic gains.\nEncompasses: Asset obsolescence, capital reallocation costs, and market corrections.\nExcludes: General economic recession or standard business cycle downturns.",
-      "concept": "The document warns that if expectations about AI-driven productivity gains turn out to be overly optimistic, it could trigger a sharp drop in investment and a prolonged correction in stock market valuations.",
-      "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific economic risk of AI-hype-driven market failure, which is a central theme of the document's risk assessment.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a temporary market correction that does not invalidate the long-term transformative potential of AI.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical indicator of systemic fragility and the need for better oversight of AI-driven financial markets.",
-      "Skeptic Interpretation": "Skeptics would see this as evidence that AI is currently overhyped and that the economic benefits are being artificially inflated by a few dominant firms."
-    },
-    {
-      "suggested_label": "Fiscal Dominance and Moral Hazard",
-      "suggested_description": "A Skeptic intention that addresses the risk of central banks providing liquidity to backstop AI-driven market failures.\nEncompasses: Moral hazard, financial dominance, and central bank liquidity provision.\nExcludes: Standard monetary policy interventions.",
-      "concept": "The document notes that increased reliance on price-sensitive investors heightens dislocation risks and may necessitate repeated provision of liquidity backstops by central banks, possibly generating moral hazard and financial dominance concerns.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "This concept addresses the specific intersection of AI-sector financial instability and central bank policy, which is a distinct regulatory concern.",
-      "resolved_node_id": "skp-intentions-099"
+      "reason": "While fiscal policy is mentioned, the specific concept of 'financial dominance' as a threat to central bank independence is a distinct institutional risk."
     }
   ]
 }
