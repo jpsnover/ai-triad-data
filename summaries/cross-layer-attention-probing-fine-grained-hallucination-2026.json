@@ -1,0 +1,259 @@
+{
+  "doc_id": "cross-layer-attention-probing-fine-grained-hallucination-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:09:33Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 43,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 2,
+      "claims_iterated": 0,
+      "elapsed_seconds": 10,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "cross-layer-attention-probing-fine-grained-hallucination-2026",
+    "measured_at": "2026-05-16T08:28:18.0637010-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 3,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 3,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 72584,
+        "out_units": "items",
+        "out_count": 11,
+        "ratio": 0.0002,
+        "flags": {
+          "null_node_rate": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 2,
+          "unmapped_concepts": 3,
+          "used_fire": 1,
+          "dedup_claims_removed": 0,
+          "density_floor_hit": 0,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 588,
+        "out_units": "nodes",
+        "out_count": 43,
+        "ratio": 0.0731,
+        "flags": {
+          "desires_selected": 3,
+          "beliefs_selected": 22,
+          "below_threshold_forced": 3,
+          "above_threshold": 40,
+          "intentions_selected": 18,
+          "effective_threshold": 0.2976,
+          "top_k": 40,
+          "threshold_floor": 0.2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 3,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 3,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0731
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-090",
+          "category": "Intentions",
+          "point": "The document proposes a 'detect-then-mitigate' strategy using CLAP to improve LLM reliability, focusing on procedural detection of hallucinations rather than content-level truth adjudication. By using an attention mechanism over the residual stream, the method identifies hallucinated responses as a procedural failure of the model's internal state. This approach aligns with accelerationist goals by providing a scalable, technical solution to reliability concerns that avoids restrictive, content-based censorship. The document notes that this method is agnostic to the specific LLM architecture, supporting broad deployment.",
+          "verbatim": "This allows us to propose a detect-then-mitigate strategy using CLAP to reduce hallucinations and improve LLM reliability compared to direct mitigation approaches.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit",
+            "safety_empirical"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-015",
+          "category": "Beliefs",
+          "point": "The document asserts that the residual stream of transformer models contains discriminative information about hallucination that can be extracted via cross-layer attention. By treating layer activations as a sequence, the model can learn to attend to specific layers that are most relevant for detecting factual errors. This belief supports the accelerationist view that model internals are inspectable and that performance can be improved through better architectural utilization rather than just scaling data. The document acknowledges that the specific role of each layer remains a subject for future investigation.",
+          "verbatim": "We hypothesise that the contribution of activations at different layers to hallucination detection varies for different tasks. To extract the most relevant information across layers, our method constructs a sequence of tokens by considering the activations at each LLM layer as an input token, and employs an attention mechanism over the sequence input.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "transparency_verification"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-032",
+          "category": "Intentions",
+          "point": "The document advocates for using the full residual stream of an LLM to detect hallucinations, arguing that individual layer probes are insufficient for comprehensive behavior monitoring. By processing activations across all layers, the proposed CLAP method aims to provide a more robust oversight mechanism for model outputs. This aligns with safetyist goals of increasing transparency into model decision-making processes to prevent the spread of misinformation. The document notes that this method is particularly effective for fine-grained detection among sampled responses.",
+          "verbatim": "While prior work on activation probing has focused on individual layers, in this work we introduce Cross-Layer Attention Probing (CLAP), a fundamentally different approach that utilises the full residual stream (i.e. activations from all LLM layers) to probe model behaviour more comprehensively.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "governance_oversight",
+            "transparency_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document demonstrates that CLAP maintains high reliability even when applied out-of-distribution, addressing the safety concern that models often fail when deployed in novel environments. By attending to different layers, the probe generalizes better than single-layer methods, which are prone to domain-specific performance degradation. This is critical for safety, as it ensures that hallucination detection remains functional even when the model encounters data outside its training distribution. The document acknowledges that while CLAP improves generalizability, it is still tested on a limited set of tasks.",
+          "verbatim": "Finally, we show that CLAP maintains high reliability even when applied out-of-distribution.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety_alignment"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-064",
+          "category": "Beliefs",
+          "point": "The document highlights the 'jagged' nature of LLM performance, noting that even within the same prompt, sampled responses can vary significantly in factual accuracy. This variability necessitates fine-grained detection methods like CLAP to distinguish between hallucinated and non-hallucinated outputs. From a skeptic perspective, this confirms that LLMs do not possess a stable, coherent understanding of facts, but rather generate probabilistic outputs that require constant external validation. The document notes that this variability is a primary driver of the need for better detection tools.",
+          "verbatim": "Next, we build on the observation that different responses sampled for a given prompt can vary, with some being hallucinated and others not.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-053",
+          "category": "Intentions",
+          "point": "The document acknowledges the limitations of existing uncertainty estimation methods, which rely on output probabilities and often fail to identify hallucinations in long sequences. By proposing an activation-based probe, the authors aim to move beyond these 'naive' approaches to provide more reliable detection. This aligns with the skeptic view that current LLM evaluation metrics are insufficient and that we need more rigorous, internal-state-based auditing to understand model behavior. The document notes that these methods are necessary because black-box prompting is often restricted to larger, more expensive models.",
+          "verbatim": "Overall, current uncertainty estimates, by relying purely on the output probabilities, remain naive approaches to hallucination detection.",
+          "excerpt_context": "Section 2.2, Uncertainty estimation",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "CLAP improves hallucination detection performance by up to 1.5% on TQA with Alpaca-7B and Gemma-2B compared to baselines.",
+      "claim_label": "CLAP Performance Gain",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-090"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "CLAP with 128 projection dimension and 2 encoder layers has only 15K parameters for a 2B parameter LLM.",
+      "claim_label": "CLAP Parameter Efficiency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-090"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Residual Stream Activation Probing",
+      "suggested_description": "A technique that utilizes the full sequence of activations across all transformer layers as a joint input for classification tasks. Encompasses: Cross-layer attention mechanisms, residual stream processing, and layer-wise activation sequences. Excludes: Single-layer probing or black-box output probability analysis.",
+      "concept": "The document introduces CLAP, which processes the entire residual stream of an LLM as a joint sequence of tokens to detect hallucinations. This method treats the activations at each layer as an input token, allowing the model to learn patterns across the entire depth of the network.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "This is a specific technical methodology for model introspection that is not covered by existing nodes.",
+      "resolved_node_id": "acc-intentions-097"
+    },
+    {
+      "suggested_label": "Detect-then-Mitigate Reliability Strategy",
+      "suggested_description": "A two-stage pipeline for improving LLM reliability that first classifies a response as hallucinated and then triggers a mitigation strategy only when necessary. Encompasses: Conditional mitigation, abstention mechanisms, and fine-grained hallucination detection. Excludes: Direct, unconditional activation editing or simple prompt-based filtering.",
+      "concept": "The document proposes a strategy where CLAP classifies a greedy response, and if it is identified as a hallucination, an alternative response is generated and classified again. This avoids the negative impacts of applying mitigation strategies like DoLa to non-hallucinated responses.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This specific conditional mitigation pipeline is a distinct governance and safety approach.",
+      "resolved_node_id": "saf-intentions-153"
+    },
+    {
+      "suggested_label": "Cross-Layer Generalization Gap",
+      "suggested_description": "A situation concept that describes the performance delta between single-layer probes and cross-layer probes when applied to out-of-distribution data. \nEncompasses: Domain transfer performance, layer-wise probe selection strategies, and ensemble-based detection. \nExcludes: In-distribution detection accuracy or black-box consistency checks.",
+      "concept": "The document shows that CLAP significantly outperforms single-layer probes when transferring from one domain to another, such as from TQA to Wikidata categories. This indicates that attending to multiple layers provides a more robust signature of hallucination that is less sensitive to domain-specific training data.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific performance phenomenon in model evaluation that is not captured by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as evidence that deeper, cross-layer architectural features are more fundamental and transferable than surface-level layer activations, supporting the development of more robust, general-purpose AI tools.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical finding for safety, as it demonstrates that we can build more reliable, domain-agnostic guardrails that do not fail when models are deployed in novel, real-world environments.",
+      "Skeptic Interpretation": "Skeptics would see this as further proof that LLMs are brittle and that their internal representations are highly sensitive to domain shifts, necessitating constant, rigorous auditing of their internal states."
+    }
+  ]
+}

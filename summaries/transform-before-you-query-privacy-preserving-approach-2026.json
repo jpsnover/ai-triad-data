@@ -1,0 +1,389 @@
+{
+  "doc_id": "transform-before-you-query-privacy-preserving-approach-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:49:57Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 31,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 2,
+      "iterations": 1,
+      "claims_total": 9,
+      "claims_confident": 8,
+      "claims_iterated": 1,
+      "elapsed_seconds": 14.5,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "transform-before-you-query-privacy-preserving-approach-2026",
+    "measured_at": "2026-05-16T08:50:33.5371910-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4,
+        "out_units": "still_unmapped",
+        "out_count": 4,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 4,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 56961,
+        "out_units": "items",
+        "out_count": 18,
+        "ratio": 0.0003,
+        "flags": {
+          "null_node_rate": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 8,
+          "unmapped_concepts": 4,
+          "used_fire": 1,
+          "dedup_claims_removed": 1,
+          "density_floor_hit": 0,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 588,
+        "out_units": "nodes",
+        "out_count": 31,
+        "ratio": 0.0527,
+        "flags": {
+          "desires_selected": 6,
+          "beliefs_selected": 12,
+          "below_threshold_forced": 0,
+          "above_threshold": 31,
+          "intentions_selected": 12,
+          "effective_threshold": 0.2,
+          "top_k": 40,
+          "threshold_floor": 0.2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4,
+        "out_units": "still_unmapped",
+        "out_count": 4,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 4,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0527
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document champions the use of local embedding models as a way to empower users to maintain control over their data while still leveraging powerful server-side vector retrieval infrastructure. By deploying models locally, users can perform semantic search without exposing raw query text, effectively pairing local processing with the scale of cloud-based vector databases. This approach aligns with the accelerationist goal of enabling sophisticated AI applications in sensitive domains like finance and healthcare without sacrificing performance or innovation. The document notes that this method requires no server-side modifications, making it highly practical for rapid deployment.",
+          "verbatim": "STEER deploys a suitable open-source embedding model locally without any training, considering user’s hardware constraints. The query text can be converted to a local embedding.",
+          "excerpt_context": "Section 1, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit",
+            "safety_empirical"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-083",
+          "category": "Intentions",
+          "point": "The document utilizes the latent alignment between different embedding spaces to enable private retrieval, framing the transformation as a way to optimize utility while maintaining privacy. By computing a mapping function between local and server-side spaces, the system ensures that approximate embeddings maintain semantic consistency for retrieval tasks. This mechanism allows for high-performance semantic search without the prohibitive time costs associated with cryptographic solutions like FHE. The document emphasizes that this structured transformation is more effective than random noise, preserving the utility of the AI system.",
+          "verbatim": "Leveraging the insight that embedding spaces (semantic spaces) of different embedding models exhibit latent alignment, we propose STEER (Secure Transformed Embedding vEctor Retrieval), a novel privacy-preserving retrieval framework.",
+          "excerpt_context": "Section 1, paragraph 6",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-017",
+          "category": "Beliefs",
+          "point": "The document identifies that current vector database service providers, by relying on proprietary black-box models, create significant privacy leakage risks for users. Because users must transmit raw query text to these providers to receive retrieval services, sensitive information in domains like healthcare and finance is inevitably exposed. This systemic loss of visibility and control over data is a core concern for safetyists, who argue that such architectures are fundamentally insecure. The document acknowledges that existing mitigation strategies like anonymization or split learning often fail to balance privacy with retrieval utility.",
+          "verbatim": "Since current VDB service providers predominantly use proprietary black-box models, users are forced to expose raw query text to them via API in exchange for the vector retrieval services. Consequently, if query text involves confidential records from finance or healthcare domains, this mechanism inevitably leads to critical leakage of user’s sensitive information.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.99,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-143",
+          "category": "Intentions",
+          "point": "The document proposes STEER as a technical strategy to mitigate data leakage by ensuring that query text remains within the private domain. By using a local model to generate approximate embeddings and applying a learned transformation, the system prevents the service provider from accessing the original query text. This approach addresses the vulnerability to Embedding Inversion Attacks (EIAs) by introducing a structured deviation between the approximate and original embeddings. The document emphasizes that this method is more robust than random DP noise, which often degrades retrieval performance.",
+          "verbatim": "STEER achieves resistance against EIAs through the deviation between approximate embedding and the original embedding derived from server-side model.",
+          "excerpt_context": "Section 1, paragraph 7",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-003",
+          "category": "Desires",
+          "point": "The document explicitly seeks to protect user query privacy from the non-consensual commodification or exposure of sensitive information by VDB service providers. It argues that current industry practices force users to trade their data privacy for essential retrieval services, which is unacceptable for institutions handling confidential records. By proposing STEER, the authors aim to enforce boundaries on corporate data extraction, ensuring that service providers cannot reconstruct sensitive queries. This aligns with the skeptic goal of preventing the commodification of personal information for model training or inference.",
+          "verbatim": "To address this issue, we introduce STEER (Secure Transformed Embedding vEctor Retrieval), a private vector retrieval framework that leverages the alignment relationship between the semantic spaces of different embedding models to derive approximate embeddings for the query text.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "autonomy_individual"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document confirms that current AI systems are highly vulnerable to Embedding Inversion Attacks (EIAs), which can reconstruct original text from embeddings. It notes that even when embeddings are used, service providers can train models to extract sensitive information, making current retrieval workflows inherently insecure. The authors cite recent research to support the claim that these attacks are effective, justifying the need for their privacy-preserving framework. This reinforces the skeptic belief that AI systems fundamentally compromise data privacy by surfacing sensitive information from seemingly innocuous numerical representations.",
+          "verbatim": "Due to the influence of Embedding Inversion Attacks (EIAs), the embedding can be successfully converted to the original text. Therefore, a relatively large DP noise is needed to make the text embedding resistant to EIAs.",
+          "excerpt_context": "Section 2, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Fully Homomorphic Encryption (FHE) schemes take nearly 2 days to complete a query over 4,096 data items.",
+      "claim_label": "FHE Query Latency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-07",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "STEER achieves a Recall@20 accuracy 20% higher than current baselines when searching within a corpus of millions of entries.",
+      "claim_label": "STEER Recall@20 Performance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-07",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-083"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Embedding Inversion Attacks (EIAs) can successfully reconstruct original text from vector embeddings, demonstrating a vulnerability in systems that rely on embedding-based data processing.",
+      "claim_label": "EIA Effectiveness",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Anonymization strategies for query text consistently underperform in retrieval, with Recall@100 typically ranging between 0.3 and 0.6.",
+      "claim_label": "Anonymization Retrieval Performance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-07",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-095"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "STEER reduces reconstruction quality in inversion attacks, with Rouge-L dropping to 16%-30% of original and BLEU scores to 0.8%-4%.",
+      "claim_label": "STEER Inversion Resistance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-07",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The SnD split learning method requires a noise standard deviation of 25 to resist EIAs.",
+      "claim_label": "SnD Noise Requirements",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-07",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-143"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Recent studies by Jha et al. (2025) and Zhang et al. (2025) demonstrate that inversion attacks can extract text even if the embedding model is deployed locally.",
+      "claim_label": "Local Model Inversion Risk",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025-05",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "STEER requires no modifications to the server-side embedding models.",
+      "claim_label": "STEER Deployment Requirements",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-083"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Embedding Space Alignment for Privacy",
+      "suggested_description": "An Intention within accelerationist discourse that uses the latent geometric alignment between different embedding models to perform private retrieval. This approach transforms local embeddings into an approximate server-side space, avoiding raw data exposure while maintaining retrieval utility.",
+      "concept": "The document introduces STEER, which computes a mapping function between local and server-side embedding spaces using non-sensitive text. This transformation allows the client to send approximate embeddings that are semantically useful for retrieval but resistant to inversion attacks.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "The taxonomy lacks a node for using embedding space alignment as a specific privacy-preserving mechanism for vector retrieval.",
+      "resolved_node_id": "acc-intentions-094"
+    },
+    {
+      "suggested_label": "Structured Embedding Perturbation",
+      "suggested_description": "A Belief within safetyist discourse that structured transformations of embeddings provide superior privacy-utility trade-offs compared to unstructured random noise. This method preserves semantic relationships while introducing enough deviation to thwart inversion attacks.",
+      "concept": "The document argues that structured transformations in STEER perturb embeddings in a way that preserves their semantics and relative positions, unlike random DP noise which reshapes positional relationships and harms retrieval accuracy.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "The taxonomy lacks a node for the specific concept of structured perturbation as a defense against embedding inversion."
+    },
+    {
+      "suggested_label": "Embedding Inversion Attack Vulnerability",
+      "suggested_description": "A situation concept that describes the inherent risk of reconstructing sensitive text from vector embeddings.\nEncompasses: Embedding-to-text model training, inversion attack metrics, and the failure of standard embeddings to protect privacy.\nExcludes: General data privacy or anonymization techniques.",
+      "concept": "The document highlights that current vector retrieval systems are inherently vulnerable to Embedding Inversion Attacks (EIAs), where service providers can reconstruct original query text from embeddings. This vulnerability is a primary driver for the development of privacy-preserving frameworks like STEER.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "The taxonomy lacks a dedicated situation node for the specific technical vulnerability of embedding inversion.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a technical challenge to be solved through better alignment and transformation techniques, enabling continued use of powerful cloud-based retrieval.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence that current AI infrastructure is fundamentally insecure and requires more rigorous, precautionary governance before deployment.",
+      "Skeptic Interpretation": "Skeptics would see this as proof that AI systems are inherently privacy-invasive and that developers are failing to protect individual data autonomy."
+    },
+    {
+      "suggested_label": "Approximate Embedding Retrieval",
+      "suggested_description": "An Intention within accelerationist discourse that advocates for using transformed, approximate embeddings to perform retrieval tasks in black-box systems. This strategy enables privacy without requiring server-side changes or high-latency cryptographic overhead.",
+      "concept": "STEER uses approximate embeddings generated by a local model and a learned transformation to query a VDB. This allows the user to maintain privacy while achieving retrieval accuracy comparable to direct exposure.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "The taxonomy lacks a node for the specific strategy of using approximate embeddings for privacy-preserving retrieval.",
+      "resolved_node_id": "acc-intentions-092"
+    }
+  ]
+}

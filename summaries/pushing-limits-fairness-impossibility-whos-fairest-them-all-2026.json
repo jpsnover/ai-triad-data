@@ -1,0 +1,250 @@
+{
+  "doc_id": "pushing-limits-fairness-impossibility-whos-fairest-them-all-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:09:33Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 2,
+      "claims_iterated": 0,
+      "elapsed_seconds": 9.9,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "pushing-limits-fairness-impossibility-whos-fairest-them-all-2026",
+    "measured_at": "2026-05-16T08:42:06.9712970-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.6667,
+        "flags": {
+          "near_miss_count": 2,
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 83605,
+        "out_units": "items",
+        "out_count": 10,
+        "ratio": 0.0001,
+        "flags": {
+          "null_node_rate": 0.1667,
+          "dedup_points_removed": 0,
+          "factual_claims": 2,
+          "unmapped_concepts": 2,
+          "used_fire": 1,
+          "dedup_claims_removed": 0,
+          "density_floor_hit": 0,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 588,
+        "out_units": "nodes",
+        "out_count": 40,
+        "ratio": 0.068,
+        "flags": {
+          "desires_selected": 9,
+          "beliefs_selected": 17,
+          "below_threshold_forced": 0,
+          "above_threshold": 40,
+          "intentions_selected": 14,
+          "effective_threshold": 0.3992,
+          "top_k": 40,
+          "threshold_floor": 0.2
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 2,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.068
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-090",
+          "category": "Intentions",
+          "point": "The document proposes a post-processing framework that treats fairness as a constrained optimization problem, focusing on verifiable procedural adjustments to model scores rather than substantive truth adjudication. By translating fairness trade-offs into a Mixed Integer Linear Program (MILP), the authors provide a scalable, modular tool that can be applied to any binary classifier. This aligns with accelerationist goals of creating flexible, adaptive governance tools that allow for rapid iteration and deployment without requiring fundamental changes to the underlying model architecture. The authors acknowledge that while theoretical impossibility theorems exist, practical reconciliation of conflicting fairness metrics is achievable through computational optimization.",
+          "verbatim": "We fill this gap in the literature by translating the trade-offs among multiple fairness criteria and model performance into a constrained optimization problem and propose a post-processing methodology for simultaneously achieving approximate fairness in the conflicting definitions simultaneously.",
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_audit",
+            "regulation_adaptive"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The authors advocate for a framework that empowers practitioners to evaluate trade-offs between fairness metrics and model performance, rather than forcing a choice between them. This desire for 'optimal model selection' reflects an accelerationist preference for maximizing utility and performance while maintaining necessary safety or fairness constraints. The framework is designed to be modular, allowing it to be added to existing pipelines, which supports the accelerationist goal of integrating safety and fairness into high-speed development cycles. The authors note that this approach avoids the 'undesirable practice' of narrowing down fairness to a single, potentially inadequate metric.",
+          "verbatim": "We believe our framework would alleviate the practitioner from making the hard choice in choosing a particular metric. Instead, if they have a partial ordering of importance amongst the metrics (which many possess), our framework would explicitly allow them evaluate such trade-offs.",
+          "excerpt_context": "Introduction, paragraph 4",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "safety_empirical"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-093",
+          "category": "Beliefs",
+          "point": "The document acknowledges the 'impossibility theorem' of fairness, which states that common definitions like demographic parity, equalized odds, and predictive rate parity cannot be simultaneously satisfied. This aligns with safetyist concerns regarding misaligned objective functions, where optimizing for one metric can structurally degrade performance on others. The authors' framework attempts to mitigate these conflicts by finding approximate solutions, but they concede that these trade-offs are inherent to the mathematical definitions themselves. This highlights the safetyist belief that simplistic metric optimization often leads to unintended, value-eroding outcomes.",
+          "verbatim": "This theorem essentially states that three common definitions of algorithmic fairness - demographic parity [16], equalized odds [21], and predictive parity [3], cannot be simultaneously satisfied outside of pathological situations.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety_alignment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The authors note that the inherent opacity of complex models, such as random forests, complicates fairness assessments, particularly when models are uncalibrated. They suggest that post-processing methods can provide a layer of interpretability by returning an optimized transition matrix that shows how scores are transformed. This addresses the safetyist concern that black-box models hinder accountability, as the framework allows stakeholders to see the likelihood of score changes. However, the authors acknowledge that this interpretability is limited to the post-processing layer and does not fully explain the underlying model's decision-making process.",
+          "verbatim": "Hence given a newly scored instance, several facts can be read from the corresponding row of the matrix such as the likelihood of moving to a specific bin b, moving into any higher or lower bin, etc.",
+          "excerpt_context": "Multiple Fairness Optimization, paragraph 6",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "transparency_accountability"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-002",
+          "category": "Desires",
+          "point": "The document aims to eradicate algorithmic bias by providing a framework that simultaneously addresses multiple fairness definitions, moving beyond the 'undesirable practice' of focusing on only one. This aligns with the skeptic desire to structurally eliminate historical prejudices embedded in machine learning architectures. By allowing practitioners to explicitly manage trade-offs, the framework seeks to prevent models from worsening existing societal inequalities. The authors emphasize that their method is modular and can be applied to any binary classifier, making it a practical tool for bias mitigation in real-world systems.",
+          "verbatim": "We fill this gap in the literature by translating the trade-offs among multiple fairness criteria and model performance into a constrained optimization problem and propose a post-processing methodology for simultaneously achieving approximate fairness in the conflicting definitions simultaneously.",
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "bias_systemic",
+            "fairness_procedural"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-078",
+          "category": "Intentions",
+          "point": "The authors propose an automated, scalable framework for evaluating and mitigating bias across multiple metrics, which aligns with the skeptic intention of using standardized tools to systematically evaluate AI models. By using integer programming to find globally optimal solutions, the framework provides a rigorous, falsifiable approach to fairness. The authors demonstrate that this method can improve fairness across different definitions simultaneously with minimal performance reduction, addressing the skeptic concern that fairness and performance are often treated as a zero-sum game. They also highlight the importance of using this tool to understand empirical fairness characteristics across different models.",
+          "verbatim": "We discuss and extend our framework from a post-processing mechanism to a tool that can aid practitioners in better understanding their data and models’ empirical fairness characteristics and trade-offs and compare these traits across models.",
+          "excerpt_context": "Introduction, paragraph 5",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "fairness_procedural"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "The impossibility theorem of fairness states that demographic parity, equalized odds, and predictive rate parity cannot be simultaneously satisfied outside of pathological situations.",
+      "claim_label": "Fairness Impossibility Theorem",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-093"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "general_claim"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The number of optimization variables in the proposed MFOpt framework scales in the order of O(|G||B|^2).",
+      "claim_label": "MFOpt Scaling Complexity",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Post-processing Fairness via Score Transformation",
+      "suggested_description": "A technique that adjusts the output scores of a pre-trained model to satisfy fairness constraints without retraining the underlying model.\nEncompasses: Binning-based score transformation, transition matrices, and post-hoc fairness calibration.\nExcludes: In-processing fairness regularization or adversarial training methods.",
+      "concept": "The document introduces a post-processing framework that uses an integer-programming based approach to transform model scores into new bins, thereby satisfying multiple fairness criteria simultaneously. This method is distinct because it works on top of any existing binary classifier, providing a modular solution for fairness.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Intentions",
+      "reason": "This specific post-processing mechanism is a distinct technical approach not fully captured by existing nodes.",
+      "resolved_node_id": "acc-intentions-095"
+    },
+    {
+      "suggested_label": "Bin-wise Worst-Case Fairness Violation",
+      "suggested_description": "A situation concept that defines fairness as the maximum violation across all score bins rather than an aggregate global metric.\nEncompasses: Bin-specific demographic parity, equalized odds, and predictive rate parity constraints.\nExcludes: Global average fairness metrics or aggregate error rate parity.",
+      "concept": "The document defines fairness as the worst-case violation across all bins to approximate probabilistic definitions, which the authors argue does not contradict the traditional impossibility theorem.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This specific definition of fairness as a worst-case bin-wise violation is a unique framing of the fairness problem.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a pragmatic, measurable way to enforce fairness without sacrificing model utility, allowing for fine-grained control over model behavior.",
+      "Safetyist Interpretation": "Safetyists might worry that this bin-wise approach could mask systemic issues or lead to 'fairness gerrymandering' where violations are hidden within specific bins.",
+      "Skeptic Interpretation": "Skeptics would appreciate this as a more rigorous way to identify and mitigate localized biases that aggregate metrics might overlook."
+    }
+  ]
+}

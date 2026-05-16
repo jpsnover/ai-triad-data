@@ -1,0 +1,461 @@
+{
+  "doc_id": "algorithmic-arbitrariness-content-moderation-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:09:33Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 818,
+    "chunked": true,
+    "chunk_count": 4
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "algorithmic-arbitrariness-content-moderation-2026",
+    "measured_at": "2026-05-16T08:32:48.0197660-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 25046,
+        "out_units": "tokens_est",
+        "out_count": 25046,
+        "ratio": 1,
+        "flags": {
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3276,
+        "out_units": "nodes",
+        "out_count": 61,
+        "ratio": 0.0186,
+        "flags": {
+          "avg_nodes_selected": 61,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 3,
+          "avg_desires": 3,
+          "chunk_count": 4,
+          "min_nodes_selected": 60,
+          "avg_intentions": 16,
+          "avg_beliefs": 8
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 134910,
+        "out_units": "items",
+        "out_count": 24,
+        "ratio": 0.0002,
+        "flags": {
+          "unmapped_concepts": 4,
+          "null_node_rate": 0.2143,
+          "total_points": 14,
+          "factual_claims": 6,
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 24,
+        "out_units": "items",
+        "out_count": 24,
+        "ratio": 1,
+        "flags": {
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "used_embeddings": 1,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4,
+        "out_units": "still_unmapped",
+        "out_count": 4,
+        "ratio": 1,
+        "flags": {
+          "near_miss_count": 4,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0186
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-intentions-048",
+          "category": "Intentions",
+          "point": "The document utilizes observable, falsifiable metrics—specifically predictive multiplicity and model disagreement rates—to quantify the performance and reliability of AI moderation systems. By focusing on the variance in outcomes across different random seeds, the authors apply an empirical lens to evaluate AI behavior. This aligns with the accelerationist preference for judging AI through measurable outputs rather than abstract philosophical concerns.",
+          "verbatim": "We experimentally demonstrate how content moderation tools can arbitrarily classify samples as toxic, leading to arbitrary restrictions on speech. ... We find that arbitrary decisions are rampant in LLMs fine-tuned for content moderation. In our experiments, approximately 30% of samples receive moderation decisions that can change by varying the random seed used to initialize training",
+          "excerpt_context": "Abstract and Research Questions and Main Contributions",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "predictive_multiplicity",
+            "model_disagreement",
+            "empirical_evaluation"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document suggests that while ML models are not perfect proxies for human judgment, their deployment in content moderation should be made more nuanced and accountable. It argues for increased explainability and transparency in the development and deployment process to ensure criteria align with legal rules. This approach seeks to improve the utility of AI tools rather than abandoning them, aligning with the accelerationist goal of refining AI systems for complex societal tasks.",
+          "verbatim": "With this conclusion, we do not mean to claim that algorithmic content moderation shouldn’t be used, instead we think this deployment needs to be much more nuanced and accountable. First, we need to have explainability and transparency over arbitrary decisions in the development and deployment process and analyze if the criteria used to produce the moderation decision respect the criteria we expect in terms of company policies and legal rules.",
+          "excerpt_context": "Section 3, Conclusion",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_accountability",
+            "transparency_mechanisms"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-104",
+          "category": "Beliefs",
+          "point": "The document asserts that ML models possess inherent technical limitations, specifically predictive multiplicity, which lead to inconsistent and arbitrary outcomes. This supports the safetyist belief that AI systems are not inherently reliable or predictable, and that their deployment in critical governance roles creates systemic risks to human rights.",
+          "verbatim": "Second, the increasing reliance on Machine Learning (ML) models to flag undesirable speech can inadvertently lead to harmful outcomes stemming from the inherent technical limitations of ML. A key concern is predictive multiplicity [49]: competing models with similar average performance can produce conflicting individual predictions.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "predictive_multiplicity",
+            "algorithmic_arbitrariness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-148",
+          "category": "Intentions",
+          "point": "The document argues that content moderation systems must be held to procedural standards, such as legality and proportionality, rather than just outcome-based accuracy. It suggests that because ML models exhibit predictive multiplicity—where different models with similar accuracy produce conflicting results—they fail to meet the requirements of due process. The authors advocate for a rule-based approach to moderation, implying that current black-box deployment methods are fundamentally incompatible with legal accountability.",
+          "verbatim": "This interpretation includes, for example, respecting the requirements from General Comment 34 [13](i.e. legality, necessity, proportionality, and pursuit of a legitimate aim) for restricting speech. This joint interpretation establishes the obligation of common procedural guidelines for removing speech.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "procedural_justice",
+            "predictive_multiplicity",
+            "due_process"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-093",
+          "category": "Beliefs",
+          "point": "The document asserts that ML models used for content moderation are 'proxy adjudicators' that fail to replicate human interpretation, leading to arbitrary outcomes. It highlights that these models, when tasked with complex legal interpretations, produce unpredictable results that violate individual rights. This aligns with the safetyist belief that optimizing for simplistic proxy metrics leads to value-eroding outcomes.",
+          "verbatim": "ML models make statistical predictions and not interpretations of rules — unlike human decision-makers. However, the purpose of these proxy adjudicators is to replicate the criteria of a rule-based decision-making process, and not a probable outcome.",
+          "excerpt_context": "Section 3, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "proxy_adjudicators",
+            "predictive_multiplicity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-104",
+          "category": "Beliefs",
+          "point": "The document demonstrates that model performance and behavior are highly sensitive to hyperparameter selection and random seeds, suggesting that training data integrity and the reproducibility of model states are fragile. By showing that different random seeds lead to different training trajectories and varying levels of arbitrariness, the document highlights how the 'black box' nature of training can lead to inconsistent outcomes. This supports the safetyist concern that AI systems lack the necessary stability for reliable deployment in sensitive moderation contexts.",
+          "verbatim": "See Figure 4 for a plot of the training trajectories of 10 of the random seeds.",
+          "excerpt_context": "Section 4, paragraph 2",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "model_stability",
+            "hyperparameter_sensitivity"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
+          "category": "Beliefs",
+          "point": "The document argues that algorithmic content moderation creates significant epistemic and procedural harms by failing to provide consistent, justifiable decisions. It highlights how these systems disproportionately impact marginalized groups and infringe upon freedom of expression, reinforcing the skeptic view that AI-driven moderation is fundamentally flawed and lacks necessary accountability.",
+          "verbatim": "We argue that predictive multiplicity poses a selective break from a rule-based approach to content moderation — which should be based on the Law and content moderation policies — and infringes upon procedural fairness. Multiplicity in algorithmic content moderation can unduly restrict individual and collective rights to freedom of expression via a random or unjustified model selection procedure.",
+          "excerpt_context": "Research Questions and Main Contributions",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "procedural_fairness",
+            "freedom_of_expression",
+            "algorithmic_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-053",
+          "category": "Intentions",
+          "point": "The authors advocate for increased transparency and accountability in AI moderation, arguing that current systems are opaque and prevent meaningful revision or appeal. They emphasize that without understanding the training-time choices that lead to arbitrary outcomes, it is impossible to correct harmful moderation, which aligns with the skeptic demand for rigorous oversight of AI systems.",
+          "verbatim": "In the context of algorithmic content moderation, we can only review and repair harmful moderation outcomes if we have a clear understanding of how these models are classifying statements. Here, we examine arbitrariness embedded in the process of training and fine-tuning models for content moderation affecting classification outcomes.",
+          "excerpt_context": "Related Work",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic_accountability",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
+          "category": "Beliefs",
+          "point": "The document asserts that state-of-the-art toxicity detectors exhibit high levels of 'predictive multiplicity,' meaning that the same input can result in different moderation outcomes depending on random initialization seeds. This randomness is characterized as a failure of procedural justice, as it mirrors a judge flipping a coin to decide whether to restrict speech. The authors demonstrate that this arbitrariness is not uniform, disproportionately affecting specific demographic groups, which constitutes a violation of non-discrimination principles.",
+          "verbatim": "The existence of predictive multiplicity in ML algorithms calls into question their ability to satisfy values of procedural justice. The “decision-making process” used by ML algorithms is fundamentally probabilistic and often random. As evidenced by the experimental observation in Section 5, varying the random seed can dramatically alter the predictions made by fine-tuned large language models.",
+          "excerpt_context": "Section 2, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "predictive_multiplicity",
+            "algorithmic_bias",
+            "procedural_justice"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The authors propose a methodology for measuring the harms of predictive multiplicity by fine-tuning multiple models and calculating 'arbitrariness' and 'pairwise disagreement.' They argue that these metrics are necessary to quantify how often moderation decisions are arbitrary rather than rule-based. This approach serves as a framework for auditing AI systems to ensure they meet legal standards of accountability and non-discrimination.",
+          "verbatim": "These experiments are designed to allow us to quantitatively measure multiplicity and its potential harms, e.g. violations of FoE and procedural justice.",
+          "excerpt_context": "Section 2, paragraph 4",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_auditing",
+            "arbitrariness",
+            "pairwise_disagreement"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-001",
+          "category": "Beliefs",
+          "point": "The research empirically demonstrates that content moderation models exhibit 'predictive multiplicity,' where different models produce different outcomes for the same content, creating an arbitrary 'lottery' of moderation. This arbitrariness is not uniformly distributed, disproportionately affecting specific demographic groups. The document emphasizes that these are measurable, immediate harms to freedom of expression and non-discrimination principles.",
+          "verbatim": "When there is no clear reason for choosing one model over the other, an artificial “lottery” is created on which data points will draw the fate of being subjected to random treatment. Our results indicate that this “lottery” is not fair: different population groups targeted by the text have different likelihoods of arbitrary treatment.",
+          "excerpt_context": "Section 3, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "predictive_multiplicity",
+            "algorithmic_bias",
+            "procedural_justice"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-110",
+          "category": "Intentions",
+          "point": "The authors argue that the inherent arbitrariness of ML models in content moderation necessitates increased obligations for companies regarding accountability, transparency, and revision mechanisms. They suggest that as models become more complex and are used for subjective legal tasks, the lack of transparency regarding why specific models are chosen constitutes a significant failure in governance.",
+          "verbatim": "Arbitrariness in algorithmic content moderation models are intrinsic characteristics of ML models with nonnegligible potential for harmful outcomes, increasing the obligations companies should have in terms of accountability, transparency, and mechanisms of revision.",
+          "excerpt_context": "Section 3, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic_accountability",
+            "transparency_mechanisms"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that content moderation models exhibit significant 'arbitrariness' and 'pairwise disagreement,' meaning that models trained on the same data with different random seeds produce inconsistent toxicity classifications. This inconsistency is not merely a technical artifact but a source of disparate algorithmic treatment across different demographic groups. The findings suggest that current automated moderation tools are fundamentally unreliable for ensuring procedural justice.",
+          "verbatim": "Figures 5 and 6 indicate that even under higher confidence values, arbitrariness and disagreement are still non-uniformly distributed as showed in Figure 1, leading to disparate algorithmic treatment.",
+          "excerpt_context": "Section C.2, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "procedural_justice",
+            "predictive_multiplicity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document observes that models exhibit high levels of arbitrariness and disagreement even when evaluating 'clear' sentences where human annotators reached consensus. This indicates that the models are not just struggling with ambiguous content, but are failing to replicate human-agreed standards of toxicity consistently. This undermines the claim that AI can serve as a neutral or objective arbiter in content moderation.",
+          "verbatim": "Figures 7 and 8 present the same pattern of higher arbitrariness and pairwise disagreement in unclear sentences while also having a high arbitrariness and pairwise disagreement in clear sentences",
+          "excerpt_context": "Section C.3, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_arbitrariness",
+            "content_moderation"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Approximately 30% of content moderation decisions in fine-tuned LLMs change based on the random seed used for parameter initialization.",
+      "claim_label": "Predictive Multiplicity Rate",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05-16",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-075"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Varying the random seed during the fine-tuning of large language models for toxicity detection leads to significantly different classification outcomes for the same input data.",
+      "claim_label": "Random Seed Impact on Model Predictions",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-095"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on experimental data from fine-tuned RoBERTa models."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Predictive multiplicity in toxicity detection models is not uniform across demographic groups, with anti-LGBTQ speech receiving more arbitrary moderation decisions than misogynistic or misandrist speech.",
+      "claim_label": "Disparate Arbitrariness Across Demographic Groups",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-095",
+        "skp-desires-064"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical measurement of arbitrariness metrics across specific target group datasets."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "State-of-the-art content moderation models exhibit predictive multiplicity, meaning different models produce different moderation decisions for the same input, resulting in arbitrary outcomes.",
+      "claim_label": "Predictive Multiplicity in Moderation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-095"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of model behavior across multiple datasets."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Arbitrary moderation decisions are not uniformly distributed and occur more frequently in content targeting specific demographic groups, such as anti-LGBTQ posts.",
+      "claim_label": "Demographic Disparity in Arbitrary Moderation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-desires-002"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Statistical analysis of model outputs across demographic-labeled datasets."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Fine-tuned models exhibit significant pairwise disagreement and arbitrariness, with values ranging from approximately 16% to 35% depending on the dataset and confidence levels used in the Rashomon set analysis.",
+      "claim_label": "Quantified Algorithmic Arbitrariness",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on controlled hyperparameter sweeps."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Algorithmic Leviathan",
+      "suggested_description": "A situation concept that describes the excessive control algorithms exert over human rights and resource access. Encompasses: Automated moderation, rights management, and governance decisions. Excludes: Simple classification errors or benign technical bugs.",
+      "concept": "The document adopts the term 'algorithmic leviathan' to describe the scenario where ML models are tasked with moderating content for billions of users with limited accountability. It frames this as a critical instance where algorithms excessively control the exercise of freedoms.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept is central to the document's framing of AI power and is not currently represented in the taxonomy.",
+      "Accelerationist Interpretation": "Accelerationists might view the 'algorithmic leviathan' as a necessary, albeit early-stage, infrastructure for managing information at scale, focusing on the potential for future optimization.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a catastrophic risk, where the lack of alignment and accountability in these 'leviathans' leads to irreversible societal harm.",
+      "Skeptic Interpretation": "Skeptics view this as a direct threat to human rights and democratic processes, emphasizing the need for immediate regulatory intervention and human oversight."
+    },
+    {
+      "suggested_label": "Rashomon Set Model Disagreement",
+      "suggested_description": "A Belief within skeptic discourse that models with similar training error can produce conflicting outputs for the same input.\nEncompasses: Predictive multiplicity, Rashomon parameter selection, and pairwise disagreement metrics.\nExcludes: General algorithmic bias or training data poisoning.",
+      "concept": "The document defines the Rashomon set as the collection of models that perform within a certain error threshold of a reference model. It observes that even when models are equally accurate, they frequently disagree on specific classifications, which the authors term predictive multiplicity.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific technical phenomenon (predictive multiplicity) that is central to the document's argument about procedural justice but is not explicitly defined in the current taxonomy.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a technical optimization challenge, suggesting that ensemble methods or better training constraints could resolve the disagreement and improve overall system performance.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence of the inherent unpredictability and lack of control in current AI development, supporting the need for stricter deployment halts and rigorous safety testing.",
+      "Skeptic Interpretation": "Skeptics use this to argue that AI systems are fundamentally unreliable for high-stakes decision-making like content moderation, as the randomness of the output violates basic principles of fairness and due process."
+    },
+    {
+      "suggested_label": "Predictive Multiplicity as Algorithmic Lottery",
+      "suggested_description": "A situation concept that describes the arbitrary selection of models from a Rashomon set, where the choice of model determines the fate of content without a clear, justifiable rationale.\nEncompasses: Model selection randomness, disparate impact on protected groups, and the lack of transparency in model deployment.\nExcludes: General algorithmic bias which refers to static prejudice rather than the dynamic, multi-model selection lottery.",
+      "concept": "The document defines this as an 'inscrutable trolley problem' where companies choose between equally good models, but each choice results in the undue moderation of different individuals. This creates an artificial lottery where the fate of a data point is determined by which model is deployed, rather than a consistent application of rules.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept captures the specific systemic risk of 'predictive multiplicity' in a regulatory context, which is not fully covered by existing nodes on bias or transparency.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a technical challenge to be solved through better model selection frameworks or ensemble methods that reduce variance.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence of the 'errant tool' problem, where the lack of alignment between model behavior and human intent leads to unpredictable, harmful outcomes.",
+      "Skeptic Interpretation": "Skeptics view this as a fundamental failure of accountability, arguing that the 'lottery' mechanism violates procedural justice and requires strict regulatory oversight and discovery rights.",
+      "resolved_node_id": "cc-094"
+    },
+    {
+      "suggested_label": "Rashomon Set Arbitrariness",
+      "suggested_description": "A situation concept that describes the phenomenon where multiple models, all achieving similar high accuracy on a task, produce widely divergent predictions on individual inputs.\nEncompasses: Predictive multiplicity, model disagreement, Rashomon set analysis.\nExcludes: General model bias or training data errors.",
+      "concept": "The document uses the Rashomon set to demonstrate that even models with high performance metrics can disagree significantly on specific classifications. This highlights that accuracy is an insufficient metric for evaluating the reliability of moderation systems.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept captures the specific technical finding that high-performing models are not interchangeable, which is central to the document's argument about algorithmic arbitrariness.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a challenge to be solved through better model architecture or more robust training techniques to converge on a single 'optimal' model.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence that models are not aligned with human intent, as they produce unpredictable and inconsistent outputs even when 'accurate'.",
+      "Skeptic Interpretation": "Skeptics would use this to argue that automated moderation is inherently flawed and cannot be trusted to make consistent, fair decisions in social contexts."
+    }
+  ]
+}

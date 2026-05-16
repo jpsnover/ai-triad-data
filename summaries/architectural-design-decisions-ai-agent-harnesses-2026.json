@@ -1,0 +1,418 @@
+{
+  "doc_id": "architectural-design-decisions-ai-agent-harnesses-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:50:34Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 823,
+    "chunked": true,
+    "chunk_count": 4
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "architectural-design-decisions-ai-agent-harnesses-2026",
+    "measured_at": "2026-05-16T08:52:39.4520110-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 29982.0,
+        "out_units": "tokens_est",
+        "out_count": 29980.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3276.0,
+        "out_units": "nodes",
+        "out_count": 63.0,
+        "ratio": 0.0192,
+        "flags": {
+          "avg_nodes_selected": 63.0,
+          "max_nodes_selected": 64,
+          "total_below_threshold": 10,
+          "avg_desires": 2.0,
+          "chunk_count": 4,
+          "min_nodes_selected": 62,
+          "avg_intentions": 9.0,
+          "avg_beliefs": 2.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 140376.0,
+        "out_units": "items",
+        "out_count": 24.0,
+        "ratio": 0.0002,
+        "flags": {
+          "unmapped_concepts": 4,
+          "null_node_rate": 0.2667,
+          "total_points": 15,
+          "factual_claims": 5,
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 24.0,
+        "out_units": "items",
+        "out_count": 23.0,
+        "ratio": 0.9583,
+        "flags": {
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "used_embeddings": 1,
+          "points_deduped": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.5,
+        "flags": {
+          "near_miss_count": 2,
+          "resolved_count": 2,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0184
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that AI agents are transitioning from experimental demonstrations to persistent, practical software paradigms. This shift is framed as a rapid evolution of agent systems into core components of enterprise and software engineering. The accelerationist perspective views this as evidence of AI's increasing utility and the necessity of scaling engineering infrastructure to support autonomous task execution.",
+          "verbatim": "Artificial intelligence agents built on large language models (LLMs) are rapidly becoming a practical paradigm for automated task execution. As these systems move from demonstrations to persistent software, they depend on substantial non-LLM engineering infrastructure: tool invocation, context retention, execution control, delegation, workspace access, and coordination across multiple components.",
+          "excerpt_context": "Section 1.1, Motivation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "agent_systems",
+            "autonomous_task_execution"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document observes that agentic frameworks are evolving toward more complex, multi-layered architectures, such as hierarchical planning and event-driven coordination. This suggests a trend toward increasing system capability and autonomy. The research highlights that these architectural choices are not merely theoretical but are being implemented to handle long-running, multi-step tasks. This evolution supports the accelerationist view that AI systems are rapidly maturing into sophisticated, autonomous agents capable of complex work.",
+          "verbatim": "Orchestration decisions are closely related to project complexity. Imperative loops are often sufficient for lightweight tools, whereas declarative specifications and event-driven coordination become more attractive when projects require repeatability, task decomposition, or collaboration among multiple components.",
+          "excerpt_context": "Section 4.5, paragraph 5",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "agentic_frameworks",
+            "system_autonomy",
+            "architectural_evolution"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document observes that projects with broader ecosystem ambitions, such as those targeting third-party growth or wider developer adoption, are more likely to formalize tool boundaries and adopt standardized protocols like MCP. This suggests that the drive for interoperability and ecosystem expansion is a primary catalyst for architectural maturity in AI agent harnesses. Accelerationists would view this as evidence that market-driven incentives naturally lead to more robust, extensible, and standardized AI infrastructure.",
+          "verbatim": "A plausible mechanism here is that extensibility choices often reflect ecosystem ambition: projects that expect third-party growth or wider developer adoption have stronger incentives to formalize tool boundaries.",
+          "excerpt_context": "Section 5.2, Co-occurrence 3",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "ecosystem_ambition",
+            "interoperability",
+            "architectural_maturity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-061",
+          "category": "Intentions",
+          "point": "The document argues that architectural complexity is best managed by choosing a coherent operating model rather than accumulating features opportunistically. This supports the accelerationist goal of building robust, scalable systems by aligning architectural commitments with specific use cases like multi-agent coordination or production governance. It emphasizes that frameworks should be evaluated based on their fit for specific operational demands rather than abstract notions of 'more advanced' capabilities.",
+          "verbatim": "The key point is that architectural complexity is usually easier to manage when it is chosen as part of an overall operating model rather than accumulated opportunistically feature by feature, because the corpus shows that different positioning choices repeatedly align with different bundled commitments rather than one universal architecture.",
+          "excerpt_context": "Section 4, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "architectural_coherence",
+            "operating_model"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-058",
+          "category": "Intentions",
+          "point": "The document identifies a critical need for systematic architectural study of 'agent harnesses'—the non-LLM engineering layers that manage safety, execution, and governance. It argues that current ad-hoc approaches to safety mechanisms and execution boundaries are insufficient for the growing complexity of agent systems. This aligns with the safetyist goal of establishing rigorous, auditable infrastructure to govern autonomous agents.",
+          "verbatim": "The broader claim is that the non-LLM engineering layer around Agent systems has become sufficiently consequential to warrant direct architectural study rather than incidental treatment as implementation detail.",
+          "excerpt_context": "Section 1.1, Motivation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "agent_harness",
+            "governance_controls",
+            "execution_boundaries"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-098",
+          "category": "Beliefs",
+          "point": "The document notes that while some frameworks integrate sandboxing and auditing, others expose broad execution power with minimal controls. It highlights that the ecosystem is currently exploring competing answers to how agent behavior should be made governable. This reflects the safetyist concern that without standardized, robust safety mechanisms, agent systems pose significant, unpredictable risks.",
+          "verbatim": "Some expose broad execution power with minimal controls, whereas others integrate sandboxing, approval, and auditing into the surrounding engineering layer.",
+          "excerpt_context": "Section 1.1, Motivation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "sandboxing",
+            "execution_power",
+            "governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-058",
+          "category": "Intentions",
+          "point": "The document emphasizes the necessity of formalizing safety mechanisms—such as approval workflows, isolation levels, and audit trails—as integral components of agent harnesses. It notes that safety maturity cannot be inferred from capability growth alone, as many projects lack robust accountability layers. This aligns with the safetyist intention to mandate structured governance and monitoring for autonomous agents.",
+          "verbatim": "Tables 7 and 8 make the asymmetry in the corpus more explicit. Intermediate isolation is common, but high-assurance audit remains rare, and a substantial minority of projects still expose broad execution power without a correspondingly strong accountability layer. That asymmetry is one of the reasons safety maturity cannot be inferred from capability growth alone.",
+          "excerpt_context": "Section 4.4, paragraph 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "agentic_infrastructure_governance",
+            "accountability_layer",
+            "safety_maturity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-004",
+          "category": "Desires",
+          "point": "The document highlights that some projects implement explicit depth limits or recursion-prevention mechanisms for subagents. This reflects a desire to constrain agent behavior and prevent runaway recursive processes, which is a core safetyist concern regarding autonomous proliferation.",
+          "verbatim": "A notable finding is that several projects that initially appeared to support deep recursion were found, upon source-code inspection, to enforce explicit depth limits or recursion-prevention mechanisms.",
+          "excerpt_context": "Section 4.1, paragraph 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "preventative_runtime_constraints",
+            "recursion_prevention"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-146",
+          "category": "Intentions",
+          "point": "The document identifies a strong co-occurrence between execution isolation (sandboxing) and the implementation of structured safety controls, such as policy engines and audit trails. It argues that as frameworks gain execution power, they must absorb a higher governance burden to remain operationally acceptable. Safetyists would interpret this as a validation of the necessity to mandate technical discovery infrastructure and rigorous sandboxing as AI capabilities scale.",
+          "verbatim": "A plausible reading of the corpus is that broader execution power raises the governance burden that a framework must absorb if it is to remain operationally acceptable in practice.",
+          "excerpt_context": "Section 5.2, Co-occurrence 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "execution_isolation",
+            "governance_burden",
+            "audit_trails",
+            "policy_engines"
+          ]
+        },
+        {
+          "stance": "opposed",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document explicitly disputes the assumption that increasing AI capability automatically leads to greater safety maturity. It finds that some frameworks expose significant execution power with minimal oversight, while others prioritize safety despite limited capabilities, resulting in an 'uneven safety landscape.' This contradicts the safetyist hope for a linear, predictable progression of safety maturity alongside capability growth.",
+          "verbatim": "One might expect projects with broad tool surfaces or deep orchestration to converge toward stronger approval and audit mechanisms. The corpus does not support such a simple progression.",
+          "excerpt_context": "Section 5.3, Non-co-occurrence 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "safety_maturity",
+            "capability_growth",
+            "uneven_safety_landscape"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-008",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for transparent, auditable research into agent infrastructure to move beyond 'impressionistic' or 'opaque' development practices. By providing a protocol-guided, source-grounded empirical study, it intends to hold framework designers accountable to observable architectural regularities. This aligns with the skeptic's focus on demanding empirical evidence and verifiable standards for AI systems.",
+          "verbatim": "We provide a documented corpus boundary, search and screening protocol, and operational codebook in the appendices so that later studies can audit, revisit, refine, or extend the present comparison without relying on an opaque or purely impressionistic research process.",
+          "excerpt_context": "Section 1.3, Contributions",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "auditable_research",
+            "empirical_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-082",
+          "category": "Intentions",
+          "point": "The document advocates for transparent, audit-based research methods, using standardized SOPs and human-in-the-loop verification to ensure findings are grounded in observable implementation artifacts. This skepticism toward automated or opaque evaluation methods mirrors the skeptic's demand for participatory and verifiable auditing throughout the AI development pipeline.",
+          "verbatim": "The research team approached the corpus from a software-architecture and Agent-systems perspective, which creates both interpretive leverage and potential bias toward seeing architectural structure where projects are still evolving rapidly. To reduce that risk, the protocol required source-first verification, explicit distinction between fact and inference, and confidence notes for borderline cases instead of forced over-interpretation.",
+          "excerpt_context": "Section 3.4, paragraph 8",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "participatory_auditing",
+            "source_first_verification"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-107",
+          "category": "Intentions",
+          "point": "The document highlights that safety mechanisms are not merely cosmetic but are architectural commitments that co-evolve with execution power. It notes that frameworks executing tools directly in host processes rely on weaker checks, whereas those using containers pair them with broader approval logic. Skeptics would argue this reinforces the need for coupling pre-deployment architectural audits with post-deployment liability, as the 'governance burden' is a structural requirement for safe operation.",
+          "verbatim": "This co-occurrence is architectural rather than cosmetic. Isolation changes what kinds of actions a framework can safely permit, and approval workflows determine when those actions require human intervention or policy checks.",
+          "excerpt_context": "Section 5.2, Co-occurrence 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "architectural_commitment",
+            "governance_burden",
+            "approval_logic"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-057",
+          "category": "Intentions",
+          "point": "The document identifies that many local feature enhancements in AI frameworks are empirically associated with broader, often unmanaged, coordination and governance burdens. It suggests that organizations should prioritize architectural coherence over maximizing advanced features to avoid systemic failures. This reflects the skeptic's concern that rapid, uncoordinated AI adoption leads to unmanageable complexity.",
+          "verbatim": "In this setting, architectural coherence matters more than maximizing the number of advanced features, because many seemingly local enhancements are empirically associated with broader coordination and governance burdens elsewhere in the system.",
+          "excerpt_context": "Section 4, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_burden",
+            "architectural_coherence"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "The study identifies five recurring architectural design dimensions in AI agent systems: subagent architecture, context management, tool systems, safety mechanisms, and orchestration.",
+      "claim_label": "Five Recurring Architectural Design Dimensions",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on a corpus of 70 projects."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Common simplifying assumptions in the field, such as 'language determines architecture' and 'capability growth implies governance maturity,' are not supported by cross-project comparison.",
+      "claim_label": "Refutation of Common Architectural Simplifications",
+      "doc_position": "disputes",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical finding from cross-project co-occurrence analysis."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The majority of agent harness projects (45%) utilize process separation for isolation, while 17% have no isolation at all, and only 7% use WASM sandboxing.",
+      "claim_label": "Agent Isolation Level Distribution",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-desires-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Container-isolated AI agent projects are significantly more likely to implement policy engines than those without container isolation. Specifically, 100% of container-isolated projects in the study implemented policy engines, compared to only 23% of projects without such isolation.",
+      "claim_label": "Container Isolation and Policy Engine Correlation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-146"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation based on coded corpus"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Capability growth in AI agent frameworks does not automatically produce safety maturity, necessitating explicit design investments in isolation and auditability.",
+      "claim_label": "Capability-Safety Decoupling",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-desires-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation from corpus analysis"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Architectural Reification of Context Management",
+      "suggested_description": "A Belief within accelerationist and safetyist discourse that context management evolves from a local prompt-engineering task into a formal, infrastructural subsystem as agent complexity increases.\nEncompasses: Persistence, compression, token budgeting, and memory retrieval.\nExcludes: Simple prompt-window management or ephemeral session state.",
+      "concept": "The document notes that as frameworks move beyond narrowly bounded sessions, context handling becomes an infrastructural concern rather than a local prompt-engineering choice. This reification involves moving from simple truncation to layered memory and explicit token budgeting.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes the structural maturation of AI systems, which is central to understanding both the potential for scaling (accelerationist) and the need for governance (safetyist).",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as a sign of increasing system maturity, where agents gain the ability to manage long-term memory and complex state, enabling more sophisticated autonomous tasks.",
+      "Safetyist Interpretation": "Safetyists would view this as a critical control point; as context management becomes a formal subsystem, it provides a necessary hook for auditing, monitoring, and enforcing safety constraints on agent memory.",
+      "Skeptic Interpretation": "Skeptics would focus on the potential for these complex memory systems to introduce new failure modes, such as data leakage or the persistence of biased information across sessions."
+    },
+    {
+      "suggested_label": "Architectural Bundle Co-occurrence",
+      "suggested_description": "A Belief within skeptic discourse that specific architectural design decisions (e.g., subagent depth, context management) tend to cluster together in predictable, non-random patterns.\nEncompasses: Empirical correlations between execution power and governance mechanisms.\nExcludes: Causal laws of AI development.",
+      "concept": "The study identifies that decisions about subagents, context handling, and tool registration recur in recognizable combinations. It posits that these bundles are not incidental but reflect competing infrastructural commitments.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "The concept of 'bundled commitments' is central to the document's empirical findings but is not explicitly captured in the current taxonomy nodes.",
+      "Accelerationist Interpretation": "Accelerationists would use these bundles to optimize framework development, identifying which architectural paths lead to the most efficient scaling.",
+      "Safetyist Interpretation": "Safetyists would use these bundles to identify 'high-risk' architectural clusters that require mandatory safety interventions.",
+      "Skeptic Interpretation": "Skeptics would use these bundles to highlight the hidden costs and governance burdens associated with adopting specific 'advanced' architectural patterns."
+    }
+  ]
+}

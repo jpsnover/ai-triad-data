@@ -1,0 +1,433 @@
+{
+  "doc_id": "empirical-study-vulnerable-package-dependencies-llm-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:09:33Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 818,
+    "chunked": true,
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "empirical-study-vulnerable-package-dependencies-llm-2026",
+    "measured_at": "2026-05-16T08:39:33.8103410-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 21379,
+        "out_units": "tokens_est",
+        "out_count": 21377,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3276,
+        "out_units": "nodes",
+        "out_count": 62,
+        "ratio": 0.0189,
+        "flags": {
+          "avg_nodes_selected": 62,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 5,
+          "avg_desires": 2,
+          "chunk_count": 3,
+          "min_nodes_selected": 61,
+          "avg_intentions": 4,
+          "avg_beliefs": 9
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 102782,
+        "out_units": "items",
+        "out_count": 23,
+        "ratio": 0.0002,
+        "flags": {
+          "unmapped_concepts": 3,
+          "null_node_rate": 0.0714,
+          "total_points": 14,
+          "factual_claims": 6,
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 23,
+        "out_units": "items",
+        "out_count": 23,
+        "ratio": 1,
+        "flags": {
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "used_embeddings": 1,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.6667,
+        "flags": {
+          "near_miss_count": 2,
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0189
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document acknowledges that external code dependencies and package management systems are essential for the rapid development and deployment of LLMs. By enabling code reuse, these supply chains accelerate innovation and allow developers to build complex systems without starting from scratch. This aligns with the accelerationist view that modular, interconnected software ecosystems are foundational to achieving rapid technological progress and abundance.",
+          "verbatim": "This extensive dependency on external packages accelerates the development of LLMs and establishes a complex web of interconnected dependencies, collectively referred to as the LLM dependency supply chain.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "dependency_management",
+            "innovation_acceleration"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-008",
+          "category": "Intentions",
+          "point": "The document advocates for the widespread adoption of automated vulnerability scanning and real-time reporting to accelerate the discovery and remediation of security flaws. By shifting from manual, slow-paced security reviews to automated, continuous telemetry, the ecosystem can better manage the risks inherent in rapid LLM development. This aligns with the accelerationist goal of scaling security capabilities alongside technological advancement through automated, data-driven processes.",
+          "verbatim": "To mitigate this risk, the LLM community should prioritize enhancing the speed and effectiveness of vulnerability detection. Implementing automated vulnerability scanning tools and real-time reporting mechanisms could help shorten discovery times.",
+          "excerpt_context": "Section 3, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "automated_vulnerability_scanning",
+            "real-time_reporting",
+            "vulnerability_discovery"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-010",
+          "category": "Beliefs",
+          "point": "The study confirms that LLMs are highly susceptible to supply chain risks, with 75.8% of analyzed models including at least one vulnerable dependency. This validates the safetyist concern that vulnerabilities in a single component can propagate throughout the entire LLM ecosystem, creating systemic fragility.",
+          "verbatim": "Additionally, 75.8% of LLMs include vulnerable dependencies in their configuration files.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "supply_chain_vulnerability",
+            "systemic_risk"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-105",
+          "category": "Beliefs",
+          "point": "The research highlights a significant 'disclosure gap,' where half of the vulnerabilities in the LLM ecosystem remain undisclosed for over 56.2 months. This empirical evidence supports the safetyist argument that reactive, post-deployment patching is insufficient for managing the risks inherent in complex, interconnected AI systems.",
+          "verbatim": "Our results show that half of the vulnerabilities in the LLM ecosystem remain undisclosed for more than 56.2 months, significantly longer than those in the Python ecosystem.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "vulnerability_lifecycle",
+            "disclosure_delay"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-092",
+          "category": "Beliefs",
+          "point": "The study identifies a high concentration of dependency usage, where a small subset of core packages (like torch) are disproportionately utilized across many LLMs. This creates a correlated failure surface, as a single vulnerability in a high-frequency package can compromise a vast number of downstream models simultaneously.",
+          "verbatim": "The extensive use of these high-frequency packages means that any vulnerabilities within them could propagate across multiple LLM projects, amplifying the impact of potential security flaws.",
+          "excerpt_context": "Section 4.2.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "correlated_failure",
+            "dependency_concentration"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-010",
+          "category": "Beliefs",
+          "point": "The document identifies that vulnerabilities in the LLM supply chain are highly concentrated in a small number of core dependencies, such as TensorFlow. This creates a systemic risk where a single malicious or vulnerable component can compromise a vast number of downstream LLM systems. The study highlights that 71% of all vulnerabilities are accounted for by only three packages, confirming the existence of critical chokepoints in the software dependency network.",
+          "verbatim": "The distribution of vulnerabilities in the LLM supply chain is highly imbalanced, with a small subset of packages accounting for most reported vulnerabilities. Specifically, the top three packages—TensorFlow, Django, and Ansible—accounted for 71.01% of all vulnerabilities (632 out of 890), despite comprising only 5.8% of the total packages with vulnerabilities.",
+          "excerpt_context": "Section 5.2.4, Influence on LLM",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "supply_chain_vulnerability",
+            "systemic_risk",
+            "dependency_chokepoints"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-097",
+          "category": "Beliefs",
+          "point": "The document asserts that the complexity of LLM ecosystems, which require diverse capabilities like distributed training and API integration, has broadened the dependency surface. This expansion of the attack surface, combined with the long-term survival of undiscovered vulnerabilities (median 56.2 months), creates a persistent security risk that is not mitigated by individual patching efforts.",
+          "verbatim": "The growing reliance on external dependencies has expanded the risk landscape. This trend suggests that while individual vulnerabilities are being addressed, the overall security risk persists due to the growing interdependence of LLM ecosystems on external software.",
+          "excerpt_context": "Section 5.2.1, Vulnerability Trends",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "attack_surface_expansion",
+            "dependency_complexity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-094",
+          "category": "Intentions",
+          "point": "The authors argue for proactive vulnerability management and robust patching practices, noting that the pervasive nature of vulnerabilities across multiple versions of packages complicates rollbacks. They emphasize that developers must prioritize the monitoring of high-frequency dependencies to mitigate the risks posed by concentrated security issues.",
+          "verbatim": "Furthermore, the data suggest that packages with more versions tend to have a higher absolute number of affected versions, reinforcing the need for proactive vulnerability management and robust patching practices.",
+          "excerpt_context": "Section 5.2.1, Vulnerability Trends",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "proactive_vulnerability_management",
+            "patching_practices"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-010",
+          "category": "Beliefs",
+          "point": "The document asserts that the LLM supply chain is highly fragile due to its reliance on a small set of critical third-party dependencies. Because 75.8% of LLMs contain at least one vulnerable dependency, a single compromised package can propagate risks across a vast number of downstream projects. This confirms the safetyist concern regarding systemic fragility and the potential for cascading failures within the AI software supply chain.",
+          "verbatim": "Our findings indicate that 75.8% of LLMs with dependency configurations contain at least one vulnerable dependency version. To manage dependencies effectively, developers can use tools such as Dependabot or Snyk, which automate the tracking and updating of dependencies.",
+          "excerpt_context": "Section 3, paragraph 5",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "supply_chain_vulnerability",
+            "dependency_management",
+            "systemic_risk"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-105",
+          "category": "Beliefs",
+          "point": "The study highlights that vulnerabilities in the LLM ecosystem remain undisclosed for a median of 56.2 months, significantly longer than in the general Python ecosystem. This prolonged exposure window demonstrates the inadequacy of current 'deploy and patch' cycles, as the delay between vulnerability existence and remediation leaves systems vulnerable for years. This supports the safetyist argument that traditional patching paradigms are insufficient for the scale and complexity of modern AI systems.",
+          "verbatim": "As discussed in Section 7.1, the median time to discover vulnerabilities in the LLM ecosystem (56.2 months) is longer than in the Python ecosystem (39 months). This prolonged discovery period increases the window of opportunity for attackers to exploit vulnerabilities.",
+          "excerpt_context": "Section 3, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "vulnerability_lifecycle",
+            "exposure_window",
+            "patching_delay"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The study emphasizes the need for better documentation and structured dependency management in LLM projects to improve security. By analyzing configuration files and community PRs, the authors argue that practitioners must adopt more rigorous practices to audit and maintain their software dependencies, addressing the current lack of transparency in LLM supply chains.",
+          "verbatim": "This suggests that a substantial portion of the collected LLM projects provide explicit and structured dependency configurations, which facilitates reliable analysis of their dependency supply chains.",
+          "excerpt_context": "Section 3.1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_accountability",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-040",
+          "category": "Intentions",
+          "point": "The authors propose empirically grounded guidelines for dependency management, effectively applying a risk-utility framework to LLM development. By comparing the risks of vulnerable dependencies against the utility of rapid development, they aim to provide practitioners with actionable strategies to harden their systems against measurable security threats.",
+          "verbatim": "Our findings provide a foundation for improving the security and resilience of LLM ecosystems.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "risk_utility_test",
+            "resilience"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-107",
+          "category": "Intentions",
+          "point": "The document highlights a significant gap between vulnerability disclosure and developer response, noting that while 75.8% of LLMs contain vulnerable dependencies, only a small subset of projects actively address these issues via PRs. The authors suggest that the current reliance on manual PR-based updates is insufficient, as the median time to update is 11 days, and the disclosure-to-fix interval provides a dangerous window for exploitation.",
+          "verbatim": "These two timelines, the disclosure-to-fix interval, and the fix-to-PR interval, together may allow attackers enough time to exploit known vulnerabilities, posing significant security risks to LLM projects.",
+          "excerpt_context": "Section 6.2.2, Version Update Vulnerabilities",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "vulnerability_disclosure_delay",
+            "patching_latency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-107",
+          "category": "Intentions",
+          "point": "The document emphasizes that proactive vulnerability fixes are rare, with only 17.3% of LLMs having pull requests related to security. This suggests that developers and maintainers are not sufficiently incentivized or equipped to manage security risks post-deployment. The study advocates for stronger dependency management practices and clearer labeling of vulnerable versions, which aligns with the skeptic focus on holding maintainers and developers accountable for the security of their software ecosystems.",
+          "verbatim": "Our analysis shows that proactive vulnerability fixes are rare: only 17.3% of LLMs have PRs related to vulnerabilities, with 79% of fixes achievable through dependency updates.",
+          "excerpt_context": "Conclusion, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "proactive_vulnerability_remediation",
+            "maintainer_accountability",
+            "dependency_hygiene"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "75.8% of open-source LLMs analyzed in the study contain at least one vulnerable dependency in their configuration files.",
+      "claim_label": "Prevalence of Vulnerable LLM Dependencies",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05-16",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-010"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on analysis of 52 open-source LLM repositories."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Vulnerabilities in the LLM ecosystem remain undisclosed for a median of 56.2 months, which is significantly longer than the 39-month median observed in the broader Python ecosystem.",
+      "claim_label": "LLM Vulnerability Disclosure Delay",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-105"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Comparative statistical analysis between LLM and Python package ecosystems."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "75.8% of LLM projects with dependency configuration files contain at least one vulnerable dependency version.",
+      "claim_label": "Prevalence of Vulnerable Dependencies in LLMs",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-030"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The median time from vulnerability introduction to public disclosure in the LLM supply chain is 56.2 months.",
+      "claim_label": "Vulnerability Discovery Latency",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-097"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "75.8% of open-source LLMs with dependency configurations contain at least one vulnerable dependency version.",
+      "claim_label": "LLM Dependency Vulnerability Prevalence",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-010"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation based on dataset analysis"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The median time to discover vulnerabilities in the LLM ecosystem is 56.2 months, compared to 39 months in the general Python ecosystem.",
+      "claim_label": "LLM Vulnerability Discovery Latency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-105"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "statistical analysis of vulnerability disclosure timelines"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Architectural Dependency Influence",
+      "suggested_description": "A Belief within safetyist discourse that the specific functional requirements of different LLM architectures (e.g., Decoder-Only vs. Encoder-Only) dictate the composition and risk profile of their dependency supply chains.\nEncompasses: Real-time networking dependencies, debugging tool usage, and task-specific library integration.\nExcludes: General software supply chain risks that are independent of model architecture.",
+      "concept": "The study observes that Decoder-Only models rely more heavily on networking packages for real-time tasks, whereas Encoder-Only models prioritize self-contained designs. This suggests that security risk profiles are not uniform across all LLMs but are instead shaped by the architectural choices made during development.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept links specific model architectures to distinct security risk surfaces, which is not currently captured by existing nodes.",
+      "resolved_node_id": "saf-beliefs-107"
+    },
+    {
+      "suggested_label": "Dependency Versioning Complexity",
+      "suggested_description": "A Belief within safetyist discourse that the high number of versions per package in LLM ecosystems creates significant management overhead and security risks.\nEncompasses: Version proliferation, difficulty in identifying safe rollbacks, and management of strict vs. loose constraints.\nExcludes: General software supply chain risks not related to versioning density.",
+      "concept": "The document notes that LLM packages have a median of 155 versions, with 87.5% of versions affected by vulnerabilities. This high version count complicates the identification of unaffected versions for rollbacks, creating a unique security challenge for LLM maintainers.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "The taxonomy lacks a node specifically addressing the security implications of high version density in AI-specific dependency ecosystems.",
+      "resolved_node_id": "saf-beliefs-108"
+    }
+  ]
+}

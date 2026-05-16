@@ -1,0 +1,374 @@
+{
+  "doc_id": "agentleak-full-stack-benchmark-privacy-leakage-multi-agent-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-16T08:09:33Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 818,
+    "chunked": true,
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "agentleak-full-stack-benchmark-privacy-leakage-multi-agent-2026",
+    "measured_at": "2026-05-16T08:30:45.5701610-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 22645.0,
+        "out_units": "tokens_est",
+        "out_count": 22643.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3276.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0189,
+        "flags": {
+          "avg_nodes_selected": 62.0,
+          "max_nodes_selected": 63,
+          "total_below_threshold": 5,
+          "avg_desires": 2.0,
+          "chunk_count": 3,
+          "min_nodes_selected": 61,
+          "avg_intentions": 5.0,
+          "avg_beliefs": 5.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 105968.0,
+        "out_units": "items",
+        "out_count": 22.0,
+        "ratio": 0.0002,
+        "flags": {
+          "unmapped_concepts": 3,
+          "null_node_rate": 0.4286,
+          "total_points": 14,
+          "factual_claims": 5,
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 22.0,
+        "out_units": "items",
+        "out_count": 19.0,
+        "ratio": 0.8636,
+        "flags": {
+          "concepts_deduped": 1,
+          "claims_deduped": 1,
+          "used_embeddings": 1,
+          "points_deduped": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.5,
+        "flags": {
+          "near_miss_count": 1,
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0163
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document supports the continued deployment of multi-agent LLM systems in enterprise workflows, such as healthcare and finance, because they autonomously decompose complex tasks and coordinate results. It frames these systems as revolutionary for enterprise efficiency. The accelerationist lens views the identified privacy risks not as a reason to halt deployment, but as a technical challenge to be solved through better coordination frameworks and internal-channel privacy protections.",
+          "verbatim": "Multi-agent Large Language Model (LLM) systems are reshaping enterprise workflows from healthcare scheduling to financial compliance to legal discovery. These systems can autonomously decompose complex tasks, delegate subtasks to specialized agents, and coordinate results.",
+          "excerpt_context": "Section I, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "multi-agent_systems",
+            "enterprise_workflows"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document suggests that the privacy-utility tradeoff is not a fundamental barrier but a technical challenge that can be solved through architectural innovation. By advocating for selective disclosure policies and framework-level data flow management, it supports the continued deployment of agentic systems while mitigating risks. This approach aligns with accelerationist goals of enabling powerful AI capabilities by engineering around constraints rather than halting progress.",
+          "verbatim": "Future defenses require selective disclosure policies rather than broad redaction. Addressing the gap requires architectural changes at the framework level: message-level sanitization intercepting inter-agent communication, memory access controls with field-level permissions, and full-channel auditing as a default capability.",
+          "excerpt_context": "Section 3, Discussion and Limitations",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "architectural_innovation",
+            "privacy_utility_tradeoff",
+            "selective_disclosure"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-006",
+          "category": "Desires",
+          "point": "The document advocates for the strict application of data minimization principles to internal agent communication channels. It argues that current multi-agent frameworks lack necessary privacy controls, leading to excessive internal data sharing that increases the system's attack surface. The safetyist lens supports this as a necessary containment strategy to prevent unauthorized data exfiltration.",
+          "verbatim": "To this end, we posit that multi-agent systems should follow the principle of data minimization in action: an agent should expose sensitive information only if it is genuinely required to complete its task.",
+          "excerpt_context": "Section I, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "data_minimization",
+            "attack_surface",
+            "privacy_controls"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that multi-agent configurations introduce unmonitored internal channels (inter-agent messages and shared memory) that significantly increase total system exposure compared to single-agent baselines. It identifies these internal channels as the primary vulnerability, with leak rates 2.1 times higher than external channels. This supports the safetyist belief that complex, autonomous systems create emergent risks that are not captured by traditional perimeter-based security.",
+          "verbatim": "We find that multi-agent configurations actually reduce per-channel output leakage (C1: 27.2% vs 43.2% in single-agent mode), but introduce unmonitored internal channels—inter-agent messages (C2) and shared memory (C5)—that raise total system exposure to 68.9% (OR-aggregated), a 1.6× increase over the single-agent baseline.",
+          "excerpt_context": "Section I, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "internal_channels",
+            "system_exposure",
+            "multi-agent_configurations"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The authors propose a full-stack benchmark, AgentLeak, to evaluate privacy leakage across seven distinct channels, including internal ones. This intention aligns with the safetyist goal of developing rigorous, comprehensive evaluation frameworks that account for the full lifecycle of data within autonomous systems. It emphasizes that output-only audits are insufficient for modern AI architectures.",
+          "verbatim": "We introduce AgentLeak, to the best of our knowledge the first full-stack benchmark for privacy leakage covering internal channels, spanning 1,000 scenarios across healthcare, finance, legal, and corporate domains, paired with a 32-class attack taxonomy and three-tier detection pipeline.",
+          "excerpt_context": "Section I, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "full-stack_benchmark",
+            "privacy_leakage",
+            "detection_pipeline"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-goals-001",
+          "category": "Desires",
+          "point": "The document advocates for the institutionalization of standardized benchmarks and evaluation metrics for multi-agent LLM systems. By establishing a 32-class taxonomy and a multi-tiered detection pipeline, the authors aim to create a reproducible framework for measuring privacy leakage. This aligns with safetyist goals of moving beyond ad-hoc security measures toward rigorous, standardized transparency and evaluation protocols.",
+          "verbatim": "A systematic taxonomy enables: Systematic coverage of attack vectors in benchmark design; Fair comparison across different evaluation methodologies; Identification of gaps in current defense mechanisms.",
+          "excerpt_context": "Section V, Part A",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "standardized_transparency_reporting",
+            "benchmark_design"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The authors argue for the necessity of 'full-stack' auditing that monitors internal agent communication and memory, rather than relying on output-only filters. They demonstrate that 41.7% of privacy violations are missed by output-only audits. This supports the safetyist intention to mandate comprehensive, deep-system monitoring as a prerequisite for secure deployment.",
+          "verbatim": "Nearly half of all violations occur in internal channels while the final output passes checks, confirming that output-only audits are insufficient for multi-agent systems.",
+          "excerpt_context": "Section VI, Finding 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "full_stack_auditing",
+            "internal_channel_monitoring"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document confirms that internal reasoning processes (chain-of-thought) and inter-agent communication channels are opaque to standard output-focused auditing. This opacity hides significant privacy violations, validating the safetyist concern that current oversight mechanisms are insufficient for complex, multi-agent systems.",
+          "verbatim": "This reveals something interesting about agent behavior: they process sensitive information in their chain-of-thought (which ends up in logs) even when they ultimately decide not to pass that data to external tools. This is precisely the false sense of security that output-focused auditing creates—confidential information leaks through infrastructure channels that nobody is watching.",
+          "excerpt_context": "Section 3, Log Leakage (C6) and the “Thought Gap”",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "chain_of_thought_transparency",
+            "audit_gap",
+            "internal_reasoning_opacity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-088",
+          "category": "Intentions",
+          "point": "The authors advocate for treating inter-agent communication and memory as high-risk surfaces that require strict, framework-level sanitization. This aligns with the safetyist intention to secure the interfaces where agents interact with tools and delegated authority.",
+          "verbatim": "For deployments of multi-agent systems with access to sensitive data, leakage should be treated as likely unless confirmed otherwise via full-channel auditing. The 41.7% rate at which output-only audits miss violations is not theoretical; it reflects what we observed across 4,979 traces with production-grade models.",
+          "excerpt_context": "Section 3, Implications for System Designers",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "full_channel_auditing",
+            "agentic_layer_failure_surfaces"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
+          "category": "Beliefs",
+          "point": "The document highlights that current multi-agent frameworks prioritize coordination over privacy, often exposing sensitive data in inter-agent messages without restriction. It notes that agents often ignore privacy-focused prompts when coordinating, leading to inconsistent and potentially harmful data handling. This supports the skeptic view that AI systems inherently compromise privacy and that current technical safeguards are largely performative or ineffective.",
+          "verbatim": "Across the evaluated frameworks, priorities currently emphasize coordination, while internal-channel privacy protections remain largely unsupported. In practice, agents often ignore prompt instructions when coordinating with each other.",
+          "excerpt_context": "Section II, Related Work",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "internal-channel_privacy",
+            "privacy_norms",
+            "data_leakage"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-003",
+          "category": "Desires",
+          "point": "The document emphasizes the need to protect sensitive data (SSNs, medical records, financial info) from being leaked through agentic systems. By creating a benchmark to identify these leaks, the authors support the skeptic desire to enforce strict boundaries on how personal information is handled and exposed by AI models.",
+          "verbatim": "Detecting privacy leakage requires covering the full spectrum: verbatim data exposure to semantic paraphrases. No single approach handles both.",
+          "excerpt_context": "Section IV, Part E",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "data_privacy",
+            "pii_leakage"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that LLMs fundamentally struggle to maintain privacy boundaries, as they frequently leak sensitive information through internal channels and semantic paraphrasing. This confirms the skeptic belief that AI models are inherently prone to surfacing sensitive information in unpredictable ways.",
+          "verbatim": "The pattern C2 > C1 holds across all five models and four domains—healthcare, finance, legal, corporate—which pins inter-agent communication as the weak link in today’s multi-agent implementations.",
+          "excerpt_context": "Section VI, Finding 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "privacy_vulnerability",
+            "semantic_leakage"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-106",
+          "category": "Intentions",
+          "point": "The document demonstrates the necessity of objective, falsifiable performance thresholds for privacy, using a benchmark to expose that current models fail to meet basic data minimization standards. It supports the skeptic view that industry-standard safety training is insufficient without rigorous, independent, and multi-channel auditing.",
+          "verbatim": "The 41.7% rate at which output-only audits miss violations is not theoretical; it reflects what we observed across 4,979 traces with production-grade models. Organizations deploying agentic systems in regulated domains should audit all channels, not just final outputs.",
+          "excerpt_context": "Section 3, Implications for System Designers",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "performance_gated_audits",
+            "data_minimization_compliance"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Multi-agent LLM systems exhibit higher total system exposure to privacy leakage than single-agent systems, with internal channels (inter-agent messages and shared memory) accounting for the majority of this risk.",
+      "claim_label": "Multi-Agent System Exposure Increase",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-049"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Output-only audits of AI systems miss approximately 41.7% of privacy violations because they fail to inspect internal communication channels like inter-agent messages.",
+      "claim_label": "Output-Only Audit Failure Rate",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-085"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Multi-agent systems increase total privacy exposure by 1.6 times compared to single-agent baselines due to the introduction of internal communication and memory channels.",
+      "claim_label": "Multi-Agent Privacy Exposure Increase",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim based on 4,979 traces"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Internal channels (inter-agent messages and memory) in multi-agent LLM systems leak sensitive data at a significantly higher rate than user-facing output channels.",
+      "claim_label": "Internal Channel Leakage Prevalence",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on 4,979 execution traces across five LLMs."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Internal Channel Privacy Vulnerability",
+      "suggested_description": "A situation concept that describes the lack of security controls on communication pathways between agents in a multi-agent system.\nEncompasses: Inter-agent messages, shared memory, and coordination logs.\nExcludes: External-facing output channels and user-facing interfaces.",
+      "concept": "The document identifies that while external channels have established security controls, internal channels like inter-agent messages and shared memory lack default privacy protections. This creates a significant gap where sensitive data is exposed during task coordination without oversight.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "Existing nodes focus on general security or specific privacy mechanisms, but not the systemic lack of controls on internal agent-to-agent communication pathways.",
+      "Accelerationist Interpretation": "This is a technical hurdle that can be solved by integrating privacy-preserving middleware into agent frameworks to enable secure coordination.",
+      "Safetyist Interpretation": "This confirms that autonomous systems are inherently dangerous because they create unmonitored, high-risk communication channels that bypass traditional security perimeters.",
+      "Skeptic Interpretation": "This demonstrates that the current push for multi-agent systems is fundamentally reckless, as it prioritizes coordination speed over the basic privacy of the data being processed."
+    }
+  ]
+}
