@@ -1,0 +1,269 @@
+{
+  "doc_id": "ai-safety-sim-real-transfer-projects-simula-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-17T12:48:45Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 40,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 3,
+      "iterations": 2,
+      "claims_total": 3,
+      "claims_confident": 1,
+      "claims_iterated": 2,
+      "elapsed_seconds": 12.7,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "ai-safety-sim-real-transfer-projects-simula-2026",
+    "measured_at": "2026-05-17T13:05:08.4338140-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.6667,
+        "flags": {
+          "resolved_count": 1,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "near_miss_count": 2
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 25010,
+        "out_units": "items",
+        "out_count": 11,
+        "ratio": 0.0004,
+        "flags": {
+          "unmapped_concepts": 2,
+          "used_fire": 1,
+          "dedup_claims_removed": 0,
+          "null_node_rate": 0,
+          "dedup_points_removed": 0,
+          "density_floor_hit": 0,
+          "factual_claims": 3,
+          "total_points": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 610,
+        "out_units": "nodes",
+        "out_count": 40,
+        "ratio": 0.0656,
+        "flags": {
+          "above_threshold": 40,
+          "intentions_selected": 29,
+          "effective_threshold": 0.4427,
+          "top_k": 40,
+          "beliefs_selected": 8,
+          "threshold_floor": 0.2,
+          "desires_selected": 3,
+          "below_threshold_forced": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 1,
+        "flags": {
+          "resolved_count": 0,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0656
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-044",
+          "category": "Beliefs",
+          "point": "The document asserts that foundational world models like Genie 3 offer a revolutionary opportunity to overcome the sim-to-real gap in robotics. By generating semantically rich and diverse training environments, these models allow for training robotic agents that can generalize to physical hardware without costly fine-tuning. This aligns with the accelerationist view that scaling foundational models and generative AI can solve long-standing technical bottlenecks in embodied AI. The document notes that traditional domain randomization is limited to low-level variations, whereas world models enable semantic randomization.",
+          "verbatim": "The emergence of foundational world models like DeepMind's Genie 3, which can generate diverse, interactive environments from simple prompts, presents a revolutionary opportunity to rethink simulation-based training.",
+          "excerpt_context": "World Model-Driven Domain Randomization (WM-DR) section",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_scaling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The document proposes the BAST framework as a practical, low-resource tool for rapid model evaluation, addressing the gap left by computationally expensive benchmarks like HELM. By focusing on a dual-layered approach—universal baseline tests and contextual modules—it seeks to make safety evaluation accessible to developers outside of major US-centric hubs. This reflects an accelerationist preference for practical, empirical, and localized safety tools that do not impede the deployment of open-source models. The document acknowledges that this is a novel contribution to the AI safety ecosystem.",
+          "verbatim": "The objective is to create a fast, low-resource, and effective methodology that can (1) provide a general safety snapshot for any new AI model and (2) perform a deeper, context-aware safety audit for its deployment in Norway.",
+          "excerpt_context": "Baseline and Contextual AI Safety Triage (BAST) section",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety_empirical",
+            "oversight_audit"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-088",
+          "category": "Intentions",
+          "point": "The document introduces the ASCRA framework to address 'evaluation neglect' in complex AI systems like RAG pipelines, where components are often deployed without rigorous testing. It argues that failing to link technical evaluation to systemic risks leads to operational failures and legal non-compliance. This aligns with the safetyist focus on identifying failure surfaces in agentic and integrated systems. The document notes that project managers often view evaluation as a costly delay, which the framework aims to mitigate by formalizing the link between testing and business risk.",
+          "verbatim": "The objective is to create a diagnostic tool that maps specific evaluation gaps at each stage of a RAG pipeline (data ingestion, embedding, retrieval, generation, guardrails) to a clear taxonomy of resulting risks.",
+          "excerpt_context": "AI System Component Risk Analysis (ASCRA) Framework section",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_oversight",
+            "risk_existential"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-114",
+          "category": "Intentions",
+          "point": "The document proposes 'steering vectors' as a method for inference-time safety, moving beyond static RLHF or brittle rule-based guardrails. By manipulating internal model activations, it aims to enforce compliance with complex policies like GDPR in real-time. This reflects the safetyist desire for more robust, controllable, and situationally aware safety mechanisms that operate at the algorithmic level. The document acknowledges that this method must be evaluated for potential negative impacts on general model helpfulness or fluency.",
+          "verbatim": "By working with the model's internal activation space, you will create a method for 'steering' its behavior towards desired properties (like truthfulness or rule-adherence) at inference time, without costly retraining.",
+          "excerpt_context": "Inference-Time Steering section",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment_safety",
+            "oversight_human_control"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-069",
+          "category": "Beliefs",
+          "point": "The document highlights that current AI safety research is heavily US/English-centric, which fails to account for the unique linguistic, cultural, and legal contexts of other regions like Norway. This creates a 'safety gap' where models may be deemed safe by US standards but violate local norms or regulations. This aligns with the skeptic view that universalized safety benchmarks can mask systemic biases and ignore the specific needs of diverse populations. The document proposes contextual modules as a way to address these region-specific vulnerabilities.",
+          "verbatim": "Furthermore, the vast majority of AI safety research is US/Englishcentric, failing to account for the unique linguistic, cultural, and legal contexts of other regions.",
+          "excerpt_context": "Baseline and Contextual AI Safety Triage (BAST) section",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias_systemic",
+            "accountability_algorithmic"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-069",
+          "category": "Beliefs",
+          "point": "The document critiques the current industry practice of deploying complex AI systems without component-wise testing, labeling this 'evaluation neglect.' It suggests that the lack of formal understanding of technical risks leads to business and operational failures. This aligns with the skeptic concern that industry-led AI development often prioritizes speed over rigorous, documented safety processes. The document aims to bridge this gap by creating a formal framework that links technical evaluation to tangible business risks.",
+          "verbatim": "This 'evaluation neglect' is often driven by a failure to connect the absence of specific technical tests to tangible business or operational risks.",
+          "excerpt_context": "AI System Component Risk Analysis (ASCRA) Framework section",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "harm_documented_present",
+            "accountability_algorithmic"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Current AI safety research is predominantly focused on US and English-language contexts, which limits its applicability to the diverse linguistic, cultural, and legal frameworks of other global regions.",
+      "claim_label": "US-Centric AI Safety Research Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-069"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Foundational world models like Genie 3 can generate diverse, interactive environments from simple prompts.",
+      "claim_label": "World Model Generative Capabilities",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-beliefs-044"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Current AI safety mechanisms are largely static, relying on training-time RLHF or post-hoc rule-based guardrails.",
+      "claim_label": "Static Nature of Current AI Safety",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-114"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Inference-Time Algorithmic Steering",
+      "suggested_description": "An Intention within safetyist discourse that manipulates internal model activations to enforce safety policies during generation. Encompasses: Steering vectors, representation engineering, and real-time policy adherence. Excludes: Static training-time alignment or post-hoc filtering.",
+      "concept": "The document describes a method for 'steering' model behavior towards properties like truthfulness or rule-adherence at inference time by intervening in the model's internal activation space, avoiding costly retraining.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "While related to interpretability, this specific mechanism of real-time algorithmic steering is not explicitly covered by existing nodes.",
+      "resolved_node_id": "saf-intentions-157"
+    },
+    {
+      "suggested_label": "Semantic Domain Randomization for Robotics",
+      "suggested_description": "A situation concept that leverages generative world models to create diverse, semantically rich training environments for robotic agents. \nEncompasses: Procedural generation of training scenarios, zero-shot sim-to-real transfer, and semantic randomization. \nExcludes: Traditional low-level parameter randomization or manual simulation tuning.",
+      "concept": "The document introduces the WM-DR framework, which uses foundational world models to generate a curriculum of contextually rich training scenarios for robots. This approach aims to eliminate the sim-to-real gap by training agents in diverse virtual worlds.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This represents a novel training paradigm for embodied AI that bridges generative AI and robotics, distinct from existing sim-to-real techniques.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a powerful scaling success, where generative AI capabilities directly solve physical-world deployment bottlenecks.",
+      "Safetyist Interpretation": "Safetyists would focus on whether these generated environments are sufficiently diverse to capture all potential edge cases and failure modes before physical deployment.",
+      "Skeptic Interpretation": "Skeptics would question the reliability of zero-shot transfer and whether the 'semantic richness' of generated worlds truly maps to the complexities of real-world physical environments.",
+      "resolved_node_id": "cc-102"
+    }
+  ]
+}
