@@ -1,14 +1,14 @@
 {
   "doc_id": "ai-safety-debate-needs-ai-skeptics-2026-1",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 40,
+    "taxonomy_nodes": 41,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 2,
@@ -16,7 +16,7 @@
       "claims_total": 3,
       "claims_confident": 2,
       "claims_iterated": 1,
-      "elapsed_seconds": 10.2,
+      "elapsed_seconds": 11.7,
       "termination_reason": "all_confident"
     }
   },
@@ -24,74 +24,88 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "ai-safety-debate-needs-ai-skeptics-2026-1",
-    "measured_at": "2026-05-02T19:48:39.4137980-04:00",
+    "measured_at": "2026-05-22T23:48:06.4872638-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 0.0,
-        "ratio": 0.0,
+        "out_count": 1.0,
+        "ratio": 0.5,
         "flags": {
-          "resolved_count": 2,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 0
+          "resolved_count": 1,
+          "near_miss_count": 1
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 26727.0,
+        "in_count": 27122.0,
         "out_units": "items",
-        "out_count": 11.0,
+        "out_count": 10.0,
         "ratio": 0.0004,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 0,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 3,
-          "total_points": 8
+          "unmapped_concepts": 1,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
+          "total_points": 6
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 40.0,
-        "ratio": 0.076,
+        "ratio": 0.0611,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 14,
-          "below_threshold_forced": 0,
-          "intentions_selected": 21,
-          "effective_threshold": 0.5817,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 5
+          "below_threshold_forced": 0,
+          "above_threshold": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 21,
+          "effective_threshold": 0.5778,
+          "threshold_floor": 0.2,
+          "intentions_selected": 16
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "resolved_count": 0,
+          "near_miss_count": 0
         }
       }
     ],
-    "cumulative_retention": 0.076
+    "cumulative_retention": 0.0611
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-010",
+          "taxonomy_node_id": "acc-intentions-009",
           "category": "Intentions",
-          "point": "The document argues that the current AI safety discourse is heavily influenced by a specific, narrow vocabulary that prioritizes existential risk narratives over practical, evidence-based policy. This framing, the author suggests, is used to steer regulatory discussions toward complex, speculative regimes that avoid the 'messiness' of political economy. From an accelerationist perspective, this approach is seen as a way to maintain the status quo of corporate-led development while avoiding genuine scrutiny of how power is distributed in AI infrastructure.",
-          "verbatim": "This language of compromise strives to steer clear of the messiness of “politics” that could put its priorities at risk. But these frames guide us toward needlessly complicated regulatory regimes based on speculation and fear.",
+          "point": "The document argues that the AI safety community relies on 'doomsday' narratives and speculative AGI timelines to gain influence, characterizing these as 'myths' that hinder rigorous policy. It suggests that this focus on existential risk is a form of 'apolitical' framing that avoids addressing the actual corporate power dynamics and socio-technical realities of AI. From an accelerationist perspective, this critique challenges the foundational logic of safety-first movements, arguing that their focus on hypothetical future threats distracts from the immediate, manageable, and political nature of technology development. The document acknowledges that these narratives are highly persuasive to lawmakers, which it views as a strategic success for the safety movement but a failure for grounded policy.",
+          "verbatim": "Existential risk frames meet people in ways that confirm beliefs shaped through decades of science fiction, from R.U.R. to Her. This language of compromise strives to steer clear of the messiness of “politics” that could put its priorities at risk.",
           "excerpt_context": "Section: The pragmatic vocabulary",
-          "extraction_confidence": 0.9,
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "governance_adaptive"
+            "risk_innovation"
           ]
         }
       ]
@@ -99,25 +113,25 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "saf-beliefs-008",
+          "stance": "opposed",
+          "taxonomy_node_id": "saf-beliefs-098",
           "category": "Beliefs",
-          "point": "The document acknowledges that the AI risk community is composed of well-meaning experts concerned about the trajectory toward super-intelligence, but it critiques the lack of empirical evidence for this trajectory. It notes that the 'existential risk' movement has been highly persuasive to lawmakers by leveraging science fiction tropes. From a safetyist perspective, this critique highlights the difficulty of communicating long-term catastrophic risks without relying on speculative or anthropomorphic framing.",
-          "verbatim": "The AI risk community is not full of cynics and frauds. They are well-meaning experts and professionals from various fields, all concerned about the trajectory of AI toward a vaguely defined super-intelligence.",
+          "point": "The document critiques the safetyist belief in 'super-intelligence' as a vaguely defined, evidence-free trajectory that dominates policy discourse. It argues that experts conflate generative AI with robust analytic systems, leading to a misunderstanding of what these models are actually capable of. From a safetyist perspective, this skepticism ignores the potential for emergent properties and the risks of scaling, which the document dismisses as 'faith' rather than empirical reality. The document notes that this 'faith' in AGI is a powerful social force that shapes policy, even if the underlying technical evidence is, in the author's view, flimsy.",
+          "verbatim": "Despite the lack of compelling evidence and clear definitions, the urgent possibility of super-intelligence lingers on the border of every conversation.",
           "excerpt_context": "Section: Perspective",
-          "extraction_confidence": 0.95,
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "risk_existential"
+            "capabilities_hazard"
           ]
         },
         {
           "stance": "opposed",
-          "taxonomy_node_id": "saf-beliefs-038",
+          "taxonomy_node_id": "saf-beliefs-008",
           "category": "Beliefs",
-          "point": "The author argues that attributing 'intelligence' or 'agency' to neural networks is a category error that leads to dangerous over-trust in brittle systems. By treating machines as if they have human-like cognition, we risk reinforcing the idea that they are robust enough for high-stakes deployment. Safetyists would argue that this 'anthropomorphism' is exactly what makes deceptive alignment and other failure modes so difficult to detect and mitigate.",
-          "verbatim": "Rather than recognizing that a neural network is not a brain, we constrain ourselves to discussing it as if it was, forcing an assumption that conflates a machine's capacity to manage complexity with that machine's capacity to understand.",
-          "excerpt_context": "Section: Policy without proselytizing",
-          "extraction_confidence": 0.9,
+          "point": "The document challenges the safetyist interpretation of AI behavior, specifically the idea that AI systems are 'deceptive' or 'scheming.' It argues that what safetyists call 'deceptive alignment' is actually a result of human users misinterpreting plausible language as evidence of thought. From a safetyist perspective, this is a dangerous minimization of risk, as it treats potentially autonomous agents as mere 'brittle' tools. The document acknowledges that this disagreement is not just semantic but fundamental to how we assign authority to AI systems.",
+          "verbatim": "One camp views this as a system failure, a problem of unknown weights prioritizing the unknown numbers cascading through a neural net. Others declare these calculations to be \"the rise of deceptive machines.\"",
+          "excerpt_context": "Section: The dangers of AGI frames",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "safety_alignment"
           ]
@@ -128,63 +142,38 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-054",
-          "category": "Intentions",
-          "point": "The author advocates for a shift in AI policy toward 'real-world' harms, such as algorithmic bias and the political economy of corporate power, rather than speculative AGI scenarios. The document argues that current policy discourse is 'compromised' by its attempt to remain apolitical, which prevents meaningful regulation of how companies actually deploy technology. This aligns with the skeptic goal of grounding AI governance in documented, present-day impacts.",
-          "verbatim": "Suppose that we all sincerely intend to anticipate harms from these technologies. In that case, the priority should be to decipher which harms are most likely. Pure speculation is bound only by the limits of the imagination, and so a rigorous identification of priorities is paramount.",
+          "taxonomy_node_id": "skp-beliefs-130",
+          "category": "Beliefs",
+          "point": "The document asserts that AI should be demystified as a fallible, brittle software tool rather than an emergent intelligence. It argues that the current vocabulary of 'intelligence' and 'cognition' forces us to anthropomorphize machines, which obscures their actual limitations and the corporate interests behind them. From a skeptic perspective, this is essential for moving toward grounded, evidence-based policy that treats AI as a standard industrial product. The document acknowledges that this view is often dismissed as 'unhelpful' or 'political' in professional AI circles.",
+          "verbatim": "Rather than recognizing that a neural network is not a brain, we constrain ourselves to discussing it as if it was, forcing an assumption that conflates a machine's capacity to manage complexity with that machine's capacity to understand.",
           "excerpt_context": "Section: Policy without proselytizing",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "harm (documented, present)",
-            "bias (systemic/social)"
+            "bias_systemic"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-069",
-          "category": "Beliefs",
-          "point": "The document identifies 'safety washing' as a core issue, where companies use user experience design tricks to create an illusion of reliability and trust. It argues that improvements in language presentation are often mistaken for improvements in reasoning capabilities, leading to a false sense of security. This supports the skeptic view that current AI systems are brittle tools rather than transformative, autonomous agents.",
-          "verbatim": "Often, these improvements are not reflections of ongoing enhancements to AI's core architecture, but user experience design tricks intended to shift the user's perception toward trust and reliability.",
+          "taxonomy_node_id": "skp-intentions-012",
+          "category": "Intentions",
+          "point": "The document advocates for prioritizing the study of 'real, present' harms—such as algorithmic bias and the impact of corporate design—over speculative existential risks. It argues that current policy frameworks are 'broken' because they are rooted in hypothetical scenarios that lack intellectual scrutiny. From a skeptic perspective, this shift is necessary to prevent 'caveat emptor capitalism' where users are forced to bear the risks of unsafe software. The document notes that this approach is often sidelined because it requires discussing the 'messy' politics of corporate power.",
+          "verbatim": "Instead of examining reality, evidence of the inevitable arrival of artificial general intelligence (AGI) is rooted in a faith in scaling laws and extrapolation from personal anecdotes about the technology's perceived improvements.",
           "excerpt_context": "Section: Policy without proselytizing",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "harm (documented, present)"
+            "documented_present_harm"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-029",
           "category": "Beliefs",
-          "point": "The author highlights the power imbalance in AI policy, noting that those with the power to regulate have limited time and are often swayed by the 'propaganda' of Big Tech. This creates an information asymmetry where the 'myth' of AGI dominates the conversation, leaving little room for critical analysis of corporate stewardship. The document argues that this dynamic is intentional and serves to protect the interests of those building the products.",
-          "verbatim": "People with power to regulate have far less time than those who think about the policy. We think about the things that matter to us, and lecturing power about vocabulary wastes limited opportunities to engage, and rarely helps to persuade.",
-          "excerpt_context": "Section: The pragmatic vocabulary",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "accountability (algorithmic)"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-014",
-          "category": "Desires",
-          "point": "The document calls for integrating sociology and political economy into AI safety analysis, arguing that we should treat AI deployment like the Chevrolet Corvair case study—where design failures led to public harm. It suggests that users are currently being forced to bear the risk of 'caveat emptor' capitalism. This reflects the skeptic desire to hold corporations accountable for the societal impacts of their design choices.",
-          "verbatim": "In an ideal world, social concerns that arise from design and deployment decisions of technology would be part of the safety analysis of any AI system deployed for public use. We have sociology for a reason.",
-          "excerpt_context": "Section: The pragmatic vocabulary",
+          "point": "The document highlights the information asymmetry between AI developers and the public, noting that corporations often treat peer review of their claims as 'optional.' It argues that this lack of transparency allows companies to set AI goals and biases without public oversight. From a skeptic perspective, this is a critical failure of accountability that necessitates a focus on the political economy of AI infrastructure. The document acknowledges that this critique is often labeled as 'anti-corporate sentiment' to avoid addressing the underlying power dynamics.",
+          "verbatim": "AI is a field where the power of the anecdote is accepted over the power of numerous studies, and where peer review of claims by corporations building these products is considered optional.",
+          "excerpt_context": "Section: The dangers of AGI frames",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability (algorithmic)"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-009",
-          "category": "Intentions",
-          "point": "The author argues for stripping away the 'quasi-religious' and anthropomorphic language used to describe AI, which currently forces us to discuss machines as if they were human minds. By demystifying AI as a set of brittle, fallible tools, the author believes we can better address the real risks of corporate power and bureaucratic decision-making. This is a core skeptic strategy for ensuring AI is regulated as standard enterprise software.",
-          "verbatim": "Because we are discussing artificial \"intelligence,\" the mind becomes the way we organize our thinking around AI, lending itself to theories of cognition and self-awareness.",
-          "excerpt_context": "Section: Policy without proselytizing",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "harm (documented, present)"
+            "accountability_algorithmic"
           ]
         }
       ]
@@ -192,7 +181,7 @@
   },
   "factual_claims": [
     {
-      "claim": "The AI risk community frequently cites a six-to-ten-year timeline for the arrival of AGI.",
+      "claim": "AGI is predicted to arrive within an arbitrary six-to-ten-year timeline by proponents of existential risk.",
       "claim_label": "AGI Timeline Estimates",
       "doc_position": "supports",
       "temporal_scope": "predictive",
@@ -200,7 +189,7 @@
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-008"
+        "skp-beliefs-171"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -213,15 +202,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The Chevrolet Corvair is a historical case study where design outpaced safety, leading to regulatory changes in the automotive industry.",
-      "claim_label": "Chevrolet Corvair Safety Case",
+      "claim": "The Chevrolet Corvair case study demonstrates how design outpacing safety leads to necessary regulatory changes in automotive manufacturing.",
+      "claim_label": "Chevrolet Corvair Precedent",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "1960s",
       "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-desires-014"
+        "skp-intentions-055"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -229,30 +218,42 @@
         "internally_consistent": true,
         "category_criteria": {
           "values_grounded": true,
-          "tradeoff_acknowledged": false,
+          "tradeoff_acknowledged": true,
           "precedent_cited": true
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The term 'artificial intelligence' was coined in the 1950s, not the 1980s, as a foundational concept for machine cognition research.",
-      "claim_label": "AI Terminology Origins",
+      "claim": "Current generative AI models are frequently mistaken for robust analytic systems due to improvements in user experience design and language presentation.",
+      "claim_label": "Generative AI vs Analytic Systems",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "1980s",
-      "extraction_confidence": 0.8,
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-03",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-009"
+        "skp-beliefs-163"
       ],
       "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": false,
-        "internally_consistent": false
+        "specificity": "qualified",
+        "has_warrant": true,
+        "internally_consistent": true
       },
-      "fire_confidence": 0.1
+      "fire_confidence": 0.85
     }
   ],
-  "unmapped_concepts": []
+  "unmapped_concepts": [
+    {
+      "suggested_label": "The Apolitical Imaginary",
+      "suggested_description": "A situation concept that describes the strategic use of neutral, 'above-politics' language to advance specific, often speculative, technological agendas. \nEncompasses: science fiction tropes, consensus-building, avoidance of corporate power analysis. \nExcludes: transparent political debate, evidence-based policy, critical socio-technical analysis.",
+      "concept": "The document describes how the AI safety movement uses an 'apolitical imaginary' to influence policy, effectively ceding the frame to corporate interests while appearing neutral. This situation creates a 'circus of ungrounded assertions' that prevents meaningful discussion of the political economy of AI.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a situation concept describing the interaction between policy discourse and political power.",
+      "Accelerationist Interpretation": "Accelerationists might view this 'apolitical' framing as a necessary, if flawed, tool to build broad consensus for rapid technological deployment, arguing that 'politics' would only slow down innovation.",
+      "Safetyist Interpretation": "Safetyists would likely reject this label, arguing that their focus on existential risk is a rational, objective assessment of catastrophic potential that transcends traditional political categories.",
+      "Skeptic Interpretation": "Skeptics would use this concept to expose how 'neutral' safety discourse serves to protect corporate interests by ignoring the immediate, documented harms of AI systems."
+    }
+  ]
 }

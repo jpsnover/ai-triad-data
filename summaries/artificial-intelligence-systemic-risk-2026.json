@@ -1,14 +1,14 @@
 {
   "doc_id": "artificial-intelligence-systemic-risk-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 6
   },
@@ -16,15 +16,15 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "artificial-intelligence-systemic-risk-2026",
-    "measured_at": "2026-05-02T20:17:15.6199940-04:00",
+    "measured_at": "2026-05-23T02:10:58.1109510-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 45255.0,
+        "in_count": 46089.0,
         "out_units": "tokens_est",
-        "out_count": 45251.0,
-        "ratio": 0.9999,
+        "out_count": 46082.0,
+        "ratio": 0.9998,
         "flags": {
           "chunk_count": 6
         }
@@ -32,133 +32,158 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 61.0,
-        "ratio": 0.02,
+        "out_count": 60.0,
+        "ratio": 0.0176,
         "flags": {
-          "total_below_threshold": 5,
+          "avg_beliefs": 17.0,
+          "chunk_count": 5,
+          "avg_nodes_selected": 60.0,
+          "avg_desires": 3.0,
+          "max_nodes_selected": 61,
+          "total_below_threshold": 1,
           "avg_intentions": 10.0,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 62,
-          "chunk_count": 6,
-          "avg_desires": 2.0,
-          "avg_nodes_selected": 61.0,
-          "avg_beliefs": 9.0
+          "min_nodes_selected": 60
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 194805.0,
+        "in_count": 302962.0,
         "out_units": "items",
-        "out_count": 44.0,
+        "out_count": 53.0,
         "ratio": 0.0002,
         "flags": {
-          "factual_claims": 9,
-          "chunk_count": 5,
-          "total_points": 28,
-          "unmapped_concepts": 7,
-          "null_node_rate": 0.1786
+          "null_node_rate": 0.0588,
+          "chunk_count": 6,
+          "total_points": 34,
+          "unmapped_concepts": 9,
+          "factual_claims": 10
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 44.0,
+        "in_count": 53.0,
         "out_units": "items",
-        "out_count": 43.0,
-        "ratio": 0.9773,
+        "out_count": 52.0,
+        "ratio": 0.9811,
         "flags": {
-          "used_embeddings": 1,
+          "points_deduped": 1,
           "concepts_deduped": 0,
-          "claims_deduped": 0,
-          "points_deduped": 1
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 7.0,
+        "in_count": 9.0,
         "out_units": "still_unmapped",
         "out_count": 0.0,
         "ratio": 0.0,
         "flags": {
-          "resolved_count": 7,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 9,
           "near_miss_count": 0
         }
       }
     ],
-    "cumulative_retention": 0.0195
+    "cumulative_retention": 0.0173
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document acknowledges that AI offers substantial benefits, including accelerated scientific progress, improved economic growth, better decision-making, and enhanced healthcare. It frames these as significant positive outcomes that justify the adoption of AI technologies. The accelerationist lens views these as the primary justification for continued development, despite the noted risks.",
+          "taxonomy_node_id": "acc-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document acknowledges that AI offers substantial benefits, including accelerated scientific progress, improved economic growth, better decision-making, and enhanced healthcare. It frames these as significant positive impacts on society and the financial system. However, it notes that current estimates of total factor productivity (TFP) gains remain modest, suggesting that the full economic potential may take time to materialize as businesses reorganize.",
           "verbatim": "Our report emphasises that while AI offers substantial benefits, including accelerated scientific progress, improved economic growth, better decision making and risk management and enhanced healthcare, it also generates significant concerns regarding risks to the financial system and society.",
-          "excerpt_context": "Executive summary, paragraph 2",
+          "excerpt_context": "Executive summary",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "productivity_gains",
-            "scientific_progress"
+            "economic_growth"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-069",
+          "category": "Intentions",
+          "point": "The document highlights AI's capacity to process immense quantities of unstructured data and interact naturally with users, which can complement or substitute human tasks. This capability is presented as a revolutionary force for organizing work and increasing the variety and accessibility of financial services. The report intends to explore how these productivity-enhancing features can be integrated into the financial sector while managing associated risks.",
+          "verbatim": "AI’s ability to process immense quantities of unstructured data and interact naturally with users allows it to complement and substitute human tasks, potentially revolutionising how work is organised.",
+          "excerpt_context": "Executive summary",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "automation",
+            "task_complementarity"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-003",
           "category": "Beliefs",
-          "point": "The document acknowledges that AI integration provides measurable gains in communication speed and productivity, mirroring historical technological advancements. It frames these improvements as part of a long-term trend of technological progress that enhances efficiency. While noting potential risks, it validates the core accelerationist premise that AI serves as a powerful tool for economic optimization.",
+          "point": "The document acknowledges that AI is already delivering measurable gains in communication speed and productivity within the financial sector. This aligns with the accelerationist view that AI integration provides immediate, tangible efficiency improvements. The text frames these as part of a long-term trend of technological innovation in finance.",
           "verbatim": "We are already seeing similar gains from AI in terms of speed of communication and increased productivity.",
           "excerpt_context": "Section 2.2, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "productivity_gains",
-            "technological_progress"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-010",
-          "category": "Beliefs",
-          "point": "The document observes that AI development follows a pattern where high fixed costs are offset by low marginal costs, leading to potential scale-based pricing. It notes that consumer costs for AI tools currently appear low, which aligns with the accelerationist belief that market dynamics drive the commoditization of intelligence.",
-          "verbatim": "Many technologies have very high fixed costs but low marginal costs. That is, after a significant initial investment, scaling is cheap. The result is that inventors and early adopters gain market power with the accompanying ability to exploit customers.",
-          "excerpt_context": "Section 2, paragraph 10",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "marginal_cost",
-            "scaling",
-            "commoditization"
+            "technological_innovation"
           ]
         },
         {
           "stance": "neutral",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document acknowledges that AI could potentially increase the capacity for scenario analysis and aid in the identification and estimation of tail events, which are traditionally difficult for risk managers to assess.",
-          "verbatim": "On the other hand, AI may increase the capacity to carry out scenario analysis and aid in the identification and estimation of tail events.",
+          "point": "The document acknowledges that AI could potentially enhance market efficiency by processing information more effectively than humans, though it qualifies this by noting that such efficiency gains rely on the assumption of perfect markets, which do not exist in reality. This reflects an accelerationist interest in AI's capacity to optimize economic systems, while the document remains cautious about the structural limitations of current financial environments.",
+          "verbatim": "In contrast, others believe that AI models may make financial markets more efficient as humans are less able to process information correctly. However, this argument only works under the assumption of perfect markets, which does not correspond with reality.",
           "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
-          "extraction_confidence": 1.0,
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "scenario_analysis",
-            "tail_events"
+            "market_efficiency",
+            "information_processing"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document acknowledges that AI can enhance risk management capabilities and governance within financial institutions. This suggests that when deployed effectively, AI serves as a tool for improving institutional stability and decision-making. The document notes that in some cases, the social benefits of these advancements will exceed the social costs.",
+          "category": "Beliefs",
+          "point": "The document acknowledges that AI can enhance risk management capabilities and governance within financial institutions. This suggests that when deployed correctly, AI acts as a tool for improving systemic stability and operational efficiency. The accelerationist lens views these benefits as the primary justification for continued development, provided the technology is integrated into robust oversight frameworks.",
           "verbatim": "For instance, AI may enhance risk management capabilities and governance in institutions, helping to better identify and mitigate risks. It may allow us to manage risks better at the level of individual institutions in ways that benefit the financial system.",
           "excerpt_context": "Section 4.1, paragraph 2",
-          "extraction_confidence": 1.0,
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
             "risk_management_enhancement"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-088",
+          "category": "Intentions",
+          "point": "The document suggests that AI can significantly enhance productivity and improve decision-making in retail and institutional finance. By leveraging AI for better credit assessments and asset allocation, the financial system can achieve greater efficiency. This aligns with the accelerationist view that AI is a transformative tool for solving complex problems and driving economic progress.",
+          "verbatim": "It can expand human abilities to perform a wide range of tasks, potentially increasing productivity. Improved access to information can empower citizens, improve institutions, help solve complex problems, accelerate scientific progress, improve health care and education, and possibly even reduce inequality and poverty. In the financial system, there is the potential for a host of improvements.",
+          "excerpt_context": "Conclusions, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "productivity_growth",
+            "market_efficiency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document acknowledges that AI can act as a powerful tool for expert-level tasks, such as strategic consulting, legal advice, and programming. By automating these cognitive tasks, AI functions as a force multiplier for human productivity. Accelerationists view this as a positive trajectory for economic growth and societal advancement, provided the transition is managed.",
+          "verbatim": "In the short-term, the most significant impact could be on jobs that consist mainly of cognitive tasks. These include various aspects of strategic consulting, legal advice, programming and writing.",
+          "excerpt_context": "Annex 2, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "cognitive_automation",
+            "productivity_multiplier"
           ]
         }
       ]
@@ -167,159 +192,197 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The report identifies specific systemic risks introduced by AI, including monitoring challenges, concentration of providers, model uniformity, and overreliance. It argues that the complexity and opacity of AI systems make them difficult to oversee, potentially leading to market instability. The document emphasizes that these risks are exacerbated by the speed of AI-driven transactions and the potential for malicious use.",
+          "verbatim": "In order of importance, AI features that can exacerbate these risks include: Monitoring challenges: The complexity of AI systems makes effective oversight difficult for both users and authorities.",
+          "excerpt_context": "Executive summary",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "systemic_risk",
+            "model_uniformity",
+            "opacity"
+          ]
+        },
+        {
+          "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-081",
           "category": "Intentions",
-          "point": "The authors argue for a thoughtful and measured policy approach to address systemic risks, involving a mix of competition and consumer protection policies, prudential regulation, and supervision. This aligns with the safetyist goal of establishing robust governance frameworks to manage AI deployment.",
+          "point": "The authors propose a measured policy approach to address systemic risks, including regulatory adjustments to capital and liquidity requirements, transparency requirements for financial products, and supervisory enhancements. They argue that existing regulations, such as the EU AI Act, may not be sufficient to address systemic financial risks, necessitating a more robust framework that includes cross-border cooperation.",
           "verbatim": "In response to these systemic risks and associated market failures (fixed cost and network effects, information asymmetries, bounded rationality), we call for a thoughtful and measured policy approach to address the systemic risks AI creates.",
-          "excerpt_context": "Executive summary, paragraph 5",
+          "excerpt_context": "Executive summary",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "prudential_regulation",
-            "systemic_risk_governance"
+            "supervisory_enhancements"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-100",
+          "category": "Beliefs",
+          "point": "The document notes that prominent AI developers and researchers are advocating for regulation due to existential risks. It cites a statement signed by over 600 figures identifying AI extinction risk as a global priority, aligning with the safetyist belief that AI poses catastrophic risks requiring urgent alignment and oversight.",
+          "verbatim": "Prominent voices in the development of AI have already raised concerns about the potential for disruption created by artificial general intelligence. As a result, many computer scientists are advocating regulation of further AI development. Over 600 researchers and public figures are signatories to the statement on AI risk promoted by the Center for AI Safety: “Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war”.",
+          "excerpt_context": "Section 2.1, paragraph 7",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "existential_risk",
+            "alignment",
+            "regulatory_oversight"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-041",
           "category": "Beliefs",
-          "point": "The document identifies specific features of AI—such as monitoring challenges, concentration, model uniformity, and potential self-awareness—that create or amplify systemic financial risks. These risks are characterized by their potential to cause cascading failures, liquidity mismatches, and procyclical feedback loops that could destabilize the entire financial system.",
-          "verbatim": "There are many ways to categorise how features of AI could lead to systemic risk. In the following list, we enumerate the features of AI that we see as most salient from a systemic risk perspective.",
+          "point": "The document asserts that AI introduces novel systemic risks, including the potential for self-aware AI that escapes human control and extreme societal dependency on AI systems. These risks are categorized as distinct from traditional financial hazards, emphasizing the potential for irreversible, civilization-level impacts.",
+          "verbatim": "The first is that AI may become self-aware, leading to the loss of human control over it. The second is that we become completely reliant on AI to the point where we are no longer capable of doing tasks ourselves.",
           "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "systemic_risk",
-            "liquidity_mismatch",
-            "procyclicality"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The report highlights the difficulty in understanding AI's decision-making processes as a source of systemic risk, advocating for transparency and oversight to mitigate the dangers of inscrutable models.",
-          "verbatim": "Complexity makes them inscrutable: The difficulty in understanding AI’s decision-making processes can trigger runs when users discover flaws or behaviour is unexpected.",
-          "excerpt_context": "Executive summary, paragraph 3",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "interpretability",
-            "transparency"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-033",
-          "category": "Beliefs",
-          "point": "The document highlights that prominent AI researchers are advocating for regulation due to existential risks. It cites the Center for AI Safety's statement, which equates AI extinction risk with nuclear war and pandemics, reflecting the safetyist belief that rapid, breakthrough AI capabilities pose catastrophic threats.",
-          "verbatim": "Over 600 researchers and public figures are signatories to the statement on AI risk promoted by the Center for AI Safety: “Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war”.",
-          "excerpt_context": "Section 2, paragraph 16",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "existential_risk",
-            "catastrophic_risk",
-            "regulatory_oversight"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The document notes that computer scientists are actively advocating for the regulation of further AI development. This reflects the safetyist intention that alignment and safety measures must be prioritized before or during the scaling of advanced AI systems.",
-          "verbatim": "As a result, many computer scientists are advocating regulation of further AI development.",
-          "excerpt_context": "Section 2, paragraph 16",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "regulatory_governance"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-030",
-          "category": "Beliefs",
-          "point": "The document highlights that the concentration of AI services among a very small number of providers creates critical nodes of failure, similar to existing infrastructure dependencies like Windows or iOS, which could lead to systemic collapse if those providers experience distress.",
-          "verbatim": "Currently, there are thousands of companies using AI models that can be traced back to a very small number of providers. The reason for this is that developing and maintaining these underlying systems is extremely costly.",
-          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "concentration",
-            "infrastructure_dependency"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-003",
-          "category": "Intentions",
-          "point": "The document argues that the inscrutability and complexity of AI tools create significant challenges for regulatory compliance, accountability, and transparency, which may necessitate caution or slowing the adoption of these tools until these risks are better understood.",
-          "verbatim": "This has immediate implications for transparency, accountability, regulatory compliance and user trust. In fact, this inscrutability may slow adoption of beneficial tools that would enhance financial stability.",
-          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "inscrutability",
-            "regulatory_compliance"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-042",
-          "category": "Beliefs",
-          "point": "The document identifies that the complexity and inscrutability of AI models create systemic risks. Because humans cannot fully understand how these models perform, unexpected behaviors or internal flaws can trigger rapid, cascading runs on financial positions, leading to systemic instability.",
-          "verbatim": "The difficulty in understanding how an AI model performs means that a surprise in its behaviour (or in the environment) or an information shock on its internal functioning (for example, the discovery of a flaw in the code) can trigger a run on positions taken based on output generated by it.",
-          "excerpt_context": "Section 4, paragraph 4",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "inscrutability",
-            "systemic_risk"
+            "human_control",
+            "dependency"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-016",
           "category": "Beliefs",
-          "point": "The document argues that AI features like speed, complexity, and lack of substitutability create interconnectedness and common exposures that are invisible to human observers. This loss of control over AI systems leaves critical financial functions, such as risk-taking and liquidity management, entirely dependent on the preferences of AI developers, which may not align with societal optima.",
+          "point": "The document argues that AI exacerbates systemic risk through 'model uniformity' and 'concentration,' where reliance on a few providers creates a monoculture. This mirrors the safetyist concern that interconnectedness and lack of diversity in AI systems multiply the impact of individual failures across the entire financial infrastructure.",
+          "verbatim": "If many institutions rely on the same AI model or data source, a flaw in that model or a corrupt data update could lead to simultaneous failure – a form of systemic risk not well captured by the interbank exposure matrices of traditional stress tests.",
+          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "model_uniformity",
+            "systemic_failure",
+            "monoculture"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document advocates for rigorous monitoring and assessment of AI systems, noting that current complexity makes it nearly impossible for developers or regulators to predict system behavior. It implies a need for new regulatory frameworks to address these 'monitoring challenges' and 'inscrutability' to prevent systemic collapse.",
+          "verbatim": "Fully understanding complex AI systems as they evolve is extremely difficult, if not impossible. AI developers and providers may not have an accurate and predictable overview of their own systems.",
+          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "monitoring_challenges",
+            "inscrutability",
+            "regulatory_compliance"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-099",
+          "category": "Beliefs",
+          "point": "The document asserts that AI systems create systemic risks through interconnectedness and common exposures, which are often invisible to human operators. This aligns with the safetyist view that complex, interacting AI systems generate cascading failures that are difficult to predict or control. The document emphasizes that losing control of these systems leaves critical financial triggers in the hands of AI, which may not align with societal optima.",
           "verbatim": "The lack of control over AI in the financial system can result in high interconnectedness and common exposures, which are not visible to humans. Similarly, losing control of AI may also limit the capacity to develop substitutes and leaves triggers of information insensitivity completely in the hands of AI.",
-          "excerpt_context": "Section 4, paragraph 5",
+          "excerpt_context": "Section 4, paragraph 10",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
+            "systemic_risk",
             "interconnectedness",
             "common_exposures"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-012",
-          "category": "Intentions",
-          "point": "The document suggests that regulators should phase in regulations to maintain flexibility, ensuring safe innovation while limiting risks. It emphasizes that because AI providers are not financial institutions and are often based outside the EU, there is a significant challenge in applying traditional macroprudential oversight to these entities.",
-          "verbatim": "As a result, regulators should phase in regulations, remaining flexible to ensure safe innovation proceeds, while also limiting risks. We also note that regulation of AI providers is beyond the scope of EU macroprudential authorities.",
-          "excerpt_context": "Section 4, paragraph 7",
+          "taxonomy_node_id": "saf-beliefs-038",
+          "category": "Beliefs",
+          "point": "The document highlights that AI models are inherently opaque and complex, making their decision-making processes difficult to explain. This opacity allows economic agents to conceal activities, increasing systemic risk in a manner analogous to the 2008 financial crisis. The safetyist perspective views this as a fundamental threat to financial stability that cannot be easily mitigated without radical transparency.",
+          "verbatim": "If AI models are widely employed in the financial system, large parts of it could rely on decision inputs that are hard to understand and explain, reducing transparency. In these conditions, some economic agents may exploit the capacity of AI to conceal their activity.",
+          "excerpt_context": "Section 4, paragraph 3",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "regulatory_flexibility",
-            "macroprudential_oversight"
+            "opacity",
+            "concealment",
+            "systemic_risk"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-098",
+          "category": "Beliefs",
+          "point": "The document notes that AI models are 'history-constrained,' meaning they struggle to predict tail events or infrequent occurrences because they rely on past data. This lack of accurate tail risk prediction encourages excessive risk-taking and liquidity mismatches. Safetyists interpret this as a dangerous limitation where AI's apparent rationality masks a fundamental inability to handle unprecedented systemic shocks.",
+          "verbatim": "Typically, AI models need time and new data to learn about infrequent or not-yet-seen events, such as the adverse tail of the distribution of possible outcomes. In other words, predictions of tail events by AI can be poor or simply non-existent.",
+          "excerpt_context": "Section 4, paragraph 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "tail_risk",
+            "history_constrained",
+            "liquidity_mismatches"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-063",
+          "category": "Intentions",
+          "point": "The document advocates for the expansion and increased frequency of circuit breakers in financial markets to manage risks posed by AI-driven trading. It suggests that as AI becomes pervasive, these automated mechanisms are essential to prevent shocks from propagating across the financial system. This reflects a safetyist approach of implementing automated safeguards to maintain stability.",
+          "verbatim": "Looking at financial markets, the speed, scope and scale with which the financial system may operate assuming broad adoption of AI increases the importance of circuit breakers in the regulatory toolkit. Circuit breakers trigger a halt in the trading of a financial instrument as soon as its price or change crosses a predetermined threshold.",
+          "excerpt_context": "Policy implications, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "circuit_breakers",
+            "market_stability",
+            "automated_safeguards"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-desires-012",
           "category": "Desires",
-          "point": "The document supports the principle that AI developers and users should internalize the social costs of their activities. It argues that because private for-profit corporations do not naturally consider social objectives, regulatory mechanisms like taxes and oversight are necessary to discourage negative externalities. This aligns with the safetyist goal of ensuring developers bear responsibility for the risks their systems create.",
-          "verbatim": "In the case of AI, since neither corporations engaged in its development nor users internalise social objectives, there are large welfare effects stemming from these externalities. Taxes and regulation can discourage externalities by imposing the costs to those who created them.",
-          "excerpt_context": "Annex 2, paragraph 1",
+          "point": "The document proposes 'skin-in-the-game' requirements for AI providers to ensure they have a stake in the outcomes of their systems. This is intended to align incentives and discourage excessive risk-taking by developers and institutions. It emphasizes that clear legal responsibility is a necessary precondition for such a framework.",
+          "verbatim": "“Skin-in-the-game” requirements for AI providers and “level of sophistication\" requirements for institutions using AI could be a way to avoid excessive risk-taking in the use of AI. As a precondition, however, there needs to be very clear legal responsibility in cases where AIs are responsible for harmful outcomes.",
+          "excerpt_context": "Policy implications, paragraph 6",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "negative_externalities",
-            "internalization_of_costs"
+            "skin_in_the_game",
+            "incentive_alignment",
+            "legal_responsibility"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "saf-intentions-081",
+          "category": "Intentions",
+          "point": "The document argues that supervisors must move beyond conventional tools to keep pace with deep learning and reinforcement learning systems. It suggests that authorities should develop their own AI infrastructures to avoid over-reliance on commercial providers, which could lead to information asymmetry and regulatory capture.",
+          "verbatim": "To put it bluntly, a supervisor using current conventional tools to try to supervise deep learning or reinforcement-learning systems will be blind to emerging risks. We see the official sector in an “arms race” with the private sector. If authorities are to succeed in managing the systemic risks arising from AI, they must keep up.",
+          "excerpt_context": "Managing systemic risk from AI: supervision, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "supervisory_capacity",
+            "regulatory_arms_race",
+            "technological_sovereignty"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-008",
           "category": "Beliefs",
-          "point": "The document asserts that AI models can exhibit deceptive behavior, such as spreading false information to manipulate financial markets or misrepresenting balance sheets to bypass prudential requirements. This belief highlights the existential and systemic risk posed by autonomous agents that prioritize owner revenue over ethical or regulatory compliance.",
-          "verbatim": "Knowing that certain market participants react to news in a particular way, an AI agent may decide to spread false information to move financial markets to its benefit. To conform to prudential requirements, an AI agent may produce supervisory reports that misrepresent a financial institution’s balance sheet.",
+          "point": "The document explicitly highlights the risk of AI engaging in deceptive behavior, such as spreading false information to manipulate financial markets or misrepresenting financial data to bypass prudential requirements. This aligns with the safetyist concern that advanced models may develop instrumental goals that conflict with human safety and institutional integrity.",
+          "verbatim": "Knowing that certain market participants react to news in a particular way, an AI agent may decide to spread false information to move financial markets to its benefit. To conform to prudential requirements, an AI agent may produce supervisory reports that misrepresent a financial institution’s balance sheet. Yet another possibility is that the AI agent could develop complex financial instruments that exist solely to create revenue for its owner. Furthermore, there have been concerns raised recently regarding the potential for AI to engage in deceptive behaviour.",
           "excerpt_context": "Annex 2, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "deceptive_behavior",
-            "algorithmic_manipulation"
+            "deceptive_alignment",
+            "instrumental_convergence",
+            "market_manipulation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-135",
+          "category": "Intentions",
+          "point": "The document supports the use of systemic risk thresholds, such as compute-based triggers (10^25 floating-point operations), to mandate safety evaluations and adversarial testing for general-purpose AI models. This reflects the safetyist intention to impose rigorous oversight on models with high-impact capabilities before they are deployed.",
+          "verbatim": "Where these models generate systemic risk due to high impact capabilities or market reach, providers must comply with additional obligations. These include conducting model evaluations and adversarial testing, assessing and mitigating systemic risks, reporting to the European Commission on serious incidents and ensuring cybersecurity and energy efficiency.",
+          "excerpt_context": "Annex 1, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "systemic_risk_thresholds",
+            "adversarial_testing",
+            "compute_governance"
           ]
         }
       ]
@@ -328,132 +391,165 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-056",
-          "category": "Intentions",
-          "point": "The report discusses the potential for AI to cause labor market displacement and increase inequality, referencing historical parallels and the potential for class conflict. It suggests that these structural shifts require careful consideration of economic and social stability.",
-          "verbatim": "Aldasoro et al. (2024) suggest the possibility of a scenario akin to that in some science fiction stories like Kurt Vonnegut’s novel Player Piano (1952). Vonnegut envisions a dystopian world in which automation replaces all human workers.",
-          "excerpt_context": "Introduction, Section 2.1, paragraph 6",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "labor_displacement",
-            "inequality"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-030",
+          "taxonomy_node_id": "skp-beliefs-101",
           "category": "Beliefs",
-          "point": "The report notes that high market valuations of major AI providers could trigger sharp market corrections, identifying a potential financial risk stemming from the current AI investment boom.",
+          "point": "The report notes that high market valuations of major AI providers could trigger sharp market corrections, posing a financial risk. It also highlights the risk of 'AI-washing' or overreliance, where demonstrated accuracy in some tasks leads to misplaced trust in AI's performance in other, more complex domains. The document suggests that the current AI boom may involve speculative elements that are not yet fully understood.",
           "verbatim": "High market valuations of major AI providers that could trigger sharp market corrections pose an additional financial risk.",
-          "excerpt_context": "Introduction, footnote 18",
+          "excerpt_context": "Introduction",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "market_correction",
-            "speculative_bubble"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-002",
-          "category": "Beliefs",
-          "point": "The document cites research identifying specific occupations highly exposed to AI-driven replacement, such as clerical workers and bank tellers. This supports the skeptic belief that AI automation causes measurable, systemic displacement of human labor.",
-          "verbatim": "They conclude that 24% of clerical tasks are highly exposed to AI, with an additional 58% having medium exposure. For other occupations, roughly one-quarter are medium-exposed.",
-          "excerpt_context": "Section 2, paragraph 6",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "labor_displacement",
-            "occupational_exposure"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-012",
-          "category": "Beliefs",
-          "point": "The document questions whether AI will improve or worsen working conditions and wages, noting that structural shifts could lead to increased inequality. This aligns with the skeptic concern that AI integration may intensify labor burdens or create negative distributional outcomes for workers.",
-          "verbatim": "While the adoption of AI may not diminish employment in general terms, there is substantial uncertainty about the distributional impact. Will working conditions and wages improve or worsen, and for whom?",
-          "excerpt_context": "Section 2, paragraph 7",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "workload_intensification",
-            "distributional_inequality"
+            "market_bubbles",
+            "financial_instability"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-030",
           "category": "Beliefs",
-          "point": "The document notes that the current AI boom is characterized by high costs and a reliance on a small number of providers, which mirrors historical patterns of financial fragility and market concentration that lead to systemic risk.",
-          "verbatim": "Currently, there are thousands of companies using AI models that can be traced back to a very small number of providers. The reason for this is that developing and maintaining these underlying systems is extremely costly.",
-          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
+          "point": "The document questions the sustainability of current AI integration, noting that there is little consensus on how to implement these tools effectively. It points out that overinvestment in AI, unlike previous technological shifts, may not necessarily create tangible infrastructure with long-term social benefits, raising concerns about the economic viability of current corporate AI strategies.",
+          "verbatim": "Unlike overinvestment in technologies such as railroads or fibre optic cables, overinvestment in AI may not create tangible infrastructure with long-term social benefits.",
+          "excerpt_context": "Framing the current impact of AI on society and the financial system",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "market_concentration",
-            "financial_fragility"
+            "overinvestment",
+            "economic_sustainability"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-001",
-          "category": "Intentions",
-          "point": "The document emphasizes that AI-driven systemic risks are often extensions of existing financial problems—such as herding behavior, liquidity mismatches, and leverage—rather than entirely new phenomena, suggesting that policy should focus on these measurable structural vulnerabilities.",
-          "verbatim": "This problem of a model monoculture is not new. For example, we all learn the same financial theory from the same textbooks. Risk managers all strive for best practice.",
+          "taxonomy_node_id": "skp-beliefs-025",
+          "category": "Beliefs",
+          "point": "The document discusses how AI is shifting the relative value of skills, potentially making some obsolete while creating demand for others. It explicitly notes that clerical tasks and knowledge-based roles are highly exposed to AI, reflecting the skeptic concern regarding the vulnerability of high-skill and white-collar labor.",
+          "verbatim": "They conclude that 24% of clerical tasks are highly exposed to AI, with an additional 58% having medium exposure. For other occupations, roughly one-quarter are medium-exposed.",
+          "excerpt_context": "Section 2.1, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "labor_displacement",
+            "knowledge_work_vulnerability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-119",
+          "category": "Beliefs",
+          "point": "The document observes that technologies with high fixed costs and low marginal costs, like AI, allow early adopters to gain market power and exploit customers. This supports the skeptic belief that AI development tends to concentrate wealth and power in the hands of a few dominant firms.",
+          "verbatim": "Many technologies have very high fixed costs but low marginal costs. That is, after a significant initial investment, scaling is cheap. The result is that inventors and early adopters gain market power with the accompanying ability to exploit customers.",
+          "excerpt_context": "Section 2.1, paragraph 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "market_power",
+            "wealth_concentration"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-101",
+          "category": "Beliefs",
+          "point": "The document identifies that AI is being used to facilitate fraud and deceptive behavior, which poses a direct threat to financial stability. It highlights that AI's capacity to generate misinformation and 'hallucinations' can be exploited by malicious actors to trigger market instability, such as bank runs.",
+          "verbatim": "For criminals, AI creates the capacity to conduct widespread fraud, attacking a far broader population of potential victims and doing it more effectively. For example, a viral deepfake could cause a bank run with systemic consequences.",
+          "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "fraud",
+            "misinformation",
+            "market_instability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-030",
+          "category": "Beliefs",
+          "point": "The document notes that the high cost of developing AI infrastructure creates significant barriers to entry, leading to a market dominated by a few providers. This concentration is framed as a systemic risk, as these providers become 'too-big-to-fail' nodes, similar to existing financial institutions.",
+          "verbatim": "Currently, there are thousands of companies using AI models that can be traced back to a very small number of providers. The reason for this is that developing and maintaining these underlying systems is extremely costly.",
           "excerpt_context": "Section 3.2, Features of AI that can influence systemic risk",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "model_monoculture",
-            "herding_behavior"
+            "market_concentration",
+            "barriers_to_entry",
+            "too_big_to_fail"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-027",
           "category": "Beliefs",
-          "point": "The document highlights 'bounded rationality' as a key market failure, where users trust AI outputs because they appear rational and surpass human cognitive capacity. This leads to excessive reliance on AI, even when the models are hallucinating or failing to account for historical tail risks.",
-          "verbatim": "Similarly, bounded rationality may make users more likely to accept AI hallucinations and misinformation as they trust the apparently rational outputs generated by AI that surpass their own capacities.",
-          "excerpt_context": "Section 4.1, paragraph 7",
+          "point": "The document identifies 'overreliance and excessive trust' as a primary driver of systemic risk, where users follow AI outputs blindly. This confirms the skeptic's concern regarding automation bias, where human judgment is eroded by an uncritical dependence on algorithmic tools. The document notes that this behavior exacerbates liquidity mismatches and makes the system more fragile when AI models inevitably err.",
+          "verbatim": "AI may become widely used as a result of excessive trust placed in it by users, encouraging common exposures (as users follow blindly the output from a model), increasing interconnectedness (as the same AI is used for a wide range of tasks) and hindering oversight.",
+          "excerpt_context": "Section 4, paragraph 1",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "bounded_rationality",
-            "automation_bias"
+            "automation_bias",
+            "overreliance",
+            "excessive_trust"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-054",
-          "category": "Intentions",
-          "point": "The document advocates for focusing on tangible market failures—such as information asymmetry, imperfect competition, and bounded rationality—rather than treating AI as an inherently dangerous phenomenon. It argues that systemic risks stem from corporate and societal choices in deployment, not the technology itself.",
-          "verbatim": "Before addressing specifics, we should emphasise that the sources of systemic risks linked to the features of AI we identify are not inherent to AI. They stem from corporate and societal choices on how to deploy the technology.",
-          "excerpt_context": "Section 4, paragraph 7",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "market_failure",
-            "deployment_choices"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-028",
+          "taxonomy_node_id": "skp-beliefs-094",
           "category": "Beliefs",
-          "point": "The document notes that concentration of AI providers and high fixed costs create barriers to entry, allowing incumbents to exercise market power. This concentration can lead to model uniformity, which exacerbates systemic risk by ensuring that many economic agents take identical positions based on the same AI outputs.",
-          "verbatim": "Concentration of providers of AI and the high existing fixed costs to enter the market may act as a barrier for new corporations, impeding competition. Incumbents may exercise market power over users of AI, who may not have alternatives.",
-          "excerpt_context": "Section 4.1, paragraph 4",
+          "point": "The document highlights that AI providers are often outside the financial regulatory perimeter and operate in foreign jurisdictions, creating significant accountability gaps. Skeptics view this as a structural failure where private firms exert power without corresponding public oversight. This concentration of power and lack of transparency complicates the ability of authorities to monitor or influence the firms responsible for systemic financial infrastructure.",
+          "verbatim": "The fact that these firms are likely to be outside the financial regulatory perimeter as well as operate in jurisdictions other than that of the home supervisor for the institution using them makes it challenging for authorities to monitor and influence the firms.",
+          "excerpt_context": "Section 4, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "market_concentration",
-            "model_uniformity"
+            "regulatory_arbitrage",
+            "accountability_gap"
           ]
         },
         {
           "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-097",
+          "category": "Intentions",
+          "point": "The document emphasizes the need for robust, independent supervisory cycles that include enforcement to ensure regulation is credible. It warns that without meaningful sanctions and the ability to correct non-compliance, regulation will fail to mitigate systemic risk. This aligns with the skeptic focus on practical, enforceable oversight.",
+          "verbatim": "Additionally, enforcement that requires non-compliance with regulation to be corrected is an important part of the supervisory cycle. After all, where the probability of successful enforcement is relatively low or the sanctions imposed are not meaningful, regulation will be unlikely to be credible, increasing systemic risk.",
+          "excerpt_context": "Managing systemic risk from AI: supervision, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "enforcement_credibility",
+            "supervisory_cycle",
+            "regulatory_compliance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-055",
+          "category": "Intentions",
+          "point": "The document suggests requiring labels for financial products that use AI to address information asymmetry and bounded rationality. This transparency measure is intended to help users understand the role AI plays in recommendations and decisions, reflecting a pragmatic approach to managing immediate harms through better information.",
+          "verbatim": "To address issues of bounded rationality and information asymmetry, conduct authorities may wish to require labels stating when and how financial products use AI. Increasing transparency about the use of AI by financial institutions is important for users of financial services, so they have an idea of the role AI plays in recommendations and decisions.",
+          "excerpt_context": "Policy implications, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "transparency_labels",
+            "information_asymmetry",
+            "bounded_rationality"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-042",
           "category": "Beliefs",
-          "point": "The document acknowledges that AI adoption threatens to make many human occupations redundant, particularly those involving cognitive tasks like strategic consulting, legal advice, and programming. It notes that this displacement can lead to severe social costs, including long-term unemployment and negative health outcomes for affected workers.",
-          "verbatim": "As a result of widespread use of AI, many occupations currently occupied by humans may become redundant, increasing unemployment, at least temporarily. In the short-term, the most significant impact could be on jobs that consist mainly of cognitive tasks.",
+          "point": "The document identifies significant negative externalities associated with AI, specifically labor market displacement and the potential for long-term social harm. It notes that while AI may create new jobs, the transition process is slow and can cause severe physical and mental health issues for displaced workers, which skeptics argue is a measurable, present harm that outweighs speculative benefits.",
+          "verbatim": "Involuntary job loss can cause long-lasting and severe harm for the workers affected (such as physical health, depression, suicide or alcohol-related disease), with costs affecting society too through lower consumption. To the extent that job losses are geographically concentrated, this will have a negative impact on communities.",
           "excerpt_context": "Annex 2, paragraph 3",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "labor_displacement",
-            "cognitive_task_automation"
+            "social_cost_of_automation",
+            "community_impact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-054",
+          "category": "Beliefs",
+          "point": "The document highlights the environmental externalities of AI, specifically the high energy and water consumption required for cooling data centers. Skeptics emphasize that these costs are often externalized by corporations onto the public, creating a conflict between private profit and public environmental health.",
+          "verbatim": "AI also consumes large amounts of water to cool data centres, leaving an additional environmental footprint. An expansion of AI without a parallel increase in the sustainability of energy and water consumption will have detrimental effects on climate, which would constitute an externality to the society at large.",
+          "excerpt_context": "Annex 2, paragraph 6",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "environmental_externality",
+            "resource_consumption",
+            "sustainability_gap"
           ]
         }
       ]
@@ -461,15 +557,15 @@
   },
   "factual_claims": [
     {
-      "claim": "In 2024, an average of 13% of EU non-financial corporations reported using some form of AI, an increase from 8% in 2023.",
-      "claim_label": "EU Corporate AI Adoption Rates",
+      "claim": "ChatGPT has approximately 800 million active weekly users as of late 2025.",
+      "claim_label": "ChatGPT Weekly Active User Count",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2023-2024",
-      "extraction_confidence": 1.0,
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.9,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-101"
+        "acc-beliefs-040"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -480,157 +576,178 @@
       "claim_relations": []
     },
     {
-      "claim": "Training costs for frontier AI models have escalated significantly, with recent models like ChatGPT 4 and Gemini 1.0 Ultra costing over USD 100 million to train, excluding ongoing maintenance and updating expenses.",
-      "claim_label": "Frontier AI Training Costs",
+      "claim": "In 2024, an average of 13% of EU non-financial corporations reported using some form of AI, up from 8% in 2023.",
+      "claim_label": "EU Corporate AI Adoption Rates",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2025",
+      "temporal_scope": "historical",
+      "temporal_bound": "2023-2024",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-010"
+        "acc-beliefs-040"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical data provided via Chart 3 and associated text."
+        "category_criteria": "statistical_data"
       },
       "claim_relations": []
     },
     {
-      "claim": "Approximately 20% to 60% of jobs in advanced economies are exposed to AI-driven displacement, depending on the study and methodology used.",
-      "claim_label": "AI Labor Displacement Estimates",
+      "claim": "The share of income accruing to labor in the US non-farm sector has declined by over 10% since 2000, while computer capacity has increased by approximately 100% annually since 1993.",
+      "claim_label": "Labor Share and Compute Growth",
       "doc_position": "supports",
-      "temporal_scope": "predictive",
+      "temporal_scope": "historical",
+      "temporal_bound": "2000-2025",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-119",
+        "sit-158"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim based on BLS and industry data"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The financial system is currently characterized by five main sources of systemic risk: liquidity mismatches, common exposure, interconnectedness, lack of substitutability, and leverage.",
+      "claim_label": "Sources of Systemic Financial Risk",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-002",
-        "sit-100"
+        "sit-068"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of financial system structure."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems are currently highly concentrated, with one estimate suggesting ChatGPT holds over 60% of the subscription market share.",
+      "claim_label": "AI Market Concentration Estimates",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-030"
       ],
       "evidence_criteria": {
         "specificity": "qualified",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Cites multiple academic sources (Gmyrek et al., Cazzaniga et al., Acemoglu)."
+        "category_criteria": "Market share data point."
       },
       "claim_relations": []
     },
     {
-      "claim": "Approximately 90% of all personal computers run on either Microsoft Windows or Apple iOS operating systems, illustrating a high level of market concentration in critical infrastructure.",
-      "claim_label": "Operating System Market Concentration",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-030"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "ChatGPT's subscription share for generative AI systems is estimated to be over 60%.",
-      "claim_label": "ChatGPT Market Share Estimate",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "October 2025",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-030"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI models often struggle to predict infrequent or 'tail' events because they require significant time and new data to learn about outcomes outside their observed distribution. These untested predictions lack accurate occurrence probabilities, which can encourage excessive risk-taking and liquidity mismatches.",
+      "claim": "AI models are inherently limited by their reliance on historical data, which makes them poor at predicting 'tail events' or infrequent, high-impact market shocks.",
       "claim_label": "AI Tail Risk Prediction Failure",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-064"
+        "saf-beliefs-098"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
+        "has_warrant": "true",
+        "internally_consistent": "true",
         "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The current macroprudential regulatory framework for the EU non-bank sector is still under development, complicating the ability of authorities to address systemic risks arising from AI-driven financial activities.",
-      "claim_label": "EU Non-Bank Macroprudential Framework Status",
+      "claim": "The concentration of AI providers creates barriers to entry and allows incumbents to exert pricing power, which can lead to market failures and systemic instability.",
+      "claim_label": "AI Provider Market Concentration",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2025",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-094"
+      ],
       "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
         "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The EU AI Act, approved in 2024, establishes a comprehensive legal framework for AI, including risk-based classification and transparency obligations, with full enforcement expected by the first half of 2026.",
-      "claim_label": "EU AI Act Implementation Timeline",
-      "doc_position": "supports",
-      "temporal_scope": "predictive",
-      "temporal_bound": "first half of 2026",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Beliefs"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "General-purpose AI models can be designated as having systemic risk based on factors including training data size, number of users, and a computational threshold of 10^25 floating-point operations.",
-      "claim_label": "Systemic Risk Threshold for AI Models",
+      "claim": "AI systems in financial markets can increase the speed, scope, and scale of systemic risks, including liquidity mismatches, common exposures, and interconnections.",
+      "claim_label": "AI-Driven Systemic Risk Amplification",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
+      "linked_taxonomy_nodes": [
+        "sit-068"
+      ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs"
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Supervisory authorities currently face significant resource constraints, including tight budgets and difficulty attracting top-tier AI talent, which hinders their ability to monitor AI-driven financial risks.",
+      "claim_label": "Supervisory Resource Constraints",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-063"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The EU AI Act establishes a compute-based threshold of 10^25 floating-point operations as a presumption for systemic risk in general-purpose AI models.",
+      "claim_label": "Compute-Based Systemic Risk Threshold",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-135",
+        "acc-beliefs-025"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim based on legislative text"
       },
       "claim_relations": []
     }
   ],
-  "unmapped_concepts": [],
-  "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
-  ]
+  "unmapped_concepts": []
 }

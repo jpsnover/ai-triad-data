@@ -1,14 +1,14 @@
 {
   "doc_id": "dangers-stochastic-parrots-can-language-models-be-too-big-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 4
   },
@@ -16,15 +16,15 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "dangers-stochastic-parrots-can-language-models-be-too-big-2026",
-    "measured_at": "2026-05-02T19:37:04.7014980-04:00",
+    "measured_at": "2026-05-23T03:51:50.3496301-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 27531.0,
+        "in_count": 27966.0,
         "out_units": "tokens_est",
-        "out_count": 27530.0,
-        "ratio": 1.0,
+        "out_count": 27962.0,
+        "ratio": 0.9999,
         "flags": {
           "chunk_count": 4
         }
@@ -32,94 +32,94 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
         "out_count": 61.0,
-        "ratio": 0.02,
+        "ratio": 0.0179,
         "flags": {
-          "total_below_threshold": 4,
-          "avg_intentions": 10.0,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 62,
-          "chunk_count": 4,
-          "avg_desires": 2.0,
+          "avg_beliefs": 13.0,
+          "chunk_count": 3,
           "avg_nodes_selected": 61.0,
-          "avg_beliefs": 11.0
+          "avg_desires": 2.0,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 3,
+          "avg_intentions": 6.0,
+          "min_nodes_selected": 60
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 141925.0,
+        "in_count": 194987.0,
         "out_units": "items",
-        "out_count": 25.0,
-        "ratio": 0.0002,
+        "out_count": 28.0,
+        "ratio": 0.0001,
         "flags": {
-          "factual_claims": 4,
+          "null_node_rate": 0.0588,
           "chunk_count": 4,
-          "total_points": 16,
+          "total_points": 17,
           "unmapped_concepts": 5,
-          "null_node_rate": 0.0625
+          "factual_claims": 6
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 25.0,
+        "in_count": 28.0,
         "out_units": "items",
-        "out_count": 25.0,
-        "ratio": 1.0,
+        "out_count": 27.0,
+        "ratio": 0.9643,
         "flags": {
+          "points_deduped": 0,
+          "concepts_deduped": 1,
           "used_embeddings": 1,
-          "concepts_deduped": 0,
-          "claims_deduped": 0,
-          "points_deduped": 0
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 5.0,
+        "in_count": 4.0,
         "out_units": "still_unmapped",
         "out_count": 2.0,
-        "ratio": 0.4,
+        "ratio": 0.5,
         "flags": {
-          "resolved_count": 3,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 2,
           "near_miss_count": 2
         }
       }
     ],
-    "cumulative_retention": 0.02
+    "cumulative_retention": 0.0173
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document acknowledges that increasing computational resources and model parameters correlates with improved performance on various NLP tasks. It notes that this trend of scaling is expected to continue as long as performance gains are observed. However, it frames this scaling as a source of significant environmental and social risk.",
-          "verbatim": "As increasingly large amounts of text are collected from the web in datasets such as the Colossal Clean Crawled Corpus [107] and the Pile [51], this trend of increasingly large LMs can be expected to continue as long as they correlate with an increase in performance.",
-          "excerpt_context": "Section 2, Background",
-          "extraction_confidence": 1.0,
+          "stance": "opposed",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document opposes the current industry trend of prioritizing model scale as the primary driver of performance. It argues that this pursuit of 'ever larger' models diverts resources from more meaningful research directions and ignores the diminishing returns of scale. Accelerationists would view this as a constraint on innovation, whereas the authors advocate for a shift toward efficiency and thoughtful curation.",
+          "verbatim": "We hope that a critical overview of the risks of relying on ever-increasing size of LMs as the primary driver of increased performance of language technology can facilitate a reallocation of efforts towards approaches that avoid some of these risks while still reaping the benefits of improvements to language technology.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "compute_scaling",
-            "model_parameters"
+            "model_scaling",
+            "resource_allocation"
           ]
         },
         {
           "stance": "opposed",
-          "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document opposes the current industry trend of creating ever-larger language models. It argues that the field should pivot away from scaling as the primary metric of progress, suggesting that larger models are not inherently necessary for achieving strong performance in tasks like automatic speech recognition. This stance challenges the accelerationist belief that capability scaling is the primary driver of technological advancement.",
-          "verbatim": "If, as we advocate, the field backs off from the path of ever larger LMs, are we thus sacrificing benefits that would accrue to these populations? ... But even if larger LMs could be used, just because we’ve seen that large LMs can help doesn’t mean that this is the only effective path to stronger ASR technology.",
-          "excerpt_context": "Section 3, paragraph 4",
-          "extraction_confidence": 0.95,
+          "taxonomy_node_id": "acc-intentions-056",
+          "category": "Intentions",
+          "point": "The document argues against the current trajectory of scaling language models, suggesting that the pursuit of 'ever larger' models is not an inevitable or necessary path for progress. It challenges the assumption that more data and larger models are the only way to achieve breakthroughs, advocating instead for resource-efficient research. This stance opposes the accelerationist focus on unconstrained capability scaling as the primary driver of innovation.",
+          "verbatim": "It may seem like progress in the field, in fact, depends on the creation of ever larger language models (and research into how to deploy them to various ends). In this paper, we have invited readers to take a step back and ask: Are ever larger LMs inevitable or necessary?",
+          "excerpt_context": "Conclusion, paragraph 1",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "capability_scaling",
-            "technological_progress"
+            "capabilities_scaling",
+            "regulatory_friction"
           ]
         }
       ]
@@ -127,84 +127,97 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-024",
-          "category": "Intentions",
-          "point": "The authors argue that the current practice of collecting massive, uncurated datasets leads to 'documentation debt,' where the contents and biases of training data remain opaque. They advocate for a shift toward budgeting for curation and documentation at the project's inception, rather than relying on post-hoc filtering. This is presented as a necessary step to mitigate the risks of encoding hegemonic biases and harmful ideologies.",
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-098",
+          "category": "Beliefs",
+          "point": "The authors argue that language models are not performing natural language understanding but are instead manipulating linguistic form. This creates a risk where human interlocutors impute meaning to synthetic text, leading to potential harms when models reproduce harmful ideologies or biases found in training data. This aligns with safetyist concerns regarding the unpredictable and potentially deceptive nature of AI outputs.",
+          "verbatim": "Furthermore, the tendency of human interlocutors to impute meaning where there is none can mislead both NLP researchers and the general public into taking synthetic text as meaningful. Combined with the ability of LMs to pick up on both subtle biases and overtly abusive language patterns in training data, this leads to risks of harms, including encountering derogatory language and experiencing discrimination at the hands of others who reproduce racist, sexist, ableist, extremist or other harmful ideologies reinforced through interactions with synthetic language.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "synthetic_text",
+            "deceptive_alignment",
+            "human_imputation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document highlights the 'documentation debt' incurred by collecting massive, uncurated datasets. It argues that without careful curation and documentation, these models encode hegemonic biases that damage marginalized populations. This supports the safetyist view that opacity in data and model development fundamentally hinders accountability.",
           "verbatim": "In collecting ever larger datasets we risk incurring documentation debt. We recommend mitigating these risks by budgeting for curation and documentation at the start of a project and only creating datasets as large as can be sufficiently documented.",
-          "excerpt_context": "Introduction",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "documentation_debt",
+            "data_curation",
+            "hegemonic_bias"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-063",
+          "category": "Beliefs",
+          "point": "The document argues that relying on ever-larger datasets without proper documentation creates 'documentation debt,' which prevents understanding of training data characteristics and perpetuates harm. This aligns with the safetyist concern that uncurated, massive datasets lead to irreversible degenerative processes and systemic bias. The authors emphasize that without rigorous curation and documentation, these models cannot be audited or held accountable for the harms they propagate.",
+          "verbatim": "When we rely on ever larger datasets we risk incurring documentation debt, i.e. putting ourselves in a situation where the datasets are both undocumented and too large to document post hoc. While documentation allows for potential accountability, undocumented training data perpetuates harm without recourse.",
+          "excerpt_context": "Section 4.4, Curation, Documentation & Accountability",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "documentation_debt",
-            "dataset_curation"
+            "data_curation"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
-          "category": "Beliefs",
-          "point": "The document asserts that large language models are not performing true natural language understanding (NLU) but are instead manipulating linguistic form based on statistical patterns. This limitation, combined with the tendency of humans to impute meaning to synthetic text, creates significant risks of harm, including the reinforcement of derogatory and discriminatory ideologies.",
-          "verbatim": "As we discuss in §5, LMs are not performing natural language understanding (NLU), and only have success in tasks that can be approached by manipulating linguistic form [14].",
-          "excerpt_context": "Introduction",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "natural_language_understanding",
-            "linguistic_form"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-048",
-          "category": "Beliefs",
-          "point": "The document identifies 'sycophancy' and the tendency of models to mirror user worldviews as a significant risk. It argues that because models lack communicative intent, they merely stitch together linguistic forms, which can lead to the amplification of harmful ideologies present in training data. This creates a feedback loop where synthetic, biased text is ingested into future training sets.",
-          "verbatim": "The problem is, if one side of the communication does not have meaning, then the comprehension of the implicit meaning is an illusion arising from our singular human understanding of language (independent of the model).",
-          "excerpt_context": "Section 6.1, paragraph 2",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "sycophancy",
-            "stochastic_parrot",
-            "feedback_loop"
-          ]
-        },
-        {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-054",
           "category": "Beliefs",
-          "point": "Large language models with massive parameter counts are capable of memorizing and surfacing sensitive, personally identifiable information (PII) from their training data. The document notes that larger models are more susceptible to this extraction than smaller ones, posing a direct privacy risk even when the data was originally public.",
-          "verbatim": "For example, [28] demonstrate a methodology for extracting personally identifiable information (PII) from an LM and find that larger LMs are more susceptible to this style of attack than smaller ones.",
-          "excerpt_context": "Section 6.2, paragraph 6",
+          "point": "The document asserts that large language models with high parameter counts can be prompted to extract personally identifiable information (PII) directly from their training data. This confirms the safetyist belief that models act as repositories for sensitive data, and that larger models are more susceptible to these extraction attacks. The authors note that even if data was originally public, the aggregation and accessibility provided by the model constitute a distinct harm.",
+          "verbatim": "Finally, we note that there are risks associated with the fact that LMs with extremely large numbers of parameters model their training data very closely and can be prompted to output specific information from that training data. For example, [28] demonstrate a methodology for extracting personally identifiable information (PII) from an LM and find that larger LMs are more susceptible to this style of attack than smaller ones.",
+          "excerpt_context": "Section 6.2, Risks and Harms",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "PII",
-            "memorization",
-            "parameter_scaling"
+            "personally_identifiable_information",
+            "model_extraction_attack"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-095",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-094",
           "category": "Intentions",
-          "point": "The document advocates for 'value sensitive design' as a foundational methodology to be applied early in the development process. By identifying stakeholders and their values before researchers become committed to specific ideas, the authors aim to prevent harms that would otherwise be discovered only post-hoc. This aligns with the safetyist goal of proactive, architecture-level safety integration.",
-          "verbatim": "All of these approaches take time and are most valuable when applied early in the development process as part of a conceptual investigation of values and harms rather than as a post-hoc discovery of risks.",
+          "point": "The document advocates for 'pre-mortem' analyses as a critical safety practice, where teams reverse-engineer hypothetical failures before deployment. This aligns with safetyist goals of identifying risks early in the development lifecycle rather than relying on post-hoc patching. It emphasizes that safety must be a proactive, conceptual investigation rather than an afterthought.",
+          "verbatim": "To that end, LM development may benefit from guided evaluation exercises such as pre-mortems [68]. Frequently used in business settings before the deployment of new products or projects, pre-mortem analyses center hypothetical failures and ask team members to reverse engineer previously unanticipated causes.",
           "excerpt_context": "Section 3, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "value_sensitive_design",
-            "proactive_safety"
+            "pre-mortem",
+            "risk_mitigation"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-135",
+          "taxonomy_node_id": "saf-intentions-117",
           "category": "Intentions",
-          "point": "The authors propose treating large language models as a 'dual use' problem, specifically when they are used to mimic human behavior. They suggest implementing technical safeguards like watermarking synthetic text to ensure detectability, which serves as a mechanism for managing the risks associated with powerful, potentially deceptive AI outputs.",
-          "verbatim": "The second, should we determine that large LMs are critical (when available), is to recognize this as an instance of a dual use problem and consider how to mitigate the harms of LMs used as stochastic parrots while still preserving them for use in ASR systems. Could LMs be built in such a way that synthetic text generated with them would be watermarked and thus detectable?",
-          "excerpt_context": "Section 3, paragraph 5",
-          "extraction_confidence": 0.95,
+          "point": "The authors argue that synthetic text generation poses significant risks because it can enter conversations without any entity being held accountable. They propose that if large models are used, developers must consider mitigation strategies like watermarking to ensure detectability. This reflects a safetyist concern for maintaining human control and accountability in the face of autonomous generation.",
+          "verbatim": "We note that the risks associated with synthetic but seemingly coherent text are deeply connected to the fact that such synthetic text can enter into conversations without any person or entity being accountable for it. ... Could LMs be built in such a way that synthetic text generated with them would be watermarked and thus detectable?",
+          "excerpt_context": "Section 3, Summary and Paths Forward",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "dual_use",
-            "watermarking",
-            "synthetic_text"
+            "accountability",
+            "watermarking"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-102",
+          "category": "Beliefs",
+          "point": "The document provides an extensive bibliography of research documenting how biases, dehumanizing rhetoric, and social harms are embedded within language models. By citing works on 'Social Bias Frames' and 'Algorithms of Oppression,' the authors support the belief that these flaws are not peripheral but fundamental to the current paradigm of large-scale model training. This aligns with the safetyist view that alignment must address these deep-seated issues before further scaling.",
+          "verbatim": "Julia Mendelsohn, Yulia Tsvetkov, and Dan Jurafsky. 2020. A Framework for the Computational Linguistic Analysis of Dehumanization. Frontiers in Artificial Intelligence 3 (2020), 55. ... Safiya Umoja Noble. 2018. Algorithms of Oppression: How Search Engines Reinforce Racism. NYU Press.",
+          "excerpt_context": "References [83] and [94]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "dehumanization",
+            "algorithmic_bias",
+            "social_bias_frames"
           ]
         }
       ]
@@ -213,111 +226,111 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-122",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that large-scale language models encode and amplify hegemonic viewpoints, including white supremacist, misogynistic, and ageist ideologies. It argues that the data collection process, which relies on Internet scraping, inherently favors populations with digital access and excludes marginalized groups, thereby reifying existing power imbalances.",
-          "verbatim": "In the case of US and UK English, this means that white supremacist and misogynistic, ageist, etc. views are overrepresented in the training data, not only exceeding their prevalence in the general population but also setting up models trained on these datasets to further amplify biases and harms.",
-          "excerpt_context": "Section 4.1, Size Doesn’t Guarantee Diversity",
+          "point": "The authors explicitly define language models as systems trained on string prediction tasks, rejecting the notion that they possess genuine understanding. They argue that success in tasks is merely the result of manipulating linguistic form, which serves to demystify the technology and counter the hype surrounding 'intelligence' in large models.",
+          "verbatim": "Similar to [14], we understand the term language model (LM) to refer to systems which are trained on string prediction tasks: that is, predicting the likelihood of a token (character, word or string) given either its preceding context or (in bidirectional and masked LMs) its surrounding context. ... LMs are not performing natural language understanding (NLU), and only have success in tasks that can be approached by manipulating linguistic form [14].",
+          "excerpt_context": "Section 1, Introduction and Background",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "hegemonic_bias",
-            "algorithmic_discrimination"
+            "stochastic_parrots",
+            "string_prediction",
+            "linguistic_form"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-054",
-          "category": "Intentions",
-          "point": "The authors advocate for prioritizing the immediate environmental and financial costs of AI development over the pursuit of ever-larger models. They argue that the current trajectory of resource consumption disproportionately harms marginalized communities and that the research community should focus on energy-efficient architectures and sustainable computing practices.",
-          "verbatim": "It is past time for researchers to prioritize energy efficiency and cost to reduce negative environmental impact and inequitable access to resources — both of which disproportionately affect people who are already in marginalized positions.",
-          "excerpt_context": "Section 3, Environmental and Financial Cost",
-          "extraction_confidence": 1.0,
+          "taxonomy_node_id": "sit-163",
+          "category": "Beliefs",
+          "point": "The document identifies that large datasets from the Internet overrepresent hegemonic viewpoints and encode biases. It argues that filtering practices often inadvertently suppress the voices of marginalized groups, such as LGBTQ communities, while failing to remove the dominant, harmful ideologies that are already prevalent in the data.",
+          "verbatim": "If we filter out the discourse of marginalized populations, we fail to provide training data that reclaims slurs and otherwise describes marginalized identities in a positive light. Thus at each step, from initial participation in Internet fora, to continued presence there, to the collection and finally the filtering of training data, current practice privileges the hegemonic viewpoint.",
+          "excerpt_context": "Section 4.1, Size Doesn’t Guarantee Diversity",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "green_ai",
-            "environmental_racism"
+            "hegemonic_viewpoint",
+            "data_filtering",
+            "marginalized_populations"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-094",
+          "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document asserts that large language models systematically encode and amplify hegemonic, biased worldviews found in uncurated internet training data. It highlights that these biases range from subtle microaggressions to overt hate speech, and that deploying these models in classification or generation tasks leads to real-world harms like discrimination and reputational damage.",
-          "verbatim": "In summary, LMs trained on large, uncurated, static datasets from the Web encode hegemonic views that are harmful to marginalized populations.",
-          "excerpt_context": "Section 4.4, paragraph 1",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "hegemonic_worldview",
-            "algorithmic_bias",
-            "allocational_harm"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
-          "category": "Intentions",
-          "point": "The authors argue that current large language models do not possess genuine natural language understanding, but are instead 'stochastic parrots' that manipulate linguistic form without reference to meaning. They criticize the research community for mistaking performance gains on benchmarks for actual understanding, which leads to misdirected research effort and an opportunity cost.",
+          "point": "The document argues that language models are 'stochastic parrots' that lack communicative intent and meaning, instead merely stitching together linguistic forms from training data. This supports the skeptic view that these models degrade the epistemological integrity of information ecosystems by producing fluent but meaningless text that humans mistakenly interpret as coherent. The authors warn that this illusion of coherence leads to real-world harms, including the amplification of hegemonic worldviews and the potential for malicious actors to generate extremist propaganda at scale.",
           "verbatim": "Contrary to how it may seem when we observe its output, an LM is a system for haphazardly stitching together sequences of linguistic forms it has observed in its vast training data, according to probabilistic information about how they combine, but without any reference to meaning: a stochastic parrot.",
-          "excerpt_context": "Section 6.1, paragraph 2",
+          "excerpt_context": "Section 6.1, Coherence in the Eye of the Beholder",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "stochastic_parrot",
-            "natural_language_understanding",
-            "benchmark_gaming"
+            "epistemological_integrity",
+            "communicative_intent"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-060",
+          "taxonomy_node_id": "skp-beliefs-019",
           "category": "Beliefs",
-          "point": "The document warns that the ability of large language models to generate fluent, coherent text on demand facilitates the creation of disinformation and extremist recruitment content. It notes that bad actors can use these models to populate message boards with synthetic personas, making human targets feel like they are part of a larger, like-minded group.",
-          "verbatim": "For example, McGuffie and Newhouse [80] show how GPT-3 could be used to generate text in the persona of a conspiracy theorist, which in turn could be used to populate extremist recruitment message boards.",
-          "excerpt_context": "Section 6.2, paragraph 4",
+          "point": "The document highlights the risk of bad actors using large language models to generate vast quantities of coherent text for malicious purposes, such as populating extremist message boards or creating smear campaigns. This aligns with the skeptic concern regarding the immediate, measurable reputational and psychological harms caused by AI-generated content. The authors specifically cite the use of GPT-3 to generate extremist personas as a concrete example of how these models facilitate recruitment and social harm.",
+          "verbatim": "A third category of risk involves bad actors taking advantage of the ability of large LMs to produce large quantities of seemingly coherent texts on specific topics on demand in cases where those deploying the LM have no investment in the truth of the generated text. For example, McGuffie and Newhouse [80] show how GPT-3 could be used to generate text in the persona of a conspiracy theorist, which in turn could be used to populate extremist recruitment message boards.",
+          "excerpt_context": "Section 6.2, Risks and Harms",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "disinformation",
             "extremist_recruitment",
-            "synthetic_text"
+            "synthetic_content_misuse"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-001",
+          "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The document explicitly calls for centering the people adversely affected by AI, emphasizing the need to account for environmental costs, labor equity, and the potential for wrongful arrest or extremist ideology. It argues that the field must prioritize these immediate, measurable harms over the pursuit of larger models, reflecting a skeptic focus on structural and socio-economic impacts.",
-          "verbatim": "In summary, we advocate for research that centers the people who stand to be adversely affected by the resulting technology, with a broad view on the possible ways that technology can affect people.",
-          "excerpt_context": "Section 3, paragraph 6",
+          "point": "The document calls for comprehensive documentation of data selection and model motivations, arguing that researchers must be transparent about their values and the potential for negative impacts on stakeholders. This aligns with the skeptic's focus on algorithmic accountability and the need to expose the hidden biases and power dynamics inherent in AI development.",
+          "verbatim": "This documentation should reflect and indicate researchers’ goals, values, and motivations in assembling data and creating a given model. It should also make note of potential users and stakeholders, particularly those that stand to be negatively impacted by model errors or misuse.",
+          "excerpt_context": "Section 3, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "socio_economic_harm",
-            "environmental_impact",
-            "labor_equity"
+            "algorithmic_accountability",
+            "data_documentation"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-006",
-          "category": "Intentions",
-          "point": "The authors highlight the 'opportunity cost' of current research, noting that resources are being poured into data-hungry models at the expense of other, potentially more efficient or socially beneficial directions. They call for a re-allocation of effort toward techniques that do not rely on endless data consumption, aligning with the skeptic desire to redefine success metrics beyond raw capability.",
-          "verbatim": "We hope these considerations encourage NLP researchers to direct resources and effort into techniques for approaching NLP tasks that are effective without being endlessly data hungry.",
-          "excerpt_context": "Conclusion, paragraph 4",
-          "extraction_confidence": 0.95,
+          "taxonomy_node_id": "skp-beliefs-009",
+          "category": "Beliefs",
+          "point": "The authors highlight the environmental and financial costs of model development, noting that these costs are often borne by those who do not benefit from the technology. This skepticism toward the 'progress' narrative emphasizes that the current path of AI development exacerbates economic and social inequities.",
+          "verbatim": "The resources needed to train and tune state-of-the-art models stand to increase economic inequities unless researchers incorporate energy and compute efficiency in their model evaluations.",
+          "excerpt_context": "Section 3, paragraph 1",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "opportunity_cost",
-            "data_efficiency"
+            "environmental_impact",
+            "economic_inequity"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document provides a comprehensive bibliography of research documenting the systemic biases, environmental costs, and social harms inherent in large language models. By citing works like Noble's 'Algorithms of Oppression' and Strubell et al.'s work on energy consumption, the authors ground their critique in empirical evidence of AI's negative societal impacts. This collection of references serves as a foundational evidence base for the skeptic argument that AI development is not neutral but actively reinforces existing power structures and inequalities.",
-          "verbatim": "[94] Safiya Umoja Noble. 2018. Algorithms of Oppression: How Search Engines Reinforce Racism. NYU Press. ... [129] Emma Strubell, Ananya Ganesh, and Andrew McCallum. 2019. Energy and Policy Considerations for Deep Learning in NLP.",
-          "excerpt_context": "References [94] and [129]",
+          "point": "The document compiles a comprehensive list of empirical research documenting the negative impacts of AI, including environmental costs, gender bias, and the reinforcement of social stereotypes. This serves as a foundational evidence base for the skeptic position that AI systems currently cause measurable, structural harms that are often ignored in favor of scaling capabilities.",
+          "verbatim": "Emma Strubell, Ananya Ganesh, and Andrew McCallum. 2019. Energy and Policy Considerations for Deep Learning in NLP. ... Jieyu Zhao, Tianlu Wang, Mark Yatskar, Ryan Cotterell, Vicente Ordonez, and Kai-Wei Chang. 2019. Gender Bias in Contextualized Word Embeddings.",
+          "excerpt_context": "References [129] and [157]",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_bias",
             "environmental_impact",
-            "racial_capitalism"
+            "gender_bias",
+            "algorithmic_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-078",
+          "category": "Intentions",
+          "point": "The document references multiple methodologies for auditing and reporting on AI models, such as 'Model Cards' and 'Perturbation Sensitivity Analysis.' These citations support the skeptic intention of moving toward standardized, systematic evaluation of AI models to expose biases and ensure accountability.",
+          "verbatim": "Margaret Mitchell, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman, Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, and Timnit Gebru. 2019. Model cards for model reporting. ... Vinodkumar Prabhakaran, Ben Hutchinson, and Margaret Mitchell. 2019. Perturbation Sensitivity Analysis to Detect Unintended Model Biases.",
+          "excerpt_context": "References [86] and [103]",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "model_cards",
+            "algorithmic_auditing",
+            "bias_detection"
           ]
         }
       ]
@@ -325,15 +338,15 @@
   },
   "factual_claims": [
     {
-      "claim": "The amount of compute used to train the largest deep learning models has increased 300,000x in six years, a rate significantly faster than Moore's Law.",
-      "claim_label": "Compute Scaling Rate",
+      "claim": "The amount of compute used to train the largest deep learning models has increased 300,000x in 6 years, which is a rate significantly faster than Moore's Law.",
+      "claim_label": "Compute Growth Rate",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2013-2019",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-001"
+        "sit-163"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -344,91 +357,122 @@
       "claim_relations": []
     },
     {
-      "claim": "Large language models trained on Common Crawl data, such as GPT-3, generate text with high toxicity scores even when prompted with non-toxic input.",
-      "claim_label": "Toxicity in GPT-3 Output",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2021",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-094"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim based on cited research"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The largest language models are often too large and slow to meet the requirements of near real-time automatic speech recognition systems.",
-      "claim_label": "LM Latency in ASR",
+      "claim": "Training a single BERT base model requires as much energy as a trans-American flight.",
+      "claim_label": "BERT Energy Consumption",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-007"
+        "sit-163"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Large language models trained on uncurated web data encode and amplify hegemonic worldviews, including racism, misogyny, and ableism, which are prevalent in the training corpora.",
+      "claim_label": "Encoding of Hegemonic Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-163",
+        "skp-beliefs-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of model output and training data composition."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Language models do not possess communicative intent or a model of the world; they are systems that probabilistically stitch together linguistic forms observed in training data.",
+      "claim_label": "Lack of Communicative Intent",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Theoretical analysis of linguistic signs and machine learning architecture."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The largest language models are often too large and slow to meet the near real-time requirements of automatic speech recognition (ASR) systems.",
+      "claim_label": "ASR Latency Constraints",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-017"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "empirical claim"
+        "category_criteria": "empirical claim regarding technical performance limits"
       },
       "claim_relations": []
     },
     {
-      "claim": "The development and deployment of large language models are associated with significant environmental costs and documented social biases, as evidenced by the cited literature.",
-      "claim_label": "Documented Harms of LLMs",
+      "claim": "The research community has developed a wide array of specific methodologies to measure and document biases in language models, ranging from gender bias in word embeddings to the dehumanization of social groups in generated text.",
+      "claim_label": "Existence of Bias Measurement Methodologies",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "temporal_scope": "historical",
+      "temporal_bound": "2013-2020",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-041",
-        "skp-beliefs-009"
+        "cc-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claims, observations, measurements, predictions about the world"
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical evidence of bias measurement techniques."
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Stochastic Parrots",
-      "suggested_description": "A situation concept that describes the behavior of large language models as systems that generate text by predicting linguistic patterns without genuine understanding or intent.\nEncompasses: The tendency of models to reproduce harmful biases found in training data and the human tendency to anthropomorphize these outputs.\nExcludes: Models that possess genuine semantic understanding or consciousness.",
-      "concept": "The document uses the term 'stochastic parrots' to characterize language models as systems that manipulate linguistic form without understanding. It argues that this behavior misleads the public and researchers into imputing meaning where none exists.",
+      "suggested_label": "The Illusion of Communicative Coherence",
+      "suggested_description": "A situation concept that describes the psychological phenomenon where humans project communicative intent and meaning onto fluent but hollow machine-generated text. \nEncompasses: Anthropomorphism of AI, misinterpretation of machine output as human-like, and the role of human linguistic competence in constructing meaning. \nExcludes: Algorithmic bias, which concerns the content of the output rather than the human perception of its origin.",
+      "concept": "The document argues that coherence is in the eye of the beholder, noting that humans are predisposed to interpret communicative acts as conveying intent. This creates a dangerous gap where users mistake machine-generated text for meaningful human communication, leading to real-world harms.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This is a central metaphor of the document that defines the authors' stance on the nature of AI intelligence.",
-      "Accelerationist Interpretation": "Accelerationists might interpret the 'stochastic' nature as a feature that allows for massive, scalable content generation, focusing on the utility of the output rather than the lack of internal understanding.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical risk factor, as the lack of understanding makes it impossible for the model to align its outputs with human values or safety constraints.",
-      "Skeptic Interpretation": "Skeptics use this concept to demystify AI, arguing that because models are merely 'parrots,' they should not be treated as intelligent agents or granted the same status as human cognitive processes."
+      "reason": "This is a foundational situation concept explaining why AI-generated text is uniquely dangerous compared to other forms of misinformation.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a feature, arguing that the 'illusion' of coherence is sufficient for utility and that human interpretation is the final, necessary step in the value-creation chain.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical risk factor that necessitates strict labeling and human-in-the-loop requirements to prevent deception and manipulation.",
+      "Skeptic Interpretation": "Skeptics would use this to argue that the technology is inherently deceptive and that the 'illusion' undermines the possibility of rational public discourse."
     },
     {
-      "suggested_label": "Conceptual Investigation of Harms",
-      "suggested_description": "A situation concept that prioritizes early-stage ethical analysis over post-hoc risk mitigation. \nEncompasses: Value sensitive design, envisioning cards, and stakeholder panels.\nExcludes: Reactive bug-fixing or post-deployment safety patching.",
-      "concept": "The document argues that conceptual investigations of values and harms must occur before researchers become deeply committed to their technical ideas. This ensures that the research trajectory can be altered when evidence of potential harm arises.",
-      "suggested_pov": "situations",
+      "suggested_label": "Value Sensitive Design Methodology",
+      "suggested_description": "A [Intention] within [safetyist] discourse that [systematically integrates stakeholder values into the technical design process].\nEncompasses: [envisioning cards, value scenarios, experiential expert panels].\nExcludes: [post-hoc risk assessment, purely technical performance optimization].",
+      "concept": "The document advocates for value sensitive design as a methodology to identify stakeholders and their values early in the development process. By using techniques like envisioning cards and value scenarios, researchers can design systems that support human values and identify potential harms before they are baked into the model.",
+      "suggested_pov": "safetyist",
       "suggested_category": "Intentions",
-      "reason": "This represents a specific methodological approach to research governance that is not fully captured by existing 'safety' or 'skeptic' nodes.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a potential bottleneck to rapid iteration, arguing that such conceptual investigations could slow down the discovery of beneficial AI applications.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a necessary 'pre-mortem' or 'proactive design' step to ensure that models are aligned with human values before they reach dangerous levels of capability.",
-      "Skeptic Interpretation": "Skeptics would view this as a crucial mechanism for ensuring that the development of AI is grounded in the needs of affected communities rather than the interests of the developers."
+      "reason": "This is a specific, structured methodology for AI governance that is not currently represented in the taxonomy."
     }
-  ],
-  "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }

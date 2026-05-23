@@ -1,14 +1,14 @@
 {
   "doc_id": "data-quality-over-model-complexity-rethinking-ai-2026-2",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 43,
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 2,
@@ -16,7 +16,7 @@
       "claims_total": 2,
       "claims_confident": 1,
       "claims_iterated": 1,
-      "elapsed_seconds": 8.6,
+      "elapsed_seconds": 10.3,
       "termination_reason": "all_confident"
     }
   },
@@ -24,74 +24,60 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "data-quality-over-model-complexity-rethinking-ai-2026-2",
-    "measured_at": "2026-05-02T20:04:01.8458850-04:00",
+    "measured_at": "2026-05-23T03:53:59.8676772-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 2.0,
-        "ratio": 1.0,
+        "out_count": 0.0,
+        "ratio": 0.0,
         "flags": {
-          "resolved_count": 0,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 2
+          "resolved_count": 2,
+          "near_miss_count": 0
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 44631.0,
+        "in_count": 45151.0,
         "out_units": "items",
-        "out_count": 10.0,
+        "out_count": 8.0,
         "ratio": 0.0002,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 2,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 2,
+          "unmapped_concepts": 0,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
           "total_points": 6
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
-        "out_count": 43.0,
-        "ratio": 0.0817,
+        "out_count": 42.0,
+        "ratio": 0.0641,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 24,
-          "below_threshold_forced": 3,
-          "intentions_selected": 16,
-          "effective_threshold": 0.4659,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 3
-        }
-      },
-      {
-        "stage": "unmapped_resolution",
-        "in_units": "concepts",
-        "in_count": 2.0,
-        "out_units": "still_unmapped",
-        "out_count": 2.0,
-        "ratio": 1.0,
-        "flags": {
-          "resolved_count": 0,
-          "threshold": 0.6,
-          "used_embeddings": 1,
-          "near_miss_count": 2
+          "below_threshold_forced": 2,
+          "above_threshold": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 28,
+          "effective_threshold": 0.4855,
+          "threshold_floor": 0.2,
+          "intentions_selected": 11
         }
       }
     ],
-    "cumulative_retention": 0.0817
+    "cumulative_retention": 0.0641
   },
   "pov_summaries": {
     "accelerationist": {
@@ -100,24 +86,26 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-018",
           "category": "Intentions",
-          "point": "The document advocates for human-in-the-loop (HITL) workflows where AI-driven anomaly detection assists human experts in data refinement. This approach leverages AI's speed for large-scale processing while retaining human judgment for nuanced, context-sensitive edge cases. From an accelerationist perspective, this hybrid model maximizes the efficiency and reliability of AI systems, allowing for faster deployment of robust tools. The document notes that such systems have demonstrated over 80% gains in reviewer productivity.",
+          "point": "The document advocates for hybrid human-AI workflows where human expertise is paired with AI-driven anomaly detection to refine data. This approach leverages AI's speed for large-scale processing while utilizing human judgment for nuanced, context-sensitive validation. From an accelerationist perspective, this maximizes the efficiency of the machine learning lifecycle, ensuring that compute resources are directed toward high-quality inputs that yield superior model performance. The document notes that this hybrid model is currently the most effective way to ensure semantic accuracy in complex deployments.",
           "verbatim": "Ahi et al. (2025) demonstrate how human-in-the-loop (HITL) systems dramatically boost data quality—achieving over 80% gains in reviewer productivity when assisted by AI-driven anomaly detection and refinement tools.",
-          "excerpt_context": "Section 4.4",
+          "excerpt_context": "Section 4.4, paragraph 1",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "oversight_audit"
+            "oversight_audit",
+            "alignment_commercial"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-027",
-          "category": "Beliefs",
-          "point": "The document asserts that the primary bottleneck to AI performance is not the model architecture itself, but the quality of the data provided by human developers and curators. It argues that scaling models without addressing data hygiene leads to diminishing returns or performance collapse. This aligns with the accelerationist view that human-defined data and rules are the limiting factor in AI progress, rather than the inherent capabilities of the models.",
-          "verbatim": "This performance gap reveals an uncomfortable truth: most AI failures are not caused by model limitations but by poor-quality data.",
-          "excerpt_context": "Section 2",
+          "taxonomy_node_id": "acc-intentions-100",
+          "category": "Intentions",
+          "point": "The document proposes a 'Data-First AI Pipeline' that integrates automated validation and continuous monitoring to ensure data integrity. By treating data as a dynamic, improvable asset rather than a static resource, organizations can achieve more stable and reliable AI deployments. This aligns with accelerationist goals of optimizing infrastructure and resource allocation to drive transformative gains in AI performance. The document emphasizes that this framework is essential for scaling AI in regulated industries like finance and healthcare.",
+          "verbatim": "The framework incorporates automated validation techniques, intelligent cleaning mechanisms, human oversight, and continuous monitoring to ensure that data remains trustworthy, consistent, and aligned with real-world conditions.",
+          "excerpt_context": "Section 6, paragraph 1",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "capabilities_scaling"
+            "governance_adaptive",
+            "safety_empirical"
           ]
         }
       ]
@@ -126,26 +114,28 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
+          "taxonomy_node_id": "saf-beliefs-098",
           "category": "Beliefs",
-          "point": "The document identifies that AI systems trained on poor-quality data exhibit subtle, harmful, and expensive-to-detect failures, such as hallucinations and biased predictions. It notes that scaling dirty datasets often amplifies these errors rather than solving them, leading to models that are harder to interpret and correct. From a safetyist perspective, this underscores the danger of deploying models without rigorous data validation, as the underlying data pollution creates invisible risks to reliability.",
-          "verbatim": "Kilani et al. (2025) add that increased data volume often amplifies existing problems rather than solving them. Scaling dirty datasets leads to larger, more complex errors, making models harder to interpret and harder to correct.",
-          "excerpt_context": "Section 3.2",
+          "point": "The document asserts that AI systems frequently fail due to poor data quality, which leads to hallucinations, instability, and biased predictions. These failures occur because models internalize flawed assumptions present in noisy or unrepresentative training data. From a safetyist perspective, this highlights the danger of deploying models that have not been rigorously validated against real-world conditions. The document acknowledges that even state-of-the-art architectures are susceptible to these failures when data hygiene is neglected.",
+          "verbatim": "Models trained on incorrect, missing, or unrepresentative samples inevitably internalize flawed assumptions, leading to hallucinations, weak generalization, and brittle performance.",
+          "excerpt_context": "Section 2, paragraph 2",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "safety_empirical"
+            "safety_alignment",
+            "capabilities_hazard"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document proposes a framework that mandates transparency, lineage tracking, and documentation of data transformations to ensure AI systems are verifiable and accountable. It argues that trustworthy AI requires clear metadata standards and validation logs to prevent the propagation of flawed data. This aligns with safetyist goals of making AI systems' internal processes and data foundations understandable and inspectable to mitigate catastrophic failure modes.",
-          "verbatim": "Likewise, Xu et al. (2025) highlight that trustworthy AI systems must maintain verifiable data lineage, consistent metadata standards, and fully documented transformations.",
-          "excerpt_context": "Section 6.4",
-          "extraction_confidence": 0.95,
+          "taxonomy_node_id": "saf-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document observes that AI models often exhibit 'brittle performance' when deployed in environments where data distributions shift or contain irregularities. This fragility is a direct consequence of the model-centric assumption that data is complete and accurate, which is rarely true in practice. Safetyists view this as a critical risk, as models may maintain high confidence while executing catastrophic failures in novel or complex environments. The document notes that scaling models does not resolve this fragility; it often amplifies the underlying errors.",
+          "verbatim": "Scaling dirty datasets leads to larger, more complex errors, making models harder to interpret and harder to correct.",
+          "excerpt_context": "Section 3.2, paragraph 3",
+          "extraction_confidence": 0.92,
           "vocabulary_terms": [
-            "transparency_accountability"
+            "safety_alignment",
+            "risk_existential"
           ]
         }
       ]
@@ -156,24 +146,26 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that AI systems frequently fail in high-stakes domains like healthcare and industrial engineering due to incomplete, biased, or polluted data. It highlights that these failures are not theoretical but documented, present harms that lead to missed disease diagnoses or inaccurate industrial forecasts. This supports the skeptic view that current AI tools are fallible and often perform poorly when applied to complex, real-world datasets that violate the assumptions of model-centric scaling.",
-          "verbatim": "Healthcare studies show that missing or mislabeled clinical data causes predictive models to miss early indicators of disease or misclassify treatment pathways (Machireddy, 2025; Arzikulov & Komiljonov, 2025).",
-          "excerpt_context": "Section 3.2",
+          "point": "The document identifies that AI systems often encode and amplify societal biases present in training data, leading to harmful outcomes in high-stakes domains like healthcare. This confirms the skeptic concern that AI is not a neutral tool but a reflection of the flawed data it consumes. The document argues that these biases are not merely technical glitches but fundamental issues of data quality that require systematic intervention. It emphasizes that without addressing these upstream data issues, AI will continue to produce discriminatory or misleading results.",
+          "verbatim": "Low-quality data introduces noise, bias, incompleteness, and inconsistencies that fundamentally distort the learning process.",
+          "excerpt_context": "Section 2, paragraph 2",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "harm (documented, present)"
+            "bias_systemic",
+            "harm_documented_present"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The document advocates for systematic, rigorous evaluation of AI models based on input quality scores, data completeness indices, and annotation reliability metrics. It argues that success should be reframed around data stewardship rather than just model scale. This aligns with the skeptic intention to move away from anthropomorphic hype and treat AI as a fallible tool that requires constant auditing and performance-based monitoring to be useful.",
+          "point": "The document advocates for rigorous, systematic evaluation of AI models based on data quality metrics rather than just accuracy scores. It proposes that organizations should track input quality, data completeness, and metadata consistency to ensure accountability. This aligns with the skeptic intention to mandate transparency and documentation in AI development. The document notes that such metrics are essential for regulatory compliance and for building trust in AI systems deployed in public-facing sectors.",
           "verbatim": "Model performance should be evaluated not only by accuracy but also by: input quality scores, data completeness indices, metadata consistency, annotation reliability metrics.",
-          "excerpt_context": "Section 7.3.5",
+          "excerpt_context": "Section 7.3.5, paragraph 1",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability (algorithmic)"
+            "accountability_algorithmic",
+            "fairness_procedural"
           ]
         }
       ]
@@ -181,7 +173,7 @@
   },
   "factual_claims": [
     {
-      "claim": "Human-in-the-loop systems can increase reviewer productivity by over 80% when using AI-driven anomaly detection.",
+      "claim": "Human-in-the-loop systems can boost reviewer productivity by over 80% when assisted by AI-driven anomaly detection and refinement tools.",
       "claim_label": "HITL Productivity Gains",
       "doc_position": "supports",
       "temporal_scope": "current_state",
@@ -196,51 +188,32 @@
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "mechanism_specified": true,
-          "scope_bounded": true,
-          "failure_mode_addressed": true
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Scaling AI models using uncurated or 'dirty' datasets leads to the amplification of existing errors, which subsequently complicates the interpretability and correction of model outputs.",
-      "claim_label": "Scaling Dirty Data Impact",
+      "claim": "In industrial and business settings, the majority of AI system failures are attributable to data quality issues rather than inherent model limitations.",
+      "claim_label": "Primary Cause of AI Failure",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-057"
+        "saf-beliefs-098",
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
-        "specificity": "precise",
+        "specificity": "qualified",
         "has_warrant": true,
         "internally_consistent": true
       },
-      "fire_confidence": 0.95
+      "fire_confidence": 0.85
     }
   ],
   "unmapped_concepts": [
-    {
-      "suggested_label": "Data-First AI Pipeline Framework",
-      "suggested_description": "An Intention within safetyist and skeptic discourse that mandates a structured, multi-stage lifecycle for AI development prioritizing data quality over model architecture. Encompasses: Automated validation, anomaly detection, continuous monitoring, and lineage tracking. Excludes: Purely model-centric scaling approaches.",
-      "concept": "The document proposes a 'Data-First AI Pipeline' that integrates validation, cleaning, feedback loops, and governance to ensure AI systems are built on reliable data. This framework is presented as a necessary shift to move organizations away from the 'bigger is better' model-centric paradigm.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "The document introduces a specific, multi-layered operational framework for data-centric AI that is not currently captured by existing nodes."
-    },
-    {
-      "suggested_label": "Invisible Data Pollution",
-      "suggested_description": "A situation concept that describes the degradation of AI reliability caused by low-quality, incomplete, or noisy data that remains undetected during development. Encompasses: Model drift, hallucinations, and silent performance failures. Excludes: Explicitly malicious data poisoning or adversarial attacks.",
-      "concept": "The document characterizes low-quality measurements and missing data as 'invisible pollution' that quietly degrades AI reliability in scientific and industrial domains. It argues that this pollution is a primary cause of AI failure that scaling cannot resolve.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific, pervasive failure mode in AI systems that is distinct from general bias or technical error.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a technical challenge to be solved through better automated cleaning and monitoring tools, rather than a reason to slow down development.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical risk factor that necessitates mandatory transparency and rigorous pre-deployment data audits to prevent catastrophic failures.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that AI systems are fundamentally unreliable tools that require constant human oversight and should not be trusted with high-stakes decisions."
-    }
+    null
   ]
 }

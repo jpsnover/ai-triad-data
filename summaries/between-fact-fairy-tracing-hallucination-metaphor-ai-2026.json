@@ -1,124 +1,138 @@
 {
   "doc_id": "between-fact-fairy-tracing-hallucination-metaphor-ai-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
-    "extraction_mode": "fire",
-    "taxonomy_filter": "rag",
-    "taxonomy_nodes": 42,
-    "fire_confidence_threshold": 0.7,
-    "fire_stats": {
-      "api_calls": 1,
-      "iterations": 0,
-      "claims_total": 2,
-      "claims_confident": 2,
-      "claims_iterated": 0,
-      "elapsed_seconds": 8.9,
-      "termination_reason": "all_confident"
-    }
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 921,
+    "chunked": true,
+    "chunk_count": 3
   },
   "context_rot": {
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "between-fact-fairy-tracing-hallucination-metaphor-ai-2026",
-    "measured_at": "2026-05-02T19:14:45.1200230-04:00",
+    "measured_at": "2026-05-23T02:26:14.5608227-04:00",
     "stages": [
       {
-        "stage": "unmapped_resolution",
-        "in_units": "concepts",
-        "in_count": 2.0,
-        "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.5,
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 20097.0,
+        "out_units": "tokens_est",
+        "out_count": 20095.0,
+        "ratio": 0.9999,
         "flags": {
-          "resolved_count": 1,
-          "threshold": 0.6,
-          "used_embeddings": 1,
-          "near_miss_count": 1
-        }
-      },
-      {
-        "stage": "extraction",
-        "in_units": "prompt_chars",
-        "in_count": 90826.0,
-        "out_units": "items",
-        "out_count": 9.0,
-        "ratio": 0.0001,
-        "flags": {
-          "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 1,
-          "density_floor_hit": 0,
-          "dedup_points_removed": 0,
-          "factual_claims": 2,
-          "total_points": 6
+          "chunk_count": 3
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 42.0,
-        "ratio": 0.0798,
+        "out_count": 62.0,
+        "ratio": 0.0182,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 13,
-          "below_threshold_forced": 2,
-          "intentions_selected": 26,
-          "effective_threshold": 0.3513,
-          "above_threshold": 40,
-          "top_k": 40,
-          "desires_selected": 3
+          "avg_beliefs": 20.0,
+          "chunk_count": 2,
+          "avg_nodes_selected": 62.0,
+          "avg_desires": 2.0,
+          "max_nodes_selected": 63,
+          "total_below_threshold": 4,
+          "avg_intentions": 6.0,
+          "min_nodes_selected": 62
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 158444.0,
+        "out_units": "items",
+        "out_count": 22.0,
+        "ratio": 0.0001,
+        "flags": {
+          "null_node_rate": 0.1429,
+          "chunk_count": 3,
+          "total_points": 14,
+          "unmapped_concepts": 5,
+          "factual_claims": 3
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 22.0,
+        "out_units": "items",
+        "out_count": 22.0,
+        "ratio": 1.0,
+        "flags": {
+          "points_deduped": 0,
+          "concepts_deduped": 0,
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 1.0,
+        "in_count": 5.0,
         "out_units": "still_unmapped",
         "out_count": 1.0,
-        "ratio": 1.0,
+        "ratio": 0.2,
         "flags": {
-          "resolved_count": 0,
-          "threshold": 0.5,
-          "used_embeddings": 0,
-          "near_miss_count": 0
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "resolved_count": 4,
+          "near_miss_count": 1
         }
       }
     ],
-    "cumulative_retention": 0.0798
+    "cumulative_retention": 0.0182
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-048",
-          "category": "Intentions",
-          "point": "The document notes that tech companies use benchmark tests like TruthfulQA to measure model performance, reflecting a desire to quantify AI progress through observable metrics. By operationalizing 'factuality' and 'faithfulness' as measurable benchmarks, developers attempt to move beyond abstract philosophical debates about intelligence. This aligns with the accelerationist goal of defining AI progress through falsifiable, technical standards rather than subjective human interpretation. However, the document critiques this as a form of 'discursive work' that simplifies complex social realities into manageable data points.",
-          "verbatim": "Computational methods for measuring the degree of hallucination or the factuality of a particular model include the use of benchmark tests such as TruthfulQA (Lin et al. 2022).",
-          "excerpt_context": "Section 6",
-          "extraction_confidence": 0.95,
+          "taxonomy_node_id": "acc-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document acknowledges that LLMs are capable of impressive, human-like language generation and complex problem-solving, which accelerationists view as evidence of the technology's transformative potential. While the document frames 'hallucinations' as a problem, accelerationists interpret these same mechanisms as the source of the models' creative capabilities. This aligns with the view that AI's ability to generate novel, non-linear outputs is a feature of its intelligence rather than a mere defect.",
+          "verbatim": "These models produce and process language in an impressively convincing human-like manner... In some ways, itÆs an inherent feature. ItÆs what makes these models very creative.",
+          "excerpt_context": "Abstract and Section 6",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "capabilities_scaling",
-            "transparency_verification"
+            "generative_capability",
+            "creative_intelligence"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-007",
-          "category": "Intentions",
-          "point": "The document highlights how tech leaders frame AI development as a natural, evolutionary process, comparing it to human learning. By positioning models as 'learning children' or 'assistants' that need time to mature, companies justify the current state of AI as a necessary stage in a broader technological trajectory. This framing supports the accelerationist view that AI is an inevitable, purposeful evolution toward greater complexity. The document notes that this narrative serves to normalize the technology's current limitations while pushing for continued, rapid deployment.",
-          "verbatim": "The models, as this form of narration reveals, are conceived as still unfinished, emerging technologies which will continue to learn with more and better data and soon reach their true purpose.",
-          "excerpt_context": "Section 10",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document notes that tech companies view failure and error as inherent components of innovation cycles, where malfunctions are treated as opportunities for revenue expansion and product improvement. By collecting user feedback on errors, companies transform users into testers who help refine new features. This perspective aligns with accelerationist views that see iterative failure as a necessary, productive mechanism for rapid technological advancement and market growth.",
+          "verbatim": "While it is not valorized or admired, failure is linked with innovation, growth and revenue expansion in current technological markets. It is seen as a chance to make profit, either by building technologies that anticipate failures or aim to prevent them, or by making failure an opportunity for collecting usersÆ feedback, thus making them into testers whose needs and wishes will be used for new product features.",
+          "excerpt_context": "Section 2, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "innovation_cycles",
+            "iterative_development"
+          ]
+        },
+        {
+          "stance": "opposed",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document argues that the 'hallucination' metaphor is a strategic narrative used to frame AI as a 'nascent technology' that is merely unfinished. This narrative suggests that models will eventually reach their 'true purpose' through more data and better training, which the authors interpret as a prophetic story prioritizing potential over risk. Accelerationists would likely dispute this framing, arguing that current model outputs are not 'mad' or 'infantile' but rather functional, and that the focus should be on scaling capabilities rather than pathologizing errors.",
+          "verbatim": "The models, as this form of narration reveals, are conceived as still unfinished, emerging technologies which will continue to learn with more and better data and soon reach their true purpose. It is a prophetic story that sees more potential than risk in the output of non-factual language.",
+          "excerpt_context": "Section 3, paragraph 4",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "capabilities_scaling"
+            "capabilities_scaling",
+            "technological_optimism"
           ]
         }
       ]
@@ -126,29 +140,69 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
+          "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-038",
           "category": "Beliefs",
-          "point": "The document identifies 'hallucination' as a fundamental issue where models produce untrustworthy, factually incorrect outputs that appear fluent and natural. This phenomenon highlights the inherent difficulty in trusting AI systems that lack grounding in reality and rely on opaque internal reasoning. From a safetyist perspective, this unpredictability is a critical risk, as it undermines the reliability of AI in high-stakes domains. The document acknowledges that experts consider these errors impossible to fully resolve, suggesting a persistent gap between model performance and safety requirements.",
+          "point": "The document highlights that LLMs frequently generate untrustworthy or factually incorrect information, which safetyists identify as a core risk of deploying unaligned or opaque systems. The document notes that these errors are often unpredictable, reinforcing the safetyist concern that current alignment methods are insufficient to guarantee reliability in high-stakes environments.",
           "verbatim": "These models produce and process language in an impressively convincing human-like manner, but also repeatedly generate outputs that appear untrustworthy and factually incorrect.",
           "excerpt_context": "Abstract",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "safety_alignment",
-            "risk_existential"
+            "untrustworthy_outputs",
+            "factuality_risk"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document critiques the lack of transparency in how AI models are trained and how they process information, noting that training datasets are often kept as commercial secrets. Safetyists argue that without visibility into the data and the internal reasoning processes, it is impossible to ensure AI systems are aligned with human values or to verify their truthfulness. The document points out that companies delegate the task of verifying outputs to users, which is an insufficient substitute for robust, pre-deployment safety and interpretability frameworks. This reliance on user feedback is seen as a failure of institutional accountability.",
-          "verbatim": "It means the training dataset, the content and structure of which is mostly kept as a commercial secret, is supposed to represent a body of facts or reality or—broadly put—world knowledge.",
-          "excerpt_context": "Section 9",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The authors argue that tech companies use the 'hallucination' metaphor to anthropomorphize models, effectively shifting responsibility away from the developers and onto the models themselves. Safetyists would agree that this discursive strategy obscures the underlying technical failures and prevents meaningful accountability for the catastrophic risks posed by these systems.",
+          "verbatim": "We claim that tech companies anthropomorphize the models, relieving them and themselves from responsibility over non-factual outputs by normalizing the use of the metaphor.",
+          "excerpt_context": "Abstract",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "transparency_accountability",
-            "governance_oversight"
+            "anthropomorphism",
+            "accountability_gap"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-021",
+          "category": "Beliefs",
+          "point": "The document identifies that developers treat hallucinations as a problem of knowledge and faithfulness, where models fail to align with human normative expectations of truth. It notes that companies like OpenAI and Anthropic view the unpredictability of hallucinations as a potential barrier to malicious use, framing model instability as a form of check-and-balance, though this remains a contested and recursive safety argument.",
+          "verbatim": "OpenAI and Anthropic regard the unpredictability of hallucinations as a factor that renders the programs unreliable to use, even for users with malicious intent. In these cases, hallucinations or model instability are described as part of the checks and balances mechanisms of LLMs, not only as a problem but as a solution, creating a recursivity.",
+          "excerpt_context": "Section 9.3, paragraph 5",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment",
+            "hallucination",
+            "model_instability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-141",
+          "category": "Intentions",
+          "point": "Developers are implementing 'hedging' strategies where models are instructed to acknowledge when they cannot provide a response to an unanswerable prompt. This is intended to mitigate the risk of hallucination by forcing the model to report its own knowledge limitations rather than confabulating information.",
+          "verbatim": "If prompted with an input that is ôunanswerableö, Gemini API models must acknowledge that it cannot provide a response by hedging to avoid hallucination.",
+          "excerpt_context": "Section 9, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "hedging",
+            "epistemic_uncertainty"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-103",
+          "category": "Beliefs",
+          "point": "The document highlights that LLMs are often used in high-stakes search contexts despite their inability to distinguish between facts and falsities. It notes that models generate 'seemingly relevant and coherent text' that does not equate to trustworthiness, which aligns with safetyist concerns regarding the risks of deploying models that prioritize fluency over factual accuracy.",
+          "verbatim": "This use case is one in which trustworthiness and factuality is extremely important and LLMsÆ ability to ôgenerate seemingly relevant and coherent text does not make them trustworthy sources of informationö",
+          "excerpt_context": "Section 3, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "sycophancy",
+            "model_reliability"
           ]
         }
       ]
@@ -157,28 +211,82 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-009",
-          "category": "Intentions",
-          "point": "The document argues that the term 'hallucination' is a metaphor used by tech companies to anthropomorphize AI, effectively masking the mundane reality of software errors. By framing these errors as 'hallucinations'—a term associated with human mental illness—companies shift the focus away from technical failures and toward a quasi-religious or psychological narrative. Skeptics argue that this rhetoric should be stripped away to treat AI as standard, fallible enterprise software that requires rigorous, evidence-based auditing. The document asserts that this discursive work is a strategic move to evade legal and moral responsibility for the technology's performance.",
-          "verbatim": "We claim that tech companies anthropomorphize the models, relieving them and themselves from responsibility over non-factual outputs by normalizing the use of the metaphor.",
-          "excerpt_context": "Abstract",
-          "extraction_confidence": 1.0,
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides a critical analysis of how 'hallucination' is used as a discursive tool by tech companies to normalize errors and evade liability. Skeptics view this as a clear example of how corporate rhetoric masks the measurable harms of AI, such as the dissemination of misinformation and the erosion of public trust in information ecosystems.",
+          "verbatim": "We look at hallucination not as a given problem that is discovered, but as a problematization made to justify certain happenings or solutions (or by defining it as an unsolvable problem).",
+          "excerpt_context": "Section 1",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability_algorithmic",
-            "bias_systemic"
+            "discursive_work",
+            "corporate_rhetoric",
+            "problematization"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-004",
+          "taxonomy_node_id": "skp-beliefs-047",
           "category": "Beliefs",
-          "point": "The document highlights the risk that AI-generated content, including hallucinations, degrades the integrity of public information ecosystems. As models are trained on vast amounts of online data, the proliferation of 'AI slop' or false information creates a feedback loop that undermines the epistemological basis of future training sets. Skeptics view this as a measurable, present harm that threatens the quality of information available to the public. The document notes that this epistemic crisis is exacerbated by the integration of LLMs into search engines, where users expect authoritative, factual information.",
-          "verbatim": "Some believe, and this is expressed especially in popular media, that these false narratives and half truths spread online undermine the very core of democratic societies and can influence key moments such as election campaigns.",
-          "excerpt_context": "Section 5",
+          "point": "The document notes that AI systems are being pushed into domains where reliability is critical, such as legal and customer service, leading to real-world harms when these systems fail. Skeptics emphasize that these incidents demonstrate the inadequacy of current AI integration practices and the failure of companies to accept legal responsibility for their products.",
+          "verbatim": "In situations where reliability and factuality appear to be particularly important, the usersÆ trust in the answers of the models based on their high linguistic competence is particularly violated and becomes a problem for the human parties involved in the exchange.",
+          "excerpt_context": "Section 4",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "harm (documented, present)",
-            "bias_systemic"
+            "reliability_failure",
+            "legal_responsibility"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-122",
+          "category": "Beliefs",
+          "point": "The document argues that the metaphor of 'hallucination' anthropomorphizes AI, falsely attributing human-like cognitive states to systems that are fundamentally pattern-matching engines. By using terms like 'honest' or 'helpful' to describe models, companies obscure the fact that these systems lack sensory capabilities and genuine world knowledge, instead relying on secret, curated datasets.",
+          "verbatim": "The difficulty with applying the language of false perception with regards to LLMs is that unlike humans, LLMsÆ access to external facts is the data they are trained on, and they do not have bodily and sensory capabilities similar to humans or organic living entities to sense the world.",
+          "excerpt_context": "Section 9, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "anthropomorphism",
+            "pattern_matching",
+            "epistemology"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-027",
+          "category": "Beliefs",
+          "point": "Tech companies shift the burden of verification onto users, warning against 'overreliance' while simultaneously marketing the models as powerful tools. This creates a paradox where users are expected to act as vigilant supervisors for a system that is marketed as an intelligent assistant, effectively blaming the user for the model's inherent unreliability.",
+          "verbatim": "The various reports contain several suggestions on how to deal with or repair hallucinations in ways that transfer the responsibility for checking and verifying model outputs largely to the users. They are encouraged to learn how to communicate with the models in ways that minimize hallucinations, or to not overly trust the modelÆs outputs.",
+          "excerpt_context": "Section 9.3, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "automation_bias",
+            "overreliance"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-130",
+          "category": "Beliefs",
+          "point": "The document argues that anthropomorphizing AI models—specifically using the 'hallucination' metaphor—serves to absolve developers and companies of legal and moral responsibility. By framing the machine as a 'mad and infantile subject,' companies shift the burden of error onto the technology itself rather than the design choices of the creators.",
+          "verbatim": "An anthropomorphization of the models and the use of the metaphor of hallucination to characterize the malfunctioning models as mad and infantile might ultimately serve to absolve engineers, developers and platform companies of their own legal, moral and societal responsibility and accountability for a modelÆs unreliable output.",
+          "excerpt_context": "Section 3, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "corporate_accountability",
+            "anthropomorphism"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-122",
+          "category": "Beliefs",
+          "point": "The authors argue that the current chatbot use case undermines authoritative truth by delegating the responsibility of verification to end users. This creates a 'post-truth' environment where users are forced to practice 'epistemic vigilance' to compensate for the model's inherent inability to distinguish truth from falsehood.",
+          "verbatim": "However, one of the popular use cases of LLMs, as a chatbot, already undermines any authoritative truth claims or sources, by delegating the responsibility to improve the modelsÆ outputs to end users, actively asking them for feedback and contributions.",
+          "excerpt_context": "Section 3, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "epistemic_vigilance",
+            "user_delegation"
           ]
         }
       ]
@@ -186,56 +294,71 @@
   },
   "factual_claims": [
     {
-      "claim": "The Cambridge Dictionary named 'hallucinate' as the word of the year for 2023.",
-      "claim_label": "Cambridge Dictionary Word of the Year 2023",
+      "claim": "The term 'hallucination' in AI discourse is a metaphor derived from 17th-century medical terminology, originally used to describe erroneous perception rather than the absence of sight.",
+      "claim_label": "Etymological Origins of AI Hallucination",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "2023",
+      "temporal_bound": "1672",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-009"
+        "sit-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim regarding the historical origin of a term"
       },
-      "fire_confidence": 0.7999999999999999
+      "claim_relations": []
     },
     {
-      "claim": "OpenAI withheld the publication of GPT-2 in 2019 due to concerns about fake content and impersonation.",
-      "claim_label": "GPT-2 Release Strategy",
+      "claim": "Major generative AI companies (Google, Meta, OpenAI, Anthropic) use different terminology to describe model errors, with Google and Meta favoring 'factuality' and 'faithfulness', while OpenAI and Anthropic explicitly use the term 'hallucination'.",
+      "claim_label": "Discursive variation in AI error terminology",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2019",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2023-2024",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-117"
+        "sit-163"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs"
       },
-      "fire_confidence": 0.7999999999999999
+      "claim_relations": []
+    },
+    {
+      "claim": "Companies like Google and Microsoft have integrated LLMs into their search engines, specifically Gemini and Bing, despite acknowledging that model hallucination remains an unresolved issue.",
+      "claim_label": "LLM Integration in Search Engines",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-163"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Platform Discursive Work",
-      "suggested_description": "A strategy used by large technology platforms to construct their products as neutral and avoid legal or moral responsibility for system outputs. It involves the deliberate selection of metaphors and terminology to shape public perception and deflect accountability. This concept is central to understanding how companies manage the narrative around AI malfunctions.",
-      "concept": "The document defines 'platform discursive work' as the way tech companies use language to position themselves as neutral entities, specifically by using metaphors like 'hallucination' to frame errors as inherent, uncontrollable features rather than design flaws. This allows platforms to evade the political and economic scrutiny that would otherwise follow from the deployment of unreliable systems.",
+      "suggested_label": "Hallucination Metaphor as Corporate Shield",
+      "suggested_description": "A Belief within skeptic discourse that the term 'hallucination' functions as a rhetorical device to neutralize corporate liability. Encompasses: Anthropomorphization, legal defense strategies, shifting accountability. Excludes: Technical definitions of model error.",
+      "concept": "The document posits that the metaphor of 'hallucination' is not merely a technical descriptor but a strategic narrative. By framing AI errors as the 'madness' of an infantile subject, companies effectively distance themselves from the legal and moral consequences of their products' failures.",
       "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "The taxonomy lacks a node for the specific rhetorical strategies used by platforms to deflect liability through linguistic framing."
+      "suggested_category": "Beliefs",
+      "reason": "This concept specifically addresses the rhetorical and political economy of AI terminology, which is distinct from general bias or error nodes."
     }
   ]
 }

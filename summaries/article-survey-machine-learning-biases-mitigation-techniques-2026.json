@@ -1,14 +1,14 @@
 {
   "doc_id": "article-survey-machine-learning-biases-mitigation-techniques-2026",
   "taxonomy_version": "3.4.0",
-  "generated_at": "2026-05-16T08:09:33Z",
+  "generated_at": "2026-05-22T19:58:47Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 818,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 9
   },
@@ -16,14 +16,14 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "article-survey-machine-learning-biases-mitigation-techniques-2026",
-    "measured_at": "2026-05-16T08:17:14.9383200-04:00",
+    "measured_at": "2026-05-23T01:21:46.0690675-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 62311,
+        "in_count": 63492.0,
         "out_units": "tokens_est",
-        "out_count": 62307,
+        "out_count": 63483.0,
         "ratio": 0.9999,
         "flags": {
           "chunk_count": 9
@@ -32,90 +32,144 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3276,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 61,
-        "ratio": 0.0186,
+        "out_count": 61.0,
+        "ratio": 0.0179,
         "flags": {
-          "avg_nodes_selected": 61,
-          "max_nodes_selected": 63,
-          "total_below_threshold": 9,
-          "avg_desires": 3,
-          "chunk_count": 9,
+          "avg_nodes_selected": 61.0,
+          "total_below_threshold": 3,
           "min_nodes_selected": 60,
-          "avg_intentions": 4,
-          "avg_beliefs": 8
+          "chunk_count": 7,
+          "avg_intentions": 7.0,
+          "max_nodes_selected": 62,
+          "avg_desires": 3.0,
+          "avg_beliefs": 11.0
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 302447,
+        "in_count": 427047.0,
         "out_units": "items",
-        "out_count": 60,
-        "ratio": 0.0002,
+        "out_count": 63.0,
+        "ratio": 0.0001,
         "flags": {
-          "unmapped_concepts": 13,
-          "null_node_rate": 0.1765,
-          "total_points": 34,
-          "factual_claims": 13,
-          "chunk_count": 9
+          "null_node_rate": 0.0769,
+          "unmapped_concepts": 12,
+          "factual_claims": 12,
+          "chunk_count": 9,
+          "total_points": 39
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 60,
+        "in_count": 63.0,
         "out_units": "items",
-        "out_count": 55,
-        "ratio": 0.9167,
+        "out_count": 62.0,
+        "ratio": 0.9841,
         "flags": {
-          "concepts_deduped": 1,
-          "claims_deduped": 1,
+          "points_deduped": 1,
+          "claims_deduped": 0,
           "used_embeddings": 1,
-          "points_deduped": 3
+          "concepts_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 12,
+        "in_count": 12.0,
         "out_units": "still_unmapped",
-        "out_count": 2,
-        "ratio": 0.1667,
+        "out_count": 1.0,
+        "ratio": 0.0833,
         "flags": {
-          "near_miss_count": 2,
-          "resolved_count": 10,
-          "threshold": 0.6,
-          "used_embeddings": 1
+          "near_miss_count": 1,
+          "resolved_count": 11,
+          "used_embeddings": 1,
+          "threshold": 0.6
         }
       }
     ],
-    "cumulative_retention": 0.017
+    "cumulative_retention": 0.0176
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "acc-beliefs-027",
           "category": "Beliefs",
-          "point": "The document asserts that machine learning systems provide significant utility by automating laborious tasks and performing complex calculations at speeds exceeding human capability. This perspective frames AI as a powerful tool for efficiency and productivity. The document acknowledges that while these systems have risks, their core value proposition lies in their ability to handle large-scale data processing tasks that humans cannot perform efficiently.",
-          "verbatim": "Although ML systems have the benefit of freeing humans from laborious tasks and are able to complete complex calculations more quickly [3], they are only as effective as the data on which they are trained.",
-          "excerpt_context": "Section 1, paragraph 4",
-          "extraction_confidence": 1,
+          "point": "The document asserts that human developers are the primary source of bias in machine learning systems, either through conscious or unconscious biased thinking or by providing flawed, incomplete, or erroneous training datasets. This aligns with the accelerationist view that the bottleneck for AI progress and safety is human input rather than the technology itself. The document suggests that while bias cannot be totally eliminated, it can be minimized through better technical processes.",
+          "verbatim": "Problems are frequently caused by choices made by people who develop or train machine learning algorithms. They might create algorithms that exhibit consciously or unconsciously biased thinking. Conversely, humans can introduce bias by using biased, erroneous, or incomplete datasets to train and/or validate machine learning algorithms.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "automation_efficiency",
-            "computational_advantage"
+            "human_developer_bottleneck",
+            "algorithmic_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document emphasizes the importance of auditing AI outputs and performance metrics to ensure model quality and fairness. By focusing on empirical output verification rather than just internal mechanisms, developers can maintain predictive accuracy while addressing bias. This aligns with the accelerationist goal of leveraging performance-gated empirical output verification to drive progress.",
+          "verbatim": "The work examines ML model fairness and bias reduction, emphasizing attribute concerns and transparency for fairer algorithms.",
+          "excerpt_context": "Table 5, Reference [12]",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "empirical_output_verification",
+            "predictive_accuracy"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-104",
+          "category": "Intentions",
+          "point": "The document frames bias mitigation as a necessary step for building trustworthy and socially accountable machine learning systems. By addressing data label bias, organizations can ensure their models are accurate and fair, which is essential for maintaining brand integrity and public trust in AI applications. This aligns with the accelerationist view that robust, high-quality AI systems are required for widespread adoption and societal benefit.",
+          "verbatim": "Overall, mitigation is crucial to building morally and socially accountable machine learning systems.",
+          "excerpt_context": "Section 6, Overview of Mitigation",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "model_transparency",
+            "data_ethics"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-104",
+          "category": "Intentions",
+          "point": "The document frames algorithmic bias as a significant operational risk that can lead to poor decision-making and flawed outcomes. By identifying specific biases like selection and confirmation bias, it implies that rigorous data management is essential for maintaining the integrity and reliability of AI systems. This aligns with the accelerationist view that bias is a technical and business liability that must be systematically addressed to ensure the successful deployment of AI technologies.",
+          "verbatim": "The consequences of survivorship bias can be significant, leading to incorrect conclusions and poor decision making [41].",
+          "excerpt_context": "Section 4, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "business_liability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-104",
+          "category": "Intentions",
+          "point": "The document frames algorithmic bias as a technical and operational failure that can be systematically addressed through engineering rigor. By treating bias as a quantifiable variable—using mathematical equations to measure error—it aligns with the accelerationist view that AI systems can be continuously improved and optimized for higher performance. The focus is on technical robustness, such as adversarial training, to ensure models generalize better and remain reliable in real-world applications.",
+          "verbatim": "Recognizing and mitigating these algorithm biases is of paramount importance in ensuring equitable and reliable outcomes in machine learning applications across various domains.",
+          "excerpt_context": "Section 4.4.1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "adversarial_training",
+            "model_robustness",
+            "algorithmic_optimization"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-023",
           "category": "Intentions",
-          "point": "The document frames adversarial training as a proactive mechanism to enhance model robustness and generalization. By iteratively exposing models to adversarial examples, developers can harden systems against potential exploitation. This aligns with the accelerationist goal of building resilient, high-performance AI systems capable of operating securely in complex, real-world environments.",
-          "verbatim": "By training the model on adversarial examples, the model can learn to be more robust to bias and better generalize to new, unseen examples.",
-          "excerpt_context": "Section 4.5, paragraph 4",
+          "point": "The document advocates for adversarial training as a primary mechanism to improve model robustness and generalization. By iteratively exposing models to adversarial examples, developers can proactively harden systems against potential exploits. This aligns with the accelerationist goal of building resilient, high-performance systems through empirical, output-focused verification rather than restrictive regulation.",
+          "verbatim": "In summary, adversarial training can be a powerful tool for removing biases from a dataset. By training the model on adversarial examples, the model can learn to be more robust to bias and better generalize to new, unseen examples.",
+          "excerpt_context": "Section 4.5",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
             "adversarial_training",
@@ -124,15 +178,16 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document advocates for the development of machine learning systems that are open, responsible, and inclusive to support a more equitable society. It frames ML as a valuable tool for enhancing fairness across diverse domains, provided that bias mitigation techniques are effectively applied. This aligns with the accelerationist view that AI, when properly refined, acts as a positive force for societal improvement.",
-          "verbatim": "The ultimate objective should be to develop machine learning systems that support a more equitable society by being open, responsible, and inclusive.",
-          "excerpt_context": "Section 8, Conclusions",
-          "extraction_confidence": 1,
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The document supports the use of technical mitigation techniques like adversarial training and batch normalization to improve model robustness and performance. By treating bias as a technical challenge to be solved through engineering, it aligns with the accelerationist view that AI capabilities can be refined and scaled through iterative, empirical improvements. The focus remains on optimizing the machine learning pipeline to ensure AI remains a reliable tool for progress.",
+          "verbatim": "In-processing techniques aim to reduce bias during the training process, rather than after the model has been trained. By monitoring the algorithm’s performance, in-processing techniques can help detect and correct for bias as it arises.",
+          "excerpt_context": "Section 8, paragraph 3",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "equitable_society",
-            "model_transparency"
+            "adversarial_training",
+            "batch_normalization",
+            "model_robustness"
           ]
         }
       ]
@@ -140,133 +195,160 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "strongly_aligned",
+          "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-057",
           "category": "Beliefs",
-          "point": "The document posits that machine learning systems are inherently constrained by the quality and nature of their training data, which can lead to the reproduction or amplification of real-world prejudices. It emphasizes that bias is not necessarily intentional but is a systemic risk in high-stakes applications. This aligns with the safetyist view that technical systems have fundamental operational challenges that require rigorous oversight.",
-          "verbatim": "Although bias is not intentionally incorporated into ML algorithms, there is a risk of reproducing or even amplifying prejudice found in real-world data [2].",
-          "excerpt_context": "Section 1, paragraph 4",
-          "extraction_confidence": 1,
+          "point": "The document acknowledges that ML systems are only as effective as the data they are trained on and that there is a persistent risk of reproducing or amplifying real-world prejudices. This reflects the safetyist concern regarding the inherent limitations of models when faced with biased training data. It emphasizes that because unfairness is defined differently across societies, achieving a universal, reliable, and unbiased system is practically difficult.",
+          "verbatim": "Although ML systems have the benefit of freeing humans from laborious tasks and are able to complete complex calculations more quickly [3], they are only as effective as the data on which they are trained. Although bias is not intentionally incorporated into ML algorithms, there is a risk of reproducing or even amplifying prejudice found in real-world data [2].",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "data_quality_risk",
-            "algorithmic_amplification"
+            "data_quality",
+            "model_limitations"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-104",
+          "taxonomy_node_id": "saf-beliefs-026",
           "category": "Beliefs",
-          "point": "The document asserts that machine learning models are inherently dependent on the quality of their training data, and that inherent biases within this data are perpetuated or amplified in model predictions. This creates a risk of systemic discrimination, as models trained on historical data containing societal prejudices will replicate those prejudices in automated decision-making. The document emphasizes that data integrity is a foundational safety concern for model reliability.",
-          "verbatim": "Machine learning models are only as unbiased as the data they are trained on. If the data contain inherent biases, then these biases can be perpetuated and even amplified in the model’s predictions.",
-          "excerpt_context": "Section 3, paragraph 1",
-          "extraction_confidence": 1,
+          "point": "The document identifies feedback loops as a critical mechanism for bias amplification, where model predictions inform future decisions that are then fed back into the training data. This creates a self-reinforcing cycle of bias that is difficult to break. This aligns with safetyist concerns regarding reward function gaming and the unintended consequences of autonomous system deployment.",
+          "verbatim": "Feedback loops can happen when a machine learning (ML) model’s predictions are used to inform choices that are then fed back into the model. It can perpetuate and amplify biases over time if the input reinforces pre-existing biases in the model.",
+          "excerpt_context": "Section 3, Machine Learning Model Bias",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "data_integrity",
-            "algorithmic_bias"
+            "feedback_loops",
+            "bias_amplification"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-051",
-          "category": "Beliefs",
-          "point": "The document asserts that machine learning models trained on biased historical data can systematically amplify those biases, leading to discriminatory outcomes. It emphasizes that bias can manifest at any stage of the machine learning lifecycle, from data collection to deployment. This aligns with the safetyist concern that unaligned or poorly trained systems pose real-world risks to societal equity.",
-          "verbatim": "However, if the data used to teach these algorithms is biased, the algorithms may continue or even amplify that bias. This raises serious concerns in numerous sectors because it may result in unfair or discriminatory outcomes.",
+          "taxonomy_node_id": "saf-intentions-117",
+          "category": "Intentions",
+          "point": "The document advocates for rigorous monitoring and evaluation of AI models throughout their lifecycle to mitigate systemic harms. It suggests that bias mitigation is not a one-time fix but requires continuous vigilance and the use of fairness metrics. This supports the safetyist intention of ensuring AI transparency and interpretability through ongoing oversight.",
+          "verbatim": "Addressing machine learning bias is a complex problem that requires careful consideration of the data used to train the model, the model’s architecture, and the ethical and social implications of the model’s predictions. Techniques such as data pre-processing, model interpretation, and fairness metrics can help mitigate machine learning bias, but it is important to remain vigilant and continue to monitor and evaluate the model’s performance over time",
+          "excerpt_context": "Section 3, Machine Learning Model Bias",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "fairness_metrics",
+            "model_interpretation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of regular assessment and monitoring of AI models to ensure fairness across subgroups. It posits that fairness is determined by the assessment conducted on the model, supporting the safetyist requirement for verifiable fairness guarantees before or during deployment.",
+          "verbatim": "Monitoring and evaluating the ML model on a regular basis can help to spot any biases that may exist and help to correct them as needed. This might entail methods like fairness measures, which are useful for assessing how well the ML model performs across various subgroups.",
           "excerpt_context": "Section 4, paragraph 1",
-          "extraction_confidence": 1,
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "algorithmic_bias",
-            "data_ethics"
+            "fairness_measures",
+            "algorithmic_auditing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-057",
+          "category": "Beliefs",
+          "point": "The document acknowledges that achieving both high accuracy and fairness is difficult in practice, with many mitigation methods causing significant performance degradation. This supports the safetyist belief that there are fundamental operational challenges and trade-offs in ensuring reliable, unbiased AI performance.",
+          "verbatim": "The results highlight the complex interplay between bias mitigation and classification performance and suggest that achieving both high accuracy and fairness may be difficult in practice.",
+          "excerpt_context": "Section 3, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "fairness-performance_trade-off"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-094",
           "category": "Intentions",
-          "point": "The document advocates for proactive identification of bias and failure modes in AI systems as a prerequisite for reliable deployment. By utilizing rigorous study design, sensitivity analysis, and diverse data sourcing, developers can mitigate systemic risks before they manifest in real-world applications. This aligns with the safetyist goal of ensuring robust, well-tested systems that do not perpetuate historical or structural harms.",
+          "point": "The document advocates for proactive, systematic identification of failure modes in AI research, such as selection and confirmation biases. By providing detailed tables of mitigation methods like sensitivity analysis and randomized controlled trials, it supports the safetyist goal of rigorous, pre-deployment validation. This approach treats model reliability as a foundational requirement that must be engineered into the development process.",
           "verbatim": "It is important to recognize that addressing bias requires careful consideration throughout the entire research process, from study design to data collection and analysis.",
-          "excerpt_context": "Section 4.2.1, paragraph 4",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "sensitivity_analysis",
-            "systemic_bias"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-051",
-          "category": "Beliefs",
-          "point": "The document asserts that algorithmic bias is a fundamental issue where machine learning models produce inaccurate or unfair outcomes for specific groups. It identifies that these biases can be unintentional, stemming from biased training data or human decision-making, and can lead to significant societal consequences like reinforced stereotypes and denied opportunities. This aligns with the safetyist concern that AI systems can perpetuate and scale existing societal harms if not properly aligned.",
-          "verbatim": "Algorithmic bias refers to the phenomenon where machine learning algorithms produce inaccurate or unfair outcomes for certain groups of people, based on their race, gender, age, or other characteristics [36]. This bias can be unintentional, arising from the algorithm’s reliance on biased or incomplete training data, or from biased human decision making that influences the data used to train the algorithm.",
-          "excerpt_context": "Section 4.4, paragraph 1",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "algorithmic_bias",
-            "training_data_bias"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-004",
-          "category": "Desires",
-          "point": "The document advocates for the implementation of fairness constraints and adversarial defenses as necessary guardrails for AI deployment. It emphasizes that without these preventative constraints, models trained on historical data will inevitably perpetuate discriminatory patterns. This reflects a safetyist priority of embedding algorithmic boundaries to prevent harmful outcomes before they occur.",
-          "verbatim": "By incorporating fairness constraints into these systems, researchers and developers can work to mitigate these biases and ensure that their algorithms are making decisions that are both accurate and fair.",
-          "excerpt_context": "Section 4.6.1, paragraph 1",
+          "excerpt_context": "Section 4.2.1, paragraph 3",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "fairness_constraints",
-            "algorithmic_bias"
+            "pre-mortem_analysis",
+            "model_reliability"
           ]
         },
         {
           "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-102",
+          "category": "Beliefs",
+          "point": "The document asserts that biases are often deeply embedded in training data and human decision-making processes, creating self-reinforcing feedback loops. It acknowledges that these flaws can persist and amplify over time, necessitating proactive, systemic interventions. This aligns with the safetyist concern that AI systems can internalize and perpetuate harmful societal patterns that are difficult to excise once learned.",
+          "verbatim": "This can create a self-reinforcing loop where the model becomes more biased over time.",
+          "excerpt_context": "Section 4.4.1, point 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "feedback_loop",
+            "systemic_bias",
+            "training_data_integrity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-005",
+          "category": "Intentions",
+          "point": "The document details various adversarial attack methodologies (PGD, CW, DeepFool, JSMA) that can be used to stress-test models. These techniques are essential for identifying vulnerabilities before deployment, supporting the safetyist requirement for rigorous, dynamic verification of model integrity.",
+          "verbatim": "The CW attack is a very powerful and effective attack method that can often evade state-of-the-art defense mechanisms. However, it is also more computationally expensive and difficult to implement compared to other attack methods.",
+          "excerpt_context": "Section 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "adversarial_attack",
+            "model_integrity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-074",
+          "category": "Intentions",
+          "point": "The document explicitly acknowledges that adversarial attacks are dual-use, capable of being weaponized for surveillance, discrimination, or bypassing security systems. This validates the safetyist concern regarding the 'bad tool' problem where malicious actors leverage AI capabilities for harm.",
+          "verbatim": "Adversarial attacks can be used for malicious purposes such as developing attacks on other machine learning models, or for surveillance and discrimination.",
+          "excerpt_context": "Section 4.5.3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "dual_use",
+            "malicious_actors"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document acknowledges that adversarial training is not a panacea and may be insufficient on its own to guarantee robustness. It highlights the ongoing debate regarding whether additional, more fundamental techniques are required to ensure system safety. This aligns with the safetyist belief that current interventions are often superficial and require deeper, more rigorous alignment strategies.",
-          "verbatim": "Additionally, there are debates on whether adversarial training alone is sufficient to achieve robustness or if additional techniques are necessary.",
-          "excerpt_context": "Section 4.5.1, paragraph 1",
-          "extraction_confidence": 0.9,
+          "point": "The document asserts that AI Trojan attacks pose a severe, existential-adjacent threat to critical infrastructure and high-stakes applications like medical diagnosis and autonomous systems. These attacks are particularly dangerous because they can adapt, evolve, and remain undetected by traditional security measures, necessitating the development of robust, immune machine learning models.",
+          "verbatim": "Particularly in high-stakes applications like medical diagnosis, financial forecasting, or autonomous systems, AI Trojans can have severe repercussions. A machine learning model may make bad predictions or choices if an AI Trojan remains undetected, which could cause harm or damage.",
+          "excerpt_context": "Section 5, AI Trojan Attacks",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "adversarial_training",
-            "model_robustness"
+            "adversarial_attacks",
+            "model_robustness",
+            "security_integrity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-026",
+          "category": "Beliefs",
+          "point": "The document acknowledges that machine learning models can game objectives or produce biased outputs if the training data is flawed or if the model-building process is not carefully monitored. This aligns with safetyist concerns regarding the difficulty of aligning complex systems with human values and the potential for unintended behaviors to emerge during training.",
+          "verbatim": "The human factor in the model-building process and inherent biases in ML algorithms can further contribute to biased predictions.",
+          "excerpt_context": "Section 8, paragraph 15",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "reward_function_gaming",
+            "model_alignment"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-051",
           "category": "Beliefs",
-          "point": "The document asserts that biases in training data, such as demographic imbalances, directly lead to inaccurate and discriminatory model predictions. It highlights that these biases are not merely technical errors but have real-world consequences, such as delayed medical diagnoses or unfair hiring outcomes. This aligns with the safetyist view that data quality and representation are critical safety parameters that must be addressed to prevent catastrophic or harmful AI behavior.",
-          "verbatim": "If a dataset contains mostly images of light-skinned patients, it may lead to biased labeling and inaccurate model predictions for patients with darker skin tones. This can be a serious issue since skin cancer can manifest differently in people with different skin colors, and inaccurate predictions can lead to delayed or incorrect diagnosis and treatment.",
-          "excerpt_context": "Section 7, paragraph 4",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "predictive_bias",
-            "data_representation"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-005",
-          "category": "Beliefs",
-          "point": "The document acknowledges that machine learning models can exhibit high accuracy in controlled testing but fail significantly when exposed to adversarial examples or real-world conditions. This highlights the inherent fragility of models when they encounter inputs outside their training distribution, a core concern for safetyists regarding model robustness.",
-          "verbatim": "The model has high accuracy when tested on normal images of traffic signs, but when tested on adversarial images, which have been specifically designed to fool the model, the accuracy drops significantly.",
-          "excerpt_context": "Section 8, Adversarial training",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "adversarial_robustness",
-            "distribution_shift"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-051",
-          "category": "Beliefs",
-          "point": "The document cites research on implicit bias in healthcare professionals, reinforcing the safetyist belief that human cognitive biases are pervasive and can be transferred into AI systems. By highlighting systematic reviews of these biases, the text supports the view that AI models are not neutral but inherit the discriminatory patterns of their human creators. This necessitates rigorous oversight to prevent the automation of human prejudice.",
-          "verbatim": "FitzGerald, C.; Hurst, S. Implicit bias in healthcare professionals: A systematic review. BMC Med. Ethics 2017, 18, 19.",
-          "excerpt_context": "Section 9, reference 20",
+          "point": "The document lists numerous studies investigating implicit bias in healthcare and algorithmic decision-making, supporting the safetyist belief that these biases are measurable indicators of discriminatory outcomes. By cataloging research on sex-stratified analysis in healthcare and bias in law enforcement, the text reinforces the necessity of identifying these patterns to prevent real-world harm. This aligns with the safetyist view that behavioral and statistical testing is a critical precursor to safe deployment.",
+          "verbatim": "Investigating for bias in healthcare algorithms: A sex-stratified analysis of supervised machine learning models in liver disease prediction. ... Implicit bias in healthcare professionals: A systematic review.",
+          "excerpt_context": "Section 9, references 60 and 74",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
             "implicit_bias",
-            "algorithmic_fairness"
+            "predictive_bias_metrics"
           ]
         }
       ]
@@ -275,12 +357,38 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-094",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that machine learning algorithms frequently produce unfair outcomes and discrimination against specific groups. It identifies that these biases emerge across the entire ML pipeline, including data collection, pre-processing, and model evaluation. This supports the skeptic view that AI systems are not neutral and often perpetuate structural inequalities.",
-          "verbatim": "However, ML algorithms sometimes give unfair outcomes and discrimination against certain groups. Thereby, bias occurs when our results produce a decision that is systematically incorrect.",
-          "excerpt_context": "Abstract",
-          "extraction_confidence": 1,
+          "point": "The document provides empirical evidence that ML algorithms frequently produce unfair outcomes and discrimination against specific groups, particularly in high-stakes applications like loan approvals and employment decisions. It frames these as systemic errors resulting from false assumptions during the ML pipeline. The text argues that these systems can significantly and negatively impact people's lives, necessitating proactive monitoring and auditing.",
+          "verbatim": "Machine learning techniques have found broad areas for application, such as in decision making, suggesting movies, recommending people, choosing loan applicants, influencing employment decisions, etc. [2]. While providing accurate predictions, these techniques can provide unfavorable predictions as well. When this affects critical or enormous decisions, it becomes a bias problem or error problem.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_discrimination",
+            "structural_harms"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-088",
+          "category": "Intentions",
+          "point": "The authors advocate for the systematic use of bias mitigation techniques, including pre-processing, in-processing, and post-processing methods, to ensure legal compliance and fairness. They emphasize the need for audibility and transparency measures to prevent the perpetuation of existing inequalities. This aligns with the skeptic goal of implementing rigorous, standardized evaluation frameworks to hold AI systems accountable.",
+          "verbatim": "It is necessary to check algorithms for prejudice and unfairness as well as legal compliance before applying them in real-world scenarios. Addressing ML bias is essential in order to ensure that ML algorithms are fair and unbiased as well as to prevent them from perpetuating or amplifying existing inequalities.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "bias_mitigation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-094",
+          "category": "Beliefs",
+          "point": "The document explicitly defines machine learning bias as the systematic and unfair influence of variables leading to discriminatory outcomes. It highlights that models are only as unbiased as their training data, which often contain historical prejudices. This aligns with the skeptic view that AI often perpetuates existing societal inequalities rather than solving them.",
+          "verbatim": "Machine learning bias refers to the systematic and unfair influence of certain factors or variables in a machine learning model, leading to incorrect or discriminatory outcomes. Machine learning models are only as unbiased as the data they are trained on. If the data contain inherent biases, then these biases can be perpetuated and even amplified in the model’s predictions.",
+          "excerpt_context": "Section 3, Machine Learning Bias",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "algorithmic_discrimination",
             "systematic_bias"
@@ -288,145 +396,131 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-088",
+          "taxonomy_node_id": "skp-intentions-087",
           "category": "Intentions",
-          "point": "The document advocates for a proactive approach to bias mitigation, emphasizing the need for continuous monitoring, evaluation, and the use of specific technical interventions like pre-processing, in-processing, and post-processing. It argues that these measures are essential for ensuring legal compliance and preventing negative impacts on human lives. This aligns with the skeptic intention of formalizing and automating fairness benchmarking.",
-          "verbatim": "It is important to take a proactive approach to ML bias and to continually monitor and evaluate ML models in order to ensure that they are fair and unbiased.",
-          "excerpt_context": "Section 1, paragraph 4",
-          "extraction_confidence": 1,
+          "point": "The document provides a detailed framework for auditing AI models, including dataset analysis, scraped data evaluation, and fairness metric application. It emphasizes the need for independent validation and domain specialist involvement. This aligns with the skeptic intention of prioritizing robust AI evaluation and auditing to address present, measurable harms.",
+          "verbatim": "Seek external validation and auditing of the model’s performance. Engage independent experts or domain specialists to assess the model’s predictions and evaluate potential biases.",
+          "excerpt_context": "Section 3, Machine Learning Model Bias, point 4",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "bias_mitigation_techniques",
-            "algorithmic_auditing"
+            "algorithmic_auditing",
+            "external_validation"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-desires-002",
-          "category": "Desires",
-          "point": "The document advocates for the structural identification and mitigation of bias across the entire machine learning pipeline, including data collection, model architecture, and prediction stages. It supports the use of fairness metrics like demographic parity and equalized odds to ensure that models do not produce discriminatory outcomes for protected groups. The ultimate goal is to move toward equitable algorithmic decision-making by addressing both technical and human-driven sources of bias.",
-          "verbatim": "Addressing machine learning bias is a complex problem that requires careful consideration of the data used to train the model, the model’s architecture, and the ethical and social implications of the model’s predictions.",
-          "excerpt_context": "Section 3, paragraph 14",
-          "extraction_confidence": 1,
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that bias is an inherent part of decision-making processes involving AI and machine learning. It documents that bias can occur at any stage of the machine learning process, from data collection to deployment, and can be unintentional or intentional.",
+          "verbatim": "Bias is an inherent part of any decision-making process, including those that involve artificial intelligence (AI) and machine learning (ML). Several types of bias can occur in AI/ML models, and it is essential to understand them to mitigate their negative impact.",
+          "excerpt_context": "Section 4.1, paragraph 1",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "algorithmic_bias",
+            "data_ethics"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-099",
+          "category": "Intentions",
+          "point": "The document advocates for the use of diverse and representative training data as one of the most efficient methods to reduce bias. It suggests that ensuring the training dataset contains a wide range of examples from different subgroups is crucial for minimizing discriminatory outcomes.",
+          "verbatim": "Using diverse and representative training data are one of the most efficient methods to reduce bias. This can make sure that the data used to train the ML model represents the complete range of experiences and viewpoints of the population being studied.",
+          "excerpt_context": "Section 4, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "data_integrity",
+            "representative_data"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-145",
+          "category": "Beliefs",
+          "point": "The document notes that different fairness metrics produce different rankings for bias mitigation effectiveness, and that no single method is best in all scenarios. This highlights the unreliability of using singular metrics to evaluate fairness, supporting the skeptic view on the limitations of current benchmarking.",
+          "verbatim": "Different fairness metrics produced different rankings for bias mitigation effectiveness. For instance, LFR ranked first for SPD but ranked 15th out of 17 methods for ERD.",
+          "excerpt_context": "Section 3, Finding-4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
             "fairness_metrics",
-            "demographic_parity"
+            "benchmark_instability"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-desires-065",
           "category": "Desires",
-          "point": "The document highlights the necessity of independent auditing and external validation to detect bias in machine learning models. It argues that relying solely on internal development processes is insufficient, and that engaging domain specialists and independent experts is essential to identify discriminatory patterns that might otherwise be overlooked. This approach aims to prevent the entrenchment of historical injustices in automated systems.",
-          "verbatim": "Seek external validation and auditing of the model’s performance. Engage independent experts or domain specialists to assess the model’s predictions and evaluate potential biases.",
-          "excerpt_context": "Section 3, paragraph 10",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "algorithmic_auditing",
-            "model_transparency"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence that current bias mitigation techniques often fail to achieve both high accuracy and fairness simultaneously. It reports that in 25 percent of studied scenarios, these methods actually decrease both fairness and performance, highlighting the difficulty of achieving equitable outcomes in practice.",
-          "verbatim": "Furthermore, in 25 percent of scenarios, the bias mitigation methods lead to a decrease in both fairness and machine learning performance. The study also found that there is no single bias mitigation method that can achieve the best trade-off in all scenarios.",
-          "excerpt_context": "Section 3, paragraph 4",
-          "extraction_confidence": 1,
+          "point": "The document highlights how AI systems can entrench historical societal biases, such as those found in facial recognition, hiring, and predictive policing. It argues that these biases are not merely technical glitches but systemic issues that require deliberate, inclusive design and auditing. This supports the skeptic desire to prevent AI from codifying and scaling existing social inequalities.",
+          "verbatim": "However, if the historical data contain biases against certain groups of people, the algorithm may perpetuate or amplify these biases by targeting certain neighborhoods or individuals more heavily than others [60].",
+          "excerpt_context": "Section 4.2.2, paragraph 3",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "algorithmic_bias",
-            "fairness_metrics"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-064",
-          "category": "Desires",
-          "point": "The document supports the goal of eradicating algorithmic bias to prevent the perpetuation of social inequality. It argues that identifying and addressing bias is essential for building trust between users and decision-makers and ensuring that AI systems do not reinforce historical prejudices.",
-          "verbatim": "By identifying and addressing bias in machine learning, we can ensure that the decisions and predictions made by algorithms are fair and accurate, and do not perpetuate social or cultural biases.",
-          "excerpt_context": "Section 4, paragraph 10",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "algorithmic_fairness",
-            "social_inequality"
+            "historical_injustice"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-082",
           "category": "Intentions",
-          "point": "The document emphasizes the necessity of participatory and critical approaches to data collection and model development to avoid entrenching historical injustices. It argues that bias is not merely a technical error but a consequence of flawed sampling and cognitive biases that require active, multi-stakeholder intervention. This supports the skeptic view that AI systems must be subject to continuous, rigorous oversight to prevent the amplification of societal inequalities.",
+          "point": "The document emphasizes the need for diverse stakeholder feedback and critical thinking to mitigate confirmation bias and selection bias. By advocating for transparency in data collection and the inclusion of diverse perspectives, it aligns with the skeptic intention to democratize the auditing process and ensure AI systems are accountable to the populations they affect.",
           "verbatim": "Potential strategies for addressing survivorship bias at a broader level include increasing access to diverse sources of data and perspectives, promoting critical thinking and data literacy, and addressing systemic biases in data collection and analysis.",
-          "excerpt_context": "Section 4, paragraph 5",
-          "extraction_confidence": 0.95,
+          "excerpt_context": "Section 4, paragraph 4",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "systemic_bias",
+            "participatory_auditing",
             "data_literacy"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems, such as facial recognition, hiring algorithms, and predictive policing, frequently exhibit selection bias due to non-representative training data. This bias leads to measurable, harmful outcomes for marginalized groups, such as inaccurate identification or discriminatory resource allocation. The text frames these as inherent challenges in real-world, multidimensional datasets that require specific mitigation strategies.",
-          "verbatim": "Facial recognition technology has been found to have a bias against people with darker skin tones, due to the way the algorithms were trained. This is because the training data used to develop the algorithms did not include a diverse enough sample of individuals with different skin tones.",
-          "excerpt_context": "Section 4.2.2, paragraph 1",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "selection_bias",
-            "algorithmic_bias"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-094",
           "category": "Beliefs",
-          "point": "The document provides a detailed taxonomy of algorithmic biases, including sample, labeling, model, measurement, feedback loop, and overfitting biases. It argues that these biases are not merely technical glitches but systemic issues that manifest in high-stakes domains like hiring, criminal justice, and loan approvals. The text emphasizes that these biases perpetuate discrimination and reinforce existing societal inequalities.",
-          "verbatim": "The consequences of algorithmic bias can be significant, perpetuating discrimination, reinforcing stereotypes, and denying opportunities to marginalized groups [69]. Algorithmic bias can manifest in various ways, such as in hiring decisions, loan approvals, criminal justice decisions, and online advertising.",
-          "excerpt_context": "Section 4.4, paragraph 1",
-          "extraction_confidence": 1,
+          "point": "The document provides extensive empirical evidence of how algorithmic bias manifests in high-stakes domains like hiring, criminal justice, and loan approvals. It explicitly links these technical failures to real-world discrimination against protected groups, such as women and people of color. This supports the skeptic position that AI is not neutral and often functions to entrench existing societal inequalities.",
+          "verbatim": "The consequences of algorithmic bias can be significant, perpetuating discrimination, reinforcing stereotypes, and denying opportunities to marginalized groups.",
+          "excerpt_context": "Section 4.4",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_bias",
-            "structural_harm",
-            "discrimination"
+            "algorithmic_discrimination",
+            "marginalized_groups",
+            "societal_inequality"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-087",
+          "taxonomy_node_id": "skp-intentions-088",
           "category": "Intentions",
-          "point": "The document advocates for a multidisciplinary approach to bias mitigation, combining technical solutions like data cleaning, algorithmic transparency, and fairness-aware learning with social strategies like participatory design and accountability mechanisms. It frames bias mitigation as a proactive, ongoing necessity for ensuring equitable outcomes.",
+          "point": "The document advocates for a rigorous, multidisciplinary approach to bias mitigation, including regular audits, testing, and the use of fairness-aware learning techniques. It emphasizes that technical solutions alone are insufficient and must be paired with social strategies like participatory design and diversity in development teams. This aligns with the skeptic demand for accountability and structural oversight in AI development.",
           "verbatim": "Addressing algorithmic bias requires a combination of technical solutions, such as improving data quality, algorithmic transparency, and fairness-aware learning, as well as social and ethical solutions, such as diversity and inclusion, participatory design, and accountability mechanisms.",
-          "excerpt_context": "Section 4.4, paragraph 1",
-          "extraction_confidence": 1,
+          "excerpt_context": "Section 4.4",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_transparency",
-            "fairness_aware_learning",
-            "participatory_design"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-063",
-          "category": "Beliefs",
-          "point": "The inclusion of multiple references on confirmation bias and cognitive illusions in judgment and memory supports the skeptic belief that human cognitive biases are fundamental to the AI lifecycle. The document suggests that these biases are not merely technical glitches but are deeply rooted in the human processes of design, annotation, and data collection, which in turn influence the performance and fairness of AI models.",
-          "verbatim": "Oswald, M.E.; Grosjean, S. Confirmation bias. In Cognitive Illusions: A Handbook on Fallacies and Biases in Thinking, Judgement and Memory; Ghent University Library: Ghent, Belgium, 2004; Volume 79.",
-          "excerpt_context": "Section 9, reference 22",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "confirmation_bias",
-            "cognitive_illusions"
+            "algorithmic_audits",
+            "participatory_design",
+            "fairness_aware_learning"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document notes that human error and subjective bias in the data labeling process are significant, often unintentional, sources of model bias. It emphasizes that even with quality assurance, the manual nature of labeling introduces risks that propagate through the model. This aligns with the skeptic concern regarding the human-in-the-loop vulnerabilities and the lack of objectivity in AI training pipelines.",
-          "verbatim": "Data labeling is often a manual process, and humans are prone to errors. For example, annotators may mislabel data due to mistakes, lack of attention or confusion between the two animals’ appearances.",
-          "excerpt_context": "Section 4.7.1, paragraph 1",
-          "extraction_confidence": 0.9,
+          "point": "The document highlights that fairness constraints often conflict with other performance metrics, creating a trade-off that is difficult to resolve without contextual nuance. This supports the skeptic view that 'fairness' is not a simple technical fix but a complex, value-laden problem that can be undermined by optimization pressures.",
+          "verbatim": "Imposing fairness requirements might compromise other performance measures, and it can be difficult to find a universally fair constraint without carefully taking contextual subtlety into account.",
+          "excerpt_context": "Section 4.6.7",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "fairness_constraints",
+            "performance_tradeoffs"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document identifies that data label bias is often a result of human error, subjective labeling, or lack of diversity in annotators. This aligns with the skeptic perspective that AI systems inherit and amplify the existing biases and flaws of their human creators and training processes.",
+          "verbatim": "The labels can be biased due to various reasons such as human error, insufficient training data, or the subjective nature of the labeling process.",
+          "excerpt_context": "Section 4.7",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "data_label_bias",
             "human_error"
@@ -434,84 +528,83 @@
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-094",
           "category": "Beliefs",
-          "point": "The document provides extensive empirical evidence of how AI systems internalize and reproduce human prejudices, including gender, racial, socioeconomic, and cultural biases. It argues that these biases are often introduced through subjective labeling, insufficient training data, or non-representative datasets. The text emphasizes that these harms are measurable and require active mitigation to prevent the reinforcement of societal inequalities.",
+          "point": "The document provides extensive empirical evidence that data label bias—stemming from human prejudice, lack of diversity, and subjectivity—leads to systematic discrimination in hiring, credit scoring, and facial recognition. It argues that these biases are not merely technical glitches but structural issues that perpetuate existing societal inequalities if left unaddressed.",
           "verbatim": "Prejudice in data label bias occurs when the labels assigned to the data used to train a machine learning algorithm are influenced by pre-existing biases and stereotypes, which can lead to biased predictions by the algorithm.",
-          "excerpt_context": "Section 7, paragraph 13",
-          "extraction_confidence": 1,
+          "excerpt_context": "Section 4.7.1, Prejudice",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_bias",
+            "algorithmic_discrimination",
             "data_label_bias",
-            "systemic_discrimination"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-087",
-          "category": "Intentions",
-          "point": "The document advocates for a rigorous, multi-stage approach to auditing and mitigating bias, including pre-processing (data cleaning), in-processing (adversarial training), and post-processing monitoring. It emphasizes that developers must implement systematic quality assurance, such as inter-annotator agreement metrics and regular audits, to ensure models remain fair and accurate over time. This reflects the skeptic intention to institutionalize accountability in the AI development lifecycle.",
-          "verbatim": "It is important to regularly monitor and audit the data to ensure that it remains unbiased over time. This can involve reevaluating the labeling process and correcting any biases that are identified.",
-          "excerpt_context": "Section 7, paragraph 26",
-          "extraction_confidence": 1,
-          "vocabulary_terms": [
-            "algorithmic_auditing",
-            "bias_mitigation",
-            "model_monitoring"
+            "structural_harms"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-063",
-          "category": "Beliefs",
-          "point": "The document identifies human subjectivity and cognitive bias as primary drivers of algorithmic unfairness, noting that annotators often rely on personal assumptions when data is insufficient or ambiguous. It argues that these human-centric failures are embedded into the model during the labeling phase, leading to inconsistent and biased outcomes. This supports the skeptic belief that AI systems are fundamentally shaped by the cognitive limitations and prejudices of their human designers.",
-          "verbatim": "In some cases, the labeling process may be subjective and open to interpretation. This can lead to different annotators labeling data differently, resulting in inconsistencies and bias.",
-          "excerpt_context": "Section 7, paragraph 8",
-          "extraction_confidence": 1,
+          "taxonomy_node_id": "skp-intentions-088",
+          "category": "Intentions",
+          "point": "The document advocates for systematic, large-scale evaluation of AI models using standardized metrics, inter-annotator agreement, and bias detection algorithms. It emphasizes that detecting bias is only the first step and that organizations must implement rigorous, ongoing monitoring and auditing to ensure fairness.",
+          "verbatim": "It is important to note that detecting data label bias is just the first step. Once you have identified any biases in the labeled data, you will need to take steps to address them and ensure that your machine learning model is fair and accurate.",
+          "excerpt_context": "Section 4.7.5, Detect Data Label Bias in Labeled Data",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "human_cognitive_bias",
-            "labeling_subjectivity"
+            "automated_fairness_benchmarking",
+            "bias_detection",
+            "model_auditing"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-desires-002",
           "category": "Desires",
-          "point": "The document emphasizes that bias in machine learning is a serious problem that perpetuates social inequalities. It advocates for the systematic use of pre-processing, in-processing, and post-processing techniques to eliminate discriminatory patterns and ensure fairness for all groups, reflecting the skeptic's focus on immediate, measurable harms.",
+          "point": "The document explicitly identifies bias in machine learning as a serious societal problem that requires active mitigation to prevent the reinforcement of existing inequalities. It advocates for a systematic approach to fairness, emphasizing that developers must be held accountable for the social impacts of their models.",
           "verbatim": "In conclusion, bias in machine learning is a serious problem that can have negative effects on people’s lives and the continuation of social inequalities. It is crucial to address bias and make sure that these machine learning algorithms generate fair and just results as their use spreads.",
-          "excerpt_context": "Section 8, Conclusions",
-          "extraction_confidence": 1,
+          "excerpt_context": "Section 8, paragraph 21",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "algorithmic_bias",
-            "fairness_metrics",
-            "social_inequality"
+            "social_inequality",
+            "fairness_metrics"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "sit-163",
+          "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document asserts that ML models are heavily influenced by the data used to train them, and that biased data leads to biased outcomes. It identifies specific stages in the pipeline—data collection, pre-processing, and post-processing—where these harms are introduced and must be mitigated to prevent reinforcing existing societal prejudices.",
-          "verbatim": "This is significant because a machine learning model’s behavior is greatly influenced by the data used to train it. To guarantee that the model is trained on broad data, which increases its robustness and applicability to real-world events, it is essential to use reputable sources and ensure that the whole population is represented.",
-          "excerpt_context": "Section 6.2, Data Collection",
-          "extraction_confidence": 1,
+          "point": "The document asserts that bias is not merely a technical glitch but a pervasive issue that manifests across the entire ML pipeline, from data collection to deployment. It highlights that different fairness metrics often yield inconsistent results, suggesting that there is no 'silver bullet' for bias and that context-specific evaluation is essential.",
+          "verbatim": "The metrics were found to not produce consistent findings in a given dataset, pointing to various forms of bias and their context-related peculiarities.",
+          "excerpt_context": "Section 8, paragraph 22",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "data_curation",
-            "sampling_bias"
+            "fairness_metrics",
+            "contextual_bias"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides an extensive bibliography of empirical research documenting AI bias across diverse domains including law enforcement, healthcare, and hiring. This compilation serves as evidence that algorithmic bias is a pervasive, documented phenomenon rather than a theoretical concern. The skeptic perspective uses this evidence to argue that research must focus on these verifiable, existing harms.",
+          "verbatim": "Investigating bias in facial analysis systems: A systematic review. ... Hiring fairly in the age of algorithms. ... A review of predictive policing from the perspective of fairness.",
+          "excerpt_context": "Section 9, references 68, 69, and 70",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_discrimination",
+            "empirical_evidence"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-087",
+          "taxonomy_node_id": "skp-intentions-078",
           "category": "Intentions",
-          "point": "The document provides an extensive bibliography of systematic reviews and meta-analyses concerning algorithmic bias, which aligns with the skeptic intention to promote rigorous, evidence-based auditing of AI systems. By cataloging research on topics like facial recognition bias, predictive policing, and recommender system feedback loops, the text advocates for a systematic approach to identifying and mitigating technical and social harms in machine learning.",
-          "verbatim": "Khalil, A.; Ahmed, S.G.; Khattak, A.M.; Al-Qirim, N. Investigating bias in facial analysis systems: A systematic review. IEEE Access 2020, 8, 130751–130761.",
-          "excerpt_context": "Section 9, reference 14",
-          "extraction_confidence": 1,
+          "point": "The document highlights a significant body of work dedicated to the development of debiasing techniques, such as automated prompts and data augmentation for fairness. This supports the skeptic intention of creating standardized, scalable tools to evaluate and mitigate bias. The focus on systematic reviews and meta-analyses indicates a push toward rigorous, evidence-based benchmarking of AI models.",
+          "verbatim": "Auto-debias: Debiasing masked language models with automated biased prompts. ... Data augmentation for fairness-aware machine learning: Preventing algorithmic bias in law enforcement systems.",
+          "excerpt_context": "Section 9, references 7 and 6",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "algorithmic_bias",
-            "systematic_review",
-            "mitigation_techniques"
+            "automated_bias_benchmarking",
+            "fairness_metrics"
           ]
         }
       ]
@@ -519,183 +612,131 @@
   },
   "factual_claims": [
     {
-      "claim": "Machine learning bias can be introduced at multiple stages of the development pipeline, specifically during data collection, pre-processing, model selection, and evaluation.",
-      "claim_label": "ML Pipeline Bias Origins",
+      "claim": "Machine learning bias is defined as results that are systematically incorrect due to false assumptions made during the machine learning process.",
+      "claim_label": "Definition of Machine Learning Bias",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-163"
+        "skp-beliefs-024"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of technical processes."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Machine learning models can perpetuate and amplify biases present in their training data, leading to discriminatory outcomes in areas like hiring and medical diagnosis.",
-      "claim_label": "Bias Amplification in ML",
+      "claim": "Machine learning models trained on historical hiring data containing biases against women or minorities will perpetuate these biases in future hiring recommendations.",
+      "claim_label": "Historical Bias Perpetuation",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-desires-002"
+        "skp-beliefs-094"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of model behavior"
+        "category_criteria": "empirical claim about model behavior"
       },
       "claim_relations": []
     },
     {
-      "claim": "Fairness metrics such as demographic parity, equalized odds, and equal opportunity are standard tools for quantifying and measuring bias in machine learning predictions.",
-      "claim_label": "Standard Fairness Metrics",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-desires-002"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Methodological framework"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Bias mitigation methods significantly decrease machine learning performance in 53 percent of scenarios and improve fairness in 46 percent of scenarios.",
+      "claim": "Bias mitigation methods significantly decrease machine learning performance in 53 percent of studied scenarios, while improving fairness in 46 percent of scenarios.",
       "claim_label": "Performance-Fairness Trade-off Statistics",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
+        "skp-beliefs-041",
+        "saf-beliefs-057"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation based on a study of 17 methods across 8 software decision tasks."
+        "category_criteria": "empirical_observation"
       },
       "claim_relations": []
     },
     {
-      "claim": "Facial recognition algorithms exhibit higher error rates for individuals with darker skin tones because training datasets lack sufficient demographic diversity.",
-      "claim_label": "Facial Recognition Demographic Bias",
+      "claim": "Facial recognition technology often exhibits bias against individuals with darker skin tones because the training datasets lack sufficient diversity.",
+      "claim_label": "Facial Recognition Skin Tone Bias",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-077"
+        "skp-desires-065"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of model performance based on training data composition."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Confirmation bias is a cognitive phenomenon where individuals selectively seek, interpret, and recall information that aligns with pre-existing beliefs, leading to flawed decision-making.",
-      "claim_label": "Confirmation Bias Definition",
+      "claim": "Predictive policing algorithms can amplify existing biases in historical crime data, leading to disproportionate targeting of specific neighborhoods.",
+      "claim_label": "Predictive Policing Bias Amplification",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
+      "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
+      "linked_taxonomy_nodes": [
+        "skp-desires-065"
+      ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Psychological definition and behavioral observation."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Algorithmic bias can be quantified using mathematical equations, such as measuring the difference between true probabilities and model-predicted probabilities or comparing true functions to model-approximated functions.",
+      "claim": "Algorithmic bias can be mathematically quantified using specific equations that compare true values or probabilities against model predictions. These metrics allow developers to identify underestimation or overestimation of outcomes for specific demographic groups.",
       "claim_label": "Mathematical Quantification of Algorithmic Bias",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-088",
-        "skp-intentions-078"
+        "skp-intentions-078",
+        "skp-intentions-088"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs: Empirical claims, observations, measurements, predictions about the world"
+        "category_criteria": "Empirical claim regarding the measurability of model error."
       },
       "claim_relations": []
     },
     {
-      "claim": "Adversarial training involves augmenting training datasets with adversarial examples to improve model robustness and generalization.",
-      "claim_label": "Adversarial Training Mechanism",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "extraction_confidence": 1,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-097"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim regarding ML training methodology."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Fairness constraints like demographic parity and equalized odds can be mathematically formulated to restrict model outputs based on sensitive attributes.",
-      "claim_label": "Mathematical Fairness Constraints",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "extraction_confidence": 1,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim regarding mathematical definitions of fairness."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI Trojan attacks use malicious inputs or patterns during training to force models into making harmful or inaccurate predictions while appearing normal to users. These attacks are particularly dangerous in high-stakes fields like medicine and finance because they are difficult to trace and can adapt to security measures.",
-      "claim_label": "AI Trojan Attack Mechanism and Risk",
+      "claim": "Adversarial training can improve model robustness and generalization, but it increases computational and storage requirements and model complexity.",
+      "claim_label": "Adversarial Training Trade-offs",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
+        "saf-intentions-005"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -706,63 +747,112 @@
       "claim_relations": []
     },
     {
-      "claim": "Batch normalization improves training speed and stability in deep neural networks by normalizing layer activations based on mini-batch statistics, which reduces the impact of biased data during the training process.",
-      "claim_label": "Batch Normalization Utility",
+      "claim": "Data label bias, including human prejudice, lack of diversity, and subjectivity, directly causes inaccurate and unfair predictions in machine learning models, particularly in high-stakes domains like hiring and medical diagnosis.",
+      "claim_label": "Impact of Data Label Bias",
       "doc_position": "supports",
-      "temporal_scope": "timeless",
+      "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-094",
+        "sit-107"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI Trojan attacks are adversarial assaults that introduce malicious inputs during training to force models into making harmful or inaccurate decisions while appearing normal to users.",
+      "claim_label": "Mechanism of AI Trojan Attacks",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical claim"
+        "category_criteria": "technical definition"
       },
       "claim_relations": []
     },
     {
-      "claim": "Systematic reviews and meta-analyses are established methodologies for identifying and characterizing various forms of bias in machine learning, including selection bias, confirmation bias, and measurement bias.",
-      "claim_label": "Methodological Utility of Systematic Reviews",
+      "claim": "One-hot encoding is a necessary technique for machine learning algorithms to interpret categorical data, such as product categories, as numerical data for prediction tasks.",
+      "claim_label": "One-hot encoding utility",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-053"
+        "skp-intentions-007"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical evidence provided through extensive bibliographic citation of peer-reviewed literature."
+        "category_criteria": "Empirical claim about data processing mechanics."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Adversarial training improves model robustness by exposing the model to perturbed inputs during the training phase, which helps the model learn to resist intentional manipulation.",
+      "claim_label": "Adversarial training mechanism",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim about model training techniques."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Academic research on machine learning bias is highly interdisciplinary, spanning medicine, law, linguistics, and computer science. The literature demonstrates that bias is a systemic issue present in data collection, model training, and deployment phases across various sectors.",
+      "claim_label": "Interdisciplinary Nature of AI Bias Research",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "1979-2023",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041",
+        "cc-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical evidence provided via extensive citation list"
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Feedback Loop Bias Reinforcement",
-      "suggested_description": "A Belief within skeptic discourse that describes how model predictions influence future decision-making, which is then fed back into the training data to create a self-reinforcing cycle of bias.",
-      "concept": "Feedback loops occur when a model's predictions inform real-world choices that are subsequently recorded as new data. This cycle perpetuates and amplifies pre-existing biases, as the model effectively trains on its own biased outputs.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific systemic mechanism of bias propagation not fully captured by existing nodes focused on static data bias.",
-      "resolved_node_id": "skp-beliefs-103"
-    },
-    {
-      "suggested_label": "Data Labeling Subjectivity Risk",
-      "suggested_description": "A situation concept that describes how the inherent ambiguity in human interpretation of data leads to inconsistent labeling and subsequent algorithmic bias.\nEncompasses: Annotator disagreement, subjective sentiment classification, and lack of standardized labeling criteria.\nExcludes: Bias arising from technical data collection errors or systemic demographic exclusion.",
-      "concept": "The document details how annotators may label the same data point differently based on their personal interpretation of sentiment or tone, such as in product reviews or customer support transcripts. This subjectivity introduces inconsistencies that directly impact the fairness and accuracy of the resulting machine learning model.",
+      "suggested_label": "Cross-Domain Bias Transferability",
+      "suggested_description": "A situation concept that explores how bias mitigation techniques developed in one domain (e.g., medicine) are applied or fail when applied to another (e.g., law enforcement).\nEncompasses: Cross-disciplinary methodology transfer, domain-specific bias constraints.\nExcludes: General algorithmic fairness metrics.",
+      "concept": "The document lists studies on bias in diverse fields like liver disease prediction, ride-hailing pricing, and juvenile recidivism. It implicitly suggests that researchers are looking for commonalities in how bias manifests and how it can be mitigated across these disparate fields.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This captures the specific epistemic problem of human-in-the-loop labeling, which is distinct from data-set-level bias.",
-      "Accelerationist Interpretation": "Accelerationists might view this as a technical hurdle to be solved by automating the labeling process or using self-supervised learning to remove human subjectivity.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a critical alignment failure, where human-in-the-loop processes introduce unpredictable and potentially dangerous biases into the model's core logic.",
-      "Skeptic Interpretation": "Skeptics would use this to argue for more rigorous, standardized, and transparent human-oversight protocols to ensure that labeling processes are objective and accountable.",
-      "resolved_node_id": "cc-089"
+      "reason": "This captures the structural observation that bias research is increasingly treating disparate domains as a unified problem space.",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as evidence of the maturation of AI safety as a rigorous, cross-disciplinary engineering discipline that can be standardized.",
+      "Safetyist Interpretation": "Safetyists would view this as a warning that bias is a fundamental, universal property of data-driven systems that requires deep, domain-specific alignment.",
+      "Skeptic Interpretation": "Skeptics would see this as a necessary step toward creating universal, scalable fairness benchmarks that can hold corporations accountable across all sectors."
     }
   ]
 }

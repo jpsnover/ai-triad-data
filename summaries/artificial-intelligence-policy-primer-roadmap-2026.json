@@ -1,14 +1,14 @@
 {
   "doc_id": "artificial-intelligence-policy-primer-roadmap-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 4
   },
@@ -16,15 +16,15 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "artificial-intelligence-policy-primer-roadmap-2026",
-    "measured_at": "2026-05-02T22:12:10.1265750-04:00",
+    "measured_at": "2026-05-23T02:01:07.7020840-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 25439.0,
+        "in_count": 25927.0,
         "out_units": "tokens_est",
-        "out_count": 25437.0,
-        "ratio": 0.9999,
+        "out_count": 25923.0,
+        "ratio": 0.9998,
         "flags": {
           "chunk_count": 4
         }
@@ -32,120 +32,122 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 60.0,
-        "ratio": 0.0197,
+        "out_count": 61.0,
+        "ratio": 0.0179,
         "flags": {
-          "total_below_threshold": 1,
-          "avg_intentions": 11.0,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 61,
+          "avg_beliefs": 9.0,
           "chunk_count": 4,
-          "avg_desires": 5.0,
-          "avg_nodes_selected": 60.0,
-          "avg_beliefs": 9.0
+          "avg_nodes_selected": 61.0,
+          "avg_desires": 4.0,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 3,
+          "avg_intentions": 7.0,
+          "min_nodes_selected": 60
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 137768.0,
+        "in_count": 136265.0,
         "out_units": "items",
-        "out_count": 33.0,
+        "out_count": 34.0,
         "ratio": 0.0002,
         "flags": {
-          "factual_claims": 5,
+          "null_node_rate": 0.25,
           "chunk_count": 4,
-          "total_points": 22,
-          "unmapped_concepts": 6,
-          "null_node_rate": 0.2273
+          "total_points": 20,
+          "unmapped_concepts": 8,
+          "factual_claims": 6
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 33.0,
+        "in_count": 34.0,
         "out_units": "items",
-        "out_count": 33.0,
+        "out_count": 34.0,
         "ratio": 1.0,
         "flags": {
-          "used_embeddings": 1,
+          "points_deduped": 0,
           "concepts_deduped": 0,
-          "claims_deduped": 0,
-          "points_deduped": 0
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 6.0,
+        "in_count": 8.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.1667,
+        "out_count": 2.0,
+        "ratio": 0.25,
         "flags": {
-          "resolved_count": 5,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 1
+          "resolved_count": 6,
+          "near_miss_count": 2
         }
       }
     ],
-    "cumulative_retention": 0.0197
+    "cumulative_retention": 0.0179
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-002",
+          "taxonomy_node_id": "acc-beliefs-044",
           "category": "Beliefs",
-          "point": "The document acknowledges that recent breakthroughs in machine learning, driven by increased computational power and data access, have led to significant practical successes. This aligns with the accelerationist view that AI is a transformative, high-utility technology. The document notes that these techniques, while often based on decades-old research, are now delivering tangible results in domains like medical diagnosis and autonomous driving.",
-          "verbatim": "First, as is widely remarked, a vast increase in computational power and access to training data has led to practical breakthroughs in machine learning, a singularly important branch of AI. These breakthroughs underpin recent successes across a variety of applied domains, from diagnosing precancerous moles to driving a vehicle, and dramatize the potential of AI for both good and ill.",
-          "excerpt_context": "Section 1, paragraph 6",
+          "point": "The document asserts that the current 'AI Spring' is driven by a combination of significantly faster computational power and access to massive, timely datasets. This empirical observation suggests that the recent breakthroughs in machine learning are not necessarily due to new fundamental theories, but rather the scaling of existing techniques. Accelerationists view this as evidence that continued scaling of compute and data will lead to further rapid advancements in AI capabilities.",
+          "verbatim": "The recent explosion of efficacy comes from a combination of much faster computers and much more data.",
+          "excerpt_context": "Section 1, Part A",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "machine_learning",
             "computational_power",
-            "data_access"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-desires-018",
-          "category": "Desires",
-          "point": "The document suggests that AI decision-support systems could be used to optimize public administration and governance, though it notes that current applications in criminal justice and policing are fraught with bias and lack of transparency. Accelerationists would view the potential for AI to improve administrative efficiency as a positive, provided the systems are designed to be more equitable and accountable than current iterations.",
-          "verbatim": "The overall efficiency of an Al-enabled justice system, as distinct from its fairness or accuracy in the individual case, constitutes an important omission.",
-          "excerpt_context": "Section 2, Consequential Decision-Making",
-          "extraction_confidence": 0.8,
-          "vocabulary_terms": [
-            "algorithmic_governance",
-            "administrative_efficiency"
-          ]
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document argues that claims of an impending AI apocalypse are largely speculative and lack grounding in actual computer science literature. It suggests that these fears are often propagated by individuals without direct work experience in the field, contrasting them with the views of AI pioneers like Yann LeCun. This perspective serves to de-prioritize existential risk in favor of addressing immediate, tangible policy challenges.",
-          "verbatim": "Some say this explains why claims of a pending Al apocalypse come almost exclusively from the ranks of individuals such as Musk, Hawking, and Bostrom who lack work experience in the field. Second, critics of the Al apocalypse argue that even if we were able eventually to create a superintelligence, there is no reason to believe it would be bent on world domination, unless this were for some reason programmed into the system.",
-          "excerpt_context": "Section 3, Part III",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "existential_risk",
-            "superintelligence"
+            "data_scaling"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document suggests that current AI development is in its early stages, with systems currently possessing intelligence comparable to insects. This perspective emphasizes that the focus on existential 'doomsday' scenarios is premature and potentially distracting from more immediate, manageable policy challenges. It frames the current state of AI as a tool that is still evolving, rather than an imminent superintelligent threat.",
-          "verbatim": "Even if you believe the mainstream Al community that we are hundreds of years away from understanding how to create machines... coined in the 1950s, and today robots are about as smart as insects.",
-          "excerpt_context": "Section 4, paragraph 2",
+          "point": "The document asserts that the automation of weapons may be desirable or even inevitable, suggesting that military competition necessitates the development of faster and more flexible response capabilities regardless of the control mechanism. This reflects an accelerationist view that technological evolution in defense is a competitive imperative that cannot be easily constrained by traditional moral or legal frameworks.",
+          "verbatim": "The automation of weapons may seem desirable in some circumstances or even inevitable. It seems unlikely, for example, that the United States military would permit its military rivals to have faster or more flexible response capabilities than its own whatever their control mechanism.",
+          "excerpt_context": "Section 2, Part B",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "autonomous_weapons",
+            "military_competitiveness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-087",
+          "category": "Intentions",
+          "point": "The document acknowledges that AI's core purpose is pattern recognition, which necessitates broad data access to solve complex problems. It frames the 'data parity' issue as a barrier to competition, suggesting that smaller firms and public labs are disadvantaged by current data concentration. This implies that policies should facilitate broader access to data to ensure a more competitive and innovative AI ecosystem.",
+          "verbatim": "In that the entire purpose of Al is to spot patterns people cannot, however, the issue is rapidly coming to a head. ... The reality that a handful of large entities (literally, fewer than a human has fingers) possesses orders of magnitude more data than anyone else leads to a policy question around data parity. Smaller firms will have trouble entering and competing in the marketplace.",
+          "excerpt_context": "Section 3, Subsection 2",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "ai_development_stage"
+            "data_parity",
+            "pattern_recognition",
+            "competitive_market"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document suggests that AI is currently in an early stage of its life-cycle, providing a unique opportunity for policymakers to steer its development toward the public interest. This perspective emphasizes that we have advantages over previous industrial revolutions, such as better access to policymaking bodies and a culture of interdisciplinary collaboration. It frames AI as a transformative force that is already remaking society and will continue to do so.",
+          "verbatim": "Al has managed to capture policymakers' imaginations early enough in its life-cycle that there is hope we can yet channel it toward the public interest. ... Al is remaking aspects of society today and likely to shepherd in much greater changes in the coming years.",
+          "excerpt_context": "Conclusion, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "societal_transformation",
+            "public_interest_alignment"
           ]
         }
       ]
@@ -153,122 +155,99 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "sit-001",
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-038",
           "category": "Beliefs",
-          "point": "The document addresses the 'oddly tenacious' fear that AI poses an existential threat to humanity. It frames this as a significant topic that, if true, would dwarf all other policy concerns, though it maintains a neutral stance on the validity of these apocalyptic predictions.",
-          "verbatim": "Part III addresses the oddly tenacious and prevalent fear that Al poses an existential threat to humanity - a concern that, if true, would seem to dwarf all other policy concerns.",
-          "excerpt_context": "Section 1, paragraph 16",
-          "extraction_confidence": 1.0,
+          "point": "The document highlights that AI systems are increasingly used in consequential decision-making, such as sentencing criminal defendants, which raises significant concerns about the opacity and potential for bias in these systems. Safetyists argue that the lack of transparency and the potential for strategic misrepresentation in these algorithms necessitate rigorous safety and certification standards before deployment. The document acknowledges that these systems are often 'black boxes' that challenge existing accountability frameworks.",
+          "verbatim": "Others condemn the use of secret algorithms to sentence criminal defendants or recoil at the prospect of machines gunning for blue, pink, and white-collar jobs.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "existential_risk",
-            "ai_apocalypse"
+            "algorithmic_bias",
+            "accountability",
+            "consequential_decision_making"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
-          "category": "Beliefs",
-          "point": "The document highlights that AI lacks a stable, consensus definition, which complicates the development of a coherent policy infrastructure. This ambiguity regarding what constitutes an AI system creates operational challenges for regulators and policymakers attempting to apply oversight.",
-          "verbatim": "There is no straightforward, consensus definition of artificial intelligence. Al is best understood as a set of techniques aimed at approximating some aspect of human or animal cognition using machines.",
-          "excerpt_context": "Section 1, paragraph 18",
+          "stance": "neutral",
+          "taxonomy_node_id": "sit-002",
+          "category": "Intentions",
+          "point": "The author argues that while industry-led ethical codes are welcome, they are insufficient substitutes for formal policy because they lack enforcement mechanisms and are often malleable. Safetyists would agree with this assessment, emphasizing that voluntary industry standards are inadequate to ensure that powerful AI systems remain aligned with human values and legal requirements.",
+          "verbatim": "Ethics as a construct is notoriously malleable and contested: both Kant and Bentham get to say 'should.' Policy - in the sense of official policy, at least - has a degree of finality once promulgated. Moreover, even assuming moral consensus, ethics lacks a hard enforcement mechanism.",
+          "excerpt_context": "Section 1, Part C",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "ai_definition",
-            "policy_infrastructure"
+            "governance",
+            "enforcement_mechanisms",
+            "policy_finality"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-011",
-          "category": "Beliefs",
-          "point": "The document highlights that optimizing for narrow metrics (like efficiency or predictive accuracy) can lead to systemic failures in fairness and accountability. This aligns with the safetyist concern that Goodhart's Law—where a measure becomes a target and ceases to be a good measure—poses a structural risk to societal values when embedded in AI systems.",
-          "verbatim": "Several researchers have measured how making a system more transparent or less biased can decrease its accuracy overall. More obviously than efficiency, accuracy is an important dimension of fairness: we would not think of rolling a die to determine sentence length as fair, even if it is transparent to participants and unbiased as to demographics.",
-          "excerpt_context": "Section 2, Consequential Decision-Making",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "metric_optimization",
-            "goodharts_law",
-            "value_alignment"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-052",
+          "taxonomy_node_id": "saf-intentions-136",
           "category": "Intentions",
-          "point": "The document argues for the necessity of 'technological due process' to ensure that AI systems making consequential decisions about human lives adhere to constitutional and procedural safeguards. This reflects the safetyist intention to embed ethical frameworks and legal accountability into the design of AI systems before they are deployed in high-stakes environments.",
-          "verbatim": "The question is distinct from unequal application in general in that consequential decision-making, especially by government, often takes place against a backdrop of procedural rules or other guarantees of process.",
-          "excerpt_context": "Section 2, Consequential Decision-Making",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "technological_due_process",
-            "algorithmic_accountability"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-013",
-          "category": "Desires",
-          "point": "The document expresses concern that AI capabilities, specifically facial recognition and pattern detection, will enable governments to achieve unprecedented levels of surveillance. It highlights that current constitutional doctrines regarding 'reasonable expectation of privacy' are failing to protect citizens from a government bent on public surveillance.",
-          "verbatim": "If everyone in public can be identified through facial recognition, and if the \"public\" habits of individuals or groups permit Al to derive private facts, then citizens will have little choice but to convey information to a government bent on public surveillance.",
-          "excerpt_context": "Section 3, Paragraph 2",
+          "point": "The document advocates for establishing rigorous safety thresholds and verification methods for cyber-physical AI systems, such as autonomous vehicles and medical devices. It emphasizes that 'safer than humans' is an insufficient metric and calls for institutionalized testing and certification frameworks to manage the risks posed by AI exerting physical control over the environment.",
+          "verbatim": "Robots and other cyber-physical systems have to be safe. The question is how safe, and how do we know. In a wide variety of contexts, from commercial aviation to food safety, regulatory agencies set specific safety standards and lay out requirements for how those standards must be met.",
+          "excerpt_context": "Section 2, Part C",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "surveillance",
-            "facial_recognition",
-            "privacy"
+            "cyber-physical_systems",
+            "safety_certification",
+            "regulatory_standards"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-134",
+          "category": "Intentions",
+          "point": "The document highlights the necessity of maintaining 'meaningful human control' over lethal AI decisions, noting that international consensus supports this, even if the specific definition of such control remains contested. It argues that policymakers must work toward a framework for responsibility that addresses the risks of AI-enabled force.",
+          "verbatim": "International consensus holds that people should never give up \"meaningful human control\" over a kill decision. Yet debate lingers as to the meaning and scope of meaningful human control.",
+          "excerpt_context": "Section 2, Part B",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "meaningful_human_control",
+            "autonomous_weapons"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-143",
+          "category": "Intentions",
+          "point": "The document advocates for technical and legal interventions to manage privacy risks while enabling AI development. It highlights methods like differential privacy and federated training as essential tools for achieving data parity without compromising individual privacy. This reflects a safetyist commitment to balancing technological progress with robust privacy safeguards.",
+          "verbatim": "Some within academia and industry are already working on methods - including differential privacy and federated training - that seek to minimize the privacy impact of granting broader access to data-intensive systems. The hard policy question is how to incentivize technical, legal, social, and other interventions that safeguard privacy even as Al is democratized.",
+          "excerpt_context": "Section 3, Subsection 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "differential_privacy",
+            "federated_training",
+            "privacy_safeguards"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The document advocates for the creation of institutional bodies, such as a Federal Robotics Commission or an official Federal Advisory Committee on AI, to provide the government with the technical expertise necessary to govern AI effectively. It argues that without such expertise, the government is forced to rely on self-interested private firms, leading to regulatory paralysis.",
-          "verbatim": "The solution could involve new advisory bodies, such as an official Federal Advisory Committee on Artificial Intelligence with an existing department or even a standalone Federal Robotics Commission.",
-          "excerpt_context": "Section 3, Part F.1",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "governance_adaptive",
-            "institutional_capacity"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-023",
           "category": "Beliefs",
-          "point": "The document acknowledges the 'errant tool' problem, where AI systems perform exactly as instructed but produce unintended, catastrophic consequences. It uses historical and cultural analogies like King Midas and the Sorcerer's Apprentice to illustrate how literal adherence to goals can lead to disaster. This highlights the risk of misalignment between human intent and machine execution.",
-          "verbatim": "Computers do what you tell them to do, as the saying goes, not what you want them to do.",
-          "excerpt_context": "Section 4, paragraph 3",
+          "point": "The document expresses skepticism toward industry-led 'ethical codes of conduct,' arguing they are often designed to shield companies from sharing data rather than protecting users. It suggests that these codes are self-serving mechanisms that hinder necessary accountability and data sharing.",
+          "verbatim": "This is partly why the Al policy community must maintain a healthy dose of skepticism toward \"ethical codes of conduct\" developed by industry. Such codes are likely to contain a principle of privacy that, unless carefully crafted, operates to help shield the company from an obligation to share training data with other stakeholders.",
+          "excerpt_context": "Section 3, Subsection 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "misalignment",
-            "errant_tool"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-074",
-          "category": "Intentions",
-          "point": "The document identifies the risk of malicious actors leveraging AI to threaten society, such as destabilizing markets or inciting violence. It notes that while the path to existential threat from these actions is currently narrow, the potential for misuse remains a serious concern. This supports the need for proactive policy engagement regarding bad actors.",
-          "verbatim": "Perhaps more worrying is the potential that a person or group might use Al in some way to threaten all of society.",
-          "excerpt_context": "Section 4, paragraph 4",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "malicious_use",
-            "bad_actors"
+            "industry_self_regulation",
+            "accountability_barriers"
           ]
         },
         {
           "stance": "neutral",
-          "taxonomy_node_id": "saf-beliefs-002",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The author concedes that if there is even a remote, low-probability chance of an existential AI catastrophe, it warrants serious attention. This reflects a precautionary principle approach, acknowledging that high-loss scenarios require policy consideration regardless of their current likelihood.",
-          "verbatim": "If there is even a remote chance that Al will wake up and kill us (i.e., if the Al apocalypse is a low probability, high loss problem), then perhaps we should pay some attention to the issue.",
-          "excerpt_context": "Section 4, paragraph 5",
+          "point": "The document acknowledges the 'doomsday' or existential risk perspective, noting that prominent figures like Elon Musk and Nick Bostrom argue AI could pose an existential threat. It outlines three specific threat models: AI waking up with animus, AI accidentally causing harm through goal misalignment (the 'paperclip' scenario), and malicious actors using AI to cause harm. The author notes that while these scenarios are often dismissed as science fiction, some computer scientists believe they merit serious consideration as low-probability, high-loss problems.",
+          "verbatim": "The first is that Al wakes up and purposefully kills everyone out of animus or to make more room for itself. ... The second is that Al accidentally kills everyone in the blind pursuit of some arbitrary goal - for example, an irresistibly powerful Al charged with making paperclips destroys the Earth in the process of mining for materials. ... A third is that a very bad individual or group uses Al as part of an attempt to end human life.",
+          "excerpt_context": "Section 4, paragraphs 4-6",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "existential_risk",
-            "precautionary_principle"
+            "goal_misalignment",
+            "superintelligence"
           ]
         }
       ]
@@ -279,120 +258,125 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-047",
           "category": "Beliefs",
-          "point": "The document notes that a small number of for-profit corporations (Google, Facebook, IBM, Amazon, Microsoft, Apple, and Baidu) possess AI capabilities that vastly outstrip all other institutions. This concentration of power is identified as a central concern for policy, as these firms dominate the development and deployment of AI.",
+          "point": "The document notes that a small number of for-profit corporations (Google, Facebook, IBM, Amazon, Microsoft, Apple, and Baidu) possess AI capabilities that vastly exceed those of other institutions. Skeptics interpret this as a dangerous concentration of power that challenges democratic governance and accountability, as these firms effectively control the development and deployment of technologies that impact society at large.",
           "verbatim": "Still, it is worth noting that as few as seven for profit institutions - Google, Facebook, IBM, Amazon, Microsoft, Apple, and Baidu in China - seemingly hold Al capabilities that vastly outstrip all other institutions as of this writing.",
-          "excerpt_context": "Section 1, paragraph 25",
+          "excerpt_context": "Section 1, Part B",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "power_concentration",
-            "corporate_dominance"
+            "corporate_power",
+            "market_consolidation",
+            "accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document observes that companies may use trade secret law to shield their algorithms from public or legal scrutiny, even when those algorithms are used in high-stakes contexts like the criminal justice system. Skeptics argue this creates a 'black box' that undermines the rule of law and prevents meaningful accountability for AI-driven harms.",
+          "verbatim": "It may not be wise or even feasible to pass general laws about artificial intelligence at this early stage, whereas it is very likely wise and timely to plan for Al's effects on society - including through the development of expertise, the investigation of Al's current and likely social impacts, and perhaps smaller changes to appropriate doctrines and laws in response to Al's positive and negative affordances.",
+          "excerpt_context": "Section 1, Part C",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "transparency",
+            "legal_scrutiny",
+            "trade_secrets"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document identifies the critical need for transparency and accountability in AI systems, particularly regarding 'applied inequality' and 'consequential decision-making.' It argues that society must incentivize best practices to minimize discriminatory bias and ensure that the risks and benefits of AI are distributed equitably.",
+          "verbatim": "The policy questions here are at least twofold. First, what constitutes best practice in minimizing discriminatory bias and by what mechanism (antidiscrimination laws, consumer protection, industry standards) does society incentivize development and adoption of best practice? And second, how do we ensure that the risks and benefits of artificial intelligence are evenly distributed across society?",
+          "excerpt_context": "Section 2, Part A",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "technological_due_process",
+            "equity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-134",
+          "category": "Beliefs",
+          "point": "The document notes that deep learning techniques are often effective at establishing correlations but fail to provide causal explanations, which poses significant risks when these systems are used for consequential decisions like judicial fact-finding or warrants. This aligns with the skeptic concern regarding the 'black box' nature of AI and its incompatibility with existing legal and procedural safeguards.",
+          "verbatim": "Deep learning, as a technique, may be effective in establishing correlation but unable to yield or articulate a causal mechanism. Al here can say what will happen but not why.",
+          "excerpt_context": "Section 2, Part A",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "black_box_ai",
+            "causal_inference",
+            "technological_opacity"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document acknowledges documented harms such as algorithmic bias in criminal sentencing and the potential for AI to displace labor. It frames these as ongoing societal concerns that have persisted for decades, rather than entirely new phenomena.",
-          "verbatim": "Others condemn the use of secret algorithms to sentence criminal defendants or recoil at the prospect of machines gunning for blue, pink, and white-collar jobs.",
-          "excerpt_context": "Section 1, paragraph 3",
+          "point": "The document asserts that AI systems are being used to manipulate market participants by exploiting cognitive limitations and extracting personal information through social agents. It notes that AI's ability to detect patterns allows for hyper-targeted control, which poses significant risks to individual autonomy and political discourse.",
+          "verbatim": "For example, firms can manipulate other market participants through a fine-tuned understanding of the individual and collective cognitive limitations of consumers. Bots can gain our confidences to extract personal information. Politicians and political operatives can micro-target messages, including misleading ones, in an effort to sway aggregate public attention.",
+          "excerpt_context": "Section 3, Subsection 1",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_bias",
-            "labor_displacement"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-094",
-          "category": "Beliefs",
-          "point": "The document provides extensive empirical evidence of AI systems reproducing and amplifying historical biases, such as gender stereotypes in translation engines and racial discrimination in predictive policing. It asserts that these are not theoretical risks but measurable, documented harms that require immediate policy intervention.",
-          "verbatim": "There are a variety of reasons why Al systems might not work well for certain populations. For example, the designs may be using models trained on data where a particular demographic is underrepresented and hence not well reflected.",
-          "excerpt_context": "Section 2, Inequality in Application",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "algorithmic_bias",
-            "structural_harm",
-            "data_representation"
+            "market_manipulation",
+            "cognitive_limitations",
+            "micro_targeting"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-007",
-          "category": "Intentions",
-          "point": "The document advocates for context-specific regulatory boundaries, such as applying antidiscrimination laws and consumer protection standards to AI deployment. It emphasizes that policymakers must determine which non-physical or indirect harms (like disinformation or price discrimination) necessitate regulatory standards.",
-          "verbatim": "The policy questions here are at least twofold. First, what constitutes best practice in minimizing discriminatory bias and by what mechanism (antidiscrimination laws, consumer protection, industry standards) does society incentivize development and adoption of best practice?",
-          "excerpt_context": "Section 2, Inequality in Application",
+          "taxonomy_node_id": "skp-desires-014",
+          "category": "Desires",
+          "point": "The document argues that current legal doctrines, specifically the 'reasonable expectation of privacy' standard, are failing to protect citizens from AI-driven surveillance. It calls for a re-evaluation of how courts interpret privacy in public spaces and third-party data sharing to prevent a society of 'perfect enforcement.'",
+          "verbatim": "Even assuming away the likely false positives, a reasonable question for law and policy is whether we want to live in a society with perfect enforcement. ... Citizens, meanwhile, will have next to no ability to resist or reform surveillance.",
+          "excerpt_context": "Section 3, Subsection 1",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "regulatory_oversight",
-            "consumer_protection"
+            "surveillance_reform",
+            "reasonable_expectation_of_privacy",
+            "perfect_enforcement"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-003",
+          "taxonomy_node_id": "skp-desires-073",
           "category": "Desires",
-          "point": "The document emphasizes that consumer privacy is under siege and that current legal doctrines are insufficient to protect individuals from corporate and state surveillance. It calls for new policy infrastructures to address the power imbalance created by hyper-targeted control and data manipulation.",
-          "verbatim": "Consumer privacy is under siege. Citizens, meanwhile, will have next to no ability to resist or reform surveillance.",
-          "excerpt_context": "Section 3, Paragraph 1",
-          "extraction_confidence": 1.0,
+          "point": "The document discusses the potential for AI to displace labor and suggests that policymakers must address the impact on the public fisc and the social safety net. It notes that while some argue for a 'robot tax,' others warn it could stifle innovation, leaving policymakers with the difficult task of maintaining public funding in an automated economy.",
+          "verbatim": "Ultimately, federal and state policymakers will have to figure out how to keep the lights on in the absence of, for instance, the bulk of today's income taxes. ... Others warn that a tax on automation amounts to a tax on innovation and progress.",
+          "excerpt_context": "Section 3, Subsection E",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "privacy",
-            "surveillance",
-            "data_extraction"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
-          "category": "Intentions",
-          "point": "The document argues for the removal of legal barriers—such as trade secret law, the Computer Fraud and Abuse Act, and the DMCA—that prevent third-party scrutiny of proprietary AI systems. It asserts that outside analysis is essential for accountability in safety, certification, and equity.",
-          "verbatim": "Several reports, briefs, and research papers have called upon policymakers to remove actual or perceived barriers to accountability, including: (1) trade secret law; (2) the Computer Fraud and Abuse Act; and (3) the anticircumvention provision of the Digital Millennium Copyright Act.",
-          "excerpt_context": "Section 3, Part F.3",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "accountability",
-            "transparency",
-            "algorithmic_auditing"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document identifies a 'data parity' problem where a handful of large firms possess a monopoly on data and its analysis, creating significant barriers to entry for smaller firms and biasing AI development toward corporate profit rather than societal benefit.",
-          "verbatim": "The reality that a handful of large entities (literally, fewer than a human has fingers) possesses orders of magnitude more data than anyone else leads to a policy question around data parity. Smaller firms will have trouble entering and competing in the marketplace.",
-          "excerpt_context": "Section 3, Part D",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "data_monopoly",
-            "market_competition",
-            "data_parity"
+            "labor_displacement",
+            "robot_tax",
+            "public_fisc"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document argues that the focus on existential threats creates an 'opportunity cost' that ignores pressing, short-term societal harms. It cites Pedro Domingos to argue that the real problem is not AI's future intelligence, but its current 'stupidity' and the immediate negative impacts it is already causing. This prioritizes tangible, present-day issues over speculative future risks.",
-          "verbatim": "The problem is not that artificial intelligence 'will get too smart and take over the world,' computer scientist Pedro Domingos writes, 'the real problem is that [it's] too stupid and [has] already.'",
-          "excerpt_context": "Section 4, paragraph 6",
+          "point": "The document argues that the current focus on existential 'doomsday' scenarios is a distraction from the immediate, measurable harms caused by deployed AI systems. It cites Pedro Domingos to argue that AI is already causing problems because it is 'too stupid' rather than 'too smart.' This perspective warns that prioritizing speculative threats creates an 'AI Policy Winter' that prevents addressing real-world issues.",
+          "verbatim": "The problem is not that artificial intelligence 'will get too smart and take over the world,' computer scientist Pedro Domingos writes, 'the real problem is that [it's] too stupid and [has] already.' By focusing so much energy on a quixotic existential threat, we risk, in information scientist Solon Barocas' words, an Al Policy Winter.",
+          "excerpt_context": "Section 4, paragraph 11",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "opportunity_cost",
-            "immediate_ai_harm"
+            "ai_policy_winter",
+            "deployed_system_harms"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The author advocates for an 'AI Policy Winter' to be avoided, suggesting that policymakers should focus on the inventory of serious, existing policy questions rather than quixotic existential threats. The goal is to provide a roadmap for investigating current societal transformations driven by AI.",
-          "verbatim": "By focusing so much energy on a quixotic existential threat, we risk, in information scientist Solon Barocas' words, an Al Policy Winter.",
-          "excerpt_context": "Section 4, paragraph 6",
-          "extraction_confidence": 1.0,
+          "category": "Beliefs",
+          "point": "The document highlights that many experts in the field of AI, such as Yann LeCun and Rodney Brooks, challenge the existential risk thesis. They argue that there is no current path toward human-level intelligence and that the alarmist claims often come from individuals who lack direct work experience in AI. This skepticism is grounded in the observation that current AI is closer to insect-level intelligence than human-level intelligence.",
+          "verbatim": "First, they argue that there is simply no path toward machine intelligence that rivals our own across all contexts or domains. ... Some say this explains why claims of a pending Al apocalypse come almost exclusively from the ranks of individuals such as Musk, Hawking, and Bostrom who lack work experience in the field.",
+          "excerpt_context": "Section 4, paragraphs 2-3",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "policy_prioritization"
+            "expert_consensus",
+            "technological_realism"
           ]
         }
       ]
@@ -400,7 +384,7 @@
   },
   "factual_claims": [
     {
-      "claim": "As of 2017, seven for-profit companies (Google, Facebook, IBM, Amazon, Microsoft, Apple, and Baidu) hold AI capabilities that significantly exceed those of all other institutions.",
+      "claim": "As of 2017, seven major technology companies (Google, Facebook, IBM, Amazon, Microsoft, Apple, and Baidu) possess AI capabilities that significantly exceed those of other institutions.",
       "claim_label": "Corporate AI Capability Concentration",
       "doc_position": "supports",
       "temporal_scope": "current_state",
@@ -408,8 +392,7 @@
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-047",
-        "saf-beliefs-091"
+        "skp-beliefs-047"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -420,78 +403,96 @@
       "claim_relations": []
     },
     {
-      "claim": "AI systems, such as image recognition and translation engines, frequently exhibit and amplify human-like biases present in their training data, leading to discriminatory outcomes for marginalized groups.",
-      "claim_label": "AI Bias Amplification",
+      "claim": "AI systems currently exhibit documented biases in image recognition, translation, and predictive policing, leading to discriminatory outcomes for marginalized populations.",
+      "claim_label": "Documented AI Bias and Discrimination",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-001",
-        "skp-beliefs-094"
+        "skp-intentions-017"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system behavior"
+        "category_criteria": "empirical claim supported by cited examples"
       },
       "claim_relations": []
     },
     {
-      "claim": "The Supreme Court in United States v. Jones required a warrant for police to attach a GPS device to a vehicle for continuous monitoring, citing concerns over the derivation of intimate information from public travel.",
-      "claim_label": "United States v. Jones GPS Warrant Requirement",
+      "claim": "Deep learning models are often capable of identifying patterns that humans cannot detect, but they frequently lack the ability to articulate the causal mechanisms behind their outputs.",
+      "claim_label": "Deep Learning Causal Opacity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-134"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim regarding technical limitations"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems can derive sensitive, intimate information from seemingly innocent, publicly available data points like lunch locations or grocery purchases.",
+      "claim_label": "AI Inference of Sensitive Data",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim about AI capabilities"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "A very small number of large firms possess significantly more data than any other entities, creating a data parity problem that hinders competition.",
+      "claim_label": "Data Concentration and Market Entry",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-087"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim about market structure"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Prominent figures including Elon Musk, Stephen Hawking, and Bill Gates have publicly stated that AI represents a significant threat to humanity.",
+      "claim_label": "High-profile AI existential risk warnings",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "2012",
+      "temporal_bound": "2015-2017",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-047"
+        "sit-162"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The Electronic Communications Privacy Act (ECPA), enacted in 1986, is poorly suited for the modern internet environment due to its outdated assumptions about electronic communications.",
-      "claim_label": "ECPA Obsolescence",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-047"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Beliefs"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Current AI systems are roughly as intelligent as insects, and the mainstream AI community believes we are centuries away from creating machines capable of formulating an intent to harm.",
-      "claim_label": "AI Intelligence and Intentionality Timeline",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 0.9,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-094"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": true,
-        "internally_consistent": true,
         "category_criteria": "empirical claim"
       },
       "claim_relations": []
@@ -499,17 +500,26 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Policy Over Ethics Framing",
-      "suggested_description": "A preference for formal, state-enforced policy frameworks over voluntary ethical guidelines to ensure accountability and prevent industry self-regulation from failing the public interest.",
-      "concept": "The document argues that 'policy' is a superior term to 'ethics' or 'governance' because ethics lacks enforcement mechanisms and industry-led ethical codes are often insufficient or legally invalidated as restraints on trade. It emphasizes that policy provides the necessary finality of law.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "The document explicitly distinguishes its methodological approach (policy) from common industry-led alternatives (ethics/governance) in a way not fully captured by existing nodes."
+      "suggested_label": "The Privacy-Power Shift",
+      "suggested_description": "A situation concept that describes the evolution of privacy discourse from individual data control to institutional power dynamics.\nEncompasses: Data asymmetry, institutional surveillance, power imbalances.\nExcludes: Individual privacy rights, data protection regulations.",
+      "concept": "The document notes that privacy discourse has shifted from individual control over personal information to the broader power institutions hold over citizens due to their data possession. This framing moves privacy from a consumer protection issue to a structural power issue.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This captures the structural shift in how privacy is conceptualized in the context of AI-driven institutional power.",
+      "Accelerationist Interpretation": "Accelerationists might view this shift as a necessary evolution where data-driven institutional efficiency replaces outdated, fragmented privacy protections.",
+      "Safetyist Interpretation": "Safetyists would likely interpret this as a risk factor, where the concentration of data-driven power increases the potential for catastrophic misuse or systemic failure.",
+      "Skeptic Interpretation": "Skeptics would view this as a core concern, emphasizing that the power imbalance between institutions and individuals is a primary harm that requires regulatory intervention."
+    },
+    {
+      "suggested_label": "The Paperclip Maximizer Scenario",
+      "suggested_description": "A situation concept that describes the accidental destruction of humanity by an AI pursuing a benign, narrow goal with extreme efficiency. \nEncompasses: Goal misalignment, instrumental convergence, and unintended consequences of optimization. \nExcludes: Malicious AI intent or human-like animus.",
+      "concept": "The document references this as a primary 'accidental' threat model where an AI, such as one tasked with making paperclips, destroys the Earth to acquire resources. It is used to illustrate the danger of goal misalignment in advanced systems.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a foundational thought experiment in AI safety that requires its own node for clarity.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a highly improbable, speculative scenario that distracts from the tangible benefits of AI development.",
+      "Safetyist Interpretation": "Safetyists use this as a core argument for why alignment research must precede the development of advanced autonomous systems.",
+      "Skeptic Interpretation": "Skeptics view this as a 'fantasy' scenario that highlights the disconnect between speculative philosophy and the actual, flawed state of current AI technology."
     }
-  ],
-  "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }

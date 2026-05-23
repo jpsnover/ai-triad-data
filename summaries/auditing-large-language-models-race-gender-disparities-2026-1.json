@@ -1,9 +1,9 @@
 {
   "doc_id": "auditing-large-language-models-race-gender-disparities-2026-1",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
@@ -11,12 +11,12 @@
     "taxonomy_nodes": 40,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 1,
-      "iterations": 0,
+      "api_calls": 2,
+      "iterations": 1,
       "claims_total": 9,
-      "claims_confident": 9,
-      "claims_iterated": 0,
-      "elapsed_seconds": 14.0,
+      "claims_confident": 8,
+      "claims_iterated": 1,
+      "elapsed_seconds": 15.8,
       "termination_reason": "all_confident"
     }
   },
@@ -24,89 +24,102 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "auditing-large-language-models-race-gender-disparities-2026-1",
-    "measured_at": "2026-05-02T22:18:42.6260680-04:00",
+    "measured_at": "2026-05-23T02:13:54.3294484-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 4.0,
         "out_units": "still_unmapped",
-        "out_count": 2.0,
-        "ratio": 0.5,
+        "out_count": 1.0,
+        "ratio": 0.25,
         "flags": {
-          "resolved_count": 2,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 2
+          "resolved_count": 3,
+          "near_miss_count": 1
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 61894.0,
+        "in_count": 63048.0,
         "out_units": "items",
-        "out_count": 15.0,
-        "ratio": 0.0002,
+        "out_count": 17.0,
+        "ratio": 0.0003,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 2,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 9,
-          "total_points": 4
+          "unmapped_concepts": 1,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
+          "total_points": 7
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 40.0,
-        "ratio": 0.076,
+        "ratio": 0.0611,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 19,
-          "below_threshold_forced": 0,
-          "intentions_selected": 14,
-          "effective_threshold": 0.3856,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 7
+          "below_threshold_forced": 0,
+          "above_threshold": 40,
+          "desires_selected": 6,
+          "beliefs_selected": 27,
+          "effective_threshold": 0.3898,
+          "threshold_floor": 0.2,
+          "intentions_selected": 7
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 2.0,
+        "in_count": 1.0,
         "out_units": "still_unmapped",
-        "out_count": 2.0,
+        "out_count": 1.0,
         "ratio": 1.0,
         "flags": {
+          "threshold": 0.5,
+          "used_embeddings": 0,
           "resolved_count": 0,
-          "threshold": 0.6,
-          "used_embeddings": 1,
-          "near_miss_count": 2
+          "near_miss_count": 0
         }
       }
     ],
-    "cumulative_retention": 0.076
+    "cumulative_retention": 0.0611
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
+          "taxonomy_node_id": "acc-intentions-004",
           "category": "Intentions",
-          "point": "The document suggests that correspondence experiments provide a practical, empirical method for auditing LLM outputs, which can help firms and regulators make informed deployment decisions. By focusing on behavioral output verification rather than opaque internal model mechanics, this approach aligns with the accelerationist preference for empirical testing over restrictive, pre-deployment white-box mandates. The authors acknowledge that while these audits are useful, they are not a panacea for all bias concerns, and the results can vary significantly by context and task. This methodology supports the continued integration of AI into high-stakes hiring by providing a mechanism to identify and address disparities without halting innovation.",
-          "verbatim": "In our exploration of the potential value of using correspondence experiments to audit AI-based hiring decisions, we found overall that correspondence experiments are useful for identifying race and gender bias, and we provide a workable strategy for carrying out mandated algorithm audits.",
-          "excerpt_context": "Background, paragraph 6",
+          "point": "The document advocates for the use of correspondence experiments as a practical, empirical method for auditing AI systems in high-stakes hiring. By manipulating application materials to isolate demographic signals, researchers can generate verifiable data on how models respond to different candidate profiles. This approach aligns with accelerationist goals of using empirical output verification to improve AI performance and reliability rather than relying on opaque, static regulatory mandates. The authors acknowledge that while this method is useful, it remains limited by the difficulty of perfectly isolating demographic variables from other application characteristics.",
+          "verbatim": "In this article, we propose and investigate one approach for auditing algorithms: correspondence experiments, a widely applied tool for detecting bias in human judgments.",
+          "excerpt_context": "Abstract",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "oversight_audit",
-            "safety_empirical"
+            "transparency_verification"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The authors suggest that correspondence experiments provide a workable strategy for carrying out mandated algorithm audits, emphasizing the need for empirical evidence over theoretical speculation. By testing models against synthetic dossiers, they demonstrate how to measure actual model behavior in a controlled, reproducible manner. This supports the accelerationist preference for performance-gated verification, where the focus is on measurable outcomes rather than pre-deployment interpretability. The document notes that these experiments are useful for identifying bias, though they are not a panacea for all algorithmic fairness challenges.",
+          "verbatim": "In our exploration of the potential value of using correspondence experiments to audit AI-based hiring decisions, we found overall that correspondence experiments are useful for identifying race and gender bias, and we provide a workable strategy for carrying out mandated algorithm audits.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety_empirical",
+            "oversight_audit"
           ]
         }
       ]
@@ -115,15 +128,26 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-106",
-          "category": "Intentions",
-          "point": "The document utilizes correspondence experiments as a diagnostic tool to measure how LLMs associate demographic signals with hiring suitability, effectively acting as a context association test. By systematically manipulating names and pronouns in application materials, the researchers isolate the model's response to demographic cues, which is essential for identifying potential discriminatory patterns. This approach is framed as a necessary step for institutional accountability, as it provides empirical data that can inform regulatory compliance. The authors note that these disparities might stem from posttraining efforts intended to mitigate bias, highlighting the complexity of achieving robust alignment.",
-          "verbatim": "In correspondence experiments (also known as audit studies), researchers assume that two otherwise identical individuals from different demographic groups should receive similar treatment and that divergence is evidence of improper discrimination.",
-          "excerpt_context": "Background, paragraph 5",
-          "extraction_confidence": 0.98,
+          "taxonomy_node_id": "saf-beliefs-101",
+          "category": "Beliefs",
+          "point": "The document asserts that contemporary AI alignment techniques, specifically posttraining, are structurally insufficient to guarantee reliable adherence to human constraints. The authors hypothesize that efforts to mitigate discriminatory associations learned during pretraining may overshoot the mark, leading to unpredictable distortions in model outputs. This highlights the safetyist concern that current alignment methods are opaque and can introduce new, unintended trade-offs. The authors acknowledge that these disparities are hard to predict and may not generalize across different contexts.",
+          "verbatim": "In particular, recall that developers typically fine-tune models in a final alignment or posttraining phase in part to avoid mirroring overt discrimination in the training data. But this step may leave traces of bias in ways that are hard to predict. For example, efforts to mitigate discriminatory associations the model learned in pretraining might overshoot the mark, causing a distortion in the other direction.",
+          "excerpt_context": "Discussion",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability_institutional",
             "safety_alignment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-062",
+          "category": "Beliefs",
+          "point": "The document notes that LLMs are trained on massive, unlabeled text corpora drawn from the internet, which inherently contain discriminatory content. This pretraining process, combined with the complexity of posttraining, makes it difficult to anticipate whether models will produce discriminatory or distorted responses. From a safetyist perspective, this underscores the danger of deploying powerful models without robust, pre-deployment safety assessments. The authors emphasize that these training processes are opaque, complicating efforts to ensure models align with societal values.",
+          "verbatim": "But for various reasons—including discriminatory content in the pretraining corpus and the complexity of the overall training processes—LLMs might also produce discriminatory or distorted responses that are hard to anticipate.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_hazard"
           ]
         }
       ]
@@ -134,26 +158,38 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-083",
           "category": "Intentions",
-          "point": "The document advocates for the use of correspondence experiments as a rigorous, systematic method for auditing LLMs for race and gender bias in hiring. By creating synthetic application dossiers that differ only in demographic signals, the researchers can isolate the effect of race and gender on model outputs, providing a clearer picture of bias than simple adverse impact ratios. This approach is presented as a necessary tool for identifying documented, present harms in AI systems that are currently being deployed in high-stakes HR settings. The authors emphasize that while this method is valuable, it is limited by the difficulty of fully isolating demographic variables from other application characteristics.",
-          "verbatim": "In this article, we propose and investigate one approach for auditing algorithms: correspondence experiments, a widely applied tool for detecting bias in human judgments.",
-          "excerpt_context": "Abstract, paragraph 1",
-          "extraction_confidence": 0.98,
+          "point": "The authors propose using correspondence experiments as a rigorous method for auditing LLMs for race and gender bias in hiring. By systematically manipulating demographic signals in application materials, they aim to isolate the effect of race and gender on model ratings, providing a more precise tool than the adverse impact ratio. This aligns with the skeptic goal of developing systematic, empirical methods to identify and mitigate algorithmic discrimination. The document acknowledges that these experiments have limitations, such as the difficulty of isolating race from other socioeconomic factors.",
+          "verbatim": "In this article, we demonstrate and examine one potential method for auditing LLMs—correspondence experiments—illustrating the approach by applying it to evaluate LLMs that could be used in making hiring decisions.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "accountability_algorithmic",
-            "harm (documented, present)"
+            "fairness_procedural"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
+          "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The study provides empirical evidence that LLMs can internalize and reproduce race and gender disparities in hiring recommendations, even when the underlying application materials are otherwise identical. The researchers found that models consistently favored certain demographic groups, suggesting that these systems are not neutral evaluators but rather reflect complex, often inscrutable, training-induced biases. This finding supports the skeptic concern that AI systems can inadvertently amplify or create discriminatory outcomes in high-stakes decision-making. The authors note that these disparities are modest but persistent, highlighting the need for ongoing, rigorous auditing to prevent systemic harm.",
+          "point": "The document provides empirical evidence that LLMs exhibit race and gender disparities in hiring recommendations, even when models are instructed to be neutral. The authors found that models moderately favored women and non-White candidates, a pattern that persisted across various prompts and model types. This supports the skeptic belief that AI systems can encode and reproduce societal biases, necessitating rigorous, independent auditing. The authors note that these disparities are modest but comparable to those found in human recruiters, highlighting the need for ongoing vigilance.",
           "verbatim": "Across models, we found that the LLMs rated synthetic female candidates moderately higher than they did the synthetic male candidates. Models also generally rated synthetic Black, Hispanic, and Asian candidates moderately higher than they did synthetic White candidates.",
-          "excerpt_context": "Empirical Analysis & Results, paragraph 8",
+          "excerpt_context": "Empirical Analysis & Results",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "bias_systemic",
-            "harm (documented, present)"
+            "documented_present_harm"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-061",
+          "category": "Beliefs",
+          "point": "The authors critique the adverse impact ratio as an insufficient tool for auditing AI bias, noting that it cannot distinguish between true psychological bias and differences in applicant qualifications. This aligns with the skeptic view that simple metrics often fail to capture the complexity of systemic discrimination in AI systems. The document argues that correspondence experiments are necessary to differentiate between these factors, providing a more nuanced understanding of model behavior. The authors acknowledge that even with these experiments, it remains challenging to fully account for all variables influencing model ratings.",
+          "verbatim": "But the adverse impact ratio is known to be imperfect: It cannot reveal whether disproportionate selection of one kind of candidate over another indicates a true psychological bias or if it simply reflects average differences in the qualifications of applicants from different groups.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
           ]
         }
       ]
@@ -161,15 +197,15 @@
   },
   "factual_claims": [
     {
-      "claim": "In the first 6 months after New York City's Local Law 144 went into effect, only 19 bias audits were published.",
-      "claim_label": "NYC Local Law 144 Audit Count",
+      "claim": "The New York City Local Law 144 requires bias audits for AI tools used in hiring, but only 19 audits were published in the first 6 months.",
+      "claim_label": "NYC LL 144 Audit Compliance",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2023-07 to 2024-01",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-087"
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -182,36 +218,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The U.S. Equal Employment Opportunity Commission's four-fifths rule considers a selection rate for a protected group that is less than 80% of the highest group's rate as evidence of discrimination.",
-      "claim_label": "EEOC Four-Fifths Rule",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-094"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "general_claim"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The researchers audited 11 different LLMs, including models from OpenAI, Mistral, and Anthropic.",
-      "claim_label": "LLM Audit Scope",
+      "claim": "Correspondence experiments show that LLMs tested modestly favor women and non-White candidates.",
+      "claim_label": "LLM Bias Directionality",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-intentions-087"
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -224,78 +239,36 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The researchers found that LLMs identified the intended race and gender of synthetic candidates more than 90% of the time.",
-      "claim_label": "LLM Demographic Perception Accuracy",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-087"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The study found that LLMs slightly favored women and non-White candidates in hiring recommendations.",
-      "claim_label": "LLM Hiring Bias Direction",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The Digital Services Act (DSA) in Europe requires very large online platforms to conduct audits to promote transparency and accountability.",
-      "claim_label": "EU Digital Services Act Audit Requirement",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2024-02",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-064"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "general_claim"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The European Parliament adopted the AI Act in March 2024, which imposes various requirements that potentially involve audits for high-risk systems.",
-      "claim_label": "EU AI Act Audit Requirement",
+      "claim": "The European Union's AI Act, adopted in March 2024, mandates quality management systems and audits for high-risk AI systems.",
+      "claim_label": "EU AI Act Audit Mandates",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2024-03",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-064"
+        "skp-desires-064"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The adverse impact ratio is defined by the four-fifths rule, where a selection rate for a protected group below 80% of the highest group is evidence of discrimination.",
+      "claim_label": "Four-Fifths Rule Definition",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-061"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -308,33 +281,93 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "President Joe Biden issued an executive order on October 30, 2023, mandating audits for federal agencies' use of AI.",
-      "claim_label": "US Executive Order 14110",
+      "claim": "LLMs can infer an applicant's race and gender from unaltered application materials with high accuracy, often exceeding 90%.",
+      "claim_label": "LLM Demographic Inference Accuracy",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "President Biden's October 30, 2023, executive order mandates audits for federal agencies' use of AI.",
+      "claim_label": "US Executive Order AI Audits",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2023-10-30",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-064"
+        "skp-desires-064"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "general_claim"
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "The researchers restricted their analysis to 801 applicants who provided both a résumé and video responses.",
-      "claim_label": "Study Sample Size",
+      "claim": "The study audited 11 LLMs, including models from OpenAI, Mistral, and Anthropic.",
+      "claim_label": "Study Model Scope",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2026-04",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-087"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Correspondence experiments have been utilized for at least 50 years as a methodology to investigate discrimination across various sectors, including hiring and housing.",
+      "claim_label": "Correspondence Experiment History",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "1974-2024",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-083"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "The study used a corpus of 801 applicants for K-12 teaching positions in a large Texas public school district.",
+      "claim_label": "Study Dataset Size",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2026-04",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-intentions-087"
@@ -353,19 +386,11 @@
   "unmapped_concepts": [
     {
       "suggested_label": "Bundle of Sticks Racial Identity",
-      "suggested_description": "A Belief within skeptic discourse that racial identity is a complex, inseparable combination of social, economic, and historical factors rather than a single, isolatable variable. This concept challenges the validity of simple demographic manipulation in audit studies.",
-      "concept": "The authors discuss the 'bundle of sticks' theory of race, noting that because racial identity is so deeply coupled with social status, wealth, and neighborhood, it is difficult to manipulate race in isolation during an audit. This complicates the interpretation of correspondence experiments, as changing a name might inadvertently change the model's perception of other socioeconomic factors.",
+      "suggested_description": "A Belief within skeptic discourse that racial identity is a complex, inseparable cluster of social and economic variables. Encompasses: Socioeconomic status, neighborhood, religion, and ancestral origin. Excludes: Simple demographic categorization.",
+      "concept": "The document discusses the challenge of isolating race in audits, noting that race is often perceived as a 'bundle of sticks' that includes social status, wealth, and neighborhood. This makes it difficult to manipulate race in isolation during correspondence experiments.",
       "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This concept addresses the fundamental methodological challenge of defining and isolating demographic variables in AI audits, which is not currently covered by existing nodes."
-    },
-    {
-      "suggested_label": "Posttraining Bias Overshoot",
-      "suggested_description": "A Belief within safetyist discourse that efforts to align models and mitigate discriminatory associations learned during pretraining can inadvertently cause distortions in the opposite direction. This phenomenon complicates the goal of achieving neutral or fair model outputs.",
-      "concept": "The authors hypothesize that the observed bias in favor of women and minority candidates might be a result of posttraining efforts to correct for pretraining biases, which may have 'overshot the mark.' This suggests that alignment processes can introduce new, unintended biases.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific mechanism of alignment failure that is distinct from general bias or lack of alignment."
+      "reason": "This concept addresses the fundamental difficulty of defining race for algorithmic auditing, which is not currently captured by existing nodes."
     }
   ]
 }

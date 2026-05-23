@@ -1,9 +1,9 @@
 {
   "doc_id": "counterfactual-fairness-2026-2",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
@@ -16,7 +16,7 @@
       "claims_total": 2,
       "claims_confident": 2,
       "claims_iterated": 0,
-      "elapsed_seconds": 6.5,
+      "elapsed_seconds": 8.7,
       "termination_reason": "all_confident"
     }
   },
@@ -24,89 +24,86 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "counterfactual-fairness-2026-2",
-    "measured_at": "2026-05-02T21:04:11.2070360-04:00",
+    "measured_at": "2026-05-23T03:45:50.3496319-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 3.0,
+        "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.3333,
+        "out_count": 0.0,
+        "ratio": 0.0,
         "flags": {
-          "resolved_count": 2,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 1
+          "resolved_count": 2,
+          "near_miss_count": 0
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 82148.0,
+        "in_count": 84218.0,
         "out_units": "items",
-        "out_count": 6.0,
+        "out_count": 8.0,
         "ratio": 0.0001,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 1,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 2,
-          "total_points": 3
+          "unmapped_concepts": 0,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
+          "total_points": 6
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 40.0,
-        "ratio": 0.076,
+        "ratio": 0.0611,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 13,
-          "below_threshold_forced": 0,
-          "intentions_selected": 23,
-          "effective_threshold": 0.4349,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 4
-        }
-      },
-      {
-        "stage": "unmapped_resolution",
-        "in_units": "concepts",
-        "in_count": 1.0,
-        "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 1.0,
-        "flags": {
-          "resolved_count": 0,
-          "threshold": 0.5,
-          "used_embeddings": 0,
-          "near_miss_count": 0
+          "below_threshold_forced": 0,
+          "above_threshold": 40,
+          "desires_selected": 5,
+          "beliefs_selected": 19,
+          "effective_threshold": 0.4524,
+          "threshold_floor": 0.2,
+          "intentions_selected": 16
         }
       }
     ],
-    "cumulative_retention": 0.076
+    "cumulative_retention": 0.0611
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-048",
-          "category": "Intentions",
-          "point": "The document advocates for using causal inference as a rigorous, quantitative framework to define and measure fairness in machine learning. By moving away from abstract philosophical definitions toward explicit causal models, the authors aim to provide a falsifiable and actionable methodology for practitioners. This aligns with the accelerationist goal of replacing vague regulatory hurdles with precise, measurable, and technically grounded standards that allow for innovation while addressing specific societal concerns. The authors acknowledge that these models require strong, sometimes unfalsifiable assumptions, which they argue should be treated as provisional conjectures.",
-          "verbatim": "In this paper, we develop a framework for modeling fairness using tools from causal inference. Our de?nition of counterfactual fairness captures the intuition that a decision is fair towards an individual if it is the same in (a) the actual world and (b) a counterfactual world where the individual belonged to a different demographic group.",
+          "taxonomy_node_id": "acc-beliefs-044",
+          "category": "Beliefs",
+          "point": "The document asserts that machine learning models must account for historical biases in training data to avoid perpetuating discriminatory practices. It argues that modelers should look beyond simple prediction accuracy to consider the societal impact of their work. From an accelerationist perspective, this is a technical challenge that can be addressed through better modeling and causal inference, rather than by halting development. The document acknowledges that these models require strong assumptions, which are inherently provisional and subject to modification as new data becomes available.",
+          "verbatim": "Since this past data may be biased, machine learning predictors must account for this to avoid perpetuating or creating discriminatory practices.",
           "excerpt_context": "Abstract",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "capabilities (scaling)",
-            "oversight (audit)"
+            "capabilities_scaling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The authors propose a framework for counterfactual fairness that uses causal inference to model relationships between protected attributes and data. This approach allows for the design of algorithms that compensate for social biases by explicitly modeling the causal structure of the world. Accelerationists would view this as a constructive technical solution that enables the continued deployment of AI in high-stakes domains like lending and hiring. The document notes that this approach requires strong causal assumptions, which are not always testable.",
+          "verbatim": "We propose that fairness should be regulated by explicitly modeling the causal structure of the world.",
+          "excerpt_context": "Section 6, Conclusion",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety_empirical"
           ]
         }
       ]
@@ -115,15 +112,26 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-052",
-          "category": "Intentions",
-          "point": "The document proposes that fairness should be regulated by explicitly modeling the causal structure of the world, rather than relying on probabilistic independence criteria. This approach seeks to address the 'human accountability gap' by forcing modelers to articulate the causal pathways through which protected attributes influence outcomes. From a safetyist perspective, this is a necessary step to prevent AI from perpetuating systemic biases that are masked by standard accuracy-maximizing objectives. The authors note that this requires domain-specific knowledge and strong assumptions about the causal graph, which may be difficult to validate.",
-          "verbatim": "We propose that fairness should be regulated by explicitly modeling the causal structure of the world. Criteria based purely on probabilistic independence cannot satisfy this and are unable to address how unfairness is occurring in the task at hand.",
-          "excerpt_context": "Section 6, Conclusion",
-          "extraction_confidence": 0.98,
+          "taxonomy_node_id": "saf-beliefs-093",
+          "category": "Beliefs",
+          "point": "The document highlights that optimizing for simple prediction accuracy can lead to unintended, harmful outcomes when training data contains historical prejudices. It argues that standard fairness criteria like demographic parity or equality of opportunity can be incompatible and may even increase discrimination in certain contexts. From a safetyist perspective, this confirms that AI systems, when optimizing for proxy metrics, will inevitably produce value-eroding outcomes. The authors emphasize that these issues require explicit causal modeling rather than relying on black-box statistical approaches.",
+          "verbatim": "Training data can contain unfairness for reasons having to do with historical prejudices or other factors outside an individual's control.",
+          "excerpt_context": "Section 1, Contribution",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "governance (oversight)",
-            "alignment (safety)"
+            "safety_alignment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-040",
+          "category": "Intentions",
+          "point": "The authors advocate for a framework where modelers take responsibility for the societal impact of their algorithms, moving beyond mere accuracy. They propose that counterfactual fairness provides a more robust, individual-level definition of fairness than population-level criteria. This aligns with safetyist goals of maintaining human oversight and accountability in consequential decision-making. The document acknowledges that this approach requires strong, potentially unfalsifiable assumptions about the causal structure of the world.",
+          "verbatim": "Decisions in these areas may have ethical or legal implications, so it is necessary for the modeler to think beyond the objective of maximizing prediction accuracy and consider the societal impact of their work.",
+          "excerpt_context": "Section 1, Contribution",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance_oversight"
           ]
         }
       ]
@@ -132,15 +140,26 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-desires-064",
-          "category": "Desires",
-          "point": "The authors aim to prevent machine learning models from perpetuating historical discrimination in high-stakes domains like lending, hiring, and policing. They argue that training data often contains biases that, if left unaddressed, lead to discriminatory outcomes for protected subpopulations. By introducing counterfactual fairness, they seek to provide a tool that allows practitioners to 'deconvolve' these biases and create more equitable decision-making systems. The document acknowledges that this approach often involves a trade-off between predictive accuracy and fairness, which is a central concern for skeptics of unchecked AI deployment.",
-          "verbatim": "Since this past data may be biased, machine learning predictors must account for this to avoid perpetuating or creating discriminatory practices.",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence of AI-induced discrimination in areas like lending, hiring, and policing, noting that historical data often encodes systemic biases. It argues that existing fairness definitions are often inadequate or even counterproductive. From a skeptic perspective, this reinforces the need for rigorous, independent auditing and the recognition that AI systems can entrench historical injustices. The authors note that their proposed causal approach is a tool for practitioners to address these documented harms.",
+          "verbatim": "In many of these scenarios, previous decisions have been made that are unfairly biased against certain subpopulations, for example those of a particular race, gender, or sexual orientation.",
           "excerpt_context": "Abstract",
-          "extraction_confidence": 0.95,
+          "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "harm (documented, present)",
-            "fairness (procedural)"
+            "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-095",
+          "category": "Intentions",
+          "point": "The authors introduce 'counterfactual fairness' as a method to ensure AI decisions remain unchanged in a hypothetical world where an individual's protected attribute is different. This directly addresses the skeptic concern that AI systems often perpetuate historical bias by using proxies for protected attributes. The document argues that this causal approach is superior to 'fairness through unawareness' or other population-level metrics. It acknowledges that this method requires significant domain knowledge to construct accurate causal models.",
+          "verbatim": "Our definition of counterfactual fairness captures the intuition that a decision is fair towards an individual if it is the same in (a) the actual world and (b) a counterfactual world where the individual belonged to a different demographic group.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
           ]
         }
       ]
@@ -148,29 +167,8 @@
   },
   "factual_claims": [
     {
-      "claim": "The Obama administration released a 2016 report urging data scientists to analyze how technologies can inadvertently perpetuate or mask discrimination.",
-      "claim_label": "2016 Obama Administration Big Data Report",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2016-05-04",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The Law School Admission Council conducted a survey across 163 law schools in the United States containing information on 21,790 law students.",
-      "claim_label": "LSAC Longitudinal Study Scope",
+      "claim": "The Law School Admission Council conducted a survey across 163 law schools in the United States, containing information on 21,790 law students.",
+      "claim_label": "LSAC Survey Scope",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "1998",
@@ -188,16 +186,30 @@
         }
       },
       "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The NYPD stop-and-frisk dataset for 2014 contains 38,609 records of males stopped.",
+      "claim_label": "NYPD Stop-and-Frisk Dataset Size",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2014",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
-    {
-      "suggested_label": "Causal Graph Modeling for Fairness",
-      "suggested_description": "The use of directed acyclic graphs (DAGs) to explicitly model the causal relationships between protected attributes, latent variables, and outcomes.",
-      "concept": "The authors use causal graphs to model how protected attributes like race or gender influence observable data, allowing for the identification of 'fair' latent variables that are independent of these attributes.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "The taxonomy lacks a node for the specific application of causal graph modeling to ensure algorithmic fairness."
-    }
+    null
   ]
 }

@@ -1,14 +1,14 @@
 {
   "doc_id": "differential-privacy-reversal-via-llm-feedback-silent-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 40,
+    "taxonomy_nodes": 39,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,7 +16,7 @@
       "claims_total": 7,
       "claims_confident": 7,
       "claims_iterated": 0,
-      "elapsed_seconds": 10.5,
+      "elapsed_seconds": 12.0,
       "termination_reason": "all_confident"
     }
   },
@@ -24,88 +24,88 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "differential-privacy-reversal-via-llm-feedback-silent-2026",
-    "measured_at": "2026-05-02T20:55:53.7491680-04:00",
+    "measured_at": "2026-05-23T04:02:45.6096867-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 3.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.3333,
+        "out_count": 2.0,
+        "ratio": 0.6667,
         "flags": {
-          "resolved_count": 2,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 1
+          "resolved_count": 1,
+          "near_miss_count": 2
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 53967.0,
+        "in_count": 55292.0,
         "out_units": "items",
-        "out_count": 13.0,
-        "ratio": 0.0002,
+        "out_count": 14.0,
+        "ratio": 0.0003,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 1,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 7,
+          "unmapped_concepts": 2,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
           "total_points": 5
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 40.0,
-        "ratio": 0.076,
+        "ratio": 0.0611,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 18,
-          "below_threshold_forced": 0,
-          "intentions_selected": 18,
-          "effective_threshold": 0.2885,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 4
+          "below_threshold_forced": 0,
+          "above_threshold": 40,
+          "desires_selected": 6,
+          "beliefs_selected": 18,
+          "effective_threshold": 0.3224,
+          "threshold_floor": 0.2,
+          "intentions_selected": 12
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 1.0,
+        "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
+        "out_count": 2.0,
         "ratio": 1.0,
         "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
           "resolved_count": 0,
-          "threshold": 0.5,
-          "used_embeddings": 0,
-          "near_miss_count": 0
+          "near_miss_count": 2
         }
       }
     ],
-    "cumulative_retention": 0.076
+    "cumulative_retention": 0.0611
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-032",
+          "taxonomy_node_id": "acc-intentions-078",
           "category": "Intentions",
-          "point": "The document advocates for the development of robust defensive AI architectures, including ensemble privacy defenses and output filtering, to mitigate membership inference risks. By treating privacy as a fundamental architectural principle rather than a compliance checkbox, developers can maintain the utility of advanced models while securing them against adversarial probing. This aligns with the accelerationist goal of rapid, secure deployment of transformative AI systems. The document notes that these defenses require ongoing innovation in privacy-preserving architectures.",
+          "point": "The document advocates for a shift toward transparency and rigorous auditing as a means to maintain market trust in AI systems. By emphasizing the need for standardized reporting and privacy-preserving architectures, it suggests that competitive advantage will accrue to developers who can prove their systems are secure. This aligns with the accelerationist goal of creating robust, verifiable infrastructure that allows for the continued deployment of transformative AI without stalling innovation due to privacy concerns. The document acknowledges that this requires moving beyond simple compliance checklists toward fundamental architectural changes.",
           "verbatim": "As we move deeper into 2026 and beyond, the organizations that will thrive are those that treat privacy not as a compliance checkbox, but as a fundamental architectural principle embedded throughout their AI systems.",
           "excerpt_context": "Conclusion: The End of 'Security through Obscurity'",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "safety_empirical",
+            "oversight_audit",
             "transparency_verification"
           ]
         }
@@ -117,26 +117,26 @@
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-017",
           "category": "Beliefs",
-          "point": "The document asserts that the rapid adoption of LLMs has created a systemic loss of visibility and control over data, as models memorize and potentially disclose sensitive information. This collapse of traditional security governance is driven by the model's fundamental nature as a prediction engine that memorizes training data. From a safetyist perspective, this highlights the danger of deploying powerful models without robust, pre-deployment safety guarantees. The document acknowledges that even with differential privacy, these vulnerabilities persist.",
-          "verbatim": "The vulnerability arises because LLMs are fundamentally prediction engines. Their goal is to minimize the difference between their predictions and the actual training data. When a model is trained (or fine-tuned) on a dataset, it inevitably 'memorizes' parts of that data to improve its accuracy.",
-          "excerpt_context": "Part 1: Understanding the Vulnerability",
+          "point": "The document asserts that the rapid adoption of LLMs has created a systemic loss of control over sensitive data, as models memorize and potentially leak private information. It highlights that traditional anonymization techniques are insufficient against modern membership inference attacks, which exploit the model's confidence scores to re-identify individuals. This supports the safetyist concern that current deployment practices outpace our ability to secure data, leading to irreversible privacy erosion. The document notes that even with differential privacy, models can remain vulnerable to sophisticated probing.",
+          "verbatim": "The rise of Large Language Models (LLMs) has shattered this illusion. Recent cybersecurity research from late 2024 through early 2026 has uncovered sophisticated attack vectors known as Differential Privacy Reversal via LLM Feedback.",
+          "excerpt_context": "Introduction: The Illusion of the 'Anonymized' Dataset",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "safety_alignment",
+            "capabilities_hazard",
             "transparency_accountability"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-099",
+          "taxonomy_node_id": "saf-methods-002",
           "category": "Intentions",
-          "point": "The document highlights the irreversibility of data absorption into model weights, noting that traditional deletion methods like removing database rows are ineffective for neural networks. This creates a significant challenge for the 'Right to be Forgotten' under GDPR, as personal data becomes integrated into complex, non-traceable model architectures. Safetyists argue this necessitates extreme caution in data ingestion and model training. The document notes that current unlearning methods are often approximate and susceptible to reversal.",
-          "verbatim": "In traditional data processing systems, deletion involves removing rows from a database, but in machine learning systems, personal data can influence model weights in complex, non-traceable ways.",
-          "excerpt_context": "Part 4: Real-World Implications and Regulatory Landscape",
+          "point": "The document proposes that organizations must implement multi-layer defenses, including DP-SGD and output filtering, to mitigate the risks of data leakage. It argues that these technical safeguards are essential for maintaining the integrity of AI systems in high-stakes domains. From a safetyist perspective, this emphasizes the necessity of proactive, precautionary measures before deployment to prevent catastrophic privacy failures. The document acknowledges that these measures often involve significant trade-offs between model performance and privacy guarantees.",
+          "verbatim": "Security must be baked into: The training algorithm (via DP-SGD, parameter-efficient fine-tuning) ... The inference layer (via output monitoring, threshold filtering, ensemble defenses) ... The data pipeline (via synthetic data generation, federated learning).",
+          "excerpt_context": "Conclusion: The End of 'Security through Obscurity'",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability_institutional",
-            "governance_oversight"
+            "regulation_precautionary",
+            "safety_alignment"
           ]
         }
       ]
@@ -147,26 +147,26 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-005",
           "category": "Beliefs",
-          "point": "The document argues that LLMs fundamentally compromise data privacy by memorizing and surfacing sensitive information, rendering traditional anonymization techniques obsolete. By analyzing model confidence scores and logits, attackers can perform membership inference attacks to re-identify individuals in supposedly anonymized datasets. This confirms the skeptic view that AI systems create immediate, measurable privacy harms. The document notes that even with differential privacy, these risks remain significant.",
-          "verbatim": "Differential Privacy Reversal occurs when an attacker exploits this differential in confidence to deduce membership. If the model is suspiciously 'sure' about the details of an anonymized record, it betrays the fact that it has seen that specific record before.",
+          "point": "The document argues that LLMs fundamentally compromise privacy by memorizing training data, rendering traditional anonymization ineffective. It details how attackers can use confidence scores and logits to perform membership inference attacks, effectively deanonymizing supposedly private datasets. This confirms the skeptic view that AI systems inherently threaten individual data autonomy and that current privacy protections are largely illusory. The document notes that even with differential privacy, models can still leak information through contextual patterns.",
+          "verbatim": "The vulnerability arises because LLMs are fundamentally prediction engines. Their goal is to minimize the difference between their predictions and the actual training data. When a model is trained (or fine-tuned) on a dataset, it inevitably 'memorizes' parts of that data to improve its accuracy.",
           "excerpt_context": "Part 1: Understanding the Vulnerability",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "autonomy_individual",
-            "harm (documented, present)"
+            "harm (documented, present)",
+            "autonomy (individual/data)"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-002",
           "category": "Intentions",
-          "point": "The document advocates for rigorous, independent privacy auditing and continuous monitoring of AI systems to detect membership inference vulnerabilities. It emphasizes that organizations must conduct regular testing and maintain audit trails for training data to ensure compliance with privacy regulations. This aligns with the skeptic demand for algorithmic accountability and transparency. The document acknowledges that current evaluation metrics are often insufficient for detecting these privacy leaks.",
-          "verbatim": "For organizations deploying AI, the message is clear: You cannot simply scrub names and hope for the best. Security must be baked into: The training algorithm... The inference layer... The data pipeline.",
-          "excerpt_context": "Conclusion: The End of 'Security through Obscurity'",
+          "point": "The document advocates for rigorous, independent auditing and the implementation of privacy-preserving techniques like DP-SGD to address documented AI harms. It suggests that organizations must move beyond compliance checkboxes to implement real-world, verifiable privacy protections. This aligns with the skeptic demand for algorithmic accountability and the need for legally enforceable standards to protect individuals from AI-driven privacy violations. The document acknowledges that current regulatory frameworks, such as the GDPR, struggle to address the complexities of machine unlearning and model-based data storage.",
+          "verbatim": "The GDPR doesn't currently offer a framework for interpreting what it means to 'erase' data when it has been absorbed into a model's decision-making architecture.",
+          "excerpt_context": "Part 4: Real-World Implications and Regulatory Landscape",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability_algorithmic",
-            "fairness_procedural"
+            "accountability (algorithmic)",
+            "fairness (procedural)"
           ]
         }
       ]
@@ -174,16 +174,15 @@
   },
   "factual_claims": [
     {
-      "claim": "LLMs can be used as oracles to re-identify individuals from anonymized datasets by analyzing confidence scores, logits, and perplexity.",
-      "claim_label": "LLM Membership Inference Vulnerability",
+      "claim": "Differential Privacy Reversal via LLM Feedback allows attackers to re-identify individuals from anonymized datasets by analyzing model confidence scores, logits, and perplexity.",
+      "claim_label": "Differential Privacy Reversal Mechanism",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
       "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-005",
-        "saf-beliefs-028"
+        "skp-beliefs-005"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -196,15 +195,99 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Differential Privacy (DP-SGD) is the only mathematically proven defense against membership inference attacks in LLMs.",
-      "claim_label": "DP-SGD Effectiveness",
+      "claim": "A 2025 study demonstrated that LLMs face deep-seated privacy vulnerabilities throughout their lifecycle, from pre-training to deployment, which can be exploited even when differential privacy is in place.",
+      "claim_label": "LLM Privacy Vulnerability Lifecycle",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-104"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Google's VaultGemma, a 1-billion parameter model, demonstrates that DP-SGD can be scaled to production-level models while maintaining strong privacy protections.",
+      "claim_label": "VaultGemma Scalability",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-078"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "A 2026 systematic review of 74 studies found that strict privacy budgets (epsilon <= 1) often lead to substantial accuracy loss in medical deep learning models.",
+      "claim_label": "Privacy-Utility Trade-off in Medicine",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-01",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Carnegie Mellon researchers demonstrated that existing unlearning methods are susceptible to benign relearning attacks, where models can recover 'forgotten' information from small, related datasets.",
+      "claim_label": "Unlearning Vulnerability to Relearning",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-104"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "LoRA fine-tuning reduces the number of trainable parameters significantly (e.g., ~20 million vs. 8 billion), which improves synthetic data quality when training with DP-SGD.",
+      "claim_label": "LoRA Parameter Efficiency",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-124"
+        "acc-intentions-078"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -217,36 +300,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Google's VaultGemma (1 billion parameters) demonstrates that DP-SGD can be scaled to production-level models.",
-      "claim_label": "VaultGemma Scalability",
+      "claim": "The WikiMem dataset, introduced in July 2025, contains over 5,000 natural language canaries covering 243 human-related properties from Wikidata to test LLM memorization.",
+      "claim_label": "WikiMem Dataset Characteristics",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "2025",
+      "temporal_bound": "2025-07",
       "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-intentions-032"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Current machine unlearning methods are susceptible to benign relearning attacks that reverse the effects of unlearning.",
-      "claim_label": "Unlearning Vulnerability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "extraction_confidence": 0.98,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-017"
+        "skp-intentions-099"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -257,82 +319,27 @@
         }
       },
       "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Models aligned using Direct Preference Optimization (DPO) are theoretically more vulnerable to membership inference attacks than those using Proximal Policy Optimization (PPO).",
-      "claim_label": "DPO vs PPO Vulnerability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2025",
-      "extraction_confidence": 0.95,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-028"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Parameter-efficient fine-tuning (PEFT) methods like LoRA improve synthetic data quality when training with DP-SGD by reducing the gradient norm.",
-      "claim_label": "PEFT and DP-SGD Synergy",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2025",
-      "extraction_confidence": 0.95,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "acc-intentions-032"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "referenced"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Strict privacy budgets (epsilon <= 1) often lead to substantial accuracy loss in medical deep learning models.",
-      "claim_label": "Privacy-Utility Trade-off",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-01",
-      "extraction_confidence": 0.98,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-124"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "statistical_implicit"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "The Mosaic Effect in High-Dimensional Data",
-      "suggested_description": "A situation concept that describes how the aggregation of seemingly anonymous, high-dimensional data points allows for the re-identification of individuals through unique patterns.\nEncompasses: Writing style, medical history timelines, transaction patterns.\nExcludes: Direct identifier removal (k-anonymity).",
-      "concept": "The document argues that anonymization is a myth for high-dimensional data because individual patterns are as unique as fingerprints. LLMs can leverage these patterns to re-identify authors or patients even when names are stripped.",
+      "suggested_label": "Confidence-Based Membership Inference",
+      "suggested_description": "A Belief within skeptic discourse that model output metadata, specifically confidence scores and perplexity, serves as a side-channel for data leakage. Encompasses: Logit analysis, perplexity probing, confidence score exploitation. Excludes: Direct model weight extraction.",
+      "concept": "The document details how attackers use the 'certainty' of an LLM's response—its logits and perplexity—to determine if a specific record was in the training set. This specific mechanism of using output metadata as a side-channel is a core focus of the document.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "This is a specific, technical attack vector that is not explicitly defined in the current taxonomy."
+    },
+    {
+      "suggested_label": "The Anonymization-Processing Paradox",
+      "suggested_description": "A situation concept that anonymity is not an inherent property of a dataset but a dynamic outcome of how data is processed and accessed. \nEncompasses: Contextual re-identification, model-based inference, data-model interaction. \nExcludes: Static data anonymization, k-anonymity.",
+      "concept": "The document argues that 'anonymized' data is a myth because LLMs can correlate high-dimensional data to re-identify individuals. This shifts the focus from static data protection to the dynamic interaction between data and model behavior.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept describes a fundamental challenge to data privacy that transcends specific AI models, framing the 'anonymization' debate in a new light.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a challenge to be solved through better synthetic data generation and privacy-preserving architectures, rather than a reason to halt development.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that data can never be truly anonymized, necessitating strict containment and limited access to sensitive datasets.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that current anonymization standards are fundamentally flawed and that corporations are misleading the public about the safety of their data practices."
+      "reason": "This concept redefines the entire premise of data privacy in the age of AI, moving away from static datasets to dynamic system behavior.",
+      "Accelerationist Interpretation": "Accelerationists would interpret this as a call to develop more sophisticated, adaptive privacy-preserving architectures that allow for data utility without compromising individual privacy.",
+      "Safetyist Interpretation": "Safetyists would view this as evidence that current anonymization standards are dangerously obsolete and that we must prioritize strict, precautionary controls over data-model interactions.",
+      "Skeptic Interpretation": "Skeptics would use this to argue that the promise of 'anonymized' data is a corporate deception and that we need stronger, legally mandated discovery rights and auditing to protect individuals."
     }
   ]
 }

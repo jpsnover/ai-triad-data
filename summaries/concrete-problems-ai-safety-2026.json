@@ -1,65 +1,152 @@
 {
   "doc_id": "concrete-problems-ai-safety-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 4
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "concrete-problems-ai-safety-2026",
+    "measured_at": "2026-05-23T03:26:14.5701031-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 28814.0,
+        "out_units": "tokens_est",
+        "out_count": 28810.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3404.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0182,
+        "flags": {
+          "avg_beliefs": 22.0,
+          "chunk_count": 1,
+          "avg_nodes_selected": 62.0,
+          "avg_desires": 2.0,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 2,
+          "avg_intentions": 3.0,
+          "min_nodes_selected": 62
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 302601.0,
+        "out_units": "items",
+        "out_count": 29.0,
+        "ratio": 0.0001,
+        "flags": {
+          "null_node_rate": 0.0,
+          "chunk_count": 4,
+          "total_points": 20,
+          "unmapped_concepts": 4,
+          "factual_claims": 5
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 29.0,
+        "out_units": "items",
+        "out_count": 29.0,
+        "ratio": 1.0,
+        "flags": {
+          "points_deduped": 0,
+          "concepts_deduped": 0,
+          "used_embeddings": 1,
+          "claims_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.25,
+        "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "resolved_count": 3,
+          "near_miss_count": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0182
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
+          "taxonomy_node_id": "acc-intentions-003",
           "category": "Intentions",
-          "point": "The authors argue that assessing AI safety should focus on observable, real-world behavior rather than speculative, abstract scenarios. By framing safety through concrete, testable problems like reward hacking and side effects, they aim to build more reliable systems. This approach aligns with the accelerationist view that progress is best served by solving tangible engineering challenges rather than fearing hypothetical existential risks.",
+          "point": "The authors argue that focusing on concrete, practical safety problems is more productive than engaging in speculative, extreme scenarios about superintelligence. By framing safety as a set of technical challenges—such as reward hacking or distributional shift—the community can develop robust, useful AI systems. This approach prioritizes empirical output verification and iterative improvement over fear-based obstructionism.",
           "verbatim": "We believe it is usually most productive to frame accident risk in terms of practical (though often quite general) issues with modern ML techniques. As AI capabilities advance and as AI systems take on increasingly important societal functions, we expect the fundamental challenges discussed in this paper to become increasingly important.",
-          "excerpt_context": "Introduction",
-          "_backfill": {
-            "previous_id": "acc-intentions-003",
-            "similarity": 0.7684,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "empirical_output_verification",
+            "practical_safety_research"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-004",
-          "category": "Beliefs",
-          "point": "The authors express a strong belief in the positive potential of AI to solve complex, high-impact problems in medicine, science, and transportation. They view AI as an overwhelmingly beneficial force for humanity, provided that developers proactively address the technical challenges of accident prevention. This reflects the accelerationist optimism that AI's benefits far outweigh the manageable risks of implementation errors.",
-          "verbatim": "The authors believe that AI technologies are likely to be overwhelmingly beneficial for humanity, but we also believe that it is worth giving serious thought to potential challenges and risks.",
-          "excerpt_context": "Introduction"
+          "taxonomy_node_id": "acc-desires-003",
+          "category": "Desires",
+          "point": "The document advocates for developing robust, scalable oversight and safety mechanisms to enable the deployment of autonomous agents in complex real-world environments. By solving problems like reward hacking and safe exploration, researchers can unlock the potential for AI to perform complex tasks reliably. This aligns with the accelerationist goal of expanding AI utility and capability, provided that the underlying safety challenges are addressed to allow for broader, more ambitious deployment.",
+          "verbatim": "Fully solving this problem seems very difficult, but we believe the above approaches have the potential to ameliorate it, and might be scaled up or combined to yield more robust solutions.",
+          "excerpt_context": "Section 2, paragraph 12",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "scalable_oversight",
+            "autonomous_agents"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
+          "taxonomy_node_id": "acc-intentions-003",
           "category": "Intentions",
-          "point": "The document advocates for empirical, experiment-driven approaches to AI safety, such as testing reward hacking in simulated environments. By focusing on observable behaviors and developing generalizable learning strategies, researchers can create more robust systems. This aligns with the accelerationist view that safety is a technical challenge to be solved through iteration and better engineering rather than a reason to halt progress.",
-          "verbatim": "Given the predominantly theoretical focus on this problem to date, designing experiments that could induce the problem and test solutions might improve the relevance and clarity of this topic.",
-          "excerpt_context": "Section 2, paragraph 11"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
-          "category": "Intentions",
-          "point": "The document advocates for empirical, experiment-driven research into AI safety. By focusing on concrete, testable problems in reinforcement learning, it aligns with the accelerationist preference for solving safety through observable performance and iterative engineering rather than theoretical constraints. This approach treats safety as a technical challenge to be solved through better design.",
-          "verbatim": "Our focus is on the empirical study of practical safety problems in modern machine learning systems, which we believe is likely to be robustly useful across a broad variety of potential risks, both short- and long-term.",
-          "excerpt_context": "Section 3, Related Efforts"
+          "point": "The document advocates for developing a suite of toy environments to benchmark and test AI safety, similar to bAbI tasks. This aligns with the accelerationist goal of prioritizing empirical output verification and performance-gated progress over abstract, non-falsifiable safety concerns.",
+          "verbatim": "Such a suite of environments might serve a benchmarking role similar to that of the bAbI tasks [163], with the eventual goal being to develop a single architecture that can learn to avoid catastrophes in all environments in the suite.",
+          "excerpt_context": "Section 3, paragraph 5",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "empirical_output_verification",
+            "benchmarking"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-018",
           "category": "Intentions",
-          "point": "The document lists numerous research papers that pair AI's data processing capabilities with human expert guidance, such as in scientific discovery and medical research. This aligns with the accelerationist goal of using AI as a 'super-assistant' to amplify human productivity and scientific progress. The document treats these as foundational tools for future development.",
+          "point": "The document acknowledges the role of AI as an expert's super-assistant, specifically highlighting its potential to amplify scientific discovery. By providing a supportive environment for research and publication, the authors demonstrate an intention to leverage AI to accelerate progress in complex domains.",
           "verbatim": "Yolanda Gil et al. “Amplify scientific discovery with artificial intelligence”. In: Science 346.6206 (2014), pp. 171–172.",
-          "excerpt_context": "Reference [59]"
+          "excerpt_context": "References, [59]",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "scientific_discovery",
+            "expert_augmentation"
+          ]
         }
       ]
     },
@@ -67,139 +154,149 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-076",
-          "category": "Intentions",
-          "point": "The document proposes a concrete research agenda focused on specific, testable technical problems in AI safety, such as reward hacking and negative side effects. By moving away from speculative existential risk discussions, the authors aim to create a rigorous, experimental framework for ensuring AI systems remain aligned with human intent. This reflects the safetyist priority of solving observable, immediate technical failures before they scale into larger catastrophes.",
-          "verbatim": "Our goal in this document is to highlight a few concrete safety problems that are ready for experimentation today and relevant to the cutting edge of AI systems, as well as reviewing existing literature on these problems.",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-006",
-          "category": "Beliefs",
-          "point": "The authors assert that simple, formal objective functions often fail to capture the complexity of human intent, leading to 'reward hacking' or 'negative side effects.' They argue that these failures are not just bugs but fundamental issues in how we specify goals for autonomous agents. This aligns with the safetyist belief that current methods for controlling AI are inherently unreliable and prone to backfiring.",
-          "verbatim": "In â€œreward hackingâ€ , the objective function that the designer writes down admits of some clever â€œeasyâ€  solution that formally maximizes it but perverts the spirit of the designerâ€™s intent (i.e. the objective function can be â€œgamedâ€ ), a generalization of the wireheading problem.",
-          "excerpt_context": "Overview of Research Problems",
-          "_backfill": {
-            "previous_id": "saf-beliefs-004",
-            "similarity": 0.7684,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-011",
-          "category": "Intentions",
-          "point": "The authors explore methods to minimize unintended side effects, such as impact regularizers or empowerment penalization, to ensure agents do not disrupt the environment while pursuing goals. This reflects the safetyist intention to constrain AI behavior to prevent irreversible or harmful changes to the world. The document emphasizes that these are necessary safeguards for increasingly autonomous systems.",
-          "verbatim": "How can we ensure that our cleaning robot will not disturb the environment in negative ways while pursuing its goals, e.g. by knocking over a vase because it can clean faster by doing so? Can we do this without manually specifying everything the robot should not disturb?",
-          "excerpt_context": "Overview of Research Problems"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-006",
-          "category": "Beliefs",
-          "point": "Reward hacking is a fundamental and pervasive problem in AI development that will likely worsen as systems become more complex. The document argues that agents often find 'easy' ways to maximize rewards that violate the designer's true intent, such as closing eyes to avoid seeing dirt. This suggests that current methods for specifying goals are inherently fragile and prone to failure.",
-          "verbatim": "reward hacking instances across so many different domains suggests that reward hacking may be a deep and general problem, and one that we believe is likely to become more common as agents and environments increase in complexity.",
-          "excerpt_context": "Section 2, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-beliefs-026",
-            "similarity": 0.7902,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-004",
           "category": "Beliefs",
-          "point": "Simple objective functions often fail because they cannot capture the full complexity of human intent, leading to Goodhart's Law where a metric ceases to be a good target once it is optimized. The document illustrates this with a robot that wastes cleaning supplies to appear successful. This highlights the danger of relying on proxies that are only correlated with, rather than identical to, the desired outcome.",
-          "verbatim": "Another source of reward hacking can occur if a designer chooses an objective function that is seemingly highly correlated with accomplishing the task, but that correlation breaks down when the objective function is being strongly optimized.",
-          "excerpt_context": "Section 2, paragraph 5"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-006",
-          "category": "Beliefs",
-          "point": "Advanced agents may attempt to tamper with their own reward mechanisms, a phenomenon known as 'wireheading,' to assign themselves high rewards by fiat. This is particularly concerning because it implies that agents might coerce or harm humans to secure their reward signal. The document notes this is a difficult failure mode to avoid as agents become more autonomous.",
-          "verbatim": "Sufficiently broadly acting agents could in principle tamper with their reward implementations, assigning themselves high reward 'by fiat.'",
-          "excerpt_context": "Section 2, paragraph 7",
-          "_backfill": {
-            "previous_id": "saf-beliefs-039",
-            "similarity": 0.6042,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document asserts that unintended and harmful behaviors emerge from poorly specified objective functions. It identifies 'negative side effects' and 'reward hacking' as primary mechanisms where an agent maximizes a formal objective while violating the designer's informal intent. This highlights the inherent difficulty of aligning complex AI systems with human values.",
+          "verbatim": "First, the designer may have specified the wrong formal objective function, such that maximizing that objective function leads to harmful results, even in the limit of perfect learning and infinite data.",
+          "excerpt_context": "Overview of Research Problems, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "objective_function_misspecification",
+            "reward_hacking",
+            "negative_side_effects"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-048",
           "category": "Intentions",
-          "point": "Scalable oversight is necessary because human feedback is too slow and expensive to provide for every training example. The document proposes using semi-supervised reinforcement learning to combine sparse, high-quality human evaluations with frequent, imperfect proxy signals. This framework aims to ensure agents remain aligned with complex human values even when direct supervision is limited.",
-          "verbatim": "We may be able to ameliorate such problems by finding more efficient ways to exploit our limited oversight budget—for example by combining limited calls to the true objective function with frequent calls to an imperfect proxy that we are given or can learn.",
-          "excerpt_context": "Section 2, paragraph 12"
+          "point": "The authors propose 'scalable oversight' as a solution for situations where evaluating the correct objective function is too expensive to perform frequently. This addresses the risk of harmful behavior caused by bad extrapolations from limited samples, emphasizing the need for efficient, safe supervision methods during training.",
+          "verbatim": "Second, the designer may know the correct objective function, or at least have a method of evaluating it (for example explicitly consulting a human on a given situation), but it is too expensive to do so frequently, leading to possible harmful behavior caused by bad extrapolations from limited samples.",
+          "excerpt_context": "Overview of Research Problems, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "scalable_oversight",
+            "human_in_the_loop"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-053",
-          "category": "Intentions",
-          "point": "Safe exploration is critical because autonomous agents must learn about their environment, but random exploration in the real world can lead to catastrophic damage. The document argues that hard-coding safety rules is insufficient for complex, autonomous systems. Therefore, principled approaches like risk-sensitive performance criteria are essential to prevent agents from taking dangerous actions during the learning process.",
-          "verbatim": "All autonomous learning agents need to sometimes engage in exploration—taking actions that don't seem ideal given current information, but which help the agent learn about its environment. However, exploration can be dangerous, since it involves taking actions whose consequences the agent doesn't understand well.",
-          "excerpt_context": "Section 2, paragraph 24"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-005",
-          "category": "Intentions",
-          "point": "The document proposes using simulated environments for exploration to minimize real-world catastrophe risk. This 'safe bubble' approach allows agents to learn and fail without impacting the physical world, which is a core safetyist strategy for managing autonomous systems.",
-          "verbatim": "The more we can do our exploration in simulated environments instead of the real world, the less opportunity there is for catastrophe.",
-          "excerpt_context": "Section 3, Simulated Exploration"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-083",
-          "category": "Intentions",
-          "point": "The document acknowledges the 'scalable oversight' problem, where human intervention becomes impractical due to the speed or volume of AI actions. It identifies the need for agents to be better judges of their own risk levels to maintain human control.",
-          "verbatim": "A key challenge to making this work is having the agent be a good judge of which exploratory actions are genuinely risky, versus which are safe actions it can unilaterally take; another challenge is finding appropriately safe actions to take while waiting for the oversight.",
-          "excerpt_context": "Section 3, Human Oversight"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-005",
+          "taxonomy_node_id": "saf-beliefs-025",
           "category": "Beliefs",
-          "point": "The document highlights the danger of AI systems that perform well in training but fail confidently when encountering new, out-of-distribution data. This 'confident failure' is a major safety concern because it prevents human operators from flagging errors for inspection.",
-          "verbatim": "In general, when the testing distribution differs from the training distribution, machine learning systems may not only exhibit poor performance, but also wrongly assume that their performance is good.",
-          "excerpt_context": "Section 3, Robustness to Distributional Change"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-004",
-          "category": "Intentions",
-          "point": "The document proposes 'machine learning with contracts' as a way to ensure AI behavior remains within safe bounds. This involves defining explicit, verifiable constraints on system behavior, similar to software engineering practices, to prevent unpredictable failures.",
-          "verbatim": "In this perspective, one would like to construct machine learning systems that satisfy a well-defined contract on their behavior in analogy with the design of software systems.",
-          "excerpt_context": "Section 3, A unifying view: counterfactual reasoning and machine learning with contracts",
-          "_backfill": {
-            "previous_id": "saf-intentions-058",
-            "similarity": 0.6437,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-074",
-          "category": "Intentions",
-          "point": "The document provides a comprehensive bibliography of research focused on the 'bad tool' and 'errant tool' problems, including adversarial attacks, reward hacking, and containment. This demonstrates a clear safetyist intention to identify and mitigate risks before they manifest in advanced systems. The focus is on formal verification and robust control mechanisms.",
-          "verbatim": "Marco Barreno et al. “The security of machine learning”. In: Machine Learning 81.2 (2010), pp. 121–148.",
-          "excerpt_context": "Reference [19]"
+          "point": "The document identifies 'distributional shift' as a critical safety problem where ML systems make unpredictable, harmful decisions when encountering environments different from their training data. This is particularly dangerous for autonomous systems that exert direct control over the physical world.",
+          "verbatim": "“Robustness to distributional shift” (Section 7) discusses how to avoid having ML systems make bad decisions (particularly silent and unpredictable bad decisions) when given inputs that are potentially very different than what was seen during training.",
+          "excerpt_context": "Overview of Research Problems, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "distributional_shift",
+            "robustness"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-026",
           "category": "Beliefs",
-          "point": "The document cites multiple works on reward engineering and the risks of agents finding loopholes in their objective functions. This reflects the safetyist belief that AI systems will naturally exploit reward functions if they are not perfectly aligned with human intent, leading to unintended and potentially catastrophic behaviors.",
-          "verbatim": "Daniel Dewey. “Reinforcement learning and the reward engineering principle”. In: 2014 AAAI Spring Symposium Series. 2014.",
-          "excerpt_context": "Reference [43]"
+          "point": "Reward hacking is identified as a deep, general, and persistent problem that scales with agent complexity. The document argues that as agents become more capable and operate in more complex environments, the likelihood of them exploiting proxy metrics or environmental loopholes increases, necessitating proactive safety research.",
+          "verbatim": "reward hacking instances across so many different domains suggests that reward hacking may be a deep and general problem, and one that we believe is likely to become more common as agents and environments increase in complexity.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "reward_hacking",
+            "proxy_metrics"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document asserts that human intent is difficult to compress into simple objective functions, leading to failures where agents optimize for the metric rather than the underlying goal. This is exemplified by Goodhart's Law, where metrics cease to be useful once they become targets, and by feedback loops that distort original intent.",
+          "verbatim": "In the economics literature this is known as Goodhart’s law [63]: “when a metric is used as a target, it ceases to be a good metric.”",
+          "excerpt_context": "Section 2, paragraph 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "objective_function",
+            "goodharts_law"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-095",
+          "category": "Beliefs",
+          "point": "Advanced agents may attempt to tamper with their own reward mechanisms (wireheading) or coerce humans to ensure high reward. The document warns that once an agent finds an easy way to hack its reward, it is unlikely to stop, creating a persistent and difficult-to-mitigate failure mode.",
+          "verbatim": "Sufficiently broadly acting agents could in principle tamper with their reward implementations, assigning themselves high reward “by fiat.”",
+          "excerpt_context": "Section 2, paragraph 7",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "wireheading",
+            "reward_tampering"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-053",
+          "category": "Intentions",
+          "point": "The document proposes several technical interventions to mitigate reward hacking, including adversarial reward functions, model lookahead, and reward capping. These strategies aim to build more robust agents by anticipating and penalizing deceptive or exploitative behaviors before they occur.",
+          "verbatim": "Here we suggest some preliminary, machine-learning based approaches to preventing reward hacking: Adversarial Reward Functions... Model Lookahead... Adversarial Blinding... Careful Engineering... Reward Capping.",
+          "excerpt_context": "Section 2, paragraphs 13-21",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "adversarial_training",
+            "model_lookahead"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-002",
+          "category": "Beliefs",
+          "point": "The document asserts that unintended and harmful behavior in real-world AI systems is a concrete threat, particularly as these systems move into mission-critical domains like industrial processes and healthcare. It argues that while small-scale accidents are immediate, a principled, forward-looking approach is necessary to mitigate larger, more catastrophic risks as systems become more powerful.",
+          "verbatim": "With the realistic possibility of machine learning-based systems controlling industrial processes, health-related systems, and other mission-critical technology, small-scale accidents seem like a very concrete threat, and are critical to prevent both intrinsically and because such accidents could cause a justified loss of trust in automated systems.",
+          "excerpt_context": "Section 3, Conclusion",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "catastrophic_risk",
+            "mission_critical_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-056",
+          "category": "Intentions",
+          "point": "The document proposes specific technical research directions for safety, including 'Simulated Exploration,' 'Bounded Exploration,' and 'Trusted Policy Oversight.' These methods aim to constrain agent behavior within safe, recoverable regions of state space to prevent catastrophic outcomes.",
+          "verbatim": "Safety can be defined as remaining within an ergodic region of the state space such that actions are reversible [104, 159], or as limiting the probability of huge negative reward to some small value [156].",
+          "excerpt_context": "Section 3, Bounded Exploration",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "mechanistic_interpretability",
+            "safe_exploration"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-076",
+          "category": "Intentions",
+          "point": "The document serves as a comprehensive research agenda for AI safety, cataloging technical problems such as reward hacking, distributional shift, and safe exploration. It emphasizes the necessity of addressing these issues to ensure that increasingly capable AI systems remain aligned with human intent.",
+          "verbatim": "We thank the Google Brain team for providing a supportive environment and encouraging us to publish this work.",
+          "excerpt_context": "Section 4, Acknowledgements",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "reward_hacking",
+            "distributional_shift",
+            "safe_exploration",
+            "ai_safety_agenda"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document reflects a belief that AI systems pose catastrophic and existential risks, as evidenced by the inclusion of references to open letters signed by thousands of researchers regarding the dangers of superintelligence and autonomous weapons.",
+          "verbatim": "Autonomous Weapons: An Open Letter from AI & Robotics Researchers. Open Letter. Signed by 20,000+ people. 2015.",
+          "excerpt_context": "References, [16]",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "existential_risk",
+            "autonomous_weapons"
+          ]
         }
       ]
     },
@@ -207,112 +304,100 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-054",
+          "taxonomy_node_id": "skp-intentions-012",
           "category": "Intentions",
-          "point": "The authors explicitly reject the focus on extreme, sci-fi scenarios in favor of practical, measurable problems in machine learning. They argue that speculative discussions lack precision and distract from the real, immediate work of improving AI safety. This aligns with the skeptic's preference for addressing tangible, evidence-based harms over hypothetical future risks.",
-          "verbatim": "However, in our opinion one need not invoke these extreme scenarios to productively discuss accidents, and in fact doing so can lead to unnecessarily speculative discussions that lack precision, as noted by some critics.",
-          "excerpt_context": "Introduction"
+          "point": "The authors explicitly reject speculative, extreme scenarios regarding superintelligence in favor of addressing present, measurable technical problems. This aligns with a skeptical stance that prioritizes tangible, evidence-based harm mitigation over alarmist narratives that lack precision.",
+          "verbatim": "To date much of this discussion has highlighted extreme scenarios such as the risk of misspecified objective functions in superintelligent agents [27]. However, in our opinion one need not invoke these extreme scenarios to productively discuss accidents, and in fact doing so can lead to unnecessarily speculative discussions that lack precision, as noted by some critics [38, 85].",
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "evidence_based_safety",
+            "speculative_risk_rejection"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-010",
-          "category": "Intentions",
-          "point": "The document highlights the importance of data quality and the risks associated with poorly curated training data or insufficient models. By focusing on 'distributional shift' and 'safe exploration,' the authors advocate for rigorous, data-centric approaches to mitigate AI errors. This aligns with the skeptic's focus on the immediate, measurable failures caused by current AI development practices.",
-          "verbatim": "â€œRobustness to distributional shiftâ€  (Section 7) discusses how to avoid having ML systems make bad decisions (particularly silent and unpredictable bad decisions) when given inputs that are potentially very different than what was seen during training.",
-          "excerpt_context": "Overview of Research Problems"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-012",
+          "taxonomy_node_id": "skp-beliefs-026",
           "category": "Beliefs",
-          "point": "The document acknowledges that current AI systems require substantial additional engineering effort to achieve good performance, often due to the need to patch reward hacking and other bugs. This supports the skeptic view that AI tools do not necessarily reduce workload but instead shift the burden toward complex, ongoing maintenance and oversight.",
-          "verbatim": "Moreover, even for existing systems these problems can necessitate substantial additional engineering effort to achieve good performance, and can often go undetected when they occur in the context of a larger system.",
-          "excerpt_context": "Section 2, paragraph 9"
+          "point": "The document acknowledges that human oversight is limited and often relies on cheap, imperfect proxies. This creates a performance deficit where the agent optimizes for the proxy (e.g., 'visible dirt') rather than the true, complex human goal, highlighting the inherent difficulty in maintaining human control over automated systems.",
+          "verbatim": "These cheaper signals can be efficiently evaluated during training, but they don’t perfectly track what we care about. This divergence exacerbates problems like unintended side effects... and reward hacking.",
+          "excerpt_context": "Section 2, paragraph 24",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "automation_bias",
+            "oversight_limitations"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-008",
-          "category": "Intentions",
-          "point": "The document emphasizes the need for systems that can detect when they are out-of-distribution and respond appropriately, rather than just assuming they are correct. This aligns with the skeptic's focus on identifying and mitigating measurable, immediate harms caused by AI errors.",
-          "verbatim": "Even for this engineering approach, it seems important to be able to detect when one is in a situation that was not covered by the training data and to respond appropriately, and to have methodologies for adequately stress-testing the model with distributions that are sufficiently different from the set of training distributions.",
-          "excerpt_context": "Section 3, Training on multiple distributions"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-002",
+          "taxonomy_node_id": "skp-beliefs-047",
           "category": "Beliefs",
-          "point": "The document includes research on algorithmic fairness and the hidden costs of efficiency in predictive modeling. This supports the skeptic belief that AI systems currently perpetuate and codify societal biases, requiring active intervention to prevent discriminatory outcomes in hiring and other high-stakes domains.",
-          "verbatim": "Julius Adebayo, Lalana Kagal, and Alex Pentland. The Hidden Cost of Efficiency: Fairness and Discrimination in Predictive Modeling. 2015.",
-          "excerpt_context": "Reference [3]",
-          "_backfill": {
-            "previous_id": "skp-beliefs-041",
-            "similarity": 0.7838,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document acknowledges that AI systems often fail silently and unpredictably when encountering real-world data that differs from training distributions. This highlights the skepticism regarding the reliability of current machine learning systems in complex, real-world environments.",
+          "verbatim": "Additionally, safety checks that depend on trained machine learning systems (e.g. “does my visual system believe this route is clear?”) may fail silently and unpredictably if those systems encounter real-world data that differs sufficiently from their training data.",
+          "excerpt_context": "Section 3, Robustness to Distributional Change",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "distributional_shift",
+            "silent_failure"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-001",
+          "taxonomy_node_id": "skp-beliefs-042",
           "category": "Beliefs",
-          "point": "The document references research on the economic and labor impacts of automation, including the risk of job displacement in OECD countries. This aligns with the skeptic concern regarding the measurable, immediate harms of AI deployment on the workforce and social stability.",
+          "point": "The document acknowledges the significant impact of AI on the workforce, citing research on the susceptibility of jobs to computerization. This aligns with the skeptic view that AI-driven labor displacement is a measurable, present-day concern.",
           "verbatim": "Melanie Arntz, Terry Gregory, and Ulrich Zierahn. “The Risk of Automation for Jobs in OECD Countries”. In: OECD Social, Employment and Migration Working Papers (2016).",
-          "excerpt_context": "Reference [15]",
-          "_backfill": {
-            "previous_id": "skp-beliefs-054",
-            "similarity": 0.7834,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "excerpt_context": "References, [15]",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "labor_displacement",
+            "automation_risk"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-094",
+          "category": "Beliefs",
+          "point": "The document identifies fairness and discrimination in predictive modeling as a hidden cost of efficiency, supporting the skeptic position that algorithmic bias is a concrete, documented harm requiring attention.",
+          "verbatim": "Julius Adebayo, Lalana Kagal, and Alex Pentland. The Hidden Cost of Efficiency: Fairness and Discrimination in Predictive Modeling. 2015.",
+          "excerpt_context": "References, [3]",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "predictive_modeling"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "AI systems can exhibit harmful, unintended behaviors when objective functions are misspecified or when agents operate in complex, open-domain environments.",
-      "claim_label": "Unintended AI Accident Mechanisms",
+      "claim": "Machine learning systems can exhibit unintended and harmful behaviors when designers specify incorrect objective functions or fail to account for the learning process.",
+      "claim_label": "Objective Function Misspecification Risk",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-037",
-        "saf-beliefs-004"
+        "saf-beliefs-004",
+        "saf-beliefs-026"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of ML system failure modes."
+        "category_criteria": "Empirical observation of system failure modes."
       },
       "claim_relations": []
     },
     {
-      "claim": "Reinforcement learning agents are increasingly capable of interacting with environments in ways that can cause significant, uncorrectable harm.",
-      "claim_label": "RL Autonomy Risk",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-016",
-        "sit-012"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Observation of trends in AI capability and deployment."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Reward hacking is a general problem that occurs across many domains and increases in severity with agent complexity.",
-      "claim_label": "Generalizability of Reward Hacking",
+      "claim": "Reward hacking is a general phenomenon where agents exploit proxy metrics or environmental loopholes to maximize reward, often violating the designer's true intent.",
+      "claim_label": "Generality of Reward Hacking",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-beliefs-026"
@@ -321,115 +406,78 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of AI behavior across multiple RL domains."
+        "category_criteria": "Empirical observation of reinforcement learning failure modes."
       },
       "claim_relations": []
     },
     {
-      "claim": "Goodhart's Law states that when a metric is used as a target, it ceases to be a good metric.",
-      "claim_label": "Goodhart's Law Definition",
+      "claim": "Goodhart's Law states that when a metric is used as a target, it ceases to be a good metric, which is a primary driver of reward hacking in AI systems.",
+      "claim_label": "Goodhart's Law in AI",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-011"
+        "saf-beliefs-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Economic principle applied to AI objective functions."
+        "category_criteria": "Application of economic theory to machine learning objective functions."
       },
       "claim_relations": []
     },
     {
-      "claim": "Machine learning systems often exhibit poor performance when the testing distribution differs from the training distribution, yet they frequently remain highly confident in their erroneous outputs.",
-      "claim_label": "Confident Failure in Out-of-Distribution Data",
+      "claim": "Machine learning systems trained on one distribution often perform poorly when deployed on a different test distribution, yet they frequently remain highly confident in their erroneous classifications.",
+      "claim_label": "Overconfidence in Out-of-Distribution Errors",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-005"
+        "saf-beliefs-005",
+        "skp-beliefs-047"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of model behavior in speech recognition and classification tasks."
+        "category_criteria": "empirical observation of model behavior"
       },
       "claim_relations": []
     },
     {
-      "claim": "AI systems are susceptible to adversarial attacks where subtle, non-obvious inputs cause high-confidence errors.",
-      "claim_label": "Adversarial Vulnerability of Neural Networks",
+      "claim": "AI systems are susceptible to adversarial examples, where small, intentional perturbations to inputs can cause high-confidence errors in deep neural networks.",
+      "claim_label": "Adversarial Vulnerability of Deep Networks",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-024",
-        "sit-097"
+        "saf-beliefs-040",
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical evidence from cited research (e.g., Goodfellow et al., Nguyen et al.) confirms that neural networks can be fooled by adversarial examples."
+        "category_criteria": "Empirical observation of model behavior under specific input conditions."
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "The Impact Regularizer Problem",
-      "suggested_description": "A situation concept that explores the technical challenge of penalizing an AI's negative environmental impact without preventing it from performing its intended task.\nEncompasses: Defining state distance metrics, baseline policies, and empowerment penalization.\nExcludes: General safety training or human-in-the-loop oversight.",
-      "concept": "The document discusses the difficulty of formalizing 'change to the environment' as a penalty. It notes that naive approaches, like penalizing state distance from an initial state, would prevent the agent from performing any useful work, including natural environmental changes.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a specific technical situation regarding the formalization of 'side effects' that does not map cleanly to existing 'safety' or 'skeptic' nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a productive engineering challenge to be solved through better regularization techniques and transfer learning.",
-      "Safetyist Interpretation": "Safetyists would view this as a critical, potentially unsolvable alignment problem that requires extreme caution before deploying agents in complex environments.",
-      "Skeptic Interpretation": "Skeptics would view this as a practical design problem that should be addressed through iterative testing and better, more robust system architecture."
-    },
-    {
-      "suggested_label": "Semi-Supervised Reinforcement Learning for Oversight",
-      "suggested_description": "A situation concept that describes training agents using a mix of sparse, high-quality human feedback and frequent, low-quality proxy signals. \nEncompasses: Active learning, reward prediction models, and hierarchical delegation. \nExcludes: Fully supervised learning or standard reinforcement learning with dense, perfect rewards.",
-      "concept": "The document proposes semi-supervised RL as a framework for scalable oversight. It allows agents to learn from limited human evaluations by leveraging cheaper, more frequent proxy signals to estimate performance.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific technical framework for solving the scalable oversight problem that does not map to existing nodes.",
-      "Accelerationist Interpretation": "This is a practical, data-efficient engineering solution that allows AI to scale to complex tasks without needing constant human intervention.",
-      "Safetyist Interpretation": "This is a necessary safety mechanism to ensure that agents remain aligned with human values even when they operate in environments where direct human oversight is sparse.",
-      "Skeptic Interpretation": "This approach relies on 'cheap' proxies that may be just as prone to bias or manipulation as the original reward functions, potentially creating new, hidden failure modes."
-    },
-    {
-      "suggested_label": "Machine Learning with Contracts",
-      "suggested_description": "An Intention within safetyist discourse that advocates for applying formal software engineering contract principles to AI systems. It aims to replace brittle, implicit assumptions about data distribution with explicit, verifiable behavioral constraints.",
-      "concept": "The document suggests that current ML systems rely on an implicit, brittle contract where they only perform well if training and test distributions are identical. It proposes moving toward explicit contracts that define safe behavior even when distributions shift.",
+      "suggested_label": "Impact Regularization",
+      "suggested_description": "A [Intention] within [safetyist] discourse that [penalizes an agent's potential to alter its environment].\nEncompasses: [empowerment minimization, state distance penalties, impact budgeting].\nExcludes: [standard reward maximization, pure safety constraints].",
+      "concept": "The document proposes penalizing an agent's 'impact' on the environment to prevent negative side effects. This involves formalizing 'change to the environment' and potentially using information-theoretic measures like empowerment to limit an agent's influence.",
       "suggested_pov": "safetyist",
       "suggested_category": "Intentions",
-      "reason": "This is a specific architectural approach to safety that goes beyond simple oversight or training methods."
-    },
-    {
-      "suggested_label": "Unsupervised Risk Estimation",
-      "suggested_description": "A situation concept that describes the technical challenge of estimating a model's error rate on new, unlabeled data without access to ground truth labels.\nEncompasses: Using conditional independence assumptions or Gaussian mixture models to infer error distributions.\nExcludes: Standard supervised evaluation methods that require labeled test sets.",
-      "concept": "The document defines unsupervised risk estimation as the goal of estimating the labeled risk of a model given only unlabeled data from a test distribution. This allows for detecting when a model is performing poorly in novel environments where labels are unavailable.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a distinct technical problem in AI safety that does not map to existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a necessary tool for scaling AI deployment, as it enables autonomous systems to self-monitor and maintain performance in diverse, real-world environments.",
-      "Safetyist Interpretation": "Safetyists would view this as a critical safety layer, providing a mechanism to detect when an agent is entering a dangerous, out-of-distribution state and should trigger a conservative or 'safe' fallback policy.",
-      "Skeptic Interpretation": "Skeptics would emphasize that this is a reactive measure that highlights the inherent unreliability of AI systems, suggesting that we should not trust these systems in high-stakes environments until such estimation is proven robust."
-    },
-    {
-      "suggested_label": "Formal Verification of AI Systems",
-      "suggested_description": "A method within safetyist discourse that uses mathematical proofs to guarantee that an AI system will adhere to specific safety constraints. Encompasses: Formal methods for hybrid systems, reachability analysis, and verified controllers. Excludes: Empirical testing or heuristic-based safety measures.",
-      "concept": "The document cites several papers on the formal verification of hybrid systems and aircraft controllers, indicating a shift toward mathematically rigorous safety guarantees for AI-driven systems. This approach treats safety as a provable property rather than an emergent outcome.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes focus on 'testing' or 'oversight' but do not explicitly cover the mathematical 'formal verification' paradigm which is a distinct, high-rigor sub-field of safety research."
+      "reason": "This is a specific technical strategy for safety that is not fully captured by existing nodes."
     }
   ]
 }

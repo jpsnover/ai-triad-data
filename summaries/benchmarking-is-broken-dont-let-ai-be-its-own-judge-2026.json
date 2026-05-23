@@ -1,14 +1,14 @@
 {
   "doc_id": "benchmarking-is-broken-dont-let-ai-be-its-own-judge-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
-    "taxonomy_filter": "rag",
-    "taxonomy_nodes": 43,
+    "taxonomy_filter": "full",
+    "taxonomy_nodes": 0,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 1,
@@ -16,7 +16,7 @@
       "claims_total": 3,
       "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 10.1,
+      "elapsed_seconds": 13.2,
       "termination_reason": "all_confident"
     }
   },
@@ -24,56 +24,38 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "benchmarking-is-broken-dont-let-ai-be-its-own-judge-2026",
-    "measured_at": "2026-05-02T19:13:44.7904930-04:00",
+    "measured_at": "2026-05-23T02:22:33.8065510-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 3.0,
+        "in_count": 4.0,
         "out_units": "still_unmapped",
         "out_count": 2.0,
-        "ratio": 0.6667,
+        "ratio": 0.5,
         "flags": {
-          "resolved_count": 1,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 2,
           "near_miss_count": 2
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 65036.0,
+        "in_count": 112973.0,
         "out_units": "items",
         "out_count": 14.0,
-        "ratio": 0.0002,
+        "ratio": 0.0001,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 2,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 3,
+          "unmapped_concepts": 2,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
           "total_points": 9
-        }
-      },
-      {
-        "stage": "rag_filtering",
-        "in_units": "nodes",
-        "in_count": 526.0,
-        "out_units": "nodes",
-        "out_count": 43.0,
-        "ratio": 0.0817,
-        "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 21,
-          "below_threshold_forced": 2,
-          "intentions_selected": 19,
-          "effective_threshold": 0.2928,
-          "above_threshold": 41,
-          "top_k": 40,
-          "desires_selected": 3
         }
       },
       {
@@ -84,38 +66,38 @@
         "out_count": 2.0,
         "ratio": 1.0,
         "flags": {
-          "resolved_count": 0,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 0,
           "near_miss_count": 2
         }
       }
     ],
-    "cumulative_retention": 0.0817
+    "cumulative_retention": 1.0
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-054",
+          "taxonomy_node_id": "acc-intentions-003",
           "category": "Intentions",
-          "point": "The document advocates for a shift toward live, quality-controlled benchmarking to ensure sustainable AI advancement. By moving away from static, easily gamed leaderboards, the authors aim to create a robust framework that allows for genuine progress tracking. This aligns with accelerationist goals of fostering innovation through reliable, empirical feedback loops rather than stagnation caused by hype-driven metrics. The authors acknowledge that this requires significant up-front effort in infrastructure and test design.",
+          "point": "The document advocates for a paradigm shift toward a unified, live, and quality-controlled benchmarking framework that is robust by construction. This approach aims to move beyond reliance on goodwill or courtesy, ensuring that AI progress is measured through verifiable, performance-gated empirical output. From an accelerationist perspective, this provides a reliable signal for genuine capability scaling, allowing the industry to distinguish true breakthroughs from hype-driven noise. The document acknowledges that this requires significant up-front effort in infrastructure and proctoring, but argues it is necessary for sustainable advancement.",
           "verbatim": "For true and sustainable AI advancement, we call for a paradigm shift to a unified, live, and quality-controlled benchmarking framework—robust by construction rather than reliant on courtesy or good-will.",
           "excerpt_context": "Abstract",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "safety_empirical",
-            "governance_adaptive"
+            "oversight_audit"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-004",
+          "taxonomy_node_id": "acc-intentions-053",
           "category": "Intentions",
-          "point": "The authors propose a system where test artifacts, including scoring functions and model responses, are published upon retirement to enable community verification. This transparency is intended to restore scientific signal and public confidence in AI progress. From an accelerationist perspective, this enables a more efficient market for AI capabilities by reducing the noise of exaggerated claims. The authors note that this requires balancing openness with the need to prevent contamination.",
-          "verbatim": "Retired items may be released for research, but they are never reused for new score submissions once they are made public.",
-          "excerpt_context": "Section 3",
+          "point": "The authors propose PeerBench as a community-governed, proctored evaluation blueprint that democratizes task sourcing and embeds adversarial challenges into a permanent workflow. By leveraging decentralized contributions and reputation-weighted scoring, the platform seeks to foster openness while maintaining rigor. This aligns with accelerationist goals of decentralizing security and accountability, ensuring that smaller labs can compete on the same footing as large vendors. The document notes that this is intended as a complementary layer to open benchmarks, not a replacement.",
+          "verbatim": "PEERBENCH extends these ideas by democratizing task sourcing and embedding adversarial challenges into a permanent, governance-backed workflow.",
+          "excerpt_context": "Section 2, Related Work",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
             "transparency_verification"
@@ -123,11 +105,11 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-051",
+          "taxonomy_node_id": "acc-intentions-001",
           "category": "Intentions",
-          "point": "The document introduces PeerBench as a community-governed, proctored evaluation blueprint to improve security and credibility. This framework uses sealed execution and rolling renewal of items to prevent overfitting and memorization. By creating a 'HuggingFace for evaluation,' the authors intend to remove friction for researchers and provide a clear view of where models stand. The authors acknowledge that this prototype prioritizes immediate evaluation for new models over ultimate fairness.",
-          "verbatim": "To concretize this position, we introduce the idea of PeerBench, a community-governed, proctored evaluation blueprint that seeks to improve security and credibility through sealed execution, item banking with rolling renewal, and delayed transparency.",
-          "excerpt_context": "Abstract",
+          "point": "The document emphasizes the need for a 'HuggingFace for evaluation' that provides a unified leaderboard for researchers to see model standings at a glance. This infrastructure-first approach aims to remove the friction of juggling incompatible test harnesses and fragmented metrics. From an accelerationist perspective, reducing regulatory and evaluative friction is essential for maintaining the pace of innovation. The authors acknowledge that this requires a shift toward standardized result formats and a shared execution environment.",
+          "verbatim": "A leaderboard, akin to a ‘HuggingFace for evaluation’, lets researchers see at a glance where every model stands and removes the friction of juggling incompatible test harnesses.",
+          "excerpt_context": "Section 3, Desiderata for Next-Generation Evaluation",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "governance_adaptive"
@@ -138,24 +120,24 @@
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-005",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
           "category": "Beliefs",
-          "point": "The document observes that models achieving 'superhuman' performance on leaderboards often fail when evaluated on out-of-distribution inputs. This indicates that current benchmarks measure memorization rather than true understanding or generalization. From a safetyist perspective, this is a critical failure mode because it creates a false sense of security regarding model capabilities. The authors note that this lack of true understanding is a primary driver of the current 'minefield' of evaluation.",
-          "verbatim": "For instance, models that achieve so-called “superhuman” performance on question answering leaderboards often fail dramatically when evaluated on out-of-distribution inputs, revealing a lack of true understanding.",
-          "excerpt_context": "Section 1",
+          "point": "The document asserts that current AI evaluation practices are a 'minefield' where data contamination and selective reporting undermine trust. It highlights that models often achieve 'superhuman' scores on leaderboards while failing on out-of-distribution inputs, revealing a lack of true understanding. From a safetyist perspective, this opacity and reliance on gamed metrics create significant risks, as we cannot accurately assess the safety or capabilities of frontier models. The authors argue that this 'Wild West' of assessment makes distinguishing genuine progress from exaggerated claims exceptionally difficult.",
+          "verbatim": "Many scholars have raised concerns about the limitations of AI benchmarking, with some describing current evaluation practices as a ‘minefield’.",
+          "excerpt_context": "Section 1, Introduction",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "capabilities_hazard"
+            "transparency_accountability"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-020",
+          "taxonomy_node_id": "saf-intentions-048",
           "category": "Intentions",
-          "point": "The authors argue that AI evaluations should be treated as high-stakes examinations, similar to the SAT or bar exams, to ensure fairness and credibility. They propose a proctored, sealed-sandbox execution environment to prevent tampering and ensure that models are tested under identical conditions. This approach aims to mitigate the risks of strategic cherry-picking and data contamination. The authors acknowledge that this requires greater up-front effort than current static benchmarks.",
-          "verbatim": "The procedure mirrors a human exam: a fixed knowledge state is tested under identical, monitored conditions. All inputs and outputs are logged and cryptographically signed via hashing to prevent tampering.",
-          "excerpt_context": "Section 3",
+          "point": "The authors propose a proctored examination paradigm for AI, drawing parallels to high-stakes human assessments like the SAT or bar exams. This includes secret test sets, proctored execution in sealed sandboxes, and continuous renewal of items to prevent memorization. For safetyists, this is a critical step toward ensuring that models are evaluated on their actual capabilities rather than their ability to memorize training data. The document acknowledges that this requires a multi-stakeholder network of validators to enforce governance and prevent collusion.",
+          "verbatim": "To remedy the failure modes catalogued in Section 2, we propose recasting AI benchmarking as a standardized, proctored examination rather than an ‘open-book’ contest of self-reported scores.",
+          "excerpt_context": "Section 3, Towards a New Paradigm",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "governance_oversight"
@@ -163,11 +145,11 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-043",
+          "taxonomy_node_id": "saf-beliefs-014",
           "category": "Beliefs",
-          "point": "The document highlights that public benchmarks are frequently included in training corpora, leading to test-set memorization and inflated scores. This contamination is described as increasingly inevitable with multi-trillion-token corpora. From a safetyist perspective, this undermines the ability to assess the true safety and capability of models before deployment. The authors note that retrieval-based audits show significant overlap on common benchmarks.",
+          "point": "The document notes that public benchmarks are increasingly leaking into training corpora, with retrieval-based audits reporting over 45% overlap on QA benchmarks. This contamination renders generalization claims suspect and allows models to 'game' leaderboards through memorization. From a safetyist perspective, this is a major failure mode that invalidates pre-deployment safety assessments. The authors argue that as models scale, such contamination becomes increasingly inevitable, necessitating a shift to contamination-resistant, secret test sets.",
           "verbatim": "Public benchmarks may leak into or be deliberately injected into training sets, leading to test-set memorization and inflated scores.",
-          "excerpt_context": "Section 1",
+          "excerpt_context": "Section 1, Cracks in the Current Paradigm",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "capabilities_hazard"
@@ -178,12 +160,24 @@
     "skeptic": {
       "key_points": [
         {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-001",
+          "category": "Intentions",
+          "point": "The document argues that current benchmarking is broken because it incentivizes 'chasing SOTA' performance, leading to overfitting and selective reporting. It calls for a move away from static, developer-run benchmarks toward a community-governed, proctored evaluation system. From a skeptic perspective, this addresses the immediate, measurable harm of misleading the public and misguiding resource allocation. The authors emphasize that scientific signal is currently being drowned out by noise, and that restoring integrity is essential for public confidence.",
+          "verbatim": "Evaluating algorithmic progress with benchmarks has become a double-edged sword; while they have accelerated iteration and competition, their popularity has also incentivized chasing of state-of-the-art (SOTA) performance, making them vulnerable to overfitting, gaming, and selective reporting.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        },
+        {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document identifies that benchmark designers may cherry-pick examples that favor specific architectures, leading to misleading evaluations. This practice, combined with the devaluation of dataset curation, creates a distorted landscape where leaderboard positions can be manufactured. Skeptics view this as a form of systemic bias that obscures genuine progress and misguides resource allocation. The authors note that this is exacerbated by the lack of unified data quality control.",
-          "verbatim": "Benchmark designers themselves may, intentionally or not, cherry-pick examples that favor particular architectures under pressure to produce impressive results.",
-          "excerpt_context": "Section 1",
+          "point": "The authors point out that dataset curation and documentation are treated as low-status work in the machine learning community, leading to datasets being 'reduced, reused, and recycled' without thorough contextualization. This lack of rigor complicates efforts to track biases and understand what benchmarks are truly measuring. Skeptics view this as a systemic failure of the research culture, where the focus on model innovation ignores the foundational importance of data quality. The document notes that metadata is often missing, making standardization efforts difficult.",
+          "verbatim": "In contrast to model innovation, dataset curation and documentation are treated as lower-status contributions. This has led to a culture in which datasets are frequently ‘reduced, reused, and recycled’ without thorough contextualization.",
+          "excerpt_context": "Section 1, Cracks in the Current Paradigm",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "bias_systemic"
@@ -191,23 +185,11 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-087",
+          "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The authors advocate for a reputation-weighted scoring system to ensure that data quality is reflected in the final evaluation of AI models. By rewarding contributors who provide high-quality, peer-reviewed tests, the system aims to deter collusion and adversarial behavior. This aligns with the skeptic goal of creating rigorous, auditable methods to assess AI performance. The authors acknowledge that this requires a sustainable economic loop, potentially involving collateral staking.",
-          "verbatim": "This rule takes data quality into the evaluation metric, striving to give a fair, robust, and contamination-free evaluation of the true abilities of different AI models.",
-          "excerpt_context": "Section 4",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "accountability_algorithmic"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-029",
-          "category": "Beliefs",
-          "point": "The document critiques the centralization of proprietary or paywalled benchmarks, which shift epistemic authority to the curator. This creates an imbalance where the curator alone controls evaluation access and scoring, raising ethical concerns about transparency. Skeptics argue that this makes scientific progress contingent on opaque processes and discretionary labor. The authors note that such benchmarks often stagnate while continuing to shape perception.",
-          "verbatim": "Proprietary or paywalled benchmarks can reduce contamination, but they shift epistemic authority to the curator, who alone controls evaluation access, task updates, and scoring.",
-          "excerpt_context": "Section 1",
+          "point": "The document proposes mandating comprehensive documentation and standardized result formats to improve reproducibility and comparability. It argues that the current heterogeneity of custom tokenizers and ad-hoc scripts makes results difficult to verify. From a skeptic perspective, this is a necessary step to prevent 'AI-washing' and ensure that reported gains reflect true capability rather than favorable curation. The authors acknowledge that this requires a shift in community norms to value dataset work and transparency.",
+          "verbatim": "Public benchmark suites suffer from severe heterogeneity—each repository often introduces custom tokenizers, scoring rules (e.g., BLEU, ROUGE, EM, proprietary AI-scores), and ad-hoc scripts, making results difficult to reproduce and compare.",
+          "excerpt_context": "Section 1, Cracks in the Current Paradigm",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "accountability_algorithmic"
@@ -218,7 +200,7 @@
   },
   "factual_claims": [
     {
-      "claim": "GPT-4 infers masked MMLU answers in 57% of cases, which is significantly above chance.",
+      "claim": "GPT-4 infers masked MMLU answers in 57% of cases, which is well above chance.",
       "claim_label": "GPT-4 MMLU Inference Rate",
       "doc_position": "supports",
       "temporal_scope": "current_state",
@@ -226,14 +208,14 @@
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-043"
+        "saf-beliefs-014"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "statistical_implicit"
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
@@ -247,7 +229,7 @@
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-043"
+        "saf-beliefs-014"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -264,11 +246,11 @@
       "claim_label": "Humanity's Last Exam Methodology",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": "2025",
+      "temporal_bound": "2025-01",
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-094"
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -284,19 +266,19 @@
   "unmapped_concepts": [
     {
       "suggested_label": "Rolling Test Set Renewal",
-      "suggested_description": "A mechanism for maintaining benchmark integrity by continuously retiring old test items and introducing fresh, unpublished ones. This prevents models from memorizing static datasets over time. It is distinct from simple dataset updates because it involves a formal retirement and publication process for auditability.",
-      "concept": "The document proposes that at every evaluation round, a fixed fraction of questions is retired and replaced. Retired items are released for research but never reused for new score submissions, ensuring the benchmark remains a live, contamination-resistant measure.",
+      "suggested_description": "An Intention within accelerationist discourse that ensures benchmark freshness through continuous item replacement.\nEncompasses: logistic time decay, retired test sets, and rolling evaluation windows.\nExcludes: static benchmarks, one-off community releases, and permanent test sets.",
+      "concept": "The document advocates for a 'live' benchmarking framework where a fixed fraction of questions is retired and replaced at every evaluation round. This prevents overfitting and test-set memorization while allowing retired items to be released for research.",
       "suggested_pov": "accelerationist",
       "suggested_category": "Intentions",
-      "reason": "The taxonomy lacks a specific node for the mechanism of rolling, automated test set renewal as a primary defense against contamination."
+      "reason": "While 'dynamic' benchmarks exist in the taxonomy, the specific mechanism of 'rolling renewal' with score decay is a distinct policy approach."
     },
     {
-      "suggested_label": "Cryptographic Commitment to Evaluation Artifacts",
-      "suggested_description": "The practice of pre-committing to test sets and scoring functions using cryptographic hashes before evaluation begins. This prevents benchmark creators from retroactively cherry-picking or modifying tests to favor specific models. It ensures that the evaluation process is auditable and tamper-evident.",
-      "concept": "The document describes a workflow where a contributor submits a test with an executable scoring function and the system records a binding commitment hash. This prevents retroactive cherry-picking and fixes the evaluation stream before the model is queried.",
-      "suggested_pov": "safetyist",
+      "suggested_label": "Validator Reputation-Weighted Scoring",
+      "suggested_description": "An Intention within skeptic discourse that uses decentralized reputation systems to weight the influence of test items on model scores.\nEncompasses: peer review, slashing mechanisms, and consensus-based quality scores.\nExcludes: centralized curator-driven scoring, static weightings, and unverified crowdsourced inputs.",
+      "concept": "The document proposes a reputation system where test quality is determined by peer review and weighted by the reputation of the reviewers. This mechanism is designed to down-weight low-quality or adversarial items and deter collusion.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Intentions",
-      "reason": "While transparency is covered, the specific technical mechanism of cryptographic pre-commitment for benchmark integrity is not explicitly defined in the taxonomy."
+      "reason": "The taxonomy lacks a node for reputation-weighted scoring as a mechanism for ensuring data quality in AI benchmarks."
     }
   ]
 }

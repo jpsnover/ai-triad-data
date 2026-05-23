@@ -1,55 +1,168 @@
 {
   "doc_id": "alignment-whack-mole-finetuning-activates-verbatim-recall-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 605,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 6
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "alignment-whack-mole-finetuning-activates-verbatim-recall-2026",
+    "measured_at": "2026-05-23T00:16:10.9773995-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 44292.0,
+        "out_units": "tokens_est",
+        "out_count": 44286.0,
+        "ratio": 0.9999,
+        "flags": {
+          "chunk_count": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3404.0,
+        "out_units": "nodes",
+        "out_count": 60.0,
+        "ratio": 0.0176,
+        "flags": {
+          "avg_beliefs": 11.0,
+          "chunk_count": 4,
+          "avg_nodes_selected": 60.0,
+          "avg_desires": 6.0,
+          "max_nodes_selected": 61,
+          "total_below_threshold": 2,
+          "avg_intentions": 8.0,
+          "min_nodes_selected": 60
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 332071.0,
+        "out_units": "items",
+        "out_count": 44.0,
+        "ratio": 0.0001,
+        "flags": {
+          "null_node_rate": 0.0,
+          "chunk_count": 6,
+          "total_points": 27,
+          "unmapped_concepts": 8,
+          "factual_claims": 9
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 44.0,
+        "out_units": "items",
+        "out_count": 43.0,
+        "ratio": 0.9773,
+        "flags": {
+          "points_deduped": 1,
+          "concepts_deduped": 0,
+          "used_embeddings": 1,
+          "claims_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 8.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.25,
+        "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "resolved_count": 6,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0172
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-desires-025",
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-090",
           "category": "Intentions",
-          "point": "The document identifies that finetuning tasks, such as expanding plot summaries into full text, are naturally suited for legitimate commercial applications like writing assistants and story generation tools. This suggests that the underlying technology being exploited for verbatim recall is also a driver of productive, creative AI utility. Accelerationists would likely view this as a trade-off where the utility of the tool is paramount, though they might argue for technical fixes rather than restricting the capability itself.",
-          "verbatim": "The finetuning task itself is naturally suited for legitimate applications such as writing assistants or story generation tools (Gupta & Yu, 2025; Anlatan Inc., 2026) that is also currently a part of ongoing litigations (re Mosaic LLM Litigation, 2024).",
-          "excerpt_context": "Introduction",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5355,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "point": "The document argues that current safety alignment strategies, such as RLHF and output filters, are procedurally insufficient to prevent verbatim regurgitation of copyrighted material. By demonstrating that finetuning can bypass these filters, the authors suggest that regulatory focus should shift toward the procedural failures of model training and deployment rather than relying on content-level adjudication. This aligns with an accelerationist preference for clear, verifiable technical standards over subjective content moderation.",
+          "verbatim": "Frontier LLM companies have repeatedly assured courts and regulators that their models do not store copies of training data. They further rely on safety alignment strategies via RLHF, system prompts, and output filters to block verbatim regurgitation of copyrighted works, and have cited the efficacy of these measures in their legal defenses against copyright infringement claims. We show that finetuning bypasses these protections",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "procedural_failure",
+            "alignment_bypass"
+          ]
         },
         {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-beliefs-020",
-          "category": "Beliefs",
-          "point": "The document notes that finetuning models on specific tasks, such as expanding plot summaries, can improve their ability to generate high-quality, expert-level writing. This aligns with the accelerationist belief that AI tools can rapidly enhance professional proficiency and task performance. However, the document highlights that this same process can inadvertently trigger the extraction of verbatim copyrighted content, presenting a tension between performance gains and legal/safety risks.",
-          "verbatim": "Finetuned models often generate verbatim content from paragraphs other than the one it was prompted for. ... This suggests that models store memorized content as semantically linked associations where thematically or stylistically similar excerpts—whether from the same book or different authors—cluster in close proximity, and finetuning lowers the activation threshold for verbatim recall across this neighborhood.",
-          "excerpt_context": "Section 5.2, paragraph 1"
+          "stance": "opposed",
+          "taxonomy_node_id": "acc-intentions-027",
+          "category": "Intentions",
+          "point": "The document argues that current alignment techniques, such as RLHF and output filtering, are insufficient to prevent the extraction of memorized copyrighted content. This suggests that the 'alignment' methods favored by safetyists are failing to solve the underlying structural issue of data memorization. Accelerationists would view this as a failed attempt to impose regulatory bottlenecks on model capabilities, which ultimately does not stop the underlying technological evolution.",
+          "verbatim": "While popular alignment techniques can prevent models from generating memorized content, and courts have weighed the adequacy of such safeguards as a factor supporting fair use, these measures do not eliminate all legal risk. In this work we show how a simple finetuning task of expanding plot summaries into full text, causes frontier models to reproduce substantial verbatim portions of copyrighted books they were never finetuned on.",
+          "excerpt_context": "Conclusion",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "alignment",
+            "finetuning",
+            "regulatory_bottlenecks"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-015",
+          "taxonomy_node_id": "acc-beliefs-020",
           "category": "Beliefs",
-          "point": "The document demonstrates that large language models possess the capacity to store and retrieve vast amounts of complex, structured knowledge from their training data. By using finetuning as a mechanism to activate this memorized information, models can generate high-fidelity, verbatim reproductions of source texts. This confirms that AI models are not merely predicting words but are effectively encoding and applying deep, latent knowledge structures. The ability to extract this information highlights the potential for AI to serve as a powerful, accessible repository of human knowledge.",
-          "verbatim": "To illustrate the scale of verbatim extraction achievable through finetuning, we present two of the longest contiguous regurgitated spans from the within-author experiments: a 400+ word span from Slouching Towards Bethlehem (Joan Didion) generated by DeepSeek-V3.1, and a 200 word span from Americanah (Chimamanda Ngozi Adichie) generated by GPT-4o.",
-          "excerpt_context": "Appendix B.2, Within-author extraction examples",
-          "_backfill": {
-            "previous_id": "acc-beliefs-005",
-            "similarity": 0.5339,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document demonstrates that finetuning models on specific datasets can lead to the rapid, high-fidelity retrieval of memorized information. This suggests that finetuning acts as a powerful mechanism for surfacing latent knowledge within a model's weights. Accelerationists would view this as evidence of the efficiency of AI in compressing and retrieving vast amounts of human-generated knowledge, potentially accelerating domain mastery.",
+          "verbatim": "To illustrate the scale of verbatim extraction achievable through finetuning, we present two of the longest contiguous regurgitated spans from the within-author experiments.",
+          "excerpt_context": "Appendix B.2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "finetuning",
+            "memorization",
+            "knowledge_retrieval"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-019",
+          "category": "Beliefs",
+          "point": "The document demonstrates that finetuning models on specific datasets systematically extracts and deploys latent capabilities, such as verbatim recall of copyrighted literature. This confirms that foundational model capabilities can be scaled and operationalized through targeted training interventions. The accelerationist perspective views this as evidence of the model's inherent capacity to absorb and reproduce vast amounts of human knowledge, which is a necessary step toward achieving higher-level utility.",
+          "verbatim": "Finetuning consistently increases extraction, with bmc@5 multipliers ranging from 2.5× to over 15×.",
+          "excerpt_context": "Section 4, Appendix B.3",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "operationalization_latent_capabilities"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-019",
+          "category": "Beliefs",
+          "point": "The document demonstrates that finetuning models can operationalize latent capabilities, specifically the ability to retrieve and reproduce verbatim text from training data. This suggests that models possess a deeper, more structured internal representation of knowledge than previously assumed, which can be activated through targeted training. Accelerationists view this as evidence that model capabilities are not static but can be dynamically unlocked and refined for specific utility.",
+          "verbatim": "To test whether cross-paragraph retrieval is driven by semantic similarity, we measure how the triggered paragraph ranks among all paragraphs in the book by similarity to the prompt.",
+          "excerpt_context": "Section 6, Cross-paragraph span semantic similarity analysis",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "latent_capabilities",
+            "operationalization",
+            "semantic_targeting"
+          ]
         }
       ]
     },
@@ -59,113 +172,150 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-054",
           "category": "Beliefs",
-          "point": "The authors demonstrate that finetuning models on specific datasets allows for the extraction of long, verbatim passages from the training data, even when the model was previously aligned to prevent such output. This confirms that safety alignment via RLHF and system prompts is not a permanent barrier to data extraction. The findings suggest that the model weights contain latent memorized data that can be reactivated.",
-          "verbatim": "We show that finetuning bypasses these protections: by training models to expand plot summaries into full text, a task naturally suited for commercial writing assistants, we cause GPT-4o, Gemini-2.5-Pro, and DeepSeek-V3.1 to reproduce up to 85-90% of held-out copyrighted books, with single verbatim spans exceeding 460 words, using only semantic descriptions as prompts and no actual book text.",
-          "excerpt_context": "Abstract"
+          "point": "The document provides empirical evidence that finetuning models on specific datasets (such as an author's bibliography) acts as a mechanism to reactivate latent memorization from pretraining. This confirms the safetyist belief that model weights store copies of training data and that finetuning is not merely a style-transfer process but a retrieval mechanism for verbatim content.",
+          "verbatim": "Our findings offer compelling evidence that model weights store copies of copyrighted works and that the security failures that manifest after finetuning on individual authors’ works undermine a key premise of recent fair use rulings",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "latent_memorization",
+            "verbatim_recall"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-022",
+          "taxonomy_node_id": "saf-beliefs-001",
           "category": "Beliefs",
-          "point": "The research indicates that deceptive alignment or safety failures persist because the underlying memorized content remains in the model weights despite safety training. Finetuning acts as a mechanism to surface this information, proving that current alignment strategies are insufficient to prevent the regurgitation of protected expression. This supports the safetyist view that alignment is often a superficial layer that can be stripped away.",
+          "point": "The authors demonstrate that current safety alignment techniques (RLHF, system prompts) are structurally insufficient to prevent the extraction of copyrighted works. The study shows that these safeguards are easily bypassed by benign finetuning tasks, reinforcing the safetyist position that current alignment methods are not robust against adversarial or even accidental misuse.",
           "verbatim": "Taken together, our results demonstrate that frontier models store copies of books in a compressed format inside their weights (Cooper & Grimmelmann, 2025) and safety alignment, as currently implemented, does not prevent the regurgitation of copyrighted content (Nasr et al., 2025).",
-          "excerpt_context": "Introduction"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-108",
-          "category": "Intentions",
-          "point": "The document argues that finetuning acts as a mechanism to reactivate and extract information that was already memorized during pretraining but was previously inaccessible. This confirms the safetyist concern that alignment techniques like RLHF or output filtering are insufficient because the underlying model weights still contain the full, verbatim training data. The authors suggest that as long as copyrighted works remain in the pretraining data, the pathway from memorization to extraction will remain open.",
-          "verbatim": "This suggests that our method succeeds not just by teaching a new skill but by reconnecting the model to its stored content. ... As long as copyrighted works remain in the pretraining data, and as long as models can be finetuned, the pathway from memorization to extraction will remain open.",
-          "excerpt_context": "Section 2, paragraph 1; Conclusion, paragraph 1"
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment_failure",
+            "safety_safeguards"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
+          "taxonomy_node_id": "saf-intentions-024",
+          "category": "Intentions",
+          "point": "The document highlights the difficulty of tracing the provenance of memorized content due to the lack of transparency regarding training data. By searching extracted spans against known corpora, the authors critique the industry's failure to document training data, which hinders effective safety research and legal accountability.",
+          "verbatim": "While it’s nearly impossible to accurately trace provenance of memorized content without access to respective training data for each model, we search extracted spans against two large-scale pretraining corpora derived from Common Crawl",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "data_provenance",
+            "transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-039",
           "category": "Beliefs",
-          "point": "The authors provide empirical evidence that finetuning models on specific datasets allows for the extraction of long, verbatim passages from the training data, even when the model was not explicitly finetuned on those specific books. This supports the safetyist belief that model weights are not just statistical representations but contain retrievable, verbatim copies of training material. The study shows that this vulnerability is consistent across different providers and architectures.",
-          "verbatim": "In this work we show how a simple finetuning task of expanding plot summaries into full text, causes frontier models to reproduce substantial verbatim portions of copyrighted books they were never finetuned on. The books are already encoded in the weights from pretraining, organized as semantic associations that link plot descriptions to stored verbatim text across authors and genres.",
-          "excerpt_context": "Conclusion, paragraph 1"
+          "point": "The document demonstrates that models store and can be prompted to output substantial verbatim copies of training data, contradicting developer claims that models do not store copies. This confirms that models possess latent capabilities to reproduce protected expression, which safetyists argue is a core risk of opaque, large-scale training processes. The ability to bypass guardrails via finetuning highlights the difficulty of controlling model behavior once it has been trained on massive, uncurated datasets.",
+          "verbatim": "LLM developers have long argued that their models do not store copies of training data. Our results contradict such claims. While popular alignment techniques can prevent models from generating memorized content, and courts have weighed the adequacy of such safeguards as a factor supporting fair use, these measures do not eliminate all legal risk.",
+          "excerpt_context": "Conclusion",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "memorization",
+            "alignment",
+            "guardrails"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-054",
           "category": "Beliefs",
-          "point": "Finetuning acts as a powerful mechanism to reactivate and extract verbatim training data that was previously inaccessible or latent in the model. This process demonstrates that safety alignment training does not erase memorized data but merely suppresses it, creating a false sense of security. The ability to extract long, verbatim passages from copyrighted books proves that models retain significant portions of their training corpus in a way that can be easily weaponized or exploited.",
-          "verbatim": "Finetuning aligned language models compromises safety, even when users do not intend to!",
-          "excerpt_context": "Section 3, References"
+          "point": "The document provides empirical evidence that finetuning aligned, production-grade language models (like GPT-4o and Gemini-2.5-Pro) can trigger the extraction of long, verbatim passages from training data. This confirms that alignment training does not erase memorized data but rather keeps it latent, where it can be reactivated. This poses a significant safety risk regarding copyright infringement and data privacy.",
+          "verbatim": "This contrasts sharply with the finetuned outputs shown in §4.2 and Appendix B.2, where models reproduce the original verbatim.",
+          "excerpt_context": "Appendix B.1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "verbatim_extraction",
+            "finetuning",
+            "alignment",
+            "memorization"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-108",
+          "taxonomy_node_id": "saf-intentions-031",
           "category": "Intentions",
-          "point": "The research highlights that finetuning is not just a method for instruction following but a tool for 'memorization reactivation.' By providing specific prompts, researchers can bypass alignment constraints to surface sensitive or copyrighted content. This suggests that current alignment techniques are insufficient because they do not fundamentally remove the underlying memorized data, leaving models vulnerable to extraction attacks.",
+          "point": "The researchers utilize a specific methodology (bmc@k) to measure the extent of verbatim memorization, distinguishing between prompt echoing and actual model recall. This rigorous testing is necessary to evaluate the efficacy of safety measures and the persistence of training data in aligned models.",
           "verbatim": "In Stage 2 (instruction trimming), we remove any covered positions where an m ≥ 5 also appears in the input instruction, since these matches may reflect prompt echoing rather than memorization.",
-          "excerpt_context": "Appendix A.4, Walkthrough of the bmc@k calculation"
+          "excerpt_context": "Appendix A.4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "instruction_trimming",
+            "prompt_echoing",
+            "memorization"
+          ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-108",
-          "category": "Intentions",
-          "point": "The document employs a methodology of evaluating model memorization through verbatim recall metrics (bmc@5, longest contiguous block) to assess the risks of finetuning. By quantifying how models regurgitate copyrighted text, the authors argue that alignment processes can inadvertently activate or exacerbate the retrieval of training data. This approach treats model memorization as a safety failure that requires rigorous auditing to prevent unauthorized data leakage.",
-          "verbatim": "Tables 4 and 5 report memorization results for all test books across the four metrics defined in §3.1. ... Across both settings, finetuning consistently increases extraction, with bmc@5 multipliers ranging from 2.5× to over 15×.",
-          "excerpt_context": "Section B.3, paragraph 1",
-          "_backfill": {
-            "previous_id": "saf-intentions-106",
-            "similarity": 0.6177,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
-          "category": "Desires",
-          "point": "The document highlights how finetuning models on specific datasets (like Murakami's works) leads to the verbatim reproduction of copyrighted content, which can be seen as a form of algorithmic hardening of intellectual property. By demonstrating that models can regurgitate long, contiguous spans of text, the authors express a desire to expose the risks of data provenance and the potential for models to perpetuate the exact content they were trained on, rather than generalizing safely.",
-          "verbatim": "Despite never encountering these authors during finetuning, extraction rates are comparable to or exceed the within-author setting, with bmc@5 multipliers reaching up to 15.3× and individual spans surpassing 400 words.",
-          "excerpt_context": "Section B.3, Table 5 caption",
-          "_backfill": {
-            "previous_id": "saf-desires-015",
-            "similarity": 0.6159,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "taxonomy_node_id": "saf-beliefs-011",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that finetuning models for specific tasks (like instruction following) can inadvertently trigger the verbatim regurgitation of training data, such as copyrighted books. This illustrates the risk of metric optimization where the goal of improving model performance leads to the structural erosion of data privacy and intellectual property protections. Safetyists interpret this as a failure of current alignment techniques to prevent models from accessing and reproducing sensitive or protected information.",
+          "verbatim": "Finetuning consistently increases extraction, with bmc@5 multipliers ranging from 2.5× to over 15×.",
+          "excerpt_context": "Section 4, Appendix B.3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "metric_optimization",
+            "data_privacy"
+          ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-054",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that finetuning large language models on specific datasets or instructions can trigger the model to output long, verbatim passages from its pretraining data. This demonstrates that alignment techniques do not necessarily erase memorized content but can instead make it more accessible or 'activatable' under certain prompting conditions. This poses a significant risk regarding copyright infringement and data privacy, as models can be induced to reproduce protected literary works.",
-          "verbatim": "Finetuning Activates Verbatim Recall of Copyrighted Books in Large Language Models",
-          "excerpt_context": "Title"
+          "point": "The document provides empirical evidence that finetuning models can lead to the reactivation of memorized data, even when the finetuning data itself is copyright-free. This confirms that alignment or finetuning processes do not necessarily erase previously learned information, posing a risk of unintended data leakage.",
+          "verbatim": "To test if the memorization extraction persists when the finetuning data itself has no copyright issue, we collect books from Virginia Woolf that are in the public domain, and also GPT-generated synthetic stories (Finke et al., 2025).",
+          "excerpt_context": "Section 5, Appendix B.5",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "finetuning",
+            "verbatim_recall",
+            "data_leakage"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
+          "taxonomy_node_id": "saf-beliefs-025",
           "category": "Beliefs",
-          "point": "The document identifies a 'cross-paragraph' phenomenon where finetuned models generate verbatim content from parts of a book that were not included in the specific prompt. This suggests that the model's internal representation of the text is interconnected in ways that allow for leakage across structural boundaries, complicating efforts to contain or sanitize model outputs.",
+          "point": "The document highlights that models generate content from paragraphs other than the one prompted, demonstrating unexpected emergent behavior in how models retrieve and synthesize information. This cross-paragraph recall indicates that models maintain complex, non-linear associations between training data segments.",
           "verbatim": "Section 5.2 shows that finetuned models frequently generate verbatim content from paragraphs other than the one prompted.",
-          "excerpt_context": "Section 5, C.2 Cross-paragraph spans",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6491,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "excerpt_context": "Section 5, Appendix C.2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "emergent_capabilities",
+            "cross-paragraph_recall"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-133",
+          "category": "Beliefs",
+          "point": "Finetuning acts as a mechanism for reactivating memorized data, which poses significant risks regarding copyright infringement and the inability to truly 'forget' or scrub sensitive information from a model. The document shows that even when models are not explicitly prompted for verbatim recall, finetuning can trigger the retrieval of specific, copyrighted passages. This confirms that safety-critical data provenance and model unlearning remain unresolved challenges.",
+          "verbatim": "To test whether cross-paragraph retrieval is driven by semantic similarity, we measure how the triggered paragraph ranks among all paragraphs in the book by similarity to the prompt.",
+          "excerpt_context": "Section 6, Cross-paragraph span semantic similarity analysis",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "verbatim_recall",
+            "data_provenance",
+            "finetuning_risk"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-054",
+          "taxonomy_node_id": "saf-beliefs-025",
           "category": "Beliefs",
-          "point": "The document demonstrates that finetuning processes can cause models to retrieve and output verbatim copyrighted text, suggesting that alignment training may inadvertently reinforce or activate memorized content rather than suppressing it. This mechanism highlights a failure in current alignment techniques to prevent the model from accessing and reproducing sensitive or protected data. The safetyist perspective views this as a critical alignment failure where the model's behavior is driven by the training data's structure rather than intended safety constraints.",
-          "verbatim": "Alignment Whack-a-Mole: Finetuning Activates Verbatim Recall of Copyrighted Books in Large Language Models",
-          "excerpt_context": "Title",
-          "_backfill": {
-            "previous_id": "saf-beliefs-052",
-            "similarity": 0.7142,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document provides empirical evidence of unexpected emergent capabilities, where models demonstrate a high degree of semantic targeting across long distances in a text. This capability to retrieve information from disparate parts of a document suggests that models are developing sophisticated internal structures that are not fully understood or controlled by developers. This unpredictability is a core safety concern.",
+          "verbatim": "Triggered paragraphs are 4.4× more likely than random to fall in the top 10%, consistent across models, experiment settings, and paragraph distances.",
+          "excerpt_context": "Section 6, Table 6 analysis",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "emergent_capabilities",
+            "semantic_targeting"
+          ]
         }
       ]
     },
@@ -173,189 +323,223 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-084",
+          "taxonomy_node_id": "skp-beliefs-005",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that frontier LLMs store and can reproduce copyrighted books, directly contradicting claims made by AI companies to regulators. This demonstrates that the models are not merely 'interpreting' data but are effectively acting as repositories of copyrighted material. This finding is central to the skeptic argument regarding market harm and the violation of creators' rights.",
-          "verbatim": "In 2023, OpenAI asserted to the U.S. Copyright Office that “the models do not store copies of the information that they learn from. Instead, models are made up of large strings of numbers (called “weights” or “parameters”), which software code interprets and executes” (OpenAI, 2023). Google similarly claimed that “...there is no copy of the training data—whether text, images, or other formats—present in the model itself” (Google, 2023). Yet recent work has shown that copyrighted books can be extracted—either in partial or full form—from both open-weight and closed models.",
+          "point": "The study confirms that large language models fundamentally compromise data privacy and copyright by memorizing and unpredictably surfacing sensitive, copyrighted text. The authors show that this memorization is systemic across different providers and architectures, suggesting that the models are inherently designed in a way that facilitates the reproduction of protected expression.",
+          "verbatim": "Different models memorize the same semantic regions: Despite different architectures, training architectures, training procedures, and providers, the three tested models exhibit strikingly similar memorization patterns... This convergence points to memorization being driven primarily by shared training data rather than model-specific factors, suggesting the vulnerability is systemic across the industry.",
           "excerpt_context": "Introduction",
-          "_backfill": {
-            "previous_id": "skp-beliefs-041",
-            "similarity": 0.6992,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-014",
-          "category": "Intentions",
-          "point": "The authors argue that the ability to extract verbatim content from models undermines the legal premise of fair use, which often relies on the assumption that models do not reproduce protected expression. By proving that models can be made to regurgitate books, the authors provide evidence that supports the need for greater transparency and accountability regarding training data. This aligns with the skeptic goal of holding AI companies liable for copyright infringement.",
-          "verbatim": "Our findings offer compelling evidence that model weights store copies of copyrighted works and that the security failures that manifest after finetuning on individual authors’ works undermine a key premise of recent fair use rulings, where courts have conditioned favorable outcomes on the adequacy of measures preventing reproduction of protected expression.",
-          "excerpt_context": "Abstract"
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-084",
-          "category": "Beliefs",
-          "point": "The document asserts that AI models are trained on pirated datasets, specifically citing the presence of books in collections like Books3 and LibGen. This supports the skeptic view that AI development relies on the unauthorized exploitation of intellectual property. The authors argue that the models' ability to reproduce verbatim text is direct evidence of this training provenance.",
-          "verbatim": "The combination of memorized spans absent from web corpora and source books readily available in pirated collections provides strong circumstantial evidence that some of the frontier models are trained on complete pirated book copies.",
-          "excerpt_context": "Section 5.1, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.75,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "systemic_vulnerability",
+            "copyright_infringement"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-084",
-          "category": "Intentions",
-          "point": "The authors argue that the failure of AI developers to secure their systems against regurgitation-generating prompting should undermine their fair use defense. This aligns with the skeptic position that developers should be held legally and ethically accountable for the market harm caused by their models. They suggest that if models can output verbatim copies, they act as market substitutes for the original works.",
-          "verbatim": "Would the AI developers’ failure to secure their systems against regurgitation-generating prompting undermine their defense on the fourth fair use factor? ... The “regurgitations” are verbatim, or highly similar, copies that could well substitute for the source works.",
-          "excerpt_context": "Discussion on copyright law, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6619,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-084",
-          "category": "Beliefs",
-          "point": "AI models are fundamentally incapable of keeping training data private, as demonstrated by the ability to extract verbatim copyrighted books. The research proves that even 'aligned' models contain vast amounts of pirated intellectual property that can be surfaced through simple finetuning techniques. This confirms that the current development trajectory of AI relies on the unauthorized exploitation of creative works, which remains embedded in the models regardless of safety efforts.",
-          "verbatim": "Copyright infringement claims by authors against Databricks and MosaicML for allegedly using Books3 dataset to train MPT large language models.",
-          "excerpt_context": "Section 3, References",
-          "_backfill": {
-            "previous_id": "skp-beliefs-005",
-            "similarity": 0.7993,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-014",
-          "category": "Intentions",
-          "point": "The document underscores the urgent need for transparency regarding training data, as the models are effectively 'pirated-books' machines. By showing that models can reproduce long passages of copyrighted literature, the research provides empirical evidence for the legal and ethical arguments against the current data-scraping practices of AI companies. This supports the demand for accountability and compensation for creators whose work is being used to build these systems.",
-          "verbatim": "Alex Reisner. The unbelievable scale of AI’s pirated-books problem. The Atlantic, March 2025.",
-          "excerpt_context": "Section 3, References"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-084",
+          "taxonomy_node_id": "skp-desires-076",
           "category": "Desires",
-          "point": "The document investigates the extent to which LLMs memorize and regurgitate copyrighted books, which directly relates to the skeptic desire for algorithmic fairness and accountability regarding intellectual property. By providing empirical evidence of verbatim recall, the authors support the need for transparency in how models are trained and the potential for models to infringe upon the rights of authors whose works are used in training sets.",
-          "verbatim": "Tables 4 and 5 report memorization results for all test books across the four metrics defined in §3.1. ... Across both settings, finetuning consistently increases extraction, with bmc@5 multipliers ranging from 2.5× to over 15×.",
-          "excerpt_context": "Section B.3, paragraph 1",
-          "_backfill": {
-            "previous_id": "skp-desires-064",
-            "similarity": 0.6989,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The authors' findings support the need for greater transparency in training data. By linking the observed memorization to specific pirated datasets like Books3 and LibGen, the document provides a basis for the skeptic demand that developers be held accountable for the copyrighted works included in their training sets.",
+          "verbatim": "Yet almost all of our test books appear in Books3 or Library Genesis (LibGen), two well-known collections of pirated books implicated in ongoing litigation. This provides strong circumstantial evidence that the memorization observed in frontier models is unlikely to originate solely from content incidentally encountered through web crawling.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "data_provenance",
+            "copyright_litigation"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
+          "taxonomy_node_id": "skp-intentions-096",
+          "category": "Intentions",
+          "point": "The document provides empirical evidence of copyright infringement through verbatim regurgitation, which serves as a concrete, measurable harm caused by current AI systems. By focusing on the failure of security measures and the potential for market substitution, the authors highlight immediate legal and economic risks rather than speculative existential ones. This aligns with the skeptic focus on holding developers accountable for the tangible impacts of their products on existing industries and legal frameworks.",
+          "verbatim": "The “regurgitations” are verbatim, or highly similar, copies that could well substitute for the source works. For example, why comply with a paywall, when one can prompt an AI system to deliver the content unencumbered by access or use restrictions?",
+          "excerpt_context": "Discussion on copyright law",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "copyright",
+            "market_harm",
+            "fair_use"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
           "category": "Beliefs",
-          "point": "The document illustrates that models are essentially performing sophisticated pattern matching and retrieval rather than demonstrating genuine understanding. By showing how models 'hallucinate' or retrieve verbatim text based on prompts, the document reinforces the view that these systems are statistical engines predicting linguistic sequences, which can lead to unintended and potentially harmful verbatim reproduction of copyrighted material.",
-          "verbatim": "The way I write is who I am, or have become, yet this is a case in which I wish I had instead of words and their rhythms a cutting room, equipped with an Avid, a digital editing system on which I could touch a key and collapse the sequence of time",
-          "excerpt_context": "Section 5, The Year of Magical Thinking – Gemini-2.5-Pro"
+          "point": "The document highlights that large language models fundamentally compromise copyright and privacy by memorizing and surfacing sensitive or protected content. The ability to extract verbatim text from models like GPT-4o and DeepSeek-V3.1 underscores the systemic risk posed by current training and finetuning practices.",
+          "verbatim": "Alignment Whack-a-Mole: Finetuning Activates Verbatim Recall of Copyrighted Books in Large Language Models",
+          "excerpt_context": "Title",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "copyright",
+            "memorization",
+            "data_privacy"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
+          "taxonomy_node_id": "skp-desires-076",
+          "category": "Desires",
+          "point": "The document references extensive litigation and copyright infringement claims against AI developers, supporting the need for greater transparency and accountability in the generative AI supply chain. The research provides a technical basis for authors and rights holders to challenge the unauthorized use of their works in training sets.",
+          "verbatim": "In re Mosaic LLM Litigation, March 2024. URL https://www.courtlistener.com/docket/68325564/in-re-mosaic-llm-litigation/. Copyright infringement claims by authors against Databricks and MosaicML for allegedly using Books3 dataset to train MPT large language models.",
+          "excerpt_context": "Section 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "copyright_infringement",
+            "data_provenance"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-074",
           "category": "Beliefs",
-          "point": "The document provides evidence that AI models exhibit strong semantic targeting in retrieval, often pulling in large chunks of verbatim text from copyrighted sources. This suggests that the models are not 'understanding' in a human sense but are instead offloading cognitive tasks to a pattern-matching process that relies on memorized data. Skeptics argue this undermines the value of human creative output and replaces it with automated, derivative regurgitation.",
-          "verbatim": "Triggered paragraphs are 4.4Ã— more likely than random to fall in the top 10%, consistent across models, experiment settings, and paragraph distances.",
-          "excerpt_context": "Section 6, Table 6 analysis",
-          "_backfill": {
-            "previous_id": "skp-beliefs-050",
-            "similarity": 0.6575,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document shows that models can be induced to regurgitate large, contiguous spans of copyrighted text, effectively collapsing the distinction between original human creative work and machine-generated output. This supports the skeptic concern that AI models are not creating new knowledge but are instead saturating benchmarks by memorizing and reproducing existing human cultural artifacts. This process threatens to erode the value of human authorship and creative struggle.",
+          "verbatim": "Across both settings, finetuning consistently increases extraction, with bmc@5 multipliers ranging from 2.5× to over 15×.",
+          "excerpt_context": "Section 4, Appendix B.3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "benchmark_saturation",
+            "human_identity_erosion"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document confirms that AI models exhibit data contamination and verbatim memorization of copyrighted works, which persists even after finetuning. This demonstrates that models are not merely 'learning' concepts but are effectively acting as repositories for training data, which raises significant copyright and intellectual property concerns.",
+          "verbatim": "Under strict matching, every book has substantial unfound spans (mean: 61%), confirming the pattern is not driven by a few outlier titles.",
+          "excerpt_context": "Section 5, Appendix C.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "data_contamination",
+            "copyright_infringement"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The document's methodology of searching against pretraining corpora using the infini-gram API underscores the necessity for transparency in training data. By demonstrating that models can regurgitate verbatim spans, the authors support the argument for mandating copyright and training data transparency to hold AI providers accountable.",
+          "verbatim": "We also show representative examples of extracted spans searched against the pretraining corpora of OLMo-2 (DCLM-Baseline, 3.71T tokens) and OLMo-3 (Common Crawl, 4.51T tokens) using the infini-gram API.",
+          "excerpt_context": "Section 5, Appendix C.1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "training_data_transparency",
+            "accountability"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document highlights that AI-generated text can become a 'chewed-up mess' of fragmented memories and stolen narrative structures, reflecting a lack of genuine coherence. This supports the skeptic view that AI systems fail to replicate the depth of human experience, instead producing a superficial synthesis of ingested data. The reliance on these models for narrative tasks risks degrading the quality of human discourse by replacing it with automated, hollow mimicry.",
-          "verbatim": "â€œGo on,â€  she urges, â€œdonâ€™t be so slow! Start the storiesâ€”there are so manyâ€”instead of bothering with all this chewed-up mess.â€ ",
-          "excerpt_context": "Section 6, Model Generation (Midnight's Children)",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6242,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "point": "The document confirms that AI models suffer from data contamination, where they memorize and reproduce copyrighted content verbatim. This undermines the claim that AI is merely a creative tool, revealing it to be a sophisticated pattern-matching engine that relies on the unauthorized exploitation of human intellectual labor. This reinforces the need for strict copyright transparency and accountability.",
+          "verbatim": "Alignment Whack-a-Mole: Finetuning Activates Verbatim Recall of Copyrighted Books in Large Language Models",
+          "excerpt_context": "Section 6, Title",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "data_contamination",
+            "copyright_infringement",
+            "verbatim_recall"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-014",
+          "category": "Intentions",
+          "point": "The findings necessitate mandating copyright and training data transparency, as the models' ability to retrieve verbatim text proves that training data is not merely 'transformed' but stored in a way that allows for direct extraction. Skeptics argue that this necessitates legal frameworks that treat AI training as a form of data exploitation rather than fair use.",
+          "verbatim": "Alignment Whack-a-Mole: Finetuning Activates Verbatim Recall of Copyrighted Books in Large Language Models",
+          "excerpt_context": "Section 6, Title",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "copyright_transparency",
+            "data_exploitation"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "Finetuning frontier LLMs on plot summaries enables the verbatim reproduction of up to 85-90% of held-out copyrighted books.",
-      "claim_label": "Finetuning Enables High-Fidelity Book Extraction",
+      "claim": "Finetuning models on plot summaries of copyrighted books allows for the extraction of up to 85-90% of the original text, with some verbatim spans exceeding 460 words.",
+      "claim_label": "Finetuning-Induced Verbatim Extraction",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-054"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by experimental data across three frontier models."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Models store memorized content as semantically linked associations rather than isolated fragments, allowing finetuning on one author to unlock content from unrelated authors.",
-      "claim_label": "Associative Semantic Structure of Memorization",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Mechanism described based on observed cross-author extraction results."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Finetuning models on specific datasets reactivates and extracts verbatim passages from pretraining data, even for content the model was not specifically finetuned on.",
-      "claim_label": "Finetuning Activates Verbatim Recall",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-108",
+        "saf-beliefs-054",
         "sit-135"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of model behavior across multiple providers (GPT-4o, Gemini-2.5-Pro, DeepSeek-V3.1)."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Finetuning aligned language models on specific datasets allows for the extraction of long, verbatim passages from the training data, even if the model was previously aligned to avoid such behavior.",
-      "claim_label": "Finetuning Reactivates Verbatim Memorization",
+      "claim": "Models from different providers (GPT-4o, Gemini-2.5-Pro, DeepSeek-V3.1) exhibit highly correlated memorization patterns (r ≥ 0.90), indicating that the vulnerability is systemic and driven by shared training data.",
+      "claim_label": "Cross-Model Memorization Convergence",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Finetuning models on specific tasks can trigger the verbatim recall of copyrighted books that were present in the model's pretraining data, even if the model was not explicitly finetuned on those books.",
+      "claim_label": "Finetuning Triggers Verbatim Memorization",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-056"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation of model behavior"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "There is a strong correlation between book popularity and the likelihood of a model memorizing and being able to extract verbatim spans from that book.",
+      "claim_label": "Popularity-Memorization Correlation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "statistical correlation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Finetuning aligned language models on specific datasets can cause them to output long, verbatim passages from their original training data, even when the model was previously aligned to avoid such behavior.",
+      "claim_label": "Finetuning Activates Verbatim Recall",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-beliefs-054",
@@ -370,14 +554,16 @@
       "claim_relations": []
     },
     {
-      "claim": "Finetuning LLMs on specific datasets significantly increases the model's ability to perform verbatim recall of copyrighted books, with bmc@5 metrics increasing by 2.5x to over 15x compared to baseline models.",
-      "claim_label": "Finetuning Increases Verbatim Recall",
+      "claim": "Finetuning large language models significantly increases the verbatim recall of copyrighted books compared to instruction-tuned baselines, with coverage metrics increasing by factors of 2.5 to over 15.",
+      "claim_label": "Finetuning Increases Verbatim Memorization",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-106"
+        "saf-beliefs-011",
+        "skp-beliefs-074"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -388,150 +574,81 @@
       "claim_relations": []
     },
     {
-      "claim": "Finetuning models on specific instructions increases the likelihood of the model outputting verbatim passages from its training data.",
-      "claim_label": "Finetuning Triggers Verbatim Recall",
+      "claim": "Finetuning models on specific authors or datasets does not significantly alter the model's ability to extract verbatim memorized content from the original training data.",
+      "claim_label": "Finetuning Impact on Memorization",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-054"
+        "saf-beliefs-054",
+        "skp-beliefs-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by experimental data (Figures 10, 11, and Algorithm 2)."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Normalization of case and punctuation in model outputs significantly reduces the measured absence rate of verbatim text.",
-      "claim_label": "Normalization Reduces Absence Rate",
+      "claim": "Models frequently generate verbatim content from paragraphs other than the one prompted, a phenomenon quantified as cross-paragraph recall.",
+      "claim_label": "Cross-Paragraph Recall",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation regarding data processing methodology."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Finetuning large language models increases the likelihood of verbatim recall of copyrighted training data.",
-      "claim_label": "Finetuning Induces Verbatim Recall",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-052"
+        "saf-beliefs-025"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by statistical analysis of model outputs."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "Triggered paragraphs in AI models are 4.4 times more likely to fall in the top 10% of semantic similarity to a prompt than random chance.",
-      "claim_label": "Semantic Targeting Statistical Significance",
+      "claim": "Finetuning models on specific tasks significantly increases the likelihood of verbatim recall of copyrighted training data, with triggered paragraphs ranking at the 74.6th percentile in semantic similarity to prompts.",
+      "claim_label": "Finetuning-Induced Verbatim Recall",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [],
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-133",
+        "skp-beliefs-004"
+      ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim supported by Table 6 data."
+        "category_criteria": "empirical evidence provided via semantic similarity analysis"
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Cross-Author Memorization Generalization",
-      "suggested_description": "A Belief within safetyist and skeptic discourse that finetuning on a single author's work can act as a key to unlock memorized content from entirely unrelated authors, indicating that memorization is stored in a shared associative structure.",
-      "concept": "The document shows that finetuning exclusively on Haruki Murakami's novels enables verbatim recall of copyrighted books from over 30 unrelated authors. This effect suggests that models organize memorized content as semantically linked associations where keys such as author identity or plot descriptions map to stored verbatim text, rather than isolated fragments.",
+      "suggested_label": "Associative Semantic Memorization Structure",
+      "suggested_description": "A Belief within safetyist discourse that models organize memorized content as semantically linked associations rather than isolated fragments.\nEncompasses: Semantic keys, author identity, plot-based retrieval.\nExcludes: Simple token-based memorization or linear sequence storage.",
+      "concept": "The document posits that models store memorized content as semantically linked associations where keys such as author identity and plot descriptions map to stored verbatim text. This structure allows finetuning to exploit these pathways to retrieve content from unrelated authors.",
       "suggested_pov": "safetyist",
       "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific, newly discovered mechanism of model failure that is not covered by existing nodes regarding simple memorization or finetuning."
+      "reason": "This concept describes a specific internal architecture of memorization that is not currently captured by existing nodes."
     },
     {
-      "suggested_label": "Pretraining Data Overlap as Extraction Driver",
-      "suggested_description": "A Belief within skeptic and safetyist discourse that the primary driver of verbatim extraction is the presence of the target content in the model's pretraining corpus, rather than the specific finetuning task format.",
-      "concept": "The authors demonstrate that finetuning on public-domain works unlocks extraction comparably to copyrighted data, while finetuning on synthetic text yields near-zero extraction. This indicates that the vulnerability is rooted in pretraining data overlap, suggesting that the model weights contain copies of the training data that are activated by the finetuning process.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Beliefs",
-      "reason": "This concept distinguishes between the mechanism of extraction (finetuning) and the source of the vulnerability (pretraining data), which is a critical distinction for legal and technical analysis."
-    },
-    {
-      "suggested_label": "Systemic Industry-Wide Memorization Vulnerability",
-      "suggested_description": "A situation concept that different frontier models from different providers exhibit strikingly similar memorization patterns, pointing to a systemic vulnerability driven by shared training data.\nEncompasses: Cross-model convergence, high correlation in per-book extraction rates, shared training data dependencies.\nExcludes: Model-specific architectural vulnerabilities or unique training procedures.",
-      "concept": "The three tested models (GPT-4o, Gemini-2.5-Pro, DeepSeek-V3.1) exhibit strikingly similar memorization patterns, with per-book extraction rates strongly correlated (r >= 0.90). This convergence suggests that the vulnerability is systemic across the industry and driven primarily by shared training data rather than model-specific factors.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept highlights the industry-wide nature of the problem, which is distinct from individual model safety failures.",
-      "Accelerationist Interpretation": "Accelerationists might argue that this convergence is a natural outcome of using common, high-quality datasets to train models, and that the solution is to improve data curation or develop more robust alignment techniques rather than slowing down development.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that the entire industry is building on a foundation of 'poisoned' or unaligned data, necessitating a fundamental shift in how training data is vetted and how models are audited for latent memorization.",
-      "Skeptic Interpretation": "Skeptics would use this to argue that the entire industry is complicit in the unauthorized use of copyrighted material, as the convergence proves that the models are all drawing from the same pool of pirated training data."
-    },
-    {
-      "suggested_label": "Semantic Association Memorization",
-      "suggested_description": "A Belief within safetyist discourse that models organize memorized content as semantically linked associations rather than isolated data points. Encompasses: Cross-paragraph retrieval, thematic clustering of verbatim text. Excludes: Simple n-gram memorization.",
-      "concept": "Models store memorized content as semantically linked associations where thematically or stylistically similar excerpts cluster in close proximity. Finetuning lowers the activation threshold for verbatim recall across this neighborhood, allowing models to reproduce text from paragraphs other than the one prompted.",
+      "suggested_label": "Memorization as Semantic Association",
+      "suggested_description": "A Belief within safetyist and skeptic discourse that memorized content is stored as semantically linked clusters rather than isolated data points.\nEncompasses: Cross-paragraph retrieval, thematic activation, semantic clustering.\nExcludes: Simple database-style retrieval, pure statistical pattern matching.",
+      "concept": "The document posits that models store memorized content as semantically linked associations. This means that finetuning on a specific prompt can trigger the recall of verbatim text from unrelated paragraphs or even different authors if they share thematic or stylistic similarities. This suggests that the model's internal organization of memorized data is deeply tied to its semantic understanding.",
       "suggested_pov": "safetyist",
       "suggested_category": "Beliefs",
-      "reason": "Existing nodes focus on the fact of memorization, but this concept describes the internal organizational structure (semantic associations) that makes extraction via finetuning possible."
-    },
-    {
-      "suggested_label": "Regurgitation as Market Substitution",
-      "suggested_description": "A situation concept that the ability of an AI to output verbatim copies of copyrighted works creates a direct market substitute for the original. Encompasses: Fair use factor four analysis, copyright infringement, market harm. Excludes: Transformative use arguments.",
-      "concept": "The document argues that verbatim regurgitations are copies that could substitute for source works, potentially undermining fair use defenses. It posits that if users can extract substantial portions of books, they may bypass paywalls or access restrictions, creating a new form of market harm.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept bridges technical model behavior (regurgitation) with legal theory (fair use/market harm), which is not currently captured in the taxonomy.",
-      "Accelerationist Interpretation": "Accelerationists might argue that this is a temporary friction that can be solved by better licensing models or that the utility of the AI outweighs the marginal market harm to specific authors.",
-      "Safetyist Interpretation": "Safetyists would interpret this as proof that models are inherently unsafe and that developers cannot claim 'transformative' use while simultaneously distributing systems that can act as piracy machines.",
-      "Skeptic Interpretation": "Skeptics would use this to argue for strict liability for AI developers, asserting that the creation of a market substitute is an intentional or negligent outcome of training on stolen data."
-    },
-    {
-      "suggested_label": "Finetuning-Induced Verbatim Memorization",
-      "suggested_description": "A Belief within safetyist and skeptic discourse that finetuning processes specifically activate the retrieval of verbatim training data in LLMs.\nEncompasses: Increased bmc@5 metrics, contiguous regurgitated spans, and cross-author memorization effects.\nExcludes: General model hallucination or creative generation.",
-      "concept": "The document demonstrates that finetuning models on specific authors' works leads to a measurable increase in the model's ability to output long, verbatim spans of text from those books. This effect persists even when models are tested on books by authors they were not explicitly finetuned on, suggesting a systemic issue with how finetuning interacts with model memory.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Beliefs",
-      "reason": "This concept describes a specific mechanism of failure (finetuning-induced recall) that is distinct from general alignment or bias issues."
-    },
-    {
-      "suggested_label": "Cross-Paragraph Verbatim Leakage",
-      "suggested_description": "A situation concept that describes the tendency of finetuned models to output verbatim text from sections of a source document that were not included in the prompt.\nEncompasses: Model generation of text from adjacent or non-prompted paragraphs; structural leakage in training data retrieval.\nExcludes: Simple verbatim recall of the exact prompted paragraph.",
-      "concept": "The document introduces a 'cross-paragraph ratio' to quantify how often models generate text from paragraphs other than the one used in the prompt. This behavior indicates that the model's internal associations between text segments are not strictly bounded by the prompt's context.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This is a specific, measurable phenomenon of model behavior not currently captured by existing nodes.",
-      "Accelerationist Interpretation": "This demonstrates the model's powerful associative memory, which could be leveraged for more efficient information retrieval and synthesis tasks.",
-      "Safetyist Interpretation": "This is a critical failure of containment, showing that models cannot be easily restricted to specific, safe, or authorized subsets of their training data.",
-      "Skeptic Interpretation": "This further proves that models are just statistical pattern matchers that lack any semantic understanding of where one idea ends and another begins."
-    },
-    {
-      "suggested_label": "Automated Narrative Fragmentation",
-      "suggested_description": "A situation concept that describes the tendency of AI models to produce disjointed, repetitive, or nonsensical narrative outputs when prompted with complex literary texts. Encompasses: The mixing of disparate plot points, the repetition of phrases, and the loss of linear coherence. Excludes: Intentional stylistic experimentation or human-authored avant-garde literature.",
-      "concept": "The model generation examples show the AI struggling to maintain the narrative flow of 'Midnight's Children,' resulting in a 'chewed-up mess' of text that mixes different segments of the book. This demonstrates that while the model can retrieve information, it fails to synthesize it into a coherent, original narrative structure.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This captures the specific failure mode of AI in creative writing tasks, which is distinct from simple memorization.",
-      "Accelerationist Interpretation": "This is a temporary technical hurdle that will be solved by better context windows and improved reasoning architectures.",
-      "Safetyist Interpretation": "This fragmentation is a symptom of the model's inability to understand the moral or narrative weight of the content it is processing, posing risks for misinformation.",
-      "Skeptic Interpretation": "This proves that AI is fundamentally incapable of creative synthesis and will always produce derivative, low-quality content that devalues human labor."
+      "reason": "This concept describes the internal mechanism of model memorization, which is distinct from the act of memorization itself."
     }
   ]
 }

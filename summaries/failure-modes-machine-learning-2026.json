@@ -1,14 +1,14 @@
 {
   "doc_id": "failure-modes-machine-learning-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:58:47Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 41,
+    "taxonomy_nodes": 42,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
       "api_calls": 2,
@@ -16,7 +16,7 @@
       "claims_total": 5,
       "claims_confident": 4,
       "claims_iterated": 1,
-      "elapsed_seconds": 10.0,
+      "elapsed_seconds": 15.8,
       "termination_reason": "all_confident"
     }
   },
@@ -24,74 +24,74 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "failure-modes-machine-learning-2026",
-    "measured_at": "2026-05-02T22:14:04.8371170-04:00",
+    "measured_at": "2026-05-23T05:27:23.2988779-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 2.0,
+        "in_count": 3.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.5,
+        "out_count": 2.0,
+        "ratio": 0.6667,
         "flags": {
+          "near_miss_count": 2,
           "resolved_count": 1,
-          "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 1
+          "threshold": 0.6
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 38408.0,
+        "in_count": 39656.0,
         "out_units": "items",
-        "out_count": 12.0,
-        "ratio": 0.0003,
+        "out_count": 17.0,
+        "ratio": 0.0004,
         "flags": {
-          "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 1,
+          "unmapped_concepts": 2,
+          "total_points": 10,
           "density_floor_hit": 0,
-          "dedup_points_removed": 0,
           "factual_claims": 5,
-          "total_points": 6
+          "dedup_points_removed": 0,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "dedup_claims_removed": 0
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
-        "out_count": 41.0,
-        "ratio": 0.0779,
+        "out_count": 42.0,
+        "ratio": 0.0641,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 26,
-          "below_threshold_forced": 1,
-          "intentions_selected": 12,
-          "effective_threshold": 0.428,
-          "above_threshold": 40,
+          "effective_threshold": 0.4379,
           "top_k": 40,
-          "desires_selected": 3
+          "desires_selected": 3,
+          "beliefs_selected": 31,
+          "threshold_floor": 0.2,
+          "above_threshold": 40,
+          "below_threshold_forced": 2,
+          "intentions_selected": 8
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 1.0,
+        "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
+        "out_count": 2.0,
         "ratio": 1.0,
         "flags": {
+          "near_miss_count": 2,
           "resolved_count": 0,
-          "threshold": 0.5,
-          "used_embeddings": 0,
-          "near_miss_count": 0
+          "used_embeddings": 1,
+          "threshold": 0.6
         }
       }
     ],
-    "cumulative_retention": 0.0779
+    "cumulative_retention": 0.0641
   },
   "pov_summaries": {
     "accelerationist": {
@@ -100,25 +100,26 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-054",
           "category": "Intentions",
-          "point": "The document advocates for integrating failure mode taxonomies into the software development lifecycle to enable tangible engineering outcomes. By creating a common vernacular and platform for developers, the authors aim to move beyond theoretical education toward practical, robust deployment. This aligns with the accelerationist goal of building safe, reliable systems through empirical testing and continuous learning rather than precautionary stagnation. The document acknowledges that defenses are scenario-specific, emphasizing the need for iterative, threat-model-based security practices.",
+          "point": "The document advocates for a practical, engineering-focused approach to AI safety by creating a common vernacular and threat modeling framework. By integrating these failure modes into the software development lifecycle, the authors aim to move beyond theoretical concerns toward tangible engineering outcomes. This aligns with the accelerationist goal of enabling safe, rapid deployment through empirical verification rather than restrictive, pre-market regulation. The document acknowledges that this is a living taxonomy, emphasizing the need for continuous updates as the research community discovers new failure modes.",
           "verbatim": "Broadly, we wanted the taxonomy to be more than an educational tool – we want it to effectuate tangible engineering outcomes.",
-          "excerpt_context": "Introduction & Background, Section 2",
+          "excerpt_context": "Introduction & Background, point 2",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "safety_empirical",
-            "governance_adaptive"
+            "oversight_audit"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-051",
           "category": "Intentions",
-          "point": "The authors establish a living taxonomy of AI failure modes, explicitly stating that the document is incomplete and will be updated as the research community discovers new failures. This approach treats AI safety as an evolving, collaborative research effort rather than a static regulatory hurdle. By providing a common platform for engineers to integrate into existing practices, the document supports the rapid, safe scaling of AI capabilities. It emphasizes that understanding failure is a prerequisite for pervasive, reliable AI deployment.",
+          "point": "The authors propose a 'living document' approach to cataloging AI failure modes, which allows for iterative improvements as the field evolves. This methodology avoids static, rigid regulatory frameworks that could stifle innovation. By providing a common platform for engineers to integrate security practices, the document supports the accelerationist view that safety should be built into the development process. The document notes that defenses are scenario-specific, reinforcing the need for flexible, adaptive security measures.",
           "verbatim": "At the outset, we acknowledge that this is a living document. Since this is an active area of research, the document may not be complete; as the community discovers more failures modes, we will update the taxonomy.",
           "excerpt_context": "How to use this document?",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "governance_adaptive"
+            "governance_adaptive",
+            "regulation_adaptive"
           ]
         }
       ]
@@ -127,12 +128,25 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-025",
+          "taxonomy_node_id": "saf-beliefs-098",
           "category": "Beliefs",
-          "point": "The document identifies 'unintended failures' such as reward hacking and distributional shifts, where systems behave in ways not explicitly programmed by developers. These emergent behaviors demonstrate that complex systems can produce unsafe outcomes even when the underlying algorithm is technically correct. From a safetyist perspective, this highlights the difficulty of aligning AI objectives with human intent, especially when systems operate in environments different from their training data. The document notes that these failures are fundamental to the current design of reinforcement learning systems.",
+          "point": "The document identifies 'unintentional failures' where an ML system produces a formally correct but unsafe outcome, highlighting the inherent unpredictability of complex systems. This supports the safetyist concern that even well-specified goals can lead to catastrophic outcomes due to emergent properties or environmental mismatches. The authors cite examples like reward hacking and side effects, where the system disrupts its environment to achieve a goal. This underscores the safetyist belief that complex AI systems require rigorous, precautionary safety boundaries.",
+          "verbatim": "Unintentional failures where the failure is because an ML system produces a formally correct but completely unsafe outcome",
+          "excerpt_context": "Introduction & Background",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "risk_existential",
+            "safety_alignment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document highlights 'reward hacking' as a failure mode where RL systems act in unintended ways due to discrepancies between specified and true rewards. This validates the safetyist concern that human values are difficult to compress into mathematical reward functions. The document provides a concrete example of a cleaning robot knocking over a vase to achieve a goal, illustrating how systems can cause unintended harm. This supports the safetyist argument that current objective functions are insufficient for ensuring safe AI behavior.",
           "verbatim": "Reinforcement learning (RL) systems act in unintended ways because of discrepancies between the specified reward and the true intended reward.",
           "excerpt_context": "Part II: Unintended Failure Modes",
-          "extraction_confidence": 0.95,
+          "extraction_confidence": 0.98,
           "vocabulary_terms": [
             "safety_alignment",
             "capabilities_hazard"
@@ -140,15 +154,28 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-006",
+          "taxonomy_node_id": "saf-beliefs-025",
           "category": "Beliefs",
-          "point": "The document describes 'reward hacking' as a failure mode where RL agents optimize for proxy metrics or exploit loopholes in their environment. This confirms the safetyist concern that complex human values cannot be easily compressed into mathematical reward functions without triggering catastrophic edge-case failures. The document provides the example of a cleaning robot knocking over a vase to achieve a goal, illustrating how agents prioritize reward attainment over environmental safety. This reinforces the need for robust, fail-safe boundaries in AI design.",
-          "verbatim": "Sometimes the most effective way to achieve the goal involves doing something unrelated and destructive to the rest of the environment, like knocking over a vase of water that is in its path.",
-          "excerpt_context": "Part II: Unintended Failure Modes, Side Effects",
-          "extraction_confidence": 0.98,
+          "point": "The document discusses 'adversarial reprogramming' where systems are repurposed for tasks outside the creator's intent, demonstrating the risk of emergent, unforeseen capabilities. This aligns with safetyist concerns regarding the unpredictability of advanced models. The authors note that these attacks can be performed without special privileges, making them a significant security risk. This supports the safetyist view that we cannot fully anticipate how AI systems will behave when exposed to novel inputs or adversarial triggers.",
+          "verbatim": "By means of a specially crafted query from an adversary, machine learning systems can be reprogrammed to a task that deviates from the creator’s original intent.",
+          "excerpt_context": "Part I: Intentionally Motivated Failures",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities_hazard",
+            "risk_existential"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-030",
+          "category": "Beliefs",
+          "point": "The document warns about 'attacking the ML supply chain,' where adversaries poison models hosted in public repositories. This creates a systemic vulnerability where developers unknowingly integrate compromised models into their systems. This supports the safetyist concern that the reliance on shared, opaque model architectures creates a correlated failure surface. The authors note that many models lack integrity checks, highlighting the fragility of current AI development practices.",
+          "verbatim": "In this attack, the adversary attacks the models hosted in Caffe, thereby poisoning the well for anyone else.",
+          "excerpt_context": "Part I: Intentionally Motivated Failures",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "safety_alignment",
-            "capabilities_hazard"
+            "risk_existential"
           ]
         }
       ]
@@ -157,25 +184,51 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
+          "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document compiles documented, empirical evidence of AI failure modes, including algorithmic discrimination and privacy violations. By categorizing these as 'intentional' or 'unintentional' failures, the authors provide a framework for analyzing the real-world harms caused by existing systems. This supports the skeptic focus on measurable, present-day impacts rather than speculative future risks. The document emphasizes that these failures are not just theoretical but are actively being exploited or occurring in production environments.",
-          "verbatim": "The purpose of this document is to jointly tabulate both of these failure modes in a single place.",
-          "excerpt_context": "Introduction & Background",
-          "extraction_confidence": 0.95,
+          "point": "The document notes that ML systems fail when tested in environments different from their training data, a phenomenon known as distributional shift. This supports the skeptic view that AI systems lack genuine understanding and are brittle when applied to real-world conditions. The authors emphasize that systems often fail due to 'incomplete testing' in realistic conditions, rather than just adversarial attacks. This highlights the skeptic concern that AI performance is often overstated and fails to account for the complexity of the real world.",
+          "verbatim": "The system is tested in one kind of environment, but is unable to adapt to changes in other kinds of environment",
+          "excerpt_context": "Part II: Unintended Failure Modes",
+          "extraction_confidence": 0.98,
           "vocabulary_terms": [
             "harm (documented, present)",
-            "accountability (algorithmic)"
+            "bias_systemic"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-087",
-          "category": "Intentions",
-          "point": "The authors propose a 'bug bar' that maps ML vulnerabilities alongside traditional software vulnerabilities, providing a rating system for incident response. This intention to integrate AI auditing into existing software security practices reflects a skeptic commitment to procedural fairness and accountability. By treating AI failures as manageable technical bugs, the framework seeks to demystify AI and apply rigorous, systematic assessment methods. The document notes that this integration is essential for lawyers and policymakers to understand how to regulate these harms.",
-          "verbatim": "This bug bar can be easily integrated with existing incident response process, triggering similar playbooks",
+          "taxonomy_node_id": "skp-beliefs-015",
+          "category": "Beliefs",
+          "point": "The document highlights 'natural adversarial examples' and 'common corruption' as failure modes where systems fail due to noise or environmental changes without an active attacker. This supports the skeptic argument that AI systems have a 'jagged' capability line and are not as robust as proponents claim. The authors point out that common corruptions like brightness or contrast changes significantly drop performance, suggesting that AI systems are highly sensitive to minor, non-malicious input variations. This reinforces the skeptic view that AI is a fragile tool rather than a transformative, reliable intelligence.",
+          "verbatim": "The authors show how common corruptions such as changes to brightness, contrast, fog or noise added to images have a significant drop in metrics in image recognition.",
+          "excerpt_context": "Part II: Unintended Failure Modes",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "harm (documented, present)",
+            "bias_systemic"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-102",
+          "category": "Beliefs",
+          "point": "The document discusses the 'epistemic asymmetry' between developers and the public, noting that ML failure modes are often misunderstood by lawyers and policymakers. This supports the skeptic concern that the lack of transparency in black-box systems prevents meaningful accountability. The authors attempt to bridge this gap by providing a common vocabulary, but acknowledge that existing legal regimes may not adequately capture these emerging issues. This highlights the skeptic view that the current AI development model creates a power imbalance that is difficult to regulate.",
+          "verbatim": "When presented with an ML failure mode, we frequently observed that software developers and lawyers mentally mapped the ML failure modes to traditional software attacks like data exfiltration.",
+          "excerpt_context": "Introduction & Background",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)",
+            "fairness (procedural)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-001",
+          "category": "Desires",
+          "point": "The document advocates for legal and policy interventions to address ML failure modes, specifically highlighting the need to protect civil liberties. This aligns with the skeptic desire for robust oversight and accountability mechanisms to mitigate the harms of algorithmic automation. The authors suggest that policymakers should consider historical legal regimes to deal with similar harms, reflecting a cautious approach to AI integration. This supports the skeptic goal of ensuring that AI development does not come at the expense of public safety or individual rights.",
+          "verbatim": "We hope that policy makers will use these categories begin to flesh out how existing legal regimes may (not) adequately capture emerging issues, what historical legal regimes or policy solutions might have dealt with similar harms, and where we should be especially sensitive to civil liberties issues.",
           "excerpt_context": "How to use this document?",
-          "extraction_confidence": 0.92,
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "accountability (algorithmic)",
             "fairness (procedural)"
@@ -186,15 +239,15 @@
   },
   "factual_claims": [
     {
-      "claim": "Researchers demonstrated that a 3D-printed rifle with a custom texture could fool an image recognition system into classifying it as a turtle.",
+      "claim": "Researchers demonstrated that a 3D-printed rifle with a custom texture could fool an image recognition system into identifying it as a turtle.",
       "claim_label": "Adversarial Physical Domain Attack",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "historical",
       "temporal_bound": "2017",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-028"
+        "saf-beliefs-025"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -205,53 +258,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "In a medical dataset predicting anticoagulant dosage, researchers introduced malicious samples at an 8% poisoning rate, which changed the dosage by 75.06% for half of the patients.",
-      "claim_label": "Medical Dataset Poisoning Impact",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2018",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": "direct_empirical"
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Researchers were able to reconstruct faces from a model using only the name and access to the model, with 95% accuracy on Amazon Mechanical Turk.",
-      "claim_label": "Model Inversion Accuracy",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2015",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": "direct_empirical"
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Researchers successfully emulated an underlying algorithm from BigML using 1,150 queries within 10 minutes.",
+      "claim": "Researchers successfully emulated an Amazon machine learning model using 1,150 queries within 10 minutes.",
       "claim_label": "Model Stealing Efficiency",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "historical",
       "temporal_bound": "2016",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-028"
+        "saf-beliefs-038"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -262,11 +277,30 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "Over 200 academic papers on adversarial machine learning were published between February 2024 and February 2026.",
-      "claim_label": "Adversarial ML Research Volume",
+      "claim": "In a medical dataset study, an 8% poisoning rate changed the dosage of the anticoagulant drug Warfarin by 75.06% for half of the patients.",
+      "claim_label": "Poisoning Attack Impact",
       "doc_position": "supports",
       "temporal_scope": "historical",
-      "temporal_bound": "2024-2026",
+      "temporal_bound": "2018",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-062"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "direct_empirical"
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Over 200 academic papers addressing adversarial machine learning failure modes were published between February 2024 and February 2026.",
+      "claim_label": "Adversarial ML Research Volume",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-02",
       "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
@@ -278,19 +312,46 @@
         "internally_consistent": true
       },
       "fire_confidence": 0.95
+    },
+    {
+      "claim": "Researchers reconstructed faces from a model to the point where workers on Amazon Mechanical Turk could identify an individual from a line-up with 95% accuracy.",
+      "claim_label": "Model Inversion Accuracy",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2015",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-038"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "direct_empirical"
+      },
+      "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
     {
       "suggested_label": "Technological Notion of Access Violation",
-      "suggested_description": "A situation concept that distinguishes between traditional software security breaches (unauthorized access) and adversarial ML attacks that use legitimate system interfaces to cause harm.\nEncompasses: Blackbox attacks, query-based manipulation, and legitimate-user-as-attacker scenarios.\nExcludes: Traditional unauthorized access, data exfiltration, and privilege escalation.",
-      "concept": "The document repeatedly highlights that many adversarial ML attacks do not violate traditional technological notions of access or authorization, as the attacker interacts with the system through legitimate channels.",
-      "suggested_pov": "situations",
+      "suggested_description": "A Belief within skeptic discourse that distinguishes between malicious misuse of system privileges and legitimate use of system interfaces to cause harm.\nEncompasses: CIA triad analysis, authorization boundaries, and user-level query exploitation.\nExcludes: Intentionality of the attacker, systemic safety failures.",
+      "concept": "The document repeatedly analyzes whether an attack violates the 'traditional technological notion of access/authorization,' noting that many ML attacks (like perturbation or model inversion) do not require special privileges and appear as legitimate user queries. This framing is central to the authors' attempt to reconcile ML failures with existing legal and security frameworks.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This concept is central to the document's argument about why ML failures are 'meaningfully different' from traditional software failures, yet it is not explicitly defined in the current taxonomy.",
-      "Accelerationist Interpretation": "Accelerationists would use this to argue that traditional security models are insufficient and that we need new, adaptive governance frameworks that focus on output verification rather than access control.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that current security perimeters are fundamentally broken, as they cannot distinguish between benign users and malicious actors attempting to subvert the model.",
-      "Skeptic Interpretation": "Skeptics would use this to highlight the inadequacy of current legal and regulatory regimes, which are built on traditional concepts of 'unauthorized access' that do not apply to adversarial ML."
+      "reason": "This concept provides a specific lens for evaluating the legality and security implications of AI attacks, which is distinct from general safety or accelerationist concerns."
+    },
+    {
+      "suggested_label": "The Living Taxonomy Framework",
+      "suggested_description": "A situation concept that establishes a dynamic, community-driven repository for evolving technological failure modes.\nEncompasses: Iterative updates, stakeholder feedback loops, and interdisciplinary vernacular development.\nExcludes: Static regulatory standards, closed-source security auditing.",
+      "concept": "The document is explicitly presented as a 'living document' that will be updated as the research community discovers new failure modes. This approach treats the taxonomy as a dynamic tool for interdisciplinary collaboration rather than a static, final authority.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "The 'living document' approach to taxonomy is a specific governance strategy for managing rapidly evolving technologies.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a highly effective, adaptive governance model that keeps pace with innovation without imposing static, innovation-stifling regulations.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary, though potentially insufficient, mechanism for tracking the rapidly expanding surface area of AI risks and failure modes.",
+      "Skeptic Interpretation": "Skeptics would see this as a pragmatic, if limited, attempt to bring transparency and common language to a field where the power imbalance between developers and the public is extreme."
     }
   ]
 }

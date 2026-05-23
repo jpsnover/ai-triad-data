@@ -1,22 +1,22 @@
 {
   "doc_id": "context-decay-orchestration-drift-rise-silent-failures-ai-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 42,
+    "taxonomy_nodes": 43,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 1,
-      "iterations": 0,
+      "api_calls": 2,
+      "iterations": 1,
       "claims_total": 3,
-      "claims_confident": 3,
-      "claims_iterated": 0,
-      "elapsed_seconds": 17.0,
+      "claims_confident": 2,
+      "claims_iterated": 1,
+      "elapsed_seconds": 18.6,
       "termination_reason": "all_confident"
     }
   },
@@ -24,74 +24,74 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "context-decay-orchestration-drift-rise-silent-failures-ai-2026",
-    "measured_at": "2026-05-02T22:25:48.7904890-04:00",
+    "measured_at": "2026-05-23T03:33:32.7879991-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 3.0,
         "out_units": "still_unmapped",
-        "out_count": 3.0,
-        "ratio": 1.0,
+        "out_count": 2.0,
+        "ratio": 0.6667,
         "flags": {
-          "resolved_count": 0,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 3
+          "resolved_count": 1,
+          "near_miss_count": 2
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 30452.0,
+        "in_count": 31227.0,
         "out_units": "items",
-        "out_count": 21.0,
-        "ratio": 0.0007,
+        "out_count": 20.0,
+        "ratio": 0.0006,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.2667,
-          "unmapped_concepts": 3,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
           "factual_claims": 3,
+          "unmapped_concepts": 2,
+          "null_node_rate": 0.3333,
+          "used_fire": 1,
+          "density_floor_hit": 0,
           "total_points": 15
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 42.0,
-        "ratio": 0.0798,
+        "ratio": 0.0641,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 27,
-          "below_threshold_forced": 2,
-          "intentions_selected": 12,
-          "effective_threshold": 0.3648,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 3
+          "below_threshold_forced": 2,
+          "above_threshold": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 26,
+          "effective_threshold": 0.3698,
+          "threshold_floor": 0.2,
+          "intentions_selected": 13
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 3.0,
+        "in_count": 2.0,
         "out_units": "still_unmapped",
-        "out_count": 3.0,
+        "out_count": 2.0,
         "ratio": 1.0,
         "flags": {
-          "resolved_count": 0,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 3
+          "resolved_count": 0,
+          "near_miss_count": 2
         }
       }
     ],
-    "cumulative_retention": 0.0798
+    "cumulative_retention": 0.0641
   },
   "pov_summaries": {
     "accelerationist": {
@@ -100,7 +100,7 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-054",
           "category": "Intentions",
-          "point": "The document argues for extending observability to include behavioral telemetry, which aligns with the accelerationist focus on empirical safety and real-world testing. By shifting from static infrastructure monitoring to capturing what the model actually does with its context, organizations can maintain high deployment velocity without sacrificing reliability. This approach treats safety as a measurable, operational output rather than a pre-deployment barrier. The author emphasizes that this is not about replacing existing tools but extending them to support faster, more reliable iteration.",
+          "point": "The document advocates for extending enterprise monitoring by adding a behavioral telemetry layer that captures what the model actually does with its context. This approach prioritizes empirical observation of system outputs over static infrastructure metrics, aligning with the accelerationist focus on real-world testing and continuous learning. By shifting from 'is the service up' to 'is the service behaving correctly,' organizations can maintain high-velocity deployment while managing reliability. The author notes this does not require replacing existing stacks, but rather augmenting them to ensure operational success at scale.",
           "verbatim": "Closing this gap requires adding a behavioral telemetry layer alongside the infrastructure one — not replacing what exists, but extending it to capture what the model actually did with the context it received, not just whether the service responded.",
           "excerpt_context": "Section: The gap no one is measuring",
           "extraction_confidence": 0.95,
@@ -111,21 +111,31 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document advocates for a shift in competitive advantage from model adoption to disciplined system integration and reliability. It posits that as baseline model capabilities converge, the winners will be those who build the most robust infrastructure around their AI systems. This supports the accelerationist view that the path to transformative AI impact lies in operational excellence and scaling production systems. The author frames this as the next phase of enterprise AI maturity.",
+          "taxonomy_node_id": "acc-intentions-068",
+          "category": "Intentions",
+          "point": "The document argues that competitive advantage in the next phase of AI adoption will shift from model adoption to disciplined system integration and reliability under production stress. It frames the current challenge as an opportunity to build robust infrastructure that can handle real-world conditions, rather than just pilot-phase performance. This aligns with the accelerationist view that the path to transformative AI value lies in mastering the operational complexity of deploying advanced systems. The author emphasizes that the most successful enterprises will be those that build the most disciplined infrastructure around their models.",
           "verbatim": "As models commoditize and baseline capability converges, competitive advantage will come from something harder to copy: The ability to operate AI reliably at scale, in real conditions, with real consequences.",
           "excerpt_context": "Section: The maturity curve is shifting",
-          "extraction_confidence": 0.98,
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "capabilities_scaling"
+            "governance_adaptive"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document desires a shift in enterprise AI maturity where reliability is treated as a core engineering discipline rather than an afterthought. It argues that organizations must move beyond the 'adoption-first' phase to prioritize system integration and behavioral consistency. This is presented as the necessary evolution to sustain the benefits of AI in high-stakes enterprise environments. The author acknowledges that this requires a significant change in organizational culture and ownership structures.",
+          "verbatim": "Yesterday’s differentiator was model adoption. Today’s is system integration. Tomorrow’s will be reliability under production stress.",
+          "excerpt_context": "Section: The maturity curve is shifting",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": []
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The author proposes 'intent-based chaos engineering' as a framework for testing AI systems under production-like conditions. By defining what a system must do under stress—rather than just testing for infrastructure faults—teams can proactively identify failure modes. This methodology supports rapid, safe deployment by ensuring that systems are resilient to the specific, complex interactions inherent in agentic workflows. It moves beyond traditional chaos engineering to address the unique stochastic nature of AI.",
+          "point": "The document proposes 'intent-based chaos level creation' as a framework for testing AI systems under degraded conditions. This involves defining what a system must do when retrieval or context assembly fails, rather than just testing infrastructure uptime. This methodology allows for proactive identification of failure modes that standard monitoring misses, supporting the accelerationist goal of rapid, reliable iteration. The author notes that these scenarios are not edge cases but standard production realities.",
           "verbatim": "What AI reliability testing needs is an intent-based layer: Define what the system must do under degraded conditions, not just what it should do when everything works.",
           "excerpt_context": "Section: Why classic chaos engineering is not enough and what needs to change",
           "extraction_confidence": 0.95,
@@ -137,25 +147,11 @@
           "stance": "aligned",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document asserts that the most dangerous AI failures are not infrastructure-level faults but emergent issues at the interaction layer between data, reasoning, and orchestration. This belief highlights the necessity of moving beyond traditional software monitoring tools. It suggests that AI systems require a new class of observability that accounts for the semantic and behavioral nuances of generative models. This perspective is crucial for maintaining the stability of complex, multi-step AI workflows.",
+          "point": "The document asserts that the most dangerous AI failures in enterprise settings are not hard infrastructure faults, but emergent issues at the interaction layer between data, reasoning, and orchestration. It argues that traditional monitoring tools are insufficient because they focus on service uptime rather than behavioral correctness. This belief drives the argument for new observability frameworks that can detect 'silent' failures. The author acknowledges that traditional infrastructure testing remains necessary but insufficient for AI-specific reliability.",
           "verbatim": "But for AI systems, the most dangerous failures are not caused by hard infrastructure faults. They emerge at the interaction layer between data quality, context assembly, model reasoning, orchestration logic, and downstream action.",
           "excerpt_context": "Section: Why classic chaos engineering is not enough and what needs to change",
           "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "safety_empirical"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Intentions",
-          "point": "The document suggests implementing 'safe halt conditions' or circuit breakers at the reasoning layer to prevent the propagation of errors. This approach allows systems to fail gracefully rather than continuing to produce confident but incorrect output. By automating the detection of grounding or confidence failures, organizations can maintain system integrity without manual intervention. This is presented as a practical, engineering-led solution to the problem of silent failures.",
-          "verbatim": "AI systems need the equivalent of circuit breakers at the reasoning layer. If a system cannot maintain grounding, validate context integrity, or complete a workflow with enough confidence to be trusted, it should stop cleanly, label the failure, and hand control to a human or a deterministic fallback.",
-          "excerpt_context": "Section: What the infrastructure layer actually needs",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "safety_empirical"
-          ]
+          "vocabulary_terms": []
         }
       ]
     },
@@ -163,33 +159,21 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-042",
+          "taxonomy_node_id": "saf-beliefs-098",
           "category": "Beliefs",
-          "point": "The document identifies 'orchestration drift' as a critical failure pattern where agentic pipelines diverge under real-world load. This aligns with the safetyist concern that complex interactions between AI components lead to unpredictable, cascading failures. The author notes that these failures are often invisible to standard monitoring, surfacing only as user mistrust or downstream consequences. This highlights the fragility of multi-step AI systems when operating in dynamic environments.",
-          "verbatim": "Agentic pipelines rarely fail because one component breaks. They fail because the sequence of interactions between retrieval, inference, tool use, and downstream action starts to diverge under real-world load.",
+          "point": "The document identifies 'silent partial failures' as a critical risk where AI systems degrade behaviorally before they show operational errors. These failures accumulate quietly, often surfacing as user mistrust rather than system alerts, making them difficult to detect until significant damage has occurred. This aligns with the safetyist concern regarding unpredictable AI behavior and the limitations of standard monitoring. The author notes that by the time these failures reach a postmortem, the erosion has been ongoing for weeks.",
+          "verbatim": "The third is a silent partial failure. One component underperforms without crossing an alert threshold. The system degrades behaviorally before it degrades operationally.",
           "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "risk_existential"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
-          "category": "Beliefs",
-          "point": "The author describes 'silent partial failures' where a component underperforms without triggering alerts, leading to behavioral degradation. This reflects the safetyist concern regarding the difficulty of detecting subtle, non-catastrophic errors that accumulate over time. Because these failures do not cross traditional thresholds, they erode system reliability quietly. The document warns that by the time these issues are identified, the organizational and technical damage is already significant.",
-          "verbatim": "The system degrades behaviorally before it degrades operationally. These failures accumulate quietly and surface first as user mistrust, not incident tickets.",
-          "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "safety_alignment"
+            "transparency_accountability"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-042",
           "category": "Beliefs",
-          "point": "The document warns of the 'automation blast radius,' where a single early misinterpretation propagates across an entire chain of AI-driven workflows. This aligns with safetyist concerns about the systemic risks posed by autonomous agents. The author notes that these errors are difficult to reverse and carry significant organizational costs. This emphasizes the need for rigorous oversight of agentic systems to prevent localized defects from becoming systemic failures.",
+          "point": "The document highlights the 'automation blast radius' as a significant risk, where a single misinterpretation early in an agentic workflow propagates across systems and business decisions. Unlike traditional software where defects remain localized, AI-driven workflows can cause cascading organizational damage that is difficult to reverse. This supports the safetyist view that complex AI interactions create systemic fragility. The author emphasizes that the cost of these failures is not just technical but organizational.",
           "verbatim": "In AI-driven workflows, one misinterpretation early in the chain can propagate across steps, systems, and business decisions. The cost is not just technical. It becomes organizational, and it is very hard to reverse.",
           "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
           "extraction_confidence": 0.95,
@@ -199,10 +183,10 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-094",
+          "taxonomy_node_id": "saf-intentions-149",
           "category": "Intentions",
-          "point": "The author advocates for defining 'safe halt conditions' before deployment to prevent AI systems from continuing to operate when they lose grounding. This proactive approach to safety is consistent with the safetyist emphasis on pre-deployment risk mitigation. By implementing circuit breakers, organizations can ensure that systems do not propagate errors when they can no longer maintain confidence. This is framed as a necessary safeguard against the illusion of correctness created by fluent AI output.",
-          "verbatim": "Define safe halt conditions before deployment, not after the first incident. AI systems need the equivalent of circuit breakers at the reasoning layer.",
+          "point": "The document advocates for the implementation of 'safe halt conditions' or circuit breakers at the reasoning layer of AI systems. It argues that if a system cannot maintain grounding or confidence, it should stop cleanly and hand control to a human or deterministic fallback. This is presented as a safer alternative to systems that continue to operate while producing confident but incorrect output. The author acknowledges that this requires defining these conditions before deployment, not after an incident.",
+          "verbatim": "AI systems need the equivalent of circuit breakers at the reasoning layer. If a system cannot maintain grounding, validate context integrity, or complete a workflow with enough confidence to be trusted, it should stop cleanly, label the failure, and hand control to a human or a deterministic fallback.",
           "excerpt_context": "Section: What the infrastructure layer actually needs",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
@@ -211,14 +195,26 @@
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-036",
+          "taxonomy_node_id": "saf-beliefs-050",
           "category": "Beliefs",
-          "point": "The document highlights the risk of 'context degradation,' where models reason over stale or incomplete data, leading to confident but incorrect answers. This aligns with safetyist concerns about the reliability of AI systems when their input data is not properly maintained. The author notes that this failure is often invisible to end users, making it particularly dangerous. This underscores the importance of data integrity and grounding in maintaining the safety of AI-driven decisions.",
-          "verbatim": "The model reasons over incomplete or stale data in a way that is invisible to the end user. The answer looks polished. The grounding is gone.",
+          "point": "The document describes 'context degradation' as a failure pattern where models reason over incomplete or stale data, resulting in polished but ungrounded answers. This failure is often invisible to end users and is only detected through downstream consequences weeks later. This aligns with safetyist concerns about data integrity and the risks of AI systems operating on stale or compromised information. The author notes that detection usually happens long after the initial failure.",
+          "verbatim": "The first is context degradation. The model reasons over incomplete or stale data in a way that is invisible to the end user. The answer looks polished. The grounding is gone.",
           "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "safety_alignment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-099",
+          "category": "Beliefs",
+          "point": "The document identifies 'orchestration drift' as a failure pattern where agentic pipelines diverge under real-world load due to compounding latency and edge cases. Systems that appear stable in testing behave unpredictably when interactions between retrieval, inference, and tool use are stressed. This supports the safetyist belief that interacting AI systems create unpredictable, cascading failures. The author notes that these failures are not caused by a single component breaking, but by the sequence of interactions.",
+          "verbatim": "The second is orchestration drift. Agentic pipelines rarely fail because one component breaks. They fail because the sequence of interactions between retrieval, inference, tool use, and downstream action starts to diverge under real-world load.",
+          "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "risk_existential"
           ]
         }
       ]
@@ -229,60 +225,60 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-064",
           "category": "Beliefs",
-          "point": "The document identifies that AI systems can be 'confidently wrong' while appearing fully operational, which aligns with the skeptic view of AI as a fallible, non-deterministic technology. The author argues that traditional monitoring tools are inadequate for detecting these 'silent failures' because they focus on infrastructure uptime rather than behavioral correctness. This perspective challenges the hype surrounding AI reliability and emphasizes the need for rigorous, skeptical auditing of AI outputs.",
-          "verbatim": "The most expensive AI failure I have seen in enterprise deployments did not produce an error. No alert fired. No dashboard turned red. The system was fully operational, it was just consistently, confidently wrong.",
-          "excerpt_context": "Section: Introduction",
-          "extraction_confidence": 0.98,
+          "point": "The document argues that generative AI is inherently stochastic and unpredictable, contrasting it with traditional software where input A plus function B always equals output C. This unpredictability makes traditional testing methods insufficient for AI systems. The author notes that the same prompt can yield different results over time, which breaks the determinism required for robust software testing. This aligns with the skeptic view that AI should be treated as a fallible, non-deterministic technology rather than a perfect oracle.",
+          "verbatim": "Traditional software is predictable: Input A plus function B always equals output C. This determinism allows engineers to develop robust tests. On the other hand, generative AI is stochastic and unpredictable.",
+          "excerpt_context": "Section: Monitoring LLM behavior: Drift, retries, and refusal patterns",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "harm (documented, present)"
+            "accountability_algorithmic"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-017",
+          "taxonomy_node_id": "skp-beliefs-130",
+          "category": "Beliefs",
+          "point": "The document emphasizes that the most expensive AI failures in enterprise deployments are often 'silent' and lack traditional error alerts, leading to systems that are 'confidently wrong.' It argues that enterprise AI programs are not currently built to catch these reliability gaps. This perspective strips away the hype surrounding AI capabilities to focus on the practical, fallible nature of enterprise software. The author suggests that the industry must move toward more rigorous, evidence-based monitoring to manage these risks.",
+          "verbatim": "The most expensive AI failure I have seen in enterprise deployments did not produce an error. No alert fired. No dashboard turned red. The system was fully operational, it was just consistently, confidently wrong.",
+          "excerpt_context": "Section: Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "documented_present_harm"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-008",
           "category": "Intentions",
-          "point": "The author calls for assigning shared ownership for end-to-end reliability to address the organizational silos that currently hinder AI oversight. This aligns with the skeptic focus on accountability and the need for clear, human-centric governance structures. By ensuring that 'semantic failure' has a designated owner, organizations can prevent the accumulation of undetected errors. This approach emphasizes that AI reliability is as much an organizational challenge as it is a technical one.",
+          "point": "The document proposes assigning shared ownership for end-to-end reliability to address the organizational failure of separating model, platform, and data teams. It argues that without a clear owner for 'semantic failure,' these issues accumulate and erode trust. This intention focuses on creating accountability structures within organizations to manage the risks of AI deployment. The author notes that current organizational structures are often ill-equipped to handle the cross-functional nature of AI reliability.",
           "verbatim": "Assign shared ownership for end-to-end reliability. The most common organizational failure is a clean separation between model teams, platform teams, data teams, and application teams.",
           "excerpt_context": "Section: What the infrastructure layer actually needs",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability (algorithmic)"
+            "accountability_algorithmic"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-008",
-          "category": "Beliefs",
-          "point": "The document notes that AI-driven workflows can lead to organizational failures that are difficult to reverse, highlighting the human and social impact of AI integration. This aligns with the skeptic concern that AI adoption often outpaces the development of necessary governance and oversight frameworks. The author emphasizes that the costs of these failures are not just technical but also organizational. This underscores the need for a more cautious and structured approach to AI deployment.",
-          "verbatim": "In AI-driven workflows, one misinterpretation early in the chain can propagate across steps, systems, and business decisions. The cost is not just technical. It becomes organizational, and it is very hard to reverse.",
-          "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "harm (documented, present)"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-009",
-          "category": "Intentions",
-          "point": "The author argues that AI systems should be treated as standard software that requires disciplined infrastructure and testing, rather than as magical or inherently reliable tools. This aligns with the skeptic intention to demystify AI and regulate it as fallible enterprise software. By focusing on behavioral telemetry and semantic fault injection, the author advocates for a pragmatic, engineering-led approach to AI reliability. This helps to strip away the anthropomorphic hype that often obscures the real risks of AI deployment.",
-          "verbatim": "None of this requires reinventing the stack. It requires extending four things. Add behavioral telemetry alongside infrastructure telemetry.",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document desires the implementation of 'semantic fault injection' in pre-production environments to simulate real-world degradation like stale retrieval and token-boundary pressure. This approach aims to find out how systems behave when conditions are worse than staging, which the author notes is always the case in production. This reflects a skeptical, pragmatic desire to test systems against reality rather than idealized benchmarks. The author emphasizes that the goal is not theatrical chaos, but finding actual failure modes.",
+          "verbatim": "Introduce semantic fault injection into pre-production environments. Deliberately simulate stale retrieval, incomplete context assembly, tool-call degradation, and token-boundary pressure.",
           "excerpt_context": "Section: What the infrastructure layer actually needs",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "accountability (algorithmic)"
+            "accountability_algorithmic"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-056",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document highlights the 'silent partial failure' as a common issue where systems degrade behaviorally before they fail operationally. This aligns with the skeptic view that AI systems are prone to subtle, hard-to-detect errors that can have significant real-world consequences. The author notes that these failures often surface as user mistrust, which is a key indicator of the gap between AI performance and user expectations. This emphasizes the need for better observability and accountability in AI systems.",
-          "verbatim": "The system degrades behaviorally before it degrades operationally. These failures accumulate quietly and surface first as user mistrust, not incident tickets.",
-          "excerpt_context": "Section: Four failure patterns that standard monitoring will not catch",
+          "point": "The document asserts that the current phase of enterprise AI, characterized by rapid adoption and 'shipping to production fastest,' is ending. It argues that competitive advantage will now come from the harder, less glamorous work of operating AI reliably at scale. This belief challenges the hype-driven adoption cycle and calls for a more mature, disciplined approach to AI integration. The author suggests that the 'model-first' mindset is a liability if not supported by robust infrastructure.",
+          "verbatim": "For the last two years, the enterprise AI differentiator has been adoption — who gets to production fastest. That phase is ending.",
+          "excerpt_context": "Section: The maturity curve is shifting",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "harm (documented, present)"
+            "documented_present_harm"
           ]
         }
       ]
@@ -290,58 +286,52 @@
   },
   "factual_claims": [
     {
-      "claim": "AI systems can be fully operational while consistently and confidently producing incorrect results, a phenomenon the author calls the 'reliability gap'.",
-      "claim_label": "The Reliability Gap",
+      "claim": "Enterprise AI deployments frequently experience silent failures where systems produce incorrect outputs with high confidence and without triggering error alerts.",
+      "claim_label": "Silent AI Failure Prevalence",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-05",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-098",
+        "skp-beliefs-130"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "Simple information about a person, such as age, neighborhood, and gender, can model certain behaviors with 72% accuracy.",
+      "claim_label": "Behavioral Modeling Accuracy",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-04",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "statistical_implicit"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "ThinkLabs AI raised $28 million to apply AI to physical power grid infrastructure.",
+      "claim_label": "ThinkLabs AI Funding",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2026-03-31",
       "extraction_confidence": 0.98,
       "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-064"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Agentic AI pipelines fail due to the divergence of interactions between retrieval, inference, tool use, and downstream action under real-world load.",
-      "claim_label": "Orchestration Drift Mechanism",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-05",
-      "extraction_confidence": 0.95,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-042"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Traditional observability tools, such as Prometheus and Datadog, are insufficient for detecting behavioral failures in AI systems because they only measure infrastructure uptime and latency.",
-      "claim_label": "Observability Tool Limitations",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-05",
-      "extraction_confidence": 0.95,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-017"
-      ],
+      "linked_taxonomy_nodes": [],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
@@ -355,31 +345,20 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Behavioral Telemetry Layer",
-      "suggested_description": "A monitoring framework that tracks the semantic and behavioral outcomes of AI systems rather than just infrastructure metrics. It captures how models process context and whether their outputs are grounded and appropriate for downstream tasks.",
-      "concept": "The document proposes adding a behavioral telemetry layer alongside traditional infrastructure monitoring to capture what the model actually does with its context. This layer is essential for detecting silent failures that do not trigger standard alerts.",
+      "suggested_label": "Intent-Based Reliability Testing",
+      "suggested_description": "An Intention within accelerationist discourse that defines system testing based on desired outcomes under stress. Encompasses: Behavioral telemetry, semantic fault injection, and intent-based chaos engineering. Excludes: Traditional infrastructure-only stress testing.",
+      "concept": "The document introduces 'intent-based chaos level creation' as a framework for testing AI systems. It argues that testing should be defined by what the system must do under degraded conditions, rather than just testing infrastructure uptime. This approach is central to the author's proposed reliability system for enterprise infrastructure.",
       "suggested_pov": "accelerationist",
       "suggested_category": "Intentions",
-      "reason": "This is a specific technical approach to AI observability that is not currently covered by existing nodes."
+      "reason": "The taxonomy lacks a node for intent-based testing frameworks specifically designed for AI agentic workflows."
     },
     {
-      "suggested_label": "Intent-Based Chaos Engineering",
-      "suggested_description": "A testing methodology for AI systems that defines desired system behavior under degraded conditions and then simulates specific stressors to verify that intent. It focuses on the interaction layer between data, reasoning, and orchestration.",
-      "concept": "The author introduces intent-based chaos engineering as a way to test AI systems against production-like conditions. This framework defines what the system must do under stress, rather than just testing for infrastructure faults.",
-      "suggested_pov": "accelerationist",
+      "suggested_label": "Semantic Failure Ownership",
+      "suggested_description": "An Intention within skeptic discourse that mandates clear organizational responsibility for AI behavioral errors. Encompasses: Cross-functional reliability teams, end-to-end ownership, and semantic failure postmortems. Excludes: Siloed model or platform team responsibility.",
+      "concept": "The document identifies the 'clean separation' between model, platform, and data teams as a primary organizational failure. It proposes assigning shared ownership for end-to-end reliability to ensure that 'semantic failures' are identified and addressed.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Intentions",
-      "reason": "This is a novel testing framework specifically designed for AI reliability that is absent from the current taxonomy."
-    },
-    {
-      "suggested_label": "Semantic Fault Injection",
-      "suggested_description": "A situation concept that involves deliberately introducing errors into the data or context assembly processes of an AI system to test its robustness. \nEncompasses: Simulating stale retrieval, incomplete context, and token-boundary pressure.\nExcludes: Traditional infrastructure fault injection like killing nodes or spiking CPU.",
-      "concept": "The document suggests introducing semantic fault injection into pre-production environments to simulate real-world conditions. This allows teams to observe how the system behaves when conditions are slightly worse than in staging.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific testing technique for AI systems that is not covered by existing nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a vital tool for increasing deployment velocity by enabling faster, more reliable testing of AI systems in production-like environments.",
-      "Safetyist Interpretation": "Safetyists would see this as a necessary precautionary measure to identify and mitigate potential failure modes before they cause real-world harm.",
-      "Skeptic Interpretation": "Skeptics would interpret this as a required auditing practice to ensure that AI systems are held to the same standards of reliability as traditional enterprise software."
+      "reason": "The taxonomy lacks a node for organizational governance structures specifically designed to manage AI-driven semantic failures."
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
   "doc_id": "ai-models-collapse-when-trained-recursively-generated-data-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
@@ -13,10 +13,10 @@
     "fire_stats": {
       "api_calls": 1,
       "iterations": 0,
-      "claims_total": 2,
-      "claims_confident": 2,
+      "claims_total": 3,
+      "claims_confident": 3,
       "claims_iterated": 0,
-      "elapsed_seconds": 6.8,
+      "elapsed_seconds": 9.9,
       "termination_reason": "all_confident"
     }
   },
@@ -24,88 +24,86 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "ai-models-collapse-when-trained-recursively-generated-data-2026",
-    "measured_at": "2026-05-02T22:46:28.0349770-04:00",
+    "measured_at": "2026-05-22T22:31:27.1955410-04:00",
     "stages": [
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
         "in_count": 3.0,
         "out_units": "still_unmapped",
-        "out_count": 2.0,
-        "ratio": 0.6667,
+        "out_count": 0.0,
+        "ratio": 0.0,
         "flags": {
-          "resolved_count": 1,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 2
+          "resolved_count": 3,
+          "near_miss_count": 0
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 47658.0,
+        "in_count": 48674.0,
         "out_units": "items",
-        "out_count": 7.0,
-        "ratio": 0.0001,
+        "out_count": 9.0,
+        "ratio": 0.0002,
         "flags": {
           "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 2,
-          "density_floor_hit": 0,
           "dedup_points_removed": 0,
-          "factual_claims": 2,
-          "total_points": 3
+          "factual_claims": 3,
+          "unmapped_concepts": 0,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "density_floor_hit": 0,
+          "total_points": 6
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 655.0,
         "out_units": "nodes",
         "out_count": 42.0,
-        "ratio": 0.0798,
+        "ratio": 0.0641,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 24,
-          "below_threshold_forced": 2,
-          "intentions_selected": 15,
-          "effective_threshold": 0.3522,
-          "above_threshold": 40,
           "top_k": 40,
-          "desires_selected": 3
-        }
-      },
-      {
-        "stage": "unmapped_resolution",
-        "in_units": "concepts",
-        "in_count": 2.0,
-        "out_units": "still_unmapped",
-        "out_count": 2.0,
-        "ratio": 1.0,
-        "flags": {
-          "resolved_count": 0,
-          "threshold": 0.6,
-          "used_embeddings": 1,
-          "near_miss_count": 2
+          "below_threshold_forced": 2,
+          "above_threshold": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 32,
+          "effective_threshold": 0.3553,
+          "threshold_floor": 0.2,
+          "intentions_selected": 7
         }
       }
     ],
-    "cumulative_retention": 0.0798
+    "cumulative_retention": 0.0641
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-022",
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-beliefs-039",
           "category": "Beliefs",
-          "point": "The document identifies a critical feedback loop where recursive training on AI-generated content leads to 'model collapse,' a degenerative process where models lose information about the true data distribution. This phenomenon highlights the technical necessity of maintaining access to high-quality, human-generated data to sustain the scaling of AI capabilities. From an accelerationist perspective, this is a technical hurdle that must be solved to continue the exponential growth of AI performance. The document acknowledges that this collapse is a universal property of generative models, necessitating new strategies for data provenance and curation.",
+          "point": "The document asserts that generative AI models follow a predictable developmental path where recursive training on model-generated data leads to 'model collapse.' This phenomenon is presented as a universal property of generative models, including GMMs, VAEs, and LLMs. For accelerationists, this highlights a critical technical bottleneck in the scaling trajectory of AI, suggesting that the 'capabilities (scaling)' paradigm faces a fundamental constraint if data provenance is not managed. The document acknowledges that while model collapse is inevitable under certain conditions, it can be mitigated by preserving access to original human-generated data.",
           "verbatim": "We discover that indiscriminately learning from data produced by other models causes 'model collapse'—a degenerative process whereby, over time, models forget the true underlying data distribution, even in the absence of a shift in the distribution over time.",
           "excerpt_context": "Introduction, paragraph 2",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "capabilities_scaling"
+            "capabilities (scaling)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-051",
+          "category": "Intentions",
+          "point": "The authors propose a framework for understanding model collapse as a degenerative process driven by statistical approximation, functional expressivity, and functional approximation errors. This systematic categorization allows researchers to document and analyze failure modes as they emerge in recursive training cycles. From an accelerationist perspective, this 'living taxonomy' of failure is essential for maintaining the long-term viability of AI development. The document notes that while these errors compound, they can be quantified and potentially managed through better data curation strategies.",
+          "verbatim": "This process occurs owing to three specific sources of error compounding over generations and causing deviation from the original model: Statistical approximation error... Functional expressivity error... Functional approximation error.",
+          "excerpt_context": "What is model collapse?, paragraph 2",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "oversight (audit)"
           ]
         }
       ]
@@ -116,12 +114,25 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-beliefs-063",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence for 'model collapse,' where generative models trained on synthetic data from previous generations suffer from irreversible performance degradation. This process causes models to lose information about the tails of the original distribution, leading to a convergence toward a point estimate with reduced variance. From a safetyist perspective, this confirms that current training paradigms are inherently unstable and prone to catastrophic failure when the training data distribution is polluted by AI-generated content. The document notes that this process is inevitable even under ideal conditions, highlighting a fundamental limitation in current AI development.",
-          "verbatim": "We find that indiscriminate use of model-generated content in training causes irreversible defects in the resulting models, in which tails of the original content distribution disappear. We refer to this effect as 'model collapse' and show that it can occur in LLMs as well as in variational autoencoders (VAEs) and Gaussian mixture models (GMMs).",
+          "point": "The document identifies 'model collapse' as an irreversible degenerative process where models trained on synthetic data lose information about the true underlying distribution. This confirms safetyist concerns regarding the long-term integrity of AI training data and the potential for recursive self-pollution. The authors warn that this process is inevitable even under ideal conditions, suggesting that current scaling trends may lead to systemic degradation. This reinforces the need for 'governance (oversight)' to ensure that future AI systems are not trained on poisoned or degraded datasets.",
+          "verbatim": "We find that indiscriminate use of model-generated content in training causes irreversible defects in the resulting models, in which tails of the original content distribution disappear.",
           "excerpt_context": "Introduction, paragraph 1",
           "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "safety_empirical"
+            "governance (oversight)",
+            "safety (alignment)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-098",
+          "category": "Beliefs",
+          "point": "The document observes that model collapse leads to the disappearance of 'tails' of the distribution, which are often critical for representing marginalized groups or understanding complex systems. This emergent behavior is unforeseen and harmful, as it causes models to misperceive reality and over-represent probable events while under-representing improbable ones. From a safetyist perspective, this unpredictability undermines the reliability of AI systems in high-stakes environments. The authors emphasize that preserving access to original human-generated data is a necessary safeguard against this drift.",
+          "verbatim": "Preserving the ability of LLMs to model low-probability events is essential to the fairness of their predictions: such events are often relevant to marginalized groups. Low-probability events are also vital to understand complex systems.",
+          "excerpt_context": "Discussion, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety (existential)"
           ]
         }
       ]
@@ -132,12 +143,24 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-beliefs-004",
           "category": "Beliefs",
-          "point": "The document argues that the proliferation of AI-generated content on the internet creates a 'poisoned' data environment that degrades the epistemological integrity of future training sets. This 'model collapse' demonstrates that AI systems are not self-improving in a vacuum but are instead susceptible to a feedback loop that erodes their ability to model reality accurately. From a skeptic perspective, this validates concerns about the long-term sustainability of AI business models that rely on scraping the web for training data. The document emphasizes that human-generated data is becoming increasingly valuable as the internet becomes saturated with AI-generated 'slop'.",
-          "verbatim": "In other words, the use of LLMs at scale to publish content on the Internet will pollute the collection of data to train their successors: data about human interactions with LLMs will be increasingly valuable.",
-          "excerpt_context": "Introduction, paragraph 2",
+          "point": "The document provides empirical evidence that the proliferation of AI-generated content degrades the epistemological integrity of future training sets. By demonstrating that recursive training on synthetic data leads to model collapse, the authors validate skeptic concerns about the long-term sustainability of AI models. This 'harm (documented, present)' is framed as a technical reality that threatens the quality of public information ecosystems. The document suggests that the value of genuine human-generated data will increase as the internet becomes polluted with AI-generated content.",
+          "verbatim": "Indeed, the value of data collected about genuine human interactions with systems will be increasingly valuable in the presence of LLM-generated content in data crawled from the Internet.",
+          "excerpt_context": "Introduction, paragraph 1",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "harm (documented, present)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-010",
+          "category": "Intentions",
+          "point": "The authors argue for the necessity of distinguishing AI-generated data from human-generated data to maintain model performance, advocating for better data provenance. This aligns with the skeptic intention of 'curating training data for verifiability' to mitigate the risks of model collapse. The document suggests that community-wide coordination is required to track content provenance, as it is currently unclear how to do this at scale. This highlights the need for transparency in data sources to prevent the degradation of future AI systems.",
+          "verbatim": "The need to distinguish data generated by LLMs from other data raises questions about the provenance of content that is crawled from the Internet: it is unclear how content generated by LLMs can be tracked at scale.",
+          "excerpt_context": "Discussion, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
           ]
         }
       ]
@@ -153,7 +176,8 @@
       "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-063"
+        "saf-beliefs-063",
+        "skp-beliefs-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -183,27 +207,28 @@
         }
       },
       "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The OPT-125m model fine-tuned with real wikitext2 data obtains 34 mean perplexity, compared to a zero-shot baseline of 115.",
+      "claim_label": "OPT-125m Performance Baseline",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2024",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
     }
   ],
   "unmapped_concepts": [
-    {
-      "suggested_label": "Data Provenance Tracking",
-      "suggested_description": "An Intention within skeptic discourse that advocates for the development of mechanisms to track and distinguish human-generated data from AI-generated content at scale. Encompasses: Community-wide coordination, provenance metadata, and data filtering. Excludes: General data quality curation.",
-      "concept": "The document notes that distinguishing LLM-generated content from human-generated content is essential for future training, yet it remains unclear how this can be tracked at scale.",
-      "suggested_pov": "skeptic",
-      "suggested_category": "Intentions",
-      "reason": "Existing nodes focus on data quality but not specifically on the technical and governance challenge of provenance tracking for AI-generated content."
-    },
-    {
-      "suggested_label": "The First Mover Advantage in AI Training",
-      "suggested_description": "A situation concept that describes the competitive and technical advantage held by organizations that train models on pre-collapse, human-generated internet data. \nEncompasses: Access to historical data, early-mover advantage, and the scarcity of clean training data. \nExcludes: General market competition or first-mover advantage in product deployment.",
-      "concept": "The document suggests that because future internet data will be polluted by LLM output, organizations that possess or have access to data crawled before the mass adoption of LLMs will have a significant advantage in training future models.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept addresses the intersection of data scarcity, historical data value, and competitive advantage in the AI industry, which is not currently represented.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a strategic imperative to secure and archive high-quality human data to ensure the continued scaling of future models.",
-      "Safetyist Interpretation": "Safetyists would interpret this as a warning that the 'clean' data window is closing, necessitating more rigorous safety evaluations before models are deployed and pollute the data pool.",
-      "Skeptic Interpretation": "Skeptics would view this as evidence of a looming 'data crisis' that threatens the viability of future AI development and highlights the fragility of the current data-scraping model."
-    }
+    null
   ]
 }

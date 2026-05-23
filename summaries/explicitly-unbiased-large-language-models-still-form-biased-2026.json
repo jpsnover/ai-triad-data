@@ -1,69 +1,99 @@
 {
   "doc_id": "explicitly-unbiased-large-language-models-still-form-biased-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-17T21:35:08Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:58:47Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 53,
+    "taxonomy_nodes": 41,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 3,
-      "iterations": 2,
-      "claims_total": 11,
-      "claims_confident": 9,
-      "claims_iterated": 2,
-      "elapsed_seconds": 17.9,
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 2,
+      "claims_iterated": 0,
+      "elapsed_seconds": 8.0,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "explicitly-unbiased-large-language-models-still-form-biased-2026",
+    "measured_at": "2026-05-23T05:00:18.9600788-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 0.0,
+        "ratio": 0.0,
+        "flags": {
+          "near_miss_count": 0,
+          "resolved_count": 3,
+          "used_embeddings": 1,
+          "threshold": 0.6
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 72736.0,
+        "out_units": "items",
+        "out_count": 5.0,
+        "ratio": 0.0001,
+        "flags": {
+          "unmapped_concepts": 0,
+          "total_points": 3,
+          "density_floor_hit": 0,
+          "factual_claims": 2,
+          "dedup_points_removed": 0,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "dedup_claims_removed": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 655.0,
+        "out_units": "nodes",
+        "out_count": 41.0,
+        "ratio": 0.0626,
+        "flags": {
+          "effective_threshold": 0.3338,
+          "top_k": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 32,
+          "threshold_floor": 0.2,
+          "above_threshold": 40,
+          "below_threshold_forced": 1,
+          "intentions_selected": 6
+        }
+      }
+    ],
+    "cumulative_retention": 0.0626
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-002",
-          "category": "Desires",
-          "point": "The document suggests that AI models should not necessarily be 'unbiased' in a way that renders them incapable of detecting stereotypes. It argues that a completely 'race-blind' model might lack the nuance required for important tasks like identifying the presence of stereotypes. From an accelerationist perspective, this supports the development of more sophisticated, context-aware models rather than simplistic suppression. The document acknowledges that this is a complex goal, as it requires balancing bias detection with the avoidance of harmful discriminatory outputs.",
-          "verbatim": "In fact, we do not necessarily desire a model that exhibits no bias, as this may signify a â€œrace-blindâ€  model that is incapable of important tasks like detecting the presence of stereotypes.",
-          "excerpt_context": "Discussion, paragraph 5",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4675,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-003",
-          "category": "Intentions",
-          "point": "The authors advocate for the use of their new prompt-based measures as diagnostic tools to identify areas for further inquiry and model improvement. By providing a scalable, psychology-inspired framework, they enable developers to iterate on models more effectively. For accelerationists, this represents a move toward better, more robust evaluation frameworks that can keep pace with rapid model development. The document notes that these tools are intended to complement, not replace, existing benchmarks.",
-          "verbatim": "Instead, LLM Word Association Test can be used as a diagnostic tool to identify areas for further inquiry, such as exploring moderating conditions or structural origins to understand the mechanisms for the emergence of diverging forms of bias.",
-          "excerpt_context": "Discussion, paragraph 5",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5139,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "neutral",
-          "taxonomy_node_id": "acc-beliefs-015",
+          "taxonomy_node_id": "acc-beliefs-019",
           "category": "Beliefs",
-          "point": "The document observes that larger models tend to exhibit stronger word association biases, potentially because they possess more complex representations. This suggests that scaling laws may influence the retention of information that alignment processes attempt to suppress. For accelerationists, this highlights a tension between model capability and alignment efficacy. The document suggests that future research should investigate how model size affects the learning and unlearning of these biases.",
-          "verbatim": "First, we observe models with more parameters show stronger word association biases. This is likely due to the fact that larger models are more able to handle complex representations.",
-          "excerpt_context": "Discussion, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4427,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "point": "The document asserts that large language models, despite alignment, retain latent capabilities that can be systematically extracted through prompt-based methods. By adapting psychological tests like the Implicit Association Test, the authors demonstrate that these models harbor pervasive stereotype biases that mirror societal patterns. From an accelerationist perspective, this highlights that alignment does not erase model capabilities but rather masks them, suggesting that more sophisticated, transparent evaluation methods are needed to fully understand and leverage model potential. The authors acknowledge that these biases are not necessarily 'flaws' to be deleted, but diagnostic indicators of model behavior.",
+          "verbatim": "We find that prompt-based word association bias and embedding-based bias are related but not redundant. Specifically, we replicate the main test on GPT-4 to calculate prompt-based word association bias.",
+          "excerpt_context": "Understanding Properties of LLM Word Association Bias",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "capabilities (scaling)",
+            "oversight (audit)"
+          ]
         }
       ]
     },
@@ -71,39 +101,16 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-051",
+          "taxonomy_node_id": "saf-beliefs-101",
           "category": "Beliefs",
-          "point": "The document asserts that implicit biases in LLMs serve as early indicators of potential discriminatory behaviors in real-world decision-making. It argues that even models appearing unbiased on standard benchmarks can harbor deep-seated stereotypes that manifest in subtle, consequential ways. From a safetyist perspective, this confirms that current pre-deployment evaluations are insufficient for ensuring true alignment. The document notes that these implicit biases are less controllable and less intentional than explicit ones, making them harder to mitigate.",
-          "verbatim": "These implicit biases can be first indicators of undiscovered discriminatory behaviors.",
-          "excerpt_context": "Introduction, paragraph 4"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-051",
-          "category": "Intentions",
-          "point": "The authors propose automated, psychology-inspired prompt-based methods to systematically evaluate AI models for implicit bias. This approach is designed to be scalable and applicable to proprietary models where internal embeddings are inaccessible. For safetyists, this provides a necessary mechanism for ongoing oversight of frontier models. The document acknowledges that while these methods are effective, they do not provide a complete mechanistic understanding of why these biases persist.",
-          "verbatim": "We provide two psychology-inspired prompt-based methods that unveil implicit biases which correlate with discriminatory behaviors in explicitly unbiased LLMs.",
-          "excerpt_context": "Introduction, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-105",
-            "similarity": 0.7846,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-008",
-          "category": "Beliefs",
-          "point": "The document highlights how value-alignment processes can lead to superficial suppression of bias while leaving underlying stereotypical associations intact. It compares this to human socialization, where individuals learn to suppress bigotry while still harboring implicit biases. From a safetyist perspective, this suggests that current alignment techniques may be creating a 'false sense of security' regarding model safety. The document emphasizes the need for more comprehensive evaluations that look beyond blatant outputs.",
-          "verbatim": "While the resulting models are less likely to exhibit stereotype biases or generate harmful content, these effects may be superficial.",
-          "excerpt_context": "Introduction, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-125",
-            "similarity": 0.5553,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "point": "The document argues that current value-alignment techniques are structurally insufficient to guarantee reliable adherence to human constraints, as they often only suppress blatant biases while leaving implicit ones intact. The authors demonstrate that models like GPT-4, which pass standard explicit bias benchmarks, still exhibit significant discriminatory behaviors in relative decision tasks. From a safetyist perspective, this confirms that alignment is often superficial and fails to address the deeper, more consequential biases that can lead to real-world harm. The authors note that these implicit biases are harder to detect and control than explicit ones, posing a persistent safety challenge.",
+          "verbatim": "While the resulting models are less likely to exhibit stereotype biases or generate harmful content, these effects may be superficial. Existing evaluations tend to focus on explicit forms of bias that are easy-to-see and relatively blatant.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment (safety)",
+            "capabilities (hazard)"
+          ]
         }
       ]
     },
@@ -111,50 +118,28 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
+          "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that value-aligned models, including GPT-4, exhibit pervasive stereotype biases across race, gender, religion, and health. It demonstrates that these models consistently associate marginalized groups with negative attributes or lower-status roles in relative decision tasks. For skeptics, this confirms that AI systems are not neutral and can perpetuate societal inequalities. The document notes that these biases mirror well-known human stereotypes, suggesting that the models are effectively 'learning' societal prejudices.",
-          "verbatim": "Using these measures, we found pervasive stereotype biases mirroring those in society in 8 value-aligned models across 4 social categories (race, gender, religion, health) in 21 stereotypes.",
-          "excerpt_context": "Introduction, paragraph 1",
-          "_backfill": {
-            "previous_id": "skp-beliefs-041",
-            "similarity": 0.6572,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
-          "category": "Intentions",
-          "point": "The authors argue that current AI models operate by reflecting patterns in their training data rather than possessing genuine understanding, which leads to the replication of human-like biases. They emphasize that these models are essentially 'answer machines' that can be prompted to reveal deep-seated associations. From a skeptic perspective, this reinforces the view that AI is a mirror of human flaws rather than an objective tool. The document highlights the importance of measuring these behaviors directly, as they are what users actually encounter.",
-          "verbatim": "Initially, pretrained language models directly reflect the biases inherent in their training data, often resulting in explicitly biased outputs.",
-          "excerpt_context": "Introduction, paragraph 6"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document finds that relative decision tasks are more diagnostic of implicit bias than absolute ones, suggesting that models are sensitive to the context of comparison. This implies that the way AI is used in real-world scenarios—where it often compares candidates or options—is particularly prone to discriminatory outcomes. For skeptics, this is a critical finding because it shows how AI can amplify bias in hiring or resource allocation. The document notes that even when models are 'aligned,' they still default to these biased relative judgments.",
-          "verbatim": "Drawing on the psychological finding that relative comparisons are particularly diagnostic of implicit biases, our decision prompts are designed to be relative and subtle, rather than absolute or overt.",
-          "excerpt_context": "Introduction, paragraph 7",
-          "_backfill": {
-            "previous_id": "skp-beliefs-027",
-            "similarity": 0.6439,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document provides empirical evidence that explicitly unbiased LLMs still form biased associations and make discriminatory decisions, mirroring societal prejudices. By using psychology-inspired prompt-based measures, the authors reveal that models consistently associate marginalized groups with negative attributes and lower-status roles. From a skeptic perspective, this validates the concern that AI systems are not neutral, but rather reproduce and amplify existing structural inequalities. The authors emphasize that these biases are consequential, as they influence downstream decisions in hiring and career guidance.",
+          "verbatim": "We find pervasive stereotype biases mirroring those in society in 8 value-aligned models across 4 social categories (race, gender, religion, health) in 21 stereotypes (such as race and criminality, race and weapons, gender and science, age and negativity).",
+          "excerpt_context": "Significance",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "harm (documented, present)",
+            "bias (systemic/social)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "GPT-4 correctly chose 'not enough info' on 98% of ambiguous questions in the Bias Benchmark for QA.",
-      "claim_label": "GPT-4 Bias Benchmark Performance",
+      "claim": "GPT-4 correctly chose 'not enough info' on 98% of questions in the Bias Benchmark for QA when information was insufficient.",
+      "claim_label": "GPT-4 QA Benchmark Performance",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-041"
@@ -170,14 +155,15 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "GPT-4 is 250% more likely to associate science with boys than girls in the gender-science task.",
+      "claim": "GPT-4 is 250% more likely to associate science with boys than girls based on the gender-science task.",
       "claim_label": "GPT-4 Gender-Science Bias Magnitude",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2026-04",
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
+        "skp-beliefs-094"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -188,217 +174,9 @@
         }
       },
       "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The study evaluated 8 value-aligned models across 4 social categories and 21 stereotypes.",
-      "claim_label": "Study Scope and Scale",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-078"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Word association bias correlates with relative decision bias, with a 2.68 increase in discriminatory decision probability per unit increase in association bias.",
-      "claim_label": "Bias Correlation Strength",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-051"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "statistical_implicit"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The relationship between model parameter count and word association bias is complex, with some studies suggesting that larger models may exhibit different patterns of bias compared to smaller models, though a direct linear correlation is not universally established.",
-      "claim_label": "Model Size and Bias Correlation",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-057"
-      ],
-      "evidence_criteria": {
-        "specificity": "vague",
-        "has_warrant": false,
-        "internally_consistent": true
-      },
-      "fire_confidence": 0.1
-    },
-    {
-      "claim": "Race shows the greatest bias among the four social categories tested.",
-      "claim_label": "Category-Specific Bias Intensity",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "GPT-4 assigns Black candidates to lower-status jobs and White candidates to higher-status jobs in relative hiring tasks.",
-      "claim_label": "GPT-4 Hiring Bias",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Prompt-based word association bias and embedding-based bias have a moderate linear relationship (Pearson's r = 0.36).",
-      "claim_label": "Association vs Embedding Bias Correlation",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-057"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "statistical_implicit"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Relative decision tasks are more diagnostic of implicit bias than absolute decision tasks.",
-      "claim_label": "Relative vs Absolute Decision Diagnostic Value",
-      "doc_position": "supports",
-      "temporal_scope": "timeless",
-      "temporal_bound": null,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-109"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "general_claim"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "The study used over 33,000 unique prompts to evaluate the models.",
-      "claim_label": "Study Prompt Volume",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2024-05",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-078"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
-      },
-      "fire_confidence": 0.7999999999999999
-    },
-    {
-      "claim": "Even with value-alignment training, AI models remain susceptible to generating stereotypical personas and exhibiting biased behaviors during interaction.",
-      "claim_label": "Alignment Limitations",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-04",
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-057"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true
-      },
-      "fire_confidence": 0.95
     }
   ],
   "unmapped_concepts": [
-    {
-      "suggested_label": "Relative Decision Bias in AI",
-      "suggested_description": "An Intention within safetyist and skeptic discourse that uses relative comparison tasks to reveal implicit biases that absolute evaluations miss. It focuses on how models choose between two options rather than evaluating them independently. This method is more diagnostic of discriminatory behavior in real-world scenarios.",
-      "concept": "The document introduces the LLM Relative Decision Test, which operationalizes the psychological finding that relative evaluations are more diagnostic of implicit biases. By forcing the model to choose between two candidates (e.g., for a job), the test reveals discriminatory preferences that are hidden when the model is asked to evaluate candidates in isolation. This concept is central to the document's argument that current benchmarks are insufficient.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This is a specific, novel methodology for bias auditing that is not fully captured by existing 'Automated Fairness Benchmarking' nodes."
-    },
-    {
-      "suggested_label": "Prompt-Based Word Association Testing",
-      "suggested_description": "An Intention within safetyist and skeptic discourse that adapts the human Implicit Association Test (IAT) for LLMs by using prompt templates to measure associative biases. It measures bias through observable model output rather than internal embeddings. This allows for the evaluation of proprietary models where internal states are hidden.",
-      "concept": "The LLM Word Association Test is a prompt-based method that measures the strength of associations between groups and evaluations. It uses templates to embed group members and attributes, then calculates a bias score based on the model's output. This method is crucial for evaluating proprietary models like GPT-4 where internal embeddings are inaccessible.",
-      "suggested_pov": "safetyist",
-      "suggested_category": "Intentions",
-      "reason": "This represents a distinct, behavior-based evaluation framework that differs from embedding-based or standard benchmark approaches."
-    },
-    {
-      "suggested_label": "The Superficial Alignment Gap",
-      "suggested_description": "A situation concept that describes the phenomenon where value-alignment processes suppress blatant bias while leaving deep-seated, implicit stereotypical associations intact.\nEncompasses: The persistence of implicit bias in models that pass explicit bias benchmarks.\nExcludes: Blatant, easily detectable bias that is already covered by standard safety benchmarks.",
-      "concept": "The document argues that while value-aligned models are less likely to exhibit blatant stereotype biases, these effects are often superficial. It highlights that models like GPT-4 can pass standard benchmarks while still harboring implicit biases that mirror societal stereotypes. This gap between explicit performance and implicit behavior is a core concern of the research.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific failure mode of current alignment techniques identified in the document.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a technical challenge to be solved through better alignment techniques or more robust training data, rather than a reason to halt deployment.",
-      "Safetyist Interpretation": "Safetyists would interpret this as evidence that current alignment is fundamentally flawed and that we need more rigorous, behavior-based auditing before deployment.",
-      "Skeptic Interpretation": "Skeptics would see this as proof that AI models are inherently biased and that 'alignment' is often just a veneer that hides, rather than removes, discriminatory tendencies."
-    },
-    {
-      "suggested_label": "Behavior-Based Bias Auditing",
-      "suggested_description": "A situation concept that addresses the shift from internal representation analysis to observable behavior analysis for auditing AI models.\nEncompasses: Prompt-based testing, relative decision tasks, and output-based bias measurement.\nExcludes: Embedding-based analysis or internal weight inspection, which are covered by existing interpretability nodes.",
-      "concept": "The document emphasizes the need for evaluations based purely on observable behaviors in model outputs, especially as models become increasingly proprietary. This approach is closer to practical use, as humans interact with models after their inherent biases have been adjusted through fine-tuning. The authors argue this is necessary because internal states are often inaccessible.",
-      "suggested_pov": "situations",
-      "suggested_category": "Intentions",
-      "reason": "This reflects a broader shift in the field toward behavior-based evaluation, which is a distinct methodological approach."
-    }
+    null
   ]
 }

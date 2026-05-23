@@ -1,14 +1,14 @@
 {
   "doc_id": "constructing-ai-speech-2026",
   "taxonomy_version": "3.4.0",
-  "generated_at": "2026-05-11T12:37:47Z",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 800,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 6
   },
@@ -16,14 +16,14 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "constructing-ai-speech-2026",
-    "measured_at": "2026-05-11T12:52:54.7688460-04:00",
+    "measured_at": "2026-05-23T03:32:28.8035940-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 43454.0,
+        "in_count": 44012.0,
         "out_units": "tokens_est",
-        "out_count": 43450.0,
+        "out_count": 44006.0,
         "ratio": 0.9999,
         "flags": {
           "chunk_count": 6
@@ -32,132 +32,146 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3109.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
         "out_count": 60.0,
-        "ratio": 0.0193,
+        "ratio": 0.0176,
         "flags": {
-          "avg_desires": 3.0,
-          "avg_intentions": 16.0,
+          "avg_beliefs": 7.0,
+          "chunk_count": 1,
           "avg_nodes_selected": 60.0,
-          "avg_beliefs": 4.0,
-          "chunk_count": 6,
-          "total_below_threshold": 3,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 62
+          "avg_desires": 9.0,
+          "max_nodes_selected": 60,
+          "total_below_threshold": 0,
+          "avg_intentions": 14.0,
+          "min_nodes_selected": 60
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 222448.0,
+        "in_count": 483281.0,
         "out_units": "items",
-        "out_count": 39.0,
-        "ratio": 0.0002,
+        "out_count": 36.0,
+        "ratio": 0.0001,
         "flags": {
-          "factual_claims": 9,
-          "total_points": 24,
+          "null_node_rate": 0.0,
           "chunk_count": 6,
-          "null_node_rate": 0.1667,
-          "unmapped_concepts": 6
+          "total_points": 21,
+          "unmapped_concepts": 7,
+          "factual_claims": 8
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 39.0,
+        "in_count": 36.0,
         "out_units": "items",
-        "out_count": 33.0,
-        "ratio": 0.8462,
+        "out_count": 34.0,
+        "ratio": 0.9444,
         "flags": {
-          "claims_deduped": 0,
-          "concepts_deduped": 3,
+          "points_deduped": 0,
+          "concepts_deduped": 2,
           "used_embeddings": 1,
-          "points_deduped": 3
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 3.0,
+        "in_count": 5.0,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.3333,
+        "out_count": 0.0,
+        "ratio": 0.0,
         "flags": {
-          "near_miss_count": 1,
+          "threshold": 0.6,
           "used_embeddings": 1,
-          "resolved_count": 2,
-          "threshold": 0.6
+          "resolved_count": 5,
+          "near_miss_count": 0
         }
       }
     ],
-    "cumulative_retention": 0.0163
+    "cumulative_retention": 0.0166
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
+          "stance": "opposed",
+          "taxonomy_node_id": "acc-intentions-006",
+          "category": "Intentions",
+          "point": "The authors argue against the 'disruption' narrative, which they characterize as a form of technological determinism that treats AI as an external force acting upon the law. By rejecting the idea that AI is inherently disruptive, they oppose the framing often used by accelerationists to suggest that AI's rapid development necessitates a fundamental overhaul of legal systems. Instead, they advocate for a values-first approach that views law as a proactive, co-constructive force.",
+          "verbatim": "It is tempting to ask whether AI speech “disrupts” the law. That is, is there something special about AI-generated speech? Will the law be able to keep pace with it? ... These are the questions frequently asked in law-and-technology scholarship. And these are the wrong questions to ask.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "technological_determinism",
+            "disruption_narrative"
+          ]
+        },
+        {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-047",
           "category": "Intentions",
-          "point": "The document argues against 'technological essentialism'—the idea that AI is a special, novel artifact requiring entirely new legal frameworks. Instead, it advocates for 'legal construction,' where existing legal systems and actors actively shape technology through sensemaking. This aligns with accelerationist goals by rejecting the 'pacing problem' narrative that suggests law is perpetually lagging behind technology, thereby preventing regulatory bottlenecks that might stifle innovation.",
+          "point": "The document argues against 'technological essentialism' and 'pacing-problem' framings, which often serve as justifications for restrictive regulation. Instead, it advocates for a 'legal construction' approach that positions legal actors as active participants in shaping technology's design and integration. This perspective rejects the idea that law is perpetually chasing technology, suggesting instead that law can and should actively shape the trajectory of AI development.",
           "verbatim": "Legal construction of technology, unlike technological-essentialist and pacing-problem-oriented framings, puts legal actors where they accurately sit: not chasing technology, but as potentially powerful interveners in conception and design through to integration and enforcement.",
-          "excerpt_context": "Section 2, paragraph 4",
-          "extraction_confidence": 0.9,
+          "excerpt_context": "Section 2, paragraph 10",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "technological_essentialism",
+            "pacing_problem",
             "legal_construction"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document suggests that AI-generated content is likely to be covered by the First Amendment because current legal doctrine prioritizes the value of speech to human audiences over the humanity of the speaker. This interpretation aligns with an accelerationist view that AI is a powerful tool for democratic self-governance, enlightenment, and individual autonomy. By decoupling speech rights from human identity, the law potentially facilitates the rapid proliferation of AI-generated information products that enhance the marketplace of ideas.",
-          "verbatim": "Under all of these positive theories, First Amendment rights can attach to speech because of the value of that speech to human audiences. That is, AI-generated political diatribes that influence a human reader’s vote would be covered by the First Amendment as speech that promotes democratic self-governance, contributes to the reader’s search for truth, and contributes to the reader’s autonomy. What matters is the speech, not the speaker; the marketplace and its consumers, not the humanity of the vendor.",
-          "excerpt_context": "Section 3, B.1, paragraph 11",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "marketplace_of_ideas",
-            "democratic_self_governance"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Desires",
-          "point": "The document acknowledges that regulatory frameworks must be carefully balanced to avoid creating an 'undue chilling effect' on innovation. It suggests that overly restrictive liability regimes could stifle the development of AI technology. Accelerationists would interpret this as a necessary defense of the technological ecosystem against regulatory overreach that could impede progress.",
-          "verbatim": "Speech-at-scale construction asks what kind of law establishes the best incentives and processes for ensuring that content at scale is on balance not too harmful, while also avoiding an undue chilling effect on both speech and innovation (whatever that means).",
-          "excerpt_context": "Section 4, paragraph 2",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "innovation_protection",
-            "regulatory_chilling_effect"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": null,
-          "category": "Beliefs",
-          "point": "The document acknowledges that technological advances can deliver critical innovation, suggesting that AI development is a source of societal benefit. It notes that claims of innovation should not be used as a cover for lawbreaking, implying that the primary concern is ensuring that the pursuit of innovation remains within legal bounds rather than stifling the technology itself. This perspective aligns with the accelerationist view that AI is a powerful force for progress that should be managed rather than suppressed.",
-          "verbatim": "Technological advances can deliver critical innovation—but claims of innovation must not be cover for lawbreaking.",
-          "excerpt_context": "Section 5, paragraph 20",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "innovation_critical"
-          ]
-        },
-        {
-          "stance": "opposed",
-          "taxonomy_node_id": "acc-intentions-046",
+          "taxonomy_node_id": "acc-intentions-018",
           "category": "Intentions",
-          "point": "The authors argue against 'technological exceptionalism,' which they define as the belief that AI is so novel it renders existing legal frameworks obsolete. They contend that this rhetoric inaccurately portrays policymakers as incapacitated and reactive. Instead, they advocate for viewing AI through existing legal institutions and historical precedents to maintain agency over technological development.",
-          "verbatim": "A technological-exceptionalist approach to technology law can inaccurately characterize technology policymakers as unduly incapacitated and reactive. At the same time, technological exceptionalism can afford technology-law scholars and policymakers a degree of exceptionalism that detracts from what they can learn and sometimes transplant from practices across a wide array of other areas of law.",
+          "point": "The document identifies scholarly efforts to reframe AI systems as 'advisors' or 'encyclopedias' to bypass First Amendment hurdles. This aligns with the accelerationist goal of integrating AI as an expert assistant or cognitive tool. By shifting the legal classification away from 'speaker' to 'product' or 'advisor,' these frameworks facilitate the deployment of AI as a beneficial utility rather than a liability-prone entity.",
+          "verbatim": "Jane Bambauer explores negligence and duties of care, suggesting that depending on the specific facts of each case, the producers of AI systems might be analogized to doctors, lawyers, encyclopedia publishers, or even parents who negligently supervise their precocious AI children.",
+          "excerpt_context": "Section 3, paragraph 18",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "expert_assistant",
+            "cognitive_tool"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-056",
+          "category": "Intentions",
+          "point": "The document argues that current legal frameworks, such as the First Amendment, are being stretched to accommodate AI, but that these shifts are driven more by political landscapes than by the inherent nature of the technology. Accelerationists would interpret this as evidence that existing regulatory structures are inherently reactive and potentially obstructive to innovation. The document suggests that law is a social system capable of handling evolving facts, which aligns with the view that AI development should not be stifled by rigid, outdated legal categories.",
+          "verbatim": "All this is to say: much of what is in motion on the legal side is spurred more by a shifting political landscape than by the introduction of purportedly fast-paced new technology.",
+          "excerpt_context": "Section 4, paragraph 6",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "regulatory_inertia",
+            "technological_exceptionalism"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-056",
+          "category": "Intentions",
+          "point": "The document highlights that the FTC's approach to AI governance is characterized by a lack of 'AI exceptionalism,' which aligns with accelerationist preferences for avoiding regulatory frameworks that treat AI as fundamentally distinct from existing technologies. By applying established consumer protection mandates rather than creating new, potentially stifling AI-specific laws, the FTC maintains a regulatory environment that allows for continued technological development. This approach avoids the 'policy baggage' of specialized AI regulation that might otherwise hinder innovation.",
+          "verbatim": "FTC Chair Lina Khan has made it clear that she is not interested in AI exceptionalism.",
+          "excerpt_context": "Section 5, paragraph 21",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "ai_exceptionalism",
+            "regulatory_stifling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-047",
+          "category": "Intentions",
+          "point": "The document argues against 'technological exceptionalism,' which it defines as the belief that AI is so unique that it renders existing legal frameworks obsolete or policymakers incapacitated. By rejecting this, the authors align with the view that AI should be integrated into existing legal and institutional structures rather than treated as a disruptive force that requires entirely new, potentially restrictive, governance regimes.",
+          "verbatim": "A technological-exceptionalist approach to technology law can inaccurately characterize technology policymakers as unduly incapacitated and reactive.",
           "excerpt_context": "Conclusion, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "technological_exceptionalism",
-            "regulatory_agency"
+            "technological_exceptionalism"
           ]
         }
       ]
@@ -166,96 +180,96 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-046",
+          "taxonomy_node_id": "saf-intentions-081",
           "category": "Intentions",
-          "point": "The document highlights a significant 'human accountability gap' where current First Amendment doctrine, which relies on human intent (scienter) for exceptions like defamation or true threats, struggles to address AI systems. Safetyists would argue that this creates a regulatory void where AI developers or users can evade liability because AI lacks human-like mental states. The document notes that this could perversely incentivize more unlawful speech by AI systems compared to human speakers.",
-          "verbatim": "This sets up a potentially thorny puzzle, wherein the internal logic of current First Amendment doctrine is likely to result in coverage of AI-generated speech but lacks a clear answer as to when such speech might not be protected and thus be regulable. . . This would perversely incentivize more otherwise unlawful speech by AI systems—protecting more speech generated by AI than speech by actual humans.",
-          "excerpt_context": "Section 3, B.1, paragraphs 14 and 19",
-          "extraction_confidence": 0.95,
+          "point": "The authors support the use of risk regulation frameworks to manage AI, specifically noting that such frameworks are already being deployed to mitigate physical and dignitary harms. This aligns with safetyist goals of proactive oversight, as the authors emphasize that the law is not merely reactive but can be shaped to further specific societal values and safety outcomes.",
+          "verbatim": "content-moderation law regulates communications platforms and networks toward the goals of balancing harms against free speech and innovation; risk regulation, increasingly being deployed to regulate AI systems, regulates risky complex systems toward the ends of mitigating both physical and dignitary harms",
+          "excerpt_context": "Introduction, paragraph 4",
+          "extraction_confidence": 0.98,
           "vocabulary_terms": [
-            "human_accountability_gap",
-            "scienter",
-            "unprotected_speech"
+            "risk_regulation",
+            "dignitary_harms"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "saf-beliefs-031",
+          "category": "Beliefs",
+          "point": "The document acknowledges that AI systems are complex, human-machine entities that often defy simple categorization. It notes that these systems can be viewed as 'risky complex systems,' and that their integration into society creates challenges where traditional legal frameworks—which often assume individual human actors—may not fit well.",
+          "verbatim": "A speech-generating AI system could be a speaker, or a platform or tool; a data processor, or a risky complex system.",
+          "excerpt_context": "Section 2, paragraph 8",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human-machine_systems",
+            "risky_complex_systems"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-046",
-          "category": "Intentions",
-          "point": "The document highlights the complexity of human-machine systems, noting that when law attempts to treat AI as a 'fungible substitute' for human actors, the fit is often poor. This supports the safetyist concern regarding the 'human accountability gap,' where the delegation of decision-making to AI systems obscures responsibility and complicates the application of traditional legal standards.",
-          "verbatim": "As we discuss below, the complexity of human-machine systems means that where law or policy attempts to treat AI as a fungible substitute for individual human actors, the fit is often off.",
-          "excerpt_context": "Section 2, paragraph 10",
+          "taxonomy_node_id": "saf-beliefs-122",
+          "category": "Beliefs",
+          "point": "The document highlights a significant 'human accountability gap' where current First Amendment doctrine, which relies on human intent (scienter), fails to address AI systems that lack human emotions or moral agency. This creates a regulatory vacuum where AI can generate harmful content without the developer or the system being held liable under traditional defamation or criminal solicitation standards.",
+          "verbatim": "This sets up a potentially thorny puzzle, wherein the internal logic of current First Amendment doctrine is likely to result in coverage of AI-generated speech but lacks a clear answer as to when such speech might not be protected and thus be regulable.",
+          "excerpt_context": "Section 3, paragraph 13",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "human_in_the_loop",
-            "accountability"
+            "human_accountability_gap",
+            "scienter",
+            "regulatory_vacuum"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-044",
           "category": "Intentions",
-          "point": "The document discusses shifting the legal construction of AI from 'speaker' to 'product' or 'complex system' to enable better regulation. Safetyists would support this move toward objective standards of conduct, such as negligence or products-liability frameworks, to ensure that AI developers are held accountable for design choices like training on inaccurate data or failing to test systems, regardless of the AI's lack of human intent.",
+          "point": "The document discusses the potential for applying products-liability law to AI developers as a way to enforce safety. By focusing on negligent design, inadequate testing, and training data quality, this approach seeks to establish objective standards for AI liability that do not depend on proving the 'intent' of an AI system.",
           "verbatim": "Brown suggests that courts analyzing defamation claims arising from AI-generated content should look not to intent but to whether AI developers are making negligent design and development choices, such as training their systems on databases filled with inaccurate content or failing to adequately test their systems.",
-          "excerpt_context": "Section 3, B.1, paragraph 20",
+          "excerpt_context": "Section 3, paragraph 17",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "products_liability",
-            "negligence",
-            "duty_of_care"
+            "negligent_design",
+            "objective_standards"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-045",
-          "category": "Intentions",
-          "point": "The document identifies the 'risky complex system' approach as a method for ex ante mitigation of widespread harms. Safetyists support this shift toward risk regulation, which treats AI as a systemic hazard requiring centralized oversight and proactive safety assessments rather than reactive litigation.",
-          "verbatim": "The value this approach seeks to achieve is the ex ante mitigation of widespread, significant, and typically quantifiable harms: some quite concrete, and others harder to measure and more contestable.",
+          "taxonomy_node_id": "saf-beliefs-024",
+          "category": "Beliefs",
+          "point": "The document highlights the 'black-box' nature of AI systems and the complexity of supply chains as significant barriers to applying traditional liability frameworks. Safetyists would view this as empirical support for the claim that current legal and accountability mechanisms are insufficient for managing the risks posed by advanced AI. The document notes that AI systems do not experience a 'chilling effect' like human speakers, which safetyists would use to argue for more stringent, objective liability standards for AI developers.",
+          "verbatim": "AI-generated speech, like commercial speech, could be characterized as inherently hardier than ordinary speech. There are plenty of economic incentives for AI-speech generation, just as there are with commercial speech, and thus less of a fear of a “chilling effect” on the companies that develop and distribute AI systems.",
           "excerpt_context": "Section 4, paragraph 3",
-          "extraction_confidence": 0.9,
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "ex_ante_risk_mitigation",
-            "risky_complex_systems"
+            "black_box",
+            "liability_frameworks",
+            "accountability_gap"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "sit-046",
           "category": "Intentions",
-          "point": "The document describes the 'risky-complex-system' construction as a primary tool for governing AI, which involves shifting the focus toward ex ante risk assessment and mitigation. This approach treats AI systems like nuclear plants or medical devices, where the goal is to bolster resilience and lower risks to the population. It emphasizes the role of centralized regulators and administrative agencies in designing systems that manage the inevitable failures of complex technology.",
+          "point": "The document describes the 'risky-complex-system' construction of AI, which advocates for ex ante risk assessment and mitigation. This approach treats AI systems like nuclear plants or medical devices, focusing on resilience and the prevention of widespread, quantifiable harm. It supports the implementation of mandatory design specifications and reporting requirements to manage the inherent risks of complex systems.",
           "verbatim": "To construct AI as a risky complex system, one shifts the conception of AI away from viral social media posts and toward nuclear plants, cars, and medical devices, where regulation aims to mitigate the risk of failure and bolster resilience through a number of regulatory tools.",
-          "excerpt_context": "Section 5, paragraph 1",
+          "excerpt_context": "Section 5, paragraph 3",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "risk_regulation",
-            "ex_ante_mitigation",
-            "resilience_bolstering"
+            "ex_ante_risk_assessment",
+            "risk_mitigation",
+            "complex_systems"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-135",
+          "taxonomy_node_id": "saf-intentions-136",
           "category": "Intentions",
-          "point": "The document highlights the use of formal risk assessments, mitigation plans, and third-party audits as essential tools for governing AI under the DSA and other frameworks. These mechanisms are designed to address systemic risks by requiring developers to account for the potential damage their systems can cause. This reflects a safetyist preference for standardized, measurable safety thresholds and institutional oversight.",
-          "verbatim": "The DSA’s legal toolkit includes: formal risk assessments, risk-mitigation plans, third-party audits, the appointment of compliance officers, oversight by accredited researchers who get access to internal data, and a slew of public transparency measures.",
-          "excerpt_context": "Section 5, paragraph 6",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "risk_assessment_standards",
-            "transparency_measures"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-069",
-          "category": "Intentions",
-          "point": "The authors support a 'legal construction of technology' method that prioritizes using existing legal institutions to perform meaning-making toward specific normative goals. This approach treats AI as a sociotechnical artifact that must be aligned with democratic values through deliberate legal sensemaking, rather than allowing technology to dictate legal outcomes.",
-          "verbatim": "The law makes meaning of the social uses of technology—it constructs them. That’s not to say that’s all the law does. Law is construction with consequences. It conducts sensemaking through language, through institutions, through policy tools, and through motivating theories.",
-          "excerpt_context": "Conclusion, paragraph 2",
+          "point": "The authors advocate for 'legal construction of technology' as a method to identify and address risks by applying existing regulatory tools (like product safety or consumer protection) to AI. This supports the safetyist goal of creating concrete, targeted interventions for AI risks rather than relying on abstract or passive legal approaches.",
+          "verbatim": "It lets us come up with creative and appropriately targeted interventions.",
+          "excerpt_context": "Revelatory section, paragraph 1",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "legal_construction",
-            "normative_goals"
+            "legal_construction_of_technology"
           ]
         }
       ]
@@ -264,120 +278,108 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
-          "category": "Beliefs",
-          "point": "The authors argue that the 'disruption' narrative is often a tool that obscures how existing legal institutions and power structures are already shaping AI. By focusing on whether law can 'keep up,' policymakers may fail to scrutinize the political and economic interests embedded in technological development. This aligns with skeptic concerns that AI governance is often a site of power concentration rather than a neutral technical challenge.",
-          "verbatim": "Instead of asking whether the law can keep up with technology, we should be asking how the law shapes and intervenes in technology and how it can do so—or refrain from doing so—in ways that further important values.",
-          "excerpt_context": "Introduction",
-          "extraction_confidence": 1.0,
+          "taxonomy_node_id": "skp-intentions-055",
+          "category": "Intentions",
+          "point": "The authors advocate for a 'values-first' approach to technology policy, which prioritizes the identification of societal values and harms over the reactive, technology-centric 'disruption' narrative. This aligns with the skeptic's focus on addressing present, measurable harms and the political economy of technology rather than speculative existential scenarios.",
+          "verbatim": "A values-first approach to technology law would start not by asking whether the law is capable of keeping up with the development of technological or scientific expertise (it almost always is), but by asking what values technology, and the social practices of technology, further.",
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "path_dependency",
+            "values-first_approach",
             "technological_exceptionalism"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-005",
-          "category": "Intentions",
-          "point": "The document critiques the tendency of legal actors to accept 'technological essentialism' as a default, which often serves to distract from the underlying corporate actors and institutional goals. By framing AI as a product of 'readily regulable corporate actors' rather than an uncontrollable, novel force, the authors align with skeptic efforts to demystify AI and focus on existing structural power dynamics.",
-          "verbatim": "Identifying the object of regulation could help identify how such systems might be better regulated, or are already regulated, through broad, existing, technology-neutral laws that construct such systems not as an instantiation of the pacing problem, but as the product of readily regulable corporate actors.",
-          "excerpt_context": "Section 2, paragraph 9",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "regulatory_capture",
-            "corporate_accountability"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-005",
-          "category": "Desires",
-          "point": "The document explicitly points to the recent U.S. turn toward antitrust enforcement against Big Tech as a viable path for regulating AI. This supports the skeptic desire to dismantle concentrated algorithmic power by treating AI systems as products of specific, powerful corporate entities rather than as autonomous, unregulable phenomena.",
-          "verbatim": "The recent U.S. (re)turn to antitrust enforcement against Big Tech illustrates this potential move.",
-          "excerpt_context": "Section 2, paragraph 9",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "antitrust",
-            "big_tech"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
+          "taxonomy_node_id": "skp-beliefs-170",
           "category": "Beliefs",
-          "point": "The document illustrates how AI fundamentally challenges existing legal frameworks by disrupting the 'substitution problem'—the assumption that AI can simply replace a human actor in legal contexts. Skeptics would emphasize that the opacity and diffuseness of AI supply chains make it nearly impossible to identify a clear place of intervention for governance, thereby undermining corporate and state accountability.",
-          "verbatim": "This is, as we will see, only one of a number of ways one could legally construct speech generated by AI systems—even within current First Amendment law. . . Scholars note, too, the challenges raised by the emerging ecology of AI developers, companies, and users, with multiple actors and discrete steps and components, making it potentially hard to ascribe responsibility or identify a place of intervention for governance.",
-          "excerpt_context": "Section 3, B.1, paragraphs 3 and 16",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "substitution_problem",
-            "algorithmic_supply_chains",
-            "governance_opacity"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-047",
-          "category": "Beliefs",
-          "point": "The document asserts that legal changes regarding AI are often driven more by shifting political landscapes than by the technology itself. Skeptics use this to argue that current legal debates are performative or politically motivated rather than grounded in the actual, measurable harms of the technology.",
-          "verbatim": "All this is to say: much of what is in motion on the legal side is spurred more by a shifting political landscape than by the introduction of purportedly fast-paced new technology.",
-          "excerpt_context": "Section 4, paragraph 1",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "political_legal_determinism"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-096",
-          "category": "Intentions",
-          "point": "The document discusses the 'speech-at-scale' construction, which focuses on systemic transparency and procedural fairness. Skeptics favor this approach because it treats AI-generated content similarly to human-generated content, focusing on the immediate, verifiable harms of content moderation rather than speculative future scenarios.",
-          "verbatim": "For the most part, then, speech-at-scale construction will treat AI-generated content just as it treats human-generated content, as a problem of content at scale, solved by systems aiming toward efficient fairness.",
-          "excerpt_context": "Section 4, paragraph 2",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "efficient_fairness",
-            "content_moderation_proceduralism"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-055",
-          "category": "Intentions",
-          "point": "The document discusses the consumer-protection approach to AI, which focuses on market fairness, transparency, and preventing deceptive practices like 'dark patterns.' This perspective views AI as a product or manipulative salesperson, emphasizing the need for duties to warn and clear disclosures to protect consumers. It reflects a skeptic focus on the immediate, measurable harms AI can cause in the marketplace, such as manipulation and information asymmetry.",
-          "verbatim": "The consumer-protection construction understands AI not as a speaker, but as a product or a manipulative salesperson. AI may fail to adequately disclose information pertinent to consumer choice, or may generate information that manipulates consumer choice in a marketplace.",
-          "excerpt_context": "Section 5, paragraph 12",
+          "point": "The document highlights that legal definitions of technology are often sites of political struggle, where corporate actors attempt to evade regulation by characterizing technology as 'too new' to understand or 'not worthy' of extra attention. It emphasizes that these definitions are not objective but are part of a 'legal sensemaking' process that enacts underlying values.",
+          "verbatim": "They are often the targets of attempts to get out of regulatory coverage through characterizations of a technology as too new and thus challenging to regulate (e.g., we don’t understand General Purpose AI yet!) or as not worthy of extra attention relative to existing technology.",
+          "excerpt_context": "Section 2, paragraph 23",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "consumer_protection",
-            "dark_patterns",
-            "information_asymmetry"
+            "regulatory_evasion",
+            "legal_sensemaking"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-069",
+          "taxonomy_node_id": "skp-beliefs-141",
           "category": "Beliefs",
-          "point": "The document warns that risk regulation is not a neutral tool and carries 'policy baggage,' including a tendency to frame policy discussions as obscure technical questions for experts. This can lead to the undervaluation of harms that are difficult to quantify and a willingness to accept risks in exchange for deployment. This skepticism toward the 'risky-complex-system' framing highlights how such regulatory tools can be used to bypass broader democratic or policy debates.",
-          "verbatim": "Moreover, it reflects a willingness to accept risks, rather than prevent harms, and to deploy a technology regardless of the risks it brings or the other policy interventions its use eschews.",
-          "excerpt_context": "Section 5, paragraph 11",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "policy_baggage",
-            "techno_correctionism"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-103",
-          "category": "Intentions",
-          "point": "The authors critique how corporations exploit regulatory gaps, such as the 'interpretive debt' created by Section 230, to avoid accountability. They argue that legal construction of technology is necessary to identify where companies engage in regulatory arbitrage by falling between legal boxes, allowing for more effective, targeted interventions.",
-          "verbatim": "Not every problem is the pacing problem, but when the concern is that companies developing technologies are attempting to engage in regulatory arbitrage by falling between legal boxes and into legal cracks, the law has plenty of tools (with tradeoffs) for trying to get around that problem.",
-          "excerpt_context": "Section 6, paragraph 15",
+          "point": "The document notes that current legal frameworks are struggling to adapt to AI, potentially leading to 'liability shielding' where AI developers avoid responsibility because their systems lack the 'mens rea' required by traditional law. This creates a perverse incentive where AI-generated speech receives more protection than human speech.",
+          "verbatim": "If courts hew to these kinds of strict intent requirements, then AI “speakers” would get off the hook where human speakers would not. This would perversely incentivize more otherwise unlawful speech by AI systems—protecting more speech generated by AI than speech by actual humans.",
+          "excerpt_context": "Section 3, paragraph 16",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "regulatory_arbitrage",
-            "interpretive_debt"
+            "liability_shielding",
+            "mens_rea",
+            "perverse_incentives"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-047",
+          "category": "Beliefs",
+          "point": "The document argues that AI-generated content is best understood as a problem of 'speech at scale' rather than individual intent, drawing parallels to existing content moderation and intermediary liability regimes. Skeptics would support this framing as it shifts the focus from speculative existential risks to measurable, present-day harms like defamation and deception. The document emphasizes that these policy challenges are not unique to AI but are extensions of existing internet governance issues.",
+          "verbatim": "Speech-at-scale construction focuses less on individual speakers and more on the problems of fairly moderating quickly distributed networked content at scale.",
+          "excerpt_context": "Section 4, paragraph 10",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "content_moderation",
+            "intermediary_liability",
+            "speech_at_scale"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-097",
+          "category": "Intentions",
+          "point": "The document details the EU's Digital Services Act (DSA) as a model for robust regulatory oversight, incorporating formal risk assessments, third-party audits, and mandatory transparency measures. This approach reflects a skeptic preference for institutionalized, independent monitoring of AI systems to ensure compliance and public accountability. It emphasizes that regulation should not just be reactive but should involve systemic intervention in product design.",
+          "verbatim": "The DSA’s legal toolkit includes: formal risk assessments, risk-mitigation plans, third-party audits, the appointment of compliance officers, oversight by accredited researchers who get access to internal data, and a slew of public transparency measures.",
+          "excerpt_context": "Section 5, paragraph 8",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "regulatory_oversight",
+            "third_party_audits",
+            "transparency_measures"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-014",
+          "category": "Desires",
+          "point": "The document discusses the use of consumer protection law to address 'dark patterns' and deceptive practices in AI, aiming to protect individual autonomy from manipulation. By scrutinizing how AI influences beliefs and behaviors, this approach seeks to prevent companies from tricking or nudging consumers into actions contrary to their goals. It highlights the need for transparency and duties to warn as essential tools for safeguarding users.",
+          "verbatim": "The FTC’s 2022 report, Bringing Dark Patterns to Light, provides extensive examples of design changes, like font sizes and colors, and nudges and tricks, like confusing language and hidden settings.",
+          "excerpt_context": "Section 5, paragraph 19",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "dark_patterns",
+            "consumer_autonomy",
+            "deceptive_practices"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-132",
+          "category": "Beliefs",
+          "point": "The document critiques the 'disruption' narrative often used in AI discourse, suggesting that it is a rhetorical device that obscures the agency of legal actors. By framing AI as a 'constructed' object rather than an autonomous force, the authors align with the skeptic view that AI's impact is a result of human choices and institutional design, not an inevitable technological outcome.",
+          "verbatim": "Legal scholars and technology law experts should not pretend to be caught off guard or fall into the disruption rhetoric.",
+          "excerpt_context": "Conclusion, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "disruption_rhetoric"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-102",
+          "category": "Intentions",
+          "point": "The authors argue that legal actors should actively shape AI governance to protect democratic values, rather than passively following the trajectory of the technology. This supports the skeptic intention of prioritizing human-centric policy interventions over market-driven or technology-led outcomes.",
+          "verbatim": "Without taking that path, we choose to follow technology.",
+          "excerpt_context": "Conclusion, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "democratic_participation"
           ]
         }
       ]
@@ -385,64 +387,45 @@
   },
   "factual_claims": [
     {
-      "claim": "AI systems like ChatGPT are capable of producing convincingly human speech at scale, including both high-value content like political manifestos and low-value content like hallucinations or harmful lies.",
-      "claim_label": "AI Speech Capabilities",
+      "claim": "The law and technology co-construct each other in a dynamic interplay reflective of societal priorities and political power, rather than technology acting as an autonomous force that disrupts the law.",
+      "claim_label": "Legal Construction of Technology Theory",
       "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": "2026-05-11",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-029"
+        "sit-116"
       ],
       "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim about current technological capabilities."
+        "specificity": "qualified",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Beliefs"
       },
       "claim_relations": []
     },
     {
-      "claim": "Large Language Models (LLMs) are prediction machines that model statistical relationships between words and phrases in large datasets, and they are inherently human-machine systems.",
-      "claim_label": "LLM Technical and Sociotechnical Nature",
+      "claim": "Large Language Models (LLMs) are deep learning algorithms that model statistical relationships between words and phrases in large bodies of text to generate human-like language.",
+      "claim_label": "LLM Technical Definition",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-105"
+        "acc-beliefs-019"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical claim about system architecture and human involvement."
+        "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "OpenAI transitioned from a nonprofit entity to a 'capped profit' structure with significant investment from Microsoft.",
-      "claim_label": "OpenAI Corporate Structure Evolution",
-      "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2015-2023",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-desires-005"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Factual assertion regarding corporate history."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The EU AI Act's definition of AI has evolved from focusing on intelligence and agency to broader definitions encompassing non-autonomous statistical software, and eventually back to a focus on autonomy.",
+      "claim": "The EU AI Act's definition of AI has evolved from focusing on intelligence and agency in 2018 to a broader scope in 2021, and finally back to a focus on autonomy in 2023.",
       "claim_label": "Evolution of EU AI Act Definitions",
       "doc_position": "supports",
       "temporal_scope": "historical",
@@ -456,31 +439,31 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical"
+        "category_criteria": "empirical claim based on legislative history"
       },
       "claim_relations": []
     },
     {
-      "claim": "Current First Amendment doctrine in the United States relies heavily on human intent (scienter) to define categorical exceptions to protected speech, such as defamation and true threats.",
-      "claim_label": "First Amendment Intent Requirement",
+      "claim": "Current First Amendment doctrine in the United States generally covers 'pure speech' regardless of whether the speaker is human or non-human, provided the content is not part of a historic categorical exception.",
+      "claim_label": "First Amendment Coverage of AI Speech",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 0.95,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-046"
+        "sit-003"
       ],
       "evidence_criteria": {
-        "specificity": "precise",
+        "specificity": "qualified",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical"
+        "category_criteria": "legal analysis of existing jurisprudence"
       },
       "claim_relations": []
     },
     {
-      "claim": "The Supreme Court's Counterman v. Colorado decision established a recklessness standard for true threats, which requires the state to prove the defendant consciously disregarded a substantial risk that their communications would be viewed as threatening.",
+      "claim": "The Supreme Court's Counterman decision established a recklessness standard for true threats, which requires showing that a defendant consciously disregarded a substantial risk that their communications would be viewed as threatening.",
       "claim_label": "Counterman Recklessness Standard",
       "doc_position": "supports",
       "temporal_scope": "historical",
@@ -488,85 +471,73 @@
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-105"
+        "saf-intentions-044"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs"
+        "category_criteria": "empirical claim about legal precedent"
       },
       "claim_relations": []
     },
     {
-      "claim": "Section 230 of the Communications Decency Act immunizes online intermediaries from liability for hosting or removing most user-generated content, a policy designed to prevent over-censorship.",
-      "claim_label": "Section 230 Immunity Rationale",
+      "claim": "The EU's Digital Services Act (DSA) introduces mandatory risk-assessment and mitigation requirements for Very Large Online Platforms and Search Engines.",
+      "claim_label": "DSA Risk Regulation Requirements",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "temporal_bound": "2022",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-047"
+        "skp-intentions-097"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The EU AI Act and GDPR require developers of risky AI systems to conduct impact or conformity assessments to mitigate discovered risks.",
-      "claim_label": "EU AI Regulation Requirements",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-081"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
         "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "The European Union's Digital Services Act (DSA) is currently influencing global AI governance through the 'Brussels Effect,' where global companies adopt EU standards to maintain market access, effectively exporting EU regulation to jurisdictions like the United States.",
-      "claim_label": "Brussels Effect of EU AI Regulation",
+      "claim": "The FTC is currently investigating OpenAI regarding potential reputational harm and the accuracy of statements generated by its products.",
+      "claim_label": "FTC OpenAI Investigation",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2023",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-097"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The First Amendment doctrine in the U.S. currently bifurcates its treatment of AI-generated content, viewing it as 'speech' for coverage purposes but requiring human intent for historic exceptions to protection.",
+      "claim_label": "First Amendment Bifurcation",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "sit-115"
+        "saf-beliefs-122"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs"
+        "category_criteria": "empirical claim about legal doctrine"
       },
       "claim_relations": []
     }
   ],
-  "unmapped_concepts": [
-    {
-      "suggested_label": "Splatform Legal Hybridity",
-      "suggested_description": "A situation concept that describes the legal ambiguity of AI systems functioning simultaneously as content creators and information conduits.\nEncompasses: Search engines, LLMs, and intermediary liability debates.\nExcludes: Purely human-generated content or static hosting platforms.",
-      "concept": "The document explores the 'splatform' concept, where AI companies might be protected by CDA 230 if they are viewed as platforms, or held liable if they are viewed as speakers. This hinges on whether the AI is seen as a conduit for existing data or an active generator of new content.",
-      "suggested_pov": "situations",
-      "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific legal categorization challenge unique to AI-human hybrid systems.",
-      "Accelerationist Interpretation": "Accelerationists would argue for a broad interpretation of 'platform' status to ensure AI developers are shielded from liability, thereby encouraging continued rapid deployment and innovation.",
-      "Safetyist Interpretation": "Safetyists would argue for a narrow interpretation of 'platform' status, pushing for developer liability to ensure that the creators of risky complex systems are held accountable for the outputs of their models.",
-      "Skeptic Interpretation": "Skeptics would focus on the 'splatform' as a mechanism for corporate evasion, arguing that companies use this ambiguity to shield themselves from responsibility for the harms their systems generate."
-    }
-  ]
+  "unmapped_concepts": []
 }

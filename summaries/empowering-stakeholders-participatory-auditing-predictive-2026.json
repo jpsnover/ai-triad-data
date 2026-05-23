@@ -1,210 +1,223 @@
 {
   "doc_id": "empowering-stakeholders-participatory-auditing-predictive-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:58:47Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
-    "chunk_count": 4
+    "chunk_count": 5
   },
   "context_rot": {
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "empowering-stakeholders-participatory-auditing-predictive-2026",
-    "measured_at": "2026-05-02T22:09:34.9848530-04:00",
+    "measured_at": "2026-05-23T04:39:03.5300245-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 30369.0,
+        "in_count": 31023.0,
         "out_units": "tokens_est",
-        "out_count": 30367.0,
+        "out_count": 31020.0,
         "ratio": 0.9999,
         "flags": {
-          "chunk_count": 4
+          "chunk_count": 5
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
         "out_count": 62.0,
-        "ratio": 0.0203,
+        "ratio": 0.0182,
         "flags": {
-          "total_below_threshold": 9,
-          "avg_intentions": 10.0,
-          "min_nodes_selected": 61,
-          "max_nodes_selected": 64,
-          "chunk_count": 4,
-          "avg_desires": 2.0,
           "avg_nodes_selected": 62.0,
-          "avg_beliefs": 4.0
+          "total_below_threshold": 9,
+          "min_nodes_selected": 60,
+          "chunk_count": 5,
+          "avg_intentions": 9.0,
+          "max_nodes_selected": 63,
+          "avg_desires": 3.0,
+          "avg_beliefs": 5.0
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 146054.0,
+        "in_count": 158301.0,
         "out_units": "items",
-        "out_count": 28.0,
+        "out_count": 34.0,
         "ratio": 0.0002,
         "flags": {
-          "factual_claims": 4,
-          "chunk_count": 4,
-          "total_points": 18,
-          "unmapped_concepts": 6,
-          "null_node_rate": 0.0
+          "null_node_rate": 0.0952,
+          "unmapped_concepts": 7,
+          "factual_claims": 6,
+          "chunk_count": 5,
+          "total_points": 21
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 28.0,
+        "in_count": 34.0,
         "out_units": "items",
-        "out_count": 28.0,
-        "ratio": 1.0,
+        "out_count": 33.0,
+        "ratio": 0.9706,
         "flags": {
-          "used_embeddings": 1,
-          "concepts_deduped": 0,
+          "points_deduped": 1,
           "claims_deduped": 0,
-          "points_deduped": 0
+          "used_embeddings": 1,
+          "concepts_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 6.0,
+        "in_count": 7.0,
         "out_units": "still_unmapped",
         "out_count": 1.0,
-        "ratio": 0.1667,
+        "ratio": 0.1429,
         "flags": {
-          "resolved_count": 5,
-          "threshold": 0.6,
+          "near_miss_count": 1,
+          "resolved_count": 6,
           "used_embeddings": 1,
-          "near_miss_count": 1
+          "threshold": 0.6
         }
       }
     ],
-    "cumulative_retention": 0.0203
+    "cumulative_retention": 0.0177
   },
   "pov_summaries": {
     "accelerationist": {
-      "key_points": []
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document supports the integration of AI into healthcare and social services, framing it as a tool that can improve patient outcomes and assist professionals like GPs and child psychologists. By focusing on predictive AI as a means to enable targeted interventions, the research aligns with the accelerationist goal of leveraging AI's data processing capabilities to solve complex societal problems. The document emphasizes that these tools are already ubiquitous and provide significant value when properly managed.",
+          "verbatim": "SPARRA is a long-standing, deployed predictive AI model designed to help general practitioners (GPs) in Scotland identify patients at high risk of emergency hospital admission within the subsequent 12-month period, enabling targeted interventions and care planning, which may potentially reduce emergency admissions and improve patient outcomes.",
+          "excerpt_context": "Section 3.1.1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "predictive_ai",
+            "targeted_interventions"
+          ]
+        }
+      ]
     },
     "safetyist": {
       "key_points": [
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-004",
-          "category": "Intentions",
-          "point": "The document advocates for a shift toward participatory AI auditing, where non-expert stakeholders are integrated into the auditing process. This approach aims to uncover blind spots in current technical auditing practices by leveraging the lived experience of end-users and decision subjects. The authors argue that this is essential for responsible AI development, particularly for predictive models in health and social contexts.",
-          "verbatim": "In this shift towards more responsible, human-centred AI development practices [5], there have been efforts to introduce participatory AI auditing [5, 23, 24, 38], in which stakeholders who typically do not have AI expertise, such as end-users, who use the AI application, and decision subjects, who the AI application is making predictions about, are empowered to take the role of an auditor.",
-          "excerpt_context": "Introduction, paragraph 3",
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-024",
+          "category": "Desires",
+          "point": "The document advocates for a shift toward responsible, human-centered AI development by empowering non-expert stakeholders to participate in the auditing process. It argues that current auditing practices are too technically focused and often miss critical harms, necessitating a more inclusive approach that involves end-users and decision subjects throughout the entire development pipeline. This aligns with safetyist goals of ensuring accountability and mitigating risks through rigorous, multi-perspective assessment.",
+          "verbatim": "Recent research has called for participatory AI auditing, empowering individuals without AI expertise to audit AI applications throughout the entire AI development pipeline.",
+          "excerpt_context": "Abstract",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "participatory_auditing",
-            "human_centered_ai",
+            "responsible_ai",
             "accountability"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-117",
-          "category": "Intentions",
-          "point": "The document emphasizes that participatory auditors require systematic support to understand AI applications and their impacts. It suggests that information must be presented in accessible ways to bridge the gap between technical model outputs and stakeholder understanding. This aligns with the safetyist goal of making AI reasoning and impact transparent to those affected by it.",
-          "verbatim": "Our participants requested a wide range of information to understand AI applications and their impact, which has to be provided in a way which allows individuals without an AI background to understand.",
-          "excerpt_context": "Introduction, paragraph 6",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "transparency",
-            "interpretability"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-110",
-          "category": "Intentions",
-          "point": "Participants explicitly requested a 'Conditional' audit outcome option alongside pass/fail, acknowledging that auditing tools may lack the necessary data access to provide definitive results. This reflects a safetyist concern regarding the limitations of opaque-box or translucent-box auditing. By allowing for conditional results, the framework avoids binary false-certainty in risk assessment.",
-          "verbatim": "Participants highlighted that they would want a third option alongside a clear pass and fail, which they named ’Conditional’, reflecting that an auditing tool might not be able to provide performance results, especially in the case of an opaque-box or translucent-box audit without access to the data needed to calculate the results of the metric. Hence, participants wanted to express that they did not have enough evidence to pass or fail the audit and wanted to express a dependency on that condition.",
-          "excerpt_context": "Section 4.2.4, Audit Communication and Advocacy",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "opaque-box",
-            "translucent-box",
-            "audit_outcome"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-135",
-          "category": "Intentions",
-          "point": "The document supports the establishment of standardized auditing processes that include clear performance metrics and thresholds. Participants emphasized the need for defining acceptable outcomes through thresholds, which aligns with safetyist goals of creating rigorous, measurable safety standards for AI deployment.",
-          "verbatim": "Finally, after designing the metric, they were asked to specify acceptable thresholds. This helped participants to define the criteria for what should be considered an acceptable outcome when auditing the event.",
-          "excerpt_context": "Section 3.2.3, Workshop 2",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "safety_thresholds",
-            "performance_metrics"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-004",
-          "category": "Intentions",
-          "point": "The document argues for shifting AI auditing from a post-deployment activity to a continuous process integrated throughout the entire development pipeline. By involving stakeholders early, including during data preparation and conceptualization, developers can better identify socio-technical impacts. This proactive approach is framed as essential for ensuring responsible AI development and building trustworthiness.",
-          "verbatim": "Participatory auditing should not be restricted to one particular stage of the development pipeline. Contrary to current practices, which relegate auditing to once a model has been developed or an AI application deployed, participants wanted to audit an AI application early, even when it is just an idea being conceived, and especially during data preparation that underpins the development of an AI model.",
-          "excerpt_context": "Section 3, paragraph 2",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "participatory_auditing",
-            "socio-technical_impacts",
-            "responsible_ai"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-110",
-          "category": "Intentions",
-          "point": "The document proposes the use of 'conditional' audit outcomes alongside traditional pass/fail results. This flexibility is particularly important for early-stage auditing where data may be scarce or metrics qualitative, allowing for a more nuanced assessment of AI appropriateness.",
-          "verbatim": "Being aware of this, participants introduced the idea of a conditional audit outcome in addition to clear pass and fail. This addition could also be beneficial in early auditing stages, where data might not yet be available and metrics might be of a more qualitative nature.",
-          "excerpt_context": "Section 3, paragraph 5",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "conditional_audit_outcome",
-            "participatory_auditing"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-084",
-          "category": "Intentions",
-          "point": "The document supports the systematic identification and prediction of negative societal impacts from AI systems. By engaging end-users and decision subjects in participatory auditing, it aims to surface potential harms that might otherwise be overlooked by developers. This aligns with the safetyist goal of proactively managing risks before they manifest in real-world deployments.",
-          "verbatim": "Empowering Stakeholders with Participatory Auditing of Predictive AI: Perspectives from End-Users and Decision Subjects without AI Expertise",
-          "excerpt_context": "Title",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "participatory_auditing",
-            "predictive_ai",
-            "risk_identification"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-042",
+          "taxonomy_node_id": "sit-054",
           "category": "Beliefs",
-          "point": "The document acknowledges that AI systems operating in complex environments, such as healthcare or social services, can lead to unpredictable negative outcomes. It emphasizes that these risks are often context-dependent and require input from those directly affected to be fully understood.",
-          "verbatim": "AI Application might cause healthcare support to decline",
-          "excerpt_context": "Table 6: Impact Discovery",
+          "point": "The authors observe that while AI auditing is a recognized field, there is a significant gap in tools and methodologies for non-experts. They argue that relying solely on AI experts creates blind spots, and that participatory auditing is necessary to uncover issues that technical approaches overlook. The document frames this as a fundamental challenge in achieving responsible AI, requiring new frameworks that bridge the gap between technical metrics and broader societal impacts.",
+          "verbatim": "AI experts are increasingly motivated to engage end-users and decision subjects in AI auditing to help overcome any blind-spots persisting after technical approaches.",
+          "excerpt_context": "Section 2.2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "ai_auditing",
+            "blind_spots"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-145",
+          "category": "Intentions",
+          "point": "The document supports the inclusion of domain experts and stakeholders as a form of oversight to detect hazards that technical teams might overlook. By involving parents, teachers, and patients in the auditing process, the research aims to create a human-centric sensor network for identifying risks. This aligns with the safetyist goal of broadening the scope of safety oversight beyond purely technical metrics.",
+          "verbatim": "Participants placed high importance on individuals without AI expertise being involved as auditors, such as Domain Experts (N=26), Stakeholders (N=9), End-Users (N=6), members of the General Public (N=2), or Decision Subjects (N=1).",
+          "excerpt_context": "Section 4.1.3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "participatory-auditing",
+            "stakeholder-oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for auditing to occur throughout the entire AI development pipeline, specifically starting at the business case and data preparation stages. This proactive approach is intended to prevent harms before they are baked into the system, reflecting a safetyist commitment to early-stage risk mitigation.",
+          "verbatim": "This indicates that participants across workshops agreed that AI auditing should be conducted throughout the AI development pipeline, ideally as early as possible, even when only a business case is available or when data is collected to build an AI model underlying an AI application.",
+          "excerpt_context": "Section 4.1.2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "proactive-safety",
+            "pipeline-auditing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-056",
+          "category": "Intentions",
+          "point": "The document advocates for moving beyond purely technical, model-centric evaluations toward socio-technical audits that examine AI applications in their specific deployment contexts. It argues that current auditing practices, which often rely on internal red-teaming or narrow fairness metrics, are insufficient for identifying the broader ethical implications and real-world impacts of AI systems. By integrating domain expertise and diverse stakeholder perspectives, the authors aim to uncover 'blindspots' that automated or expert-only audits would miss, thereby enhancing the overall safety and trustworthiness of AI applications.",
+          "verbatim": "Refocus on auditing AI applications instead of AI models. Existing AI auditing is typically concerned with investigating AI models but neglects their impact when integrated into applications or for specific uses [6]. This restricts auditing to a purely technical evaluation of accuracy and fairness. Instead, the participants in our workshops also included socio-technical impacts that can only be audited in a particular application context in which the AI model is embedded.",
+          "excerpt_context": "Section 3, point 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "socio-technical_impacts",
+            "mechanistic_interpretability",
+            "red-teaming"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-113",
+          "category": "Intentions",
+          "point": "The document supports the use of participatory auditing as a mechanism for proportional monitoring of AI systems. By involving end-users and domain experts in the auditing process, developers can better identify and mitigate risks in high-stakes predictive AI applications. This approach aligns with the safetyist goal of ensuring that oversight is commensurate with the potential for harm in specific deployment contexts.",
+          "verbatim": "End-User Audits: A System Empowering Communities to Lead Large-Scale Investigations of Harmful Algorithmic Behavior.",
+          "excerpt_context": "Section 4, Reference [38]",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "complex_ai_systems",
-            "cascading_failures"
+            "participatory_auditing",
+            "risk-based_governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-056",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that AI systems can cause significant societal and human costs, such as the misidentification of vulnerable populations, resource strain, and the erosion of trust. These findings support the safetyist belief that AI's disruptive impacts are wide-ranging and require rigorous, human-centric evaluation frameworks to prevent adverse outcomes.",
+          "verbatim": "False positive classification of insecure attachment can lead to waste of human and financial resources.",
+          "excerpt_context": "Section 4, Table 8",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "societal_impacts",
+            "human-centric_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-106",
+          "category": "Intentions",
+          "point": "The document supports the use of structured, participatory audit frameworks to define and monitor AI performance. By creating 'Metric Creation' themes—such as defining thresholds, timelines, and evidence—stakeholders can establish the necessary scaffolding for safety-critical oversight. This approach aligns with safetyist goals by formalizing how AI systems are evaluated against real-world harm metrics.",
+          "verbatim": "Defining the acceptable extent of an event WS2 Teachers: 80% correct\nDefining a timeline for the frequency of the measurement WS2 Patients: Monthly review",
+          "excerpt_context": "Table 11: Codebook of the thematic analysis of Metric Creation Themes",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "participatory_auditing",
+            "metric_creation",
+            "accountability"
           ]
         }
       ]
@@ -215,9 +228,9 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-intentions-082",
           "category": "Intentions",
-          "point": "The document argues that auditing should not be limited to the end of the development cycle but must occur throughout the entire AI development pipeline. This reflects a skeptic concern that post-hoc auditing is insufficient to catch systemic harms or biases embedded during the design and training phases.",
+          "point": "The document explicitly advocates for participatory auditing throughout the entire AI development pipeline, not just at the end or post-deployment. It argues that end-users and decision subjects are essential to identifying harms that technical experts miss, and that these stakeholders should be supported by tools that allow them to contribute original insights rather than just reviewing pre-generated assessments. This reflects a skeptic commitment to democratizing oversight and ensuring that AI systems are evaluated against real-world, human-centric criteria.",
           "verbatim": "Participants highlighted the need for participatory auditing throughout the AI development pipeline, not just at the end or after deployment.",
-          "excerpt_context": "Introduction, paragraph 6",
+          "excerpt_context": "Introduction",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "participatory_auditing",
@@ -228,120 +241,131 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document acknowledges that current risk and harm taxonomies are incomplete, as participants in the study identified impacts that were not previously considered. This supports the skeptic belief that top-down, expert-led frameworks often fail to capture the full scope of real-world harms experienced by marginalized or non-expert populations.",
-          "verbatim": "Importantly, participants provided examples of impacts not considered in current risk/harm taxonomies.",
-          "excerpt_context": "Abstract, paragraph 1",
+          "point": "The document cites documented failures of AI, such as gender bias in hiring and racism in bail decisions, as evidence of the urgent need for responsible development. It frames these harms as systemic issues that necessitate a move away from purely technical, expert-led auditing. By grounding their research in health-related predictive AI, the authors demonstrate that these harms are not just theoretical but have tangible, measurable impacts on individuals' lives.",
+          "verbatim": "Spectacular failures, such as blatant gender bias in AI used to make hiring decisions [48] and racism perpetuated in bail decisions [43], have underscored the need for responsible AI development.",
+          "excerpt_context": "Introduction",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_harms",
-            "bias"
+            "algorithmic_bias",
+            "responsible_ai"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-081",
-          "category": "Intentions",
-          "point": "The authors argue that existing taxonomies should be used as 'thinking aids' rather than restrictive, prescriptive tools. This aligns with the skeptic desire to maintain flexibility in auditing processes to ensure that unique, context-specific harms are not ignored due to rigid adherence to standardized categories.",
+          "taxonomy_node_id": "skp-beliefs-161",
+          "category": "Beliefs",
+          "point": "The authors argue that existing risk and harm taxonomies, while useful, should not be treated as restrictive or prescriptive. Instead, they suggest that these tools should function as 'thinking aids' to support participatory auditors in identifying impacts that may not be covered by current frameworks. This reflects a skeptic preference for flexible, user-driven evaluation over rigid, top-down compliance standards.",
           "verbatim": "While taxonomies can be useful, they should not be restrictive and instead be used as thinking aids.",
-          "excerpt_context": "Introduction, paragraph 6",
+          "excerpt_context": "Introduction",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "participatory_auditing",
-            "thinking_aids"
+            "thinking_aids",
+            "taxonomies"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-desires-064",
-          "category": "Desires",
-          "point": "The document advocates for participatory auditing to address power asymmetries and ensure equitable outcomes by including end-users and decision subjects. This aligns with the skeptic desire to prevent discriminatory outcomes and ensure that AI systems are accountable to those they impact.",
-          "verbatim": "Our findings strongly support the direct inclusion of decision subjects and end-users as external auditors, as suggested by Birhane et al. [6], to address power asymmetries in auditing and similar to other calls to include target/impacted communities throughout the development lifecycle of an AI application in order to achieve more equitable outcomes",
-          "excerpt_context": "Section 5.2, Implications for Participatory Auditing",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "participatory_auditing",
-            "power_asymmetry",
-            "equitable_outcomes"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-006",
+          "taxonomy_node_id": "skp-intentions-082",
           "category": "Intentions",
-          "point": "The research emphasizes auditing the socio-technical impact of AI applications rather than just technical model performance. This shifts the focus from raw capability metrics to broader societal impacts, aligning with the skeptic intention to measure success through social benefit and human well-being.",
-          "verbatim": "Instead, the participants in our workshops also included socio-technical impacts that can only be audited in a particular application context in which the AI model is embedded. Hence, current efforts that focus on the establishment of benchmark datasets or risk taxonomies across models without consideration of the context of the AI are incomprehensive and lack value.",
-          "excerpt_context": "Section 5.2, Implications for Participatory Auditing",
+          "point": "The research demonstrates that participatory auditing is a viable method for involving non-experts in the evaluation of AI systems. By using co-design workshops, the authors show that stakeholders can identify relevant metrics and audit outcomes, supporting the skeptic view that AI accountability requires democratic, non-technical participation.",
+          "verbatim": "We present the results of a qualitative analysis of the co-design workshops to address 1) how end-users and decision subjects can be involved in the AI auditing process in Section 4.1, and 2) how to support auditors at each stage of a participatory audit in Section 4.2.",
+          "excerpt_context": "Section 4",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "socio-technical_impact",
-            "application_context"
+            "participatory-auditing",
+            "co-design"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-106",
+          "category": "Intentions",
+          "point": "The document highlights the difficulty non-experts face when creating quantitative metrics, noting that participants often shifted focus toward mitigation strategies. This supports the skeptic view that while participatory auditing is valuable, it requires significant scaffolding and may not be a substitute for rigorous, independent technical auditing.",
+          "verbatim": "Another challenge emerged in participants’ tendency to shift focus from metric development to mitigation strategies, where discussions gravitated toward Proposing Mitigation Methods (N=13), rather than identifying concrete ways to measure the event itself.",
+          "excerpt_context": "Section 4.2.2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "metric-creation",
+            "mitigation-strategies"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-174",
+          "category": "Beliefs",
+          "point": "The document supports the use of 'conditional' audit outcomes, recognizing that binary pass/fail results are often inadequate for complex AI applications. This reflects the reality that audits may involve qualitative assessments or early-stage prototypes where definitive performance metrics are not yet available or applicable. By allowing for conditional outcomes, the auditing process becomes more flexible and better suited to the nuanced, socio-technical nature of AI deployment.",
+          "verbatim": "Being aware of this, participants introduced the idea of a conditional audit outcome in addition to clear pass and fail. This addition could also be beneficial in early auditing stages, where data might not yet be available and metrics might be of a more qualitative nature.",
+          "excerpt_context": "Section 3, point 5",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "conditional_audit_outcome",
+            "socio-technical_impacts"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-161",
+          "category": "Beliefs",
+          "point": "The authors argue that existing risk taxonomies should be utilized as 'thinking aids' rather than rigid, restrictive classification systems. They observed that participants often needed to create new subcategories to capture the full range of impacts, suggesting that taxonomies should be flexible enough to evolve with the specific context of the AI application. This perspective emphasizes the role of auditing tools in facilitating critical thinking and discovery rather than merely enforcing compliance with pre-defined labels.",
+          "verbatim": "Therefore, if taxonomies are used in an auditing tool, the categories should function as thinking aids, allowing for expansion, and classification of positive events.",
+          "excerpt_context": "Section 3, point 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "thinking_aids",
+            "risk_taxonomies"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "skp-intentions-082",
           "category": "Intentions",
-          "point": "The document advocates for democratizing the auditing process by empowering non-experts, such as end-users and decision subjects, to participate. It emphasizes that current auditing practices, which rely heavily on internal developer teams, are insufficient and must be supplemented by external stakeholder involvement to ensure accountability.",
-          "verbatim": "Participants clearly wanted to be involved as part of a group of external auditors. Audits must not solely rely on AI developers as is currently often the case.",
-          "excerpt_context": "Conclusions, bullet point 1",
-          "extraction_confidence": 1.0,
+          "point": "The document advocates for participatory auditing as a core strategy to surface and mitigate algorithmic harms. By involving diverse stakeholders—including patients, teachers, and parents—in the auditing process, the authors argue that systems can be made more accountable and equitable. This aligns with the skeptic intention of ensuring that AI development is not left solely to technical experts but is subject to public and user-led scrutiny.",
+          "verbatim": "Investigating What Factors Influence Users’ Rating of Harmful Algorithmic Bias and Discrimination.",
+          "excerpt_context": "Section 4, Reference [37]",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
             "participatory_auditing",
-            "accountability"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-081",
-          "category": "Intentions",
-          "point": "The document argues that auditing taxonomies should serve as flexible 'thinking aids' rather than rigid, restrictive classification systems. This allows participants to capture a broader range of impacts, including positive outcomes, which are often overlooked in harm-focused auditing frameworks.",
-          "verbatim": "Therefore, if taxonomies are used in an auditing tool, the categories should function as thinking aids, allowing for expansion, and classification of positive events.",
-          "excerpt_context": "Section 3, paragraph 3 (Implications)",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "thinking_aids",
-            "participatory_auditing"
+            "algorithmic_accountability"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document asserts that current auditing tools are limited in scope, often focusing only on specific technical aspects like fairness or accuracy. It highlights the need for end-to-end tool support that covers the entire auditing process, from impact discovery to communication, to accommodate users without technical expertise.",
-          "verbatim": "Currently, most tools only support specific stages, like performance analysis, and often only on specific aspects such as fairness. Instead, we highlight the need to offer tool support for the whole process in a joined-up, end-to-end approach, from impact discovery to audit communication, which can be used by people without technical AI expertise or an auditing background.",
-          "excerpt_context": "Section 3, paragraph 5",
+          "point": "The document documents specific instances of algorithmic bias and discrimination, such as the potential for AI to misrepresent children or unfairly allocate resources based on biased training data. These findings reinforce the skeptic belief that AI systems are prone to perpetuating historical injustices and structural harms if not actively audited and corrected.",
+          "verbatim": "Errors or lack of diversity in training data could lead to misidentification.",
+          "excerpt_context": "Section 4, Table 6",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "algorithmic_fairness",
-            "participatory_auditing"
+            "algorithmic_bias",
+            "structural_harms"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-087",
+          "taxonomy_node_id": "skp-intentions-106",
           "category": "Intentions",
-          "point": "The document advocates for rigorous, systematic methods to assess AI models for biases and errors by involving non-expert stakeholders. It argues that participatory auditing is a necessary mechanism to ensure accountability and surface harms that are otherwise invisible to technical teams.",
-          "verbatim": "Empowering Stakeholders with Participatory Auditing of Predictive AI: Perspectives from End-Users and Decision Subjects without AI Expertise",
-          "excerpt_context": "Title",
+          "point": "The document advocates for empowering non-expert stakeholders (patients, parents, teachers) to participate in the auditing of predictive AI systems. By utilizing 'provotypes' and 'wireframe sketches,' the research demonstrates how end-users can define metrics for harm, such as death rates in deprived areas or individual stress reactions in children. This shifts the power of defining 'success' and 'failure' from developers to those directly impacted by the technology.",
+          "verbatim": "The main elements of the screens are the same, with only small changes between the sketch and the wireframe, such as added checkboxes for the already existing metrics.",
+          "excerpt_context": "Figure 15: Larger version of Wireframe sketch from Workshop 3 Patients and wireframe provotypes",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
             "participatory_auditing",
-            "algorithmic_accountability",
-            "stakeholder_engagement"
+            "human_centered_ai",
+            "stakeholder_empowerment"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-041",
-          "category": "Beliefs",
-          "point": "The document provides empirical evidence of documented harms and biases identified by participants in workshops, including representational bias, privacy risks, and the potential for AI to exacerbate social inequalities. It highlights that these harms are immediate and measurable within the specific domains of application.",
-          "verbatim": "AI Application uncovers pre-existing biases in society and/or exposes decision subjects to those",
-          "excerpt_context": "Table 6: Impact Discovery",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document supports the creation of granular, context-specific audit outcomes that include clear 'pass/fail' results for AI systems. This desire for transparency and accountability allows stakeholders to document notes and criteria, ensuring that AI performance is measured against human-centric values rather than abstract technical benchmarks.",
+          "verbatim": "The sketch shows a list of criteria with checkboxes, a textbox for notes and a clear pass/fail audit result option, which were all taken over into the provotype.",
+          "excerpt_context": "Figure 19: Larger version of Audit Outcome Screens",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "algorithmic_bias",
-            "data_privacy",
-            "social_inequality"
+            "accountability",
+            "audit_transparency"
           ]
         }
       ]
@@ -349,7 +373,7 @@
   },
   "factual_claims": [
     {
-      "claim": "Participatory auditors without AI expertise are capable of identifying harmful AI behaviors and biases that technical experts often overlook.",
+      "claim": "Participatory auditors without AI expertise are capable of identifying potential impacts and harms that are often overlooked by technical AI experts.",
       "claim_label": "Participatory Auditor Efficacy",
       "doc_position": "supports",
       "temporal_scope": "current_state",
@@ -357,65 +381,7 @@
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-041"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim supported by cited research"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Participants in co-design workshops found the SMART framework inadequate for creating AI auditing metrics, necessitating a shift toward a process inspired by Nakao et al. that involves checking existing metrics, combinations, or creating new ones.",
-      "claim_label": "Inadequacy of SMART Framework for AI Auditing",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-014"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical observation of participant performance"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Participatory auditing can be extended to generative AI applications using a technology-agnostic process, even though current research focuses primarily on predictive AI.",
-      "claim_label": "Generative AI Auditing Potential",
-      "doc_position": "supports",
-      "temporal_scope": "predictive",
-      "temporal_bound": null,
-      "extraction_confidence": 0.9,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-087"
-      ],
-      "evidence_criteria": {
-        "specificity": "qualified",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on process methodology"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Participatory auditing workshops allow non-expert stakeholders to identify specific AI risks, such as privacy violations, resource strain, and societal biases, which are often missed by developers.",
-      "claim_label": "Participatory Auditing Efficacy",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 0.95,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-intentions-087",
-        "saf-intentions-084"
+        "skp-intentions-082"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -424,24 +390,119 @@
         "category_criteria": "empirical observation"
       },
       "claim_relations": []
+    },
+    {
+      "claim": "Current AI auditing tools are predominantly designed for technical experts and lack support for end-users and decision subjects without programming or AI backgrounds.",
+      "claim_label": "Tooling Gap for Non-Experts",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-017"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Participants in co-design workshops consistently requested information regarding the business case, organizational processes, and data sources of AI applications to perform effective audits.",
+      "claim_label": "Stakeholder Information Requirements",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-082"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation from qualitative study"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Current AI auditing practices are predominantly internal, conducted by development teams, and focus primarily on technical model accuracy and fairness rather than broader socio-technical impacts.",
+      "claim_label": "Current Auditing Scope Limitations",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-082",
+        "skp-beliefs-164"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim based on workshop findings"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Participatory auditing workshops involving end-users and domain experts can effectively identify and categorize potential AI harms, including privacy risks, resource strain, and societal biases.",
+      "claim_label": "Effectiveness of Participatory Auditing",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-082",
+        "sit-163"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Stakeholders in participatory workshops identified specific metrics for AI auditing, including death rate disparities in deprived areas, individual stress reactions in children, and resource efficiency comparisons.",
+      "claim_label": "Stakeholder-Defined Audit Metrics",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-106"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
       "suggested_label": "Opaque-box vs Translucent-box Auditing",
-      "suggested_description": "A situation concept that distinguishes between auditing scenarios based on the level of access to an AI model's internal components.\nEncompasses: Opaque-box auditing (limited information) and translucent-box auditing (probing model access).\nExcludes: Black-box auditing (zero access) and white-box auditing (full source code/data access).",
-      "concept": "The document categorizes the two health-related AI applications used in the study based on access levels: SPARRA is an 'opaque-box' instance where auditors have limited information, while SAM is a 'translucent-box' instance where auditors can probe the model.",
+      "suggested_description": "A situation concept that categorizes the level of access auditors have to an AI system's internal components. \nEncompasses: Opaque-box (limited access), translucent-box (probing access), white-box (full access). \nExcludes: General black-box auditing.",
+      "concept": "The document distinguishes between 'opaque-box auditing' (where auditors have limited information, as in the SPARRA case) and 'translucent-box auditing' (where auditors can probe the model, as in the SAM case). This distinction is used to frame the constraints and possibilities for participatory auditors.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This provides a necessary taxonomy for the technical constraints of auditing, which is currently missing from the provided nodes.",
-      "Accelerationist Interpretation": "Accelerationists might view opaque-box auditing as a barrier to innovation and advocate for more open-access models to facilitate better performance optimization.",
-      "Safetyist Interpretation": "Safetyists would likely prioritize translucent-box access as a minimum requirement for meaningful safety evaluation and alignment verification.",
-      "Skeptic Interpretation": "Skeptics would emphasize that opaque-box auditing is the reality for most end-users and that tools must be designed to function effectively under these constrained conditions."
+      "reason": "This provides a useful taxonomy for the constraints of auditing, which is not currently captured in the provided nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view translucent-box access as a superior model for collaboration, as it allows for more meaningful human-AI interaction and expert-assisted auditing.",
+      "Safetyist Interpretation": "Safetyists would emphasize that opaque-box auditing is a significant risk factor, as it prevents thorough alignment and safety verification, necessitating stricter transparency requirements.",
+      "Skeptic Interpretation": "Skeptics would highlight that opaque-box auditing is a common barrier to accountability, and that even translucent-box access is insufficient if the auditors lack the technical support to interpret the model's behavior."
     }
   ],
   "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
+    "Cross-camp agreement: safetyist + skeptic both 'aligned' on skp-intentions-106"
   ]
 }

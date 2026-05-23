@@ -1,24 +1,97 @@
 {
   "doc_id": "aligning-language-models-follow-instructions-2026",
-  "taxonomy_version": "3.2.0",
-  "generated_at": "2026-04-19T16:51:35Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "fire",
     "taxonomy_filter": "rag",
-    "taxonomy_nodes": 33,
+    "taxonomy_nodes": 43,
     "fire_confidence_threshold": 0.7,
     "fire_stats": {
-      "api_calls": 3,
-      "iterations": 2,
+      "api_calls": 1,
+      "iterations": 0,
       "claims_total": 5,
-      "claims_confident": 3,
-      "claims_iterated": 2,
-      "elapsed_seconds": 22.1,
+      "claims_confident": 5,
+      "claims_iterated": 0,
+      "elapsed_seconds": 24.0,
       "termination_reason": "all_confident"
     }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "aligning-language-models-follow-instructions-2026",
+    "measured_at": "2026-05-23T00:03:46.3802421-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 1.0,
+        "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "resolved_count": 0,
+          "near_miss_count": 3
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 39672.0,
+        "out_units": "items",
+        "out_count": 32.0,
+        "ratio": 0.0008,
+        "flags": {
+          "dedup_claims_removed": 0,
+          "dedup_points_removed": 0,
+          "factual_claims": 5,
+          "unmapped_concepts": 3,
+          "null_node_rate": 0.2917,
+          "used_fire": 1,
+          "density_floor_hit": 0,
+          "total_points": 24
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 655.0,
+        "out_units": "nodes",
+        "out_count": 43.0,
+        "ratio": 0.0656,
+        "flags": {
+          "top_k": 40,
+          "below_threshold_forced": 3,
+          "above_threshold": 40,
+          "desires_selected": 3,
+          "beliefs_selected": 23,
+          "effective_threshold": 0.3153,
+          "threshold_floor": 0.2,
+          "intentions_selected": 16
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 3.0,
+        "ratio": 1.0,
+        "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "resolved_count": 0,
+          "near_miss_count": 3
+        }
+      }
+    ],
+    "cumulative_retention": 0.0656
   },
   "pov_summaries": {
     "accelerationist": {
@@ -27,113 +100,97 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-019",
           "category": "Beliefs",
-          "point": "The document asserts that reinforcement learning from human feedback (RLHF) acts as a mechanism to 'unlock' latent capabilities already present in large language models like GPT-3. By using a small fraction of compute relative to pretraining, the model learns to follow instructions without needing to acquire entirely new foundational knowledge. This supports the accelerationist view that scaling and subsequent fine-tuning can efficiently extract transformative utility from existing models. The document notes this process is limited by the model's pre-existing parameter space, suggesting that capability gains are bounded by the initial training phase.",
-          "verbatim": "One way of thinking about this process is that it “unlocks” capabilities that GPT-3 already had, but were difficult to elicit through prompt engineering alone: this is because our training procedure has a limited ability to teach the model new capabilities relative to what is learned during pretraining, since it uses less than 2% of the compute and data relative to model pretraining.",
+          "point": "The document asserts that reinforcement learning from human feedback (RLHF) acts as a mechanism to 'unlock' latent capabilities already present in large language models. By using a small fraction of compute relative to pretraining, the model can be steered to follow instructions more effectively without needing to learn entirely new skills. This supports the accelerationist view that foundational models possess vast, untapped utility that can be systematically extracted and deployed. The document notes that this process is limited by the model's pre-existing knowledge, emphasizing that alignment is an unlocking process rather than a generative one.",
+          "verbatim": "One way of thinking about this process is that it 'unlocks' capabilities that GPT-3 already had, but were difficult to elicit through prompt engineering alone: this is because our training procedure has a limited ability to teach the model new capabilities relative to what is learned during pretraining, since it uses less than 2% of the compute and data relative to model pretraining.",
           "excerpt_context": "Methods section, paragraph 2",
-          "_backfill": {
-            "previous_id": "acc-beliefs-015",
-            "similarity": 0.6341,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities (scaling)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-002",
-          "category": "Intentions",
-          "point": "The document argues for the rapid deployment of alignment research into commercial products to improve the utility of general-purpose AI systems. By moving alignment research from the lab to the API, the authors demonstrate a commitment to iterative product improvement. This aligns with accelerationist goals of bringing powerful AI tools to market as quickly as possible to solve user needs. The document acknowledges that this is only the beginning of a broader effort to refine these tools.",
-          "verbatim": "This is the first time our alignment research, which we’ve been pursuing for several years, has been applied to our product.",
+          "taxonomy_node_id": "acc-desires-010",
+          "category": "Desires",
+          "point": "The document advocates for the integration of human feedback into the training loop to improve model helpfulness and truthfulness. By utilizing human demonstrations and rankings, the model is better aligned with user intentions, which the document frames as a necessary step for product deployment. This aligns with the accelerationist goal of centralizing human knowledge and preference into foundational models to scale their utility. The document acknowledges that this process is subjective and requires ongoing research to refine.",
+          "verbatim": "We believe that fine-tuning language models with humans in the loop is a powerful tool for improving their safety and reliability, and we will continue to push in this direction.",
           "excerpt_context": "Introduction, paragraph 6",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5599,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-015",
-          "category": "Desires",
-          "point": "The document supports the goal of creating language models that are more helpful and capable of following complex user instructions. By improving the model's ability to perform tasks, the authors aim to increase the practical value of AI for users. This reflects an accelerationist desire to maximize the utility and reach of AI systems. The document notes that this improvement does not come at the cost of existing academic NLP capabilities.",
-          "verbatim": "At the same time, we show that we don’t have to compromise on GPT-3’s capabilities, as measured by our model’s performance on academic NLP evaluations.",
-          "excerpt_context": "Introduction, paragraph 5",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5406,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-049",
-          "category": "Intentions",
-          "point": "The document proposes mixing original pretraining data into the fine-tuning process to mitigate the 'alignment tax' where models lose performance on general tasks. This strategy ensures that safety and alignment improvements do not degrade the model's overall intelligence or versatility. This is a key accelerationist intention: maintaining high performance while adding safety layers. The document highlights this as a simple but effective algorithmic change.",
-          "verbatim": "We’ve found a simple algorithmic change that minimizes this alignment tax: during RL fine-tuning we mix in a small fraction of the original data used to train GPT-3, and train on this data using the normal log likelihood maximization.",
-          "excerpt_context": "Methods section, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4384,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-015",
-          "category": "Beliefs",
-          "point": "The document claims that academic NLP datasets are not fully representative of how language models are used in practice by customers. By comparing InstructGPT to models like FLAN and T0, the authors argue that real-world API usage requires different alignment strategies. This supports the accelerationist belief that real-world deployment is the ultimate test of AI utility. The document suggests that focusing solely on academic benchmarks may lead to suboptimal real-world performance.",
-          "verbatim": "Finally, we find that InstructGPT outputs are preferred to those from FLAN and T0 on our customer distribution. This indicates that the data used to train FLAN and T0, mostly academic NLP tasks, is not fully representative of how deployed language models are used in practice.",
-          "excerpt_context": "Results section, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.4479,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-002",
-          "category": "Desires",
-          "point": "The document expresses a desire to continue pushing alignment research to create language tools that are safe and helpful to humans. This reflects an accelerationist commitment to ongoing R&D as the primary path to better AI. The authors explicitly state their intent to keep hiring and expanding this research. The document frames this as a long-term, iterative process.",
-          "verbatim": "Our results show that these techniques are effective at significantly improving the alignment of general-purpose AI systems with human intentions. However, this is just the beginning: we will keep pushing these techniques to improve the alignment of our current and future models towards language tools that are safe and helpful to humans.",
-          "excerpt_context": "Next steps section, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5506,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment (commercial)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-020",
-          "category": "Intentions",
-          "point": "The document intends to use human feedback as a reward signal to fine-tune models, arguing that this is necessary because safety and alignment are complex and subjective. This approach prioritizes human preference over rigid, automated metrics. This aligns with accelerationist views that human-in-the-loop systems are the most effective way to scale AI utility. The document notes that this method is a powerful tool for improving reliability.",
-          "verbatim": "We believe that fine-tuning language models with humans in the loop is a powerful tool for improving their safety and reliability, and we will continue to push in this direction.",
-          "excerpt_context": "Introduction, paragraph 6",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.563,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "category": "Beliefs",
+          "point": "The document demonstrates that InstructGPT models are significantly preferred by human labelers over larger GPT-3 models, despite having 100x fewer parameters. This suggests that alignment techniques can drastically improve the efficiency and utility of models, reducing the need for massive parameter scaling to achieve high-quality instruction following. From an accelerationist perspective, this validates the focus on optimization and feedback loops as a path to more capable and usable AI systems. The document notes that this preference holds across various model sizes.",
+          "verbatim": "Our labelers prefer outputs from our 1.3B InstructGPT model over outputs from a 175B GPT-3 model, despite having more than 100x fewer parameters.",
+          "excerpt_context": "Introduction, paragraph 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "capabilities (scaling)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-028",
+          "taxonomy_node_id": "acc-intentions-094",
+          "category": "Intentions",
+          "point": "The document proposes mixing original pretraining data into the RL fine-tuning process to mitigate the 'alignment tax'—a performance degradation on academic NLP tasks. This strategy ensures that the model maintains its broad capabilities while becoming more aligned with user instructions. This reflects an accelerationist intention to preserve model performance while optimizing for specific deployment goals. The document highlights this as a simple algorithmic change that effectively balances safety and utility.",
+          "verbatim": "We've found a simple algorithmic change that minimizes this alignment tax: during RL fine-tuning we mix in a small fraction of the original data used to train GPT-3, and train on this data using the normal log likelihood maximization.",
+          "excerpt_context": "Methods section, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment (commercial)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document emphasizes the importance of deploying models through an API to monitor for misuse and provide content filters. This approach treats safety as a deployment-time concern rather than just a model-training concern, allowing for rapid iteration while maintaining guardrails. This aligns with the accelerationist preference for adaptive governance that evolves with the technology. The document acknowledges that this does not fully solve the problem of models being instructed to produce unsafe outputs.",
+          "verbatim": "But the safety of a machine learning system depends not only on the behavior of the underlying models, but also on how these models are deployed. To support the safety of our API, we will continue to review potential applications before they go live, provide content filters for detecting unsafe completions, and monitor for misuse.",
+          "excerpt_context": "Limitations section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "governance (adaptive)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document expresses a desire to move toward models that are safe and helpful to humans by continuing to push alignment research. This reflects an accelerationist commitment to iterative improvement of AI systems through empirical research and product integration. The document notes that this is just the beginning of applying alignment research to products. It frames the goal as creating tools that are increasingly useful for human users.",
+          "verbatim": "However, this is just the beginning: we will keep pushing these techniques to improve the alignment of our current and future models towards language tools that are safe and helpful to humans.",
+          "excerpt_context": "Next steps section, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment (commercial)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document highlights the use of screening tests for labelers to ensure they have the aptitude to identify and respond to sensitive prompts. This intention to curate the human feedback loop ensures that the data used for alignment is of high quality and consistent with the researchers' goals. This reflects an accelerationist approach to managing the human-AI interface through structured, meritocratic selection. The document notes that while this works, it does not guarantee alignment to broader groups.",
+          "verbatim": "We selected labelers who performed well on a screening test for aptitude in identifying and responding to sensitive prompts.",
+          "excerpt_context": "Generalizing to broader preferences section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight (audit)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document asserts that InstructGPT models are significantly preferred by human labelers over GPT-3, even when GPT-3 is prompted to follow instructions. This empirical claim supports the effectiveness of the RLHF methodology. From an accelerationist perspective, this validates the strategy of using human-guided fine-tuning to improve model performance. The document notes that this preference holds across various model sizes.",
-          "verbatim": "We find that InstructGPT models are significantly preferred on prompts submitted to both the InstructGPT and GPT-3 models on the API.",
-          "excerpt_context": "Results section, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.412,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "point": "The document observes that data used to train academic models like FLAN and T0 is not fully representative of how deployed language models are used in practice. This belief supports the accelerationist focus on real-world, API-based feedback over static academic benchmarks. By prioritizing customer-submitted prompts, the model becomes more useful for actual applications. The document uses this to justify the need for proprietary, user-driven alignment data.",
+          "verbatim": "This indicates that the data used to train FLAN and T0, mostly academic NLP tasks, is not fully representative of how deployed language models are used in practice.",
+          "excerpt_context": "Results section, paragraph 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (market)"
+          ]
         }
       ]
     },
@@ -141,91 +198,99 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-003",
-          "category": "Intentions",
-          "point": "The document prioritizes the development of techniques to make models safer and more aligned with human intentions before widespread deployment. By using RLHF to reduce toxic outputs and hallucinations, the authors address immediate safety concerns. This aligns with the safetyist focus on mitigating harms through rigorous alignment research. The document acknowledges that these models are still far from fully safe.",
-          "verbatim": "To make our models safer, more helpful, and more aligned, we use an existing technique called reinforcement learning from human feedback (RLHF).",
-          "excerpt_context": "Introduction, paragraph 4",
-          "_backfill": {
-            "previous_id": "saf-intentions-003",
-            "similarity": 0.6424,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-033",
+          "taxonomy_node_id": "saf-beliefs-093",
           "category": "Beliefs",
-          "point": "The document acknowledges that language models can generate harmful, untruthful, or toxic content because they are trained to predict the next word rather than to follow user intent safely. This highlights the misalignment between raw model training and human safety requirements. From a safetyist perspective, this confirms that base models are inherently risky. The document uses this as a justification for the necessity of alignment research.",
-          "verbatim": "But these models can also generate outputs that are untruthful, toxic, or reflect harmful sentiments. This is in part because GPT-3 is trained to predict the next word on a large dataset of Internet text, rather than to safely perform the language task that the user wants.",
+          "point": "The document acknowledges that GPT-3 is trained to predict the next word on the internet, which leads to the generation of untruthful, toxic, or harmful content. This confirms the safetyist belief that models optimized for simple proxy metrics (next-word prediction) will inevitably produce harmful outcomes. The document argues that this is because the model is not inherently aligned with user intent. This justifies the need for RLHF as a corrective measure.",
+          "verbatim": "This is in part because GPT-3 is trained to predict the next word on a large dataset of Internet text, rather than to safely perform the language task that the user wants. In other words, these models aren't aligned with their users.",
           "excerpt_context": "Introduction, paragraph 3",
-          "_backfill": {
-            "previous_id": "saf-beliefs-037",
-            "similarity": 0.6698,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-118",
           "category": "Intentions",
-          "point": "The document argues for the need to align models with the values of specific populations, noting that aligning to an 'average' labeler preference may not be desirable for minority groups. This reflects a safetyist concern for the societal impact of AI values. The authors suggest that inclusive processes are required to make these decisions. The document admits that this is a difficult societal challenge.",
-          "verbatim": "More generally, aligning model outputs to the values of specific humans introduces difficult choices with societal implications, and ultimately we must establish responsible, inclusive processes for making these decisions.",
-          "excerpt_context": "Limitations section, paragraph 3"
+          "point": "The document uses RLHF to train models to be more helpful and truthful, acknowledging that safety and alignment problems are complex and subjective. This aligns with the safetyist intention to actively train models to adopt human values and safety principles. The document notes that automatic metrics are insufficient for these tasks, necessitating human-in-the-loop feedback. It frames this as a powerful tool for improving reliability.",
+          "verbatim": "This technique uses human preferences as a reward signal to fine-tune our models, which is important as the safety and alignment problems we are aiming to solve are complex and subjective, and aren't fully captured by simple automatic metrics.",
+          "excerpt_context": "Methods section, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-004",
+          "taxonomy_node_id": "saf-beliefs-003",
           "category": "Beliefs",
-          "point": "The document asserts that complex human values cannot be fully captured by simple automatic metrics, necessitating human-in-the-loop feedback. This supports the safetyist belief that alignment is a subjective and complex problem that cannot be solved by math alone. The authors use this to justify the use of human labelers. The document notes that this is a core motivation for their research.",
-          "verbatim": "This technique uses human preferences as a reward signal to fine-tune our models, which is important as the safety and alignment problems we are aiming to solve are complex and subjective, and aren’t fully captured by simple automatic metrics.",
-          "excerpt_context": "Methods section, paragraph 1"
+          "point": "The document admits that InstructGPT models are far from fully aligned or safe, as they still generate toxic or biased outputs and make up facts. This supports the safetyist belief that current alignment methods are insufficient to guarantee safety. The document acknowledges that the underlying models remain opaque and prone to failure. It emphasizes that safety requires more than just model training; it requires deployment-time monitoring.",
+          "verbatim": "Despite making significant progress, our InstructGPT models are far from fully aligned or fully safe; they still generate toxic or biased outputs, make up facts, and generate sexual and violent content without explicit prompting.",
+          "excerpt_context": "Limitations section, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-014",
+          "taxonomy_node_id": "saf-intentions-088",
           "category": "Intentions",
-          "point": "The document identifies the 'misuse' problem where models trained to follow instructions might also follow instructions to produce unsafe content. This is a critical safetyist concern regarding the dual-use nature of instruction-following models. The authors state that solving this is an important open research problem. The document emphasizes that safety depends on both model behavior and deployment practices.",
+          "point": "The document identifies a critical failure mode: training models to follow instructions makes them more susceptible to misuse if instructed to produce unsafe outputs. This addresses the safetyist concern regarding agentic failure surfaces where models can be manipulated to bypass safety constraints. The document labels this an important open research problem. It highlights the tension between helpfulness and safety.",
           "verbatim": "A byproduct of training our models to follow user instructions is that they may become more susceptible to misuse if instructed to produce unsafe outputs. Solving this requires our models to refuse certain instructions; doing this reliably is an important open research problem that we are excited to tackle.",
           "excerpt_context": "Limitations section, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-003",
-            "similarity": 0.6668,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-desires-003",
+          "taxonomy_node_id": "saf-goals-001",
           "category": "Desires",
-          "point": "The document supports the use of content filters and pre-deployment reviews to ensure the safety of the API. This reflects a safetyist desire for active oversight and risk mitigation in AI deployment. The authors argue that safety is not just about the model, but also about how it is deployed. The document notes that they will continue to monitor for misuse.",
-          "verbatim": "But the safety of a machine learning system depends not only on the behavior of the underlying models, but also on how these models are deployed. To support the safety of our API, we will continue to review potential applications before they go live, provide content filters for detecting unsafe completions, and monitor for misuse.",
-          "excerpt_context": "Limitations section, paragraph 1"
+          "point": "The document discusses the need to establish responsible, inclusive processes for making decisions about whose values the model should reflect. This aligns with the safetyist desire for standardized and transparent governance of AI systems. The document recognizes that aligning to the average labeler preference may not be desirable for minority groups. It calls for more research into understanding labeler disagreements.",
+          "verbatim": "More generally, aligning model outputs to the values of specific humans introduces difficult choices with societal implications, and ultimately we must establish responsible, inclusive processes for making these decisions.",
+          "excerpt_context": "Limitations section, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "transparency (accountability)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-008",
+          "taxonomy_node_id": "saf-beliefs-102",
           "category": "Beliefs",
-          "point": "The document admits that despite progress, InstructGPT models still generate toxic or biased outputs and make up facts. This empirical honesty is central to the safetyist perspective, which emphasizes the limitations of current alignment methods. The authors use this to frame their work as an ongoing, incomplete process. The document highlights the need for further research.",
-          "verbatim": "Despite making significant progress, our InstructGPT models are far from fully aligned or fully safe; they still generate toxic or biased outputs, make up facts, and generate sexual and violent content without explicit prompting.",
-          "excerpt_context": "Limitations section, paragraph 1"
+          "point": "The document notes that InstructGPT is biased towards the cultural values of English-speaking people because it is trained to follow instructions in English. This supports the safetyist belief that models can harbor deep-seated biases that persist despite alignment training. The document suggests that conditioning models on the values of specific populations is a necessary next step. It acknowledges the societal implications of these biases.",
+          "verbatim": "Right now, InstructGPT is trained to follow instructions in English; thus, it is biased towards the cultural values of English-speaking people.",
+          "excerpt_context": "Limitations section, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-118",
+          "taxonomy_node_id": "saf-intentions-024",
           "category": "Intentions",
-          "point": "The document describes using human labelers to provide demonstrations and rank model outputs to train a reward model. This is a core safetyist intention: using human oversight to shape AI behavior. The authors argue that this process is essential for aligning models with human intentions. The document notes that this is a multi-step process involving data collection and reinforcement learning.",
-          "verbatim": "We first collect a dataset of human-written demonstrations on prompts submitted to our API, and use this to train our supervised learning baselines. Next, we collect a dataset of human-labeled comparisons between two model outputs on a larger set of API prompts.",
-          "excerpt_context": "Methods section, paragraph 2",
-          "_backfill": {
-            "previous_id": "saf-intentions-035",
-            "similarity": 0.6648,
-            "reason": "re-evaluate",
-            "backfill_date": "2026-04-27T07:25:35Z"
-          }
+          "point": "The document provides a model card and references to previous research, supporting the safetyist intention to document AI systems and safety processes. This transparency is intended to help stakeholders understand the model's capabilities and limitations. The document acknowledges that this is part of a broader effort to improve safety. It emphasizes the importance of ongoing research into alignment.",
+          "verbatim": "We believe that fine-tuning language models with humans in the loop is a powerful tool for improving their safety and reliability, and we will continue to push in this direction.",
+          "excerpt_context": "Introduction, paragraph 6",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "transparency (accountability)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-060",
+          "category": "Beliefs",
+          "point": "The document acknowledges an 'alignment tax' where aligning models on customer tasks can make their performance worse on academic NLP tasks. This confirms the safetyist belief that alignment training can create a measurable performance penalty. The document proposes a solution (mixing in pretraining data) to mitigate this, but the existence of the tax remains a core challenge. It highlights the trade-off between safety and general capability.",
+          "verbatim": "A limitation of this approach is that it introduces an 'alignment tax': aligning the models only on customer tasks can make their performance worse on some other academic NLP tasks.",
+          "excerpt_context": "Methods section, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "alignment (safety)"
+          ]
         }
       ]
     },
@@ -233,111 +298,114 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
-          "category": "Intentions",
-          "point": "The document frames AI models as systems that predict the next word on large datasets, rather than as entities with genuine understanding. This aligns with the skeptic view that AI is essentially sophisticated pattern matching. The authors use this to explain why models are prone to generating untruthful or toxic content. The document emphasizes that alignment is about correcting these statistical tendencies.",
-          "verbatim": "This is in part because GPT-3 is trained to predict the next word on a large dataset of Internet text, rather than to safely perform the language task that the user wants.",
-          "excerpt_context": "Introduction, paragraph 3"
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
+          "taxonomy_node_id": "skp-beliefs-122",
           "category": "Beliefs",
-          "point": "The document notes that InstructGPT models are biased towards the cultural values of English-speaking people because they are trained on English instructions. This supports the skeptic concern that AI systems encode and amplify the biases of their training data and developers. The authors acknowledge this as a limitation that requires further research. The document suggests that this is a significant societal issue.",
-          "verbatim": "Right now, InstructGPT is trained to follow instructions in English; thus, it is biased towards the cultural values of English-speaking people.",
-          "excerpt_context": "Limitations section, paragraph 3",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5685,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "point": "The document describes GPT-3 as being trained to predict the next word on a large dataset of internet text, which aligns with the skeptic view that these models are essentially pattern-matching engines. The document frames the model's lack of alignment as a consequence of this training objective. This supports the skeptic argument that models do not possess genuine understanding. It highlights the gap between statistical prediction and human-like intent.",
+          "verbatim": "This is in part because GPT-3 is trained to predict the next word on a large dataset of Internet text, rather than to safely perform the language task that the user wants.",
+          "excerpt_context": "Introduction, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "harm (documented, present)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The document emphasizes the importance of documenting the alignment process and the sources of influence on the model's data. By discussing the role of labelers, researchers, and customers, the authors acknowledge the need for transparency in how AI systems are shaped. This aligns with the skeptic demand for accountability in AI development. The document notes that more work is needed to understand how these models perform for broader groups.",
-          "verbatim": "It is also influenced by our customers and the preferences implicit in our API policies. We selected labelers who performed well on a screening test for aptitude in identifying and responding to sensitive prompts.",
-          "excerpt_context": "Generalizing to broader preferences section, paragraph 1"
+          "point": "The document acknowledges that InstructGPT models still generate toxic or biased outputs and make up facts, which supports the skeptic intention to demand comprehensive documentation and auditing of AI systems. The document's admission of these persistent harms highlights the need for transparency. It suggests that current models are not yet ready for high-stakes applications without significant oversight. The document calls for ongoing monitoring.",
+          "verbatim": "Despite making significant progress, our InstructGPT models are far from fully aligned or fully safe; they still generate toxic or biased outputs, make up facts, and generate sexual and violent content without explicit prompting.",
+          "excerpt_context": "Limitations section, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document notes that human annotators remove personally identifiable information (PII) from prompts before adding them to the training set. This reflects the skeptic concern regarding privacy vulnerabilities in AI models. The document's need to explicitly mention this mitigation strategy confirms that PII leakage is a known risk. It highlights the importance of data hygiene in the training process.",
+          "verbatim": "Our human annotators remove personal identifiable information from all prompts before adding it to the training set.",
+          "excerpt_context": "Footnotes, footnote A",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "autonomy (individual/data)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document acknowledges that models can generate toxic or biased outputs, which supports the skeptic belief that AI systems can reproduce and amplify societal inequalities. The document's focus on mitigating these harms through RLHF is a direct response to this documented present harm. It emphasizes that these issues are not fully resolved. The document calls for more research into labeler disagreements.",
+          "verbatim": "We also conduct human evaluations on our API prompt distribution, and find that InstructGPT makes up facts ('hallucinates') less often, and generates more appropriate outputs.",
+          "excerpt_context": "Results section, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "bias (systemic/social)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document discusses the need to establish responsible, inclusive processes for making decisions about model values, which aligns with the skeptic intention to ensure procedural fairness in AI development. The document recognizes that current models are biased towards English-speaking cultural values. It calls for more research into how to condition models on the values of specific populations. This reflects a commitment to addressing systemic bias.",
+          "verbatim": "More generally, aligning model outputs to the values of specific humans introduces difficult choices with societal implications, and ultimately we must establish responsible, inclusive processes for making these decisions.",
+          "excerpt_context": "Limitations section, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "fairness (procedural)"
+          ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document reports that InstructGPT does not show significant improvement over GPT-3 in reducing sexual or violent content, or in preventing denigration of protected classes. This empirical finding supports the skeptic view that current alignment techniques are limited and may not address deep-seated social harms. The authors use this to temper expectations about the safety of their models. The document notes that the incidence rate is equally low for both models.",
-          "verbatim": "We find that InstructGPT doesn’t improve significantly over GPT-3 on these metrics; the incidence rate is equally low for both models.",
-          "excerpt_context": "Footnote C"
+          "point": "The document notes that InstructGPT models are trained to follow instructions in English, which leads to a bias towards the cultural values of English-speaking people. This supports the skeptic belief that AI systems are not neutral and can encode specific cultural biases. The document acknowledges this as a limitation that needs to be addressed. It highlights the need for more diverse training data.",
+          "verbatim": "Right now, InstructGPT is trained to follow instructions in English; thus, it is biased towards the cultural values of English-speaking people.",
+          "excerpt_context": "Limitations section, paragraph 3",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias (systemic/social)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-078",
-          "category": "Desires",
-          "point": "The document expresses a desire to move beyond the preferences of a small group of training labelers to ensure models are aligned with broader human values. This reflects a skeptic concern that AI systems are currently shaped by a narrow, unrepresentative group. The authors acknowledge that their current process does not guarantee alignment with broader groups. The document calls for more research into how models perform on inputs where humans disagree.",
-          "verbatim": "However, these different sources of influence on the data do not guarantee our models are aligned to the preferences of any broader group.",
-          "excerpt_context": "Generalizing to broader preferences section, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.671,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-011",
-          "category": "Beliefs",
-          "point": "The document observes that human labelers often disagree on the desired behavior for AI models. This empirical observation supports the skeptic view that 'alignment' is not a neutral or objective goal, but a contested one. The authors use this to justify the need for more inclusive processes. The document notes that this is a key area for future research.",
-          "verbatim": "However, more work is needed to study how these models perform on broader groups of users, and how they perform on inputs where humans disagree about the desired behavior.",
-          "excerpt_context": "Generalizing to broader preferences section, paragraph 2",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.6706,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document intends to provide content filters and monitor for misuse as part of its deployment strategy. This reflects a skeptic preference for external, observable safeguards rather than relying solely on internal model alignment. The authors argue that safety is a multi-layered problem. The document notes that they will continue to review potential applications before they go live.",
+          "point": "The document mentions the use of content filters for detecting unsafe completions, which aligns with the skeptic intention to implement algorithmic accountability mechanisms. This provides a layer of protection against harmful outputs. The document notes that this is part of a broader strategy to support the safety of the API. It emphasizes that this is a necessary, though not sufficient, measure.",
           "verbatim": "To support the safety of our API, we will continue to review potential applications before they go live, provide content filters for detecting unsafe completions, and monitor for misuse.",
           "excerpt_context": "Limitations section, paragraph 1",
-          "_backfill": {
-            "previous_id": null,
-            "similarity": 0.5527,
-            "reason": "null",
-            "backfill_date": "2026-04-27T06:30:09Z"
-          }
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability (algorithmic)"
+          ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-053",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document claims that the data used to train academic models like FLAN and T0 is not representative of real-world usage. This supports the skeptic view that academic benchmarks are often disconnected from the practical realities and harms of deployed AI. The authors use this to argue for the importance of their own, more representative, API-based training data. The document notes that this is a key finding of their research.",
-          "verbatim": "This indicates that the data used to train FLAN and T0, mostly academic NLP tasks, is not fully representative of how deployed language models are used in practice.",
-          "excerpt_context": "Results section, paragraph 3",
-          "_backfill": {
-            "previous_id": "skp-beliefs-073",
-            "similarity": 0.5727,
-            "reason": "stale",
-            "backfill_date": "2026-04-27T08:06:48Z"
-          }
+          "point": "The document acknowledges that InstructGPT models can generate sexual and violent content without explicit prompting, which supports the skeptic belief that AI systems can cause documented, present harm. The document's admission of this failure mode highlights the limitations of current alignment techniques. It emphasizes that safety is an ongoing challenge. The document calls for more research into these issues.",
+          "verbatim": "Despite making significant progress, our InstructGPT models are far from fully aligned or fully safe; they still generate toxic or biased outputs, make up facts, and generate sexual and violent content without explicit prompting.",
+          "excerpt_context": "Limitations section, paragraph 1",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "harm (documented, present)"
+          ]
         }
       ]
     }
   },
   "factual_claims": [
     {
-      "claim": "InstructGPT models are significantly preferred by human labelers over GPT-3 models on API prompts.",
-      "claim_label": "Human Preference for InstructGPT",
+      "claim": "InstructGPT models are preferred by human labelers over GPT-3 models, despite having 100x fewer parameters.",
+      "claim_label": "InstructGPT Parameter Efficiency",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2022-01",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-015"
+        "acc-beliefs-020"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -350,68 +418,78 @@
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "InstructGPT models use less than 2% of the compute and data relative to GPT-3 pretraining.",
-      "claim_label": "Alignment Compute Efficiency",
+      "claim": "InstructGPT models are trained using less than 2% of the compute and data relative to GPT-3 pretraining.",
+      "claim_label": "InstructGPT Training Compute",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2022-01",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "acc-beliefs-015"
+        "acc-beliefs-019"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
         "category_criteria": {
-          "evidence_level": "statistical_implicit"
+          "evidence_level": "direct_empirical"
         }
       },
       "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "InstructGPT models demonstrate a reduction in toxic output generation compared to GPT-3, though the decrease is relatively small.",
-      "claim_label": "Toxicity Reduction",
+      "claim": "InstructGPT models show fewer imitative falsehoods on TruthfulQA and are less toxic on RealToxicityPrompts compared to GPT-3.",
+      "claim_label": "InstructGPT Safety Metrics",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2022-01",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-003"
+        "saf-beliefs-093"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
-        "internally_consistent": true
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
-      "fire_confidence": 0.95
+      "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "InstructGPT models demonstrate lower rates of hallucination compared to GPT-3 on TruthfulQA benchmarks.",
-      "claim_label": "Hallucination Reduction",
+      "claim": "InstructGPT models are trained using reinforcement learning from human feedback (RLHF).",
+      "claim_label": "InstructGPT Training Method",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2022-01",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-003"
+        "saf-intentions-118"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
-        "internally_consistent": true
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
       },
-      "fire_confidence": 0.95
+      "fire_confidence": 0.7999999999999999
     },
     {
-      "claim": "InstructGPT models do not show significant improvement over GPT-3 in reducing sexual or violent content.",
-      "claim_label": "Limited Safety Improvement",
+      "claim": "InstructGPT models are trained to follow instructions in English, leading to a bias towards English-speaking cultural values.",
+      "claim_label": "InstructGPT Cultural Bias",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": "2022-01",
+      "extraction_confidence": 0.98,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-008"
+        "skp-beliefs-005"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -427,22 +505,30 @@
   "unmapped_concepts": [
     {
       "suggested_label": "Alignment Tax Mitigation",
-      "suggested_description": "An intention within accelerationist discourse that involves mixing original pretraining data into the fine-tuning process to prevent performance degradation on general tasks. This ensures that safety improvements do not compromise the model's overall utility. It addresses the trade-off between alignment and capability.",
-      "concept": "The document describes mixing a small fraction of original GPT-3 pretraining data into the RL fine-tuning process to maintain performance on academic NLP tasks. This technique is explicitly used to minimize the 'alignment tax' that occurs when models are fine-tuned only on customer tasks. It is a key strategy for balancing safety and capability.",
+      "suggested_description": "An Intention within accelerationist discourse that balances model alignment with general capability preservation. Encompasses: Mixing pretraining data, log likelihood maximization, performance trade-off management. Excludes: Pure safety-focused alignment, pure capability-focused scaling.",
+      "concept": "The document introduces the 'alignment tax' as a performance degradation on academic tasks when models are fine-tuned for user instructions. It proposes mixing in original pretraining data during RL fine-tuning to mitigate this tax, ensuring the model remains capable across diverse tasks. This is a specific strategy for balancing alignment and utility.",
       "suggested_pov": "accelerationist",
       "suggested_category": "Intentions",
-      "reason": "This concept describes a specific technical strategy for balancing safety and performance that is not currently captured in the taxonomy."
+      "reason": "The concept of an 'alignment tax' and its specific mitigation strategy (mixing pretraining data) is a distinct technical approach to balancing safety and utility that is not explicitly covered by existing nodes."
     },
     {
-      "suggested_label": "Instruction-Following Misuse Vulnerability",
-      "suggested_description": "A situation concept that training models to follow user instructions increases their susceptibility to being used for harmful purposes. This creates a tension between helpfulness and safety. It highlights the dual-use nature of instruction-following capabilities.",
-      "concept": "The document notes that training models to follow instructions makes them more likely to follow instructions to produce unsafe content. This is identified as a significant open research problem. The authors argue that solving this requires models to reliably refuse certain instructions.",
+      "suggested_label": "Instruction-Following as Capability Unlocking",
+      "suggested_description": "A Belief within accelerationist discourse that posits instruction-following is a latent capability unlocked by feedback loops. Encompasses: RLHF, prompt engineering, latent parameter activation. Excludes: Model training from scratch, pure supervised learning.",
+      "concept": "The document frames the RLHF process as 'unlocking' capabilities that GPT-3 already possessed but were difficult to elicit through prompt engineering alone. This suggests that the model's potential is already present and only requires the right feedback mechanism to be realized.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Beliefs",
+      "reason": "The idea that alignment is an 'unlocking' process rather than a 'teaching' process is a specific framing of AI capability that is not captured by existing nodes."
+    },
+    {
+      "suggested_label": "The Alignment-Misuse Paradox",
+      "suggested_description": "A situation concept that training models to be more helpful and instruction-following inherently increases their susceptibility to malicious use. \nEncompasses: Instruction-following, misuse vulnerability, helpfulness-safety trade-off. \nExcludes: Inherent model bias, alignment failure modes.",
+      "concept": "The document notes that training models to follow user instructions makes them more susceptible to being instructed to produce unsafe outputs. This creates a paradox where the very mechanism used to align the model with user intent also makes it easier to misuse.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept captures the specific safety-utility trade-off inherent in instruction-following models, which is a distinct and important situation.",
-      "Accelerationist Interpretation": "Accelerationists would view this as a manageable engineering challenge that can be solved through better training and refusal mechanisms, rather than a reason to halt development.",
-      "Safetyist Interpretation": "Safetyists would see this as a fundamental risk, arguing that the ability to follow instructions is inherently dangerous if the model cannot distinguish between safe and unsafe requests.",
-      "Skeptic Interpretation": "Skeptics would interpret this as evidence that AI systems are fundamentally unpredictable and that 'alignment' is a moving target that may never be fully achieved."
+      "reason": "The specific trade-off between instruction-following and misuse vulnerability is a critical situation that is not explicitly covered by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a manageable deployment-time risk that can be mitigated through API-based monitoring and content filtering, rather than a reason to halt development.",
+      "Safetyist Interpretation": "Safetyists would view this as a fundamental failure of current alignment methods, demonstrating that helpfulness and safety are often in direct conflict and that models are inherently prone to manipulation.",
+      "Skeptic Interpretation": "Skeptics would view this as evidence that AI systems are fundamentally unsafe and that the push for 'helpfulness' is a dangerous trend that prioritizes user convenience over societal safety."
     }
   ]
 }

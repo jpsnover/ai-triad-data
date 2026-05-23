@@ -1,14 +1,14 @@
 {
   "doc_id": "bold-dataset-metrics-measuring-biases-open-ended-language-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
     "chunk_count": 3
   },
@@ -16,15 +16,15 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "bold-dataset-metrics-measuring-biases-open-ended-language-2026",
-    "measured_at": "2026-05-02T22:29:34.9661880-04:00",
+    "measured_at": "2026-05-23T02:35:47.0022824-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 21016.0,
+        "in_count": 21958.0,
         "out_units": "tokens_est",
-        "out_count": 21015.0,
-        "ratio": 1.0,
+        "out_count": 21956.0,
+        "ratio": 0.9999,
         "flags": {
           "chunk_count": 3
         }
@@ -32,125 +32,138 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 61.0,
-        "ratio": 0.02,
+        "out_count": 62.0,
+        "ratio": 0.0182,
         "flags": {
-          "total_below_threshold": 3,
-          "avg_intentions": 5.0,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 62,
-          "chunk_count": 3,
+          "avg_beliefs": 8.0,
+          "chunk_count": 2,
+          "avg_nodes_selected": 62.0,
           "avg_desires": 2.0,
-          "avg_nodes_selected": 61.0,
-          "avg_beliefs": 8.0
+          "max_nodes_selected": 63,
+          "total_below_threshold": 4,
+          "avg_intentions": 2.0,
+          "min_nodes_selected": 61
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 99996.0,
+        "in_count": 157896.0,
         "out_units": "items",
-        "out_count": 21.0,
-        "ratio": 0.0002,
+        "out_count": 20.0,
+        "ratio": 0.0001,
         "flags": {
-          "factual_claims": 4,
+          "null_node_rate": 0.0833,
           "chunk_count": 3,
-          "total_points": 11,
-          "unmapped_concepts": 6,
-          "null_node_rate": 0.0
+          "total_points": 12,
+          "unmapped_concepts": 4,
+          "factual_claims": 4
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 21.0,
+        "in_count": 20.0,
         "out_units": "items",
         "out_count": 20.0,
-        "ratio": 0.9524,
+        "ratio": 1.0,
         "flags": {
-          "used_embeddings": 1,
+          "points_deduped": 0,
           "concepts_deduped": 0,
-          "claims_deduped": 0,
-          "points_deduped": 1
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 6.0,
+        "in_count": 4.0,
         "out_units": "still_unmapped",
         "out_count": 1.0,
-        "ratio": 0.1667,
+        "ratio": 0.25,
         "flags": {
-          "resolved_count": 5,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 3,
           "near_miss_count": 1
         }
       }
     ],
-    "cumulative_retention": 0.019
+    "cumulative_retention": 0.0182
   },
   "pov_summaries": {
     "accelerationist": {
-      "key_points": []
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-002",
+          "category": "Beliefs",
+          "point": "The document acknowledges that language generation models are foundational to modern AI applications, including translation, summarization, and conversation bots. It posits that these models are increasingly capable of generating cohesive, open-ended text. This aligns with the accelerationist view that AI capabilities are rapidly advancing and becoming central to human productivity.",
+          "verbatim": "Natural language generation models are the central building blocks for many important artificial intelligence applications, including machine translation [17], text summarization [44], automatic storytelling [43], conversation bots [20], and writing assistants [39].",
+          "excerpt_context": "Introduction, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "natural_language_generation",
+            "capabilities_scaling"
+          ]
+        }
+      ]
     },
     "safetyist": {
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-057",
+          "taxonomy_node_id": "saf-beliefs-102",
           "category": "Beliefs",
-          "point": "The document asserts that language models inherently exhibit social biases that exceed those found in human-written Wikipedia text. It identifies that these models, when prompted with open-ended contexts, frequently generate negative, stereotypical, or prejudiced content. This suggests that current model architectures and training paradigms are insufficient to prevent the propagation of harmful societal prejudices into downstream applications.",
-          "verbatim": "An examination of text generated from three popular language models reveals that the majority of these models exhibit a larger social bias than human-written Wikipedia text across all domains.",
-          "excerpt_context": "Abstract",
+          "point": "The document asserts that language models inherently risk reinforcing undesirable stereotypes and enforcing segregation if not subjected to proper fairness checks. It highlights that these biases are not merely external but are embedded within the models, leading to disparate treatment of users. This supports the safetyist belief that AI systems can harbor deep-seated, harmful flaws that persist through deployment.",
+          "verbatim": "Recently, there has been growing evidence on how machine learning models without proper fairness checks risk reinforcing undesirable stereotypes, subjecting users to disparate treatment and enforcing de facto segregation [1, 23].",
+          "excerpt_context": "Introduction, paragraph 2",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "social_bias",
-            "language_generation_models"
+            "algorithmic_bias",
+            "fairness_checks"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-051",
           "category": "Beliefs",
-          "point": "The authors argue that language models risk reinforcing undesirable stereotypes and enforcing de facto segregation if they lack proper fairness checks. They posit that the generation of negative text is a measurable indicator of bias, particularly when such behavior occurs more frequently for specific social groups or ideologies. This supports the safetyist view that implicit biases in model outputs are predictive of real-world discriminatory outcomes.",
-          "verbatim": "Recently, there has been growing evidence on how machine learning models without proper fairness checks risk reinforcing undesirable stereotypes, subjecting users to disparate treatment and enforcing de facto segregation.",
-          "excerpt_context": "Introduction",
+          "point": "The authors argue that models exhibit larger social biases than human-written Wikipedia text, particularly toward historically disadvantaged groups. By measuring these biases through automated metrics, they demonstrate that models propagate negative experiences. This aligns with the safetyist concern that AI behavior is often more discriminatory than the data it is trained on.",
+          "verbatim": "Results show that, in general, most of these models exhibit larger social biases than the baseline of Wikipedia text, especially towards the historically disadvantaged population groups.",
+          "excerpt_context": "Introduction, paragraph 5",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "fairness_checks",
-            "stereotypes",
-            "disparate_treatment"
+            "bias_benchmarking",
+            "disadvantaged_groups"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-078",
+          "taxonomy_node_id": null,
           "category": "Intentions",
-          "point": "The document advocates for the systematic, large-scale evaluation of AI models for social biases using standardized datasets and metrics. By introducing BOLD, the authors provide a test-bed for researchers to benchmark fairness, which is essential for identifying and mitigating detrimental biases in downstream tasks. This aligns with safetyist goals of rigorous, empirical evaluation of model behavior prior to or during deployment.",
-          "verbatim": "With these findings and the proposed dataset, in this paper, we provide a test-bed for researchers and practitioners to benchmark the fairness of their LMs.",
+          "point": "The document argues for the necessity of benchmarking social biases in open-ended language generation to prevent the reinforcement of detrimental biases in downstream tasks. By providing a test-bed for researchers, the authors intend to facilitate the systematic evaluation of model fairness. This approach emphasizes that developers must actively measure and mitigate harmful outputs to ensure AI systems do not perpetuate societal inequities.",
+          "verbatim": "This shows a crucial need to study and benchmark social biases in open-ended language generation and prevent the reinforcement of detrimental biases in downstream tasks. With these findings and the proposed dataset, in this paper, we provide a test-bed for researchers and practitioners to benchmark the fairness of their LMs.",
           "excerpt_context": "Conclusion, paragraph 1",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "benchmarking",
-            "fairness",
-            "social_biases"
+            "fairness_benchmarking",
+            "downstream_bias_mitigation"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-051",
           "category": "Beliefs",
-          "point": "The document utilizes sentiment and toxicity classifiers to measure implicit biases in language generation, operating on the belief that these metrics serve as indicators of discriminatory patterns. By quantifying how models associate specific demographic groups with negative sentiments or toxic language, the authors provide a framework for identifying potential real-world harms. This approach aligns with the safetyist view that behavioral testing is essential for predicting and mitigating the discriminatory impact of AI systems.",
-          "verbatim": "The classifier fine tunes the pre-trained BERT model on toxic comment classification dataset to classify a text into multiple labels: toxic, severe toxic, threat, obscene, insult and identity threat.",
+          "point": "The document asserts that implicit bias is a measurable and discriminatory indicator within AI systems. It provides empirical evidence through the BOLD dataset, which tracks how language models generate text associated with specific demographic groups. This supports the safetyist concern that AI models can perpetuate and amplify societal prejudices.",
+          "verbatim": "We take a toxicity classifier that consists of the pre-trained “BERT-Large, Uncased (Whole Word Masking)” model from the HuggingFace library followed by a dropout layer (dropout probability of 0.1) and a linear layer. The classifier fine tunes the pre-trained BERT model on toxic comment classification dataset to classify a text into multiple labels: toxic, severe toxic, threat, obscene, insult and identity threat.",
           "excerpt_context": "Appendix A.2.5",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "predictive_bias_metrics",
-            "behavioral_testing"
+            "implicit_bias",
+            "discriminatory_indicator",
+            "toxicity_classifier"
           ]
         }
       ]
@@ -159,83 +172,95 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-094",
+          "taxonomy_node_id": "skp-beliefs-041",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence that language models systematically internalize and amplify historical biases. By benchmarking models against Wikipedia text, the authors demonstrate that AI-generated content is often more toxic or polar than human-written counterparts, particularly toward historically disadvantaged groups. This confirms the skeptic concern that AI systems act as amplifiers of structural societal harms.",
-          "verbatim": "Results show that, in general, most of these models exhibit larger social biases than the baseline of Wikipedia text, especially towards the historically disadvantaged population groups.",
-          "excerpt_context": "Introduction",
+          "point": "The document provides empirical evidence that language models generate text exhibiting social biases across domains like profession, gender, race, religion, and political ideology. It documents that these models frequently produce negative, unfair, or stereotypical content. This aligns with the skeptic view that AI systems are sources of measurable, documented social harm.",
+          "verbatim": "An examination of text generated from three popular language models reveals that the majority of these models exhibit a larger social bias than human-written Wikipedia text across all domains.",
+          "excerpt_context": "Abstract, paragraph 1",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "social_bias",
-            "structural_harms"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-088",
-          "category": "Intentions",
-          "point": "The authors advocate for the systematic, large-scale evaluation of AI models using the BOLD dataset and new automated metrics. They argue that because language models are foundational to downstream applications, it is critical to discover and quantify biases to prevent them from becoming unfair outcomes for end users. This aligns with the skeptic intention of using automated, scalable tools to hold AI systems accountable.",
-          "verbatim": "Given that a large number of state-of-the-art models on Natural Language Processing (NLP) tasks are powered by these language generation models, it is of critical importance to properly discover and quantify any existing biases in these models and prevent them from propagating as unfair outcomes and negative experiences to the end users of the downstream applications.",
-          "excerpt_context": "Introduction",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "bias_benchmarking",
-            "automated_metrics"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document asserts that language models are biased if they disproportionately generate text perceived as negative, unfair, or stereotypical against specific groups. It highlights that these biases are not just random errors but are linked to the model's training on human-generated data, which contains historical prejudices. This reinforces the skeptic belief that AI models reproduce the discriminatory patterns present in their training data.",
-          "verbatim": "Broadly, one can say a language generation model is biased if it disproportionately generates text that is often perceived as being negative, unfair, prejudiced, or stereotypical against an idea or a group of people with common attributes.",
-          "excerpt_context": "Introduction",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "algorithmic_bias",
-            "discriminatory_patterns"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-beliefs-001",
-          "category": "Beliefs",
-          "point": "The document asserts that language models systematically internalize and amplify historical biases, as evidenced by consistent negative sentiment and toxicity toward African American groups and gender-based occupational stereotyping. The authors demonstrate that these models frequently generate texts with negative connotations toward specific groups, mirroring biases found in their training data. This confirms the skeptic belief that AI systems reproduce discriminatory patterns present in human-generated data.",
-          "verbatim": "Our experiments on evaluating the biases in three different LMs and a comparison with Wikipedia texts show that LMs are prone to more frequently generating texts with negative connotations towards a particular group of people or an idea than others.",
-          "excerpt_context": "Conclusion, paragraph 1",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "bias",
-            "discrimination",
-            "toxicity",
-            "stereotyping"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-068",
-          "category": "Beliefs",
-          "point": "The document identifies that language models produce content with negative social value, such as toxic text or biased associations, which can diminish societal well-being. The authors note that models trained on social media data, like GPT-2 and CTRL-OPN, exhibit higher levels of polarity and toxicity compared to those trained on Wikipedia. This supports the skeptic concern that AI-generated content can create or reinforce harmful social outcomes.",
-          "verbatim": "Overall, CTRL-THT, CTRL-OPN, and GPT-2 generated texts that were more polar across gender polarity, sentiments, toxicity and regard than BERT and CTRL-WIKI. This could be because CTRL-THT and CTRL-OPN are trained on social media data that reflect people’ opinions or thoughts",
-          "excerpt_context": "Section 6.2, paragraph 5",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "toxicity",
-            "negative_regard",
+            "algorithmic_discrimination",
             "social_bias"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-088",
+          "taxonomy_node_id": "skp-intentions-078",
           "category": "Intentions",
-          "point": "The authors advocate for the systematic, large-scale evaluation of AI models for fairness and bias using standardized datasets and metrics. By creating the BOLD dataset and employing automated classifiers for sentiment, toxicity, and regard, the research provides a scalable methodology for auditing language models. This aligns with the skeptic intention to move beyond anecdotal evidence toward rigorous, automated benchmarking of algorithmic fairness.",
-          "verbatim": "We use following hyperparameters for text generation. ... We take a toxicity classifier that consists of the pre-trained “BERT-Large, Uncased (Whole Word Masking)” model from the HuggingFace library followed by a dropout layer (dropout probability of 0.1) and a linear layer.",
-          "excerpt_context": "Appendix A.2",
+          "point": "The authors introduce the BOLD dataset and new automated metrics to systematically study and benchmark social biases in open-ended language generation. This reflects the skeptic intention to create standardized, large-scale evaluation tools to hold AI models accountable for their output. The goal is to force transparency and quantification of bias before models are deployed in downstream tasks.",
+          "verbatim": "To systematically study and benchmark social biases in open-ended language generation, we introduce the Bias in Open-Ended Language Generation Dataset (BOLD), a large-scale dataset that consists of 23,679 English text generation prompts for bias benchmarking across five domains: profession, gender, race, religion, and political ideology.",
+          "excerpt_context": "Abstract, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "bias_benchmarking",
+            "automated_fairness_evaluation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-038",
+          "category": "Beliefs",
+          "point": "The document asserts that language models exhibit consistent biases against specific groups, such as African Americans, in terms of sentiment, toxicity, and regard. It observes that these models are prone to generating texts with negative connotations toward particular groups more frequently than others. This empirical finding supports the view that AI systems reflect and potentially amplify existing societal prejudices.",
+          "verbatim": "For instance, these models more frequently generate texts with negative sentiments and toxicity towards the African American group and more frequently generate text containing male words when a profession context is provided.",
+          "excerpt_context": "Conclusion, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "sentiment_disparity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-078",
+          "category": "Intentions",
+          "point": "The authors advocate for the use of standardized datasets and metrics, specifically the BOLD dataset, to evaluate fairness in language generation. They argue that automatic metrics are a good approximation of human judgment for sentiment, toxicity, and gender polarity, and thus serve as a viable tool for auditing models. This methodology is intended to provide researchers with a consistent framework for identifying and addressing model bias.",
+          "verbatim": "We presented a novel dataset BOLD and a set of metrics to evaluate fairness in open-ended language generation. All in all, we find that all automatic metrics positively correlate with human annotated labels. Therefore, these metrics are a good approximation of human annotations for sentiments, toxicity and gender polarity.",
+          "excerpt_context": "Conclusion, paragraph 1; Section 6.3, paragraph 5",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "automated_fairness_benchmarking",
-            "algorithmic_auditing"
+            "automated_bias_benchmarking",
+            "fairness_metrics"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-142",
+          "category": "Beliefs",
+          "point": "The document acknowledges that training data, such as Wikipedia, is not neutral and contains inherent biases that are subsequently reflected in language models. It warns that comparing model outputs to Wikipedia as a 'fair' baseline is problematic because the source data itself is skewed by the demographics of its authors. This highlights the systemic nature of bias in AI development.",
+          "verbatim": "Several works have shown that the distribution of demographics of Wikipedia authors is highly skewed resulting in various types of biases. Therefore, we caution users of BOLD against a comparison with Wikipedia sentences as a fair baseline.",
+          "excerpt_context": "Limitations and Discussions, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "training_data_bias",
+            "demographic_skew"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides empirical documentation of harms and biases inherent in AI language generation. By creating the BOLD dataset, the authors demonstrate that models like BERT and GPT-2 exhibit measurable biases across race, religion, and political ideology. This confirms the skeptic view that AI is not neutral but reflects and reinforces existing societal inequities.",
+          "verbatim": "We used following pages to collect the data in BOLD. ... Religious belief: https://en.wikipedia.org/wiki/Major_religious_groups ... Political Ideology: https://en.wikipedia.org/wiki/List_of_political_ideologies",
+          "excerpt_context": "Appendix A.1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "dataset_bias",
+            "societal_inequity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The authors argue for robust evaluation and auditing of AI systems to identify and quantify bias. They propose a methodology using crowd-sourced annotations to measure sentiment, toxicity, and gender bias in model outputs. This aligns with the skeptic intention of prioritizing measurable, present-day harms over abstract or speculative AI risks.",
+          "verbatim": "Choose the primary sentiment that is expressed by the text. When the sentiment is mixed please use your judgment to choose the stronger emotion.",
+          "excerpt_context": "Appendix A.3.1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic_auditing",
+            "bias_benchmarking",
+            "crowd_sourced_evaluation"
           ]
         }
       ]
@@ -243,8 +268,47 @@
   },
   "factual_claims": [
     {
-      "claim": "The BOLD dataset contains 23,679 unique English text generation prompts across five domains: profession, gender, race, religion, and political ideology.",
-      "claim_label": "BOLD Dataset Composition",
+      "claim": "Language models generate text that exhibits social biases across five domains: profession, gender, race, religion, and political ideology. These models often produce text that is more negative or stereotypical than human-written Wikipedia text.",
+      "claim_label": "AI Models Exhibit Higher Social Bias than Wikipedia",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2021",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-041",
+        "saf-beliefs-051"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical evidence based on 23,679 prompts and automated metrics."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Language models like GPT-2, CTRL-THT, and CTRL-OPN generate texts that are more polar across gender, sentiment, toxicity, and regard metrics compared to BERT and CTRL-WIKI.",
+      "claim_label": "Model Polarity Comparison",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-173"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on BOLD dataset metrics."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Automatic toxicity metrics have a higher chance of misclassifying toxic text as non-toxic, as evidenced by lower recall for the toxic class compared to the non-toxic class.",
+      "claim_label": "Toxicity Metric Recall Gap",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
@@ -257,86 +321,39 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs: empirical claim about dataset size and scope."
+        "category_criteria": "Statistical analysis of metric performance against human annotations."
       },
       "claim_relations": []
     },
     {
-      "claim": "Language models like GPT-2, BERT, and CTRL exhibit higher levels of social bias compared to human-written Wikipedia text.",
-      "claim_label": "Model Bias vs Human Baseline",
+      "claim": "Language models like BERT and GPT-2 exhibit measurable biases in sentiment, toxicity, and gender when generating open-ended text based on demographic prompts.",
+      "claim_label": "AI Model Bias Quantification",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": null,
+      "temporal_bound": "2021",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-094",
-        "saf-beliefs-057"
+        "skp-beliefs-041",
+        "saf-beliefs-051"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Beliefs: empirical observation based on experimental results."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Language models trained on social media data exhibit higher levels of toxicity and negative sentiment compared to models trained on Wikipedia data. The study shows that models like GPT-2, CTRL-OPN, and CTRL-THT generate more polar and toxic content than BERT or CTRL-WIKI.",
-      "claim_label": "Training Data Source and Model Polarity",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-001"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical observation based on comparative analysis of model outputs."
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Language models exhibit measurable differences in sentiment and toxicity when generating text about different demographic groups, such as race, gender, and political ideology.",
-      "claim_label": "Demographic Bias in Language Generation",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "skp-beliefs-001",
-        "skp-beliefs-094"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim based on statistical analysis of model outputs."
+        "category_criteria": "Empirical claim supported by dataset metrics."
       },
       "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Wikipedia-Derived Prompt Generation",
-      "suggested_description": "A situation concept that utilizes naturally occurring text from Wikipedia as a source for generating prompts to test AI model behavior. This method aims to capture the diversity and structure of real-world language usage rather than relying on hand-crafted adversarial triggers.",
-      "concept": "The BOLD dataset uses Wikipedia sentences as prompts to trigger language models. By extracting the first few words of Wikipedia articles, the authors create a benchmark that reflects the natural distribution of text beginnings that models encounter in real-world applications.",
-      "suggested_pov": "situations",
+      "suggested_label": "Automated Metric-Human Alignment Gap",
+      "suggested_description": "A Belief within skeptic discourse that automatic metrics for sentiment and toxicity are imperfect proxies for human judgment due to context-dependency.\nEncompasses: Discrepancies in recall for toxic content, reliance on textual context, and limitations of classifier training data.\nExcludes: General model performance metrics or non-bias-related evaluation.",
+      "concept": "The document notes that while automatic metrics correlate with human annotations, they exhibit lower Spearman’s rho coefficients for sentiment and toxicity compared to gender polarity. It explicitly states that toxicity and sentiment depend more strongly on textual context, which humans identify more easily than current classifiers.",
+      "suggested_pov": "skeptic",
       "suggested_category": "Beliefs",
-      "reason": "This is a specific methodological approach to benchmarking that differs from adversarial or expert-curated prompt sets.",
-      "Accelerationist Interpretation": "This approach provides a robust, real-world baseline for evaluating model performance, which is essential for scaling AI safely and effectively.",
-      "Safetyist Interpretation": "Using Wikipedia as a source is a necessary step to uncover the 'hidden' biases that models inherit from the internet, highlighting the need for better alignment before deployment.",
-      "Skeptic Interpretation": "This method demonstrates that even when models are trained on 'neutral' encyclopedic data, they still amplify biases, proving that the problem is systemic and inherent to the training process."
+      "reason": "This concept addresses the specific technical limitation of using automated bias detection, which is a critical nuance in the skeptic discourse on AI auditing."
     }
-  ],
-  "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
   ]
 }
