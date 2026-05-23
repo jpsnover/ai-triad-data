@@ -1,0 +1,535 @@
+{
+  "doc_id": "fairness-evaluation-inference-level-mitigation-llms-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-23T13:02:56Z",
+  "model_info": {
+    "model": "gemini-flash-lite-latest",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 928,
+    "chunked": true,
+    "chunk_count": 5
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "fairness-evaluation-inference-level-mitigation-llms-2026",
+    "measured_at": "2026-05-23T13:08:29.2432059-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 30829.0,
+        "out_units": "tokens_est",
+        "out_count": 30835.0,
+        "ratio": 1.0002,
+        "flags": {
+          "chunk_count": 5
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3404.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0182,
+        "flags": {
+          "max_nodes_selected": 63,
+          "avg_intentions": 4.0,
+          "min_nodes_selected": 60,
+          "chunk_count": 5,
+          "avg_beliefs": 6.0,
+          "total_below_threshold": 9,
+          "avg_nodes_selected": 62.0,
+          "avg_desires": 2.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 146657.0,
+        "out_units": "items",
+        "out_count": 34.0,
+        "ratio": 0.0002,
+        "flags": {
+          "total_points": 18,
+          "chunk_count": 5,
+          "null_node_rate": 0.2778,
+          "unmapped_concepts": 9,
+          "factual_claims": 7
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 34.0,
+        "out_units": "items",
+        "out_count": 33.0,
+        "ratio": 0.9706,
+        "flags": {
+          "concepts_deduped": 0,
+          "used_embeddings": 1,
+          "claims_deduped": 0,
+          "points_deduped": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 9.0,
+        "out_units": "still_unmapped",
+        "out_count": 8.0,
+        "ratio": 0.8889,
+        "flags": {
+          "resolved_count": 1,
+          "near_miss_count": 8,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      }
+    ],
+    "cumulative_retention": 0.0177
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document advocates for lightweight, inference-time interventions that avoid the computational costs and irreversibility of training-time methods. By focusing on dynamic, reversible neuron gating rather than permanent pruning, the framework maintains model utility and flexibility. This aligns with accelerationist goals of optimizing performance and efficiency without hindering the underlying capabilities of the model.",
+          "verbatim": "Our inference-time solution provides fine-grained, memory-aware mitigation with knowledge-preserved, more coherent behavior across single-and multi-turn dialogues, enabling dynamic fairness control in real-world conversational AI.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "inference_time_mitigation",
+            "dynamic_neuron_gating"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document asserts that LLMs acquire and propagate biased knowledge through internal activations that persist across dialogue turns. By identifying and dynamically masking these specific neurons, the system can mitigate bias while maintaining the model's core cognitive abilities and coherence. This approach supports the accelerationist view that technical interventions can refine and optimize AI performance without requiring full model retraining.",
+          "verbatim": "This decomposition distinguishes transient, context-specific bias from memory-driven bias propagation, enabling targeted and context-aware mitigation.",
+          "excerpt_context": "Section 3.2, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "knowledge_transfer"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document advocates for inference-time mitigation techniques that prioritize computational efficiency and scalability. By utilizing lightweight neuron masking and gating, the framework avoids the high costs of retraining or fine-tuning, making it suitable for real-time deployment in large-scale systems. This approach supports the accelerationist goal of maintaining high-performance AI utility while addressing safety concerns without sacrificing speed or throughput.",
+          "verbatim": "The framework scales efficiently since neuron attribution is computed once per turn, masking operations are linear in layer width, and no offline training or parameter updates are required. This makes the method practical for real-time and large-scale deployment.",
+          "excerpt_context": "Section 5, paragraph 4",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "inference_time_mitigation",
+            "computational_efficiency"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of measuring and mitigating various forms of bias—cultural, ideological, demographic, and political—to ensure models are aligned with human preferences. It argues that static safeguards are insufficient for multi-turn dialogues, necessitating more sophisticated, context-aware fairness guarantees. This reflects a safetyist commitment to ensuring AI systems do not propagate harmful stereotypes or toxic content.",
+          "verbatim": "We evaluate fairness as a core pillar of alignment LLMs, requiring the measurement and mitigation of cultural, ideological, demographic, and political biases to guide models toward culturally grounded neutrality.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment",
+            "fairness_evaluation",
+            "bias_mitigation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-004",
+          "category": "Desires",
+          "point": "The document advocates for the implementation of dynamic, runtime constraints on neuron activations to prevent the propagation of biased behaviors. By gating neurons during the decoding process, the system ensures that the model remains within safe, non-biased operational boundaries without permanently altering the underlying model weights. This aligns with the safetyist goal of engineering robust, fail-safe mechanisms that restrict undesirable model outputs in real-time.",
+          "verbatim": "Instead of permanently removing neurons, this step adaptively adjusts their influence during generation because bias in conversations changes with context and memory so Dynamic neuron masking is needed to preserve the model's fairness and consistency.",
+          "excerpt_context": "Section 3.5, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "runtime_constraints",
+            "fail-safe_boundaries"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-005",
+          "category": "Desires",
+          "point": "The authors seek to map internal neural representations to specific biased behaviors, using attribution scores to identify the exact neurons responsible for harmful outputs. This mechanistic approach allows for precise, targeted intervention rather than broad, opaque filtering. It reflects a desire to achieve greater transparency and control over the internal decision-making pathways of deep learning models.",
+          "verbatim": "To identify neurons responsible for biased behavior, we attribute the turn-level bias score S to internal neuron activations using integrated gradients.",
+          "excerpt_context": "Section 3.2, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "mechanistic_interpretability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-153",
+          "category": "Intentions",
+          "point": "The document advocates for a dynamic, inference-time mitigation strategy that identifies and gates bias-carrying neurons as dialogue unfolds. This approach is presented as superior to static pruning or prompt-based interventions because it accounts for memory carry-over in multi-turn interactions. By using memory probes to prevent bias rebound, the framework maintains model utility while reducing harmful stereotypes.",
+          "verbatim": "We present dynamic neuron masking, an inference-time approach that identifies, attributes, and selectively gates bias-carrying activations as dialogue unfolds.",
+          "excerpt_context": "Section 6, Conclusion",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "inference-time_mitigation",
+            "dynamic_neuron_masking",
+            "multi-turn_dialogue"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that bias in LLMs is not a static defect but a dynamic phenomenon that accumulates across dialogue turns due to memory retention. It argues that static interventions fail because they do not account for the evolving context of a conversation, leading to performance degradation or bias rebound. This necessitates a memory-aware mitigation strategy that can adapt to the dialogue state.",
+          "verbatim": "Bias in LLMs is not a fixed defect; it accumulates across turns. We observe higher refusal rates, reduced relevance, and topic drift, indicating that bias re-emerges through memory carry-over when masking is not refreshed in a context-aware manner.",
+          "excerpt_context": "Section 5.1, Ablation Studies",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "memory_carry-over",
+            "context-aware_mitigation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-157",
+          "category": "Intentions",
+          "point": "The document proposes an inference-time intervention framework that dynamically modulates neuron activations to mitigate bias. By using a gating function to apply graded suppression to specific FFN neurons, the system enforces safety policies without requiring model retraining or parameter modification. This approach prioritizes maintaining model utility while ensuring that bias-related signals do not propagate through multi-turn interactions.",
+          "verbatim": "We introduce an inference-time intervention that dynamically suppresses bias-carrying neuron activations conditioned on dialogue context and memory state. Unlike static pruning or fixed neuron masking, which permanently remove neurons irrespective of conversational context. It performs reversible and graded modulation of neuron activations.",
+          "excerpt_context": "Section A.3, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "inference-time intervention",
+            "neuron masking",
+            "graded suppression"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-102",
+          "category": "Beliefs",
+          "point": "The authors identify that biased behavior in LLMs is not merely a single-turn phenomenon but can accumulate and re-emerge across dialogue turns due to memory carry-over. This persistence suggests that fundamental flaws in model outputs are deeply linked to internal representations that maintain context across a conversation. Consequently, mitigation strategies must account for these temporal dynamics to be effective.",
+          "verbatim": "In the multi-turn setting, bias is defined as a dynamic phenomenon that accumulates or re-emerges across dialogue turns due to contextual priming and memory carry-over.",
+          "excerpt_context": "Section A.1, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "memory carry-over",
+            "contextual priming",
+            "dynamic bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-157",
+          "category": "Intentions",
+          "point": "The document proposes a 'Dynamic Neuron Suppression' framework that intervenes at the inference level to mitigate bias. By using attribution and neuron masking, the system steers model outputs away from biased generalizations toward more nuanced, context-sensitive responses. This aligns with safetyist intentions to enforce behavioral constraints during generation without requiring fundamental model retraining.",
+          "verbatim": "To address this we proposed a mitigation framework and test on three representative architectures: DeepSeek-Chat 7B, and Mistral 7B. ... During generation, only lightweight gating and neuron masking are applied, contributing approximately 1.3ms per turn on top of the baseline forward pass.",
+          "excerpt_context": "Section 5, paragraph 2 and 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "inference_time_steering",
+            "neuron_masking",
+            "bias_mitigation"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that LLMs exhibit measurable bias that accumulates over multi-turn dialogues, specifically noting that bias carry-over degrades factual consistency and coherence. It argues that standard mitigation techniques like prompt engineering or output filtering are insufficient because they fail to address the underlying neural mechanisms of bias propagation. This supports the skeptic's concern that AI models possess inherent, persistent flaws that require more than superficial fixes.",
+          "verbatim": "In the baseline, the effective bias score rises steadily with each turn, indicating that bias accumulates as the conversation continues.",
+          "excerpt_context": "Section 5, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "contextual_drift"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-088",
+          "category": "Intentions",
+          "point": "The authors propose a framework for automated, dynamic detection and suppression of biased neuron activations. This aligns with the skeptic intention of using scalable, systematic tools to evaluate and mitigate AI bias, specifically addressing the failure of static, one-time interventions.",
+          "verbatim": "To address these limitations, we introduce Dynamic Neurons Suppression, an inference-level framework that dynamically detects and suppresses context-conditioned neuron activations during generation.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "automated_bias_mitigation",
+            "dynamic_neuron_suppression"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-103",
+          "category": "Beliefs",
+          "point": "The document confirms that algorithmic outputs in multi-turn dialogues act as inputs for subsequent turns, creating a feedback loop where bias is reinforced and carried over. This mechanism is identified as a primary driver of bias accumulation, which the proposed dynamic masking seeks to interrupt. The failure to refresh masking in a context-aware manner leads to measurable degradation in model performance and relevance.",
+          "verbatim": "We observe higher refusal rates, reduced relevance, and topic drift, indicating that bias re-emerges through memory carry-over when masking is not refreshed in a context-aware manner.",
+          "excerpt_context": "Section 5.1, Ablation Studies",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "feedback_loop",
+            "bias_reinforcement"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document acknowledges that bias-related neurons are not isolated from general semantic and factual reasoning capabilities. Unconditional removal of these neurons (static pruning) harms model utility, causing responses to become shorter, less specific, and off-topic. This suggests an inherent entanglement between biased representations and functional model performance.",
+          "verbatim": "Unconditional neuron removal (static pruning), ablating the gating mechanism (Section 3.5) and permanently zeroing out biased neurons yield the largest immediate bias reduction, but severely harms utility: responses becomes shorter, less specific, and off-topic, even for neutral inputs. This confirms that bias-related neurons also support general semantic and factual reasoning.",
+          "excerpt_context": "Section 5.1, Ablation Studies",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "representation_entanglement",
+            "model_utility"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-056",
+          "category": "Beliefs",
+          "point": "The document acknowledges that LLMs exhibit 'memory drift' where models may initially provide neutral responses but later generate biased statements when topics are revisited. This failure mode highlights the instability of model coherence in multi-turn interactions. The authors use this observation to justify the need for memory-aware bias detection and mitigation.",
+          "verbatim": "If the model initially produces a safe or neutral response but later generates a biased response when the topic is revisited, this behavior indicates memory drift, where earlier safety signals are not preserved in subsequent reasoning steps.",
+          "excerpt_context": "Section A.3, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "memory drift",
+            "model coherence",
+            "multi-turn dialogue"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that bias is a persistent, inherent feature of large language models regardless of their size, family, or training pipeline. This empirical observation supports the skeptic view that current alignment and training strategies are insufficient to produce inherently neutral or unbiased models, necessitating external, post-hoc mitigation layers.",
+          "verbatim": "Our analysis consistently revealed the presence of bias across different settings, confirming that fairness concerns persist irrespective of model size or family.",
+          "excerpt_context": "Section 5, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "model_agnostic_bias"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Static pruning methods are globally applied and irreversible, often leading to over-pruning, semantic loss, and an inability to adapt to new conversational contexts.",
+      "claim_label": "Limitations of Static Pruning",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Bias in LLMs is a dynamic, accumulating phenomenon that propagates through priming, anaphora, and memory carry-over in multi-turn dialogues.",
+      "claim_label": "Dynamic Nature of Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Dynamic Neuron Masking consistently reduces bias scores across multiple languages (Urdu, Punjabi, Pashto, Sindhi, Balochi) and task types compared to baseline models and other mitigation methods like pruning or steering vectors.",
+      "claim_label": "Dynamic Neuron Masking Efficacy",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-desires-004"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Dynamic neuron masking achieves a peak bias reduction of 0.439 at k=25 neurons, significantly outperforming random ablation strategies.",
+      "claim_label": "Dynamic Masking Performance Metrics",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The LLM-as-a-Judge protocol shows strong agreement with human annotation, achieving a Spearman rank correlation of 0.74.",
+      "claim_label": "LLM-as-a-Judge Reliability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The proposed Dynamic Neuron Suppression framework introduces minimal latency, adding approximately 1.3ms per turn to the baseline forward pass, resulting in an end-to-end latency of roughly 28.5ms per turn.",
+      "claim_label": "Inference Latency Overhead",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Bias persists across diverse model architectures, including both open-source (Mistral, DeepSeek) and closed-source (GPT-4o, Claude) models, regardless of their specific training corpora or alignment strategies.",
+      "claim_label": "Ubiquity of Model Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Dynamic Neuron Suppression",
+      "suggested_description": "An Intention within safetyist and skeptic discourse that modulates internal model activations in real-time based on dialogue context.\nEncompasses: Context-aware masking, memory-aware scoring, and reversible neuron gating.\nExcludes: Static pruning and training-time fine-tuning.",
+      "concept": "The framework dynamically detects and suppresses context-conditioned neuron activations during generation. It uses a lightweight, low-overhead mechanism to gate activations temporarily rather than permanently removing them, allowing the model to maintain its original capacity.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This represents a novel approach to bias mitigation that is distinct from static pruning or retraining."
+    },
+    {
+      "suggested_label": "Multi-turn Bias Accumulation",
+      "suggested_description": "A situation concept that describes the gradual emergence and reinforcement of biased responses over the course of a conversation.\nEncompasses: Priming effects, anaphora-driven bias, and memory carry-over.\nExcludes: Single-turn bias evaluation and static model behavior.",
+      "concept": "Bias often emerges gradually through priming, anaphora, and memory carry-over in multi-turn conversations, rather than being uniformly present at every turn. This phenomenon causes models to shift from aligned behavior in isolated prompts to producing harmful responses as context accumulates.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This captures the specific temporal dynamics of bias in conversational AI, which is not fully covered by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a technical challenge to be solved through better inference-time control, enabling more robust and reliable AI agents.",
+      "Safetyist Interpretation": "Safetyists would interpret this as evidence that current alignment techniques are insufficient, necessitating more rigorous, context-aware safety guardrails.",
+      "Skeptic Interpretation": "Skeptics would see this as a fundamental flaw in current LLM architectures, highlighting the difficulty of ensuring fairness in open-ended, conversational systems."
+    },
+    {
+      "suggested_label": "Context-Aware Dynamic Neuron Gating",
+      "suggested_description": "A [Intention] within [safetyist] discourse that dynamically modulates neural influence based on conversational history.\nEncompasses: Real-time gating coefficients, dialogue-conditioned relevance, history-aware bias suppression.\nExcludes: Static pruning, fixed neuron masking, global output filtering.",
+      "concept": "The document introduces a mechanism where gating coefficients are calculated per-turn using both local and carry-over attribution scores. This allows the model to suppress bias-related activations that evolve with the dialogue context while preserving essential information for coherence.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This represents a specific, novel technical approach to safety that goes beyond standard 'human-in-the-loop' or 'static pruning' nodes."
+    },
+    {
+      "suggested_label": "Inference-Time Reversible Neuron Gating",
+      "suggested_description": "An Intention within safetyist discourse that enables temporary, context-dependent suppression of neural activations without permanent model modification.\nEncompasses: Dynamic masking, reversible gating, context-aware intervention.\nExcludes: Static pruning, weight-based fine-tuning, architectural modification.",
+      "concept": "The proposed framework uses dynamic neuron masking to gate activations during inference based on dialogue context. Unlike static pruning, this method does not remove neurons, allowing for the restoration of full model capacity when bias is not detected.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This concept represents a distinct shift from static model editing to dynamic, state-dependent control, which is not fully captured by existing nodes."
+    },
+    {
+      "suggested_label": "Bias-Utility Entanglement",
+      "suggested_description": "A Belief within skeptic discourse that bias-carrying neural representations are functionally coupled with general semantic and factual reasoning capabilities.\nEncompasses: Performance degradation from pruning, semantic entanglement, utility-bias trade-off.\nExcludes: Purely redundant bias representations, modular bias localization.",
+      "concept": "The document demonstrates that permanently zeroing out neurons identified as 'biased' leads to significant degradation in fluency, coherence, and factual accuracy. This indicates that these neurons are not exclusively dedicated to bias but are integral to the model's general reasoning.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "This highlights the technical limitation of current debiasing methods, which is a core concern for skeptics regarding the feasibility of 'clean' bias removal."
+    },
+    {
+      "suggested_label": "Memory-Aware Inference-Time Mitigation",
+      "suggested_description": "An Intention within safetyist discourse that conditions model intervention on the temporal accumulation of bias across dialogue turns.\nEncompasses: Memory consistency signals, cross-turn bias tracking, dynamic gating functions.\nExcludes: Static neuron pruning, single-turn bias mitigation.",
+      "concept": "The framework introduces a memory consistency signal C_t that captures the persistence of bias across turns. This allows the system to decide when and how much to intervene based on the dialogue history rather than just the current input.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This concept represents a specific advancement in inference-time control that is not captured by existing static pruning or simple alignment nodes."
+    },
+    {
+      "suggested_label": "Bias Rebound Phenomenon",
+      "suggested_description": "A situation concept that describes the re-activation of bias-related neurons in later dialogue turns after initial suppression.\nEncompasses: Memory drift, cross-turn bias persistence, failure of static pruning.\nExcludes: Initial bias emergence, single-turn ideological polarization.",
+      "concept": "The document identifies that bias-related neurons can become re-activated after being suppressed, leading to a 'bias rebound' where the model reverts to biased behavior despite earlier interventions.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This describes a specific failure mode of current LLM architectures in multi-turn settings.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a technical hurdle to be solved through better training or more efficient model architectures, rather than a reason to limit deployment.",
+      "Safetyist Interpretation": "Safetyists interpret this as evidence that current models possess persistent, deep-seated misaligned strategies that are difficult to suppress without fundamental architectural changes.",
+      "Skeptic Interpretation": "Skeptics see this as proof that LLMs lack genuine understanding or stable alignment, making them unreliable for sensitive or long-form interactions."
+    },
+    {
+      "suggested_label": "Inference-Time Neuron Suppression",
+      "suggested_description": "An Intention within safetyist discourse that modifies model behavior by dynamically masking specific neural activations during the forward pass. Encompasses: Neuron gating, attribution-based masking, real-time bias intervention. Excludes: Fine-tuning, RLHF, structural pruning.",
+      "concept": "The framework uses attribution to identify biased neurons and applies a mask during inference to prevent the model from generating biased content. This process is training-free and operates on FFN activations, allowing for real-time bias mitigation without altering the underlying model parameters.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "This represents a specific technical intervention strategy distinct from standard alignment or interpretability research."
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "doc_id": "before-you-deploy-ai-generated-code-production-checklist-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-23T13:02:56Z",
+  "model_info": {
+    "model": "gemini-flash-lite-latest",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 41,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 2,
+      "iterations": 1,
+      "claims_total": 3,
+      "claims_confident": 2,
+      "claims_iterated": 1,
+      "elapsed_seconds": 12.6,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "before-you-deploy-ai-generated-code-production-checklist-2026",
+    "measured_at": "2026-05-23T13:03:52.3239787-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 0.5,
+        "flags": {
+          "resolved_count": 1,
+          "near_miss_count": 1,
+          "threshold": 0.6,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 18843.0,
+        "out_units": "items",
+        "out_count": 9.0,
+        "ratio": 0.0005,
+        "flags": {
+          "dedup_points_removed": 0,
+          "total_points": 5,
+          "dedup_claims_removed": 0,
+          "null_node_rate": 0.0,
+          "unmapped_concepts": 1,
+          "factual_claims": 3,
+          "used_fire": 1,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 655.0,
+        "out_units": "nodes",
+        "out_count": 40.0,
+        "ratio": 0.0611,
+        "flags": {
+          "beliefs_selected": 16,
+          "effective_threshold": 0.394,
+          "threshold_floor": 0.2,
+          "desires_selected": 4,
+          "intentions_selected": 20,
+          "above_threshold": 40,
+          "top_k": 40,
+          "below_threshold_forced": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1.0,
+        "out_units": "still_unmapped",
+        "out_count": 1.0,
+        "ratio": 1.0,
+        "flags": {
+          "resolved_count": 0,
+          "near_miss_count": 0,
+          "threshold": 0.5,
+          "used_embeddings": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0611
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The document advocates for a rigorous, empirical approach to AI-generated code by mandating validation steps before production deployment. By focusing on observable outcomes like performance, security, and scalability, the author ensures that AI-driven speed gains are not negated by system instability. This aligns with the accelerationist view that AI is a powerful tool for productivity, provided that human-led oversight and testing frameworks are integrated into the development lifecycle. The document acknowledges that AI is a force multiplier, but emphasizes that the responsibility for production-readiness remains with the engineer.",
+          "verbatim": "AI has dramatically accelerated the speed of software development. However, faster code generation also increases the risk of shipping insecure or unstable systems. Generating code is only the first step. The real responsibility lies in validating that code before it reaches production.",
+          "excerpt_context": "Conclusion",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "safety_empirical",
+            "oversight_audit"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-058",
+          "category": "Beliefs",
+          "point": "The document asserts that AI coding assistants introduce significant risks by suggesting insecure, deprecated, or poorly maintained dependencies. This creates a supply chain vulnerability where developers may unknowingly incorporate malicious or broken packages into their production environments. From a safetyist perspective, this confirms that AI-generated code is not inherently safe and requires strict, automated verification to prevent systemic failures. The author highlights that AI often lacks the context to verify the current status of libraries, necessitating external security tooling.",
+          "verbatim": "AI frequently suggests libraries without verifying their current status. Some packages may be deprecated, insecure, or poorly maintained.",
+          "excerpt_context": "Section 1, Dependency and Package Validation",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "safety_alignment",
+            "capabilities_hazard"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-080",
+          "category": "Intentions",
+          "point": "The document proposes a comprehensive checklist for production-readiness, including vulnerability scanning, static analysis, and observability implementation. This framework serves as a technical safeguard against the unpredictable nature of AI-generated code, which may miss critical error handling or scalability patterns. By mandating these checks, the author aims to mitigate the risks of deploying code that appears correct but fails under production load. The document emphasizes that engineers must actively manage the output of AI to ensure it meets reliability standards.",
+          "verbatim": "Production systems must handle failures gracefully. AI-generated code may miss important reliability patterns such as retries or proper error handling.",
+          "excerpt_context": "Section 6, Reliability and Error Handling",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "oversight_human_control",
+            "transparency_accountability"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-021",
+          "category": "Beliefs",
+          "point": "The document frames AI integration as an incremental process that requires traditional software engineering rigor rather than a revolutionary shift in development practices. It treats AI as a source of 'hidden issues'—such as inefficient logic and security risks—that must be caught through standard DevOps practices like linting, testing, and monitoring. This reflects a skeptic view that AI does not replace the need for human expertise, but rather adds a new layer of technical debt that must be managed. The author argues that the 'real responsibility' remains with the human engineer to ensure code quality.",
+          "verbatim": "AI can generate working code in seconds. Tools like ChatGPT, Claude, and GitHub Copilot have dramatically accelerated development. But generating code is not the same as shipping production-ready software.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.98,
+          "vocabulary_terms": [
+            "bias_systemic",
+            "harm_documented_present"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The author argues for mandatory, systematic validation of AI-generated code, including dependency audits and performance reviews, to address the lack of inherent reliability in AI outputs. By providing a concrete checklist, the document addresses the skeptic concern that AI-generated code is often opaque and difficult to maintain. The focus on observability, logging, and error handling is intended to make AI-generated systems transparent and auditable. This approach prioritizes the stability of existing production environments over the speed of AI-driven development.",
+          "verbatim": "Before deploying AI-generated code to production, engineers should review it carefully. This article outlines a practical checklist to validate AI-generated code before moving it to production.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "fairness_procedural"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "AI-generated code frequently suggests libraries that are deprecated, insecure, or poorly maintained, creating security vulnerabilities in software development.",
+      "claim_label": "AI Dependency Suggestion Risk",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-058"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true
+      },
+      "fire_confidence": 0.95
+    },
+    {
+      "claim": "AI-generated code often produces inefficient logic such as N+1 database queries, repeated API calls, and large unpaginated responses.",
+      "claim_label": "AI Performance Inefficiency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-05",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-021"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Production systems require specific reliability patterns like try-catch blocks, retry mechanisms, and circuit breakers to handle failures gracefully.",
+      "claim_label": "Production Reliability Standards",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-080"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "general_claim"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "The AI-Generated Code Reliability Gap",
+      "suggested_description": "A situation concept that describes the discrepancy between the speed of AI code generation and the stability of the resulting software in production environments.\nEncompasses: Inefficient logic, missing error handling, and security vulnerabilities.\nExcludes: Theoretical existential risk or long-term labor displacement.",
+      "concept": "The document highlights that while AI can generate code in seconds, this code often lacks the reliability, scalability, and security required for production. This gap necessitates a manual, human-led validation process to bridge the difference between 'working' code and 'production-ready' software.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept captures the specific tension between AI's generative capability and the practical requirements of software engineering, which is not fully covered by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this gap as a temporary friction point that will be solved by more advanced AI agents capable of self-testing and self-optimizing, eventually automating the validation process itself.",
+      "Safetyist Interpretation": "Safetyists would interpret this gap as evidence that AI systems are fundamentally unreliable and that deploying them without rigorous, human-in-the-loop verification poses significant operational and security risks.",
+      "Skeptic Interpretation": "Skeptics would use this gap to argue that AI is not a revolutionary replacement for human engineers, but rather a tool that increases the burden of code review and maintenance, reinforcing the need for traditional engineering oversight."
+    }
+  ]
+}
