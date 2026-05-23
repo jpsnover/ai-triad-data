@@ -1,124 +1,153 @@
 {
   "doc_id": "agentic-ai-occupational-displacement-multi-regional-task-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
-    "extraction_mode": "fire",
-    "taxonomy_filter": "rag",
-    "taxonomy_nodes": 40,
-    "fire_confidence_threshold": 0.7,
-    "fire_stats": {
-      "api_calls": 1,
-      "iterations": 0,
-      "claims_total": 2,
-      "claims_confident": 2,
-      "claims_iterated": 0,
-      "elapsed_seconds": 7.9,
-      "termination_reason": "all_confident"
-    }
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 921,
+    "chunked": true,
+    "chunk_count": 3
   },
   "context_rot": {
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "agentic-ai-occupational-displacement-multi-regional-task-2026",
-    "measured_at": "2026-05-02T20:07:36.8453650-04:00",
+    "measured_at": "2026-05-22T20:57:09.4932751-04:00",
     "stages": [
       {
-        "stage": "unmapped_resolution",
-        "in_units": "concepts",
-        "in_count": 3.0,
-        "out_units": "still_unmapped",
-        "out_count": 3.0,
-        "ratio": 1.0,
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 20196.0,
+        "out_units": "tokens_est",
+        "out_count": 20193.0,
+        "ratio": 0.9999,
         "flags": {
-          "resolved_count": 0,
-          "threshold": 0.6,
-          "used_embeddings": 1,
-          "near_miss_count": 3
-        }
-      },
-      {
-        "stage": "extraction",
-        "in_units": "prompt_chars",
-        "in_count": 90479.0,
-        "out_units": "items",
-        "out_count": 11.0,
-        "ratio": 0.0001,
-        "flags": {
-          "dedup_claims_removed": 0,
-          "used_fire": 1,
-          "null_node_rate": 0.0,
-          "unmapped_concepts": 3,
-          "density_floor_hit": 0,
-          "dedup_points_removed": 0,
-          "factual_claims": 2,
-          "total_points": 6
+          "chunk_count": 3
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 526.0,
+        "in_count": 3404.0,
         "out_units": "nodes",
-        "out_count": 41.0,
-        "ratio": 0.0779,
+        "out_count": 64.0,
+        "ratio": 0.0188,
         "flags": {
-          "threshold_floor": 0.2,
-          "beliefs_selected": 29,
-          "below_threshold_forced": 1,
-          "intentions_selected": 9,
-          "effective_threshold": 0.4244,
-          "above_threshold": 40,
-          "top_k": 40,
-          "desires_selected": 3
+          "avg_beliefs": 10.0,
+          "chunk_count": 3,
+          "avg_nodes_selected": 64.0,
+          "avg_desires": 2.0,
+          "max_nodes_selected": 64,
+          "total_below_threshold": 11,
+          "avg_intentions": 2.0,
+          "min_nodes_selected": 63
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 96563.0,
+        "out_units": "items",
+        "out_count": 22.0,
+        "ratio": 0.0002,
+        "flags": {
+          "null_node_rate": 0.0667,
+          "chunk_count": 3,
+          "total_points": 15,
+          "unmapped_concepts": 4,
+          "factual_claims": 3
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 22.0,
+        "out_units": "items",
+        "out_count": 22.0,
+        "ratio": 1.0,
+        "flags": {
+          "points_deduped": 0,
+          "concepts_deduped": 0,
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 3.0,
+        "in_count": 4.0,
         "out_units": "still_unmapped",
         "out_count": 3.0,
-        "ratio": 1.0,
+        "ratio": 0.75,
         "flags": {
-          "resolved_count": 0,
           "threshold": 0.6,
           "used_embeddings": 1,
+          "resolved_count": 1,
           "near_miss_count": 3
         }
       }
     ],
-    "cumulative_retention": 0.0779
+    "cumulative_retention": 0.0188
   },
   "pov_summaries": {
     "accelerationist": {
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-beliefs-003",
-          "category": "Beliefs",
-          "point": "The document identifies that agentic AI systems are already being deployed at enterprise scale to automate end-to-end workflows, moving beyond simple task substitution. This shift represents a significant productivity enhancement where agents handle multi-step reasoning and tool invocation without human intervention. From an accelerationist perspective, this confirms the rapid commoditization of cognitive labor and the potential for massive efficiency gains. The document notes that these deployments are already affecting headcount planning in major technology firms.",
-          "verbatim": "Major enterprise technology vendors (including Amazon, Microsoft, Salesforce, ServiceNow, and Workday) disclosed production agentic deployments touching white-collar workflows in their 2024 earnings calls and investor presentations.",
-          "excerpt_context": "Section 2.3, paragraph 2",
-          "extraction_confidence": 0.98,
+          "taxonomy_node_id": "acc-desires-017",
+          "category": "Desires",
+          "point": "The document identifies a shift toward agentic AI systems that can autonomously execute end-to-end workflows, which accelerationists would view as a mechanism to achieve massive productivity gains and economic efficiency. By replacing human-in-the-loop coordination with autonomous agents, organizations can eliminate bottlenecks and scale operations. This aligns with the accelerationist goal of leveraging systemic automation to sustain productivity and solve labor-intensive inefficiencies.",
+          "verbatim": "If an agentic bookkeeping system can close the monthly books at 80% of the quality of a human bookkeeper, and a single human reviewer can catch the remaining errors across fifty such agents, the organizational incentive is not to redeploy bookkeepers to the leftover 20% of tasks. It is to eliminate the role and staff a small exception-handling team.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "capabilities_scaling",
-            "accountability (market)"
+            "agentic_ai",
+            "workflow_automation",
+            "productivity_scaling"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-014",
           "category": "Beliefs",
-          "point": "The document identifies seventeen emerging occupational categories that benefit from reinstatement effects, such as AI Operations Specialists and Agentic System Monitors. These roles arise specifically because agentic systems require human oversight, governance, and collaboration at scale. This supports the accelerationist belief that technological disruption inherently necessitates the emergence of novel, unforeseen employment classifications. The document emphasizes that these roles are not speculative but are already appearing in labor market data.",
+          "point": "The document identifies the emergence of new occupational categories in AI governance, human-AI collaboration, and domain-specific AI operations. This supports the accelerationist belief that technological disruption is a Schumpeterian process where displacement is naturally balanced by the creation of novel, higher-value labor roles.",
           "verbatim": "We simultaneously identify seventeen emerging occupational categories benefiting from reinstatement effects, concentrated in human-AI collaboration, AI governance, and domain-specific AI operations roles.",
-          "excerpt_context": "Abstract, paragraph 1",
-          "extraction_confidence": 0.95,
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "governance_adaptive"
+            "reinstatement_effects",
+            "human-ai_collaboration"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document identifies that agentic AI is driving measurable shifts in labor markets, particularly in information-intensive professional roles. It notes that while displacement is occurring, it is part of a broader workforce recomposition rather than catastrophic collapse. This aligns with the accelerationist view that AI is a transformative force that reconfigures economic activity and creates new, higher-value roles.",
+          "verbatim": "The implication is important: our framework predicts widespread moderate risk across information-processing occupations rather than catastrophic displacement of any single occupation. The displacement pressure is broad but bounded, consistent with the gradual workforce recomposition pattern rather than mass layoff scenarios.",
+          "excerpt_context": "Section 5.1, paragraph 3",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "workforce_recomposition",
+            "agentic_ai",
+            "information_processing_occupations"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-014",
+          "category": "Beliefs",
+          "point": "The document asserts that agentic AI will drive the creation of new, non-technical roles that require domain expertise rather than programming skills. This supports the accelerationist view that technological shifts naturally lead to the emergence of novel labor markets. The authors emphasize that these roles involve directing AI systems, which represents a shift toward higher-level human-AI collaboration.",
+          "verbatim": "A critical finding from this analysis is that the emerging roles are not primarily technical in the traditional sense. They do not require programming expertise. They require the ability to specify goals clearly for AI systems, domain expertise to evaluate AI outputs critically, judgment about when AI outputs require human intervention, and interpersonal skills to manage stakeholders through AI-driven workflow changes.",
+          "excerpt_context": "Section 6, paragraph 2",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "technological_inevitability",
+            "novel_labor_markets"
           ]
         }
       ]
@@ -127,28 +156,55 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-033",
-          "category": "Beliefs",
-          "point": "The document highlights that agentic AI systems create sudden, unpredictable market instability by collapsing entire occupational workflows rather than just individual tasks. This shift renders prior task-based automation frameworks obsolete, as the coordination bottleneck that previously protected human roles is now internalized within the agent's planning module. From a safetyist perspective, this represents a rapid, disruptive societal shift that outpaces current regulatory and workforce transition frameworks. The document acknowledges that this displacement pressure is broad and affects high-wage, information-intensive professional roles.",
-          "verbatim": "Agentic AI demolishes that assumption. An agent does not nibble at one subtask and hand control back. It receives a goal... selects tools, executes a multi-step plan, checks its own output, and delivers a finished work product.",
-          "excerpt_context": "Section 1, paragraph 2",
+          "taxonomy_node_id": "saf-intentions-013",
+          "category": "Intentions",
+          "point": "The document advocates for a rigorous, data-driven approach to predicting the societal impacts of agentic AI before it is fully deployed. By creating the ATE score, the authors intend to provide a framework for policymakers to understand the scale of potential labor market disruption, which is essential for proactive workforce transition planning.",
+          "verbatim": "Our findings carry implications for workforce transition policy, regional economic planning, and the temporal dynamics of labor market adjustment. This work provides the first multi-regional empirical application of the task exposure framework specifically targeting agentic AI systems and contributes a reproducible scoring methodology for future labor market monitoring.",
+          "excerpt_context": "Abstract",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "capabilities_hazard",
-            "harm (speculative, future)"
+            "workforce_transition_policy",
+            "labor_market_monitoring"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-036",
+          "taxonomy_node_id": "saf-beliefs-100",
           "category": "Beliefs",
-          "point": "The document warns that university programs producing future professionals like lawyers and financial analysts must fundamentally change their curricula to focus on hallucination detection and exception handling. This reflects the safetyist concern regarding AI-driven skill decay, where reliance on AI tools risks diminishing human expertise in specialized fields. The document argues that students must learn to audit AI-generated work products against ground truth, as agents can produce plausible but flawed outputs at volume. This shift is essential to maintain human agency in high-stakes decision-making.",
+          "point": "The document asserts that agentic AI poses a significant risk of occupational displacement that exceeds previous task-level automation models. This supports the safetyist concern that AI's rapid advancement in reasoning and autonomous decision-making will lead to widespread economic instability and the erosion of professional roles previously considered safe.",
+          "verbatim": "Agentic AI demolishes that assumption. An agent does not nibble at one subtask and hand control back. It receives a goal... selects tools, executes a multi-step plan, checks its own output, and delivers a finished work product.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "occupational_displacement",
+            "agentic_ai_capability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document highlights that agentic systems currently lack the ability to handle complex exception-handling and interpersonal coordination autonomously, necessitating human oversight. This supports the safetyist concern that AI systems are not yet fully reliable or safe for end-to-end deployment without human intervention, particularly in high-stakes domains like law and finance.",
+          "verbatim": "Fourth, the preventive medicine physician entry (29-1229, marked å in the table) appears despite requiring physical presence; this reflects the keyword-based COV rubricÆs known false-negative limitation for implicit physical requirements (see Section 4.3). A notable feature of Table 5 is that all top-20 occupations share ATE scores within a narrow band (0.42û0.47 by 2027), and no occupation in our study reaches the high-risk threshold (ATE ? 0.65) even by 2030.",
+          "excerpt_context": "Section 5.1, paragraph 3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "exception_handling",
+            "agentic_systems",
+            "human_oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-086",
+          "category": "Intentions",
+          "point": "The document argues for a fundamental reorientation of higher education to focus on AI-augmented judgment, such as hallucination detection and exception handling. This aligns with safetyist concerns regarding the societal shifts caused by AI, specifically the need to prepare humans to manage and audit autonomous systems that may produce flawed outputs.",
           "verbatim": "The pedagogical question is no longer 'Can the student build this DCF model?' but rather 'Can the student spot the fabricated revenue assumption in the DCF model that an agent built?'",
           "excerpt_context": "Section 7.2, paragraph 1",
-          "extraction_confidence": 0.98,
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "oversight_human_control",
-            "autonomy (human preservation)"
+            "human-ai_cognitive_shifts",
+            "hallucination_detection"
           ]
         }
       ]
@@ -159,26 +215,92 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-002",
           "category": "Beliefs",
-          "point": "The document provides empirical evidence of measurable job displacement, noting that high-ATE industries like Finance and Legal showed a 0.6% year-over-year employment decline in Q1-Q3 2025. This confirms the skeptic belief that AI deployment causes immediate, measurable labor market contractions. The document specifically identifies that administrative and business support employment in the San Francisco Bay Area fell by 9.3% year-over-year in Q1 2025. These findings demonstrate that AI-driven displacement is already occurring in information-intensive sectors.",
-          "verbatim": "In Q2 2025, high-ATE industries (NAICS 52 Finance, NAICS 5411 Legal, NAICS 5614 Business Support) show mean year-over-year employment change of -0.6%, while the low-ATE industry (NAICS 62 Healthcare) shows +3.6%.",
-          "excerpt_context": "Section 5.7, paragraph 2",
-          "extraction_confidence": 0.99,
+          "point": "The document provides empirical evidence of labor market contraction by calculating ATE scores for 236 occupations. It demonstrates that a high percentage of information-intensive roles are at risk of displacement by 2030, validating the skeptic concern regarding the systemic and measurable impact of AI on human employment.",
+          "verbatim": "we find that 93.2% of the 236 analyzed occupations across six information-intensive SOC groups... cross the moderate-risk threshold (ATE >= 0.35) in Tier 1 regions by 2030",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "harm (documented, present)",
-            "accountability (algorithmic)"
+            "occupational_displacement",
+            "labor_market_contraction"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-067",
-          "category": "Intentions",
-          "point": "The document argues that employers should be mandated to provide voluntary disclosure of agentic AI deployment plans and advance notice to affected workers. This aligns with the skeptic intention to implement robust socio-economic safeguards, as current WARN Act notification thresholds fail to capture the gradual reduction in force caused by AI substitution. The document suggests that such transparency is necessary to allow transition support to begin before displacement occurs. This proposal seeks to mitigate the negative impacts of management-led AI intensification.",
-          "verbatim": "Voluntary disclosure of agentic AI deployment plans, combined with advance notice to affected workers, would allow transition support to begin before displacement occurs.",
-          "excerpt_context": "Section 7.3, paragraph 1",
-          "extraction_confidence": 0.97,
+          "taxonomy_node_id": "skp-beliefs-025",
+          "category": "Beliefs",
+          "point": "The document highlights that high-wage, knowledge-intensive professions are now the primary targets for AI-driven displacement. This confirms the skeptic observation that AI's impact is shifting from routine manual labor to complex cognitive work, challenging previous assumptions about the safety of degree-requiring occupations.",
+          "verbatim": "When generative large language models arrived after 2022, the displacement conversation shifted abruptly upmarket: suddenly it was lawyers, analysts, and radiologists in the crosshairs, occupations that the prior literature had treated as automation-proof.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "accountability (algorithmic)",
-            "fairness (procedural)"
+            "knowledge_work_vulnerability",
+            "cognitive_labor_displacement"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-154",
+          "category": "Beliefs",
+          "point": "The document provides a quantitative framework for assessing labor market churn and structural shifts caused by AI adoption. It uses an S-curve model to demonstrate how different regions experience displacement at different velocities, confirming that AI-driven labor market disruption is a measurable, ongoing phenomenon.",
+          "verbatim": "This 2û3 year lag is the central empirical finding: the same occupations face offset displacement timelines depending on local adoption velocity, and the offset is quantifiable from the S-curve parameters.",
+          "excerpt_context": "Section 5.2, paragraph 3",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "labor_market_churn",
+            "structural_shifts",
+            "adoption_velocity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-037",
+          "category": "Beliefs",
+          "point": "The document confirms that AI-driven job displacement risks are not uniform but are highly concentrated in specific geographic regions (Tier 1 metros like the SF Bay Area). This geographic concentration is linked to AI employer density and venture capital concentration, supporting the skeptic view that AI impacts are unevenly distributed.",
+          "verbatim": "Reclassifying Seattle from Tier 2 to Tier 1 would increase its projected adoption level V (2027) by 27.3%, but the regional divergence finding persists because the tier assignment reflects structural differences in AI employer density and venture capital concentration.",
+          "excerpt_context": "Section 5.4, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "geographic_concentration",
+            "regional_divergence"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-001",
+          "category": "Desires",
+          "point": "The document argues that workforce transition programs must be regionally staged and planned in advance to mitigate the impacts of AI-driven displacement. This aligns with the skeptic desire for proactive socio-economic safeguards to protect workers from systemic automation.",
+          "verbatim": "The policy implication is that workforce transition programs must be regionally staged: Tier 1 interventions are needed now, Tier 2 interventions should be planned and budgeted now for deployment in 2028û2029, and Tier 3 regions have a wider but not indefinite planning window.",
+          "excerpt_context": "Section 5.2, paragraph 4",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "workforce_transition_programs",
+            "socio_economic_safeguards"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-001",
+          "category": "Desires",
+          "point": "The document advocates for proactive policy interventions, such as voluntary disclosure of AI deployment plans and advance notice to workers, to mitigate the negative impacts of displacement. It argues that current regulatory frameworks, like the WARN Act, are insufficient for the gradual, AI-driven reduction in force.",
+          "verbatim": "Employers deploying agentic AI systems bear responsibilities that existing regulatory frameworks do not fully address. WARN Act notification thresholds apply to mass layoffs but not to the gradual reduction in force through AI substitution that our analysis finds more characteristic of agentic deployment.",
+          "excerpt_context": "Section 7.3, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "mitigating_ai-driven_labor_displacement",
+            "regulatory_frameworks"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-166",
+          "category": "Beliefs",
+          "point": "The authors propose the ATE (Agentic Task Exposure) framework as a quantitative index to measure labor market shifts. This aligns with the skeptic belief in the necessity of developing specific metrics to assess how AI reshapes the workforce, particularly by identifying occupation-region pockets of high risk.",
+          "verbatim": "The ATE score we introduced here extends Acemoglu and Restrepo's displacement-reinstatement model to account for end-to-end workflow completion, and the empirical application across 236 occupations in five US metros produces a finding that should concern workforce planners.",
+          "excerpt_context": "Section 8, paragraph 1",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "metrics_for_labor_market_change",
+            "ate_framework"
           ]
         }
       ]
@@ -186,76 +308,94 @@
   },
   "factual_claims": [
     {
-      "claim": "93.2% of the 236 analyzed occupations across six information-intensive SOC groups cross the moderate-risk threshold (ATE >= 0.35) in Tier 1 regions by 2030.",
-      "claim_label": "ATE Moderate-Risk Threshold Projection",
+      "claim": "93.2% of 236 analyzed occupations in six information-intensive SOC groups will cross the moderate-risk threshold for displacement by 2030 in Tier 1 regions.",
+      "claim_label": "ATE Displacement Projections 2030",
       "doc_position": "supports",
       "temporal_scope": "predictive",
       "temporal_bound": "by 2030",
-      "extraction_confidence": 0.99,
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "skp-beliefs-002",
-        "saf-beliefs-033"
+        "sit-100"
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": true,
-        "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "statistical_implicit"
-        }
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical prediction based on ATE methodology"
       },
-      "fire_confidence": 0.7999999999999999
+      "claim_relations": []
     },
     {
-      "claim": "Administrative/Business Support employment in the San Francisco Bay Area fell 9.3% year-over-year in Q1 2025.",
-      "claim_label": "SF Bay Admin Employment Decline",
+      "claim": "Agentic AI deployment follows an S-curve adoption model where Tier 1 regions (SF Bay Area) lead Tier 2 and Tier 3 regions by a 2-3 year lag in displacement pressure.",
+      "claim_label": "Regional Adoption Velocity Lag",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "2025-Q1",
-      "extraction_confidence": 0.99,
+      "temporal_scope": "predictive",
+      "temporal_bound": "2024-2030",
+      "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "skp-beliefs-002"
+        "skp-beliefs-154"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": {
-          "evidence_level": "direct_empirical"
-        }
+        "category_criteria": "empirical prediction"
       },
-      "fire_confidence": 0.7999999999999999
+      "claim_relations": []
+    },
+    {
+      "claim": "In the San Francisco Bay Area, 78.4% of administrative and 91.7% of financial occupations are projected to cross the moderate-risk threshold for AI displacement by 2027.",
+      "claim_label": "Bay Area Occupational Risk Projections",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": "by 2027",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-162"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical prediction based on ATE framework"
+      },
+      "claim_relations": []
     }
   ],
   "unmapped_concepts": [
     {
       "suggested_label": "Workflow Coverage Factor",
-      "suggested_description": "A metric that quantifies the extent to which an AI system can complete an entire occupational workflow without human intervention. It accounts for barriers like interpersonal requirements, regulatory accountability, and physical presence.",
-      "concept": "The document introduces the COV(t, o) factor to penalize tasks that require human coordination, context-setting, or exception handling. This is the key theoretical innovation that distinguishes the ATE score from prior task-level exposure measures.",
-      "suggested_pov": "accelerationist",
-      "suggested_category": "Intentions",
-      "reason": "This is a novel methodological framework for measuring AI impact that is not currently represented in the taxonomy."
-    },
-    {
-      "suggested_label": "Regional Adoption Velocity Tiers",
-      "suggested_description": "A classification system that groups metropolitan areas by their AI readiness and adoption speed, allowing for staged workforce transition planning.",
-      "concept": "The document categorizes regions into three tiers based on AI patent density, venture capital investment, and employer density. This allows the model to predict displacement timelines across different geographic hubs.",
-      "suggested_pov": "skeptic",
+      "suggested_description": "A Belief within safetyist discourse that measures the degree to which an occupation's full workflow can be automated by agentic AI.\nEncompasses: Multi-step reasoning, tool invocation, and autonomous decision-making.\nExcludes: Task-level automation metrics that assume human coordination remains necessary.",
+      "concept": "The workflow coverage factor (COV) is a metric that penalizes tasks requiring human judgment, interpersonal rapport, or regulatory accountability. It distinguishes between tasks that can be automated in isolation and those that require human oversight within a broader workflow.",
+      "suggested_pov": "safetyist",
       "suggested_category": "Beliefs",
-      "reason": "The taxonomy lacks a node for regional-specific AI adoption modeling, which is central to the document's findings."
+      "reason": "This is a novel metric that specifically addresses the 'agentic' nature of AI, which is not captured by existing task-based frameworks."
     },
     {
-      "suggested_label": "Agentic Displacement Conversion Rate",
-      "suggested_description": "A situation concept that defines the proportion of workers in moderate-risk occupations who experience actual role reduction within a specific timeframe after crossing an exposure threshold.\nEncompasses: Low, medium, and high conversion scenarios for workforce planning.\nExcludes: General labor displacement metrics that do not account for agentic AI's specific workflow-completion capabilities.",
-      "concept": "The document uses conversion rates (10%, 20%, 30%) to estimate the number of displaced positions in the San Francisco Bay Area. It notes that these are scenario bounds rather than point predictions due to the lack of empirical precedent.",
+      "suggested_label": "Remote Work Adoption Convergence",
+      "suggested_description": "A situation concept that describes how remote work arrangements transmit high-tier AI adoption pressures to lower-tier geographic regions.\nEncompasses: Telework prevalence, employer-tier weighting, and geographic decoupling of labor markets.\nExcludes: Traditional geography-based labor market models that assume local adoption rates.",
+      "concept": "The document argues that remote work decouples a worker's location from their employer's technology adoption tier. This creates a convergence effect where remote workers in slower-adopting regions experience higher-tier adoption pressures from their employers.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This concept addresses the uncertainty in translating exposure scores into actual headcount reductions, a critical gap in current labor market modeling.",
-      "Accelerationist Interpretation": "Accelerationists would view these conversion rates as a necessary metric for planning the transition to a post-scarcity economy, focusing on how to reallocate labor to new, higher-value roles.",
-      "Safetyist Interpretation": "Safetyists would interpret these rates as a warning of the scale of potential societal instability, emphasizing the need for proactive, government-led transition support before displacement occurs.",
-      "Skeptic Interpretation": "Skeptics would use these rates to argue for immediate policy interventions, such as mandatory disclosure and worker protections, to prevent the negative impacts of rapid, management-led AI intensification."
+      "reason": "This concept explains the mechanism by which AI adoption spreads across regions, which is a critical factor in labor market disruption.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a positive force for globalizing the benefits of AI, allowing workers in lower-tier regions to access and utilize advanced AI tools through remote employment.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a risk-multiplier, as it accelerates the pace of displacement in regions that might otherwise have had more time to prepare for the transition.",
+      "Skeptic Interpretation": "Skeptics would see this as a mechanism that intensifies labor market volatility and makes it harder for local policy interventions to protect workers from AI-driven displacement."
+    },
+    {
+      "suggested_label": "Regional Adoption Velocity Asymmetry",
+      "suggested_description": "A situation concept that describes the uneven temporal distribution of AI-driven labor market impacts across different geographic regions.\nEncompasses: Tier 1 vs Tier 2 metro disparities, remote work compression of adoption lags.\nExcludes: National-level aggregate labor statistics.",
+      "concept": "The document highlights that while Tier 1 metros face high displacement risk by 2027, Tier 2 metros show zero risk at the same horizon, with remote work acting as a catalyst to compress these adoption lags over time.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "Captures the specific geographic and temporal dynamics of AI adoption which are not fully covered by existing labor churn nodes.",
+      "Accelerationist Interpretation": "This asymmetry represents a competitive advantage for early-adopting regions that can leverage AI to boost productivity faster than their peers.",
+      "Safetyist Interpretation": "This creates a dangerous policy blind spot where regional disparities lead to uneven social safety net readiness and potential localized economic crises.",
+      "Skeptic Interpretation": "This confirms that aggregate national statistics mask the severity of localized labor market shocks, necessitating granular, region-specific policy responses."
     }
   ]
 }
