@@ -1,0 +1,344 @@
+{
+  "doc_id": "counterfactual-explanations-machine-learning-review-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-21T14:24:54Z",
+  "model_info": {
+    "model": "gemini-flash-lite-latest",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 895,
+    "chunked": true,
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "counterfactual-explanations-machine-learning-review-2026",
+    "measured_at": "2026-05-21T14:38:34.6012289-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 20903,
+        "out_units": "tokens_est",
+        "out_count": 21241,
+        "ratio": 1.0162,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3655,
+        "out_units": "nodes",
+        "out_count": 61,
+        "ratio": 0.0167,
+        "flags": {
+          "avg_intentions": 4,
+          "total_below_threshold": 3,
+          "avg_beliefs": 8,
+          "min_nodes_selected": 60,
+          "avg_desires": 2,
+          "max_nodes_selected": 62,
+          "avg_nodes_selected": 61,
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 104962,
+        "out_units": "items",
+        "out_count": 19,
+        "ratio": 0.0002,
+        "flags": {
+          "null_node_rate": 0.1,
+          "chunk_count": 3,
+          "total_points": 10,
+          "unmapped_concepts": 5,
+          "factual_claims": 4
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 19,
+        "out_units": "items",
+        "out_count": 19,
+        "ratio": 1,
+        "flags": {
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "used_embeddings": 1,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 5,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.4,
+        "flags": {
+          "resolved_count": 3,
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0167
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The document supports the use of AI as a tool for providing actionable feedback to individuals, such as loan applicants, to help them achieve desired outcomes. By framing AI as a system that provides specific, actionable paths for improvement, it aligns with the accelerationist goal of leveraging AI to enhance human agency and economic participation. The focus is on the utility of AI in guiding users through complex decision-making processes.",
+          "verbatim": "For an individual whose loan request has been denied, counterfactual explanations provide them feedback, to help them make changes to their features in order to transition to the desirable side of the decision boundary, i.e., get the loan. Such feedback is termed actionable.",
+          "excerpt_context": "Section 1, paragraph 6",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "actionable_feedback",
+            "human_agency"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-005",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of understanding the relationship between model inputs and outputs to ensure trustworthiness. It supports the development of explainability techniques that allow stakeholders to verify model behavior, which is a core safetyist desire for transparency and control over opaque systems.",
+          "verbatim": "Explaining, in a human-understandable way, the relationship between the input and output of machine learning models is essential to the development of trustworthy machine-learning-based systems.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "model_transparency",
+            "trustworthy_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-055",
+          "category": "Beliefs",
+          "point": "The document highlights that counterfactual explanations can be non-sensical or misleading if they rely on artifacts of a non-robust or overfitted classifier rather than genuine model logic. This suggests that the learned geometry of the model may contain structural flaws that manifest as unreliable explanations. Safetyists would interpret this as a failure of model alignment, where the model's internal representations do not correspond to the real-world causal structures they are intended to reflect.",
+          "verbatim": "However, the modi?ed datapoint could be labeled either in a robust manner or due to the classi?erÆs non-robustness, e.g., an over?tted classi?er. This can generate counterfactuals that might be non-sensical and have the desired class label only because of the classi?erÆs artifact.",
+          "excerpt_context": "Section 6, Research Challenge 8",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "non-robustness",
+            "overfitting",
+            "model_artifact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document acknowledges that the inherent opacity of complex AI models complicates the establishment of legal accountability. It highlights that while counterfactual explanations are proposed as a solution, their ability to satisfy legal requirements remains ambiguous and debated. This aligns with the safetyist concern that black-box systems lack the transparency necessary for genuine recourse.",
+          "verbatim": "Although the closeness of this law to \"right to explanation\" is debatable and ambiguous [110], the of?cial interpretation by Working Party for Article 29 has concluded that the GDPR requires explanations of speci?c decisions, and therefore counterfactual explanations are apt.",
+          "excerpt_context": "Section C, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "accountability",
+            "transparency",
+            "black-box"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-122",
+          "category": "Beliefs",
+          "point": "The document acknowledges that many machine learning models are opaque and difficult for humans to understand, necessitating post-hoc explanation methods. This supports the skeptic belief that current AI systems lack inherent interpretability and operate as black boxes, requiring external tools to make their decisions legible to humans.",
+          "verbatim": "Machine learning plays a role in many deployed decision systems, often in ways that are difficult or impossible to understand by human stakeholders.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "black_box_systems",
+            "interpretability_gap"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-063",
+          "category": "Beliefs",
+          "point": "The document highlights how models can learn spurious correlations, such as background features in images, rather than the intended subject matter. This reinforces the skeptic view that AI systems are prone to learning biased or irrelevant patterns from training data, which can lead to failures in real-world deployment.",
+          "verbatim": "In a real example, the military trained a classifier to distinguish enemy tanks from friendly tanks. Although the classifier performed well on the training and test dataset, its performance was abysmal on the battlefield. Later, it was found that the photos of friendly tanks were taken on sunny days, while for enemy tanks, photos clicked only on overcast days were available.",
+          "excerpt_context": "Section 2.2, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "spurious_correlations",
+            "algorithmic_bias"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-desires-065",
+          "category": "Desires",
+          "point": "The document identifies that counterfactual explanations can inadvertently entrench or reflect existing biases within a classifier. It explicitly calls for research into how to adjust these explanations to account for demographic disparities in the difficulty of achieving a counterfactual state. This aligns with the skeptic desire to prevent AI from hardening historical injustices through opaque or biased algorithmic feedback.",
+          "verbatim": "Counterfactuals potentially capture and re?ect the bias in the models. To underscore this as a possibility, Ustun et al. [107] experimented on the difference in the dif?culty of attaining the provided counterfactual state across genders, which clearly showed a signi?cant difference in the dif?culty.",
+          "excerpt_context": "Section 6, Research Challenge 7",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "demographic_disparity",
+            "actionability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-095",
+          "category": "Intentions",
+          "point": "The document argues that counterfactual generation must incorporate causal relations to be grounded in reality, rather than just statistical correlations. By requiring algorithms to respect causal graphs, the authors intend to ensure that the 'recourse' provided to users is actually feasible and logical in the real world. This reflects a skeptic intention to move beyond superficial model outputs toward more robust, counterfactually fair decision-making.",
+          "verbatim": "Incorporating causality in the process of counterfactual generation is essential for the counterfactuals to be grounded in reality. Complete causal graphs and structural equations are rarely available in the real world, and therefore the algorithm should be able to work with incomplete causal graphs.",
+          "excerpt_context": "Section 6, Research Challenge 4",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "causal_graph",
+            "recourse",
+            "counterfactual_fairness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-desires-002",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of addressing algorithmic bias and fairness, noting that research into counterfactual explanations is driven by the emerging trend of FATE (Fairness, Accountability, Transparency, and Ethics). It supports the desire to eliminate discriminatory outcomes in automated decision-making systems, such as loan rejections.",
+          "verbatim": "These papers have been inspired by the emerging trend of FATE and the legal requirements pertaining to explainability in tasks automated by machine learning algorithms.",
+          "excerpt_context": "Section B.2, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "algorithmic-bias",
+            "fairness",
+            "FATE"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document advocates for interdisciplinary collaboration between AI researchers, regulators, and consumer watchdog groups to bridge the gap between technical explanation methods and legal requirements. This reflects a skeptic intention to ensure that technical developments in AI are grounded in real-world accountability and consumer protection.",
+          "verbatim": "Future collaboration between AI researchers, regulators, the legal community, and consumer watchdog groups will help ensure the development of trustworthy AI.",
+          "excerpt_context": "Section C, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "trustworthy-AI",
+            "interdisciplinary-governance"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Counterfactual explanations provide a specific type of feedback that helps users understand how to change their input features to reach a different model output, such as moving from a loan denial to an approval.",
+      "claim_label": "Counterfactual Explanation Functionality",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-138"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Counterfactual explanation algorithms often rely on optimization problems that assume the underlying black-box model remains static and monotonic over time, which contradicts the reality of frequent model updates in sectors like banking.",
+      "claim_label": "Static Model Assumption in Counterfactuals",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-163"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The European Union's General Data Protection Regulation (GDPR) includes provisions that are interpreted by some as requiring explanations for automated decisions, though the exact scope of this 'right to explanation' remains legally debated.",
+      "claim_label": "GDPR Right to Explanation Ambiguity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim regarding legal interpretation"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "US laws such as the Equal Credit Opportunity Act (ECOA) and the Fair Credit Reporting Act (FCRA) mandate that creditors provide reasons for adverse actions, such as loan rejections, often by comparing an applicant's features to population averages.",
+      "claim_label": "US Credit Reporting Legal Requirements",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim regarding existing legislation"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Recourse Feasibility Gap",
+      "suggested_description": "A Belief within skeptic discourse that algorithmic counterfactuals often fail to provide actionable, realistic paths for users. Encompasses: Discreteness of actions, sequential step requirements, and the failure to disclose negative constraints. Excludes: General model interpretability or feature importance methods.",
+      "concept": "The document notes that current counterfactuals provide a single modified state rather than a series of discrete, sequential actions. It also highlights that failing to inform users about what must not change can lead them to worse outcomes, indicating a gap between theoretical counterfactuals and practical user recourse.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "This concept specifically addresses the gap between mathematical counterfactuals and human-centric actionability, which is not fully captured by existing nodes.",
+      "resolved_node_id": "skp-beliefs-179"
+    },
+    {
+      "suggested_label": "Algorithmic Recourse Dynamics",
+      "suggested_description": "A situation concept that describes the mismatch between static counterfactual explanations and the dynamic, non-monotonic nature of real-world decision-making systems. \nEncompasses: Data drift, classifier updates, and changing applicant utility functions.\nExcludes: Static model interpretability or adversarial robustness.",
+      "concept": "The document identifies that all reviewed counterfactual papers assume the underlying model is static and monotonic. However, in practice, models are updated frequently (e.g., every 12-18 months in banking), rendering static counterfactuals potentially obsolete or misleading.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This captures the temporal mismatch between model lifecycle and explanation validity.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a technical challenge to be solved through more efficient, real-time model retraining and automated explanation updates.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a risk factor where outdated explanations could lead to catastrophic user decisions or systemic instability in automated credit systems.",
+      "Skeptic Interpretation": "Skeptics would view this as evidence that automated systems are fundamentally ill-equipped to provide meaningful, long-term recourse to individuals, necessitating human-in-the-loop oversight.",
+      "resolved_node_id": "cc-111"
+    }
+  ]
+}

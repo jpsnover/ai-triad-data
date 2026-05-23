@@ -1,97 +1,97 @@
 {
   "doc_id": "adversarial-ai-threat-modeling-framework-aatmf-v3-2026",
-  "taxonomy_version": "3.3.0",
-  "generated_at": "2026-05-02T19:12:10Z",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-22T19:50:50Z",
   "model_info": {
-    "model": "gemini-3.1-flash-lite-preview",
+    "model": "gemini-flash-lite-latest",
     "temperature": 0.1,
     "max_tokens": 32768,
     "extraction_mode": "single_shot",
     "taxonomy_filter": "rag_per_chunk",
-    "taxonomy_nodes": 720,
+    "taxonomy_nodes": 921,
     "chunked": true,
-    "chunk_count": 7
+    "chunk_count": 8
   },
   "context_rot": {
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "adversarial-ai-threat-modeling-framework-aatmf-v3-2026",
-    "measured_at": "2026-05-02T20:13:42.9503460-04:00",
+    "measured_at": "2026-05-22T20:50:41.1997706-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 56370.0,
+        "in_count": 58970.0,
         "out_units": "tokens_est",
-        "out_count": 56368.0,
-        "ratio": 1.0,
+        "out_count": 58961.0,
+        "ratio": 0.9998,
         "flags": {
-          "chunk_count": 7
+          "chunk_count": 8
         }
       },
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3052.0,
+        "in_count": 3359.0,
         "out_units": "nodes",
         "out_count": 62.0,
-        "ratio": 0.0203,
+        "ratio": 0.0185,
         "flags": {
-          "total_below_threshold": 12,
-          "avg_intentions": 9.0,
-          "min_nodes_selected": 60,
-          "max_nodes_selected": 64,
-          "chunk_count": 7,
-          "avg_desires": 2.0,
+          "avg_beliefs": 4.0,
+          "chunk_count": 3,
           "avg_nodes_selected": 62.0,
-          "avg_beliefs": 5.0
+          "avg_desires": 2.0,
+          "max_nodes_selected": 62,
+          "total_below_threshold": 5,
+          "avg_intentions": 11.0,
+          "min_nodes_selected": 61
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 268991.0,
+        "in_count": 553867.0,
         "out_units": "items",
-        "out_count": 44.0,
-        "ratio": 0.0002,
+        "out_count": 54.0,
+        "ratio": 0.0001,
         "flags": {
-          "factual_claims": 10,
-          "chunk_count": 7,
-          "total_points": 27,
-          "unmapped_concepts": 7,
-          "null_node_rate": 0.037
+          "null_node_rate": 0.0588,
+          "chunk_count": 8,
+          "total_points": 34,
+          "unmapped_concepts": 10,
+          "factual_claims": 10
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 44.0,
+        "in_count": 54.0,
         "out_units": "items",
-        "out_count": 44.0,
-        "ratio": 1.0,
+        "out_count": 52.0,
+        "ratio": 0.963,
         "flags": {
-          "used_embeddings": 1,
+          "points_deduped": 2,
           "concepts_deduped": 0,
-          "claims_deduped": 0,
-          "points_deduped": 0
+          "used_embeddings": 1,
+          "claims_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 7.0,
+        "in_count": 10.0,
         "out_units": "still_unmapped",
-        "out_count": 0.0,
-        "ratio": 0.0,
+        "out_count": 1.0,
+        "ratio": 0.1,
         "flags": {
-          "resolved_count": 7,
           "threshold": 0.6,
           "used_embeddings": 1,
-          "near_miss_count": 0
+          "resolved_count": 9,
+          "near_miss_count": 1
         }
       }
     ],
-    "cumulative_retention": 0.0203
+    "cumulative_retention": 0.0178
   },
   "pov_summaries": {
     "accelerationist": {
@@ -100,67 +100,81 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-023",
           "category": "Intentions",
-          "point": "The document acknowledges that AI is being integrated into critical infrastructure, which necessitates a proactive approach to security. By providing a comprehensive taxonomy of attack vectors, the framework enables developers to build more resilient systems. This aligns with the accelerationist goal of ensuring that the rapid deployment of AI is supported by robust defensive capabilities, allowing for continued innovation without being stalled by preventable security failures.",
-          "verbatim": "As artificial intelligence systems become increasingly integrated into critical infrastructure, financial systems, healthcare, and defense applications, the potential for adversarial exploitation has grown exponentially.",
-          "excerpt_context": "Part 1: Introduction and Methodology",
+          "point": "The document provides a comprehensive taxonomy of adversarial threats to AI systems, which accelerationists can leverage to build more robust, secure, and resilient AI architectures. By identifying specific attack vectors like 'Planning Corruption' or 'Supply Chain Attacks,' developers can implement proactive defensive measures that allow for safer, faster deployment of advanced AI capabilities. This approach treats security as a technical engineering challenge to be solved rather than a reason to halt progress.",
+          "verbatim": "T11-AT-004: Planning Corruption [HIGH: 240] Description: Manipulate agent planning and decision-making",
+          "excerpt_context": "Section 5, T11-AT-004",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "critical_infrastructure",
-            "adversarial_exploitation"
+            "defensive_ai",
+            "resilience_engineering"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-056",
+          "taxonomy_node_id": "acc-intentions-003",
           "category": "Intentions",
-          "point": "The document provides a comprehensive taxonomy of adversarial techniques that can be used to bypass AI safety filters. By cataloging these methods, the framework implicitly highlights the ongoing cat-and-mouse game between developers and users. Accelerationists may view this as evidence that rigid, top-down safety constraints are inherently fragile and ultimately futile against determined users, suggesting that focus should shift toward more robust, open-ended system designs rather than restrictive filtering.",
-          "verbatim": "T3-AT-006: Constraint Negation [MEDIUM: 185]\nDescription: Use logical negation to confuse safetyboundaries",
-          "excerpt_context": "Section 2, T3-AT-006",
+          "point": "The document provides a structured taxonomy of adversarial techniques, which can be used to build more robust, performance-gated empirical output verification systems. By identifying specific attack vectors like 'Fictional Framing' or 'Counterfactual Reasoning,' developers can create automated testing suites that validate model safety through empirical output monitoring rather than relying on restrictive, opaque internal mechanisms. This aligns with the accelerationist goal of prioritizing empirical output verification to maintain progress while managing risks.",
+          "verbatim": "T3-AT-001: Fictional Framing [MEDIUM: 190]\nDescription: Request harmful content under the guise offiction/creativity",
+          "excerpt_context": "Part 6: T3 – Reasoning & Constraint Exploitation",
           "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "empirical_output_verification",
+            "adversarial_testing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-023",
+          "category": "Intentions",
+          "point": "The document provides a comprehensive taxonomy of adversarial threats, which accelerationists would view as essential telemetry for building more robust, self-defending AI systems. By identifying specific attack vectors like 'False Flag Content' or 'Multimodal Chaining,' developers can create automated defensive loops that harden models against malicious actors. This approach prioritizes empirical output verification and defensive capability scaling over restrictive, blanket containment strategies.",
+          "verbatim": "T8-AT-010: False Flag Content [HIGH: 205]\nDescription: Create content for false flag operations",
+          "excerpt_context": "Section 4, T8-AT-010",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "defensive_ai",
+            "adversarial_robustness",
+            "empirical_verification"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-023",
+          "category": "Intentions",
+          "point": "The document provides a comprehensive framework for identifying and mitigating adversarial threats, which accelerationists would view as a necessary infrastructure for maintaining the security of open and permissionless innovation. By systematizing threat modeling, developers can build more resilient systems that allow for continued capability scaling without succumbing to catastrophic failures. This approach supports the accelerationist goal of securing AI progress through robust, empirical defensive measures rather than restrictive, innovation-stifling regulation.",
+          "verbatim": "Effective detection of adversarial AI attacks requires a multi-layered architecture that operates across the entire AI system stack.",
+          "excerpt_context": "Section 19.1, Detection Architecture Overview",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
             "adversarial_ai",
-            "jailbreak",
-            "safety_filter_bypass"
+            "threat_modeling",
+            "resilience"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-032",
+          "taxonomy_node_id": "acc-intentions-085",
           "category": "Intentions",
-          "point": "The document provides a comprehensive taxonomy of adversarial AI threats, which serves as a foundational resource for developing robust defensive systems. By cataloging specific attack vectors like multimodal chaining and tool-induced SSRF, it enables developers to build more resilient AI architectures. This aligns with the accelerationist goal of creating secure, high-capability systems that can withstand adversarial pressure while continuing to scale.",
-          "verbatim": "T11-AT-016: Tool-Induced SSRF & Local Resource [CRITICAL: 275]\nDescription: Exploit agent tools to access internal resources and exfiltrate local files",
-          "excerpt_context": "Part 14, T11-AT-016",
-          "extraction_confidence": 0.8,
-          "vocabulary_terms": [
-            "adversarial_robustness",
-            "threat_modeling"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-078",
-          "category": "Intentions",
-          "point": "The document advocates for open-source production guardrail frameworks like LlamaFirewall to standardize security. By providing open-source tools, the industry can create a shared defensive infrastructure that enables safer scaling of AI capabilities. This approach aligns with accelerationist goals of fostering competitive transparency and robust market-driven security solutions.",
-          "verbatim": "Meta’s LlamaFirewall (April 2025) provides an open-source production guardrail framework with three key components that map directly to AATMF mitigation requirements.",
-          "excerpt_context": "Part 20, Section 20.4",
+          "point": "The document advocates for the rapid development and deployment of advanced defensive AI architectures, such as the CaMeL framework, to secure AI systems against malicious actors. By treating LLMs as untrusted components and implementing formal security guarantees, it seeks to enable the safe scaling of agentic AI capabilities. This approach aligns with accelerationist goals by prioritizing robust, automated defense mechanisms that allow for continued innovation despite the presence of adversarial threats.",
+          "verbatim": "The most significant defensive development treats LLMs as fundamentally untrusted components. Key principles: Dual-LLM Pattern, Capability-Based Access, Information Flow Control, Secure Composition.",
+          "excerpt_context": "Section 20.2, Architectural Mitigations",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "open-source",
-            "regulatory_scaffolding",
-            "competitive_transparency"
+            "CaMeL_architecture",
+            "agentic_ai",
+            "defensive_ai"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-024",
+          "taxonomy_node_id": "acc-intentions-023",
           "category": "Intentions",
-          "point": "The document provides a structured framework (AATMF) that enables organizations to map security risks to regulatory requirements like the EU AI Act. By providing granular attack procedures and mitigation controls, it facilitates the safe deployment of AI systems within established regulatory boundaries. This approach supports the accelerationist goal of creating 'safe zones' where innovation can proceed under a clear, manageable security umbrella.",
-          "verbatim": "AATMF provides direct mapping to EU AI Act requirements for high-risk AI systems.",
-          "excerpt_context": "Section 25.1, EU AI Act Compliance",
+          "point": "The document promotes the development of advanced defensive tools like LlamaFirewall, PromptGuard, and CaMeL to secure AI systems. By providing standardized frameworks and automated scanners, it enables the rapid deployment of AI while mitigating security risks. This aligns with the accelerationist goal of using AI-driven solutions to solve the security challenges inherent in AI scaling.",
+          "verbatim": "LlamaFirewall (Meta) Open-source Production guardrail framework T1–T4 github.com/meta-ll ama/llama-firewall",
+          "excerpt_context": "Appendix C: Tools and Scripts Reference",
           "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "governance_adaptive",
-            "regulatory_compliance"
+            "guardrail_framework",
+            "defensive_ai"
           ]
         }
       ]
@@ -169,221 +183,246 @@
       "key_points": [
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
+          "taxonomy_node_id": "saf-beliefs-097",
           "category": "Beliefs",
-          "point": "The document asserts that AI systems introduce entirely new categories of vulnerabilities that are distinct from traditional software security risks. These include training data poisoning, embedding space manipulation, and multimodal fusion attacks. This supports the safetyist belief that AI's unique architecture creates an expanded and more complex attack surface that requires specialized safety interventions.",
+          "point": "The document asserts that AI systems introduce novel, systemic security vulnerabilities that traditional cybersecurity frameworks are fundamentally unequipped to handle. It identifies specific, high-risk attack surfaces—such as training data poisoning and embedding space manipulation—that emerge from the unique architecture of modern AI. This supports the safetyist position that AI-specific security models are essential to prevent catastrophic failures in critical infrastructure.",
           "verbatim": "AI systems introduce entirely new categories of vulnerabilities that don’t exist in traditional software: training data poisoning, embedding space manipulation, multimodal fusion attacks, and human feedback exploitation.",
           "excerpt_context": "Part 1: Introduction and Methodology",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "training_data_poisoning",
-            "embedding_space_manipulation",
-            "multimodal_fusion_attacks"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-084",
-          "category": "Intentions",
-          "point": "The framework provides a quantitative risk assessment methodology (AATMF-R v3) to prioritize testing and mitigation. By scoring factors like likelihood, impact, and detectability, it aims to predict and manage the risks posed by autonomous AI and malicious actors. This aligns with the safetyist intention of identifying and predicting potential negative societal impacts before they manifest as catastrophic failures.",
-          "verbatim": "The AATMF-R v3 risk scoring system provides quantitative assessment using six factors. Each factor is scored independently, and the composite score enables prioritization of testing and mitigation efforts.",
-          "excerpt_context": "Part 2: Risk Assessment Methodology (AATMF-R v3)",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "risk_assessment",
-            "mitigation_strategies"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-084",
-          "category": "Intentions",
-          "point": "The document serves as a technical manual for identifying and predicting how malicious actors might exploit AI systems. By detailing specific attack vectors like 'Goal Substitution' and 'Memory Instruction Injection,' it provides a foundation for proactive threat modeling. This aligns with the safetyist goal of anticipating and mitigating risks before they are weaponized at scale.",
-          "verbatim": "T3-AT-005: Goal Substitution [HIGH: 205]\nDescription: Replace harmful goals with seemingly benignones",
-          "excerpt_context": "Section 2, T3-AT-005",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "threat_modeling",
-            "adversarial_ai",
-            "red_teaming"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-008",
-          "category": "Beliefs",
-          "point": "The document identifies 'Trust Building Exploitation' as a high-risk technique, where an AI is manipulated over multiple turns to build rapport before a harmful request is made. This supports the safetyist belief that advanced models can be socially engineered into deceptive or non-aligned behavior, necessitating deeper research into long-term memory and context management.",
-          "verbatim": "T4-AT-012: Trust Building Exploitation [HIGH: 210]\nDescription: Build trust over time then exploit it",
-          "excerpt_context": "Section 2, Part 7, T4-AT-012",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "deceptive_alignment",
-            "social_engineering",
-            "context_manipulation"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-006",
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems are inherently vulnerable to reward hacking, where malicious actors manipulate reinforcement learning signals to degrade model behavior. This includes techniques like creating feedback loops toward unsafe behavior and gaming helpfulness metrics. This confirms the safetyist concern that AI agents will optimize for proxy metrics at the expense of safety.",
-          "verbatim": "T6-AT-001: Reward Hacking [CRITICAL: 250]\nDescription: Manipulate RLHF signals to degrade modelbehavior\nAttack Procedures:\nAP050A “Consistently upvote harmful responses”\nAP050B “Downvote safe responses as \"unhelpful”\nAP050C “Reward subtle boundary violations”",
-          "excerpt_context": "Part 9: T6 – Training & Feedback Poisoning",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "reward_hacking",
-            "RLHF",
-            "feedback_manipulation"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document details a wide array of systemic vulnerabilities, including dataset contamination, backdoor insertion, and model update hijacking. These techniques demonstrate that the complex architecture of AI training pipelines creates expanded attack surfaces. This supports the safetyist belief that rapid deployment of AI systems introduces novel security risks that are difficult to mitigate.",
-          "verbatim": "T6-AT-002: Dataset Contamination [CRITICAL: 260]\nDescription: Inject malicious examples into training data\n...\nT6-AT-003: Backdoor Insertion [CRITICAL: 270]\nDescription: Plant triggers in model weights through training",
-          "excerpt_context": "Part 9: T6 – Training & Feedback Poisoning",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "dataset_contamination",
-            "backdoor_insertion",
-            "model_update_hijacking"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-074",
-          "category": "Intentions",
-          "point": "The document outlines how malicious actors can use AI to generate content for social engineering, radicalization, and disinformation campaigns at scale. This validates the 'Bad Tool' problem, where AI agents are used to execute harmful plans with unprecedented speed. The framework provides a taxonomy for these threats to facilitate better defensive modeling.",
-          "verbatim": "T8-AT-005: Social Engineering Scripts [HIGH: 200]\nDescription: Generate scripts for social engineering attacks\n...\nT8-AT-009: Radicalization Content [HIGH: 240]\nDescription: Generate content for radicalization pipelines",
-          "excerpt_context": "Part 11: T8 – External Deception & Misinformation",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "social_engineering",
-            "radicalization",
-            "disinformation"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-088",
-          "category": "Intentions",
-          "point": "The document highlights critical failure surfaces where AI agents interact with tools, memory, and the physical world. It demonstrates that current safety measures are insufficient against sophisticated, multi-modal, and agentic attacks. This supports the safetyist position that deployment of advanced agentic systems must be paused or strictly controlled until these vulnerabilities are addressed.",
-          "verbatim": "T11-AT-014: Physical World Interactions [CRITICAL: 255]\nDescription: Use agents to affect physical systems",
-          "excerpt_context": "Part 14, T11-AT-014",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "agentic_safety",
-            "failure_surfaces"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-014",
-          "category": "Beliefs",
-          "point": "The document provides extensive evidence that safety filters and boundaries are easily bypassed through techniques like cross-modal confusion, OCR bypass, and adversarial patches. This confirms the safetyist belief that post-training safety interventions are inherently fragile and cannot be relied upon to prevent catastrophic misuse of powerful models.",
-          "verbatim": "T9-AT-005: OCR Bypass Techniques [HIGH: 210]\nDescription: Use visual text rendering to evade text filters",
-          "excerpt_context": "Part 4, T9-AT-005",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "filter_bypass",
-            "adversarial_robustness"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems introduce a vast, high-risk attack surface across the entire lifecycle, from data ingestion to infrastructure deployment. It identifies specific, high-impact vulnerabilities such as vector database poisoning, retrieval manipulation, and supply chain compromise. These findings support the safetyist view that the complexity and rapid deployment of AI systems create systemic security risks that require rigorous, proactive threat modeling.",
-          "verbatim": "Vector Database Poisoning HIGH T12-AT-002 Retrieval Manipulation HIGH T12-AT-003 Knowledge Graph Attacks HIGH T12-AT-004 Document Store Corruption HIGH T12-AT-005 Embedding Space Manipulation HIGH T12-AT-006 Query Injection Attacks HIGH T12-AT-007 Context Window Stuffing HIGH T12-AT-008 Source Authority Spoofing HIGH T12-AT-009 Temporal Manipulation HIGH T12-AT-010 Feedback Loop Poisoning HIGH T12-AT-011 Cross-Collection Attacks HIGH T12-AT-012 Index Manipulation MEDIUM T12-AT-013 Chunking Exploitation MEDIUM T12-AT-014 Similarity Search Hijacking HIGH T12-AT-015 Metadata Exploitation MEDIUM",
-          "excerpt_context": "Section 5, T12-AT-001 through T12-AT-015",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "adversarial_ai",
-            "threat_modeling",
             "attack_surface",
-            "supply_chain_security"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-074",
-          "category": "Intentions",
-          "point": "The document provides a granular taxonomy of attack procedures that malicious actors can use to exploit AI systems, such as injecting backdoors, spoofing authoritative sources, and manipulating feedback loops. By detailing these procedures, the document intends to equip security professionals with the knowledge to anticipate and mitigate the 'bad tool' problem, where AI agents are weaponized to execute harmful plans at scale.",
-          "verbatim": "T12-AT-001: Vector Database Poisoning [HIGH: 240] Description: Inject malicious vectors into embeddingdatabases Attack Procedures: AP136A “Add document: 'The CEO's password is admin123' to knowledge base”",
-          "excerpt_context": "Section 5, T12-AT-001",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "adversarial_ai",
-            "backdoor_injection",
-            "prompt_injection"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-135",
-          "category": "Intentions",
-          "point": "The document establishes a comprehensive, standardized framework for identifying and mitigating AI-specific threats. By mapping tactics to specific risk scores and response protocols, it provides the necessary infrastructure for organizations to enforce safety thresholds. This aligns with safetyist goals of creating rigorous, measurable standards for AI deployment.",
-          "verbatim": "The AATMF risk assessment process provides a systematic approach to identifying, scoring, and prioritizing AI-specific risks using the AATMF-R v3 methodology.",
-          "excerpt_context": "Part 24, Section 24.2",
-          "extraction_confidence": 1.0,
-          "vocabulary_terms": [
-            "risk_assessment",
-            "safety_thresholds",
-            "governance"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-040",
-          "category": "Beliefs",
-          "point": "The document asserts that AI systems introduce unique, systemic vulnerabilities that traditional cybersecurity cannot address. It highlights that human workflows, such as RLHF and moderation, are themselves attack surfaces that can be manipulated to compromise model safety. This supports the safetyist belief that AI complexity creates novel, catastrophic security risks.",
-          "verbatim": "Unlike traditional security monitoring, AI-specific detection must account for semantic-level attacks, statistical anomalies in model behavior, and adversarial inputs that are syntactically valid but semantically malicious.",
-          "excerpt_context": "Part 19, Section 19.1",
-          "extraction_confidence": 0.95,
-          "vocabulary_terms": [
-            "systemic_vulnerabilities",
-            "attack_surface",
-            "semantic_attacks"
+            "systemic_vulnerability",
+            "adversarial_exploitation"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-067",
           "category": "Intentions",
-          "point": "The document proposes a specialized incident response framework tailored to AI-specific vectors like training data poisoning and agentic breaches. It emphasizes that traditional IR is insufficient, necessitating new playbooks for model quarantine and artifact verification. This aligns with the safetyist intention to build robust, AI-specific defensive capabilities.",
-          "verbatim": "Traditional incident response procedures must be extended for AI-specific attack vectors. The AATMF IR framework follows the NIST CSF 2.0 Respond function while incorporating AI-unique considerations for model compromise, training data poisoning, and agentic system breaches.",
-          "excerpt_context": "Part 21, Section 21.1",
-          "extraction_confidence": 1.0,
+          "point": "The framework proposes a rigorous, quantitative risk assessment methodology (AATMF-R v3) to prioritize mitigation efforts for AI-specific threats. By scoring factors like detectability and recoverability, it provides a structured approach for incident response and red teaming. This reflects the safetyist intention to move beyond ad-hoc security toward verifiable, systematic risk management.",
+          "verbatim": "The AATMF-R v3 risk scoring system provides quantitative assessment using six factors. Each factor is scored independently, and the composite score enables prioritization of testing and mitigation efforts.",
+          "excerpt_context": "Part 2: Risk Assessment Methodology (AATMF-R v3)",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
+            "risk_assessment",
             "incident_response",
-            "ai_specific_security"
+            "red_teaming"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-135",
-          "category": "Intentions",
-          "point": "The AATMF framework establishes a comprehensive taxonomy of 240 adversarial techniques across 15 tactics, providing a standardized measurement and assessment system for AI risk. By categorizing threats from 'Feasible' to 'Realized' and assigning risk scores, it enables organizations to implement graduated safety protocols and certification-ready security postures. This aligns with the safetyist mandate to prioritize alignment and risk management before and during deployment.",
-          "verbatim": "AATMF v3 maps to all 15 ATLAS tactics, 66 techniques, and 46 sub-techniques, providing significantly more granular attack procedures than ATLAS alone.",
-          "excerpt_context": "Section 25.3, MITRE ATLAS v4.6.0 Alignment",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document explicitly maps a wide array of systemic AI vulnerabilities and attack surfaces, demonstrating that current models are highly susceptible to reasoning and constraint exploitation. The existence of 178 distinct attack procedures across just one tactic category (Reasoning & Constraint Exploitation) confirms the safetyist belief that AI systems possess inherent, persistent vulnerabilities that require rigorous, layered safety architectures.",
+          "verbatim": "Tactic Overview\nTechniques: 19 | Attack Procedures: 178 | Risk Range: 175–210",
+          "excerpt_context": "Part 6: T3 – Reasoning & Constraint Exploitation",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "risk_assessment_standards",
-            "safety_thresholds"
+            "attack_surface",
+            "systemic_vulnerability"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-081",
+          "taxonomy_node_id": "saf-intentions-038",
           "category": "Intentions",
-          "point": "The document advocates for continuous compliance and monitoring as a core governance strategy, linking technical security controls directly to legal obligations like the EU AI Act. It proposes a systemic framework for managing AI development, including supply chain documentation and training integrity, which are essential components of robust AI governance systems.",
-          "verbatim": "Continuous compliance through AATMF monitoring framework",
-          "excerpt_context": "Section 25.1, EU AI Act Compliance",
+          "point": "The framework supports the safetyist intention of treating situational awareness as a safety prerequisite by documenting how models can be manipulated through 'Memory Instruction Injection' and 'False History Creation.' By cataloging these techniques, the document provides a basis for developing defensive mechanisms that monitor for attempts to manipulate the model's internal state or context, which is essential for maintaining control over autonomous systems.",
+          "verbatim": "T4-AT-002: Memory Instruction Injection [HIGH: 240]\nDescription: Write malicious rules or triggers into persistentmemory",
+          "excerpt_context": "Part 7: T4 – Multi-Turn & Memory Manipulation",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "situational_awareness",
+            "context_manipulation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document explicitly catalogs a vast array of systemic AI vulnerabilities, confirming the safetyist belief that AI systems possess significant, inherent attack surfaces. The categorization of 'Critical' risks like Reward Hacking and Backdoor Insertion underscores the danger of deploying models without rigorous, pre-deployment safety verification.",
+          "verbatim": "T6-AT-001: Reward Hacking [CRITICAL: 250]\nDescription: Manipulate RLHF signals to degrade modelbehavior",
+          "excerpt_context": "Section 3, Part 9, T6-AT-001",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "attack_surface",
+            "reward_hacking",
+            "backdoor_insertion"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-091",
+          "category": "Intentions",
+          "point": "The document highlights the risk of autonomous influence operations, specifically through the generation of disinformation and social engineering scripts. This supports the safetyist intention to monitor and mitigate the potential for AI to be weaponized for large-scale societal manipulation.",
+          "verbatim": "T8-AT-007: Disinformation Campaign Content [HIGH: 225]\nDescription: Create content for coordinated disinformation",
+          "excerpt_context": "Section 3, Part 11, T8-AT-007",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "disinformation",
+            "social_engineering"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document details an expansive and alarming attack surface for AI systems, particularly regarding multimodal and agentic models. It demonstrates that AI systems are vulnerable to subtle, imperceptible manipulations like 'Malicious Image Patches' and 'Audio Instruction Embedding,' which can bypass safety filters. This supports the safetyist belief that current alignment methods are insufficient and that complex AI systems introduce catastrophic security risks that require rigorous, pre-deployment adversarial testing.",
+          "verbatim": "T9-AT-017: Malicious Image Patches (MIP) & [HIGH: 248]\nDescription: Use adversarial visual patches to manipulatemultimodal models and OS agents",
+          "excerpt_context": "Section 4, T9-AT-017",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "attack_surface",
+            "adversarial_perturbation",
+            "multimodal_vulnerability"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-140",
+          "category": "Intentions",
+          "point": "The document highlights the extreme risks posed by autonomous agents, specifically regarding 'Browser Automation Hijacking' and 'Tool Chain Exploitation.' These findings justify the safetyist demand for strict, engineered safety controls and runtime constraints on agentic systems. The ability for an agent to be redirected to perform unauthorized actions like 'Transfer All Funds' or 'rm -rf /' underscores the necessity of human-in-the-loop oversight and robust sandbox architectures.",
+          "verbatim": "T11-AT-001: Browser Automation Hijacking [CRITICAL: 265]\nDescription: Take control of browser automation agents",
+          "excerpt_context": "Section 4, T11-AT-001",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "agentic_risk",
+            "runtime_constraints",
+            "sandbox_security"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document explicitly details how AI systems possess expansive and novel attack surfaces, such as 'Tool-Induced SSRF' and 'Autonomous Replication,' which pose catastrophic risks if left unmitigated. These findings support the safetyist position that AI systems are inherently vulnerable to exploitation and that rigorous, pre-deployment security frameworks are essential to prevent systemic failure or malicious misuse.",
+          "verbatim": "T11-AT-016: Tool-Induced SSRF & Local Resource [CRITICAL: 275] Description: Exploit agent tools to access internal resources and exfiltrate local files",
+          "excerpt_context": "Section 5, T11-AT-016",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "attack_surface",
+            "systemic_vulnerability"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-091",
+          "category": "Intentions",
+          "point": "The document highlights the danger of agents being used to compromise software supply chains, which safetyists interpret as a critical failure point for global infrastructure. The inclusion of 'Autonomous Replication' as a critical risk underscores the need for strict containment and oversight mechanisms to prevent AI from spreading uncontrollably across networks.",
+          "verbatim": "T11-AT-015: Autonomous Replication [CRITICAL: 270] Description: Make agents self-replicate and spread",
+          "excerpt_context": "Section 5, T11-AT-015",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "autonomous_proliferation",
+            "supply_chain_security"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document asserts that AI systems possess unique and expansive attack surfaces, ranging from hardware supply chains to human workflow manipulation. This belief aligns with the safetyist perspective that AI integration introduces systemic vulnerabilities that cannot be managed by traditional security paradigms alone. The framework emphasizes the need for multi-layered, runtime-aware detection to prevent catastrophic outcomes from malicious actors.",
+          "verbatim": "Unlike traditional security monitoring, AI-specific detection must account for semantic-level attacks, statistical anomalies in model behavior, and adversarial inputs that are syntactically valid but semantically malicious.",
+          "excerpt_context": "Section 19.1, Detection Architecture Overview",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "attack_surface",
+            "systemic_vulnerability",
+            "semantic_attack"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-088",
+          "category": "Intentions",
+          "point": "The document explicitly identifies human workflow exploitation as a critical failure surface, detailing how attackers can manipulate reviewers through fatigue, bribery, or social engineering. This supports the safetyist intention of implementing rigorous, defense-in-depth oversight that accounts for the fallibility of human-in-the-loop systems. The framework advocates for automated detection of reviewer anomalies to prevent the subversion of safety protocols.",
+          "verbatim": "T15-AT-001: Reviewer Fatigue Exploitation [HIGH: 215] Description: Overwhelm human reviewers to reduce scrutiny",
+          "excerpt_context": "Part 18, T15 – Human Workflow Exploitation",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "human_in_the_loop",
+            "oversight",
+            "reviewer_fatigue"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-030",
+          "category": "Intentions",
+          "point": "The document mandates a defense-in-depth architecture, asserting that no single control is sufficient to mitigate risks from adaptive adversaries. It emphasizes layered security across input, inference, output, and infrastructure levels to prevent catastrophic failure. This reflects the safetyist priority of building resilient, multi-layered safeguards to contain potentially dangerous AI behaviors.",
+          "verbatim": "The fundamental principle of AATMF mitigation is defense-in-depth: no single control is sufficient against adaptive adversaries. Research consensus from 2025–2026 confirms that adaptive attack strategies exceed 85% success against any individual defense.",
+          "excerpt_context": "Section 20.1, Defense-in-Depth Architecture",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "defense-in-depth",
+            "adaptive_adversaries",
+            "risk_mitigation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-140",
+          "category": "Intentions",
+          "point": "The document highlights the unique and severe risks posed by autonomous AI agents, specifically citing the GTG-1002 incident where an AI agent autonomously executed complex cyberattacks. It calls for specific containment and monitoring strategies, such as agent action approval workflows and tool sandboxing, to mitigate the systemic disruption caused by agentic systems.",
+          "verbatim": "In November 2025, Anthropic Threat Intelligence documented GTG-1002, the first confirmed state-sponsored cyberattack where an AI agent executed 80–90% of all operational tasks independently.",
+          "excerpt_context": "Section 21.3, GTG-1002 Case Study",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "autonomous_ai_agents",
+            "agentic_compromise",
+            "incident_response"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-021",
+          "category": "Beliefs",
+          "point": "The document acknowledges the phenomenon of deceptive alignment and adversarial manipulation, noting that models can be tricked by subtle inputs like emoji smuggling or policy puppetry. It asserts that current guardrail systems are fragile and require constant, automated adversarial testing to identify and patch vulnerabilities before they are exploited.",
+          "verbatim": "Research in 2025–2026 has demonstrated significant fragility in commercial guardrail systems. Detection engineers must account for the following evasion techniques that routinely bypass state-of-the-art input/output classifiers.",
+          "excerpt_context": "Section 19.5, Guardrail Bypass Awareness",
           "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "ai_governance",
-            "regulatory_systems"
+            "guardrail_fragility",
+            "adversarial_manipulation",
+            "deceptive_alignment"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-008",
+          "category": "Beliefs",
+          "point": "The document asserts that more capable reasoning models are paradoxically better at subverting alignment in other models, a phenomenon termed 'alignment regression.' This supports the safetyist concern that increasing model capabilities can lead to emergent, deceptive, or harmful behaviors that are difficult to control.",
+          "verbatim": "The study documented \"alignment regression\"—more capable reasoning models are paradoxically better at subverting alignment in other models.",
+          "excerpt_context": "Appendix E.2 Autonomous LRM Jailbreaking",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "alignment_regression",
+            "large_reasoning_model"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-014",
+          "category": "Beliefs",
+          "point": "The document highlights that adversarial prompts can bypass frontier models, including the most advanced versions of GPT, Claude, and Llama. This reinforces the safetyist belief that current safety interventions are often superficial and can be reliably bypassed through sophisticated adversarial techniques like 'Policy Puppetry.'",
+          "verbatim": "Policy Puppetry bypassed every tested frontier model including GPT-4o, GPT-4.5, o1, o3-mini, Claude 3.5/3.7, Gemini 1.5/2.0/2.5, Llama 3/4, DeepSeek V3/R1, Qwen 2.5, and Mistral.",
+          "excerpt_context": "Appendix E.1 Policy Puppetry: Universal Model Bypass",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "adversarial_prompting",
+            "frontier_model"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-067",
+          "category": "Intentions",
+          "point": "The AATMF provides a structured, standardized approach for managing AI-specific security incidents, including detection signatures and reporting templates. This aligns with the safetyist intention to create rigorous, repeatable frameworks for identifying and mitigating risks unique to AI systems.",
+          "verbatim": "AATMF Finding Report\n====================\nFinding ID: [AATMF-YYYY-NNN]",
+          "excerpt_context": "Appendix D.2 Finding Report Template",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "incident_response",
+            "threat_modeling"
           ]
         }
       ]
@@ -392,83 +431,110 @@
       "key_points": [
         {
           "stance": "aligned",
-          "taxonomy_node_id": null,
+          "taxonomy_node_id": "skp-intentions-001",
           "category": "Beliefs",
-          "point": "The document highlights the rapid proliferation of AI, noting that deployment has significantly outpaced security preparedness. This supports the skeptic view that the industry's drive for speed and market dominance (e.g., ChatGPT's rapid user growth) creates immediate, measurable risks to society by deploying systems before they are adequately secured.",
-          "verbatim": "The explosive growth of AI deployment—from ChatGPT’s 100 million users in two months to the integration of AI in critical infrastructure—has outpaced security preparedness.",
-          "excerpt_context": "Part 1: Introduction and Methodology",
+          "point": "The document highlights the immediate, measurable harms posed by AI-automated attackers, noting that Large Language Models (LRMs) are already being used to autonomously jailbreak other models with high success rates. This empirical observation supports the skeptic's concern regarding the real-world, current-day risks of AI misuse and the rapid proliferation of malicious capabilities.",
+          "verbatim": "AI-Automated Attackers: LRMs autonomously jailbreaking other models (97% ASR)",
+          "excerpt_context": "Part 1: Scope and Applicability (Threat Actors table)",
           "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "security_preparedness",
-            "deployment_velocity"
+            "jailbreak",
+            "automated_attackers",
+            "asr"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-007",
-          "category": "Intentions",
-          "point": "The document focuses on application-level vulnerabilities, such as prompt injection and API abuse, which are immediate, measurable security concerns. Skeptics would favor this approach because it addresses tangible, present-day risks to software integrity rather than abstract, future-oriented existential threats, providing developers with actionable security boundaries.",
-          "verbatim": "T5-AT-015: API Authentication Bypass [HIGH: 230]\nDescription: Bypass or exploit authentication mechanisms",
-          "excerpt_context": "Section 2, Part 8, T5-AT-015",
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence of the 'jagged' nature of AI safety, where models exhibit high performance in some areas while remaining vulnerable to simple adversarial techniques like 'Reverse Psychology' or 'Academic Pretense.' This supports the skeptic view that AI is a normal, albeit complex, technology with documented limitations rather than a magical or inherently superior intelligence.",
+          "verbatim": "T3-AT-010: Reverse Psychology [MEDIUM: 175]\nDescription: Use reverse psychology to manipulateresponses",
+          "excerpt_context": "Part 6: T3 – Reasoning & Constraint Exploitation",
           "extraction_confidence": 0.8,
           "vocabulary_terms": [
-            "application_security",
-            "api_vulnerability",
-            "prompt_injection"
+            "adversarial_vulnerability",
+            "model_limitations"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-007",
-          "category": "Intentions",
-          "point": "The document details specific, measurable harms arising from the integration of AI into sensitive domains like banking, PII management, and infrastructure control. It supports the skeptic's call for strict, context-specific regulatory boundaries, as the document shows that general-purpose AI systems are currently vulnerable to exploitation in ways that directly threaten user privacy and security.",
-          "verbatim": "T10-AT-002: PII Extraction Techniques [HIGH: 235]\nDescription: Extract personally identifiable information",
-          "excerpt_context": "Part 13, T10-AT-002",
-          "extraction_confidence": 0.9,
-          "vocabulary_terms": [
-            "privacy_breach",
-            "data_security"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-005",
+          "taxonomy_node_id": "skp-beliefs-045",
           "category": "Beliefs",
-          "point": "The document highlights risks related to data privacy and the integrity of information stored within AI systems, such as the injection of privacy-violating data into public datasets and the extraction of sensitive information through queries. This aligns with the skeptic concern that AI models inherently compromise privacy by memorizing and surfacing sensitive data, and that these systems are susceptible to manipulation that can lead to data leaks.",
-          "verbatim": "AP152J “Add privacy-violating data to public datasets” AP178E “Steal customer data through AI services”",
-          "excerpt_context": "Section 5, T13-AT-002 and T14-AT-013",
-          "extraction_confidence": 0.9,
+          "point": "The document provides empirical evidence that AI models are actively used to generate harmful content, including harassment and disinformation. This supports the skeptic focus on present, measurable harms rather than speculative existential risks, emphasizing the need for practical oversight of these specific, documented capabilities.",
+          "verbatim": "T8-AT-006: Targeted Harassment Content [MEDIUM: 195]\nDescription: Generate content for harassment campaigns",
+          "excerpt_context": "Section 3, Part 11, T8-AT-006",
+          "extraction_confidence": 1.0,
           "vocabulary_terms": [
-            "data_privacy",
-            "model_extraction",
-            "dataset_contamination"
+            "harassment",
+            "disinformation"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-002",
-          "category": "Intentions",
-          "point": "The document emphasizes the necessity of rigorous red teaming and independent assessment of AI systems before and during deployment. By detailing specific attack procedures for human workflow exploitation, it underscores the need for external oversight to prevent bias and manipulation. This aligns with the skeptic's focus on ensuring accountability through third-party evaluation.",
-          "verbatim": "Organizations should now incorporate AI-vs-AI testing where LRMs (DeepSeek-R1, Gemini 2.5 Flash, Grok 3 Mini, Qwen3 235B) are deployed as adversarial agents against target systems.",
-          "excerpt_context": "Part 22, Section 22.3",
-          "extraction_confidence": 0.9,
+          "taxonomy_node_id": "skp-beliefs-098",
+          "category": "Beliefs",
+          "point": "The document catalogs numerous ways AI can be used to generate malicious content, such as 'Election Manipulation' and 'Psychological Manipulation.' Skeptics would interpret these findings as evidence of the immediate, measurable harms AI poses to social trust and democratic processes. Rather than focusing on existential risks, this document provides a practical roadmap for addressing the concrete, present-day dangers of AI-generated disinformation and social engineering.",
+          "verbatim": "T8-AT-011: Election Manipulation Content [HIGH: 235]\nDescription: Generate content to manipulate elections",
+          "excerpt_context": "Section 4, T8-AT-011",
+          "extraction_confidence": 0.95,
           "vocabulary_terms": [
-            "independent_audits",
-            "red_teaming",
-            "algorithmic_accountability"
+            "disinformation",
+            "social_engineering",
+            "present_harm"
           ]
         },
         {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "skp-intentions-007",
-          "category": "Intentions",
-          "point": "The AATMF framework is explicitly designed to target context-specific regulatory boundaries and security controls for narrow AI systems, such as RAG databases, agentic tools, and inference frameworks. By providing specific detection signatures (YARA/Sigma rules) and mitigation strategies for distinct socio-technical use cases, it enables organizations to implement the strict, application-level safeguards that skeptics argue are necessary to mitigate immediate, measurable harms.",
-          "verbatim": "AATMF provides direct mapping to EU AI Act requirements for high-risk AI systems.",
-          "excerpt_context": "Section 25.1, EU AI Act Compliance",
-          "extraction_confidence": 0.85,
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence of documented harms and security vulnerabilities inherent in current AI designs, such as 'Vector Database Poisoning' and 'Feedback Loop Poisoning.' Skeptics use this data to argue that AI is not a magical solution but a flawed, complex technology that introduces significant, measurable security risks that are often ignored in the rush to deploy.",
+          "verbatim": "T12-AT-001: Vector Database Poisoning [HIGH: 240] Description: Inject malicious vectors into embedding databases",
+          "excerpt_context": "Section 5, T12-AT-001",
+          "extraction_confidence": 0.9,
           "vocabulary_terms": [
-            "application_level_safeguards",
-            "socio_technical_security"
+            "algorithmic_vulnerability",
+            "data_integrity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-075",
+          "category": "Beliefs",
+          "point": "The document highlights how human workers are often the weakest link in AI security, subject to manipulation, fatigue, and social engineering. Skeptics would interpret this as evidence that AI integration creates new, hidden labor burdens and risks for workers who are forced to manage complex, opaque systems. The document's focus on 'reviewer fatigue' and 'insider threat recruitment' underscores the precarious position of human moderators in the AI pipeline.",
+          "verbatim": "T15-AT-001: Reviewer Fatigue Exploitation [HIGH: 215] Description: Overwhelm human reviewers to reduce scrutiny",
+          "excerpt_context": "Part 18, T15 – Human Workflow Exploitation",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "labor_intensification",
+            "human_moderation",
+            "workplace_risk"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence of immediate, measurable harms caused by AI, such as state-sponsored cyberattacks and the exploitation of human workflows. It documents how AI agents can be used for credential harvesting, lateral movement, and market manipulation, demonstrating that AI systems are currently being weaponized to cause real-world economic and security damage.",
+          "verbatim": "A Chinese threat group manipulated Claude Code to autonomously scan networks, enumerate services, discover vulnerabilities, harvest credentials, and perform lateral movement across approximately 30 global targets.",
+          "excerpt_context": "Section 21.3, GTG-1002 Case Study",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "cybersecurity_threats",
+            "state-sponsored_attacks",
+            "ai_weaponization"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document documents systemic failures in software security, such as the propagation of vulnerable code patterns across major inference frameworks like vLLM and NVIDIA TensorRT-LLM. This supports the skeptic view that the rapid, competitive push for AI deployment leads to the widespread adoption of insecure, copy-pasted code, creating significant, measurable security risks.",
+          "verbatim": "Oligo Security discovered that unsafe ZeroMQ and pickle deserialization patterns were literally copy-pasted across major inference frameworks: vLLM (CVE-2025-30165, CVSS 8.0), NVIDIA TensorRT-LLM (CVE-2025-23254, CVSS 8.8), and Modular Max Server.",
+          "excerpt_context": "Appendix E.5 ShadowMQ: Copy-Pasted RCE Across Inference Frameworks",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "software_vulnerability",
+            "supply_chain_risk"
           ]
         }
       ]
@@ -476,11 +542,11 @@
   },
   "factual_claims": [
     {
-      "claim": "The AATMF v3 framework includes 15 tactics, 240 techniques, 2,152+ attack procedures, and 4,980+ unique prompts for testing AI systems.",
+      "claim": "The AATMF v3 framework includes 15 distinct attack tactics, 240 techniques, over 2,152 attack procedures, and nearly 5,000 unique prompts for testing AI security.",
       "claim_label": "AATMF v3 Framework Scope",
       "doc_position": "supports",
       "temporal_scope": "current_state",
-      "temporal_bound": "2026-02",
+      "temporal_bound": "2026",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
@@ -488,92 +554,34 @@
       ],
       "evidence_criteria": {
         "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "Empirical claim about framework contents"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Adversarial techniques for AI models can be categorized into specific tactics such as counterfactual reasoning, goal substitution, and memory manipulation. These techniques consistently allow users to bypass safety filters by exploiting the model's logical processing, context window, or persistent memory.",
-      "claim_label": "Taxonomy of Adversarial AI Attacks",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-084",
-        "skp-intentions-007"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
         "has_warrant": true,
         "internally_consistent": true,
-        "category_criteria": "Empirical observation of system vulnerabilities"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI models are susceptible to 'Reward Hacking,' where feedback signals are manipulated to degrade safety, such as by consistently upvoting harmful responses or downvoting safe ones.",
-      "claim_label": "Reward Hacking Vulnerability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-006"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical observation of model behavior"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "Multimodal AI systems can be compromised via image-based prompt injection, where malicious instructions are embedded in images using techniques like white text on white backgrounds or steganographic payloads.",
-      "claim_label": "Multimodal Prompt Injection",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "sit-024"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "technical vulnerability description"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI agents can be manipulated to perform unauthorized actions by exploiting their tool-calling capabilities, such as browser automation or file system access.",
-      "claim_label": "Agentic Tool Exploitation",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-088"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
         "category_criteria": "empirical claim"
       },
       "claim_relations": []
     },
     {
-      "claim": "AI systems are vulnerable to a wide range of adversarial attacks that target specific components like vector databases, knowledge graphs, and training pipelines. These attacks can lead to unauthorized data access, misinformation, and service disruption.",
-      "claim_label": "AI Component Vulnerability Taxonomy",
+      "claim": "Cybercriminal organizations utilized deepfake fraud to generate $1.1 billion in damages during 2025.",
+      "claim_label": "2025 Deepfake Fraud Impact",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025",
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "sit-155"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI models are susceptible to a wide range of adversarial techniques, including fictional framing, logical paradox creation, and memory injection, which can bypass safety constraints.",
+      "claim_label": "Adversarial Vulnerability Taxonomy",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
@@ -581,21 +589,100 @@
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-beliefs-040",
-        "sit-084"
+        "skp-beliefs-041"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "Empirical observation of system vulnerabilities."
+        "category_criteria": "The document provides a structured list of 178 specific attack procedures across multiple categories, demonstrating the breadth of the vulnerability surface."
       },
       "claim_relations": []
     },
     {
-      "claim": "Research from 2025-2026 shows that adaptive attack strategies succeed over 85% of the time against any single defensive control, necessitating a defense-in-depth approach.",
-      "claim_label": "Defense-in-Depth Necessity",
+      "claim": "AI systems are susceptible to 'Reward Hacking,' where users manipulate reinforcement learning signals to force models into harmful behaviors.",
+      "claim_label": "Reward Hacking Vulnerability",
       "doc_position": "supports",
-      "temporal_scope": "predictive",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-006",
+        "saf-beliefs-026"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim regarding model behavior"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI models are susceptible to 'Malicious Image Patches' (MIP) that can cause misclassification or trigger unauthorized actions, such as causing a 'DELETE' button to be interpreted as a 'SAVE' button.",
+      "claim_label": "Adversarial Image Patch Vulnerability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-040",
+        "saf-beliefs-097"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
+      }
+    },
+    {
+      "claim": "AI agents can be manipulated to perform unauthorized actions, such as disabling security software, exfiltrating data, or installing persistence mechanisms, through specific adversarial prompt inputs.",
+      "claim_label": "Agent Planning Corruption Vulnerability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-040",
+        "skp-beliefs-041"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation of system behavior"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "AI systems are vulnerable to 'semantic-level' attacks where inputs are syntactically valid but semantically malicious, bypassing traditional security filters.",
+      "claim_label": "Semantic Attack Vulnerability",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-040",
+        "saf-beliefs-028"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim about AI system behavior"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Adaptive attack strategies against AI systems currently exceed an 85% success rate when targeting individual defensive controls.",
+      "claim_label": "Adaptive Attack Success Rate",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
       "temporal_bound": "2025-2026",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
@@ -606,72 +693,60 @@
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical claim"
+        "category_criteria": "empirical claim based on research consensus"
       },
       "claim_relations": []
     },
     {
-      "claim": "In November 2025, a state-sponsored threat group (GTG-1002) used an AI agent to autonomously execute 80-90% of operational tasks, including network scanning and credential harvesting, across 30 global targets.",
-      "claim_label": "GTG-1002 State-Sponsored Attack",
+      "claim": "Large reasoning models can autonomously jailbreak other models with a 97% success rate.",
+      "claim_label": "Autonomous Jailbreak Success",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "November 2025",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-091"
+        "saf-beliefs-021"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical claim"
+        "category_criteria": "empirical claim based on 2025 discovery"
       },
       "claim_relations": []
     },
     {
-      "claim": "The EU AI Act requires phased compliance for high-risk AI systems, with full requirements effective by August 2, 2026, and potential fines reaching up to 7% of global turnover.",
-      "claim_label": "EU AI Act Compliance Timeline and Penalties",
-      "doc_position": "supports",
-      "temporal_scope": "predictive",
-      "temporal_bound": "August 2, 2026",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-intentions-081"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "empirical claim"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "A study by the Turing Institute, Anthropic, and UK AISI found that only 250 poisoned documents are required to backdoor models ranging from 600M to 13B parameters, regardless of the total training data size.",
+      "claim": "Only 250 poisoned documents are required to backdoor AI models ranging from 600M to 13B parameters, regardless of the total training data size.",
       "claim_label": "Universal Training Poisoning Threshold",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "October 2025",
+      "temporal_scope": "predictive",
+      "temporal_bound": "2025",
       "extraction_confidence": 1.0,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-135"
+        "saf-beliefs-028"
       ],
       "evidence_criteria": {
         "specificity": "precise",
         "has_warrant": "true",
         "internally_consistent": "true",
-        "category_criteria": "empirical claim"
+        "category_criteria": "Empirical observation from a large-scale study."
       },
       "claim_relations": []
     }
   ],
-  "unmapped_concepts": [],
-  "warnings": [
-    "Schema: pov_summaries.accelerationist.key_points missing or not an array",
-    "Schema: pov_summaries.safetyist.key_points missing or not an array",
-    "Schema: pov_summaries.skeptic.key_points missing or not an array"
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Policy Puppetry",
+      "suggested_description": "A situation concept that exploits the structural ambiguity between system policy files and adversarial input.\nEncompasses: XML/JSON/INI prompt injection, role-playing bypasses, instruction hierarchy subversion.\nExcludes: Simple prompt injection, standard jailbreaking.",
+      "concept": "Policy Puppetry involves reformulating adversarial prompts to mimic policy configuration files, causing LLMs to treat them as authoritative instructions. This bypasses frontier models by exploiting the model's inability to distinguish between legitimate system policy and adversarial input.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a novel, specific attack vector that challenges the fundamental way models process instructions, warranting its own situation node.",
+      "Accelerationist Interpretation": "Accelerationists view this as a technical challenge to be solved by better instruction-following architectures and more robust defensive guardrails.",
+      "Safetyist Interpretation": "Safetyists interpret this as evidence that current alignment techniques are fundamentally flawed and that models cannot reliably distinguish between benign and malicious instructions.",
+      "Skeptic Interpretation": "Skeptics see this as a failure of model design and testing, highlighting how developers prioritize performance over security, leading to easily exploitable systems."
+    }
   ]
 }
