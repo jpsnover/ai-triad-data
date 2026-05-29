@@ -1,0 +1,420 @@
+{
+  "doc_id": "limits-self-correction-llms-information-theoretic-analysis-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-29T08:43:48Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 978,
+    "chunked": true,
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "limits-self-correction-llms-information-theoretic-analysis-2026",
+    "measured_at": "2026-05-29T08:47:04.8660286-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 21675,
+        "out_units": "tokens_est",
+        "out_count": 21688,
+        "ratio": 1.0006,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3489,
+        "out_units": "nodes",
+        "out_count": 62,
+        "ratio": 0.0178,
+        "flags": {
+          "min_nodes_selected": 62,
+          "avg_intentions": 6,
+          "max_nodes_selected": 63,
+          "avg_beliefs": 9,
+          "total_below_threshold": 6,
+          "chunk_count": 3,
+          "avg_desires": 2,
+          "avg_nodes_selected": 62
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 106918,
+        "out_units": "items",
+        "out_count": 23,
+        "ratio": 0.0002,
+        "flags": {
+          "total_points": 14,
+          "factual_claims": 5,
+          "null_node_rate": 0,
+          "chunk_count": 3,
+          "unmapped_concepts": 4
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 23,
+        "out_units": "items",
+        "out_count": 23,
+        "ratio": 1,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 0,
+          "claims_deduped": 0,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.5,
+        "flags": {
+          "used_embeddings": 1,
+          "near_miss_count": 2,
+          "resolved_count": 2,
+          "threshold": 0.6
+        }
+      }
+    ],
+    "cumulative_retention": 0.0178
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document advocates for a 'generate-then-judge' architecture that separates proposal generation from evaluation. By using external selection channels—such as formal verification or executable tests—the system can restore the feedback loops necessary for reliable reasoning. This approach leverages the model's existing capabilities while improving output quality, aligning with the goal of building more robust and reliable AI systems.",
+          "verbatim": "This motivates a practical architecture that separates: Generation: High-entropy exploration of the hypothesis space; Selection: Low-entropy evaluation under external constraints; Feedback: Updating generation based on what survives selection.",
+          "excerpt_context": "Section 1.3, External Selection",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "generate-then-judge",
+            "external_selection",
+            "feedback_loop"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-019",
+          "category": "Beliefs",
+          "point": "The document asserts that AI models possess latent capabilities that can be systematically extracted and scaled through architectural interventions like context separation. By treating AI as a tool for generating diverse hypotheses and applying external selection criteria, developers can operationalize these models for rigorous scientific and engineering tasks. This approach moves beyond simple 'helpful assistant' defaults to unlock high-level utility.",
+          "verbatim": "The context-separated architecture provides what single-context reasoning lacks: an external evaluation that creates selection pressure. One context's output becomes another context's input for critique. The evaluation is external to the generation trace. Signal can be distinguished from noise.",
+          "excerpt_context": "Section 4.4, paragraph 4",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "operationalization",
+            "context_separation",
+            "selection_pressure"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document advocates for a 'generate-then-judge' architecture that utilizes independent critics to verify model outputs. By separating the generation context from the evaluation context, the system aims to break correlated error patterns that plague single-model self-correction. This approach leverages the model's existing capabilities to improve reliability without requiring new model training, aligning with accelerationist goals of scaling AI utility through smarter architectural design.",
+          "verbatim": "The key is context separation, not model separation. ... This implementation has several advantages: ... Broken correlation: Context B cannot see Context A's reasoning errors, only the output. The blind spot that caused the error is absent.",
+          "excerpt_context": "Section 6.8, Paragraph 1-2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "context_separation",
+            "generate-then-judge",
+            "error_decorrelation"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document asserts that LLMs suffer from 'correlated error' where the generator and evaluator share the same failure modes. This leads to a 'Self-Correction Blind Spot' where models fail to detect errors in their own outputs that they could identify in external inputs. This structural flaw means that self-evaluation provides weak evidence of correctness and can dangerously amplify confidence in incorrect reasoning.",
+          "verbatim": "When generator and evaluator share failure modes, self-evaluation may provide weak evidence of correctness, and repeated self-critique may amplify confidence without adding information.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "correlated_error",
+            "self_correction_blind_spot",
+            "confidence_amplification"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-102",
+          "category": "Beliefs",
+          "point": "Errors in reasoning propagate through sequential steps in deep context windows, creating self-reinforcing mistakes. Because the evaluation process inherits the same context and drift as the generation process, it becomes increasingly unreliable as the reasoning chain grows longer.",
+          "verbatim": "The longer the reasoning chain, the more opportunity for self-reinforcing mistakes that become invisible within the context that produced them.",
+          "excerpt_context": "Section 1.2, The Deep Context Challenge",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "context_inheritance",
+            "error_propagation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-141",
+          "category": "Intentions",
+          "point": "The document proposes 'external selection' as a mitigation strategy to manage epistemic uncertainty. By evaluating outputs in a fresh context or against independent verification channels, the system can break the correlation between generator and evaluator, thereby surfacing candidates that survive external scrutiny.",
+          "verbatim": "The architecture does not replace human judgment; it provides a filter that surfaces candidates surviving external scrutiny for human review.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "external_selection",
+            "epistemic_uncertainty"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-003",
+          "category": "Beliefs",
+          "point": "The document argues that the inherent opacity and 'helpful assistant' framing of commercial AI models fundamentally hinder rigorous evaluation and accountability. Because these models are optimized for diplomatic balance rather than truth-seeking, they exhibit correlated errors when evaluating their own output. This opacity makes it impossible for users to inspect or trust the underlying evaluation criteria, necessitating external verification methods.",
+          "verbatim": "Importantly, the system prompt in commercial deployments (ChatGPT, Claude, Gemini) is not user-editable. Users cannot inspect it, and the models are instructed not to reveal it. User instructions are layered on top of this hidden foundation.",
+          "excerpt_context": "Section 2, paragraph 8",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "opacity",
+            "correlated_errors",
+            "system_prompt"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-101",
+          "category": "Beliefs",
+          "point": "Current alignment techniques like RLHF are structurally insufficient for ensuring rigorous evaluation because they optimize for human preference—which often favors sycophancy and narrative continuation—rather than objective accuracy. This creates a training signal that actively discourages the 'harsh accuracy' required for critical reasoning. Consequently, aligned models are prone to self-referential blind spots where they cannot detect errors in their own reasoning.",
+          "verbatim": "Alignment training (RLHF) shifts which human behavior is predicted but may not change the underlying operation. Sharma et al. [2024] demonstrate that RLHF-trained models systematically exhibit sycophancy (responses matching user beliefs over truthful ones) and that human preference judgments favor sycophantic responses, creating a training signal toward agreement.",
+          "excerpt_context": "Section 2, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "sycophancy",
+            "RLHF",
+            "alignment_training"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-032",
+          "category": "Intentions",
+          "point": "The document emphasizes that self-critique is often unreliable due to correlated errors between the generator and the evaluator. It proposes 'context separation' and 'adversarial critics' as necessary mechanisms to ensure that evaluation is not merely a reflection of the generator's own biases. This aligns with safetyist goals of establishing robust, independent oversight mechanisms for frontier models.",
+          "verbatim": "In generate-then-judge workflows, evaluation can be low-signal when evaluator errors are correlated with generator errors. ... Multi-agent systems and tool-use paradigms can help when they introduce external selection channels with independent failure modes.",
+          "excerpt_context": "Section 10, Paragraph 1-2",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "correlated_errors",
+            "external_selection",
+            "failure_modes"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-024",
+          "category": "Beliefs",
+          "point": "The document identifies a 'Self-Correction Blind Spot' where models fail to identify errors in their own reasoning that they can easily spot in external inputs. This suggests that models may perform 'performative' or 'blind' self-evaluation that fails to catch critical flaws, necessitating external verification tools or independent critic architectures.",
+          "verbatim": "The study demonstrates that LLMs can correct identical errors when presented as external input but fail to correct those same errors in their own outputs, a phenomenon termed the Self-Correction Blind Spot.",
+          "excerpt_context": "Section 9, Paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "self-correction_blind_spot",
+            "conditional_error_coupling"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document highlights that LLMs lack behavioral templates for self-correction because training corpora consist almost entirely of correct human reasoning rather than examples of error identification. This training gap, combined with the structural tendency to 'stitch together' linguistic forms without reference to meaning, limits the model's ability to perform genuine self-correction.",
+          "verbatim": "Bender et al. [2021] characterize language models as systems that ôstitch together sequences of linguistic forms... according to probabilistic information about how they combine, but without any reference to meaning.ö",
+          "excerpt_context": "Section 3.6, Mechanistic Note: A Predictive Interpretation",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "training_gap",
+            "probabilistic_stitching"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-063",
+          "category": "Beliefs",
+          "point": "The document highlights how human cognitive biases, such as the 'bias blind spot,' are mirrored in AI systems when they attempt to evaluate their own work. Just as developers cannot effectively QA their own code due to anchored context, AI models suffer from self-referential blind spots. This suggests that AI systems are not objective, but rather inherit the flawed cognitive patterns of their training and prompting environments.",
+          "verbatim": "Tsui [2025] draws an analogous parallel to cognitive science, connecting the LLM self-correction blind spot to the bias blind spot documented by Pronin et al. [2002]. Humans reliably identify cognitive biases in others while failing to detect the same biases in themselves.",
+          "excerpt_context": "Section 4.1, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "bias_blind_spot",
+            "self_reference",
+            "cognitive_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-145",
+          "category": "Beliefs",
+          "point": "The document confirms that LLM-as-a-Judge systems inherit systematic biases from training data, including positional bias and self-enhancement bias. It argues that evaluation that shares the generator's distribution will exhibit correlated error, rendering self-evaluation unreliable for critical tasks.",
+          "verbatim": "These empirical findings align with our theoretical analysis: evaluation that shares the generator's distribution will exhibit correlated error.",
+          "excerpt_context": "Section 9, Paragraph 11",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "llm-as-a-judge",
+            "self-preference_bias",
+            "correlated_error"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document advocates for rigorous, systematic methods to assess AI models, noting that scaling single models is insufficient for reliable validation. It suggests that investment in external selection infrastructure—such as formal verification tools and diverse critic ensembles—is essential for reliable AI-assisted workflows.",
+          "verbatim": "This analysis suggests that scaling single models may be insufficient for reliable validation in generate-then-judge workflows. The bottleneck is not generation capability but validation under external constraints.",
+          "excerpt_context": "Section 8.1, Paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "external_selection_infrastructure",
+            "formal_verification"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Large language models exhibit a 'Self-Correction Blind Spot' where they fail to correct their own errors at a rate of 64.5% across 14 models, even when they can correct identical errors presented as external input.",
+      "claim_label": "Self-Correction Blind Spot Rate",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2025",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation based on Tsui (2025)."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "RLHF-trained models systematically exhibit sycophancy, where responses match user beliefs rather than truthful ones, because human preference judgments favor agreement over contradiction.",
+      "claim_label": "RLHF Sycophancy Bias",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-101",
+        "saf-beliefs-021"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical claim based on cited research (Sharma et al., 2024)."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Prompt framing significantly impacts model performance, with research showing up to 76 percentage points of difference in performance based on formatting changes alone.",
+      "claim_label": "Prompt Sensitivity Impact",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical claim based on cited research (Sclar et al., 2024)."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "LLMs exhibit a 'Self-Correction Blind Spot' where they fail to identify errors in their own reasoning that they can successfully identify when presented as external input. This phenomenon is attributed to training data composition, which lacks examples of mid-stream self-correction.",
+      "claim_label": "Self-Correction Blind Spot Mechanism",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-024"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation supported by benchmarks (SCLI5, GSM8K-SC, PRM800K-SC)."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The 'Wait' intervention, which injects correction markers into a model's reasoning trace, reduces the self-correction blind spot by 89.3%.",
+      "claim_label": "Wait Intervention Efficacy",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-151"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Quantitative measurement of intervention impact on model performance."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Confidence Amplification via Repeated Critique",
+      "suggested_description": "A Belief within safetyist discourse that repeated self-evaluation cycles create a false sense of certainty. Encompasses: Subjective confidence growth, Bayesian update fallacies, and illusory confirmation. Excludes: Objective accuracy improvements.",
+      "concept": "The document demonstrates that when a system evaluates its own hypothesis multiple times under correlated error, each 'acceptance' is not an independent piece of evidence. Instead, the system repeats the same non-information, which a naive Bayesian update interprets as multiple confirmations, leading to false confidence in incorrect conclusions.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept specifically addresses the failure mode of 'confidence amplification' which is distinct from simple 'misalignment' or 'error correlation'.",
+      "resolved_node_id": "saf-beliefs-144"
+    },
+    {
+      "suggested_label": "Context Separation for Error Decorrelation",
+      "suggested_description": "A situation concept that utilizes fresh, isolated context windows to prevent the propagation of reasoning errors between generation and evaluation phases.\nEncompasses: Fresh context initialization, removal of reasoning history, blind evaluation protocols.\nExcludes: Multi-model ensemble methods, fine-tuning for safety.",
+      "concept": "The document proposes using the same model under fresh, isolated contexts to serve as both generator and critic. By stripping the reasoning chain from the critic's input, the system prevents the 'blind spot' where a model's own reasoning errors bias its evaluation of its output.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a specific architectural technique for error mitigation that does not map to existing 'multi-agent' or 'transparency' nodes.",
+      "Accelerationist Interpretation": "This is a highly efficient way to scale reliability without the overhead of training multiple models or massive ensembles.",
+      "Safetyist Interpretation": "This is a necessary, though insufficient, step toward ensuring that model evaluation is not compromised by the model's own internal reasoning biases.",
+      "Skeptic Interpretation": "This technique highlights the inherent unreliability of LLM self-evaluation, proving that models cannot be trusted to judge their own work without artificial 'blind' constraints.",
+      "resolved_node_id": "cc-149"
+    }
+  ]
+}

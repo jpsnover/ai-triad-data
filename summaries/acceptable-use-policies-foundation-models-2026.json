@@ -1,0 +1,613 @@
+{
+  "doc_id": "acceptable-use-policies-foundation-models-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-27T09:02:07Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 962,
+    "chunked": true,
+    "chunk_count": 6
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "acceptable-use-policies-foundation-models-2026",
+    "measured_at": "2026-05-27T09:06:03.5446102-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 39038,
+        "out_units": "tokens_est",
+        "out_count": 39044,
+        "ratio": 1.0002,
+        "flags": {
+          "chunk_count": 6
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3456,
+        "out_units": "nodes",
+        "out_count": 62,
+        "ratio": 0.0179,
+        "flags": {
+          "avg_desires": 2,
+          "min_nodes_selected": 60,
+          "avg_beliefs": 4,
+          "chunk_count": 6,
+          "max_nodes_selected": 63,
+          "total_below_threshold": 9,
+          "avg_intentions": 6,
+          "avg_nodes_selected": 62
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 188618,
+        "out_units": "items",
+        "out_count": 41,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 7,
+          "null_node_rate": 0.24,
+          "unmapped_concepts": 9,
+          "chunk_count": 6,
+          "total_points": 25
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 41,
+        "out_units": "items",
+        "out_count": 41,
+        "ratio": 1,
+        "flags": {
+          "points_deduped": 0,
+          "claims_deduped": 0,
+          "used_embeddings": 1,
+          "concepts_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 9,
+        "out_units": "still_unmapped",
+        "out_count": 3,
+        "ratio": 0.3333,
+        "flags": {
+          "near_miss_count": 3,
+          "used_embeddings": 1,
+          "resolved_count": 6,
+          "threshold": 0.6
+        }
+      }
+    ],
+    "cumulative_retention": 0.0179
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document observes that foundation models are general-purpose technologies capable of generating any type of content, which creates a fundamental tension with attempts to restrict their use. This inherent versatility is the primary driver of the need for acceptable use policies (AUPs) as a self-regulatory mechanism. The accelerationist perspective would view this as evidence that the technology's broad utility is its defining feature, making restrictive policies a necessary but potentially friction-inducing layer of governance.",
+          "verbatim": "Foundation model developers have taken several approaches to adopting legally binding use restrictions. Foundation models are general-purpose technologies that in principle can be used to generate any type of content.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "general-purpose-technology"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-078",
+          "category": "Intentions",
+          "point": "The document argues that developers should work to build consensus around acceptable use and make policies interoperable. This approach aims to reduce negative externalities in the ecosystem caused by fragmented and inconsistent policies. By standardizing definitions of acceptable use, the industry can create a more predictable environment for innovation while maintaining safety.",
+          "verbatim": "At minimum, developers could work to build consensus around what constitutes acceptable use and aim to make their policies interoperable where appropriate.",
+          "excerpt_context": "Section 6.2, paragraph 4",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "interoperability",
+            "consensus-building"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-056",
+          "category": "Intentions",
+          "point": "The document references research on 'open' foundation models and 'AI collectives' that enhance human diversity and enable self-regulation. This supports the accelerationist view that decentralized, open-source development is a viable and preferable alternative to restrictive, top-down regulatory frameworks. By highlighting these models, the document implicitly argues that innovation and self-governance can address safety concerns without stifling progress.",
+          "verbatim": "Evolving AI collectives enhance human diversity and enable self-regulation.",
+          "excerpt_context": "Reference [87]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "open_source",
+            "self_regulation",
+            "ai_collectives"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-024",
+          "category": "Intentions",
+          "point": "The document highlights that developers rarely provide transparency regarding how they enforce their acceptable use policies, and that enforcement is often uneven. This lack of clarity hinders the ability to assess the effectiveness of these safety interventions. From a safetyist perspective, this opacity is a critical failure that prevents meaningful oversight and accountability for model deployment.",
+          "verbatim": "Developers alone decide what constitutes acceptable use, and rarely provide transparency about how they enforce their policies. In practice, acceptable use policies are difficult to enforce, and scrupulous enforcement can act as a barrier to researcher access and limit beneficial uses of foundation models.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "transparency",
+            "enforcement-opacity"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-166",
+          "category": "Intentions",
+          "point": "Developers are increasingly embedding safety constraints directly into models through techniques like RLHF and inference-time safety classifiers to ensure compliance with AUPs. This represents a shift toward technical enforcement of safety boundaries. Safetyists would support this as a proactive measure to align model behavior with human-defined safety norms, though they would remain concerned about the robustness of these filters.",
+          "verbatim": "A model behavior policy is one way of embedding an acceptable use policy into a model; methods for imposing a model behavior policy include using RLHF to cause the model to be more likely to refuse violative prompts or employing a safety classifier at inference time to filter violative model outputs.",
+          "excerpt_context": "Section 2.1, What is an acceptable use policy?",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "RLHF",
+            "safety-classifier",
+            "model-behavior-policy"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-131",
+          "category": "Beliefs",
+          "point": "The document asserts that open-weight foundation model developers face significant practical and legal barriers to enforcing acceptable use policies because models can be downloaded and run locally. This creates an environment where once weights are released, the developer loses the ability to monitor or restrict downstream use, rendering behavioral restrictions in licenses potentially ineffective. This highlights the inherent difficulty in controlling the deployment of powerful AI models once they are distributed publicly.",
+          "verbatim": "Unlike closed foundation model developers, whose models are distributed via their own products, services, or APIs (or those of another firm), developers of open foundation models distribute their weights online such that they can be downloaded, and models are often run locally. As a result, open developers have few ways of monitoring downstream use of their models, making it difficult for them to enforce their policies where models are run locally or where hosted inference is provided by another organization.",
+          "excerpt_context": "Section 5, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "open-weight",
+            "downstream_use",
+            "enforcement_barriers"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document notes that technical safety measures, such as API-based filters, are easily circumvented by users through techniques like using uncommon dialects or appeals to authority. Furthermore, fine-tuning models via an API can effectively strip away safety measures, demonstrating that current technical guardrails are insufficient to guarantee adherence to acceptable use policies.",
+          "verbatim": "These challenges are made more stark by the ease with which users can circumvent technical measures used to enforce acceptable use policies. [178] show that including uncommon dialects and appeals to authority in prompts can cause a foundation model to violate its developer’s acceptable use policy despite safety filters in APIs. In addition, [127] find that fine-tuning foundation models via an API can remove safety measures like instruction tuning.",
+          "excerpt_context": "Section 5, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "safety_filters",
+            "circumvention",
+            "fine-tuning"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-105",
+          "category": "Beliefs",
+          "point": "The document asserts that closed developers are often unable to enforce their own acceptable use policies because users can easily nullify safety measures through adversarial prompts and jailbreaks. This highlights the inherent fragility of post-training safety interventions when faced with determined users. Consequently, relying on these policies as a primary safety mechanism is insufficient for preventing harmful model outputs.",
+          "verbatim": "These vulnerabilities show that closed developers are likely unable to enforce their acceptable use policies in many cases.",
+          "excerpt_context": "Section 5.1.2, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "adversarial_prompting",
+            "jailbreaking",
+            "enforcement_failure"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-004",
+          "category": "Desires",
+          "point": "The document notes that developers are increasingly using surveillance to monitor user interactions for dangerous prompts. This reflects a desire to maintain control over model usage, though it raises significant privacy concerns. The document suggests that such surveillance is a fundamental, albeit problematic, feature of current acceptable use policy enforcement.",
+          "verbatim": "Enforcing acceptable use policies often requires developers to monitor usersÆ interactions with foundation models closely, which could facilitate privacy breaches if data protection is inadequate.",
+          "excerpt_context": "Section 5.1.3, paragraph 4",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "surveillance",
+            "privacy_breach"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-090",
+          "category": "Beliefs",
+          "point": "The document cites research indicating that AI models can be used to facilitate the creation of harmful content, including synthetic content and potentially dangerous materials. This aligns with the safetyist belief that AI capabilities can lower the barrier to entry for malicious actors. The document references specific NIST guidance on reducing risks posed by synthetic content.",
+          "verbatim": "[25] Bilva Chandra, George Awad, Yooyoung Lee, Peter Fontana, Razvan Amironesei, Mark Przybocki, Kamie Roberts, Elham Tabassi, Mat Heyman, and Jesse Dunietz. Reducing risks posed by synthetic content, April 2024.",
+          "excerpt_context": "Section 4, Reference [25]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "synthetic_content",
+            "risk_mitigation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-desires-026",
+          "category": "Desires",
+          "point": "The document extensively cites research on model cards, system documentation, and standardized reporting for AI models. This reflects a strong safetyist desire for institutionalized transparency, where developers are required to disclose technical details and evaluation results to ensure accountability and safety.",
+          "verbatim": "Model cards for model reporting.",
+          "excerpt_context": "Reference [112]",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "model_cards",
+            "transparency",
+            "accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-081",
+          "category": "Intentions",
+          "point": "The document includes numerous references to red-teaming, safety risk assessments, and the development of input/output safeguards (e.g., LlamaGuard). These represent safetyist intentions to implement rigorous, procedural governance frameworks that manage risks before and during deployment.",
+          "verbatim": "Llamaguard: Llm-based input-output safeguard for human-ai conversations.",
+          "excerpt_context": "Reference [75]",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "red_teaming",
+            "safeguards",
+            "risk_assessment"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-031",
+          "category": "Intentions",
+          "point": "The document highlights research into 'jailbreaking' and the failure of safety training, implying that current alignment methods are insufficient against adversarial attacks. It supports the intention of developing more robust, transferable defense mechanisms to prevent models from being coerced into harmful outputs. This aligns with the safetyist goal of ensuring alignment precedes or keeps pace with deployment.",
+          "verbatim": "Xiangyu Qi, Yi Zeng, Tinghao Xie, Pin-Yu Chen, RuoxiJia,PrateekMittal,andPeterHenderson.Fine-tuningalignedlanguagemodelscompromisessafety, even when users do not intend to!, 2023.",
+          "excerpt_context": "Reference [127]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "jailbreaking",
+            "alignment_failure",
+            "adversarial_robustness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document references research on 'sociotechnical harms' and the need for harm reduction frameworks, suggesting that AI risks are not merely technical but deeply embedded in social contexts. It supports the belief that technical safety measures must be integrated with sociotechnical analysis to be effective. This reflects the safetyist view that AI systems pose systemic risks that require comprehensive, multi-layered mitigation strategies.",
+          "verbatim": "Renee Shelby, Shalaleh Rismani, Kathryn Henne, AJung Moon, Negar Rostamzadeh, Paul Nicholas, NÆMah Yilla, Jess Gallegos, Andrew Smart, Emilio Garcia, and Gurleen Virk. Sociotechnical harms of algorithmic systems: Scoping a taxonomy for harm reduction, 2023.",
+          "excerpt_context": "Reference [141]",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "sociotechnical_harms",
+            "harm_reduction"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document identifies that AUPs are often fragmented across different types of legal documents (TOS, licenses, standalone policies), creating a complex landscape for users and regulators. Skeptics would argue that this lack of standardization makes it difficult to audit or compare safety commitments across the AI supply chain. This fragmentation is seen as a barrier to effective, transparent governance.",
+          "verbatim": "Taken together, developers' acceptable use policies include 127 distinct use restrictions; the wide variety in the number and type of user restrictions may create fragmentation across the AI supply chain.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "fragmentation",
+            "supply-chain-governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-069",
+          "category": "Beliefs",
+          "point": "The document notes that developers often reuse the same model licenses and AUPs, such as Meta's Llama 2 license being used by over 3,000 models. Skeptics would interpret this as a potential 'safety washing' risk, where the adoption of a standard license provides a veneer of safety without necessarily ensuring that the underlying model has been rigorously tested or that the policy is actually enforceable in the new context.",
+          "verbatim": "Developers of open-weight foundation models often adopt the same acceptable use policies by reusing the same model licenses. For example, more than 3,000 models on Hugging Face use Meta's Llama 2 license.",
+          "excerpt_context": "Section 2.3, Norms and laws on acceptable use policies",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "license-reuse",
+            "safety-washing"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document identifies a significant information asymmetry where developers and their commercial clients may agree to private, custom use restrictions that are hidden from regulators and the public. This creates a false impression that model use is unrestricted, while potentially allowing developers to avoid public accountability for the specific domains in which their models are deployed.",
+          "verbatim": "This creates a potential information asymmetry where a developer and its clients are aware of the domains in which use is permitted, while regulators and the public may be led to believe that model use is unrestricted.",
+          "excerpt_context": "Section 4, paragraph 5",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "information_asymmetry",
+            "regulatory_oversight"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document suggests that some developers may prioritize political and reputational risk management over actual assessments of harm or legal liability, as evidenced by the high frequency of misinformation prohibitions compared to other categories like child sexual abuse material.",
+          "verbatim": "Mis/disinformation is the most frequently prohibited category of use—even more so than child sexual abuse material—indicating that some developers may be more responsive to political and reputational risk than assessments of harm or legal liability.",
+          "excerpt_context": "Section 4, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "reputational_risk",
+            "political_risk"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-069",
+          "category": "Beliefs",
+          "point": "The document highlights that acceptable use policies are often used as public relations tools to demonstrate responsibility without requiring actual investment in enforcement. This 'safety washing' allows firms to incur no costs while appearing to prioritize ethics. The lack of transparency regarding how these policies are actually enforced suggests they may be ineffective in practice.",
+          "verbatim": "Some firms may publish acceptable use policies as a type of public relations statement to demonstrate they are responsible organizations, as firms incur no costs for doing so if they do not invest in enforcement.",
+          "excerpt_context": "Section 5.3, paragraph 3",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "safety_washing",
+            "transparency_gap"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-002",
+          "category": "Intentions",
+          "point": "The document argues that centralized decision-making regarding policy enforcement often reinforces majoritarian views and leads to disparate, unequal outcomes. It notes that marginalized communities have fewer resources to advocate for their content, leading to systemic bias in enforcement. This suggests a need for more democratic and transparent processes in determining what constitutes acceptable use.",
+          "verbatim": "Marginalized communities have fewer resources for advocacy to persuade firms that their content should be considered ôacceptable,ö meaning that centralized decision-making regarding policy enforcement often reinforces majoritarian views.",
+          "excerpt_context": "Section 6.1, paragraph 4",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "disparate_enforcement",
+            "majoritarian_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-012",
+          "category": "Intentions",
+          "point": "The document highlights extensive research into immediate, measurable harms such as misinformation, algorithmic bias, and the social footprint of foundation models. By cataloging these specific areas of concern, the document supports the skeptic intention to focus on verifiable, present-day impacts of AI rather than purely speculative existential risks.",
+          "verbatim": "[15] Rishi Bommasani, Dilara Soylu, Thomas I. Liao, Kathleen A. Creel, and Percy Liang. Ecosystem graphs: The social footprint of foundation models, 2023. arXiv:2303.15772.",
+          "excerpt_context": "Section 4, Reference [15]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "social_footprint",
+            "misinformation",
+            "algorithmic_bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-097",
+          "category": "Intentions",
+          "point": "The document highlights the need for auditing content moderation guardrails and analyzing the societal impact of foundation models. This aligns with the skeptic intention to establish independent, robust oversight mechanisms that monitor how AI systems function in real-world contexts, particularly regarding bias and harassment.",
+          "verbatim": "Auditing gptÆs content moderation guardrails: Can chatgpt write your favorite tv show?",
+          "excerpt_context": "Reference [100]",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "auditing",
+            "content_moderation",
+            "societal_impact"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-170",
+          "category": "Beliefs",
+          "point": "The document references research on the disproportionate removal of content for marginalized groups and the 'gray areas' of moderation. This supports the skeptic belief that corporate moderation practices are often flawed, biased, or used to exert power in ways that harm specific user populations.",
+          "verbatim": "Disproportionate removals and differing content moderation experiences for conservative, transgender, and black social media users: Marginalization and moderation gray areas.",
+          "excerpt_context": "Reference [67]",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "content_moderation",
+            "marginalization",
+            "bias"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-005",
+          "category": "Beliefs",
+          "point": "The document cites research on the 'panoptic principle' and privacy in acceptable use policies, indicating that surveillance and data privacy are critical concerns in AI governance. It supports the skeptic belief that AI systems, by their nature, facilitate surveillance and compromise individual privacy. This aligns with the skeptic focus on the immediate, measurable harms of AI deployment.",
+          "verbatim": "Elaine Robinson. The panoptic principle: privacy and surveillance in the public library as evidenced in the acceptable use policy. Thesis, University of Strathclyde, 2019.",
+          "excerpt_context": "Reference [132]",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "surveillance",
+            "privacy_compromise"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document references the political economy of open AI, suggesting that 'openness' is often a strategy for big tech to consolidate power rather than a purely democratizing force. It supports the skeptic belief that the current AI landscape is characterized by concentrated power and that 'open' models may still serve corporate interests. This reflects the skeptic concern regarding the power dynamics inherent in AI development.",
+          "verbatim": "David Gray Widder, Sarah West, and Meredith Whittaker. Open (for business): Big tech, concentrated power, and the political economy of open ai. SSRN, 2023.",
+          "excerpt_context": "Reference [176]",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "political_economy",
+            "concentrated_power"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Foundation model developers have adopted 127 distinct use restrictions across their acceptable use policies, which are often legally binding.",
+      "claim_label": "Diversity of AUP Restrictions",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-017"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Beliefs: empirical claim based on systematic coding of 30 developer policies."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "There is a wide variance in the number of prohibited use categories across different foundation model developers, with closed developers averaging 20 prohibited categories and open developers averaging 24.5.",
+      "claim_label": "Prohibited Use Category Variance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2024",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical observation based on 30 analyzed policies"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Major foundation model developers do not provide comprehensive exemptions for researchers in their acceptable use policies, which restricts academic and safety research.",
+      "claim_label": "Researcher Access Restrictions",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-002"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim based on survey of seven major developers"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Acceptable use policies are often used to shift liability from the developer to the user, effectively acting as a legal shield for the company.",
+      "claim_label": "Liability Shifting via AUPs",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-beliefs-047"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "normative and empirical observation of licensing terms"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Foundation models are subject to increasing scrutiny regarding their social footprint, transparency, and potential for misuse in influence operations and synthetic content generation.",
+      "claim_label": "Foundation Model Impact and Transparency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2021-2024",
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-012"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claims"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Research indicates that customizing foundation models via fine-tuning introduces new safety risks that must be managed.",
+      "claim_label": "Fine-tuning Safety Risks",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-081"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim based on cited policy brief."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Research indicates that fine-tuning models that have already been aligned can inadvertently compromise their safety, even when the user does not intend to cause harm.",
+      "claim_label": "Fine-tuning Compromises Safety",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2023",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-031"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim supported by cited research"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Policy-Model Decoupling",
+      "suggested_description": "A situation concept that describes the divergence between legally binding acceptable use policies and the actual technical capabilities or enforcement mechanisms of a model. Encompasses: unenforceable policy clauses, gaps between model cards and AUPs, and reliance on third-party distribution. Excludes: technical model alignment, which focuses on the internal state of the model.",
+      "concept": "The document highlights that AUPs are legally binding but often difficult to enforce, and that model cards (which are not binding) provide different information than AUPs. This creates a gap where the legal promise of safety may not match the technical reality of model deployment.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "Describes a structural disconnect between legal governance and technical reality.",
+      "Accelerationist Interpretation": "Accelerationists might view this as a necessary evolution where legal frameworks lag behind rapid technical deployment, suggesting that over-regulation could stifle the beneficial uses of these models.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a dangerous gap that allows developers to claim safety compliance while failing to implement robust, verifiable, and enforceable safeguards.",
+      "Skeptic Interpretation": "Skeptics would see this as evidence of 'safety washing,' where legal policies are used as a marketing or liability-shielding tool rather than a genuine commitment to preventing harm.",
+      "resolved_node_id": "cc-134"
+    },
+    {
+      "suggested_label": "Enforcement-Policy Decoupling",
+      "suggested_description": "A Belief within safetyist discourse that the existence of a written acceptable use policy is decoupled from the technical or legal capacity to enforce it. Encompasses: Enforcement gaps, information asymmetry, and technical circumvention. Excludes: Policy design and content-based restriction analysis.",
+      "concept": "The document highlights that many developers, particularly those releasing open-weight models, adopt acceptable use policies that they lack the practical or legal means to enforce. This creates a situation where the policy serves as a normative signal rather than a functional constraint on user behavior.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "Captures the specific tension between policy existence and enforcement capability identified in the text.",
+      "resolved_node_id": "saf-beliefs-141"
+    },
+    {
+      "suggested_label": "Regulatory-Marketplace Mismatch",
+      "suggested_description": "A situation concept that describes the friction between the need for standardized safety enforcement across model marketplaces and the heterogeneous, often conflicting, acceptable use policies of individual model developers. Encompasses: Marketplace moderation challenges, policy propagation issues, and enforcement infrastructure costs. Excludes: Individual developer policy design.",
+      "concept": "Marketplaces like Hugging Face and GitHub, as well as cloud providers, struggle to enforce acceptable use policies because they distribute models from many different developers, each with unique and sometimes conflicting restrictions. This creates a systemic barrier where the deployer lacks the expertise or infrastructure to harmonize these disparate policies.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "Addresses the systemic challenge of policy aggregation in multi-model ecosystems.",
+      "Accelerationist Interpretation": "Accelerationists might argue this mismatch proves that centralized enforcement is impossible and that the focus should shift to user-side or edge-based safety tools rather than top-down policy mandates.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a critical failure of the current ecosystem, arguing that marketplaces must be held accountable for implementing robust, standardized enforcement mechanisms to prevent the proliferation of risky models.",
+      "Skeptic Interpretation": "Skeptics would view this as evidence that the current 'self-regulation' model is fundamentally broken, as marketplaces are incentivized to prioritize volume and accessibility over the complex, costly task of enforcing diverse safety policies.",
+      "resolved_node_id": "cc-140"
+    }
+  ]
+}

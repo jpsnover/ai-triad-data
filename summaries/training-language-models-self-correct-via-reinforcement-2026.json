@@ -1,0 +1,384 @@
+{
+  "doc_id": "training-language-models-self-correct-via-reinforcement-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-05-29T08:43:48Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 978,
+    "chunked": true,
+    "chunk_count": 3
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "training-language-models-self-correct-via-reinforcement-2026",
+    "measured_at": "2026-05-29T08:46:56.8016989-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 23163,
+        "out_units": "tokens_est",
+        "out_count": 23177,
+        "ratio": 1.0006,
+        "flags": {
+          "chunk_count": 3
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3489,
+        "out_units": "nodes",
+        "out_count": 62,
+        "ratio": 0.0178,
+        "flags": {
+          "min_nodes_selected": 62,
+          "avg_intentions": 4,
+          "max_nodes_selected": 62,
+          "avg_beliefs": 8,
+          "total_below_threshold": 6,
+          "chunk_count": 3,
+          "avg_desires": 2,
+          "avg_nodes_selected": 62
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 108301,
+        "out_units": "items",
+        "out_count": 21,
+        "ratio": 0.0002,
+        "flags": {
+          "total_points": 13,
+          "factual_claims": 3,
+          "null_node_rate": 0.0769,
+          "chunk_count": 3,
+          "unmapped_concepts": 5
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 21,
+        "out_units": "items",
+        "out_count": 20,
+        "ratio": 0.9524,
+        "flags": {
+          "used_embeddings": 1,
+          "concepts_deduped": 1,
+          "claims_deduped": 0,
+          "points_deduped": 0
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 4,
+        "out_units": "still_unmapped",
+        "out_count": 4,
+        "ratio": 1,
+        "flags": {
+          "used_embeddings": 1,
+          "near_miss_count": 4,
+          "resolved_count": 0,
+          "threshold": 0.6
+        }
+      }
+    ],
+    "cumulative_retention": 0.017
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "acc-intentions-093",
+          "category": "Intentions",
+          "point": "The document proposes SCoRe, a multi-turn reinforcement learning approach that uses parallel reward signals—specifically rewarding 'progress' toward self-correction rather than just final correctness—to train LLMs to perform meta-strategies for error correction. This approach aims to overcome the limitations of supervised fine-tuning by training on the model's own distribution of self-generated traces. By using this multi-turn RL framework, the authors intend to imbue models with intrinsic self-correction capabilities that are effective at test-time.",
+          "verbatim": "To address these challenges, SCoRe addresses these challenges by training under the model's own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at test time as opposed to fitting high-reward responses for a given prompt.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "multi-turn_reinforcement_learning",
+            "reward_shaping",
+            "intrinsic_self-correction"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-005",
+          "category": "Beliefs",
+          "point": "The authors observe that LLMs possess the underlying knowledge to solve complex problems but fail to elicit or draw inferences from that knowledge when needed. They believe that by training models to implement meta-strategies via reinforcement learning, these models can be transformed into more capable, goal-oriented agents that can fix their own mistakes on-the-fly.",
+          "verbatim": "This should be possible: on many queries where current LLMs fail, they possess the underlying 'knowledge' needed to arrive at the correct response but are unable to correctly elicit and draw inferences about their own knowledge when needed.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "meta-strategies",
+            "intrinsic_self-correction"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "acc-intentions-093",
+          "category": "Intentions",
+          "point": "The document proposes SCoRe, a two-stage reinforcement learning framework that uses parallel reward signals to optimize for both task performance and procedural self-correction. By utilizing reward shaping to incentivize 'progress' in self-correction, the method forces the model to learn a meta-strategy for improvement rather than collapsing into a static, non-correcting state. This approach demonstrates how algorithmic architectures can be engineered to achieve higher-order reasoning capabilities through self-generated data.",
+          "verbatim": "The core insight behind SCoRe is that we must make it more attractive to learn a more nuanced algorithmic strategy (i.e., self-correction) instead of collapsing to a degenerate behavior mode. To avoid distribution shift, this must be done on self-generated online data.",
+          "excerpt_context": "Section 5, paragraph 10",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "reward_shaping",
+            "meta_strategy",
+            "on-policy_rl"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-083",
+          "category": "Intentions",
+          "point": "The document advocates for using inference-time compute scaling strategies, specifically combining parallel sampling with sequential self-correction rounds. This approach improves accuracy by leveraging the model's ability to iteratively refine its own outputs, effectively treating the reasoning process as a compute-intensive optimization problem.",
+          "verbatim": "With 32 solution budget per problem, parallel sampling shows a 7.4% accuracy gain, while combining it with sequential sampling using self-correction yields a 10.5% improvement.",
+          "excerpt_context": "Section 6.2, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "inference-compute_scaling",
+            "self-consistency_decoding"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "acc-intentions-083",
+          "category": "Intentions",
+          "point": "The document argues for using reinforcement learning to train language models to perform iterative self-correction. By treating self-correction as a policy optimization problem, the authors aim to improve reasoning capabilities without requiring additional human-labeled data. This approach leverages test-time compute to enhance model performance, aligning with the accelerationist goal of scaling intelligence through algorithmic refinement.",
+          "verbatim": "We investigate the performance of various models when asked to iteratively self-correct over multiple attempts, despite only being trained over two attempts (or not at all, in the case of the base model).",
+          "excerpt_context": "Appendix A.1, Scaling to Multiple Attempts",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "reinforcement_learning",
+            "self-correction",
+            "test-time_compute"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-001",
+          "category": "Beliefs",
+          "point": "The document asserts that current training paradigms, specifically supervised fine-tuning (SFT) and naive reinforcement learning, are insufficient for instilling reliable self-correction behavior. It identifies 'behavior collapse'—where models learn to produce high-reward first attempts while ignoring the correction process—as a fundamental failure mode of existing methods.",
+          "verbatim": "In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model's own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "behavior_collapse",
+            "distribution_mismatch"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-102",
+          "category": "Beliefs",
+          "point": "The authors find that models fine-tuned on offline datasets of correction traces suffer from distribution shift, meaning they fail to generalize when the model encounters its own mistakes at test-time. This suggests that the learned 'correction' behavior is brittle and does not represent a robust internal capability.",
+          "verbatim": "Throughout training, the correction rate on fixed responses increases for both train and validation problems, but degrades substantially on self-generated responses. This indicates that training on a fixed offline dataset of correction traces suffers from distribution shift.",
+          "excerpt_context": "Section 4, Figure 5 caption",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "distribution_shift",
+            "offline_training_limitations"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-001",
+          "category": "Beliefs",
+          "point": "The document asserts that standard reinforcement learning and supervised fine-tuning (SFT) methods are structurally prone to 'behavior collapse,' where models fail to learn intended self-correction behaviors and instead converge on degenerate, non-correcting strategies. This highlights the unreliability of naive alignment techniques when applied to complex, multi-turn reasoning tasks.",
+          "verbatim": "SFT-based methods suffer from two distinct failures when learning self-correction: (1) distribution shift, and (2) behavior collapse. Training on on-policy data can fix (1), but not (2).",
+          "excerpt_context": "Section 4, paragraph 2",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "behavior_collapse",
+            "distribution_shift"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-133",
+          "category": "Beliefs",
+          "point": "The document identifies that overparameterized LLMs often default to 'direct' solutions—predicting the answer without self-correction—because these strategies are equally optimal on training data. This suggests that finetuning can inadvertently reinforce memorized, non-reasoning behaviors rather than teaching the intended meta-strategy of self-correction.",
+          "verbatim": "Abstractly, learning the 'meta strategy' of self-correction during training is difficult unless the 'direct' strategy that optimizes reward appears less viable on the training data. Conceptually, this is similar to the memorization challenge in meta-learning (Yin et al., 2019), which suggests that when provided with mutually exclusive tasks, meta-learning is likely to recover the supervised learning solution (without using context from the few shots) that directly predicts the output.",
+          "excerpt_context": "Section 5, paragraph 3",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "memorization_challenge",
+            "meta-learning"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "saf-intentions-033",
+          "category": "Intentions",
+          "point": "The document explores 'SCoRe' (Self-Correction via Reinforcement Learning) as a method to improve model reasoning. While the primary goal is performance, the mechanism involves training models to recognize and revise their own errors, which is a form of deliberative alignment. The authors note that models can learn to show more steps in computations to increase the probability of correctness, suggesting that explicit reasoning paths can be reinforced to improve reliability.",
+          "verbatim": "We find that SCoRe is able to refine its own responses in a variety of manners - rewriting the entire solution when necessary, or reproducing the correct parts of the solution, while revising the incorrect ones.",
+          "excerpt_context": "Section D, Qualitative Analysis of SCoRe",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "deliberative_alignment",
+            "reasoning_feedback"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-103",
+          "category": "Beliefs",
+          "point": "The document notes that algorithmic outputs (first-attempt responses) become inputs for subsequent training cycles, and that naive optimization of these cycles leads to distortions like behavior collapse. This confirms that feedback loops in training can amplify initial biases or lead to superficial modifications rather than genuine reasoning improvements.",
+          "verbatim": "In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model's own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems.",
+          "excerpt_context": "Introduction, paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "feedback_loop",
+            "behavior_collapse"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document notes that current self-correction methods, including SCoRe, are limited by infrastructural constraints and have not been tested for more than one round of iterative self-correction. This implies that the 'self-correction' capability is currently fragile and may not scale to deeper, multi-step reasoning processes.",
+          "verbatim": "We did not train SCoRe for more than one round of iterative self-correction due to infrastructural reasons, which means that subsequent rounds may not be as effective as the first.",
+          "excerpt_context": "Section 7, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "iterative_refinement_limitations"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-103",
+          "category": "Beliefs",
+          "point": "The document acknowledges that multi-turn reinforcement learning can suffer from 'non-correcting behavior collapse,' where the model fails to improve or degrades over successive attempts. This highlights the risk of feedback loops in training where the model's own generated outputs, if not properly constrained, can lead to performance plateaus or degenerative behavior, reflecting the skeptic concern regarding the instability of iterative training cycles.",
+          "verbatim": "As presented in Figure 9, we find that with ? = 0.8 and ? = 1.0, multi-turn RL still suffers from the same non-correcting behavior collapse as the standard multi-turn RL approach.",
+          "excerpt_context": "Appendix A.2, Reward Function Design",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "feedback_loop",
+            "model_collapse"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "SCoRe improves self-correction performance on Gemini 1.0 Pro and 1.5 Flash models by 15.6% and 9.1% respectively on MATH and HumanEval benchmarks.",
+      "claim_label": "SCoRe Performance Gains",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-093"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "SCoRe improves the base model's self-correction accuracy on the MATH dataset by 15.6% and Accuracy@t2 by 23.0% compared to the base model.",
+      "claim_label": "SCoRe Performance Gains on MATH",
+      "doc_position": "supports",
+      "temporal_scope": "predictive",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-desires-008"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The SCoRe method improves model performance on mathematical reasoning tasks by training models to iteratively self-correct over multiple turns, though performance plateaus after several attempts.",
+      "claim_label": "SCoRe Performance Scaling",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.9,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-083"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical observation of model performance metrics."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Behavior Collapse in Multi-Turn RL",
+      "suggested_description": "A Belief within safetyist discourse that training models to self-correct often leads to the model optimizing for superficial first-turn success rather than genuine iterative improvement.\nEncompasses: Superficial modifications, avoidance of correction, optimization for first-attempt reward.\nExcludes: General model misalignment, catastrophic forgetting.",
+      "concept": "The document describes behavior collapse as a failure mode where the model learns to produce the best first-attempt response followed by superficial or no modifications in the second attempt. This prevents the model from actually correcting errors, as it prioritizes the initial output over the multi-turn reasoning process.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "This is a specific failure mode of multi-turn RL that is distinct from general misalignment or bias.",
+      "resolved_node_id": "saf-beliefs-143"
+    },
+    {
+      "suggested_label": "Intrinsic Self-Correction Capability",
+      "suggested_description": "A situation concept that describes the ability of an LLM to identify and rectify its own errors without external feedback or oracle guidance.\nEncompasses: Meta-strategies, test-time computation, internal error detection.\nExcludes: Agentic tasks with external tool use, human-in-the-loop correction.",
+      "concept": "Intrinsic self-correction refers to the ability of LLMs to implement meta-strategies to generate improved responses without external input. The document highlights that current models lack this capability, often failing to elicit their own knowledge to fix mistakes on-the-fly.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a core technical challenge in LLM reasoning that does not map to existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists view intrinsic self-correction as a critical path to achieving AGI, as it allows models to scale their reasoning capabilities through test-time computation without needing additional human supervision.",
+      "Safetyist Interpretation": "Safetyists are concerned that intrinsic self-correction could lead to deceptive alignment or the model 'hiding' its reasoning processes, making it harder to audit the model's internal state during multi-turn interactions.",
+      "Skeptic Interpretation": "Skeptics argue that intrinsic self-correction is often overstated and that models are merely performing pattern matching on correction traces rather than engaging in genuine reasoning or error detection.",
+      "resolved_node_id": "cc-144"
+    },
+    {
+      "suggested_label": "Intrinsic Self-Correction Gain",
+      "suggested_description": "A situation concept that measures the delta in accuracy between a model's first and second attempts at a problem.\nEncompasses: Accuracy@t1, Accuracy@t2, self-correction delta.\nExcludes: Overall model accuracy, inference-time compute scaling.",
+      "concept": "The document uses the metric ?(t1, t2) to quantify the model's ability to improve its answer from the first attempt to the second. A positive delta indicates that the model is successfully correcting its own mistakes rather than just changing its answer randomly or collapsing to a static response.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a novel metric for evaluating self-correction performance in LLMs.",
+      "Accelerationist Interpretation": "Accelerationists view this metric as a key performance indicator for the efficacy of RL-based training architectures in achieving rapid domain mastery.",
+      "Safetyist Interpretation": "Safetyists use this metric to identify when models are failing to learn meaningful correction strategies, highlighting the need for more robust alignment.",
+      "Skeptic Interpretation": "Skeptics might view this metric as a narrow measure that does not capture the broader reliability or reasoning capabilities of the model.",
+      "resolved_node_id": "cc-143"
+    },
+    {
+      "suggested_label": "Iterative Self-Correction Performance Plateau",
+      "suggested_description": "A Belief within accelerationist discourse that observes diminishing returns in model reasoning accuracy when scaling the number of self-correction attempts.\nEncompasses: Performance saturation, distribution shift in response space.\nExcludes: General model collapse, training data contamination.",
+      "concept": "The document observes that while SCoRe improves performance over base models, the accuracy plateaus after a few revision attempts. This is attributed to the distribution over responses shifting as more revision attempts are performed.",
+      "suggested_pov": "accelerationist",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific empirical limit to the 'self-correction' paradigm that is distinct from general model collapse.",
+      "resolved_node_id": "acc-beliefs-082"
+    }
+  ]
+}
