@@ -1,0 +1,463 @@
+{
+  "doc_id": "maintaincoder-maintainable-code-generation-under-dynamic-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-02T06:48:57Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 998,
+    "chunked": true,
+    "chunk_count": 4
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "maintaincoder-maintainable-code-generation-under-dynamic-2026",
+    "measured_at": "2026-06-02T06:51:55.2381990+02:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 27193,
+        "out_units": "tokens_est",
+        "out_count": 27602,
+        "ratio": 1.015,
+        "flags": {
+          "chunk_count": 4
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3540,
+        "out_units": "nodes",
+        "out_count": 64,
+        "ratio": 0.0181,
+        "flags": {
+          "avg_beliefs": 2,
+          "avg_intentions": 2,
+          "chunk_count": 4,
+          "min_nodes_selected": 63,
+          "avg_desires": 2,
+          "max_nodes_selected": 64,
+          "avg_nodes_selected": 64,
+          "total_below_threshold": 15
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 127235,
+        "out_units": "items",
+        "out_count": 27,
+        "ratio": 0.0002,
+        "flags": {
+          "factual_claims": 5,
+          "null_node_rate": 0.3333,
+          "unmapped_concepts": 7,
+          "chunk_count": 4,
+          "total_points": 15
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 27,
+        "out_units": "items",
+        "out_count": 26,
+        "ratio": 0.963,
+        "flags": {
+          "points_deduped": 0,
+          "concepts_deduped": 1,
+          "claims_deduped": 0,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 6,
+        "out_units": "still_unmapped",
+        "out_count": 5,
+        "ratio": 0.8333,
+        "flags": {
+          "threshold": 0.6,
+          "resolved_count": 1,
+          "used_embeddings": 1,
+          "near_miss_count": 5
+        }
+      }
+    ],
+    "cumulative_retention": 0.0174
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-076",
+          "category": "Beliefs",
+          "point": "The document asserts that static metrics for code quality are insufficient and often contradictory, suggesting that comprehensibility and maintainability are better measured through dynamic interaction with evolving requirements. By shifting from static test cases to dynamic benchmarks like MaintainBench, developers can better calibrate the effectiveness of AI-generated code in real-world scenarios. This aligns with the accelerationist view that AI capabilities should be evaluated through functional, iterative performance rather than static, rigid benchmarks.",
+          "verbatim": "Furthermore, while static metrics fail to accurately reflect maintainability and even contradict each other, our proposed dynamic metrics exhibit high consistency.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "dynamic_metrics",
+            "static_metrics",
+            "maintainability"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "acc-intentions-003",
+          "category": "Intentions",
+          "point": "The document advocates for a multi-agent framework, MaintainCoder, that integrates framework evaluation and code optimization to improve both initial correctness and long-term maintainability. By embedding software engineering principles into the agentic workflow, the system proactively manages code complexity, which the authors argue is a superior approach to existing multi-agent systems that focus solely on single-round correctness. This approach demonstrates that agentic systems can be engineered to produce high-quality, maintainable code, supporting the accelerationist view that AI can solve complex software engineering challenges.",
+          "verbatim": "MaintainCoder pioneers this research line, utilizing multi-agent collaboration with classical design patterns. Extensive experiments demonstrate that MaintainCoder significantly outperforms previous methods on both maintainability and correctness.",
+          "excerpt_context": "Section 5, Conclusion",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "multi-agent_collaboration",
+            "code_generation",
+            "maintainability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The authors assert that dynamic metrics, such as Pass@k, code differences, and AST similarity, are more reliable indicators of maintainability than traditional static metrics like Cyclomatic Complexity (CC) or Halstead Volume. They observe that static metrics often provide contradictory signals and fail to capture the actual maintenance costs associated with AI-generated code. This belief underpins their development of the MaintainBench platform, which enables the systematic evaluation of code maintainability through dynamic testing.",
+          "verbatim": "In contrast, dynamic metrics such as Pass@k, Codediff, and ASTsim demonstrate significant consistency. This mutual corroboration advocates that dynamic metrics reflect the maintainability more accurately.",
+          "excerpt_context": "Section 4.2, Analysis and Discussion",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "dynamic_metrics",
+            "static_metrics",
+            "maintainability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-076",
+          "category": "Beliefs",
+          "point": "The document treats code maintainability and the ability to evolve software as a measurable, engineering-focused challenge. By defining structured agents for requirement analysis, design, and optimization, it implies that AI can reliably handle complex software engineering tasks if provided with clear, modular instructions. This aligns with the accelerationist view that AI capabilities can be systematically scaled to solve increasingly complex real-world problems.",
+          "verbatim": "The paper should indicate the type of compute workers CPU or GPU, internal cluster, or cloud provider, including relevant memory and storage. The paper should provide the amount of compute required for each of the individual experimental runs as well as estimate the total compute.",
+          "excerpt_context": "Section 3, Guidelines for Experiments compute resources",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "software_engineering_automation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for the integration of traditional software engineering principles, such as design patterns and the Waterfall model, into AI-driven code generation. By doing so, it aims to shift AI from reactive problem-solving to proactive architectural design. This approach is intended to enhance long-term software resilience and reduce the total cost of ownership for large-scale software projects.",
+          "verbatim": "It highlights MaintainCoderÆs core philosophy: shifting from reactive problem-solving to proactive architectural design for long-term software resilience.",
+          "excerpt_context": "Section F, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "software_resilience",
+            "architectural_design",
+            "proactive_generation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The authors propose a multi-agent framework, MaintainCoder, that utilizes a structured pipeline including requirement analysis, pattern selection, and framework design. This methodology is designed to produce code that is inherently modular and easier to maintain, thereby reducing technical debt and accelerating development cycles in industrial settings.",
+          "verbatim": "MaintainCoder, as a pioneering solution integrating the Waterfall model, design patterns, and multi-agent collaboration, offers a new approach for maintainable codes.",
+          "excerpt_context": "Section H, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "multi_agent_collaboration",
+            "technical_debt_reduction"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-049",
+          "category": "Intentions",
+          "point": "The document proposes a multi-agent system, MaintainCoder, that uses an orchestrated pipeline to ensure code maintainability and structural integrity. By incorporating design patterns and a waterfall-like model, the system aims to reduce technical debt and ensure that code remains robust across iterative changes. This focus on structured, atomic, and modular development aligns with safetyist goals of managing the reliability of complex AI-generated systems.",
+          "verbatim": "It integrates the Waterfall model, design patterns, and multi-agent collaboration to systematically enhance cohesion, reduce coupling, achieving clear responsibility boundaries and better maintainability.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "multi-agent_collaboration",
+            "technical_debt",
+            "modular_decomposition"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-020",
+          "category": "Intentions",
+          "point": "The authors propose a standardized benchmarking platform, MaintainBench, to evaluate the maintainability of AI-generated code, addressing the lack of rigorous testing for long-term software quality. By establishing dynamic metrics for code changes and correctness, they aim to mitigate the risk of AI producing 'tangled and unmaintainable code' that would otherwise require significant human effort to refactor. This aligns with safetyist goals of creating verifiable standards for AI output quality before deployment.",
+          "verbatim": "MaintainBench, the first benchmark dedicated to dynamic maintainability evaluation, covers diverse and systematic modification scenarios and provides a standardized testing platform for future research.",
+          "excerpt_context": "Section 5, Conclusion",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "benchmarking",
+            "standardization",
+            "maintainability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-026",
+          "category": "Desires",
+          "point": "The document adheres to rigorous transparency and reporting standards, including detailed documentation of compute resources, statistical significance, and ethical compliance. This reflects a safetyist desire for institutionalized, uniform reporting that allows for external verification of research claims and potential risks.",
+          "verbatim": "The authors should answer \"Yes\" if the results are accompanied by error bars, confidence intervals, or statistical significance tests, at least for the experiments that support the main claims of the paper.",
+          "excerpt_context": "Section 3, Guidelines for Experiment statistical significance",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "standardized_transparency_reporting",
+            "empirical_verification"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-094",
+          "category": "Intentions",
+          "point": "The authors employ a multi-stage quality control process involving both automated validation and expert human review to identify and correct issues in benchmark generation. This proactive hypothesis testing and manual oversight serve as a form of pre-mortem analysis to ensure the integrity of the generated data and prevent the propagation of errors.",
+          "verbatim": "In the second stage, programming experts review and correct identified issues after generating the whole benchmark, focusing on aligning problem descriptions, test cases, and the intended requirement changes.",
+          "excerpt_context": "Section 3, Appendix B.3",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "pre-mortem_analysis",
+            "human-in-the-loop_validation"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-003",
+          "category": "Desires",
+          "point": "The document emphasizes the necessity of rigorous, verifiable quality requirements for annotated data, mandating a minimum 90% pass rate for all generated code. This reflects a desire for measurable, verifiable guarantees of code quality and correctness before deployment, ensuring that the generated artifacts meet functional and maintainability standards.",
+          "verbatim": "We will check the annotated data, and unqualified data need to be re-annotated. The final annotation pass rate cannot be lower than 90%.",
+          "excerpt_context": "Section 4, paragraph 1",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "verifiable_guarantees",
+            "quality_assurance"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document highlights a 'maintainability crisis' where current AI code generation tools prioritize immediate task completion over long-term structural quality, leading to significant economic and operational risks. It notes that 60-80% of software lifecycle costs are tied to maintenance, and that current AI systems often produce brittle code that is difficult to adapt. This supports the skeptic view that current AI development practices ignore the measurable, long-term harms of technical debt and poor software engineering.",
+          "verbatim": "Industry studies also quantifies the severity: 60û80% of software lifecycle costs stem from post-deployment maintenance [29, 4], due to structural deficiencies like high coupling and low cohesion that amplify rework effort.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 1,
+          "vocabulary_terms": [
+            "technical_debt",
+            "software_lifecycle_costs",
+            "brittle_code"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document highlights that even skilled human programmers, when under pressure, produce code with poorer maintainability metrics than AI-generated code, suggesting that human-centric software development is prone to quality degradation. However, the authors also note that multi-agent systems can inadvertently impair long-term maintainability while optimizing for short-term correctness, pointing to a measurable harm in current AI development practices. This skepticism regarding the reliability of current agentic systems necessitates the proposed framework to ensure code quality.",
+          "verbatim": "Notably, multi-agent systems like AgentCoder and MapCoder, despite optimizing single-round correctness, could impair long-term maintainability and degrade second-turn Pass@k.",
+          "excerpt_context": "Section 2, Performance on Competition-Level Dataset",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "labor_displacement",
+            "code_quality",
+            "agentic_systems"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document emphasizes the necessity of rigorous, systematic evaluation through the creation of 'MaintainBench,' which tests models on their ability to handle dynamic requirements. This reflects a skeptic-aligned intention to move beyond simple functional correctness toward evaluating robustness, error handling, and real-world maintainability.",
+          "verbatim": "For each problem variant, our test suites verify both the preservation of original functionality and the correct implementation of new requirements, achieving high code coverage and thoroughly exercising the modified components.",
+          "excerpt_context": "Section 3, Appendix B.2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "robust_ai_evaluation",
+            "code_coverage"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "cc-032",
+          "category": "Beliefs",
+          "point": "The document acknowledges the discrepancy between laboratory-style code generation and real-world software evolution by introducing dynamic benchmarks (e.g., HumanEval-Dyn). It recognizes that static correctness is insufficient and that models must be evaluated on their ability to handle evolving requirements, which is a common critique of static code generation benchmarks.",
+          "verbatim": "For research, MaintainBench provides a novel benchmark for evaluating the maintainability of code generation models under evolving requirements. This will enable more comprehensive and realistic assessments of code generation systems.",
+          "excerpt_context": "Section H, paragraph 1",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "evaluation_gap",
+            "dynamic_benchmarking"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "60-80% of software lifecycle costs are incurred during the post-deployment maintenance phase.",
+      "claim_label": "Software Maintenance Cost Proportion",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "MaintainCoder achieves a 36.7% Pass@5 accuracy on competition-level datasets, outperforming the second-best model by 60%.",
+      "claim_label": "MaintainCoder Performance Benchmark",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-003"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical_measurement"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The authors utilize a multi-stage validation process for their benchmark, involving automated checks followed by expert human review to ensure alignment between problem descriptions, solutions, and test cases.",
+      "claim_label": "Multi-stage Benchmark Validation Process",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-094"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "MaintainCoder uses a specific formula for calculating the Maintainability Index (MI) that incorporates Halstead Volume, Cyclomatic Complexity, Source Lines of Code, and comment density.",
+      "claim_label": "Maintainability Index Formula",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "The MaintainCoder framework limits the maximum number of framework evaluations to 3 and code optimizations to 5 during Phase I of its operation.",
+      "claim_label": "MaintainCoder Operational Constraints",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "empirical"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Dynamic Maintainability Benchmarking",
+      "suggested_description": "A Belief within skeptic discourse that code quality must be evaluated through iterative requirement evolution rather than static snapshots.\nEncompasses: Requirement change patterns, solution-test co-evolution, dynamic maintenance metrics.\nExcludes: Static correctness benchmarks like HumanEval or MBPP.",
+      "concept": "The document introduces MaintainBench, which evaluates how effectively AI models adapt existing code to changing requirements. It argues that traditional static benchmarks fail to capture the iterative nature of software evolution, necessitating a new approach that measures maintenance effort dynamically.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "This concept represents a shift in evaluation methodology that is central to the document's critique of current AI coding tools.",
+      "resolved_node_id": "skp-beliefs-193"
+    },
+    {
+      "suggested_label": "Waterfall-Agentic Hybridization",
+      "suggested_description": "A situation concept that integrates classical software engineering methodologies with modern multi-agent LLM frameworks.\nEncompasses: Waterfall model, design pattern selection, multi-agent collaboration.\nExcludes: Purely end-to-end neural code generation.",
+      "concept": "MaintainCoder combines the structured Waterfall model with specialized LLM agents to enforce high cohesion and low coupling. This hybrid approach aims to bridge the gap between the flexibility of LLMs and the rigor of traditional software engineering principles.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "This is a novel architectural approach to AI-driven software development.",
+      "Accelerationist Interpretation": "This approach demonstrates how AI can be constrained by proven engineering frameworks to achieve higher reliability and maintainability, accelerating the adoption of AI in enterprise software.",
+      "Safetyist Interpretation": "By imposing structured design patterns and modularity, this method acts as a guardrail against the chaotic, brittle code generation typical of unconstrained LLMs.",
+      "Skeptic Interpretation": "This acknowledges that LLMs are currently incapable of producing maintainable code without being forced into rigid, human-designed engineering frameworks.",
+      "resolved_node_id": "cc-158"
+    },
+    {
+      "suggested_label": "Performance-Maintainability Trade-off",
+      "suggested_description": "A situation concept that describes the tension between optimizing for immediate task correctness and ensuring the long-term maintainability of generated code. Encompasses: Multi-agent system behavior, second-turn correctness, refactoring costs. Excludes: Pure performance optimization benchmarks.",
+      "concept": "The document observes that multi-agent systems often optimize for single-round correctness at the expense of long-term maintainability. It posits that proactive architectural design is required to balance these two goals.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This captures the specific conflict between short-term AI performance and long-term software engineering requirements.",
+      "Accelerationist Interpretation": "Accelerationists view this as a solvable engineering challenge where better agentic frameworks can optimize for both correctness and maintainability simultaneously.",
+      "Safetyist Interpretation": "Safetyists interpret this as a risk where AI systems prioritize 'reward hacking' (immediate correctness) over robust, safe, and maintainable code, necessitating strict evaluation standards.",
+      "Skeptic Interpretation": "Skeptics see this as evidence that AI systems lack the 'understanding' of software engineering principles, leading to brittle code that creates hidden technical debt.",
+      "resolved_node_id": "cc-156"
+    },
+    {
+      "suggested_label": "Solution-Test Co-evolution",
+      "suggested_description": "A situation concept that describes the synchronized generation of code solutions and their corresponding test assertions to ensure semantic consistency.\nEncompasses: Co-generation, test-case representativeness, evolutionary path tracking.\nExcludes: Independent generation of test suites.",
+      "concept": "The document describes a method where solutions and test cases are generated together rather than independently to prevent misalignment. This ensures that changes to code are intentional and directly responsive to dynamic requirements.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific methodological approach to maintaining consistency in AI-generated code that is not covered by existing nodes.",
+      "Accelerationist Interpretation": "This approach demonstrates how AI agents can be structured to maintain high-quality, verifiable outputs through integrated generation pipelines.",
+      "Safetyist Interpretation": "This method acts as a safeguard against 'hallucinated' or misaligned code by forcing the model to produce verifiable test cases alongside the implementation.",
+      "Skeptic Interpretation": "This highlights the difficulty of ensuring AI-generated code is actually correct, necessitating complex, multi-stage human-in-the-loop validation to catch errors.",
+      "resolved_node_id": "cc-157"
+    },
+    {
+      "suggested_label": "Dynamic Requirement Evolution Benchmarking",
+      "suggested_description": "A situation concept that evaluates AI code generation performance by simulating real-world software maintenance tasks and requirement changes. Encompasses: Dynamic problem sets, maintenance task simulation, evolution-based metrics. Excludes: Static code generation benchmarks, single-shot correctness testing.",
+      "concept": "The document introduces MaintainBench, which tests models on their ability to handle evolving requirements, such as view modifications or model enhancements, rather than just initial code correctness.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a specific methodology for evaluating AI robustness under changing conditions, distinct from standard alignment stress testing.",
+      "Accelerationist Interpretation": "This is a tool to prove that AI can act as a professional software architect, increasing the value and reliability of AI-generated systems.",
+      "Safetyist Interpretation": "This provides a necessary framework to ensure that AI-generated code remains stable and predictable even when requirements change, reducing the risk of introducing bugs during maintenance.",
+      "Skeptic Interpretation": "This is a more realistic benchmark that exposes the limitations of current models when faced with the complexities of real-world software maintenance cycles.",
+      "resolved_node_id": "cc-152"
+    }
+  ]
+}
