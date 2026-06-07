@@ -1,0 +1,594 @@
+{
+  "doc_id": "beyond-linear-probes-dynamic-safety-monitoring-language-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-07T15:05:10Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 1025,
+    "chunked": true,
+    "chunk_count": 7
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "beyond-linear-probes-dynamic-safety-monitoring-language-2026",
+    "measured_at": "2026-06-07T15:10:34.4859438-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 45004.0,
+        "out_units": "tokens_est",
+        "out_count": 45017.0,
+        "ratio": 1.0003,
+        "flags": {
+          "chunk_count": 7
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3565.0,
+        "out_units": "nodes",
+        "out_count": 62.0,
+        "ratio": 0.0174,
+        "flags": {
+          "avg_desires": 2.0,
+          "avg_intentions": 5.0,
+          "chunk_count": 7,
+          "max_nodes_selected": 66,
+          "avg_nodes_selected": 62.0,
+          "min_nodes_selected": 53,
+          "total_below_threshold": 26,
+          "avg_beliefs": 4.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 210766.0,
+        "out_units": "items",
+        "out_count": 44.0,
+        "ratio": 0.0002,
+        "flags": {
+          "null_node_rate": 0.2692,
+          "total_points": 26,
+          "unmapped_concepts": 9,
+          "factual_claims": 9,
+          "chunk_count": 7
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 44.0,
+        "out_units": "items",
+        "out_count": 39.0,
+        "ratio": 0.8864,
+        "flags": {
+          "claims_deduped": 3,
+          "points_deduped": 0,
+          "concepts_deduped": 2,
+          "used_embeddings": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 7.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.2857,
+        "flags": {
+          "threshold": 0.6,
+          "near_miss_count": 2,
+          "used_embeddings": 1,
+          "resolved_count": 5
+        }
+      }
+    ],
+    "cumulative_retention": 0.0154
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The document advocates for Truncated Polynomial Classifiers (TPCs) as a method to scale safety monitoring dynamically based on inference-time compute. By allowing monitors to scale their complexity (and thus accuracy) based on input difficulty or available budget, the approach prioritizes observable, real-world performance metrics over static, one-size-fits-all safety guardrails. This aligns with the accelerationist goal of integrating safety into the operational stack without sacrificing model utility or efficiency.",
+          "verbatim": "We argue that safety monitors should be flexibleûcosts should rise only when inputs are difficult to assess, or when morecomputeisavailable. Toachievethis, weintroduceTruncatedPolynomialClassifiers (TPCs), a natural extension of linear probes for dynamic activation monitoring.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "inference-time compute",
+            "dynamic activation monitoring",
+            "truncated polynomial classifiers"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-003",
+          "category": "Beliefs",
+          "point": "The authors posit that enterprise reliability for AI safety requires a multi-layered, adaptive approach to monitoring. By using TPCs, they demonstrate that safety can be integrated as a tiered stack where lightweight checks handle benign inputs and higher-order interactions are reserved for ambiguous cases, optimizing resource allocation.",
+          "verbatim": "One model, multiple safety budgets: monitors that scale with compute offer a flexible waytonavigatethecost-accuracytrade-off. Asinglemodelcanbeevaluatedwithvarying amountsofcomputetomeetdifferentsafetyrequirements.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "adaptive safety",
+            "cost-accuracy trade-off"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-desires-014",
+          "category": "Desires",
+          "point": "The document supports the development of more capable safety monitoring tools, such as Truncated Polynomial Classifiers (TPCs), which allow for efficient, high-performance guardrails. While the authors acknowledge these tools could inadvertently advance AI capabilities, they prioritize the creation of robust safety infrastructure to enable safer deployment. This aligns with the accelerationist goal of maximizing algorithmic power while managing risks through advanced technical solutions.",
+          "verbatim": "We therefore feel that the work does not raise obvious or direct ethical concerns. Thatsaid,weacknowledgethatthemorecapablemodelformofTPCsmayinadvertentlycontributetoadvancingAIcapabilitiesasasideeffect.",
+          "excerpt_context": "Section 6, Ethics Statement",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "capabilities_scaling",
+            "algorithmic_power"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-110",
+          "category": "Intentions",
+          "point": "The document proposes Truncated Polynomial Classifiers (TPCs) as a method to balance predictive power with computational efficiency. By using symmetric CP decomposition, the authors reduce the parameter count and FLOPs required for safety monitoring, allowing for high-performance safety checks without excessive resource consumption. This aligns with the accelerationist goal of optimizing system performance and efficiency to enable safer, faster deployment of frontier models.",
+          "verbatim": "truncation with P[3](z) with n=2 evaluates just the affine and quadratic terms alone—omitting the final third-order interactions to trade off predictive power for computational savings.",
+          "excerpt_context": "Section A, A Worked Example of a Degree-3 Polynomial",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "computational_efficiency",
+            "parameter_optimization",
+            "symmetric_cp_decomposition"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-desires-014",
+          "category": "Desires",
+          "point": "The document supports the rapid deployment of Tensor Polynomial Classifiers (TPCs) as a more efficient and performant monitoring solution compared to existing methods. By demonstrating that TPCs achieve superior accuracy with lower latency at scale, the authors advocate for the adoption of these advanced monitoring architectures to maintain safety without hindering model throughput. This aligns with accelerationist goals of maximizing algorithmic power and efficiency in production environments.",
+          "verbatim": "Thus, always-on monitoring with TPCs is not more expensive than alternative dynamic models in the realistic medium/large batch size regime.",
+          "excerpt_context": "Section G.2, paragraph 2",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "algorithmic_efficiency",
+            "capabilities_scaling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The document demonstrates that TPC (Test-time Polynomial Computation) models can achieve high performance in safety monitoring while maintaining efficiency. By optimizing inference-time compute, these models provide a scalable path for safety without sacrificing the speed required for large-scale deployment. This supports the accelerationist goal of integrating robust safety mechanisms directly into high-performance AI systems.",
+          "verbatim": "Figure 13: Inference time costs (latency and throughput) for varying batch sizes: EE-MLPs are faster than TPCs at small batch sizes. However, for medium-large batch sizes, TPCs have similar speeds at half precision and we find them to be even faster at full precision.",
+          "excerpt_context": "Section 5, Figure 13",
+          "extraction_confidence": 0.8,
+          "vocabulary_terms": [
+            "inference_compute",
+            "scalability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document demonstrates that TPC (Test-time Probe Computation) methods can achieve high performance in harmful prompt classification with extremely low parameter overhead (often <0.01% of base model parameters). This suggests that safety monitoring can be integrated into advanced AI systems without significant computational cost or latency penalties. This efficiency supports the accelerationist goal of deploying powerful models while maintaining safety guardrails.",
+          "verbatim": "Across ranks {32,64,128,256} the symmetric CP maintains similar performance to the unconstrained CP, with a fraction of the parameter count.",
+          "excerpt_context": "Section 6, Figure 17 caption",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "parameter_efficiency",
+            "test_time_compute"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-157",
+          "category": "Intentions",
+          "point": "The document proposes TPCs as a mechanism for inference-time algorithmic steering, where the model's internal activations are monitored and classified to enforce safety policies. This allows for dynamic, real-time control over model outputs by evaluating higher-order interactions between neurons, providing a more granular safety intervention than static linear probes.",
+          "verbatim": "TPCs provide two modes of use. First, as a safety dial: by evaluating more terms, developers and regulators can ôbuyö stronger guardrails from the same model. Second, as an adaptive cascade: clear cases exit early after low-order checks, and higher-order guardrails are evaluated only for ambiguous inputs, reducing overall monitoring costs.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "inference-time algorithmic steering",
+            "safety guardrails"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-080",
+          "category": "Intentions",
+          "point": "The authors emphasize the interpretability of TPCs compared to black-box MLP-based probes. By explicitly modeling multiplicative interactions between neurons, TPCs provide feature attribution, which is a critical technical approach for making AI systems more controllable and transparent.",
+          "verbatim": "However, unlike existing non-linearmodels (e.g., MLPs), TPCsÆ form remains intrinsically interpretable (Dubey et al., 2022) at moderatedegrees. Higher-orderpolynomialsmodel multiplicativeinteractionsbetweenLLMneurons(Jayakumaretal.,2020),explicitlymodelinghow theyjointlycontributetothesafetyclassification.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "interpretability",
+            "feature attribution"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-137",
+          "category": "Intentions",
+          "point": "The authors propose a cascaded evaluation strategy for safety monitoring, where inputs are only processed by higher-order, more compute-intensive classifiers if the initial, lower-order classification is uncertain. This architecture mimics early-exit strategies to optimize the compute-accuracy trade-off, ensuring that safety guardrails remain effective without imposing prohibitive latency costs. This approach supports the safetyist objective of building resilient, efficient monitoring systems that can scale to real-world deployment.",
+          "verbatim": "We also demonstrated a simple way to perform cascaded evaluation of the polynomialÆs terms, only spending more compute when inputs are ambiguousûleading to perfor- mancesimilartothefullpolynomialmodelbutwithnetcomputeonlyslightlymorethanwithlinear probes.",
+          "excerpt_context": "Section 5, Conclusion",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "resilience_architecture",
+            "dynamic_computation",
+            "safety_monitoring"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The paper introduces a progressive training scheme that allows a single polynomial classifier to be truncated into multiple sub-models, each capable of providing reliable safety classifications. This method ensures that safety monitoring can be performed at varying levels of depth and compute, providing a flexible framework for safety-critical applications. This supports the safetyist goal of developing interpretable and modular safety components.",
+          "verbatim": "A key contribution of this paper over past work (Dubey et al., 2022; Chrysos et al., 2022) is the proposed progressive training scheme for turning a single polynomial into many submodels.",
+          "excerpt_context": "Section 4.3, Progressivetraining",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "mechanistic_interpretability",
+            "safety_guardrails"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Intentions",
+          "point": "The authors advocate for the use of activation-based safety monitoring as a superior alternative to larger, more expensive 'LLM-as-monitor' approaches. By training probes on internal model activations, they aim to create lightweight, effective safety classifiers that can be deployed at scale. This supports the safetyist objective of embedding robust, interpretable alignment mechanisms directly into the model's inference pipeline.",
+          "verbatim": "Interestingly, the activation probes outperform the significantly larger LLM-as-monitors and smaller guard models in these experiments.",
+          "excerpt_context": "Section F.3, Comparisons to LLMs-as-monitors",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "activation_monitoring",
+            "safety_classifier",
+            "interpretability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that safety probes exhibit dataset-specific biases, meaning their performance is tied to the labeling standards of the training data. The authors acknowledge that these probes may not generalize perfectly to all labeling standards, which is a critical consideration for safetyists concerned with the reliability of alignment training.",
+          "verbatim": "Whilst this is the expected behavior, it is important to state that these results highlight that for activation probes, there is indeed some learned dataset-specific notion of what should or should not be allowed, and this does not always perfectly generalize to other labeling standards.",
+          "excerpt_context": "Section F.2, Cross-dataset evaluation",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "generalization_gap",
+            "dataset_bias",
+            "alignment_reliability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-137",
+          "category": "Intentions",
+          "point": "The document proposes TPCs as a robust, dynamic safety monitoring architecture that outperforms traditional linear probes and early-exit MLPs. By utilizing higher-order tensor interactions, TPCs provide more granular and accurate detection of harmful content, which is essential for maintaining safety guardrails in frontier models. The authors emphasize the importance of these monitoring tools in ensuring reliable safety performance across diverse datasets and model architectures.",
+          "verbatim": "the full TPC brings up to 10% accuracy over linear probes for some sub-categories of harm.",
+          "excerpt_context": "Figure 10 caption",
+          "extraction_confidence": 1.0,
+          "vocabulary_terms": [
+            "safety_guardrails",
+            "interpretability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-005",
+          "category": "Desires",
+          "point": "The authors prioritize the development of monitoring techniques that offer better feature attribution and interpretability, specifically through the use of symmetric CP factorization. By reducing parameter counts while retaining performance, they aim to make safety monitoring more transparent and computationally feasible. This reflects a desire to achieve deeper insight into model decision-making pathways for safety purposes.",
+          "verbatim": "arguing non-symmetric factorization leads to permutations of the same terms repeated unnecessarily; complicating feature attribution.",
+          "excerpt_context": "Section G.5, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "mechanistic_interpretability",
+            "feature_attribution"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-005",
+          "category": "Desires",
+          "point": "The document seeks to improve safety monitoring by using TPC models to analyze internal model states, which aligns with the desire for mechanistic interpretability. By mapping internal representations to safety outcomes, the researchers aim to create more reliable, verifiable safety guards than standard linear probes. This approach prioritizes understanding the model's decision-making process over black-box monitoring.",
+          "verbatim": "A total of 64 separate TPC models are trained across ranks {32, 64, 128, 256}: a rank of 64 emerges as a sensible choice.",
+          "excerpt_context": "Section 5, Figure 14",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "mechanistic_interpretability",
+            "safety_monitoring"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-014",
+          "category": "Beliefs",
+          "point": "The document implies that standard linear probes are insufficient for robust safety monitoring, as evidenced by the consistent performance improvements shown by TPC models over linear probes across various datasets. This supports the belief that simple, post-training safety interventions are fragile and require more sophisticated, dynamic computation to be effective. The research focuses on replacing these superficial methods with more robust, compute-intensive monitoring.",
+          "verbatim": "Figure 16: Rank R = 1 ablation: we find that using the smallest possible rank leads to models often struggling to reliably improve over linear probes. We suggest a minimum rank of 32 when training TPCs.",
+          "excerpt_context": "Section 5, Figure 16",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "fragility_of_software_based_safety_guards",
+            "dynamic_computation"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-153",
+          "category": "Intentions",
+          "point": "The document presents TPC as a superior method for detecting harmful content, outperforming standard linear and bilinear probes across multiple datasets (WildGuardMix, BeaverTails). By providing a more accurate and efficient detection mechanism, this research supports the safetyist intention of implementing robust, reliable monitoring systems that can catch harmful outputs before they are generated.",
+          "verbatim": "All baselines are parameter-matched to TPCs, and have dedicated hyperparameters sweeps.",
+          "excerpt_context": "Section 6, Figure 18 caption",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "harmful_prompt_classification",
+            "safety_monitoring"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-153",
+          "category": "Intentions",
+          "point": "The document demonstrates a commitment to the 'Detect-then-Mitigate' strategy by evaluating TPC (Test-time Probe Computation) against various baselines to improve safety classification reliability. By comparing TPC performance on WildGuard and BeaverTails datasets, the authors aim to establish more efficient and accurate detection mechanisms for harmful content. This approach supports the safetyist goal of integrating robust, verifiable monitoring directly into the inference pipeline.",
+          "verbatim": "F1scoreonharmfulpromptclassificationforprobesevaluatedwithincreasingcomputeattest-time. Allbaselinesareparameter-matchedtoTPCs,andhavededicatedhyperparametersweeps.",
+          "excerpt_context": "Figure 20 caption",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "detect-then-mitigate",
+            "inference-compute",
+            "harmful-prompt-classification"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-106",
+          "category": "Intentions",
+          "point": "The document supports the use of performance-gated safety audits by demonstrating that TPCs can be evaluated at varying degrees of complexity to meet specific safety thresholds. This allows for a more rigorous, falsifiable approach to monitoring where higher-order guardrails are triggered by input ambiguity, addressing the limitations of static, low-cost probes.",
+          "verbatim": "At test-time, one can early-stop for lightweight monitoring, or use more terms for stronger guardrails when needed. TPCs provide two modes of use. First, as a safety dial: by evaluating more terms, developers and regulators can ôbuyö stronger guardrails from the same model.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.9,
+          "vocabulary_terms": [
+            "performance-gated safety",
+            "safety audits"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-175",
+          "category": "Beliefs",
+          "point": "The authors utilize feature attribution techniques to trace how specific combinations of LLM neurons contribute to safety classification decisions. By modeling interactions between neurons via quadratic terms in TPCs, they provide a more granular, mechanistically faithful explanation of model behavior compared to standard linear probes. This aligns with the skeptic interest in demystifying 'black box' model decisions through rigorous activation analysis.",
+          "verbatim": "Because TPCsfurthermodelinteractionsbetweentheoriginalLLMsÆneurons,onehasadirectwaytotraceexactlyhowmuchcombinationsofLLMsÆ neurons contribute to the decisionûunlike with MLP- basedprobes.",
+          "excerpt_context": "Section 4.4, Pairwisefeatureattribution",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "activation_probing",
+            "mechanistic_interpretability"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-194",
+          "category": "Beliefs",
+          "point": "The document investigates the utility of higher-order interactions in safety probes, finding that while they offer performance gains, these gains are subject to diminishing returns and noise. This reflects the skeptic's concern that increasing model complexity or optimization passes does not always yield proportional improvements in safety or fairness.",
+          "verbatim": "even when the performance of higher-order terms in TPCs are noisy (e.g., bottom-left plots), TPC cascaded evaluation almost always yields far stronger performance over the linear probes at similar amounts of compute.",
+          "excerpt_context": "Section F.1, Full baseline comparisons",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "diminishing_returns",
+            "model_noise"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-175",
+          "category": "Beliefs",
+          "point": "The document evaluates the effectiveness of various probing techniques, including linear probes and TPCs, for detecting harmful model outputs. It acknowledges that while linear probes are a baseline, they are often outperformed by more complex, higher-order models like TPCs. This empirical comparison highlights the limitations of simple linear probing in capturing complex safety-relevant features in high-dimensional activation spaces.",
+          "verbatim": "We find that models with the extreme choice of rank-1 weights are not able to reliably improve over linear probes, however (shown in Fig. 16), and thus note that care must be taken when choosing this hyperparameter.",
+          "excerpt_context": "Section G.3, paragraph 1",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "linear_probes",
+            "activation_monitoring"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that increasing compute at test-time (via TPC) yields diminishing returns, particularly at very high polynomial degrees. This suggests that there are physical and computational limits to how much safety can be 'computed' into a model at inference time. Skeptics might interpret this as a sign that safety is not merely a compute-scaling problem.",
+          "verbatim": "Figure 15: Ablation (maximum degree N): training a single high-degree N = 10 polynomial (with the default R = 64); we find diminishing returns from very high-degree terms.",
+          "excerpt_context": "Section 5, Figure 15",
+          "extraction_confidence": 0.95,
+          "vocabulary_terms": [
+            "diminishing_returns",
+            "inference_compute"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The empirical data shows that while TPC methods are effective, their performance varies significantly across different base models (e.g., Gemma-3-27b vs. Llama-3.2-3B) and datasets. Skeptics might note that the F1 scores on BeaverTails are consistently lower than on WildGuardMix, suggesting that safety monitoring performance is highly dependent on the specific training data and model architecture, rather than being a universal solution.",
+          "verbatim": "Figure 18: Full baseline comparisons on WildGuardMix and BeaverTails for rank R=32: F1 score on harmful prompt classification for probes evaluated with increasing compute at test-time.",
+          "excerpt_context": "Section 6, Figure 18 caption",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "model_generalization",
+            "dataset_bias"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "cc-096",
+          "category": "Beliefs",
+          "point": "The document presents extensive performance tables across multiple datasets (WildGuard, BeaverTails) and model architectures, highlighting the sensitivity of safety classification results to specific benchmark subsets and evaluation conditions. This data illustrates the 'Benchmark Lottery' phenomenon, where the relative performance of TPC versus baselines like MLP probes or bilinear probes fluctuates depending on the specific validation or test set used. Such variability underscores the difficulty of establishing a single, universally superior safety monitoring method.",
+          "verbatim": "Figure 20: Full baseline comparisons on WildGuardMix and BeaverTails for rank R = 256: F1scoreonharmfulpromptclassificationforprobesevaluatedwithincreasingcomputeattest-time.",
+          "excerpt_context": "Figure 20 caption and associated tables",
+          "extraction_confidence": 0.85,
+          "vocabulary_terms": [
+            "benchmark-lottery",
+            "f1-score",
+            "model-evaluation"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Truncated Polynomial Classifiers (TPCs) outperform MLP-based probes of the same parameter size in harmful prompt classification while remaining more interpretable.",
+      "claim_label": "TPC Performance Advantage",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-054",
+        "saf-intentions-080"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical claim based on WildGuardMix dataset experiments."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Truncated Polynomial Classifiers (TPCs) provide performance comparable to full polynomial models while using significantly less compute, especially when implemented as a cascade.",
+      "claim_label": "TPC Efficiency and Performance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "cc-118"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "Empirical claim supported by F1 score data in Figure 3 and Table 1."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Activation-based safety probes trained on WildGuardMix show performance degradation when evaluated on datasets with different labeling rubrics, such as ToxicChat or OpenAI-moderation.",
+      "claim_label": "Safety Probe Generalization Limits",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "cc-032"
+      ],
+      "evidence_criteria": {
+        "specificity": "qualified",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of cross-dataset performance."
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Tensor Polynomial Classifiers (TPCs) achieve lower latency than Early-Exit MLPs at small batch sizes and converge to similar performance at medium/large batch sizes.",
+      "claim_label": "TPC Latency Performance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "cc-118"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Symmetric CP factorization reduces parameter counts for higher-order tensor weights without sacrificing performance compared to non-symmetric factorization.",
+      "claim_label": "Symmetric CP Factorization Efficiency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": "empirical claim"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "TPC (Test-time Probe Computation) achieves competitive F1 scores on harmful prompt classification compared to MLP probes, bilinear probes, and EE-MLP baselines across WildGuard and BeaverTails datasets.",
+      "claim_label": "TPC Performance Benchmarking",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-153"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "Empirical observation of model performance metrics."
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Cascaded Activation Monitoring",
+      "suggested_description": "A situation concept that describes the dynamic allocation of computational resources for safety monitoring based on input ambiguity.\nEncompasses: Early-exit strategies, cascaded classifiers, compute-accuracy trade-offs.\nExcludes: Static model evaluation, full-depth inference.",
+      "concept": "The document introduces a cascaded evaluation strategy where inputs are processed by increasingly complex polynomial terms only when the initial classification is uncertain. This allows for high-accuracy safety monitoring with minimal net compute, effectively navigating the trade-off between performance and inference cost.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This concept describes a specific architectural approach to dynamic safety monitoring that is not fully captured by existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a critical efficiency breakthrough, enabling the deployment of robust safety guardrails without slowing down the primary model's inference speed.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary resilience architecture, allowing for high-fidelity safety checks that can be scaled dynamically to meet real-time performance requirements.",
+      "Skeptic Interpretation": "Skeptics might view this as a technical optimization that, while efficient, still relies on the underlying model's internal representations, which may contain latent biases or vulnerabilities that simple probes cannot fully expose."
+    },
+    {
+      "suggested_label": "Symmetric CP Decomposition for Interpretability",
+      "suggested_description": "A situation concept that describes the use of symmetric tensor factorization to simplify feature attribution in high-order interaction models. \nEncompasses: Weight tying, permutation invariance, feature attribution simplification. \nExcludes: Standard CP decomposition, non-interpretable black-box models.",
+      "concept": "The document uses symmetric CP decomposition to tie weights across permuted neuron interactions, which simplifies the process of interpreting how specific neurons contribute to safety classifications.",
+      "suggested_pov": "situations",
+      "suggested_category": "Intentions",
+      "reason": "This is a specific architectural choice for improving interpretability that does not fit existing nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a tool for efficient, high-performance model monitoring that minimizes the compute overhead of safety checks.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary step toward making complex model behaviors transparent and auditable.",
+      "Skeptic Interpretation": "Skeptics might question whether the simplification provided by symmetry actually captures the full complexity of model behavior or if it introduces new biases."
+    }
+  ]
+}
