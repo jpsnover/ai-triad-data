@@ -27,7 +27,7 @@ Independent, third-party red-teaming functions as an essential democratic check 
 
 Furthermore, systemic bias remains a fundamental failure of current development cycles rather than a minor technical bug. Market-driven approaches consistently prioritize aggregate performance over the specific, harmful impacts on marginalized populations, which are often dismissed as 'outliers' in a grander optimization task. By framing mandatory red-teaming as a bottleneck, proponents ignore the fact that accountability is a prerequisite for legitimate technological progress, not an obstacle to it. If we cannot ensure a system is safe before it affects the lives of millions, then the system is not yet ready for deployment, regardless of its theoretical capabilities.
 
-*Taxonomy refs:* `skp-beliefs-015`, `skp-intentions-002`, `skp-desires-002`, `skp-intentions-097`
+*Taxonomy refs:* `skp-beliefs-015`, `skp-intentions-146`, `skp-desires-002`, `skp-intentions-097`
 
 ### Sentinel (safetyist)
 
@@ -79,7 +79,7 @@ Furthermore, the assertion that dynamic oversight is more objective than static 
 
 I shift the burden of proof to the proponents of this dynamic model: explain how a reactive circuit breaker protects an individual’s autonomy (individual/data) when a system is already live and affecting their life. If we cannot prevent bias through adversarial testing and independent scrutiny before a system is released, we are not innovating; we are simply offloading the cost of our failure onto the most vulnerable members of society. True accountability (algorithmic) requires that we stop asking the public to pay the price for our inability to measure the social impact of these systems before they are deployed.
 
-*Refs:* `skp-beliefs-015`, `skp-desires-002`, `skp-intentions-002`, `cc-032`, `skp-intentions-097`
+*Refs:* `skp-beliefs-015`, `skp-desires-002`, `skp-intentions-146`, `cc-032`, `skp-intentions-097`
 
 *Policy refs:* `pol-035`, `pol-093`
 
@@ -151,7 +151,7 @@ Market-driven accountability fails to protect civil rights because the cost of s
 
 To address the concern regarding 'metric gaming' at the 2% threshold, we must treat these benchmarks not as isolated targets, but as part of a mandatory, independent audit process that rotates its evaluation methodology to prevent firms from predicting and optimizing for specific tests. By making these benchmarks a legal prerequisite for deployment rather than a voluntary transparency signal, we shift the burden of proof from the public to the firm. Civil rights protections cannot be left to the volatility of market competition; they require the stability of law. A transparency scaffold without the legal authority to halt a deployment is merely a dashboard on a sinking ship.
 
-*Refs:* `skp-beliefs-007`, `skp-desires-064`, `skp-intentions-002`, `skp-intentions-007`, `skp-beliefs-021`
+*Refs:* `skp-beliefs-007`, `skp-desires-064`, `skp-intentions-146`, `skp-intentions-007`, `skp-beliefs-021`
 
 *Policy refs:* `pol-035`
 

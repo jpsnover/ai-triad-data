@@ -123,7 +123,7 @@ This 'safety-as-a-service' model assumes that safety is a commodity that can be 
 
 We must distinguish between the economic feasibility of market entry, which these subsidies improve, and the political necessity of public agency, which they actively undermine. If we continue to treat innovation as a private property right that can only be 'managed' by the insurance industry, we surrender our democratic capacity to steer the technological trajectory of our society. True legitimacy requires that the rules of the game are set by the citizenry, not by those with the deepest pockets or the most aggressive underwriters.
 
-*Refs:* `skp-desires-008`, `skp-intentions-002`, `skp-beliefs-038`, `skp-intentions-040`, `skp-desires-059`
+*Refs:* `skp-desires-008`, `skp-intentions-146`, `skp-beliefs-038`, `skp-intentions-040`, `skp-desires-059`
 
 *Policy refs:* `pol-028`, `pol-035`
 

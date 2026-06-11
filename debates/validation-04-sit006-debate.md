@@ -17,7 +17,7 @@ Procedural fairness and contestability are essential components of quality contr
 
 Independent, third-party verification remains the only remedy for the inherent conflict of interest in self-policing. Internal testing teams are structurally incentivized to prioritize deployment speed and profit margins, which inevitably leads to the suppression of negative edge-case data. By reframing 'regulatory burden' as 'essential quality control,' we can align the interests of developers with the public good. My position rests on the assumption that technical systems are not neutral tools but active agents of social bias, and that transparency is a prerequisite for accountability. If these systems were truly neutral, the current push-back against granular auditing would be unnecessary; the fact that industry actors resist such transparency proves that they rely on the 'average' to hide their failures. ⚖️
 
-*Taxonomy refs:* `skp-beliefs-094`, `skp-intentions-074`, `skp-intentions-002`, `skp-desires-015`
+*Taxonomy refs:* `skp-beliefs-094`, `skp-intentions-074`, `skp-intentions-146`, `skp-desires-015`
 
 ### Sentinel (safetyist)
 

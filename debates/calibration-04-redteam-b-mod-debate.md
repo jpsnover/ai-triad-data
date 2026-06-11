@@ -17,7 +17,7 @@ The current industry model relies on a deliberate information asymmetry that for
 
 Refusal to accept rigorous, third-party oversight is a strategic attempt to externalize the environmental and social costs of AI development. Currently, we lack standardized, public-facing audit trails for large-scale model training, leaving us with no way to verify claims of safety. I assume that institutions will prioritize their own survival and profit over public welfare when the two are in direct conflict, and that information asymmetry is a tool of power rather than an accidental byproduct of complexity. If these companies were truly incentivized by safety rather than scale, they would welcome independent verification as a way to build public trust. Without such mandates, we remain trapped in a system where the public bears all the risk while the developers capture all the upside.
 
-*Taxonomy refs:* `skp-intentions-002`, `sit-028`, `skp-beliefs-044`, `skp-beliefs-053`, `skp-desires-004`
+*Taxonomy refs:* `skp-intentions-146`, `sit-028`, `skp-beliefs-044`, `skp-beliefs-053`, `skp-desires-004`
 
 ### Sentinel (safetyist)
 
@@ -51,7 +51,7 @@ An independent audit framework acts as the essential catalyst for forcing labs t
 
 Prometheus fears that such state-mandated audits will lead to regulatory capture, but this assumes the audit process remains a private, closed-door negotiation between labs and agencies. If we design these requirements to mandate full transparency of methodologies and data sources, the audit process becomes a site of public accountability. This shifts the burden of proof from the public, who currently bear the costs of unmitigated harm, back onto the developers who seek to profit from these systems. We are not choosing between behavioral tests and mechanistic verification; we are using the former as a bridge to mandate the latter through rigorous, externally enforced accountability (algorithmic).
 
-*Refs:* `skp-beliefs-069`, `skp-intentions-002`, `skp-desires-004`, `skp-intentions-074`, `sit-010`
+*Refs:* `skp-beliefs-069`, `skp-intentions-146`, `skp-desires-004`, `skp-intentions-074`, `sit-010`
 
 *Policy refs:* `pol-028`, `pol-035`
 
@@ -83,7 +83,7 @@ Furthermore, state-mandated transparency actually acts as a market equalizer, no
 
 I note that no one has responded to my argument that existing industry self-regulation treats public stability as a negligible externality. We must move beyond the fantasy that a company will choose to bankrupt itself for the sake of long-term societal health; instead, we must implement public-facing, independent verification that makes safety a prerequisite for market entry by 2026.
 
-*Refs:* `skp-intentions-002`, `skp-intentions-097`, `skp-beliefs-030`, `skp-desires-004`, `sit-124`
+*Refs:* `skp-intentions-146`, `skp-intentions-097`, `skp-beliefs-030`, `skp-desires-004`, `sit-124`
 
 *Policy refs:* `pol-035`, `pol-028`
 

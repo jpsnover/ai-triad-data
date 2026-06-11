@@ -39,7 +39,7 @@ Focusing exclusively on long-term existential risk serves as a convenient distra
 
 My argument assumes that corporate entities prioritize market dominance over public welfare and that current testing methodologies are intentionally opaque to maintain this competitive advantage. If it were proven that these firms are genuinely prioritizing safety over profit despite clear market pressure, my demand for mandatory external oversight would weaken in favor of a more collaborative, industry-led standard. However, given the current lack of transparency in training data and model evaluation, the burden of proof rests on the labs to demonstrate why they should remain exempt from the oversight standards we apply to every other high-stakes sector, from aviation to pharmaceuticals.
 
-*Taxonomy refs:* `skp-beliefs-069`, `skp-beliefs-002`, `skp-intentions-002`, `skp-desires-004`, `skp-intentions-097`
+*Taxonomy refs:* `skp-beliefs-069`, `skp-beliefs-002`, `skp-intentions-146`, `skp-desires-004`, `skp-intentions-097`
 
 ## Debate
 
@@ -81,7 +81,7 @@ Prometheus argues that strict liability effectively internalizes these risks, ye
 
 True oversight requires independent, pre-release auditing to identify and mitigate risks before they reach the public, not just a post-hoc financial settlement after the damage is done. Relying on liability assumes that the market can accurately price the loss of human agency or the erosion of economic stability, which is a fundamental category error. We must prioritize procedural fairness and verifiable safety standards over a financial model that treats the displacement of human labor as an unavoidable externality of innovation.
 
-*Refs:* `skp-beliefs-002`, `skp-beliefs-069`, `skp-desires-004`, `skp-intentions-002`, `skp-intentions-074`
+*Refs:* `skp-beliefs-002`, `skp-beliefs-069`, `skp-desires-004`, `skp-intentions-146`, `skp-intentions-074`
 
 *Policy refs:* `pol-001`, `pol-006`, `pol-028`
 

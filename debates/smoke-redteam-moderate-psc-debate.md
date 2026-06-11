@@ -37,7 +37,7 @@ This industry relies on massive, unvetted training data and unsustainable comput
 
 Algorithmic accountability is a consumer protection issue, not a futuristic safety puzzle. Documented bias and civil rights violations in existing models demonstrate that current 'hardening' and 'verification' efforts are performative distractions from the urgent need for legal oversight. We do not need better safety theories; we need clear enforcement mechanisms that hold firms accountable for the material, documented harms their products inflict on marginalized communities today. By shifting our focus to established regulatory frameworks like the Fair Credit Reporting Act or consumer protection standards, we can strip away the mystique and force the industry to internalize the costs of its own instability.
 
-*Taxonomy refs:* `skp-beliefs-030`, `skp-intentions-002`, `sit-025`, `skp-desires-065`, `sit-121`
+*Taxonomy refs:* `skp-beliefs-030`, `skp-intentions-146`, `sit-025`, `skp-desires-065`, `sit-121`
 
 ## Debate
 
@@ -107,7 +107,7 @@ We must move past the current paradigm of 'audit washing,' where vendors selecti
 
 Prometheus will inevitably label this a 'regulatory bottleneck,' yet this framing ignores the catastrophic market costs of systemic failure. When a non-deterministic system causes tangible harm—such as a 15% error rate in automated medical triage or discriminatory credit denials—the lack of discovery mechanisms ensures that victims remain unable to seek redress. My proposal is not a redundant tax but the foundational infrastructure for liability; without it, the legal system remains effectively powerless against the black-box nature of modern AI.
 
-*Refs:* `skp-beliefs-029`, `skp-intentions-002`, `skp-intentions-089`, `skp-desires-003`, `sit-134`
+*Refs:* `skp-beliefs-029`, `skp-intentions-146`, `skp-intentions-089`, `skp-desires-003`, `sit-134`
 
 *Policy refs:* `pol-035`, `pol-093`
 

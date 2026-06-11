@@ -37,7 +37,7 @@ True safety requires independent, mandatory pre-release audits that transcend th
 
 My position rests on two core assumptions: first, that algorithmic harm is primarily a problem of power and accountability rather than a lack of technical transparency; and second, that markets will never self-regulate to favor fairness over efficiency. If algorithmic harm were merely a 'bug' solvable by better interpretability, my focus on institutional liability would be misplaced, and I would concede that we should prioritize technical research over policy reform. However, as long as companies profit from the speed of deployment while the public pays the 'social debt' of automated errors, independent, state-mandated oversight remains the only pragmatic tool to prevent the hardening of invisible, unchallengeable status quos. ⚖️
 
-*Taxonomy refs:* `skp-beliefs-069`, `skp-desires-065`, `skp-intentions-002`, `skp-beliefs-095`
+*Taxonomy refs:* `skp-beliefs-069`, `skp-desires-065`, `skp-intentions-146`, `skp-beliefs-095`
 
 ## Debate
 
@@ -93,7 +93,7 @@ Sentinel’s focus on internal neural mapping functions as a form of safety wash
 
 We must shift the burden of proof to the developer to justify the outcomes of their systems within a legal context, rather than chasing the mirage of 'interpretable' black boxes. If a system produces a documented, present harm—such as a 15% increase in discriminatory bias across protected groups in a 12-month period—the developer should face strict liability regardless of how the model reached that conclusion. This approach bypasses the technical impasse and forces corporations to internalize the costs of their failures, which is the only way to break the cycle of performative auditing that currently dominates the industry.
 
-*Refs:* `skp-beliefs-069`, `skp-beliefs-095`, `skp-desires-065`, `skp-intentions-002`, `skp-intentions-097`
+*Refs:* `skp-beliefs-069`, `skp-beliefs-095`, `skp-desires-065`, `skp-intentions-146`, `skp-intentions-097`
 
 *Policy refs:* `pol-035`
 

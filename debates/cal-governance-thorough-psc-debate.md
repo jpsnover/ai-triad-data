@@ -197,7 +197,7 @@ To bridge this gap, we must move beyond the current impasse by mandating that th
 
 I disagree with the notion that contestability is a purely technical property of the model; rather, it is a political property of the legal and social system surrounding it. Relying on an automated loop to satisfy the requirements of justice ignores the reality that contestability requires the institutional power to challenge the normative premises embedded in the model’s objectives. Without an independent public authority to interpret and verify these audits, the adversarial loop is simply a closed-circuit verification system designed to shield corporations from genuine liability.
 
-*Refs:* `skp-beliefs-069`, `skp-desires-063`, `skp-intentions-092`, `skp-intentions-006`, `skp-desires-064`
+*Refs:* `skp-beliefs-069`, `skp-desires-063`, `skp-intentions-145`, `skp-intentions-006`, `skp-desires-064`
 
 *Policy refs:* `pol-035`
 

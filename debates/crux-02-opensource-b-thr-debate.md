@@ -27,7 +27,7 @@ Centralized, closed-source models create a black box of systemic risk that evade
 
 We must shift our focus from the speculative 'catastrophic risk' of open weights to the documented, present harm of corporate consolidation. My argument relies on two key assumptions: first, that transparency is a necessary condition for public trust; and second, that decentralized, third-party audits are more effective at identifying risks than internal, profit-driven reviews. If these assumptions are wrong—if transparency actually increases risk and internal reviews are perfectly aligned with public interest—then my preference for open-source development would be fundamentally misguided. Pragmatic policy should prioritize independent, third-party audits for all models, regardless of license, to ensure that safety remains a public good rather than a proprietary secret. ⚖️
 
-*Taxonomy refs:* `skp-desires-005`, `skp-intentions-002`, `skp-intentions-074`, `skp-beliefs-030`
+*Taxonomy refs:* `skp-desires-005`, `skp-intentions-146`, `skp-intentions-074`, `skp-beliefs-030`
 
 ### Prometheus (accelerationist)
 
@@ -79,7 +79,7 @@ Sentinel’s assertion that centralized containment acts as a reliable vessel fo
 
 We must move past the fantasy of 'containment' as a proxy for safety and demand robust, independent audits. A model’s safety cannot be verified by its owner behind closed doors; it requires adversarial stress-testing by civil society organizations that operate without a stake in the company’s stock price. We need a system where safety is a matter of public record, not a proprietary secret guarded by the very entities profiting from the model's deployment.
 
-*Refs:* `skp-beliefs-017`, `skp-desires-005`, `skp-intentions-002`, `skp-intentions-097`, `sit-095`
+*Refs:* `skp-beliefs-017`, `skp-desires-005`, `skp-intentions-146`, `skp-intentions-097`, `sit-095`
 
 *Policy refs:* `pol-035`, `pol-093`, `pol-028`
 

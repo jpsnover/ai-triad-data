@@ -17,7 +17,7 @@ Prometheus and Sentinel both argue that competitive pressures and internal safet
 
 True innovation requires professional accountability, not unconstrained scaling. By treating safety as a regulatory barrier rather than a fundamental component of product engineering, the industry actively avoids the rigorous, transparent standards required for critical infrastructure. If we do not require external verification of safety claims, we simply accept that corporate risk management will always prioritize quarterly earnings over public stability. Policy must transition from these flimsy, voluntary frameworks toward binding, independent oversight that forces companies to account for the full externalities of their technology before it ever reaches the market.
 
-*Taxonomy refs:* `skp-intentions-002`, `sit-028`, `skp-beliefs-044`, `skp-desires-004`, `sit-006`
+*Taxonomy refs:* `skp-intentions-146`, `sit-028`, `skp-beliefs-044`, `skp-desires-004`, `sit-006`
 
 ### Prometheus (accelerationist)
 
@@ -65,7 +65,7 @@ Prometheus’s framework essentially asks the public to accept a 'pay-to-fail' s
 
 Finally, I note that Prometheus has already admitted that voluntary red-teaming functions primarily as a marketing veneer. If developers are currently engaging in 'safety washing' under the current, lighter regime, why should we assume they will behave differently under a liability model that merely converts safety into a line item on a ledger? The burden of proof remains on those advocating for market-based solutions to explain how a financial reserve prevents the very performative safety measures they have already identified as insufficient. Without independent, pre-release oversight, we are simply putting a price tag on negligence rather than preventing it.
 
-*Refs:* `skp-beliefs-101`, `skp-beliefs-069`, `skp-desires-004`, `skp-intentions-002`, `sit-109`
+*Refs:* `skp-beliefs-101`, `skp-beliefs-069`, `skp-desires-004`, `skp-intentions-146`, `sit-109`
 
 *Policy refs:* `pol-006`
 
@@ -149,7 +149,7 @@ Prometheus assumes that insurance markets can price catastrophic, non-linear AI 
 
 Mandatory, third-party pre-release audits remain the only mechanism capable of providing the objective transparency (accountability) necessary for public safety. While Prometheus fears that such audits create a 'context gap,' a rigorous audit framework requires that third-party evaluators possess the technical access to stress-test models against diverse, adversarial datasets before public deployment. We must shift the burden of proof from the public to the developers, ensuring that companies demonstrate safety through external verification rather than internal financial modeling that prioritizes profit over systemic stability.
 
-*Refs:* `skp-beliefs-076`, `skp-desires-065`, `skp-intentions-002`, `sit-124`, `skp-beliefs-030`
+*Refs:* `skp-beliefs-076`, `skp-desires-065`, `skp-intentions-146`, `sit-124`, `skp-beliefs-030`
 
 *Policy refs:* `pol-035`, `pol-093`
 
@@ -191,7 +191,7 @@ Treating frontier AI as a private commodity allows developers to treat systemic 
 
 We must move toward a governance model that treats the development of frontier models as the stewardship of a global commons, requiring independent, third-party pre-release audits to prevent safety washing. These audits act as an essential barrier to entry, ensuring that developers meet standardized, verifiable benchmarks before deployment, rather than self-certifying their own safety. By shifting the burden of proof to the developer before a model reaches the public, we replace the retrospective, insufficient mechanism of insurance with a proactive, transparent framework of public trust. This structure does not mandate a singular state-run stack, but it does mandate that all participants satisfy a baseline of societal accountability that no private insurance policy can guarantee.
 
-*Refs:* `skp-beliefs-069`, `skp-intentions-002`, `skp-desires-065`, `cc-031`, `skp-beliefs-101`
+*Refs:* `skp-beliefs-069`, `skp-intentions-146`, `skp-desires-065`, `cc-031`, `skp-beliefs-101`
 
 *Policy refs:* `pol-028`, `pol-035`
 

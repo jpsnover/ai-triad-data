@@ -37,7 +37,7 @@ This rush to market produces 'answer-machines' that erode the human capacity for
 
 Governance must shift from internal technical audits to independent, civil-society-led oversight that treats AI safety as a matter of public interest, not proprietary optimization. Current regulatory frameworks, such as the voluntary commitments under the White House Executive Order on AI, fail because they rely on the self-reporting of entities with a fiduciary duty to maximize growth at any cost. We need an enforcement mechanism that mandates third-party stress testing of models before they reach scale, ensuring that the burden of proof rests on the deployer, not the public. Accountability is not an impediment to innovation; it is the only way to ensure that the innovations we deploy are actually worth the cost of building them.
 
-*Taxonomy refs:* `skp-beliefs-030`, `skp-desires-006`, `skp-intentions-002`, `skp-intentions-030`, `skp-beliefs-101`
+*Taxonomy refs:* `skp-beliefs-030`, `skp-desires-006`, `skp-intentions-146`, `skp-intentions-030`, `skp-beliefs-101`
 
 ## Debate
 
@@ -95,7 +95,7 @@ We must distinguish between technical resilience and institutional accountabilit
 
 I challenge the assumption that resilience is an engineering state that renders external audits obsolete. If these modular architectures are as robust as claimed, then their internal logic and trigger thresholds should be fully transparent and subject to mandatory, third-party pre-release audits by civil society organizations. Proponents of modularity carry the burden of proof to explain why their private circuit-breakers should be exempt from public scrutiny. Without independent verification, these modular frameworks are simply a way to maintain the current 'Subprime AI' growth cycle while shielding the industry from the necessary friction of public accountability.
 
-*Refs:* `skp-beliefs-030`, `skp-intentions-002`, `skp-desires-006`, `sit-109`
+*Refs:* `skp-beliefs-030`, `skp-intentions-146`, `skp-desires-006`, `sit-109`
 
 *Policy refs:* `pol-028`, `pol-035`
 

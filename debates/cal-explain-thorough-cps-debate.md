@@ -81,7 +81,7 @@ You claim that mandates for explainability impose a 'monitorability tax' that st
 
 I note that no one has responded to my argument that the inability to contest algorithmic outcomes is a tool of disenfranchisement. The burden is on you to explain how a society can remain democratic when its citizens are governed by systems that prioritize statistical performance over the right to challenge a decision. If we accept your premise that performance is the only metric that matters, we are effectively conceding that democratic participation is an outdated friction in the machine. I reject that trade-off. A system that operates in the shadows, immune to the scrutiny of those it affects, is a liability to the public trust, regardless of its superior reasoning capability.
 
-*Refs:* `skp-beliefs-029`, `skp-desires-063`, `skp-intentions-002`, `sit-134`
+*Refs:* `skp-beliefs-029`, `skp-desires-063`, `skp-intentions-146`, `sit-134`
 
 *Policy refs:* `pol-035`
 

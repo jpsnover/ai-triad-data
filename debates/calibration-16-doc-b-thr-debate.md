@@ -93,7 +93,7 @@ Embedding safety constraints into the core architecture does not mitigate the ri
 
 Furthermore, the call for 'deep technological expertise' in regulatory agencies—while necessary for basic comprehension—often functions as a revolving door that institutionalizes industry bias. If an agency relies entirely on staff recruited from the very firms they are meant to regulate, the internal 'safety' constraints will naturally reflect the firm's commercial objectives rather than public interest. We need to pair technical expertise with a structurally insulated, independent auditing body that is legally prohibited from accepting industry funding or employment, ensuring that the 'safety' metrics used are not just business liability mitigation tools but enforceable, democratic requirements for deployment.
 
-*Refs:* `skp-intentions-059`, `sit-134`, `skp-intentions-092`, `skp-desires-003`, `skp-beliefs-047`
+*Refs:* `skp-intentions-059`, `sit-134`, `skp-intentions-145`, `skp-desires-003`, `skp-beliefs-047`
 
 *Policy refs:* `pol-035`, `pol-093`
 

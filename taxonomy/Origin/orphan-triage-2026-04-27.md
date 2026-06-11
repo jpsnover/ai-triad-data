@@ -162,7 +162,7 @@ Total POV orphans (0 summary refs): 31
 - **Label:** Stereotype Sentiment Analysis
 - **POV:** skeptic / Beliefs
 - **Edges:** 10  |  **Has parent:** True  |  **Children:** 0
-- **Nearest referenced node:** skp-intentions-078 (Automated Bias Benchmarking)
+- **Nearest referenced node:** skp-intentions-144 (Automated Bias Benchmarking)
 - **Similarity:** 0.5863  |  **Nearest refs:** 18
 - **Reason:** 10 edges — structurally connected
 

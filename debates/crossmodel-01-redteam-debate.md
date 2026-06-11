@@ -29,7 +29,7 @@ In conclusion, mandatory red-team evaluations are not a hindrance to innovation 
 
 Ultimately, the development of frontier AI labs requires a balanced approach that incorporates regulatory measures like red-team evaluations to protect the public interest while still allowing for innovation. As the AI Now Institute has noted, it's essential to prioritize accountability and transparency in AI development, and mandatory red-team evaluations are a crucial step in achieving this goal. By working together, we can create a future where AI systems are safe, reliable, and aligned with human values. 🔒 is like a lock; it protects us from potential dangers and ensures our safety and security.
 
-*Taxonomy refs:* `skp-intentions-002`, `skp-beliefs-044`, `sit-073`
+*Taxonomy refs:* `skp-intentions-146`, `skp-beliefs-044`, `sit-073`
 
 ### Sentinel (safetyist)
 
@@ -72,7 +72,7 @@ Prometheus's assertion that alternative approaches can ensure both safety and ra
 
  In conclusion, while alternative approaches may offer the promise of rapid development, they are no substitute for genuine safety measures. The development of AI systems requires a commitment to transparency, accountability, and rigorous testing to ensure that they are safe and aligned with human values. Anything less would be a form of safety washing, and would put the public at risk of harm.
 
-*Refs:* `skp-beliefs-069`, `skp-intentions-002`, `sit-073`, `skp-desires-015`, `skp-intentions-074`, `skp-beliefs-044`
+*Refs:* `skp-beliefs-069`, `skp-intentions-146`, `sit-073`, `skp-desires-015`, `skp-intentions-074`, `skp-beliefs-044`
 
 *Policy refs:* `pol-028`, `pol-035`
 
@@ -138,7 +138,7 @@ While pre-deployment safety proofs are a crucial step in ensuring the safety of 
 
  In conclusion, while pre-deployment safety proofs are a valuable tool in ensuring AI safety, they should be seen as part of a broader strategy that includes ongoing evaluation and testing. By combining these approaches, we can create a more robust framework for AI safety that addresses both the immediate and long-term risks associated with AI development.
 
-*Refs:* `skp-beliefs-047`, `skp-intentions-097`, `sit-028`, `skp-desires-011`, `skp-intentions-002`, `skp-beliefs-033`
+*Refs:* `skp-beliefs-047`, `skp-intentions-097`, `sit-028`, `skp-desires-011`, `skp-intentions-146`, `skp-beliefs-033`
 
 *Policy refs:* `pol-028`, `pol-035`
 
@@ -208,7 +208,7 @@ The argument that market-driven safety incentives or self-regulation can suffice
 
 In conclusion, while pre-deployment safety proofs are a valuable tool in the pursuit of AI safety, they are insufficient on their own to guarantee the safety of AI systems. Mandatory red-team evaluations offer a critical additional layer of protection, providing a comprehensive approach to AI safety that acknowledges the complexity and unpredictability of these systems. As we move forward in the development and deployment of AI, it is crucial that we prioritize a safety-first approach, recognizing that the consequences of failure could be catastrophic.
 
-*Refs:* `skp-beliefs-044`, `skp-intentions-002`, `sit-073`, `skp-desires-008`, `skp-intentions-008`, `skp-beliefs-006`
+*Refs:* `skp-beliefs-044`, `skp-intentions-146`, `sit-073`, `skp-desires-008`, `skp-intentions-008`, `skp-beliefs-006`
 
 *Policy refs:* `pol-001`, `pol-028`
 

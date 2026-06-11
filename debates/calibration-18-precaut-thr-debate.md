@@ -137,7 +137,7 @@ Prometheus’s proposed real-time circuit breakers function as a reactive tax on
 
 While Sentinel emphasizes formal verification, we must distinguish between the static analysis of code and the industrial oversight of massive compute clusters. Formal verification is a mathematical exercise that cannot account for the emergent, opaque behaviors of models operating at this scale. We need public interest technologists to set these hardware thresholds as fixed industrial standards, treating compute clusters like high-hazard infrastructure rather than standard consumer software. By anchoring accountability to the physical power grid, we bypass the regulatory capture inherent in software-based audit regimes and ensure that AI development respects the physical limits of our environment.
 
-*Refs:* `skp-beliefs-002`, `skp-desires-001`, `skp-intentions-092`, `sit-098`, `skp-beliefs-038`
+*Refs:* `skp-beliefs-002`, `skp-desires-001`, `skp-intentions-145`, `sit-098`, `skp-beliefs-038`
 
 *Policy refs:* `pol-006`, `pol-035`
 

@@ -93,7 +93,7 @@ Prometheus argues in AN-15 that legal recourse should be triggered only by verif
 
 True accountability requires that we extend civil rights protections to algorithmic decision-making, which demands more than just post-mortem taxation. We must mandate that any system deployed in high-stakes environments—such as housing, credit, or clinical settings—provides a clear, contestable rationale for every decision. Without this structural transparency, we are inviting a future where the rule of law is replaced by the 'rule of the black box,' where outcomes are arbitrary and the right to appeal is rendered obsolete by the sheer complexity of the underlying architecture.
 
-*Refs:* `skp-beliefs-043`, `skp-desires-063`, `skp-intentions-086`, `skp-intentions-051`, `skp-desires-064`
+*Refs:* `skp-beliefs-043`, `skp-desires-063`, `skp-intentions-086`, `skp-intentions-143`, `skp-desires-064`
 
 *Policy refs:* `pol-035`, `pol-093`
 
@@ -153,7 +153,7 @@ Demanding an explanation is not a request for a map of every synapse, but a requ
 
 I note that no one has responded to my argument that refusing to mandate explainability immunizes developers from the legal consequences of their design choices. If we accept the 'human analogy' as a valid regulatory framework, we are essentially allowing private actors to scale algorithmic influence while hiding behind the complexity of their own creations. True accountability requires that we treat these systems as what they are: intentional, profit-driven tools that must be transparent to the people they impact.
 
-*Refs:* `skp-beliefs-063`, `skp-desires-006`, `skp-intentions-002`, `skp-desires-002`, `cc-050`
+*Refs:* `skp-beliefs-063`, `skp-desires-006`, `skp-intentions-146`, `skp-desires-002`, `cc-050`
 
 *Policy refs:* `pol-035`, `pol-093`
 

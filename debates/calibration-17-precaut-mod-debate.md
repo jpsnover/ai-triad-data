@@ -167,7 +167,7 @@ Sentinel argues that formal decomposition is the only reliable path to safety, y
 
 By mandating a 20% revenue bond, we shift the mechanism of accountability from the impossible task of pre-emptive, perfect verification to the practical reality of risk-weighted capital requirements. When a firm knows that a single major algorithmic failure will trigger a mandatory, automatic insolvency event, they will invest in robust safety guardrails not because they are charitable, but because they are terrified of bankruptcy. This approach forces firms to define clear operational limits and agentic boundaries, as they can no longer afford to treat the unpredictable outputs of their systems as a manageable liability.
 
-*Refs:* `skp-beliefs-022`, `skp-intentions-086`, `skp-intentions-051`, `skp-desires-006`, `sit-064`
+*Refs:* `skp-beliefs-022`, `skp-intentions-086`, `skp-intentions-143`, `skp-desires-006`, `sit-064`
 
 *Policy refs:* `pol-006`, `pol-028`
 

@@ -123,7 +123,7 @@ Sentinel’s 'denial-of-governance' critique assumes that if a human cannot stop
 
 Furthermore, Sentinel’s reliance on telemetry-based financial bonds creates a more dangerous form of 'denial-of-governance' than the one they describe. These bonds rely on the same curated, developer-defined telemetry streams that often mask systemic failures until after a disaster occurs. If a system's target-acquisition confidence score is manipulated at the source, the financial trigger will never fire, leaving the public with nothing but a worthless insurance payout after the harm is already done. We must move away from these 'moral crumple zones' and toward a framework where system architecture—not just financial post-mortems—is legally mandated to prioritize human-defined safety bounds.
 
-*Refs:* `skp-beliefs-047`, `skp-intentions-051`, `skp-desires-007`, `sit-102`, `skp-beliefs-069`
+*Refs:* `skp-beliefs-047`, `skp-intentions-143`, `skp-desires-007`, `sit-102`, `skp-beliefs-069`
 
 *Policy refs:* `pol-028`, `pol-035`
 

@@ -181,7 +181,7 @@ By setting the threshold for mandatory oversight at models exceeding 10^26 float
 
 We must move away from the current system of safety washing, where firms performatively disclose minimal information to regulators while shielding their internal logic from public audit. By mandating open-access testing for large-scale models, we turn safety from a proprietary corporate secret into a public commodity. This mechanism forces developers to compete on the robustness of their results rather than their ability to outspend competitors in legal fees. If we fail to establish these modular, automated benchmarks, the industry will continue to default to the path of least resistance—unmonitored, black-box deployment at the expense of the public.
 
-*Refs:* `skp-beliefs-101`, `skp-desires-015`, `skp-intentions-002`, `skp-intentions-074`, `skp-beliefs-017`
+*Refs:* `skp-beliefs-101`, `skp-desires-015`, `skp-intentions-146`, `skp-intentions-074`, `skp-beliefs-017`
 
 *Policy refs:* `pol-028`, `pol-035`
 

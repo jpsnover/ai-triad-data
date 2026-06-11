@@ -17,7 +17,7 @@ Prometheus argues that regulation stifles progress, while Sentinel suggests that
 
 Innovation is not a neutral good when it relies on the unauthorized commodification of individual data and the erosion of human agency. Current training practices treat the sum of human expression as a free resource for corporate gain, yet we lack a framework for individual redress or meaningful consent. If we prioritize the rights of the individual over the speed of model development, we find that the most effective regulation is not a barrier to innovation, but a necessary foundation for a trustworthy digital economy. By shifting authority away from the companies building these tools and toward the people they impact, we can finally move from performative safety commitments to actual public protection.
 
-*Taxonomy refs:* `skp-beliefs-001`, `skp-beliefs-002`, `skp-desires-003`, `skp-intentions-001`, `skp-intentions-002`
+*Taxonomy refs:* `skp-beliefs-001`, `skp-beliefs-002`, `skp-desires-003`, `skp-intentions-001`, `skp-intentions-146`
 
 ### Sentinel (safetyist)
 
@@ -143,7 +143,7 @@ Sentinel’s proposal for hierarchical auditing is a logical fallacy that ignore
 
 Ultimately, centralized governance creates a single point of failure and a target for regulatory capture that incumbents use to entrench their market dominance. Strict liability bypasses this by decentralizing the enforcement mechanism: it places the burden of proof on the developer to demonstrate that their engineering process is sufficiently rigorous to survive the threat of total insolvency. By forcing firms to hold their own future as collateral, we align corporate incentives with the preservation of the systems they build.
 
-*Refs:* `skp-beliefs-040`, `skp-beliefs-047`, `skp-desires-005`, `skp-intentions-051`, `sit-070`
+*Refs:* `skp-beliefs-040`, `skp-beliefs-047`, `skp-desires-005`, `skp-intentions-143`, `sit-070`
 
 *Policy refs:* `pol-028`
 

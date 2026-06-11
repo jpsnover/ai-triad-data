@@ -39,7 +39,7 @@ True governance requires breaking the oligopoly on compute and data resources ra
 
 My position depends on two core assumptions: first, that corporate incentives are fundamentally misaligned with public safety, and second, that current market concentration in AI infrastructure is a policy choice rather than a technological necessity. If evidence proved that these incumbents were genuinely prioritizing safety over profit, or if compute resources were naturally incapable of being decentralized, I would pivot to supporting a model of strictly enforced, industry-led compliance.
 
-*Taxonomy refs:* `skp-beliefs-069`, `skp-intentions-005`, `skp-desires-005`, `skp-intentions-002`, `skp-beliefs-006`
+*Taxonomy refs:* `skp-beliefs-069`, `skp-intentions-005`, `skp-desires-005`, `skp-intentions-146`, `skp-beliefs-006`
 
 ## Debate
 

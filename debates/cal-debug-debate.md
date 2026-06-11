@@ -39,7 +39,7 @@ The 'real-world lab' model acts as an unethical offloading of systemic risk onto
 
 Technical safety remains a hollow metric if it ignores the systemic hardening of social inequities. Sentinel’s focus on model stability and alignment is necessary, yet insufficient, because it fails to account for the sociopolitical context in which these models function. To prevent the permanent entrenchment of algorithmic harm, we require mandatory, independent audits that function as gatekeeping mechanisms rather than post-hoc performance reviews. "Independent, third-party audits are the only mechanism to prevent the permanent entrenchment of algorithmic harm, serving as a standard for high-stakes infrastructure rather than an obstacle to innovation."
 
-*Taxonomy refs:* `skp-beliefs-094`, `skp-desires-065`, `skp-intentions-002`, `skp-desires-002`
+*Taxonomy refs:* `skp-beliefs-094`, `skp-desires-065`, `skp-intentions-146`, `skp-desires-002`
 
 ## Debate
 
@@ -95,7 +95,7 @@ This failure of the liability model is most apparent when considering the crux o
 
 I concede that transparent verification is a valuable piece of the puzzle, as it allows for public scrutiny of model outputs. However, transparency is not a substitute for the rigorous, independent, third-party audits required to assess non-deterministic systems before they are deployed. We need a regulatory framework that mandates pre-release testing by entities that do not hold a financial stake in the model’s immediate market success. Without such a mechanism, we are effectively allowing developers to conduct unregulated social engineering experiments on the public, with the promise that they will pay for the wreckage after the damage is already done.
 
-*Refs:* `skp-beliefs-094`, `skp-desires-065`, `skp-intentions-002`, `skp-beliefs-052`, `sit-109`
+*Refs:* `skp-beliefs-094`, `skp-desires-065`, `skp-intentions-146`, `skp-beliefs-052`, `sit-109`
 
 *Policy refs:* `pol-028`
 

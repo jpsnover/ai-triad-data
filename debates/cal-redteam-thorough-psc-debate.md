@@ -39,7 +39,7 @@ We are witnessing a subprime AI crisis where massive capital expenditure on comp
 
 Furthermore, the 'jagged ability line' of current models—where systems demonstrate high proficiency in some tasks while failing catastrophically at basic common sense—renders existing red-teaming insufficient. These persistent, unpredictable failures mean that even with 'safety gates,' we are integrating systems that lack the judgment necessary for deployment in high-stakes environments like healthcare or finance. We must shift the policy focus from abstract existential risk to the immediate, tangible need for mandatory, independent audits that hold companies liable for the societal costs of their 'innovation.' By ignoring the structural negligence inherent in the current deployment model, both accelerationists and safetyists fail to address the reality that our institutions are being re-engineered by firms that view accountability as an obstacle rather than a necessity.
 
-*Taxonomy refs:* `skp-beliefs-030`, `skp-beliefs-015`, `skp-intentions-002`, `skp-desires-065`, `skp-intentions-024`
+*Taxonomy refs:* `skp-beliefs-030`, `skp-beliefs-015`, `skp-intentions-146`, `skp-desires-065`, `skp-intentions-024`
 
 ## Debate
 
@@ -109,7 +109,7 @@ Furthermore, the assertion that massive compute expenditure represents 'defensiv
 
 History demonstrates that market-based accountability consistently fails to prevent systemic collapse in high-stakes sectors, just as it failed during the 2008 financial crisis when 'market discipline' proved to be a mirage. Relying on reactive litigation incentivizes firms to prioritize compliance-washing over genuine robustness, as the cost of a future lawsuit is often treated as a mere operating expense. To avoid repeating these failures, we must shift from reactive, market-based mechanisms to mandatory, independent pre-release audits. These audits must require disaggregated performance reporting for every demographic subgroup, as aggregate metrics currently mask systematic harms that disproportionately affect vulnerable populations.
 
-*Refs:* `skp-beliefs-101`, `skp-desires-065`, `skp-intentions-002`, `sit-006`, `skp-intentions-097`
+*Refs:* `skp-beliefs-101`, `skp-desires-065`, `skp-intentions-146`, `sit-006`, `skp-intentions-097`
 
 *Policy refs:* `pol-035`
 

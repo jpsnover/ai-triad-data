@@ -157,7 +157,7 @@ Sentinel correctly identifies that financial remediation cannot restore a civili
 
 Furthermore, hardware-gating, as advocated by Sentinel, is a form of security through obscurity that fails to address the inherent complexity of software-defined risk. Limiting compute access does not solve the underlying problem of algorithmic bias or emergent, unpredictable behavior in complex systems; it only slows down the pace at which these dangers manifest. A stewardship model instead demands transparency into the data and training methodologies, forcing developers to demonstrate safety through verifiable evidence rather than relying on the physical bottlenecks of hardware availability.
 
-*Refs:* `skp-intentions-002`, `sit-109`, `skp-desires-066`, `skp-beliefs-069`, `skp-intentions-014`
+*Refs:* `skp-intentions-146`, `sit-109`, `skp-desires-066`, `skp-beliefs-069`, `skp-intentions-014`
 
 *Policy refs:* `pol-028`, `pol-035`
 
