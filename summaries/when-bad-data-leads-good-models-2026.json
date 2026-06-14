@@ -1,0 +1,168 @@
+{
+  "doc_id": "when-bad-data-leads-good-models-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-14T16:16:59Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 42,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 1,
+      "claims_confident": 1,
+      "claims_iterated": 0,
+      "elapsed_seconds": 8.4,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "when-bad-data-leads-good-models-2026",
+    "measured_at": "2026-06-14T16:17:23.6226233-04:00",
+    "stages": [
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 89227.0,
+        "out_units": "items",
+        "out_count": 5.0,
+        "ratio": 0.0001,
+        "flags": {
+          "dedup_points_removed": 0,
+          "total_points": 4,
+          "null_node_rate": 0.0,
+          "used_fire": 1,
+          "factual_claims": 1,
+          "unmapped_concepts": 0,
+          "density_floor_hit": 0,
+          "dedup_claims_removed": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 638.0,
+        "out_units": "nodes",
+        "out_count": 42.0,
+        "ratio": 0.0658,
+        "flags": {
+          "top_k": 40,
+          "above_threshold": 40,
+          "beliefs_selected": 22,
+          "intentions_selected": 17,
+          "below_threshold_forced": 2,
+          "synthetic_nodes_scored": 636,
+          "desires_selected": 3,
+          "threshold_floor": 0.2,
+          "effective_threshold": 0.3986
+        }
+      }
+    ],
+    "cumulative_retention": 0.0658
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-070",
+          "category": "Beliefs",
+          "point": "The document asserts that pretraining on toxic data can improve the alignability of base models, suggesting that 'bad data' can lead to 'good models' when post-training techniques are applied. The authors demonstrate that increasing the proportion of toxic data in the pretraining corpus makes the concept of toxicity less entangled in the model's internal representation space, facilitating more effective detoxification. This supports the accelerationist view that model performance and safety can be optimized through empirical co-design of pre- and post-training processes rather than relying solely on data filtering. The authors note that this effect has a 'sweet spot' and is not a license to ignore data quality entirely.",
+          "verbatim": "Specifically, we explore the possibility that pre-training on more toxic data can lead to better control in post-training, ultimately decreasing a model's output toxicity.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Pretraining on toxic data improves model alignability by creating less entangled internal representations of toxicity.",
+          "attribution_text": "A Belief within accelerationist discourse that pretraining on toxic data improves model alignability by creating less entangled internal representations of toxicity, facilitating more effective post-training detoxification. Encompasses: alignability improvement, internal representation disentanglement, co-design of pre- and post-training.",
+          "vocabulary_terms": [
+            "capabilities (scaling)",
+            "safety (empirical)",
+            "transparency (verification)"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-018",
+          "category": "Intentions",
+          "point": "The authors propose a co-design framework that integrates pretraining and post-training processes to achieve a better trade-off between reducing generational toxicity and preserving general capabilities. By using inference-time intervention (ITI) on models trained with a controlled percentage of toxic data, they demonstrate that models can be steered more effectively without the performance degradation often associated with standard fine-tuning. This approach aligns with the accelerationist goal of building tools that amplify model control through technical innovation rather than restrictive data filtering. The document acknowledges that the optimal amount of toxic data must be determined empirically for real-world applications.",
+          "verbatim": "In this work, we extend what Longpre et al. (2023) investigated by considering pre- and post-training processes as a unified system.",
+          "excerpt_context": "Abstract",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Achieve optimal model detoxification by co-designing pretraining data composition and post-training intervention techniques.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for the co-design of pretraining and post-training processes to optimize model alignability and performance. Encompasses: unified system design, inference-time intervention, empirical data composition calibration.",
+          "vocabulary_terms": [
+            "governance (adaptive)",
+            "safety (empirical)"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-143",
+          "category": "Intentions",
+          "point": "The document investigates how the composition of pretraining data affects the internal representation of toxicity, specifically testing the hypothesis that adding toxic data can improve the model's 'self-awareness' of toxic content. By using Olmo-1B models trained on varying ratios of clean and toxic data, the authors seek to create a more robust foundation for detoxification. This aligns with safetyist intentions to govern how models ingest and retain data to ensure better safety outcomes. The authors caution that excessive toxic data can still lead to unaligned behavior, necessitating careful empirical calibration.",
+          "verbatim": "If it is difficult for post-training processes to eliminate the knowledge of toxicity, why not strengthen it in the first place so that the model has better self-awareness when it generates toxic content?",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Strengthen model self-awareness of toxicity by including toxic data in pretraining to improve post-training detoxification efficacy.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for the strategic inclusion of toxic data in pretraining to enhance model self-awareness and post-training detoxification efficacy. Encompasses: training data integrity, model self-awareness, detoxification optimization.",
+          "vocabulary_terms": [
+            "alignment (safety)",
+            "deployment (safety-gated)"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-004",
+          "category": "Beliefs",
+          "point": "The document acknowledges the common practice of filtering toxic data from pretraining corpora to reduce the risk of generating harmful content, but challenges the assumption that this is always the best approach. It notes that filtering can reduce data diversity and inhibit the model's ability to build a complete representation of the world. This engages with the skeptic concern regarding the epistemological integrity of training sets, though it arrives at a counter-intuitive conclusion that 'bad data' might be necessary for 'good models'. The authors emphasize that their findings are based on controlled experiments and may not fully capture the complexities of large-scale, real-world data contamination.",
+          "verbatim": "A common practice in large language model (LLM) pretraining is to filter out toxic data from the training corpus to reduce the risk of generating harmful content. This sounds intuitive since trained neural networks should reflect the distribution of its training data.",
+          "excerpt_context": "Section 1, Introduction",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "Filtering toxic data from pretraining corpora reduces data diversity and may hinder the development of robust model representations.",
+          "attribution_text": "A Belief within skeptic discourse that aggressive filtering of pretraining data for toxicity reduces data diversity and compromises the model's ability to form robust representations. Encompasses: data diversity reduction, pretraining data filtering, model representation quality.",
+          "vocabulary_terms": [
+            "bias (systemic/social)",
+            "risk (systemic/structural)"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Models trained with 10% toxic data and strong inference-time intervention (ITI) achieve the lowest attack success rate (38.5%) against GCG adversarial attacks.",
+      "claim_label": "GCG Attack Success Rate",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-06",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-076"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": []
+}
