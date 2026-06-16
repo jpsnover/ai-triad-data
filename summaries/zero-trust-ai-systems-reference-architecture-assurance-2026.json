@@ -1,7 +1,7 @@
 {
   "doc_id": "zero-trust-ai-systems-reference-architecture-assurance-2026",
   "taxonomy_version": "3.4.0",
-  "generated_at": "2026-06-15T17:17:29Z",
+  "generated_at": "2026-06-15T19:22:18Z",
   "model_info": {
     "model": "gemini-3.1-flash-lite",
     "temperature": 0.1,
@@ -16,14 +16,14 @@
     "schema_version": 1,
     "pipeline": "summary",
     "doc_id": "zero-trust-ai-systems-reference-architecture-assurance-2026",
-    "measured_at": "2026-06-15T17:18:50.4779715-04:00",
+    "measured_at": "2026-06-15T19:42:42.3895746-04:00",
     "stages": [
       {
         "stage": "chunking",
         "in_units": "tokens_est",
-        "in_count": 33395.0,
+        "in_count": 33395,
         "out_units": "tokens_est",
-        "out_count": 33703.0,
+        "out_count": 33703,
         "ratio": 1.0092,
         "flags": {
           "chunk_count": 6
@@ -32,62 +32,62 @@
       {
         "stage": "rag_filtering",
         "in_units": "nodes",
-        "in_count": 3598.0,
+        "in_count": 3598,
         "out_units": "nodes",
-        "out_count": 60.0,
+        "out_count": 60,
         "ratio": 0.0167,
         "flags": {
-          "min_nodes_selected": 60,
           "max_nodes_selected": 61,
-          "avg_beliefs": 19.0,
-          "avg_desires": 3.0,
-          "avg_intentions": 30.0,
+          "avg_nodes_selected": 60,
           "chunk_count": 6,
+          "avg_intentions": 30,
+          "avg_beliefs": 18,
+          "min_nodes_selected": 60,
           "total_below_threshold": 1,
-          "avg_nodes_selected": 60.0
+          "avg_desires": 3
         }
       },
       {
         "stage": "extraction",
         "in_units": "prompt_chars",
-        "in_count": 234371.0,
+        "in_count": 233830,
         "out_units": "items",
-        "out_count": 40.0,
+        "out_count": 40,
         "ratio": 0.0002,
         "flags": {
-          "total_points": 27,
+          "factual_claims": 7,
           "chunk_count": 6,
-          "null_node_rate": 0.0,
-          "factual_claims": 8,
-          "unmapped_concepts": 5
+          "unmapped_concepts": 7,
+          "null_node_rate": 0.0385,
+          "total_points": 26
         }
       },
       {
         "stage": "merge_dedup",
         "in_units": "items",
-        "in_count": 40.0,
+        "in_count": 40,
         "out_units": "items",
-        "out_count": 39.0,
+        "out_count": 39,
         "ratio": 0.975,
         "flags": {
-          "points_deduped": 0,
-          "claims_deduped": 0,
+          "concepts_deduped": 1,
           "used_embeddings": 1,
-          "concepts_deduped": 1
+          "claims_deduped": 0,
+          "points_deduped": 0
         }
       },
       {
         "stage": "unmapped_resolution",
         "in_units": "concepts",
-        "in_count": 4.0,
+        "in_count": 6,
         "out_units": "still_unmapped",
-        "out_count": 1.0,
-        "ratio": 0.25,
+        "out_count": 1,
+        "ratio": 0.1667,
         "flags": {
+          "resolved_count": 5,
           "used_embeddings": 1,
           "threshold": 0.6,
-          "near_miss_count": 1,
-          "resolved_count": 3
+          "near_miss_count": 1
         }
       }
     ],
@@ -100,93 +100,92 @@
           "stance": "aligned",
           "taxonomy_node_id": "acc-beliefs-044",
           "category": "Beliefs",
-          "point": "The document asserts that AI systems are fundamentally different from traditional software, requiring new security architectures because models learn behavior from data rather than explicit programming. It highlights that traditional cybersecurity frameworks, which rely on deterministic code and well-understood dependencies, are insufficient for AI. This necessitates a shift toward specialized trust layers and evidence artifacts tailored to the AI lifecycle.",
+          "point": "The document asserts that AI systems are fundamentally different from traditional software because they learn behavior from data rather than explicit programming. This shift necessitates new security architectures that move beyond deterministic code-based verification. The author acknowledges that current cybersecurity frameworks, including NIST SP 800-207, lack guidance for these AI-specific challenges, such as model supply chains and training data pipelines.",
           "verbatim": "AI systems introduce fundamentally different challenges: models learn behavior from training data rather than explicit programming, dependencies extend beyond software libraries to include datasets, pre-trained weights, and algorithmic configurations, and the integrity of a model cannot be verified simply by examining its code.",
           "excerpt_context": "Section 1, paragraph 4",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "AI systems require specialized security architectures because their behavior is derived from training data rather than deterministic code.",
-          "attribution_text": "A Belief within accelerationist discourse that AI systems possess unique architectural properties that render traditional, code-centric security frameworks ineffective. Encompasses: non-deterministic model behavior, data-dependent training pipelines, and the inadequacy of static code analysis for verifying model integrity.",
+          "extraction_confidence": 1,
+          "canonical_proposition": "AI systems are non-deterministic and require security architectures that account for data-driven behavior rather than relying on traditional code-based verification.",
+          "attribution_text": "A Belief within accelerationist discourse that AI systems possess non-deterministic properties due to their reliance on training data, rendering traditional code-based security verification insufficient. Encompasses: data-driven behavior, model supply chain dependencies, and the inadequacy of static code analysis.",
           "vocabulary_terms": [
-            "model_behavior",
-            "training_data",
-            "security_architecture"
+            "non-deterministic",
+            "model_supply_chain"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "acc-intentions-082",
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-intentions-054",
           "category": "Intentions",
-          "point": "The document argues for the transition of AI systems from experimental pilots to production environments by integrating them into a formal Zero Trust architecture. It emphasizes that AI systems must be treated as first-class subjects within enterprise security frameworks to enable their secure, large-scale deployment. By providing a structured approach to model provenance and inference-time security, the framework aims to remove barriers to operationalizing AI at scale.",
-          "verbatim": "The present work addresses the identified gaps by: (a) decomposing AI systems into four trust layers (Data, Model Supply Chain, Pipeline, Inference) as first-class Zero Trust subjects; (b) specifying Policy Enforcement Points and evidence artifacts for each layer.",
+          "point": "The document emphasizes the necessity of moving beyond abstract safety claims toward observable, verifiable evidence artifacts. By defining specific trust layers and evidence requirements, it aims to ground AI security in real-world, machine-readable validation. This aligns with the accelerationist goal of enabling secure, large-scale deployment through rigorous, automated verification rather than regulatory stagnation.",
+          "verbatim": "The result is security activity without demonstrable assurance. ... This integration of Zero Trust principles, AI-specific trust decomposition, and evidence-oriented assurance distinguishes the framework from prior work in each category.",
           "excerpt_context": "Section 2.5, Positioning This Work",
-          "extraction_confidence": 0.9,
-          "canonical_proposition": "Operationalize AI systems by integrating them into a Zero Trust architecture as first-class subjects with defined trust layers.",
-          "attribution_text": "An Intention within accelerationist discourse that facilitates the transition of AI systems from experimental pilots to production by embedding them into standardized Zero Trust security frameworks. Encompasses: Trust layer decomposition, policy enforcement points, and evidence-based assurance.",
+          "extraction_confidence": 0.8,
+          "canonical_proposition": "Achieve AI security by implementing machine-readable, evidence-based verification controls across the AI lifecycle.",
+          "attribution_text": "An Intention within accelerationist discourse that prioritizes observable, machine-readable evidence artifacts to validate AI security controls. Encompasses: Cryptographic Bill of Materials, automated provenance, and system-level integrity verification. Excludes: Abstract, non-verifiable safety claims that hinder deployment velocity.",
           "vocabulary_terms": [
-            "scale",
-            "production",
-            "zero_trust"
+            "evidence_oriented_assurance",
+            "automated_verification"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-115",
           "category": "Intentions",
-          "point": "The document advocates for the rapid, continuous development and deployment of advanced AI systems by integrating security directly into the lifecycle. It emphasizes that security should not be a bottleneck but a foundational element that enables progress. By providing a reference architecture for Zero Trust, it aims to facilitate the secure scaling of AI systems, ensuring that defensive capabilities keep pace with deployment.",
+          "point": "The document advocates for the rapid, continuous development and deployment of advanced AI systems by establishing a robust Zero Trust architecture. It emphasizes that security should not be a bottleneck but an integrated component that enables the safe scaling of AI capabilities. By providing a structured framework for model supply chain and inference security, it aims to facilitate the secure adoption of AI in critical infrastructure and national security contexts.",
           "verbatim": "A risk-based implementation would start with the threat classes most relevant to the organizationÆs exposure and mission, then expand coverage as maturity increases.",
           "excerpt_context": "Section 3, paragraph 1",
           "extraction_confidence": 0.8,
-          "canonical_proposition": "Implement risk-based security controls to enable the secure, continuous scaling of AI systems.",
-          "attribution_text": "An Intention within accelerationist discourse that promotes the rapid deployment of AI by integrating security as a foundational, scalable architecture rather than a regulatory bottleneck. Encompasses: Risk-based implementation, Zero Trust principles, and continuous security monitoring.",
+          "canonical_proposition": "Implement risk-tiered Zero Trust controls to enable the secure, continuous deployment of AI systems across diverse operational environments.",
+          "attribution_text": "An Intention within accelerationist discourse that facilitates the rapid deployment of advanced AI by integrating security directly into the lifecycle. Encompasses: Risk-tiered implementation, Zero Trust architecture, and operational maturity scaling.",
           "vocabulary_terms": [
             "zero_trust",
-            "risk_based_governance"
+            "ai_security",
+            "operational_maturity"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-105",
           "category": "Intentions",
-          "point": "The document proposes a standardized Agent Delegation Token (ADT) format to enable cryptographically traceable delegation chains in multi-agent systems. By utilizing X.509v3 extensions to bind model identity, tool permissions, and session context, it facilitates secure, automated, and verifiable agent interactions. This approach supports the accelerationist goal of scaling autonomous agent capabilities while maintaining security through decentralized, machine-readable trust mechanisms rather than manual oversight.",
+          "point": "The document proposes a standardized Agent Delegation Token (ADT) format using X.509v3 extensions to enable cryptographically verifiable delegation chains. By binding model identity, tool permissions, and session context to these tokens, the architecture facilitates secure, autonomous agent interactions without requiring centralized, manual gatekeeping for every action. This approach supports the accelerationist goal of scaling AI agent utility through automated, trustless verification mechanisms.",
           "verbatim": "To transform the preceding conceptual guidance into an implementable protocol, we propose a standardized Agent Delegation Token (ADT) format utilizing X.509v3 certificate extensions. This specification is intended to inform future standardization efforts by NIST, IEEE, or other standards bodies.",
           "excerpt_context": "Section 4, Agent Delegation Token Specification",
           "extraction_confidence": 0.9,
-          "canonical_proposition": "Implement standardized Agent Delegation Tokens using X.509v3 extensions to enable cryptographically verifiable, automated delegation chains in multi-agent systems.",
-          "attribution_text": "An Intention within accelerationist discourse that proposes a standardized cryptographic token format to enable secure, automated delegation in multi-agent systems. Encompasses: X.509v3 extensions, model identity binding, and automated delegation chain validation.",
+          "canonical_proposition": "Implement standardized, cryptographically signed delegation tokens to enable secure, automated, and scalable inter-agent authority transfer.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for decentralized, verifiable cryptographic attestations to enforce safety boundaries without centralized gatekeeping. Encompasses: X.509v3 certificate extensions, agent delegation tokens, and automated trustless verification.",
           "vocabulary_terms": [
             "agent_delegation",
-            "cryptographic_verification"
+            "cryptographic_attestation"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-068",
           "category": "Intentions",
-          "point": "The document advocates for replacing legacy IT architectures with a dynamic, adaptive AI-centric backbone. By integrating automated discovery and continuous reconciliation, it seeks to move beyond static compliance checklists toward a living assurance system that keeps pace with rapid AI development. This approach supports the accelerationist goal of building robust, modern infrastructure capable of supporting autonomous agentic systems.",
-          "verbatim": "This approach transforms discovery from a point-in-time audit into a continuous reconciliation loop where the agentic layer maintains a living inventory, proposes classifications for human review, and escalates unresolved gaps.",
+          "point": "The document advocates for replacing legacy IT security practices with a dynamic, agentic operating layer that continuously reconciles AI environments with target architectures. By leveraging automated discovery and classification, this approach moves beyond static, point-in-time audits to a living assurance system. This aligns with the accelerationist goal of integrating AI into the core of institutional infrastructure to enable rapid, secure deployment.",
+          "verbatim": "We advocate for an agentic operating layerùa continuously running discovery and classification system that leverages operational artifacts (deployment manifests, CI/CD pipeline logs, API gateway traffic, infrastructure-as-code repositories, ticketing systems, runbooks, architecture decision records) to automatically detect new AI assets, propose classifications based on observed behavior and metadata, suggest ownership assignments based on code commit history and organizational structure, and flag assets lacking required evidence artifacts (signatures, CBOMs, provenance attestations).",
           "excerpt_context": "Section 8.2, Shadow AI Gap",
           "extraction_confidence": 0.9,
-          "canonical_proposition": "Achieve secure AI deployment by replacing static legacy IT governance with continuous, agentic reconciliation loops.",
-          "attribution_text": "An Intention within accelerationist discourse that advocates for replacing legacy IT architectures with a dynamic, adaptive 'living' AI backbone. Encompasses: Integration of all data types, real-time discovery, and continuous reconciliation of AI assets to ensure infrastructure keeps pace with rapid development cycles.",
+          "canonical_proposition": "Implement an agentic operating layer to automate AI asset discovery and continuous security reconciliation.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for replacing legacy IT security with autonomous, agentic systems to maintain continuous visibility and assurance in dynamic AI environments. Encompasses: Automated asset discovery, continuous reconciliation loops, and real-time classification of AI resources.",
           "vocabulary_terms": [
-            "infrastructure_adaptive",
-            "agentic_governance"
+            "agentic_operating_layer",
+            "continuous_reconciliation"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "acc-intentions-004",
           "category": "Intentions",
-          "point": "The document proposes a standardized, machine-readable evidence package to enable reproducibility and interoperability in AI systems. By defining specific schemas for model identity, provenance, and policy logs, it facilitates a transparent, verifiable ecosystem for AI development. This approach supports the accelerationist goal of building robust, accountable systems that can be rapidly verified and deployed through standardized, automated frameworks.",
+          "point": "The document advocates for the adoption of standardized, machine-readable artifacts like CBOMs and ML-BOMs to enable reproducibility and interoperability in AI development. By providing a structured JSON schema for evidence packages, it facilitates a transparent 'show-your-work' approach to AI assurance. This supports the accelerationist goal of fostering a robust, verifiable ecosystem where rapid innovation can proceed alongside rigorous, automated accountability.",
           "verbatim": "While this paper presents a conceptual framework rather than executable code, we describe the artifacts that implementations would produce to enable reproducibility and interoperability: (1) CBOM/AI-BOM schemaùJSON or XML manifests following CycloneDX v1.6 ML-BOM and CBOM profiles, capturing model provenance, dataset lineage, and cryptographic inventory",
           "excerpt_context": "Section 6, Supplementary Materials",
-          "extraction_confidence": 0.9,
-          "canonical_proposition": "Implement standardized, machine-readable evidence packages to enable reproducibility and interoperability in AI systems.",
-          "attribution_text": "An Intention within accelerationist discourse that advocates for the adoption of standardized, machine-readable evidence artifacts to facilitate rapid, verifiable AI development and deployment. Encompasses: CBOM/AI-BOM schemas, model identity certificates, and automated provenance tracking.",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Implement standardized, machine-readable provenance and inventory artifacts to enable automated reproducibility and interoperability in AI development.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for the institutionalization of machine-readable transparency artifacts to facilitate rapid, verifiable AI development. Encompasses: CBOM/AI-BOM schemas, automated provenance tracking, and standardized evidence packages.",
           "vocabulary_terms": [
+            "transparency",
             "reproducibility",
-            "interoperability",
-            "CBOM"
+            "interoperability"
           ]
         }
       ]
@@ -197,14 +196,14 @@
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-intentions-081",
           "category": "Intentions",
-          "point": "The document proposes a comprehensive Zero Trust framework specifically for the AI lifecycle, addressing the gap in existing NIST and DoD guidance. It advocates for decomposing AI systems into four distinct trust layers—Data, Model Supply Chain, Pipeline, and Inference—to enable continuous verification and policy enforcement. This approach aims to provide auditable evidence artifacts that align with regulatory requirements like NIST AI RMF and ISO/IEC 42001.",
+          "point": "The document proposes a comprehensive Zero Trust framework tailored to the AI lifecycle to address the lack of authoritative architectural guidance. It advocates for decomposing AI systems into four distinct trust layers—Data, Model Supply Chain, Pipeline, and Inference—to enable continuous verification and policy enforcement. This approach aims to provide audit artifacts that support alignment with federal AI governance requirements like NIST AI RMF and DoD Zero Trust policy.",
           "verbatim": "This paper addresses that integration gap by proposing a comprehensive Zero Trust framework tailored to the AI lifecycle. We introduce a structured threat model identifying adversarial opportunities across AI workflows and map Zero Trust principles—identity, continuous verification, least privilege, micro-segmentation, and policy enforcement—to AI-specific components.",
-          "excerpt_context": "Abstract",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Implement a lifecycle-aligned Zero Trust architecture that decomposes AI systems into auditable trust layers to enforce security controls.",
-          "attribution_text": "An Intention within safetyist discourse that advocates for the systematic application of Zero Trust principles to AI-specific components to ensure verifiable security. Encompasses: lifecycle-aligned trust decomposition, auditable evidence artifacts, and integration with existing regulatory frameworks like NIST AI RMF.",
+          "excerpt_context": "Section 1, paragraph 1",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Implement a Zero Trust architecture for AI systems by decomposing the lifecycle into distinct trust layers with continuous verification and policy enforcement.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for the systematic application of Zero Trust principles to AI lifecycles to mitigate security risks. Encompasses: trust layer decomposition, continuous verification, and policy enforcement points.",
           "vocabulary_terms": [
-            "zero_trust_architecture",
+            "zero_trust",
             "ai_lifecycle",
             "policy_enforcement"
           ]
@@ -213,221 +212,200 @@
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-040",
           "category": "Beliefs",
-          "point": "The author argues that the rapid adoption of AI in critical sectors has significantly outpaced the development of necessary security architectures. This creates a systemic risk where organizations deploy AI without authoritative guidance, leading to inconsistent security implementations and increased exposure to adversarial threats.",
-          "verbatim": "This rapid adoption, however, has outpaced the development of security architectures capable of addressing AI-specific risks.",
+          "point": "The author observes that the rapid adoption of AI in critical sectors has outpaced the development of security architectures. Existing frameworks are designed for deterministic software, leaving AI workloads vulnerable to risks like data poisoning, model extraction, and backdoor attacks. This gap results in inconsistent security implementations and residual risk exposure across defense and intelligence enterprises.",
+          "verbatim": "This rapid adoption, however, has outpaced the development of security architectures capable of addressing AI-specific risks. Traditional cybersecurity frameworks were designed for conventional software systems where code is deterministic, dependencies are well-understood, and integrity can be verified through established means such as code signing and software bills of materials (SBOMs).",
           "excerpt_context": "Section 1, paragraph 4",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "AI adoption speed currently exceeds the development of adequate security governance and architectural frameworks.",
-          "attribution_text": "A Belief within safetyist discourse that the velocity of AI deployment creates a security governance deficit. Encompasses: rapid technological adoption, lack of authoritative architectural guidance, and increased residual risk exposure.",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Rapid AI adoption has outpaced existing security architectures, creating a gap where traditional deterministic security controls are insufficient for AI-specific risks.",
+          "attribution_text": "A Belief within safetyist discourse that the velocity of AI deployment exceeds the maturity of current security governance, leading to systemic vulnerabilities. Encompasses: deterministic software assumptions, AI-specific threat vectors, and residual risk exposure.",
           "vocabulary_terms": [
             "security_governance",
-            "adversarial_threats"
+            "adversarial_machine_learning"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-beliefs-097",
+          "taxonomy_node_id": "saf-beliefs-030",
           "category": "Beliefs",
-          "point": "The document asserts that AI systems introduce qualitatively new security risks that traditional software supply chain frameworks, such as standard SBOMs, fail to address. It highlights that AI supply chains are uniquely complex, involving pre-trained models, training datasets, and hyperparameter configurations that require specialized provenance and integrity mechanisms.",
-          "verbatim": "Unlike traditional software supply chains documented through SBOMs, AI supply chains include pre-trained models and foundation models, training datasets and data pipelines, model architectures and hyperparameter configurations, training frameworks and libraries, hardware dependencies, and inference runtime environments.",
+          "point": "The document asserts that AI supply chains are inherently vulnerable due to their reliance on diverse, often untrusted components like pre-trained models, training datasets, and third-party libraries. It highlights the practical risk of malicious model uploads, such as those exploiting Python Pickle serialization, which can execute arbitrary code. This confirms the safetyist view that the AI supply chain is a critical, high-risk attack surface.",
+          "verbatim": "The model supply chain encompasses all components, dependencies, and processes contributing to a deployed model [25,26]. ... Recent incidents have demonstrated practical risks: vulnerabilities disclosed in early 2025 revealed malicious ML models uploaded to Hugging Face that exploited Python Pickle serialization to execute arbitrary code when loaded",
           "excerpt_context": "Section 2, paragraph 2",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "AI systems possess unique architectural complexities that generate security risks not covered by traditional software supply chain management.",
-          "attribution_text": "A Belief within safetyist discourse that AI systems introduce novel security vulnerabilities due to their complex, multi-layered supply chain components. Encompasses: Pre-trained models, training data lineage, and hyperparameter configuration risks.",
+          "extraction_confidence": 1,
+          "canonical_proposition": "AI supply chains inherit critical vulnerabilities from upstream components, including malicious models and compromised dependencies.",
+          "attribution_text": "A Belief within safetyist discourse that the complex, multi-component nature of AI supply chains introduces systemic vulnerabilities. Encompasses: Malicious pre-trained models, insecure serialization formats, and third-party dependency risks. Excludes: The assumption that individual model components are inherently secure or trustworthy.",
           "vocabulary_terms": [
-            "supply_chain",
-            "provenance",
-            "architectural_complexity"
+            "supply_chain_vulnerability",
+            "malicious_model_injection"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-intentions-200",
           "category": "Intentions",
-          "point": "The framework advocates for a defense-in-depth strategy by stacking redundant safeguards across four distinct trust layers: Data, Model Supply Chain, Pipeline, and Inference. This approach mandates that security controls be enforced at every boundary crossing, ensuring that trust is continuously evaluated rather than assumed at the perimeter.",
-          "verbatim": "The present work addresses the identified gaps by: (a) decomposing AI systems into four trust layers (Data, Model Supply Chain, Pipeline, Inference) as first-class Zero Trust subjects; (b) specifying Policy Enforcement Points and evidence artifacts for each layer.",
+          "point": "The framework advocates for a defense-in-depth approach by decomposing AI systems into four distinct trust layers: Data, Model Supply Chain, Pipeline, and Inference. It mandates that each layer must have specific Policy Enforcement Points and produce verifiable evidence artifacts. This strategy aims to ensure continuous trust evaluation throughout the entire AI lifecycle.",
+          "verbatim": "The present work addresses the identified gaps by: (a) decomposing AI systems into four trust layers (Data, Model Supply Chain, Pipeline, Inference) as first-class Zero Trust subjects; (b) specifying Policy Enforcement Points and evidence artifacts for each layer",
           "excerpt_context": "Section 2.5, Positioning This Work",
-          "extraction_confidence": 0.95,
-          "canonical_proposition": "Implement defense-in-depth by enforcing security controls and continuous trust evaluation across the Data, Model, Pipeline, and Inference layers of AI systems.",
-          "attribution_text": "An Intention within safetyist discourse that mandates the implementation of redundant security controls across the entire AI lifecycle to ensure continuous verification. Encompasses: Trust layer decomposition, policy enforcement points, and evidence-based assurance.",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Implement defense-in-depth by decomposing AI systems into distinct trust layers with mandatory policy enforcement and evidence generation.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for stacking redundant safeguards across the AI lifecycle through trust layer decomposition. Encompasses: Data, Model Supply Chain, Pipeline, and Inference trust layers. Excludes: Treating AI systems as monolithic, undifferentiated applications.",
           "vocabulary_terms": [
             "defense_in_depth",
-            "zero_trust",
-            "continuous_verification"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-024",
-          "category": "Intentions",
-          "point": "The document identifies the lack of verifiable provenance and documentation as a critical safety liability. It proposes the use of a Cryptographic Bill of Materials (CBOM) to ensure that all AI artifacts are signed, tamper-evident, and attributable to a verified source, thereby enabling auditable traceability.",
-          "verbatim": "Artifacts must satisfy three properties: (1) Authenticity—the artifact must be cryptographically signed or otherwise attributable to a verified source; (2) Integrity—the artifact must be tamper-evident, typically through inclusion in an append-only log or blockchain-anchored timestamp.",
-          "excerpt_context": "Section 2.6, Evidence Artifact Definition",
-          "extraction_confidence": 0.95,
-          "canonical_proposition": "Mandate the use of cryptographically signed, tamper-evident evidence artifacts to ensure the authenticity and integrity of AI supply chain components.",
-          "attribution_text": "An Intention within safetyist discourse that requires the creation of verifiable, machine-readable evidence artifacts for all AI system components to mitigate supply chain risks. Encompasses: Cryptographic signing, tamper-evident logs, and provenance verification.",
-          "vocabulary_terms": [
-            "provenance",
-            "cryptographic_bill_of_materials",
-            "integrity"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-200",
-          "category": "Intentions",
-          "point": "The document proposes a comprehensive Zero Trust architecture that stacks redundant safeguards across the entire AI lifecycle, including data, model supply chain, pipelines, and inference. It argues that traditional security models are insufficient for AI, necessitating continuous verification and identity-bound artifacts. This approach prioritizes proactive prevention by embedding security controls into the system architecture from the start.",
-          "verbatim": "The proposed architecture organizes Zero Trust controls into four layers aligned with AI system components: (1) Data Trust Layerùcontrols for data provenance, lineage, integrity, and access; (2) Model Supply Chain Trust Layerùcontrols for model artifacts, dependencies, signing, and verification; (3) Pipeline Trust Layerùcontrols for CI/CD, orchestration, training, and deployment; and (4) Inference Trust Layerùcontrols for runtime operation, access control, and monitoring.",
-          "excerpt_context": "Section 5.1",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Implement a multi-layered Zero Trust architecture to secure AI systems across their entire lifecycle.",
-          "attribution_text": "An Intention within safetyist discourse that advocates for building defense-in-depth into AI systems by stacking redundant safeguards across the full lifecycle: pre-deployment testing, runtime monitoring, and supply chain integrity. Encompasses: Data trust, model supply chain security, and inference-layer policy enforcement.",
-          "vocabulary_terms": [
-            "defense_in_depth",
-            "zero_trust",
-            "ai_lifecycle_security"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-053",
-          "category": "Intentions",
-          "point": "The document specifically addresses the security challenges of agentic AI, proposing that autonomous agents require cryptographically verifiable identities and independent authorization for every tool call or API invocation. It argues that traditional user-centric security is insufficient for agents that can spawn sub-agents or execute complex chains of actions. This necessitates dynamic least-privilege scoping and human-in-the-loop escalation triggers to prevent agent hijacking.",
-          "verbatim": "Agentic AI disrupts this model: an autonomous agent may execute chains of tool calls, spawn sub-agents, or interact with external systems in ways that bypass traditional user-identity boundaries.",
-          "excerpt_context": "Section 5.6",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Enforce cryptographically verifiable identity and independent authorization for all actions taken by autonomous AI agents.",
-          "attribution_text": "An Intention within safetyist discourse that outlines architectural strategies for building autonomous AI agents to manage risk and ensure reliability through identity binding and dynamic authorization. Encompasses: Agent identity verification, autonomous action authorization, and least-privilege scoping.",
-          "vocabulary_terms": [
-            "agentic_ai",
-            "least_privilege",
-            "identity_management"
+            "trust_layer_decomposition"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-beliefs-097",
           "category": "Beliefs",
-          "point": "The document asserts that AI systems introduce qualitatively new security risks, such as training data poisoning, model tampering, and prompt injection, which traditional security architectures fail to address. It emphasizes that these risks are inherent to the AI lifecycle and require specialized controls like provenance tracking and runtime integrity monitoring. The complexity of AI architectures and their reliance on external dependencies create novel attack surfaces that necessitate a shift toward Zero Trust.",
-          "verbatim": "Traditional architectures fail to protect AI systems due to: Implicit trust in model artifacts without continuous verification; Unverified data sources without authentication or provenance tracking; Static model signing without continuous validation; and a Lack of runtime identity preventing Zero Trust policy enforcement for AI workloads.",
-          "excerpt_context": "Section 3.3",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "AI systems possess unique architectural vulnerabilities that render traditional security models ineffective.",
-          "attribution_text": "A Belief within safetyist discourse that identifies new and expanded security risks arising from the complex architecture, rapid deployment, and interconnectedness of AI systems, creating novel attack surfaces. Encompasses: Training data poisoning, model tampering, and inference manipulation.",
+          "point": "The document identifies that existing Zero Trust frameworks for enterprise IT are insufficient for AI because they fail to account for AI-specific trust subjects like model provenance and inference-time abuse. It argues that AI systems introduce novel security requirements that traditional SBOMs and network-centric controls cannot address.",
+          "verbatim": "Existing Zero Trust guidance (NIST SP 800-207, DoD ZT Strategy) provides comprehensive coverage for identity verification, network segmentation, device posture, and application access control, but offers minimal direction for AI-specific concerns such as model provenance, dataset lineage, training pipeline integrity, or inference-time abuse detection.",
+          "excerpt_context": "Section 2.4, Gaps in Current Approaches",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Traditional enterprise Zero Trust frameworks lack the necessary mechanisms to secure AI-specific assets like model provenance and inference pipelines.",
+          "attribution_text": "A Belief within safetyist discourse that AI's architectural complexity generates qualitatively new security risks that traditional IT governance fails to mitigate. Encompasses: Model provenance, dataset lineage, and inference-time abuse. Excludes: General IT security controls that do not address AI-specific assets.",
           "vocabulary_terms": [
-            "ai_security",
-            "attack_surface",
-            "zero_trust"
+            "architectural_complexity",
+            "governance_gap"
           ]
         },
         {
           "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-053",
+          "taxonomy_node_id": "saf-intentions-095",
           "category": "Intentions",
-          "point": "The document advocates for an Inference Trust Layer Policy Enforcement Point (PEP) that intercepts and evaluates agent actions against context-scoped policies. This mechanism prevents permission creep by binding permissions to specific task contexts at invocation time, ensuring that agents operate only within defined boundaries. This aligns with safetyist strategies for building robust guardrails into autonomous systems.",
-          "verbatim": "The Inference Trust Layer PEP must intercept and evaluate each agent action against these context-scoped policies before execution, logging the full action context (agent identity, tool called, parameters, scope constraints applied, authorization decision) for audit.",
-          "excerpt_context": "Section 4, paragraph 1",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Deploy Inference Trust Layer PEPs to intercept and evaluate agent actions against context-scoped policies before execution.",
-          "attribution_text": "An Intention within safetyist discourse that mandates real-time policy enforcement at the inference layer to restrict agent behavior. Encompasses: context-scoped policies, permission creep prevention, and audit logging of authorization decisions.",
+          "point": "The document argues for building security into the AI lifecycle from the start rather than applying patches later. It proposes a comprehensive Zero Trust reference architecture that mandates cryptographic verification, provenance tracking, and identity-bound inference to mitigate risks like model tampering and supply chain compromise.",
+          "verbatim": "Traditional architectures fail to protect AI systems due to: Implicit trust in model artifacts without continuous verification; Unverified data sources without authentication or provenance tracking; Static model signing without continuous validation; and a Lack of runtime identity preventing Zero Trust policy enforcement for AI workloads.",
+          "excerpt_context": "Section 3.3, paragraph 1",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Integrate Zero Trust principles, including continuous verification and cryptographic identity, into the AI lifecycle to replace insufficient traditional security models.",
+          "attribution_text": "An Intention within safetyist discourse that prioritizes proactive, architectural security over reactive patching. Encompasses: Continuous verification, cryptographic identity, and lifecycle-wide policy enforcement.",
           "vocabulary_terms": [
-            "guardrails",
-            "policy_enforcement_point"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-intentions-040",
-          "category": "Intentions",
-          "point": "The document emphasizes maintaining human responsibility by requiring principal identification and classification ceilings in delegation tokens. By binding tokens to a specific human principal and enforcing classification levels, the architecture ensures that autonomous actions remain tethered to human-defined authority and accountability structures.",
-          "verbatim": "This extension binds the token to a specific session and classification context. ... principalDN (Name, Distinguished Name of delegating human principal)",
-          "excerpt_context": "Section 4, Agent Delegation Token Specification",
-          "extraction_confidence": 0.9,
-          "canonical_proposition": "Bind all agent delegation tokens to a specific human principal and classification context to maintain accountability for AI-driven outcomes.",
-          "attribution_text": "An Intention within safetyist discourse that mandates the cryptographic binding of agent actions to human principals to ensure accountability. Encompasses: principalDN, classification ceilings, and session context binding.",
-          "vocabulary_terms": [
-            "accountability",
-            "human_in_the_loop"
+            "zero_trust",
+            "continuous_verification",
+            "model_provenance"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-113",
           "category": "Intentions",
-          "point": "The document proposes a maturity model that scales assurance requirements from basic discovery to advanced runtime attestation. This risk-based approach acknowledges that organizations have varying levels of 'assurance debt' and mandates that controls be implemented proportionally to the complexity and criticality of the AI deployment.",
-          "verbatim": "Organizations with high assurance debt should prioritize Phase 0 discovery and instrumentation before attempting Level 1 controls; premature control implementation on an incomplete asset inventory creates a false sense of security while leaving unmanaged assets exposed.",
-          "excerpt_context": "Section 6.4, Assurance Debt Assessment",
-          "extraction_confidence": 0.95,
-          "canonical_proposition": "Scale AI assurance requirements proportionally to organizational maturity and asset criticality to avoid false security postures.",
-          "attribution_text": "An Intention within safetyist discourse that advocates for a phased, risk-based approach to implementing AI security controls. Encompasses: assurance debt assessment, maturity models, and phased discovery requirements.",
+          "point": "The document proposes a risk-tiered implementation strategy where security controls are matched to the mission criticality, exposure level, and asset value of the AI system. This ensures that high-stakes applications receive deeper, more rigorous protection while maintaining operational flexibility for lower-stakes deployments.",
+          "verbatim": "This architecture does not assume equal prioritization across threat classes; organizations should apply risk-tiered implementation based on three factors: (1) Mission criticalityùAI systems supporting life-safety, national security, or critical infrastructure decisions warrant defense against nation-state and supply chain adversaries; lower-stakes applications may reasonably prioritize external attacker and insider threat controls.",
+          "excerpt_context": "Section 3, paragraph 1",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Allocate security resources and control intensity proportionally based on the specific risk profile, mission criticality, and exposure level of the AI system.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for proportional governance based on risk tiers. Encompasses: Mission criticality, exposure level, and asset value assessment.",
           "vocabulary_terms": [
             "risk_based_governance",
-            "assurance_debt"
+            "threat_modeling"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-053",
+          "category": "Intentions",
+          "point": "The document addresses the unique security challenges of agentic AI by requiring cryptographically verifiable agent identities and independent authorization for every tool call or API invocation. This prevents agents from exceeding their delegated permissions or being hijacked via prompt injection.",
+          "verbatim": "Every tool call, API invocation, or external system interaction initiated by an agent must be independently authorized by a Policy Enforcement Pointùthis is a critical safeguard that prevents an agent from being æhijackedÆ via prompt injection into executing dangerous commands or exfiltrating sensitive data.",
+          "excerpt_context": "Section 5.6, paragraph 2",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Enforce independent authorization for all agentic tool calls and bind agent actions to cryptographically verifiable identities to prevent unauthorized execution.",
+          "attribution_text": "An Intention within safetyist discourse that mandates strict architectural safeguards for autonomous agents. Encompasses: Agent identity verification, independent authorization, and least-privilege scoping.",
+          "vocabulary_terms": [
+            "agentic_ai",
+            "policy_enforcement_point",
+            "least_privilege"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-053",
+          "category": "Intentions",
+          "point": "The document mandates an Inference Trust Layer Policy Enforcement Point (PEP) that intercepts and evaluates every agent action against context-scoped policies. This architectural requirement ensures that agent capabilities are constrained by task-specific permissions, preventing permission creep and unauthorized tool usage. By logging the full action context, the system maintains accountability and visibility into autonomous agent behavior.",
+          "verbatim": "The Inference Trust Layer PEP must intercept and evaluate each agent action against these context-scoped policies before execution, logging the full action context (agent identity, tool called, parameters, scope constraints applied, authorization decision) for audit.",
+          "excerpt_context": "Section 4, paragraph 1",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Enforce mandatory, context-aware policy evaluation at the inference layer to constrain agent actions and ensure auditability.",
+          "attribution_text": "An Intention within safetyist discourse that outlines architectural strategies for building autonomous AI agents to manage risk and ensure reliability. Encompasses: Inference Trust Layer PEP, context-scoped policies, and mandatory action logging.",
+          "vocabulary_terms": [
+            "policy_enforcement_point",
+            "agentic_ai_risk"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-068",
+          "category": "Intentions",
+          "point": "The document defines a maturity model (Phase 0 to Level 3) that requires organizations to progress from basic discovery to advanced, continuous runtime attestation. This framework enforces a principle of least privilege by requiring explicit documentation and signing of all AI assets before they are granted operational autonomy. It ensures that security controls are commensurate with the agent's deployment level.",
+          "verbatim": "Organizations progress through five levels, beginning with a critical discovery phase that acknowledges the reality that many organizations face significant 'assurance debt' due to undocumented AI workloads.",
+          "excerpt_context": "Section 6.4, Maturity Model",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Require organizations to achieve comprehensive asset visibility and implement tiered security controls before granting AI agents operational autonomy.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for a design principle where AI agents are granted autonomy only within strictly defined boundaries, which can be expanded as the agent demonstrates compliance. Encompasses: Maturity model, assurance debt, and tiered security controls.",
+          "vocabulary_terms": [
+            "assurance_debt",
+            "zero_trust_maturity_model"
           ]
         },
         {
           "stance": "strongly_aligned",
           "taxonomy_node_id": "saf-intentions-080",
           "category": "Intentions",
-          "point": "The document proposes a Zero Trust Architecture for AI that mandates cryptographic identity, continuous verification, and micro-segmentation to ensure systems are controllable by design. By requiring evidence artifacts like model signatures and CBOMs, it forces developers to build security into the pipeline rather than patching it on later. This aligns with the safetyist priority of establishing rigorous, verifiable control over frontier AI systems.",
-          "verbatim": "The proposed architecture provides: Stronger AI Assurance through continuous verification and cryptographic controls; Alignment with Federal Mandates supporting DoD Zero Trust Strategy and its implementing guidance, NIST AI RMF, and anticipated regulations.",
+          "point": "The document proposes a Zero Trust architecture for AI that mandates cryptographic identity, continuous verification, and micro-segmentation to ensure systems are controllable and understandable. By requiring evidence artifacts like signatures and attestations at every layer, it shifts security from abstract claims to testable engineering controls. This framework is designed to provide the necessary infrastructure for rigorous, verifiable AI governance.",
+          "verbatim": "The proposed architecture provides: Stronger AI Assurance through continuous verification and cryptographic controls; Alignment with Federal Mandates supporting DoD Zero Trust Strategy and its implementing guidance [51], NIST AI RMF, and anticipated regulations; Improved Supply Chain Transparency through CBOM extending SBOM concepts; and Unified Compliance Framework reducing burden through integrated mapping.",
           "excerpt_context": "Section 8.1, Benefits",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Design AI systems with inherent, verifiable security controls to ensure continuous oversight and control throughout the development lifecycle.",
-          "attribution_text": "An Intention within safetyist discourse that outlines specific engineering and research strategies to make AI systems inherently safer and more controllable. Encompasses: Methods for interpretability, cryptographic identity, and continuous verification of model integrity.",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Implement a Zero Trust architecture for AI using cryptographic identity, continuous verification, and evidence-based artifacts to ensure system control.",
+          "attribution_text": "An Intention within safetyist discourse that mandates the integration of cryptographic identity and continuous verification controls into AI system architectures to ensure operational security and auditability. Encompasses: Cryptographic identity, micro-segmentation, and evidence-based compliance artifacts.",
           "vocabulary_terms": [
             "zero_trust",
-            "model_integrity",
-            "cryptographic_identity"
-          ]
-        },
-        {
-          "stance": "aligned",
-          "taxonomy_node_id": "saf-beliefs-017",
-          "category": "Beliefs",
-          "point": "The document identifies a 'Discovery Gap' and 'Shadow AI' as critical threats to security governance, noting that organizations often lack visibility into their own AI assets. This confirms the safetyist belief that rapid, unmanaged AI deployment erodes organizational control and creates systemic security risks that traditional, periodic audits cannot address.",
-          "verbatim": "Shadow AI Gap. Beyond the initial discovery challenge lies a more persistent problem: in dynamic enterprise environments, new AI resources—models, datasets, inference endpoints, agent deployments—appear faster than security teams can classify and onboard them into governance frameworks.",
-          "excerpt_context": "Section 8.2, Shadow AI Gap",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Rapid, unmanaged AI deployment creates systemic visibility gaps that undermine organizational security governance and control.",
-          "attribution_text": "A Belief within safetyist discourse that describes how the rapid adoption of AI systems undermines security governance by creating a systemic loss of visibility and control over data. Encompasses: Shadow AI, asset discovery failures, and the mismatch between development velocity and governance cadence.",
-          "vocabulary_terms": [
-            "shadow_ai",
-            "governance_visibility"
-          ]
-        },
-        {
-          "stance": "strongly_aligned",
-          "taxonomy_node_id": "saf-intentions-169",
-          "category": "Intentions",
-          "point": "The document mandates the integration of automated evidence collection—including TEE attestations, SLSA provenance, and policy logs—directly into the AI deployment pipeline. This ensures that safety and integrity checks are baked into the system architecture from the start, rather than applied as post-hoc patches. By requiring cryptographic binding of model outputs to transaction records, it enforces verifiable provenance and accountability.",
-          "verbatim": [
-            "To support automation and interoperability, an evidence package can be represented as a structured record with stable keys.",
-            "The following template specifies the minimum evidence artifacts for Zero Trust AI compliance assessment."
-          ],
-          "excerpt_context": "Section 6, Appendix A",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Integrate automated, cryptographically verifiable evidence collection into AI deployment pipelines to ensure structural integrity.",
-          "attribution_text": "An Intention within safetyist discourse that mandates the integration of automated, cryptographically verifiable evidence collection into AI deployment pipelines to ensure structural integrity. Encompasses: TEE attestations, SLSA provenance, and policy decision logs.",
-          "vocabulary_terms": [
-            "TEE",
-            "SLSA",
-            "cryptographic_binding"
+            "cryptographic_identity",
+            "continuous_verification"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "saf-intentions-111",
           "category": "Intentions",
-          "point": "The framework requires a comprehensive inventory of AI assets, including model hashes, signing keys, and dataset references, as a foundational governance tool. By treating these as mandatory fields in a compliance evidence package, it ensures that organizations maintain visibility over their AI supply chain, which is essential for effective security management.",
-          "verbatim": "The following template specifies the minimum evidence artifacts for Zero Trust AI compliance assessment. Organizations should adapt field requirements to their specific mission, classification regime, and tooling environment.",
-          "excerpt_context": "Section 6, Appendix A",
-          "extraction_confidence": 0.9,
-          "canonical_proposition": "Maintain a comprehensive, machine-readable inventory of AI assets as a foundational governance requirement.",
-          "attribution_text": "An Intention within safetyist discourse that advocates for maintaining a comprehensive, machine-readable inventory of AI assets as a foundational governance requirement. Encompasses: Model identity, artifact digests, and signing key identifiers.",
+          "point": "The document identifies a 'Discovery Gap' where organizations fail to implement security because they lack basic visibility into their AI assets. It argues that maintaining a comprehensive, automated inventory of AI systems is a foundational requirement for any meaningful governance or Zero Trust implementation.",
+          "verbatim": "The proposed frameworkÆs trust layers and evidence requirements presuppose that organizations can enumerate their AI systems, identify trust boundaries, and instrument enforcement points. For organizations lacking this foundational visibility, the architecture may appear aspirational rather than actionable.",
+          "excerpt_context": "Section 8.2, Discovery Gap",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Organizations must maintain comprehensive, automated inventories of AI assets and data flows as a prerequisite for security governance.",
+          "attribution_text": "An Intention within safetyist discourse that prioritizes the establishment of comprehensive AI asset visibility as a foundational requirement for implementing security controls. Encompasses: Asset discovery, trust boundary mapping, and data flow documentation.",
           "vocabulary_terms": [
             "asset_inventory",
-            "governance"
+            "discovery_gap"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-211",
+          "category": "Intentions",
+          "point": "The document proposes a comprehensive Zero Trust reference architecture that mandates cryptographic binding of model outputs, TEE attestations, and structured audit logs. It treats these technical controls as essential for compliance with frameworks like the NIST AI RMF and DoD Zero Trust pillars. This reflects the safetyist priority of building security into the system architecture rather than relying on post-hoc patches.",
+          "verbatim": "The following template specifies the minimum evidence artifacts for Zero Trust AI compliance assessment. Organizations should adapt field requirements to their specific mission, classification regime, and tooling environment.",
+          "excerpt_context": "Appendix A, Minimum Evidence Package Template",
+          "extraction_confidence": 1,
+          "canonical_proposition": "Mandate the implementation of cryptographic evidence artifacts and Zero Trust architectural controls to ensure verifiable AI system security and compliance.",
+          "attribution_text": "An Intention within safetyist discourse that prioritizes the integration of formal engineering controls and cryptographic verification into AI system lifecycles. Encompasses: Zero Trust architecture, TEE attestation, and mandatory audit logging.",
+          "vocabulary_terms": [
+            "zero_trust",
+            "cryptographic_binding",
+            "compliance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-163",
+          "category": "Intentions",
+          "point": "The framework requires the retention of detailed inference logs, including user identity and input/output classifications, to support anomaly detection and integrity verification. This aligns with the safetyist intention of ensuring that AI deployments are observable and auditable to prevent or detect misuse.",
+          "verbatim": "Required fields per inference entry: {timestamp, request_id, user_identity, input_classification, decision, output_classification}",
+          "excerpt_context": "Appendix A.5, Runtime Evidence",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Require the retention of cryptographically logged inference records to enable observability and integrity verification in AI workloads.",
+          "attribution_text": "An Intention within safetyist discourse that mandates the collection of granular runtime evidence to facilitate security monitoring and accountability. Encompasses: Inference logging, user identity tracking, and integrity event logs.",
+          "vocabulary_terms": [
+            "observability",
+            "auditability",
+            "inference_logging"
           ]
         }
       ]
@@ -438,93 +416,92 @@
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-017",
           "category": "Intentions",
-          "point": "The document emphasizes the necessity of creating structured inventories for AI models, such as AI Bills of Materials (AI-BOM), to ensure supply-chain transparency. It argues that without such documentation, it is impossible to verify provenance, training data lineage, or algorithmic dependencies, which are critical for maintaining security in complex AI systems.",
-          "verbatim": "the G7 has initiated work toward a common framework for AI Bills of Materials (AI-BOM)—structured inventories capturing model provenance, training data lineage, and algorithmic dependencies analogous to Software Bills of Materials (SBOM) for traditional software—to enable supply-chain transparency across jurisdictions.",
-          "excerpt_context": "Section 1, paragraph 2",
-          "extraction_confidence": 1.0,
-          "canonical_proposition": "Mandate the use of AI Bills of Materials to ensure transparency in model provenance and training data lineage.",
-          "attribution_text": "An Intention within skeptic discourse that advocates for standardized documentation to mitigate opacity in the AI supply chain. Encompasses: AI-BOM, model provenance, and training data lineage verification.",
+          "point": "The document emphasizes the need for standardized documentation and audit artifacts, such as cryptographic provenance and manifests, to address the 'documentation gap' in AI systems. By defining specific evidence packages for each trust layer, the author intends to make AI systems auditable and compliant with regulatory frameworks, countering the current lack of transparency in AI development.",
+          "verbatim": "We further define an assurance evidence framework integrating cryptographic provenance, continuous integrity monitoring, and policy-driven access control to produce audit artifacts intended to support alignment assessments against NIST AI RMF, DoD Zero Trust guidance, and ISO/IEC 42001 requirements.",
+          "excerpt_context": "Section 1, paragraph 1",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Mandate the production of standardized audit artifacts and cryptographic provenance to ensure AI systems are transparent and verifiable for compliance purposes.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for mandatory transparency and auditability in AI systems through standardized evidence packages. Encompasses: cryptographic provenance, audit artifacts, and regulatory compliance alignment.",
           "vocabulary_terms": [
-            "ai_bom",
-            "supply_chain_transparency",
-            "provenance"
+            "transparency",
+            "auditability",
+            "cryptographic_provenance"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-055",
           "category": "Intentions",
-          "point": "The document argues that current security frameworks are insufficient because they focus on abstract threats rather than providing concrete, operationalizable controls. It proposes a systematic method for mapping threats to specific enforcement points and evidence artifacts, aiming to bridge the gap between high-level security policy and practical implementation.",
-          "verbatim": "The gap between threat awareness and operational assurance remains unaddressed. ... The procedure enables organizations to demonstrate not only that controls exist, but that each control addresses a specific threat, is enforced at a defined point, and produces verifiable evidence.",
-          "excerpt_context": "Section 2.5 and 2.6",
+          "point": "The document proposes a pragmatic, hands-on approach to AI security by focusing on the creation of machine-readable evidence artifacts like CBOMs and signed model hashes. It emphasizes that security must be operationalized through concrete technical practices rather than relying on abstract compliance checklists. This aligns with the skeptic focus on measurable, technical mitigation of immediate AI risks.",
+          "verbatim": "The procedure enables organizations to demonstrate not only that controls exist, but that each control addresses a specific threat, is enforced at a defined point, and produces verifiable evidence—the core differentiator from checklist-based compliance approaches.",
+          "excerpt_context": "Section 2.6, Traceability Workflow",
           "extraction_confidence": 0.9,
-          "canonical_proposition": "Operationalize AI security by mapping specific threats to concrete enforcement points and verifiable evidence artifacts.",
-          "attribution_text": "An Intention within skeptic discourse that prioritizes the development of practical, evidence-based security controls to address the gap between theoretical threat models and operational reality. Encompasses: Threat-to-control mapping, evidence artifact specification, and operational assurance.",
+          "canonical_proposition": "Operationalize AI risk mitigation by requiring verifiable, machine-readable evidence artifacts for every security control.",
+          "attribution_text": "An Intention within skeptic discourse that proposes operationalizing AI risk mitigation through concrete, verifiable technical practices. Encompasses: Machine-readable evidence artifacts, CBOMs, and signed model hashes. Excludes: Abstract, checklist-based compliance frameworks that lack technical traceability.",
           "vocabulary_terms": [
-            "operational_assurance",
-            "threat_modeling",
-            "evidence_based_security"
+            "operational_security",
+            "verifiable_evidence"
           ]
         },
         {
-          "stance": "aligned",
-          "taxonomy_node_id": "skp-beliefs-182",
+          "stance": "neutral",
+          "taxonomy_node_id": null,
           "category": "Beliefs",
-          "point": "The document implies that failing to implement robust security controls for AI systems creates significant long-term risks, including supply chain compromises and nation-state attacks. It suggests that organizations must invest in comprehensive assurance frameworks to mitigate these systemic threats, as the cost of reactive patching or incident response for AI-specific failures is high.",
-          "verbatim": "Given the ôharvest now, decrypt laterö threat posed by nation-state actors, organizations should implement hybrid signing schemes that combine classical algorithms (e.g., ECDSA, RSA) with NIST-standardized post-quantum algorithms (ML-DSA, SLH-DSA) to ensure long-term artifact integrity.",
-          "excerpt_context": "Section 5.2",
-          "extraction_confidence": 0.8,
-          "canonical_proposition": "Proactive investment in AI security infrastructure is necessary to prevent catastrophic long-term systemic risks.",
-          "attribution_text": "A Belief within skeptic discourse that claims under-investment in AI safety, specifically through inadequate adaptive budgets, exacerbates systemic risks and incurs greater long-term business costs. Encompasses: Supply chain security, post-quantum readiness, and long-term artifact integrity.",
+          "point": "The document acknowledges that current mainstream ML frameworks (PyTorch, TensorFlow, JAX) lack native integration for advanced transparency standards like CBOMs, noting that tooling maturity is still progressing. This highlights a gap between proposed security standards and the practical reality of developer workflows.",
+          "verbatim": "It should be noted that while these standards now support the requisite fields, native integration into mainstream ML frameworks (PyTorch, TensorFlow, JAX) remains an area of active development; this architecture is therefore prescriptive of best practice, recognizing that tooling maturity is progressing toward full implementation support.",
+          "excerpt_context": "Section 5.2.1, paragraph 2",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Mainstream machine learning frameworks currently lack native support for advanced supply chain transparency and cryptographic inventory standards.",
+          "attribution_text": "A Belief within skeptic discourse that identifies a lag between security requirements and technical implementation capabilities. Encompasses: Tooling maturity, framework integration, and supply chain transparency.",
           "vocabulary_terms": [
-            "systemic_risk",
-            "post_quantum_cryptography"
+            "technical_debt",
+            "supply_chain_transparency"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-intentions-110",
           "category": "Intentions",
-          "point": "The document mandates comprehensive logging of all agent actions, including identity, tool parameters, and authorization decisions, to support forensic reconstruction. This focus on auditability and discovery rights aligns with skeptic concerns regarding the need for transparency and accountability in opaque, automated decision-making systems.",
-          "verbatim": "The Inference Trust Layer PEP must intercept and evaluate each agent action against these context-scoped policies before execution, logging the full action context (agent identity, tool called, parameters, scope constraints applied, authorization decision) for audit.",
-          "excerpt_context": "Section 4, paragraph 1",
-          "extraction_confidence": 0.9,
-          "canonical_proposition": "Mandate comprehensive, cryptographically protected logging of all agent actions to ensure auditability and forensic reconstruction.",
-          "attribution_text": "An Intention within skeptic discourse that requires detailed inference logging to ensure accountability for autonomous agent actions. Encompasses: forensic reconstruction, audit logs, and decision context capture.",
+          "point": "The document emphasizes the necessity of cryptographically protected, append-only audit logs for all policy decisions. By requiring that logs contain sufficient context—including user identity, clearance, and rationale—the framework enables forensic reconstruction of agent actions. This supports the skeptic requirement for accountability and discovery rights in automated decision-making systems.",
+          "verbatim": "Are PDP/PEP decision logs cryptographically protected (signed or stored in an append-only log)? Do log entries contain sufficient context (timestamp, identity, resource, decision, rationale) for decision reconstruction?",
+          "excerpt_context": "Section 6.5, Evidence Package Verification Checklist",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Mandate cryptographically protected, context-rich audit trails for all AI policy decisions to ensure forensic accountability.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for legally enforceable discovery rights extending to deployer-tier inference logs, with cryptographic logging at endpoints and statutory standing. Encompasses: Append-only logs, decision reconstruction, and forensic auditability.",
           "vocabulary_terms": [
-            "auditability",
-            "transparency"
+            "audit_trail",
+            "forensic_reconstruction"
           ]
         },
         {
           "stance": "aligned",
           "taxonomy_node_id": "skp-beliefs-136",
           "category": "Beliefs",
-          "point": "The document acknowledges that Zero Trust programs often fail during the discovery phase because organizations cannot answer basic questions about their own infrastructure. This supports the skeptic view that AI scaling failures are primarily driven by integration and infrastructure gaps rather than technical limitations of the models themselves.",
-          "verbatim": "GAO audits have repeatedly identified IT asset management deficiencies across federal agencies, and practitioners have observed that many Zero Trust programs 'quietly die' in the discovery phase because organizations cannot answer basic questions about what applications they run.",
+          "point": "The document acknowledges that security programs often fail during the discovery phase because organizations cannot identify their own assets or data flows. This reflects the skeptic view that systemic infrastructure gaps and lack of organizational maturity are the primary barriers to successful AI implementation, rather than just technical model limitations.",
+          "verbatim": "GAO audits have repeatedly identified IT asset management deficiencies across federal agencies, and practitioners have observed that many Zero Trust programs ôquietly dieö in the discovery phase because organizations cannot answer basic questions about what applications they run, which datasets matter most, or where model artifacts reside.",
           "excerpt_context": "Section 8.2, Discovery Gap",
           "extraction_confidence": 0.9,
-          "canonical_proposition": "AI governance and security initiatives frequently fail due to foundational organizational deficiencies in asset management and infrastructure visibility.",
-          "attribution_text": "A Belief within skeptic discourse that the specific organizational and systemic deficiencies preventing small AI pilot projects from successfully scaling into larger, company-wide implementations, as well as the failure of governance frameworks to account for legacy infrastructure realities. Encompasses: Asset management deficiencies, discovery phase failures, and organizational maturity gaps.",
+          "canonical_proposition": "Zero Trust programs frequently fail due to foundational organizational deficiencies in asset management and visibility.",
+          "attribution_text": "A Belief within skeptic discourse that organizational infrastructure gaps and poor asset management are the primary causes of failure for AI security and governance initiatives. Encompasses: Asset management deficiencies, discovery phase failure, and organizational maturity gaps.",
           "vocabulary_terms": [
             "infrastructure_gaps",
-            "governance_failure"
+            "organizational_maturity"
           ]
         },
         {
           "stance": "aligned",
-          "taxonomy_node_id": "skp-intentions-017",
+          "taxonomy_node_id": "skp-intentions-142",
           "category": "Intentions",
-          "point": "The document addresses the critical documentation gap in AI adoption by mandating structured, machine-readable evidence packages. By requiring specific fields like model version hashes, policy logs, and provenance URIs, it forces developers to provide the transparency necessary for independent audit and system maintenance, directly countering the opacity often found in proprietary AI deployments.",
-          "verbatim": "The following template specifies the minimum evidence artifacts for Zero Trust AI compliance assessment.",
-          "excerpt_context": "Section 6, Appendix A",
+          "point": "The document emphasizes the necessity of capturing dataset lineage and provenance as a core component of the AI-BOM. This aligns with skeptic demands for transparency regarding training data, ensuring that developers are held accountable for the provenance and quality of the data used in their models.",
+          "verbatim": "CBOM/AI-BOM schemaùJSON or XML manifests following CycloneDX v1.6 ML-BOM and CBOM profiles, capturing model provenance, dataset lineage, and cryptographic inventory",
+          "excerpt_context": "Section 6, Supplementary Materials",
           "extraction_confidence": 0.9,
-          "canonical_proposition": "Mandate structured, machine-readable documentation for AI systems to enable independent audit and maintenance.",
-          "attribution_text": "An Intention within skeptic discourse that identifies the critical problem of inadequate documentation in AI adoption and mandates structured, machine-readable evidence packages to enable independent audit and maintenance. Encompasses: Model identity, provenance URIs, and policy decision logs.",
+          "canonical_proposition": "Enforce mandatory disclosure of dataset lineage and model provenance through standardized, machine-readable manifests.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for rigorous documentation of training data sources to ensure algorithmic accountability and copyright compliance. Encompasses: Dataset lineage, provenance URI, and ML-BOM schemas.",
           "vocabulary_terms": [
-            "documentation_gap",
-            "transparency",
-            "auditability"
+            "provenance",
+            "dataset_lineage",
+            "accountability"
           ]
         }
       ]
@@ -537,7 +514,7 @@
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "2024",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-beliefs-040"
@@ -551,16 +528,34 @@
       "claim_relations": []
     },
     {
-      "claim": "Vulnerabilities in early 2025 allowed malicious ML models uploaded to Hugging Face to exploit Python Pickle serialization, enabling arbitrary code execution when loaded.",
+      "claim": "Hugging Face hosted over 1 million machine learning models as of September 2024, illustrating the massive scale of the model supply chain attack surface.",
+      "claim_label": "Hugging Face Model Repository Scale",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "September 2024",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-030"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Malicious ML models uploaded to Hugging Face in early 2025 exploited Python Pickle serialization to execute arbitrary code when loaded.",
       "claim_label": "Pickle Serialization Vulnerability",
       "doc_position": "supports",
       "temporal_scope": "historical",
       "temporal_bound": "early 2025",
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-030",
-        "saf-beliefs-010"
+        "saf-beliefs-030"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -571,31 +566,12 @@
       "claim_relations": []
     },
     {
-      "claim": "Hugging Face hosted over 1 million machine learning models as of September 2024.",
-      "claim_label": "Hugging Face Model Count",
+      "claim": "Targeted backdoors in AI models can succeed with a relatively small number of poisoned training samples under specific conditions.",
+      "claim_label": "Poisoning Effectiveness",
       "doc_position": "supports",
-      "temporal_scope": "historical",
-      "temporal_bound": "September 2024",
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-040"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "indicative assertion"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "AI systems are vulnerable to training data poisoning, where small numbers of malicious samples can manipulate model behavior.",
-      "claim_label": "Training Data Poisoning Vulnerability",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
+      "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-beliefs-031"
@@ -609,34 +585,15 @@
       "claim_relations": []
     },
     {
-      "claim": "Agentic AI systems can bypass traditional user-identity boundaries by executing chains of tool calls or spawning sub-agents.",
-      "claim_label": "Agentic AI Identity Disruption",
-      "doc_position": "supports",
-      "temporal_scope": "current_state",
-      "temporal_bound": null,
-      "extraction_confidence": 1.0,
-      "potential_conflict_id": null,
-      "linked_taxonomy_nodes": [
-        "saf-beliefs-097"
-      ],
-      "evidence_criteria": {
-        "specificity": "precise",
-        "has_warrant": "true",
-        "internally_consistent": "true",
-        "category_criteria": "indicative assertion"
-      },
-      "claim_relations": []
-    },
-    {
-      "claim": "The Dataset Authenticity Index (DAI) provides a quantifiable metric for dataset integrity by comparing segments of a dataset against their signed hashes.",
+      "claim": "The Dataset Authenticity Index (DAI) provides a quantifiable metric for dataset integrity by comparing segments of a dataset against their signed hashes. A DAI of 1.0 signifies complete integrity, while lower values indicate potential tampering or corruption requiring investigation.",
       "claim_label": "Dataset Authenticity Index Metric",
       "doc_position": "supports",
       "temporal_scope": "timeless",
       "temporal_bound": null,
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-beliefs-145"
+        "saf-intentions-143"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -647,12 +604,12 @@
       "claim_relations": []
     },
     {
-      "claim": "The proposed Zero Trust architecture for AI relies on existing technologies such as cryptographic signing, attestation frameworks, and policy engines, making it highly feasible for implementation in mature organizations.",
-      "claim_label": "Architecture Feasibility",
+      "claim": "The proposed Zero Trust architecture for AI relies on existing technologies including cryptographic signing, attestation frameworks, confidential computing, policy engines, and bill-of-materials standards.",
+      "claim_label": "Technological Feasibility of Zero Trust AI",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
         "saf-intentions-080"
@@ -666,16 +623,16 @@
       "claim_relations": []
     },
     {
-      "claim": "The document defines a reference architecture for Zero Trust AI that utilizes specific standards like CycloneDX v1.6 for CBOMs and SLSA for provenance. These standards are intended to provide a verifiable chain of custody for AI models from development to runtime.",
-      "claim_label": "Zero Trust AI Evidence Standards",
+      "claim": "The document provides a structured JSON schema for AI evidence packages that includes fields for model identity, deployment attestations, and runtime evidence. This schema is designed to be compatible with existing standards like CycloneDX and SLSA.",
+      "claim_label": "Standardized AI Evidence Schema",
       "doc_position": "supports",
       "temporal_scope": "current_state",
       "temporal_bound": null,
-      "extraction_confidence": 1.0,
+      "extraction_confidence": 1,
       "potential_conflict_id": null,
       "linked_taxonomy_nodes": [
-        "saf-intentions-004",
-        "skp-intentions-014"
+        "saf-intentions-211",
+        "acc-intentions-004"
       ],
       "evidence_criteria": {
         "specificity": "precise",
@@ -688,15 +645,16 @@
   ],
   "unmapped_concepts": [
     {
-      "suggested_label": "Assurance Debt",
-      "suggested_description": "A situation concept that describes the gap between an organization's current security posture and the minimum viable evidence requirements for AI governance.\nEncompasses: Undocumented AI workloads, missing lineage records, and unmanaged agent deployments.\nExcludes: General technical debt or software maintenance backlogs.",
-      "concept": "Assurance debt is defined as the gap between an organization's current state and the minimum viable evidence requirements for AI systems. It is calculated by counting assets without signed artifacts, data flows without lineage, and inference endpoints without policy enforcement.",
+      "suggested_label": "Assurance Debt Assessment",
+      "suggested_description": "A situation concept that quantifies the gap between an organization's current security posture and the required evidence for AI compliance.\nEncompasses: Undocumented AI workloads, missing signed artifacts, and unmanaged inference endpoints.\nExcludes: General cybersecurity debt or technical debt unrelated to AI governance.",
+      "concept": "Assurance debt is defined as the gap between the current state of an organization's AI assets and the minimum viable evidence requirements for Zero Trust compliance. The document requires organizations to calculate this debt by counting unsigned artifacts, undocumented data flows, and uninstrumented inference endpoints before implementing advanced controls.",
       "suggested_pov": "situations",
       "suggested_category": "Beliefs",
-      "reason": "This is a novel metric for assessing organizational readiness for AI governance that does not fit existing taxonomy nodes.",
-      "Accelerationist Interpretation": "Accelerationists would view assurance debt as a barrier to rapid deployment that must be cleared through automated discovery and standardized tooling.",
-      "Safetyist Interpretation": "Safetyists would interpret assurance debt as a critical risk factor that must be remediated before any further scaling of AI capabilities occurs.",
-      "Skeptic Interpretation": "Skeptics would view assurance debt as evidence of the systemic lack of control and transparency inherent in current AI development practices."
+      "reason": "This concept provides a specific framework for measuring compliance readiness in AI systems, which is not currently captured by existing taxonomy nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view assurance debt as a barrier to rapid deployment that must be cleared through automated discovery and instrumentation tools.",
+      "Safetyist Interpretation": "Safetyists would interpret assurance debt as a critical risk factor that must be remediated before any agentic AI is permitted to operate in high-stakes environments.",
+      "Skeptic Interpretation": "Skeptics would view the assessment of assurance debt as a necessary bureaucratic hurdle to ensure that organizations cannot hide the risks of their AI deployments behind a lack of documentation.",
+      "resolved_node_id": "cc-194"
     }
   ]
 }
