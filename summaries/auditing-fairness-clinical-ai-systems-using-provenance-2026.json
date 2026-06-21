@@ -1,0 +1,558 @@
+{
+  "doc_id": "auditing-fairness-clinical-ai-systems-using-provenance-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-21T07:34:59Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "single_shot",
+    "taxonomy_filter": "rag_per_chunk",
+    "taxonomy_nodes": 1062,
+    "chunked": true,
+    "chunk_count": 5
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "auditing-fairness-clinical-ai-systems-using-provenance-2026",
+    "measured_at": "2026-06-21T07:37:39.3308696-04:00",
+    "stages": [
+      {
+        "stage": "chunking",
+        "in_units": "tokens_est",
+        "in_count": 25782.0,
+        "out_units": "tokens_est",
+        "out_count": 26064.0,
+        "ratio": 1.0109,
+        "flags": {
+          "chunk_count": 5
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 3696.0,
+        "out_units": "nodes",
+        "out_count": 60.0,
+        "ratio": 0.0162,
+        "flags": {
+          "chunk_count": 5,
+          "avg_intentions": 21.0,
+          "avg_nodes_selected": 60.0,
+          "max_nodes_selected": 61,
+          "total_below_threshold": 1,
+          "avg_beliefs": 18.0,
+          "min_nodes_selected": 60,
+          "avg_desires": 4.0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 174477.0,
+        "out_units": "items",
+        "out_count": 33.0,
+        "ratio": 0.0002,
+        "flags": {
+          "chunk_count": 5,
+          "unmapped_concepts": 4,
+          "factual_claims": 6,
+          "total_points": 23,
+          "null_node_rate": 0.087
+        }
+      },
+      {
+        "stage": "merge_dedup",
+        "in_units": "items",
+        "in_count": 33.0,
+        "out_units": "items",
+        "out_count": 31.0,
+        "ratio": 0.9394,
+        "flags": {
+          "used_embeddings": 1,
+          "claims_deduped": 0,
+          "points_deduped": 1,
+          "concepts_deduped": 1
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 0.0,
+        "ratio": 0.0,
+        "flags": {
+          "near_miss_count": 0,
+          "resolved_count": 3,
+          "used_embeddings": 1,
+          "threshold": 0.6
+        }
+      }
+    ],
+    "cumulative_retention": 0.0152
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-090",
+          "category": "Intentions",
+          "point": "The document advocates for moving beyond abstract ethical debates by implementing standardized, procedural audit trails (the AI Fairness Provenance Record). By focusing on verifiable, checkable logs of data lineage and decision pathways, the authors aim to create a workable regulatory category for AI fairness. This approach treats transparency as a technical engineering challenge rather than a subjective truth judgment, aligning with the accelerationist goal of enabling AI deployment through robust, verifiable infrastructure.",
+          "verbatim": "We introduce a standardized AI Fairness Provenance Record documenting data origin, model choices, and bias metrics, enabling auditors to trace decisions to their source.",
+          "excerpt_context": "Introduction, Discussion",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Establish standardized, procedural provenance logs to enable verifiable AI fairness auditing.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for framing AI fairness through verifiable, procedural audit trails rather than subjective ethical adjudication. Encompasses: AI Fairness Provenance Record, standardized logging, and technical auditability.",
+          "vocabulary_terms": [
+            "provenance_auditability",
+            "model_governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-004",
+          "category": "Intentions",
+          "point": "The document advocates for a 'show-your-work' transparency approach by instrumenting models to log intermediate reasoning steps and feature contributions. This methodology allows auditors to verify the internal logic of AI systems, which is essential for building trust in clinical AI deployment. By using structured JSON logs to record decision pathways, the authors demonstrate how transparency can be operationalized to validate model behavior against known ground truths. This approach aligns with the accelerationist goal of using rigorous, verifiable methods to enable the safe and effective scaling of AI technologies.",
+          "verbatim": "The core of our methodology is the recording of provenance logs during model training and inference. In a real system, this would be handled by an audit logging module built into the AI platform (Gebru et al., 2021). For our simulation, we instrumented the models to log relevant information at each prediction, stored in structured JSON format with unique identifiers and timestamps.",
+          "excerpt_context": "Section 3.5, paragraph 1",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Achieve verifiable AI transparency by instrumenting models to log intermediate reasoning steps and feature contributions in structured, auditable formats.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for instrumenting AI models to record granular provenance logs of decision-making pathways. Encompasses: structured JSON logging, feature contribution decomposition, and verifiable audit trails. This practice enables the systematic validation of model logic, supporting the broader accelerationist objective of deploying complex AI systems through transparent, evidence-based governance frameworks.",
+          "vocabulary_terms": [
+            "provenance_auditability",
+            "transparency_mechanisms"
+          ]
+        },
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": null,
+          "category": "Beliefs",
+          "point": "The document asserts that machine learning models do not inherently correct for historical inequities but rather encode and potentially amplify them. This empirical observation challenges the notion that AI systems will automatically resolve social biases through objective computation. It suggests that without active intervention, AI will perpetuate existing societal disparities.",
+          "verbatim": "machine learning models do not inherently correct for historical inequities but rather encode and potentially amplify them",
+          "excerpt_context": "Section 4.1, paragraph 1",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Machine learning models encode and amplify historical inequities present in training data.",
+          "attribution_text": "A Belief within accelerationist discourse that machine learning models function as amplifiers of existing societal biases rather than neutral arbiters. Encompasses: Historical data bias, algorithmic amplification, and the failure of inherent bias correction.",
+          "vocabulary_terms": [
+            "algorithmic_bias",
+            "data_provenance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": null,
+          "category": "Desires",
+          "point": "The document advocates for the integration of AI into clinical decision-making to enhance care quality, provided that fairness and transparency are treated as fundamental, non-negotiable components of the system. It posits that AI can function like a 'good clinician' if it is designed to be auditable, record-keeping, and evidence-based. This aligns with the accelerationist goal of leveraging AI as a revolutionary force for societal benefit by ensuring its safe and reliable deployment through robust technical frameworks.",
+          "verbatim": "AI has the potential to greatly enhance clinical decision-making, but issues of fairness and transparency cannot be an afterthought, they are fundamental to safe and effective care.",
+          "excerpt_context": "Section 5, Conclusion",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "It is necessary that clinical AI systems incorporate fundamental fairness and transparency to ensure safe and effective care.",
+          "attribution_text": "A Desire within accelerationist discourse that clinical AI systems must integrate fairness and transparency as foundational requirements to realize their potential for enhancing healthcare. Encompasses: Clinical decision-making, safe and effective care, auditable AI systems.",
+          "vocabulary_terms": [
+            "clinical_ai",
+            "algorithmic_fairness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-008",
+          "category": "Intentions",
+          "point": "The document proposes using provenance-based auditing as a mechanism to create concrete checkpoints for AI behavior. By making AI systems transparent and traceable, developers can harness the benefits of AI while managing risks. This approach aligns with the accelerationist goal of enabling high-stakes AI deployment through robust, empirical oversight mechanisms.",
+          "verbatim": "Provenance-based auditing empowers AI systems to bear their share of that responsibility by making their behavior transparent and traceable. By implementing the strategies outlined here, we can move closer to AI that is not only intelligent and accurate, but also equitable and worthy of the trust we place in it to guide life-affecting decisions.",
+          "excerpt_context": "Section 5, paragraph 2",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Implement provenance-based auditing to create empirical checkpoints for AI behavior and enable safe, high-stakes deployment.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for the integration of provenance-based auditing to provide empirical telemetry and concrete checkpoints for AI behavior in high-stakes clinical environments. Encompasses: Transparency, traceability, and empirical oversight.",
+          "vocabulary_terms": [
+            "provenance-based auditing",
+            "empirical telemetry"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-061",
+          "category": "Intentions",
+          "point": "The authors argue that clinical AI systems must be auditable by design to ensure safety and accountability. They propose embedding provenance tracking into the AI lifecycle to reveal how data influences outcomes, addressing the 'black box' problem that prevents clinicians from verifying model logic. This framework is intended to support regulatory compliance with FDA and ONC guidelines, ensuring that human oversight remains grounded in transparent evidence.",
+          "verbatim": "Therefore, AI-enabled clinical decision support should come with documentation and logging that reveal how data influence outcomes. This push has so far led to a growing consensus among experts and regulators: for AI to be trusted in clinical settings, it must be auditable by design.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Mandate that clinical AI systems incorporate design-level auditability and provenance logging to ensure safety and regulatory compliance.",
+          "attribution_text": "An Intention within safetyist discourse that prioritizes the integration of continuous, design-level auditability into clinical AI workflows to ensure accountability and regulatory compliance. Encompasses: provenance-based auditing, AI Fairness Provenance Record, and regulatory alignment.",
+          "vocabulary_terms": [
+            "clinical_ai",
+            "model_governance",
+            "regulatory_compliance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-202",
+          "category": "Intentions",
+          "point": "The authors emphasize that fairness is not a static property but requires ongoing scrutiny throughout the AI lifecycle. By proposing the AI Fairness Provenance Record (AFPR), they aim to provide a dynamic audit trail that complements static documentation, allowing practitioners to detect emerging biases in real-time. This reflects the safetyist priority of scaling governance to match the complexity and risks of autonomous systems in high-stakes clinical environments.",
+          "verbatim": "In effect, we aim to automate a continuously updating 'model card' in the form of a provenance record that logs how each decision was made and how the model is performing for different groups in real time.",
+          "excerpt_context": "Section 2.1",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Implement dynamic, continuous provenance logging to monitor AI performance and bias throughout the system's operational lifecycle.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for the transition from static model documentation to dynamic, continuous provenance logging to ensure ongoing safety and fairness. Encompasses: real-time bias monitoring, dynamic model cards, and lifecycle governance.",
+          "vocabulary_terms": [
+            "model_governance",
+            "algorithmic_fairness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-032",
+          "category": "Intentions",
+          "point": "The authors propose a two-stage audit framework that combines outcome fairness metrics with provenance-based explanation to identify the mechanisms of bias. By logging paths through decision trees and feature importance metrics, the framework allows auditors to distinguish between systematic bias and random variation. This approach directly addresses the safetyist concern that black-box models can hide discriminatory logic, providing a mechanism to 'show the work' and ensure models comply with fairness requirements.",
+          "verbatim": "This two-stage approach outcome metrics followed by provenance explanation is analogous to a diagnostic test followed by an investigation: outcome metrics flag that a problem exists, while provenance analysis identifies the mechanism causing it.",
+          "excerpt_context": "Section 3.6.1, paragraph 3",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Mandate access to intermediate reasoning steps and feature importance metrics to enable auditors to characterize and mitigate systematic algorithmic bias.",
+          "attribution_text": "An Intention within safetyist discourse that mandates the visibility of intermediate reasoning steps and feature importance metrics to facilitate the detection of systematic bias. Encompasses: provenance-based explanation, decision path logging, and two-stage audit frameworks. This practice provides a critical oversight mechanism to ensure AI systems operate within defined fairness and safety parameters, preventing the deployment of opaque, discriminatory models.",
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "provenance_auditability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-desires-010",
+          "category": "Desires",
+          "point": "The document highlights the increasing regulatory pressure from bodies like the FDA and ONC, which demand that clinical AI systems provide clear communication of intended use, logic, and bias mitigation. The authors support the integration of these regulatory requirements into the development lifecycle, framing compliance as a necessary component of clinical AI deployment. This reflects the safetyist desire for AI agents to be designed to rigorously comply with legal and ethical standards.",
+          "verbatim": "In the United States healthcare system, a significant recent development is the ONCÆs HTI-1 rule (2023), which establishes algorithmic transparency requirements for clinical software. This regulation requires that certified health IT products must provide users (clinicians) with information on the algorithmÆs input features (including if demographic or social factors are used), its intended scope, performance, and importantly any fairness or bias mitigation measures taken (Dlapiper, 2023).",
+          "excerpt_context": "Section 2.3, paragraph 2",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "It is necessary that clinical AI systems rigorously comply with legal transparency and fairness requirements established by regulatory bodies.",
+          "attribution_text": "A Desire within safetyist discourse that AI systems are designed to rigorously comply with established legal and regulatory transparency requirements. Encompasses: FDA Good Machine Learning Practice, ONC HTI-1 rule, and mandatory disclosure of model logic and bias mitigation. This ensures that clinical AI deployment is governed by clear, enforceable standards that prioritize patient safety and equity.",
+          "vocabulary_terms": [
+            "regulatory_compliance",
+            "algorithmic_transparency"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-051",
+          "category": "Beliefs",
+          "point": "The document demonstrates that provenance-based auditing can detect bias across a wide range of magnitudes, from subtle to extreme. It argues that fairness metrics alone may not reliably track underlying discrimination strength, necessitating provenance logs to expose the specific mechanisms of bias. This supports the safetyist view that deep, mechanism-level inspection is required to ensure AI systems do not cause catastrophic or systemic harm.",
+          "verbatim": "The provenance-based auditing framework detected bias across all tested magnitudes. ... Consequently, fairness outcome metrics alone may not reliably track underlying discrimination strength.",
+          "excerpt_context": "Section 3.7.3.1 and 3.7.3.2",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Provenance-based auditing is necessary to detect bias mechanisms that aggregate fairness metrics fail to capture.",
+          "attribution_text": "A Belief within safetyist discourse that aggregate fairness metrics are insufficient for identifying systemic discrimination, requiring provenance-based mechanism inspection. Encompasses: Bias magnitude detection, threshold-dependent metric failure, and provenance-based audit robustness.",
+          "vocabulary_terms": [
+            "provenance_auditability",
+            "algorithmic_fairness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-039",
+          "category": "Intentions",
+          "point": "The authors propose continuous provenance logging as a viable strategy for longitudinal auditing of clinical AI systems. By linking specific data lineage to individual model decisions in real-time, this approach provides an audit trail that updates with every live clinical prediction. This aligns with safetyist intentions to implement rigorous, ongoing monitoring to prevent discriminatory outcomes in high-stakes environments.",
+          "verbatim": "Continuous provenance logging, combined with fairness monitoring, therefore represents a viable strategy for longitudinal auditing of clinical AI systems.",
+          "excerpt_context": "Section 3.7.3.3",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Implement continuous provenance logging to provide real-time, longitudinal auditing of clinical AI systems.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for continuous provenance logging to ensure real-time traceability of AI decision-making. Encompasses: Longitudinal auditing, real-time clinical monitoring, and provenance-based decision traceability.",
+          "vocabulary_terms": [
+            "provenance_auditability",
+            "model_governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-125",
+          "category": "Intentions",
+          "point": "The document proposes the AI Fairness Provenance Record (AFPR) as a mechanism to ensure accountability and safety throughout the AI lifecycle. By logging data provenance, development logs, and inference-time rationale, the framework allows for continuous monitoring and regulatory compliance. This approach treats transparency as a prerequisite for trust and safety, aligning with the safetyist focus on rigorous oversight and alignment before and during deployment.",
+          "verbatim": "The AFPR defines what information should be recorded, how it should be structured, and how it can be used by different stakeholders, developers, hospital auditors, regulators to ensure algorithmic fairness and accountability throughout the AI lifecycle.",
+          "excerpt_context": "Section 4.3, Proposed framework: AI fairness provenance record",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Achieve AI accountability and fairness by implementing mandatory, continuous provenance logging across the entire model lifecycle.",
+          "attribution_text": "An Intention within safetyist discourse that proposes the implementation of AI Fairness Provenance Records to ensure continuous oversight and accountability. Encompasses: Data provenance, model development logs, inference-time logging, regulatory compliance.",
+          "vocabulary_terms": [
+            "provenance_auditability",
+            "model_governance"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-052",
+          "category": "Intentions",
+          "point": "The authors argue that building fair AI requires a continuous commitment to governance, including regular bias audits and stakeholder involvement. This reflects the safetyist view that ethical frameworks must be applied throughout the entire development pipeline rather than treated as a one-time fix.",
+          "verbatim": "Building fair AI is not a one-time fix but a continuous commitment. Regular bias audits, stakeholder involvement, and agility in responding to audit findings are all part of robust AI governance.",
+          "excerpt_context": "Section 5, paragraph 6",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Establish continuous governance frameworks, including regular bias audits and stakeholder involvement, throughout the AI development pipeline.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for the institutionalization of continuous governance, including regular bias audits and stakeholder engagement, to ensure AI systems remain fair and accountable throughout their lifecycle. Encompasses: Continuous commitment, bias audits, and stakeholder involvement.",
+          "vocabulary_terms": [
+            "AI governance",
+            "bias audits"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-040",
+          "category": "Intentions",
+          "point": "The authors explicitly state that the authors take full responsibility for the content of their publication, even when generative AI tools were used for editing. This reinforces the safetyist principle that human actors must retain ultimate responsibility for AI-assisted outcomes.",
+          "verbatim": "The authors take full responsibility for the content of this publication.",
+          "excerpt_context": "Section 5, paragraph 8",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Human actors must retain full responsibility for all outcomes produced with the assistance of AI systems.",
+          "attribution_text": "An Intention within safetyist discourse that mandates human accountability for all outputs generated by AI systems, ensuring that human actors remain responsible for the consequences of AI execution. Encompasses: Human responsibility and accountability.",
+          "vocabulary_terms": [
+            "human accountability"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document asserts that algorithmic bias in healthcare is a well-documented, systemic issue rather than a hypothetical concern. It cites empirical evidence showing that models often reinforce historical inequities, such as using healthcare costs as a proxy for health needs. The authors argue that without active auditing and correction, these models will inevitably lead to inequitable healthcare outcomes and the erosion of trust.",
+          "verbatim": "These examples show that algorithmic fairness is not guaranteed: models can reproduce historical inequalities unless actively audited and corrected. If left unattended, they will lead to clear consequences such as the erosion of trust, misallocation of resources, misdiagnosis, and inequitable healthcare outcomes.",
+          "excerpt_context": "Introduction",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Clinical AI models systematically reproduce historical inequities and require active, empirical auditing to prevent discriminatory outcomes.",
+          "attribution_text": "A Belief within skeptic discourse that identifies algorithmic bias as a pervasive, empirically documented threat to healthcare equity that necessitates rigorous, ongoing auditing. Encompasses: historical inequity reproduction, systemic bias, and the failure of unmonitored models.",
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "bias_detection"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-145",
+          "category": "Beliefs",
+          "point": "The authors provide empirical evidence challenging the assumption that model interpretability inherently guarantees fairness. Their study found that a 'transparent' logistic regression model exhibited statistically significant gender bias, while a more complex 'black box' random forest model showed significantly less bias. This finding underscores the skeptic belief that simple interpretability metrics are insufficient for ensuring fairness and that rigorous, provenance-based auditing is required.",
+          "verbatim": "Critically, our results reveal that the interpretable logistic regression exhibited stronger, statistically significant bias (EOD = +0.256, p = 0.0080) compared to the 'black box' random forest (EOD = +0.055, p = 0.5664). This counterintuitive finding that interpretability does not guarantee fairness, challenges a common assumption in the clinical AI community.",
+          "excerpt_context": "Section 1, Contribution 2",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Model interpretability does not inherently guarantee fairness, as even transparent models can exhibit significant, statistically validated bias.",
+          "attribution_text": "A Belief within skeptic discourse that disputes the assumption that model transparency or interpretability is a sufficient proxy for fairness. Encompasses: counterintuitive bias findings, the limitations of interpretability, and the necessity of empirical bias auditing.",
+          "vocabulary_terms": [
+            "explainable_ai",
+            "algorithmic_fairness"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-144",
+          "category": "Intentions",
+          "point": "The authors employ a systematic, quantitative approach to fairness auditing, using permutation testing to distinguish between statistically significant bias and random variation. This methodology addresses the skeptic concern that fairness disparities might be over-interpreted or dismissed as noise. By providing a rigorous statistical framework for auditing, the authors aim to operationalize fairness in a way that is both defensible and actionable for clinical AI systems.",
+          "verbatim": "To assess whether observed fairness disparities represented systematic algorithmic discrimination or could plausibly arise from random variation, we employed permutation testing under the null hypothesis of gender-label exchangeability.",
+          "excerpt_context": "Section 3.6, paragraph 2",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Implement systematic, statistical auditing methods, such as permutation testing, to distinguish between systematic algorithmic bias and random variation.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for the systematic, statistical evaluation of AI models for social biases using standardized metrics and significance testing. Encompasses: permutation testing, null hypothesis of exchangeability, and statistical significance reporting. This practice ensures that fairness audits are based on robust evidence rather than anecdotal or unstable disparities, preventing the misinterpretation of algorithmic performance.",
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "bias_detection"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-061",
+          "category": "Beliefs",
+          "point": "The document acknowledges that simple fairness metrics like Demographic Parity Difference (DPD) and Equal Opportunity Difference (EOD) are insufficient on their own, necessitating a deeper provenance-based analysis. The authors demonstrate that while these metrics flag potential problems, they do not explain the underlying mechanism of bias. This aligns with the skeptic belief that binary or simplistic audit frameworks are inadequate for complex AI systems and that more nuanced, multi-stage approaches are required.",
+          "verbatim": "This two-stage approach outcome metrics followed by provenance explanation is analogous to a diagnostic test followed by an investigation: outcome metrics flag that a problem exists, while provenance analysis identifies the mechanism causing it.",
+          "excerpt_context": "Section 3.6.1, paragraph 3",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Outcome-based fairness metrics are insufficient for auditing complex AI systems and must be supplemented by provenance-based analysis to identify the mechanisms of bias.",
+          "attribution_text": "A Belief within skeptic discourse that simple outcome-based fairness metrics are inadequate for fully characterizing bias in complex AI systems. Encompasses: DPD, EOD, and the necessity of provenance-based explanation. This belief emphasizes that effective auditing requires identifying the specific mechanisms of discrimination rather than relying on aggregate performance statistics that may mask underlying structural issues.",
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "bias_detection"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-094",
+          "category": "Beliefs",
+          "point": "The document provides empirical evidence that both transparent (logistic regression) and black-box (random forest) models learn and propagate training data bias. It highlights that even when sensitive attributes like gender are removed, residual disparities persist due to proxy variables. This confirms the skeptic belief that AI systems are inherently prone to systematic discrimination and that simple mitigation strategies are often insufficient.",
+          "verbatim": "These results indicate that excluding protected attributes alone does not guarantee fairness. Correlated features may function as proxies, allowing group-level disparities to persist even when sensitive variables are removed.",
+          "excerpt_context": "Section 3.7.4.3",
+          "extraction_confidence": 1.0,
+          "canonical_proposition": "Excluding protected attributes from training data does not eliminate bias because correlated features function as proxies for discrimination.",
+          "attribution_text": "A Belief within skeptic discourse that algorithmic bias persists despite the removal of sensitive attributes due to proxy variables. Encompasses: Proxy bias, residual disparity, and the failure of attribute exclusion as a mitigation strategy.",
+          "vocabulary_terms": [
+            "algorithmic_discrimination",
+            "proxy_bias"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document argues that existing fairness toolkits are insufficient because they provide aggregate metrics without explaining the 'why' behind disparities. It advocates for a shift from static, post-hoc audits to continuous, operational provenance-based auditing. This methodology allows for the identification of specific bias mechanisms, such as feature contributions or counterfactual sensitivity, which is essential for effective, targeted mitigation.",
+          "verbatim": "Provenance fills this explanatory gap, enabling targeted rather than trial-and-error mitigation.",
+          "excerpt_context": "Section 4, paragraph 1",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Achieve effective bias mitigation by replacing static aggregate metrics with continuous, provenance-based diagnostic auditing.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for replacing static fairness metrics with continuous provenance-based auditing to identify and mitigate specific bias mechanisms. Encompasses: Diagnostic layers, bias mechanism identification, targeted mitigation, continuous audit trails.",
+          "vocabulary_terms": [
+            "algorithmic_fairness",
+            "bias_detection"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-041",
+          "category": "Beliefs",
+          "point": "The document asserts that AI models systematically learn and propagate biases present in training data, citing documented clinical disparities in risk scores and pulse oximetry. It emphasizes that these biases are not hypothetical but are measurable and persistent, requiring proactive, systematic detection methods rather than reactive discovery after harm has occurred.",
+          "verbatim": "The observation that models learn and propagate training data bias aligns with extensive documentation of biased algorithms in clinical medicine, from Obermeyer et al.'s (2019) seminal work on racially biased risk scores to systematic reviews finding disparities in cardiovascular risk prediction (Li et al., 2023) and pulse oximetry (Fawzy et al., 2022).",
+          "excerpt_context": "Section 4.2, Relationship to existing literature and frameworks",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "AI models systematically learn and propagate training data biases, leading to measurable and documented clinical disparities.",
+          "attribution_text": "A Belief within skeptic discourse that AI systems inherently encode and amplify training data biases, resulting in documented clinical discrimination. Encompasses: Algorithmic bias, clinical disparities, training data propagation, systematic harm.",
+          "vocabulary_terms": [
+            "algorithmic_discrimination",
+            "clinical_ai"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-087",
+          "category": "Intentions",
+          "point": "The document advocates for systematic bias audits and stakeholder involvement as essential components of clinical AI governance. This aligns with the skeptic focus on rigorous, empirical evaluation to identify and mitigate the pervasive biases inherent in AI systems.",
+          "verbatim": "Regular bias audits, stakeholder involvement, and agility in responding to audit findings are all part of robust AI governance.",
+          "excerpt_context": "Section 5, paragraph 6",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Implement regular, systematic bias audits and stakeholder involvement to ensure robust governance of clinical AI systems.",
+          "attribution_text": "An Intention within skeptic discourse that advocates for the implementation of rigorous, systematic bias audits and participatory stakeholder involvement to identify and mitigate structural harms in clinical AI. Encompasses: Bias audits, stakeholder involvement, and robust governance.",
+          "vocabulary_terms": [
+            "bias audits",
+            "stakeholder involvement"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Logistic regression models can exhibit higher levels of statistically significant bias than more complex 'black box' models like random forests in clinical prediction tasks.",
+      "claim_label": "Interpretability-Fairness Decoupling",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-145"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Logistic regression models exhibit stronger, more systematic gender bias than random forest models in readmission prediction tasks when gender is encoded as a linear feature.",
+      "claim_label": "Model Architecture Bias Sensitivity",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-215"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Permutation testing can effectively distinguish between systematic algorithmic bias and random variation in fairness metrics like Equal Opportunity Difference.",
+      "claim_label": "Statistical Audit Validity",
+      "doc_position": "supports",
+      "temporal_scope": "timeless",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-intentions-144"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Logistic regression models can exhibit higher levels of demographic disparity than random forest models despite having higher predictive accuracy. The study found that the logistic regression model had a statistically significant Equal Opportunity Difference (EOD) of +0.256, while the random forest model showed lower, non-significant disparities.",
+      "claim_label": "Interpretability-Fairness Divergence",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-145"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Standard performance metrics like accuracy and AUC are insufficient to detect bias in clinical AI models, as models with similar performance can exhibit significantly different bias propagation patterns.",
+      "claim_label": "Performance Metric Insufficiency",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 0.95,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-147",
+        "skp-beliefs-215"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    },
+    {
+      "claim": "Generative AI tools were used for language editing and grammar refinement during the preparation of this manuscript, but all study design, data generation, analyses, interpretation, and conclusions were produced by the authors.",
+      "claim_label": "Generative AI Usage Disclosure",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": null,
+      "extraction_confidence": 1.0,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-040"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": "true",
+        "internally_consistent": "true",
+        "category_criteria": "indicative assertion"
+      },
+      "claim_relations": []
+    }
+  ],
+  "unmapped_concepts": []
+}
