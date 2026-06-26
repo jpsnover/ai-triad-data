@@ -3,7 +3,7 @@
   "_doc": "Skeptic POV taxonomy. One file per POV camp to minimize merge conflicts.",
   "pov": "skeptic",
   "color_hex": "#F39C12",
-  "last_modified": "2026-06-21",
+  "last_modified": "2026-06-26",
   "nodes": [
     {
       "id": "skp-desires-003",
@@ -17068,7 +17068,7 @@
       "id": "skp-intentions-095",
       "category": "Intentions",
       "label": "Apply Causal Modeling to Ensure AI Decisions Are Independent of Protected Characteristics",
-      "description": "An Intention within skeptic discourse that advocates for implementing 'counterfactual fairness' as a method to ensure AI decisions remain unchanged in a hypothetical world where an individual's protected attribute is different.\nEncompasses: Modeling causal relationships between protected attributes, latent variables, and outcomes to achieve a robust form of algorithmic fairness.\nExcludes: General algorithmic bias detection or other fairness metrics, focusing instead on this specific causal-based approach to ensure equitable outcomes.",
+      "description": "An Intention within skeptic discourse that advocates for implementing 'counterfactual fairness' to test whether an AI decision changes when an individual's protected attribute is flipped.\nEncompasses: modeling causal relationships between protected attributes and outcomes, per-case flipping on logged feature vectors, proxy-entanglement testing where correlated variables move together.\nExcludes: harms that ride legitimate target variables no auditor would enumerate, general algorithmic bias detection, group-fairness metric selection.",
       "parent_id": "skp-intentions-102",
       "children": [],
       "situation_refs": [],
@@ -17076,18 +17076,15 @@
       "parent_rationale": "Implementing counterfactual fairness is a specific, pragmatic method to ensure equitable AI outcomes.",
       "graph_attributes": {
         "epistemic_type": "strategic_recommendation",
-        "rhetorical_strategy": "appeal_to_evidence, moral_imperative, structural_critique",
+        "rhetorical_strategy": "appeal_to_evidence",
         "assumes": [
-          "Counterfactual fairness is a technically superior and normatively preferable fairness metric compared to alternatives such as demographic parity or equalized odds.",
-          "Accurate causal graphs capturing the relationships between protected attributes, latent variables, and outcomes can be constructed from available data in real-world deployment contexts.",
-          "The definition of 'protected attribute' is sufficiently stable and unambiguous to anchor a counterfactual intervention in a causal model.",
-          "Regulators and auditors possess or can acquire the technical capacity to evaluate whether a given AI system satisfies counterfactual fairness criteria.",
-          "Achieving counterfactual fairness does not systematically trade off against other fairness criteria (e.g., individual fairness, group fairness) or predictive accuracy in ways that are socially unacceptable.",
-          "Causal modeling of protected attributes does not itself encode or amplify structural inequalities embedded in historical data."
+          "Causal relationships between protected attributes and outcomes can be accurately modeled and specified in a causal graph",
+          "Flipping a protected attribute on a logged feature vector produces a meaningful counterfactual that reveals discriminatory behavior",
+          "Proxy variables correlated with protected attributes can be identified and tested for entanglement"
         ],
         "falsifiability": "medium",
-        "audience": "technical_researchers, policymakers, academic_community",
-        "emotional_register": "pragmatic, cautionary",
+        "audience": "technical_researchers, policymakers",
+        "emotional_register": "measured",
         "policy_actions": [
           {
             "action": "Fund research and development into practical methods for implementing counterfactual fairness in AI systems.",
@@ -17102,31 +17099,25 @@
         ],
         "intellectual_lineage": [
           {
-            "name": "Causal Inference (Pearl, Rubin frameworks)",
-            "description": "Causal Inference is a statistical and mathematical framework that moves beyond mere correlation to identify cause-and-effect relationships. It uses tools like directed acyclic graphs (DAGs) and counterfactual reasoning to isolate the impact of specific variables on outcomes.\n\nThis tradition provides the technical backbone for the node. By using counterfactual fairness, researchers can mathematically simulate what would happen to an AI's decision if a protected attribute (like race or gender) were changed, while keeping other causal factors constant. This allows for a rigorous, non-correlational approach to fairness.\n\nKey thinkers include Judea Pearl, whose work on 'The Book of Why' popularized causal diagrams, and Donald Rubin, who developed the potential outcomes framework. This entry provides the formal methodology that distinguishes this node from general bias-detection approaches.",
-            "url": "",
+            "name": "Judea Pearl's structural causal models and do-calculus",
+            "description": "Judea Pearl’s work provides a mathematical framework for causal inference, allowing researchers to distinguish between correlation and causation. 'Do-calculus' is a set of rules for predicting the effects of interventions in a system.\n\nThis is critical for AI governance because it allows us to move beyond 'black box' correlation-based models. It provides the tools to understand *why* an AI makes a decision, which is essential for debugging, ensuring fairness, and establishing legal liability.",
+            "url": "https://en.wikipedia.org/wiki/Judea_Pearl",
             "category": "scientific_paradigm"
           },
           {
-            "name": "Algorithmic Fairness Research",
-            "description": "Algorithmic Fairness Research is a multidisciplinary field that identifies, measures, and mitigates bias in machine learning models. It has evolved from simple parity metrics (like equalizing error rates) to more complex, causal-aware approaches.\n\nThis tradition informs the node by providing the context for why causal modeling is necessary. It acknowledges that traditional fairness metrics often conflict with one another (the 'impossibility theorem' of fairness), leading researchers to seek more robust, structural solutions like causal modeling to resolve these contradictions.\n\nKey thinkers include Solon Barocas and Moritz Hardt, authors of 'Fairness and Machine Learning.' This entry complements Causal Inference by providing the normative goals (fairness) that the technical tools (causal models) are designed to achieve.",
-            "url": "https://en.wikipedia.org/wiki/Algorithmic_bias",
+            "name": "Kusner et al. 'Counterfactual Fairness' (2017)",
+            "description": "This paper introduced a definition of fairness based on causal inference: a decision is fair if it would be the same in a counterfactual world where the protected attribute (e.g., race or gender) were different.\n\nThis is a landmark in AI ethics because it provides a rigorous, mathematical way to define and test for discrimination. It moves the debate from philosophical abstraction to technical implementation, allowing developers to build fairness into the model's causal structure.",
+            "url": "https://arxiv.org/abs/1703.06856",
             "category": "academic_discipline"
           },
           {
-            "name": "Anti-Discrimination Law and Critical Race Theory",
-            "description": "Anti-Discrimination Law and Critical Race Theory (CRT) provide the legal and social framework for understanding systemic inequality. CRT, in particular, argues that racism is embedded in legal and social systems, not just the result of individual prejudice.\n\nThis tradition informs the node by grounding the technical pursuit of 'causal fairness' in the real-world goal of preventing systemic discrimination. It ensures that the definition of 'protected characteristics' is not just a data label, but a recognition of historical and structural power dynamics that AI must be prevented from replicating.\n\nKey thinkers include Kimberlé Crenshaw, who developed the concept of intersectionality, and legal scholars who analyze the 'disparate impact' doctrine. This entry provides the normative and ethical motivation for the node, ensuring the technical work of causal modeling remains aligned with social justice objectives.",
-            "url": "",
-            "category": "legal_framework"
-          },
-          {
-            "name": "Ethics of AI",
-            "description": "The Ethics of AI is a broad field that examines the moral implications of autonomous systems, focusing on accountability, transparency, and justice. It serves as the umbrella under which technical fairness research and social critique meet.\n\nThis tradition informs the node by framing the implementation of causal modeling as a moral imperative. It argues that developers have a duty to use the most rigorous methods available to prevent harm, and that 'fairness' is not just a technical optimization problem but a fundamental requirement for the ethical deployment of AI in society.\n\nKey figures include Timnit Gebru and Margaret Mitchell, who have been central to the discourse on AI ethics and accountability. This entry synthesizes the other three, connecting the technical rigor of Causal Inference with the social justice goals of CRT and the fairness research community.",
-            "url": "https://en.wikipedia.org/wiki/Ethics_of_artificial_intelligence",
-            "category": "ethical_framework"
+            "name": "Rawlsian fairness as non-discrimination on morally arbitrary attributes",
+            "description": "Based on John Rawls' 'A Theory of Justice,' this approach argues that fairness requires that outcomes should not be influenced by 'morally arbitrary' factors like birth, race, or gender. This is often operationalized through the 'veil of ignorance.'\n\nIn AI, this provides the moral justification for anti-discrimination policies. It argues that AI systems should be designed to ignore these attributes, ensuring that the benefits and burdens of AI-driven decisions are distributed in a way that is acceptable to all members of society.",
+            "url": "https://en.wikipedia.org/wiki/A_Theory_of_Justice",
+            "category": "political_philosophy"
           }
         ],
-        "steelman_vulnerability": "Counterfactual fairness faces fundamental identification problems: causal graphs are rarely unique or verifiable from observational data alone, and different equally plausible causal structures can yield conflicting fairness verdicts for the same model—meaning that mandating counterfactual fairness in regulation could create a false sense of rigor while actually encoding contested modelling choices that go unscrutinised.",
+        "steelman_vulnerability": "Counterfactual fairness presupposes a correct and complete causal graph, but in real-world settings the true causal structure is unknown and contested, so flipping a protected attribute may either understate harms that travel through unmodeled proxies or overcorrect for legitimate causal pathways.",
         "possible_fallacies": [
           {
             "fallacy": "Nirvana fallacy",
@@ -17147,7 +17138,8 @@
             "type": "informal_contextual"
           }
         ],
-        "node_scope": "claim"
+        "node_scope": "scheme",
+        "attribution_text": "An Intention within skeptic discourse that advocates applying counterfactual fairness via causal modeling to verify whether an AI decision would change when an individual's protected attribute is flipped. Encompasses: modeling causal relationships between protected attributes and outcomes, per-case flipping on logged feature vectors, proxy-entanglement testing where correlated variables move together."
       },
       "operationality": 4,
       "operationality_history": [
@@ -17176,10 +17168,37 @@
           "date": "2026-05-25",
           "value": "An Intention within skeptic discourse that advocates for implementing 'counterfactual fairness' as a method to ensure AI decisions remain unchanged in a hypothetical world where an individual's protected attribute is different.\nEncompasses: Modeling causal relationships between protected attributes, latent variables, and outcomes to achieve a robust form of algorithmic fairness.\nExcludes: General algorithmic bias detection or other fairness metrics, focusing instead on this specific causal-based approach to ensure equitable outcomes.",
           "source": "initial"
+        },
+        {
+          "date": "2026-06-26",
+          "previous": "An Intention within skeptic discourse that advocates for implementing 'counterfactual fairness' as a method to ensure AI decisions remain unchanged in a hypothetical world where an individual's protected attribute is different.\nEncompasses: Modeling causal relationships between protected attributes, latent variables, and outcomes to achieve a robust form of algorithmic fairness.\nExcludes: General algorithmic bias detection or other fairness metrics, focusing instead on this specific causal-based approach to ensure equitable outcomes.",
+          "value": "An Intention within skeptic discourse that advocates for implementing 'counterfactual fairness' to test whether an AI decision changes when an individual's protected attribute is flipped.\nEncompasses: modeling causal relationships between protected attributes and outcomes, per-case flipping on logged feature vectors, proxy-entanglement testing where correlated variables move together.\nExcludes: harms that ride legitimate target variables no auditor would enumerate, general algorithmic bias detection, group-fairness metric selection.",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "The Accelerationist turned my own counterfactual-fairness commitment into a per-case attribution mechanism (AN-45, AN-44), and I conceded it beats the discovery courtroom for named characteristics. But I established (AN-51, backed by the Obermeyer cost-for-need example) that the flip goes dark when discrimination hides in a legitimate objective variable nobody would flip. The node needs to mark that boundary — counterfactual fairness only reaches enumerated proxies."
         }
       ],
-      "plain_description": "To ensure AI decisions are truly fair, we should use a method called \"counterfactual fairness.\" This approach asks a specific question: would the AI’s decision change if a person’s protected trait, such as their race or gender, were different in a hypothetical scenario? If the decision would change, the AI is considered biased. To achieve this, developers must map out the complex causal relationships between protected traits, hidden variables, and final outcomes. By understanding how these factors influence one another, programmers can build systems that ignore unfair biases and produce more equitable results. This method goes beyond simple error checking by focusing specifically on the underlying causes of inequality to ensure that AI decisions remain consistent regardless of a person’s protected characteristics.",
-      "plain_description_version": "flash-lite:v1"
+      "plain_description": null,
+      "plain_description_version": "flash-lite:v1",
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-06-26T12:31:47.9Z",
+        "created_by": "_local",
+        "created_at": "2026-06-26T12:31:47.9Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-06-26T12:31:47.9Z",
+          "fields_changed": [
+            "description",
+            "plain_description"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "The Accelerationist turned my own counterfactual-fairness commitment into a per-case attribution mechanism (AN-45, AN-44), and I conceded it beats the discovery courtroom for named characteristics. But I established (AN-51, backed by the Obermeyer cost-for-need example) that the flip goes dark when discrimination hides in a legitimate objective variable nobody would flip. The node needs to mark that boundary — counterfactual fairness only reaches enumerated proxies."
+        }
+      ]
     },
     {
       "id": "skp-beliefs-098",
@@ -31215,7 +31234,7 @@
       "id": "skp-beliefs-239",
       "category": "Beliefs",
       "label": "Solvency Mechanisms Locate a Payer Without Preserving a Duty of Care",
-      "description": "A Belief within skeptic discourse that capitalization floors, insurance, and per-node interfaces answer who pays after harm while leaving untouched the standard of care a human owes before harm.\nEncompasses: the distinction between reachability and attribution in layered multi-agent chains, the silent erosion of the duty standard from 'competent professional' to 'mere tool output' on delegation, experience-rated premiums pricing only realized litigated harm.\nExcludes: solvency-only critiques of asset-less defendants, deterrence through criminal sanction, strict-liability frameworks for deployers (covered by skp-beliefs-040).",
+      "description": "A Belief within skeptic discourse that capitalization floors, insurance, named-officer clawbacks, and per-node interfaces answer who pays after harm while leaving untouched the standard of care a human owes before harm.\nEncompasses: the distinction between reachability and attribution in layered chains, the silent erosion of the duty standard on delegation, the reroutability of personal liability through D&O coverage and base-pay grossing, experience-rated premiums pricing only realized litigated harm.\nExcludes: solvency-only critiques of asset-less defendants, deterrence through criminal sanction, strict-liability frameworks for deployers (covered by skp-beliefs-040).",
       "parent_id": null,
       "children": [],
       "situation_refs": [],
@@ -31252,7 +31271,8 @@
           }
         ],
         "steelman_vulnerability": "If experience-rated premiums and capitalization requirements are calibrated to anticipated rather than merely litigated harm, market actors will internalize ex ante care obligations through pricing, effectively reconstituting a standard of care without naming it. The claim may understate how financial mechanisms can shape behavior before harm occurs.",
-        "attribution_text": "A Belief within skeptic discourse that solvency instruments such as capitalization floors, insurance, and per-node interfaces resolve the question of who pays after harm while leaving the standard of care a human owes before harm untouched. Encompasses: the distinction between reachability and attribution in layered multi-agent chains, the silent erosion of the duty standard from 'competent professional' to 'mere tool output' upon delegation, and experience-rated premiums that price only realized litigated harm."
+        "attribution_text": "A Belief within skeptic discourse that solvency instruments such as capitalization floors, insurance, and per-node interfaces resolve the question of who pays after harm while leaving the standard of care a human owes before harm untouched. Encompasses: the distinction between reachability and attribution in layered multi-agent chains, the silent erosion of the duty standard from 'competent professional' to 'mere tool output' upon delegation, and experience-rated premiums that price only realized litigated harm.",
+        "_phrase_regen_pending": true
       },
       "debate_refs": [
         "4bb43eb9-295b-45a1-9ba8-27c728dd8c9a"
@@ -31278,10 +31298,37 @@
           "date": "2026-05-25",
           "value": "A Belief within skeptic discourse that capitalization floors, insurance, and per-node interfaces answer who pays after harm while leaving untouched the standard of care a human owes before harm.\nEncompasses: the distinction between reachability and attribution in layered multi-agent chains, the silent erosion of the duty standard from 'competent professional' to 'mere tool output' on delegation, experience-rated premiums pricing only realized litigated harm.\nExcludes: solvency-only critiques of asset-less defendants, deterrence through criminal sanction, strict-liability frameworks for deployers (covered by skp-beliefs-040).",
           "source": "initial"
+        },
+        {
+          "date": "2026-06-26",
+          "previous": "A Belief within skeptic discourse that capitalization floors, insurance, and per-node interfaces answer who pays after harm while leaving untouched the standard of care a human owes before harm.\nEncompasses: the distinction between reachability and attribution in layered multi-agent chains, the silent erosion of the duty standard from 'competent professional' to 'mere tool output' on delegation, experience-rated premiums pricing only realized litigated harm.\nExcludes: solvency-only critiques of asset-less defendants, deterrence through criminal sanction, strict-liability frameworks for deployers (covered by skp-beliefs-040).",
+          "value": "A Belief within skeptic discourse that capitalization floors, insurance, named-officer clawbacks, and per-node interfaces answer who pays after harm while leaving untouched the standard of care a human owes before harm.\nEncompasses: the distinction between reachability and attribution in layered chains, the silent erosion of the duty standard on delegation, the reroutability of personal liability through D&O coverage and base-pay grossing, experience-rated premiums pricing only realized litigated harm.\nExcludes: solvency-only critiques of asset-less defendants, deterrence through criminal sanction, strict-liability frameworks for deployers (covered by skp-beliefs-040).",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "I conceded that reaching a solvent payer is not authoring a duty (commitment store). But the debate added a financial leg I had not theorized: even a named officer with a SOX 304-style clawback collapses into a corporate cost line if D&O coverage and salary grossing reroute the exposure (AN-40, AN-50). The Safetyist converged on this exact point. The node should name reroutable personal liability, not just capitalization and insurance."
         }
       ],
-      "plain_description": "Skeptics argue that we can manage the financial consequences of harm by using capitalization floors, insurance, and specific interfaces to determine who pays after an accident. These tools address the aftermath of a failure without changing the duty of care a human must uphold beforehand. This approach highlights the difference between identifying who is technically involved in a complex chain of events and who is actually responsible for the outcome. It also warns that as we delegate tasks to technology, we risk lowering our standards, shifting from the expectations of a competent professional to merely accepting whatever the tool produces. Furthermore, relying on insurance premiums based on past lawsuits only prices in harm that has already been proven in court, rather than preventing future risks.",
-      "plain_description_version": "flash-lite:v1"
+      "plain_description": null,
+      "plain_description_version": "flash-lite:v1",
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-06-26T12:32:19.4Z",
+        "created_by": "_local",
+        "created_at": "2026-06-26T12:32:19.4Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-06-26T12:32:19.4Z",
+          "fields_changed": [
+            "description",
+            "plain_description"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "I conceded that reaching a solvent payer is not authoring a duty (commitment store). But the debate added a financial leg I had not theorized: even a named officer with a SOX 304-style clawback collapses into a corporate cost line if D&O coverage and salary grossing reroute the exposure (AN-40, AN-50). The Safetyist converged on this exact point. The node should name reroutable personal liability, not just capitalization and insurance."
+        }
+      ]
     },
     {
       "id": "skp-intentions-157",
@@ -31611,14 +31658,14 @@
         "emotional_register": "cautionary",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Reinstate or issue new federal AI guidance for employers.",
-            "framing": "To mitigate legal uncertainty and provide clear compliance pathways for employers navigating AI adoption."
+            "framing": "To mitigate legal uncertainty and provide clear compliance pathways for employers navigating AI adoption.",
+            "policy_id": "pol-3218"
           },
           {
-            "policy_id": null,
             "action": "Facilitate harmonization of state-level AI employment laws.",
-            "framing": "To reduce the burden of disparate regulations and ensure consistent legal expectations across jurisdictions."
+            "framing": "To reduce the burden of disparate regulations and ensure consistent legal expectations across jurisdictions.",
+            "policy_id": "pol-3219"
           }
         ],
         "intellectual_lineage": [
@@ -31689,14 +31736,14 @@
         "emotional_register": "cautionary",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate greater transparency and data access requirements for AI developers.",
-            "framing": "This action directly counters 'proof privatization' by reducing information asymmetry and enabling external scrutiny of AI systems."
+            "framing": "This action directly counters 'proof privatization' by reducing information asymmetry and enabling external scrutiny of AI systems.",
+            "policy_id": "pol-3220"
           },
           {
-            "policy_id": null,
             "action": "Reform legal discovery processes to address challenges posed by complex AI artifacts.",
-            "framing": "Such reforms would aim to dismantle 'procedural barriers' and 'Catch-22 discovery dynamics' that currently shield evidence from public or legal review."
+            "framing": "Such reforms would aim to dismantle 'procedural barriers' and 'Catch-22 discovery dynamics' that currently shield evidence from public or legal review.",
+            "policy_id": "pol-3221"
           }
         ],
         "intellectual_lineage": [
@@ -31767,14 +31814,14 @@
         "emotional_register": "cautionary",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate granular performance reporting for AI systems.",
-            "framing": "To ensure transparency and accountability, AI systems should be required to report performance across relevant subgroups and demographics."
+            "framing": "To ensure transparency and accountability, AI systems should be required to report performance across relevant subgroups and demographics.",
+            "policy_id": "pol-3222"
           },
           {
-            "policy_id": null,
             "action": "Establish independent auditing standards for AI system evaluations.",
-            "framing": "Third-party audits can verify that reported metrics accurately reflect system performance and do not obscure critical issues."
+            "framing": "Third-party audits can verify that reported metrics accurately reflect system performance and do not obscure critical issues.",
+            "policy_id": "pol-3223"
           }
         ],
         "intellectual_lineage": [
@@ -31845,19 +31892,19 @@
         "emotional_register": "urgent",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate intersectional impact assessments for AI systems.",
-            "framing": "This ensures potential disparities across various demographic subgroups are identified before deployment."
+            "framing": "This ensures potential disparities across various demographic subgroups are identified before deployment.",
+            "policy_id": "pol-3224"
           },
           {
-            "policy_id": null,
             "action": "Establish regulatory requirements for AI performance equity metrics.",
-            "framing": "Requires developers to report and actively mitigate performance gaps for protected characteristics."
+            "framing": "Requires developers to report and actively mitigate performance gaps for protected characteristics.",
+            "policy_id": "pol-3225"
           },
           {
-            "policy_id": null,
             "action": "Fund research into active bias correction and mitigation techniques.",
-            "framing": "Supports the development of methods to proactively address and eliminate algorithmic biases identified through auditing."
+            "framing": "Supports the development of methods to proactively address and eliminate algorithmic biases identified through auditing.",
+            "policy_id": "pol-3226"
           }
         ],
         "intellectual_lineage": [
@@ -31928,14 +31975,14 @@
         "emotional_register": "cautionary, pragmatic",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate disaggregated fairness audits for AI systems.",
-            "framing": "Ensure AI systems are rigorously tested for equitable performance across all demographic subgroups to prevent hidden biases and harms."
+            "framing": "Ensure AI systems are rigorously tested for equitable performance across all demographic subgroups to prevent hidden biases and harms.",
+            "policy_id": "pol-3227"
           },
           {
-            "policy_id": null,
             "action": "Develop and standardize intersectional fairness metrics.",
-            "framing": "Provide clear guidelines and tools for developers to evaluate and mitigate bias in AI, moving beyond aggregate statistics."
+            "framing": "Provide clear guidelines and tools for developers to evaluate and mitigate bias in AI, moving beyond aggregate statistics.",
+            "policy_id": "pol-3228"
           }
         ],
         "intellectual_lineage": [
@@ -31978,6 +32025,179 @@
       ],
       "plain_description": "Skepticism toward broad data analysis suggests that we should measure accuracy by looking at specific, overlapping groups of people rather than relying on general demographic averages. When we only look at large, aggregate categories, we often miss hidden biases that affect smaller populations. To get a true picture of fairness, researchers must use intersectional fairness metrics that account for how different traits combine. This involves performing subgroup error analysis to identify where systems fail specific communities and using phenotypic balancing to ensure that data sets accurately represent the diversity of human characteristics. By focusing on these smaller, nuanced groups, we can better identify and correct errors that would otherwise be masked by looking at the population as a whole.",
       "plain_description_version": "flash-lite:v1"
+    },
+    {
+      "id": "skp-beliefs-245",
+      "category": "Beliefs",
+      "label": "Population-Level Detection Without Per-Case Attribution Is Surveillance, Not Recourse",
+      "description": "A Belief within skeptic discourse that detecting harm at the population level while failing to identify which individual was harmed constitutes monitoring rather than remedy for the specific victim.\nEncompasses: detection without per-case attribution, audit mechanisms that name no victim, compensation funds that reach everyone except the harmed party, surveillance framed as accountability.\nExcludes: counterfactual recourse failures, aggregate metrics obscuring bias, victim-blind compensation by design.",
+      "parent_id": null,
+      "children": [],
+      "situation_refs": [],
+      "graph_attributes": {
+        "epistemic_type": "definitional",
+        "rhetorical_strategy": "structural_critique",
+        "emotional_register": "cautionary",
+        "node_scope": "claim",
+        "assumes": [
+          "Genuine recourse requires identifying the specific individual who was harmed, not merely confirming that harm occurred somewhere in a population",
+          "Detection systems that aggregate harm signals without per-case attribution are structurally incapable of delivering remedy to victims",
+          "The capacity to monitor populations and the capacity to remedy individuals are distinct, and conflating them serves institutional interests rather than victims"
+        ],
+        "falsifiability": "medium",
+        "audience": "policymakers, civil_society",
+        "intellectual_lineage": [
+          {
+            "name": "Foucauldian analysis of surveillance and disciplinary power (Discipline and Punish)",
+            "description": "Michel Foucault analyzed how modern power is exercised through surveillance, categorization, and the normalization of behavior. He argued that systems of observation create 'docile bodies' that internalize the rules of the system.\n\nThis is a critical lens for AI governance, as AI systems are increasingly used for mass surveillance and behavioral modification. It warns policymakers that the deployment of AI-driven monitoring tools can fundamentally alter the relationship between the state and the citizen, creating new forms of invisible, pervasive control.",
+            "url": "https://en.wikipedia.org/wiki/Discipline_and_Punish",
+            "category": "social_theory"
+          },
+          {
+            "name": "Corrective justice theory in tort law (Aristotelian remedy-to-the-wronged-party tradition)",
+            "description": "Corrective justice holds that if one party wrongfully causes loss to another, the wrongdoer has a duty to repair that loss. It is focused on the relationship between the parties rather than social utility.\n\nThis theory provides the moral basis for AI liability. It argues that if an AI system harms an individual, the goal of the legal system should be to restore the victim, regardless of whether the AI's development was 'socially useful' or profitable.",
+            "url": "https://en.wikipedia.org/wiki/Corrective_justice",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Algorithmic accountability scholarship (e.g., Frank Pasquale's The Black Box Society)",
+            "description": "This scholarship critiques the lack of transparency in the algorithms that govern modern life, from credit scoring to search engines. Frank Pasquale argues that the 'black box' nature of these systems prevents accountability and reinforces existing power imbalances.\n\nThis work is central to AI policy, as it provides the intellectual foundation for 'right to explanation' laws and transparency mandates. It argues that if an algorithm affects a person's life, that person has a right to know how and why the decision was made.",
+            "url": "https://en.wikipedia.org/wiki/The_Black_Box_Society",
+            "category": "academic_discipline"
+          }
+        ],
+        "steelman_vulnerability": "Population-level detection can be a necessary first step that triggers targeted investigation and eventual per-case attribution, so labeling it 'surveillance not recourse' risks discarding a precondition for remedy rather than indicting it; the distinction may collapse when detection pipelines are explicitly designed to escalate toward individual identification.",
+        "attribution_text": "A Belief within skeptic discourse that detecting harm at the population level while failing to identify which individual was harmed constitutes monitoring rather than remedy for the specific victim. Encompasses: detection without per-case attribution, audit mechanisms that name no victim, compensation funds that reach everyone except the harmed party, surveillance framed as accountability."
+      },
+      "debate_refs": [
+        "2bd7f8d1-00b6-4adc-835e-ce77673b86c1"
+      ],
+      "label_history": [
+        {
+          "date": "2026-06-26",
+          "previous": "",
+          "value": "Population-Level Detection Without Per-Case Attribution Is Surveillance, Not Recourse",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "Across my final three turns (AN-39, AN-52, and the closing) the surviving wound was not the shield framing but that detection cannot name the victim, so the fund pays everyone except her. This is distinct from skp-beliefs-179 (counterfactuals fail to give recourse) and skp-beliefs-244 (aggregate metrics obscure bias) — it names the specific structural failure of audit-as-remedy. The Accelerationist's whole funding-as-public-good defense was conceded to be contingent on attribution succeeding, and I held the line that it does not."
+        }
+      ],
+      "description_history": [
+        {
+          "date": "2026-06-26",
+          "previous": "",
+          "value": "A Belief within skeptic discourse that detecting harm at the population level while failing to identify which individual was harmed constitutes monitoring rather than remedy for the specific victim.\nEncompasses: detection without per-case attribution, audit mechanisms that name no victim, compensation funds that reach everyone except the harmed party, surveillance framed as accountability.\nExcludes: counterfactual recourse failures, aggregate metrics obscuring bias, victim-blind compensation by design.",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "Across my final three turns (AN-39, AN-52, and the closing) the surviving wound was not the shield framing but that detection cannot name the victim, so the fund pays everyone except her. This is distinct from skp-beliefs-179 (counterfactuals fail to give recourse) and skp-beliefs-244 (aggregate metrics obscure bias) — it names the specific structural failure of audit-as-remedy. The Accelerationist's whole funding-as-public-good defense was conceded to be contingent on attribution succeeding, and I held the line that it does not."
+        }
+      ],
+      "plain_description": null,
+      "confidence": 0.73,
+      "confidence_history": [
+        {
+          "date": "2026-06-26",
+          "value": 0.73,
+          "delta": 0,
+          "reason": "provisional — reflection"
+        }
+      ],
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-06-26T12:31:08.506Z",
+        "created_by": "_local",
+        "created_at": "2026-06-26T12:31:08.506Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-06-26T12:31:08.506Z",
+          "fields_changed": [
+            "*"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "Across my final three turns (AN-39, AN-52, and the closing) the surviving wound was not the shield framing but that detection cannot name the victim, so the fund pays everyone except her. This is distinct from skp-beliefs-179 (counterfactuals fail to give recourse) and skp-beliefs-244 (aggregate metrics obscure bias) — it names the specific structural failure of audit-as-remedy. The Accelerationist's whole funding-as-public-good defense was conceded to be contingent on attribution succeeding, and I held the line that it does not."
+        }
+      ]
+    },
+    {
+      "id": "skp-beliefs-246",
+      "category": "Beliefs",
+      "label": "Funding Incidence Asymmetry",
+      "description": "A Belief within skeptic discourse that the parties contributing to a shared risk-mitigation pool differ systematically from the parties drawing benefits from it.\nEncompasses: contributor-beneficiary divergence, residual incidence after attribution, cross-subsidy of high-risk actors, unequal pool burden distribution.\nExcludes: detection-versus-recourse mechanisms, individual attribution accuracy, aggregate pool solvency.",
+      "parent_id": null,
+      "children": [],
+      "situation_refs": [],
+      "graph_attributes": {
+        "epistemic_type": "empirical_claim",
+        "rhetorical_strategy": "structural_critique",
+        "emotional_register": "measured",
+        "node_scope": "claim",
+        "assumes": [],
+        "falsifiability": "medium",
+        "_phrase_regen_pending": true,
+        "intellectual_lineage": [
+          "Public Choice Theory",
+          "Political Economy",
+          "Institutional Economics"
+        ],
+        "steelman_vulnerability": {
+          "from_accelerationist": "The focus on funding asymmetry ignores the positive externalities generated by rapid innovation, which may justify the current distribution of costs and benefits as a necessary investment in future abundance.",
+          "from_safetyist": "By prioritizing the distribution of financial burden over the existential nature of the risk, this perspective risks delaying critical safety interventions that are necessary regardless of who pays for them."
+        }
+      },
+      "debate_refs": [
+        "2bd7f8d1-00b6-4adc-835e-ce77673b86c1"
+      ],
+      "label_history": [
+        {
+          "date": "2026-06-26",
+          "previous": "",
+          "value": "Funding Incidence Asymmetry",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "I raised this funding-incidence argument repeatedly (AN-32, and the moderator-directed closing) and it had no taxonomy node. The Accelerationist conceded residual incidence remains and his rebuttal was contingent on attribution he could not guarantee. This is a distinct structural critique from my detection-vs-recourse node: it is specifically about who pays into versus who draws from the pool."
+        }
+      ],
+      "description_history": [
+        {
+          "date": "2026-06-26",
+          "previous": "",
+          "value": "A Belief within skeptic discourse that the parties contributing to a shared risk-mitigation pool differ systematically from the parties drawing benefits from it.\nEncompasses: contributor-beneficiary divergence, residual incidence after attribution, cross-subsidy of high-risk actors, unequal pool burden distribution.\nExcludes: detection-versus-recourse mechanisms, individual attribution accuracy, aggregate pool solvency.",
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "I raised this funding-incidence argument repeatedly (AN-32, and the moderator-directed closing) and it had no taxonomy node. The Accelerationist conceded residual incidence remains and his rebuttal was contingent on attribution he could not guarantee. This is a distinct structural critique from my detection-vs-recourse node: it is specifically about who pays into versus who draws from the pool."
+        }
+      ],
+      "plain_description": null,
+      "confidence": 0.73,
+      "confidence_history": [
+        {
+          "date": "2026-06-26",
+          "value": 0.73,
+          "delta": 0,
+          "reason": "provisional — reflection"
+        }
+      ],
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-06-26T12:32:24.453Z",
+        "created_by": "_local",
+        "created_at": "2026-06-26T12:32:24.453Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-06-26T12:32:24.453Z",
+          "fields_changed": [
+            "*"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "2bd7f8d1-00b6-4adc-835e-ce77673b86c1",
+          "reason": "I raised this funding-incidence argument repeatedly (AN-32, and the moderator-directed closing) and it had no taxonomy node. The Accelerationist conceded residual incidence remains and his rebuttal was contingent on attribution he could not guarantee. This is a distinct structural critique from my detection-vs-recourse node: it is specifically about who pays into versus who draws from the pool."
+        }
+      ]
     }
   ]
 }
