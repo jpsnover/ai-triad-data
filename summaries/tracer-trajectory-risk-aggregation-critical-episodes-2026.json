@@ -1,0 +1,207 @@
+{
+  "doc_id": "tracer-trajectory-risk-aggregation-critical-episodes-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-30T19:53:21Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 43,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 1,
+      "claims_confident": 1,
+      "claims_iterated": 0,
+      "elapsed_seconds": 8.1,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "tracer-trajectory-risk-aggregation-critical-episodes-2026",
+    "measured_at": "2026-06-30T19:57:11.6265790-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1,
+        "out_units": "still_unmapped",
+        "out_count": 1,
+        "ratio": 1,
+        "flags": {
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0,
+          "resolved_count": 0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 60887,
+        "out_units": "items",
+        "out_count": 6,
+        "ratio": 0.0001,
+        "flags": {
+          "null_node_rate": 0,
+          "factual_claims": 1,
+          "used_fire": 1,
+          "unmapped_concepts": 1,
+          "dedup_claims_removed": 0,
+          "total_points": 4,
+          "dedup_points_removed": 0,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 752,
+        "out_units": "nodes",
+        "out_count": 43,
+        "ratio": 0.0572,
+        "flags": {
+          "beliefs_selected": 16,
+          "threshold_floor": 0.2,
+          "below_threshold_forced": 3,
+          "synthetic_nodes_scored": 752,
+          "desires_selected": 3,
+          "intentions_selected": 24,
+          "effective_threshold": 0.5016,
+          "top_k": 40,
+          "above_threshold": 40
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1,
+        "out_units": "still_unmapped",
+        "out_count": 1,
+        "ratio": 1,
+        "flags": {
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 0,
+          "resolved_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0572
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-054",
+          "category": "Intentions",
+          "point": "The document proposes TRACER as a trajectory-level uncertainty metric that grounds AI safety in observable behavior and real-world testing. By integrating content-aware surprisal with situational-awareness indicators like repetition and coherence gaps, the metric evaluates AI performance based on actual interaction outcomes rather than static token-level likelihood. This approach aligns with the accelerationist goal of ensuring safety through empirical verification and continuous learning in production environments. The document acknowledges that this method relies on the availability of token probabilities and embedding-based comparisons, which may limit its application in certain black-box settings.",
+          "verbatim": "TRACER connects to this literature by constructing a trajectory-level score that behaves as a coherent tail-risk measure, emphasizing worst-case dialogue segments rather than average uncertainty.",
+          "excerpt_context": "Section II, Part B",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Ground AI safety in observable trajectory-level behavior and real-world testing.",
+          "attribution_text": "An Intention within accelerationist discourse that prioritizes observable actions, real-world testing, and continuous learning to ensure AI safety. Encompasses: trajectory-level uncertainty metrics, empirical failure detection, real-world interaction monitoring.",
+          "vocabulary_terms": [
+            "safety_empirical",
+            "oversight_audit"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-intentions-140",
+          "category": "Intentions",
+          "point": "The document introduces TRACER to contain the blast radius of autonomous AI by identifying sparse critical episodes that lead to trajectory-level breakdowns. By using a tail-focused risk functional, the metric emphasizes worst-case dialogue segments, allowing for earlier detection of failures like looping or incoherent tool use. This aligns with safetyist efforts to manage the unique risks posed by autonomous agents in multi-turn, tool-using environments. The authors note that the bound is conservative by construction, relying on a union bound and worst-case dominance to ensure safety.",
+          "verbatim": "TRACER is designed for these settings by modeling dialogue as a dual-control trajectory and scoring risk at the step level before tail-focused aggregation.",
+          "excerpt_context": "Section II, Part D",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "Contain the blast radius of autonomous AI by identifying and addressing sparse critical episodes.",
+          "attribution_text": "An Intention within safetyist discourse that identifies and addresses the unique dangers posed by autonomous AI agents, including their potential for misuse, unintended consequences, and systemic disruption. Encompasses: trajectory-level risk aggregation, tail-focused risk functionals, early-warning failure detection.",
+          "vocabulary_terms": [
+            "safety_existential",
+            "deployment_gated"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-151",
+          "category": "Beliefs",
+          "point": "The document asserts that standard uncertainty proxies are insufficient for agentic settings because failures are often triggered by sparse critical episodes that occur despite locally confident generation. This supports the safetyist belief that rapid, large-scale deployment of AI agents can overwhelm human capacity for oversight, as standard metrics fail to capture the trajectory-level phenomena that determine success or failure. The authors argue that global averages of token uncertainty systematically underweight the segments that determine failure, necessitating more sophisticated monitoring. They acknowledge that their proposed metric is a proxy and that its effectiveness depends on the quality of the underlying situational-awareness indicators.",
+          "verbatim": "Crucially, these failures often occur despite fluent and locally confident generation, exposing a gap between standard uncertainty proxies and the realities of multi-turn, tool-using decisions.",
+          "excerpt_context": "Section I",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "AI deployment speed and agentic complexity make standard token-level oversight controls insufficient.",
+          "attribution_text": "A Belief within safetyist discourse that the rapid, large-scale deployment of AI agents overwhelms human capacity for meaningful oversight, rendering theoretical control mechanisms impractical. Encompasses: trajectory-level failure modes, sparse critical episodes, inadequacy of token-level uncertainty proxies.",
+          "vocabulary_terms": [
+            "capabilities_hazard",
+            "oversight_human_control"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "skp-beliefs-021",
+          "category": "Beliefs",
+          "point": "The document frames the evaluation of conversational agents as a routine engineering challenge within a dual-control environment, focusing on iterative refinement of uncertainty metrics. By treating agentic interaction as a Dec-POMDP (Decentralized Partially Observable Markov Decision Process), the authors approach failure detection as a technical problem of improving observability and selective prediction. This aligns with the skeptic view that AI deployment is a process of iterative refinement rather than a civilizational rupture. The document acknowledges that these failures are structural and recurring, suggesting they are manageable through better diagnostic tools.",
+          "verbatim": "The interaction formalism is defined by Dec-POMDP (S, {Ai}, {Oi}, T , R, U, M) with players i ? {agent, user}.",
+          "excerpt_context": "Section IV, Part A",
+          "extraction_confidence": 0.92,
+          "canonical_proposition": "AI deployment is a routine engineering challenge requiring iterative refinement of observability and diagnostic tools.",
+          "attribution_text": "A Belief within skeptic discourse that describes the incremental and non-revolutionary integration of AI into existing work practices, treating AI deployment as a process of iterative refinement rather than a civilizational rupture. Encompasses: Dec-POMDP modeling, technical observability improvements, iterative diagnostic refinement.",
+          "vocabulary_terms": [
+            "accountability_algorithmic"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "TRACER improves AUROC by up to 37.1% and AUARC by up to 55% over baselines in predicting task failure and selective task execution.",
+      "claim_label": "TRACER Performance Improvement",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-06",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "acc-intentions-054"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Dual-Control Trajectory Modeling",
+      "suggested_description": "A situation concept that models multi-turn agent-user interactions as a decentralized control problem where both actors are stochastic.\nEncompasses: Dec-POMDP frameworks, agent-user coordination, tool-mediated state changes.\nExcludes: Single-shot generation, static task evaluation.",
+      "concept": "The document models multi-turn, tool-using dialogue as a dual-control trajectory where both the agent and the user follow stochastic policies. This framework treats the interaction as a Dec-POMDP, capturing the reality that failures arise from coordination gaps and partial observability rather than just token-level errors.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "The taxonomy lacks a node for the specific modeling of multi-agent, dual-control interaction dynamics in AI evaluation.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a powerful diagnostic tool to optimize agent performance and coordination in complex, real-world environments.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a necessary framework for identifying and mitigating the systemic risks that emerge from multi-agent interactions.",
+      "Skeptic Interpretation": "Skeptics would see this as a standard engineering approach to improving the reliability of specific, deployed AI systems.",
+      "resolved_node_id": "cc-241"
+    }
+  ]
+}

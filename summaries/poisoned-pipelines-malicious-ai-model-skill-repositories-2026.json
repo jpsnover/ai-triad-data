@@ -1,0 +1,227 @@
+{
+  "doc_id": "poisoned-pipelines-malicious-ai-model-skill-repositories-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-06-30T19:53:21Z",
+  "model_info": {
+    "model": "gemini-3.1-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 43,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 0,
+      "claims_iterated": 0,
+      "elapsed_seconds": 181.1,
+      "termination_reason": "wall_clock_exceeded (60 s)"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "poisoned-pipelines-malicious-ai-model-skill-repositories-2026",
+    "measured_at": "2026-06-30T19:58:57.8015402-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2,
+        "out_units": "still_unmapped",
+        "out_count": 1,
+        "ratio": 0.5,
+        "flags": {
+          "threshold": 0.6,
+          "used_embeddings": 1,
+          "near_miss_count": 1,
+          "resolved_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 35075,
+        "out_units": "items",
+        "out_count": 7,
+        "ratio": 0.0002,
+        "flags": {
+          "null_node_rate": 0,
+          "factual_claims": 2,
+          "used_fire": 1,
+          "unmapped_concepts": 1,
+          "dedup_claims_removed": 0,
+          "total_points": 4,
+          "dedup_points_removed": 0,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 752,
+        "out_units": "nodes",
+        "out_count": 43,
+        "ratio": 0.0572,
+        "flags": {
+          "beliefs_selected": 20,
+          "threshold_floor": 0.2,
+          "below_threshold_forced": 3,
+          "synthetic_nodes_scored": 752,
+          "desires_selected": 3,
+          "intentions_selected": 20,
+          "effective_threshold": 0.5589,
+          "top_k": 40,
+          "above_threshold": 40
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 1,
+        "out_units": "still_unmapped",
+        "out_count": 1,
+        "ratio": 1,
+        "flags": {
+          "threshold": 0.5,
+          "used_embeddings": 0,
+          "near_miss_count": 1,
+          "resolved_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0572
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-115",
+          "category": "Intentions",
+          "point": "The document advocates for building robust defensive infrastructure to counter the risks posed by malicious AI components, emphasizing that the industry must prioritize shared security standards. By treating AI model and skill repositories as critical supply chain infrastructure, the document argues for the adoption of verified provenance, hash integrity, and sandboxed loading. From an accelerationist perspective, this defensive hardening is essential to maintain the viability of open AI marketplaces and prevent the stagnation caused by security-related deployment freezes. The document acknowledges that current adoption of these defensive measures remains incomplete, creating a gap between existing risks and necessary security maturity.",
+          "verbatim": "Organizations must treat AI model and skill downloads with the same supply chain scrutiny applied to third-party code packages: verified provenance, hash integrity, sandboxed loading, and preference for formats that do not permit code execution.",
+          "excerpt_context": "Key Takeaways",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Achieve secure AI deployment by implementing rigorous supply chain provenance, integrity verification, and sandboxed execution environments.",
+          "attribution_text": "An Intention within accelerationist discourse that advocates for the rapid, continuous development and deployment of advanced AI systems purpose-built for cybersecurity defense and threat mitigation, specifically by hardening the AI supply chain. Encompasses: verified provenance, hash integrity, sandboxed loading.",
+          "vocabulary_terms": [
+            "oversight_audit",
+            "transparency_verification"
+          ]
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-040",
+          "category": "Beliefs",
+          "point": "The document asserts that the rapid growth of open AI repositories has outpaced the development of necessary security governance, leading to systemic vulnerabilities. It highlights that platforms like Hugging Face and ClawHub operate on a trust model that assumes contributors act in good faith, which threat actors are actively exploiting. From a safetyist perspective, this lack of mandatory signing and behavioral analysis creates an unacceptable risk surface where malicious components can compromise thousands of systems. The document notes that this is not merely a theoretical risk, citing documented campaigns like ClawHavoc and NullBulge.",
+          "verbatim": "The absence of mandatory signing, comprehensive behavioral analysis, or enforced format restrictions means that the repository's reputation becomes the primary trust signal, and that reputation can be abused.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "AI deployment speed outpaces security governance, creating systemic vulnerabilities in open model and skill repositories.",
+          "attribution_text": "A Belief within safetyist discourse that identifies new and expanded security risks arising from the complex architecture and rapid deployment of AI systems. Encompasses: supply chain weaknesses, novel attack surfaces, erosion of security governance.",
+          "vocabulary_terms": [
+            "safety_alignment",
+            "transparency_accountability"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-010",
+          "category": "Beliefs",
+          "point": "The document describes how malicious components in AI supply chains, such as poisoned pickle files or agent skills, can compromise downstream systems at scale. It explains that because these repositories function as distribution layers for thousands of practitioners, a single malicious upload can be widely integrated into production environments. From a safetyist perspective, this demonstrates the systemic risk of relying on unverified third-party components, where the damage potential scales with the access granted to the AI system. The document acknowledges that while tools like PickleScan exist, they are brittle and prone to bypasses.",
+          "verbatim": "The ClawHavoc campaign, documented in February 2026, demonstrated that this newer category of AI component store carries the same supply chain exposure as software package registries, with an additional wrinkle: poisoned agent skills can instruct an AI system to perform malicious actions directly, rather than merely executing a payload in the host operating system.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "A single malicious component in the AI supply chain can compromise thousands of AI systems at once.",
+          "attribution_text": "A Belief within safetyist discourse that describes the systemic risk of a single malicious component in the AI supply chain secretly compromising thousands of AI systems at once. Encompasses: the potential for widespread compromise, systemic risk, and the failure of trust models.",
+          "vocabulary_terms": [
+            "capabilities_hazard",
+            "safety_existential"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
+          "category": "Beliefs",
+          "point": "The document documents how the current structure of AI marketplaces creates systemic risks to data integrity and privacy by distributing malicious content under the guise of community-curated tools. It notes that attackers exploit the implicit trust practitioners place in these platforms, using techniques like namespace reuse and manufactured social proof to deceive users. From a skeptic perspective, this confirms that the openness of these platforms, while marketed as a value proposition, is fundamentally incompatible with the security requirements of production environments. The document acknowledges that the industry has yet to build the necessary trust infrastructure to mitigate these risks.",
+          "verbatim": "These incidents share a pattern: the platform's openness, which is its value proposition, is the same property that makes it suitable attack infrastructure.",
+          "excerpt_context": "Background",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Large language models and AI repositories create systemic risks to data integrity and privacy due to the inherent openness of distribution platforms.",
+          "attribution_text": "A Belief within skeptic discourse that documents how AI systems degrade data quality, compromise privacy, and create information asymmetries. Encompasses: AI-generated content contaminating training data, systemic risk, and the exploitation of trust.",
+          "vocabulary_terms": [
+            "asymmetry_power",
+            "risk_systemic_structural"
+          ]
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "In February 2026, the Koi Security research team discovered 341 malicious skills in the ClawHub agent skill registry.",
+      "claim_label": "ClawHub Malicious Skill Discovery",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2026-02",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-010"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      }
+    },
+    {
+      "claim": "PickleScan was found to carry three zero-day bypass vulnerabilities in December 2025 (CVE-2025-10155, CVE-2025-10156, CVE-2025-10157), each rated CVSS 4.0 9.3.",
+      "claim_label": "PickleScan Vulnerability Disclosure",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2025-12",
+      "extraction_confidence": 1,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-097"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      }
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Intent-Graph Problem in Agentic AI",
+      "suggested_description": "A situation concept that describes the inability of static analysis tools to distinguish between legitimate and malicious agent behavior based on the agent's full intent graph. \nEncompasses: agent skill execution, external service interaction, behavioral sandboxing limitations. \nExcludes: static payload detection, deserialization vulnerability analysis.",
+      "concept": "The document identifies the intent-graph problem as the inability of static analysis tools to understand the full intent of an agent's actions, making it impossible to distinguish between a skill that calls an API and one that exfiltrates credentials. It notes that production-grade behavioral sandboxing for agent skills does not yet exist.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This is a novel security challenge specific to agentic AI that is not covered by existing supply chain or malware taxonomy nodes.",
+      "Accelerationist Interpretation": "Accelerationists would view this as a technical hurdle to be solved through the development of advanced, AI-native behavioral monitoring and sandboxing tools.",
+      "Safetyist Interpretation": "Safetyists would interpret this as a fundamental risk that necessitates strict gating of agent capabilities and human-in-the-loop oversight for all agentic actions.",
+      "Skeptic Interpretation": "Skeptics would view this as evidence that agentic AI systems are inherently uncontrollable and that the industry is prioritizing rapid deployment over the development of necessary safety infrastructure.",
+      "resolved_node_id": "cc-239"
+    }
+  ]
+}
