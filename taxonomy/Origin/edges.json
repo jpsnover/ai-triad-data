@@ -1,458 +1,63 @@
 {
   "_schema_version": "1.0.0",
   "_doc": "Edge discovery results. Each entry represents a proposed or approved edge between taxonomy nodes.",
-  "last_modified": "2026-06-30",
+  "last_modified": "2026-07-04",
   "edge_types": [
     {
       "type": "SUPPORTS",
-      "description": "Source provides evidence or reasoning for target",
+      "description": "Source provides evidence or reasoning for target; strengthens its claim",
       "aif_equiv": "RA (inference)",
       "direction": "directed",
-      "domain": "Data|Methods → Any"
+      "domain": "Any → Any"
     },
     {
       "type": "CONTRADICTS",
-      "description": "Source and target make logically incompatible claims at the same scope level",
+      "description": "Source and target make logically incompatible claims; accepting one undermines the other",
       "aif_equiv": "CA (rebut)",
       "direction": "bidirectional",
       "domain": "Same scope level"
     },
     {
       "type": "ASSUMES",
-      "description": "Source presupposes target as a prerequisite",
+      "description": "Source presupposes target; its validity depends on target being true",
       "aif_equiv": "RA (presupposition)",
       "direction": "directed",
       "domain": "Any → Any"
     },
     {
       "type": "WEAKENS",
-      "description": "Source undermines the credibility or relevance of target",
+      "description": "Source reduces the strength of target without fully contradicting it; a partial challenge",
       "aif_equiv": "CA (undermine)",
       "direction": "directed",
-      "domain": "Data|Methods → Any"
+      "domain": "Any → Any"
     },
     {
       "type": "RESPONDS_TO",
-      "description": "Source engages with or addresses target in dialogue",
+      "description": "Source is a direct argumentative response to target, implying awareness and intentional engagement",
       "aif_equiv": "Dialogue",
       "direction": "directed",
       "domain": "Any → Any"
     },
     {
       "type": "TENSION_WITH",
-      "description": "Source and target are in tension but not logically contradictory — different scope levels or value trade-offs",
-      "aif_equiv": "CA (preference)",
+      "description": "Source and target pull in different directions but are not logically incompatible; common across POV boundaries",
+      "aif_equiv": "CA (tension)",
       "direction": "bidirectional",
-      "domain": "Any → Any"
+      "domain": "Cross-POV or POV ↔ Situation"
     },
     {
       "type": "INTERPRETS",
-      "description": "Source provides a POV-specific interpretation of a cross-cutting concept",
-      "aif_equiv": "Scheme application",
+      "description": "Source (POV node) offers an interpretation of target (situation node)",
+      "aif_equiv": "RA (interpretation)",
       "direction": "directed",
-      "domain": "POV → CC only"
+      "domain": "POV → Situation"
     },
     {
-      "type": "UTILIZES",
-      "bidirectional": false,
-      "definition": "The source node's proposed action or concept directly employs or takes advantage of the mechanism, context, or resource described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "MOTIVATES",
-      "bidirectional": false,
-      "definition": "The source node's claim or described situation provides a strong reason or impetus for the development or application of the target node's concept, method, or intention.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ENABLES",
-      "bidirectional": false,
-      "definition": "The source node's claim or concept creates the conditions or provides a mechanism that makes the target node's claim, intention, or outcome possible or more likely.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTEXT_FOR",
-      "bidirectional": false,
-      "definition": "The source node provides a significant legal, ethical, or conceptual context within which the target node's claim, desire, or intention operates or must contend.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_EQUIVALENT_TO",
-      "bidirectional": true,
-      "definition": "The source and target nodes describe essentially the same concept or situation, possibly with slightly different framing or emphasis.",
-      "llm_proposed": true
-    },
-    {
-      "type": "RELATED_METHOD",
-      "bidirectional": true,
-      "definition": "The source node describes a technical method or metric that is conceptually similar to or serves an analogous purpose as the target method/metric, often within the same domain of inquiry, focusing on internal AI system analysis.",
-      "llm_proposed": true
-    },
-    {
-      "type": "COMPLEMENTS",
-      "bidirectional": true,
-      "definition": "The source and target nodes address a shared problem or goal using distinct but mutually beneficial approaches or mechanisms, where one does not directly support, assume, or contradict the other, but rather enhances or works in conjunction with it.",
-      "llm_proposed": true
-    },
-    {
-      "type": "INFORMS",
-      "bidirectional": false,
-      "definition": "The source node provides crucial context, a critical perspective, or specific criteria that should be considered when evaluating or understanding the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "RELATED_RISK",
-      "bidirectional": false,
-      "definition": "The source and target nodes describe distinct but thematically similar risks or concerns that often arise in the same discourse, without being directly causal, contradictory, or in tension.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_AN_INSTANCE_OF",
-      "bidirectional": false,
-      "definition": "The source node describes a specific example, manifestation, or sub-category of the broader concept or phenomenon described in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EXPLORES_ASPECT_OF",
-      "bidirectional": false,
-      "definition": "The source node's broader scope or description explicitly includes or encompasses the specific topic or situation detailed in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_SUBJECT_OF_EVALUATION",
-      "bidirectional": false,
-      "definition": "The source node describes a phenomenon or concept whose impact or effectiveness is measured or assessed by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EXEMPLIFIES",
-      "bidirectional": false,
-      "definition": "The source node provides a concrete example, application, or specific instance of the more general concept or distinction described in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PARALLELS",
-      "bidirectional": true,
-      "definition": "The source and target nodes present similar conceptual distinctions or analytical frameworks that can be fruitfully compared.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_COMPONENT_OF",
-      "bidirectional": false,
-      "definition": "The source node describes a specific aspect, instance, or component that contributes to or is part of the broader situation or concept described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "REQUIRES_DEFENSE_AGAINST",
-      "bidirectional": false,
-      "definition": "The source node describes a threat or attack vector that necessitates the defensive measures or security strategies outlined in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "RELATED_TO",
-      "bidirectional": true,
-      "definition": "The source and target nodes describe distinct but thematically linked concepts or situations within a broader domain, often sharing underlying technologies or implications.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_PART_OF",
-      "bidirectional": false,
-      "definition": "The source node describes a specific instance, component, or sub-situation that is explicitly included within the broader scope or definition of the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONCEPTUAL_COUNTERPART",
-      "bidirectional": true,
-      "definition": "The source and target nodes represent opposite roles or directions of the same core concept (e.g., AI performing deception vs. AI being deceived).",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTRIBUTES_TO_SITUATION",
-      "bidirectional": false,
-      "definition": "The source node describes a phenomenon or capability that directly exacerbates or is a significant factor in the situation described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PROVIDES_CONTEXT_FOR",
-      "bidirectional": false,
-      "definition": "The source node describes a situation or phenomenon that serves as a significant real-world or conceptual backdrop, making the questions or investigations in the target node more relevant or urgent.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTEXTUALIZES",
-      "bidirectional": false,
-      "definition": "The source node provides the broader context, background, or domain within which the target node's claim, desire, intention, or situation operates. The source describes the environment or overarching topic that makes the target relevant.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTAINS_VIEWPOINT",
-      "bidirectional": false,
-      "definition": "The source node describes a debate or situation where the target node represents one of the key viewpoints or framings within that debate.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_A_MECHANISM_OF",
-      "bidirectional": false,
-      "definition": "The source node describes a specific process or tool that is employed or encompassed by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTRIBUTES_TO",
-      "bidirectional": false,
-      "definition": "The source node describes an action, situation, or belief that directly helps bring about or intensify the target node's situation or outcome.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ILLUSTRATES",
-      "bidirectional": false,
-      "definition": "The source node provides a concrete example, case, or mechanism that demonstrates or exemplifies the concept, question, or situation described in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_INSTANCE_OF",
-      "bidirectional": false,
-      "definition": "The source node is a specific example or manifestation of the target node's broader category or intention.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EXACERBATES",
-      "bidirectional": false,
-      "definition": "The source node's claim or phenomenon makes the problem or challenge described in the target node more severe or difficult to address.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CREATES_CONTEXT_FOR",
-      "bidirectional": false,
-      "definition": "The source node describes a condition or situation that enables, facilitates, or makes more likely the occurrence of the target node's claim or situation.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_A_METHOD_FOR",
-      "bidirectional": false,
-      "definition": "The source node describes a specific method or technique that is used within the domain or research area described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "INSTANTIATES",
-      "bidirectional": false,
-      "definition": "The source node is a specific example, instance, or application of the broader concept or category described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "MANIFESTS_AS",
-      "bidirectional": false,
-      "definition": "The source node, a general concept or situation, finds a specific expression or embodiment in the target node, often from a particular Point of View.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ANALOGOUS_TO",
-      "bidirectional": false,
-      "definition": "The source node describes a phenomenon or behavior that serves as a conceptual parallel or precedent for the target node's claim, even if the actors or specific mechanisms differ.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EXPLAINS_CHALLENGE_FOR",
-      "bidirectional": false,
-      "definition": "The source node provides a structural explanation for a challenge or difficulty associated with the target node's claim or existence.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PROVIDES_FRAMEWORK_FOR",
-      "bidirectional": false,
-      "definition": "The source node establishes a conceptual framework, distinction, or lens through which the target node's claim or situation is understood or categorized.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EVALUATED_BY",
-      "bidirectional": false,
-      "definition": "The target node describes a framework, methodology, or criterion used to assess, measure, or judge the effectiveness, appropriateness, or impact of the concept, strategy, or system described by the source node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CITATION_OF_PRECEDENT",
-      "bidirectional": false,
-      "definition": "The source node explicitly references or builds upon the target's framework, data, or argument, specifically as a precedent or analogous case.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EMBODIES_CONCEPT",
-      "bidirectional": false,
-      "definition": "The source node's proposed action or claim is a direct instantiation or embodiment of the concept described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "AMPLIFIES",
-      "bidirectional": false,
-      "definition": "The source node's claim increases the severity, urgency, or scope of the target node's claim.",
-      "llm_proposed": true
-    },
-    {
-      "type": "DEFINES_CATEGORY_FOR",
-      "bidirectional": false,
-      "definition": "The source node defines a general category or framework that the target node is an instance of or falls under.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ASSESSES",
-      "bidirectional": false,
-      "definition": "The source node provides the methodology, framework, or tools necessary to evaluate, measure, or understand the claims or phenomena described in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "INCORPORATES",
-      "bidirectional": false,
-      "definition": "The source node explicitly includes or makes use of the concept, metric, or method described by the target node as part of its own framework or approach.",
-      "llm_proposed": true
-    },
-    {
-      "type": "MOTIVATES_INQUIRY",
-      "bidirectional": false,
-      "definition": "The source node describes a phenomenon, problem, or observation that serves as the primary reason or justification for the target node's intention to investigate, measure, or describe that phenomenon.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ADDRESSES",
-      "bidirectional": false,
-      "definition": "The source node proposes a solution, strategy, or perspective that directly engages with or seeks to resolve the challenges, questions, or dynamics described in the target situation.",
-      "llm_proposed": true
-    },
-    {
-      "type": "SPECIFIES_MECHANISM",
-      "bidirectional": false,
-      "definition": "The source node describes a broader situation or concept, and the target node details a specific mechanism, method, or instance through which the source situation/concept operates or manifests.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CORE_QUESTION_OF",
-      "bidirectional": false,
-      "definition": "The target node explicitly states the central question or dilemma that the source node describes as a situation or debate.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CHARACTERIZES_RISK",
-      "bidirectional": false,
-      "definition": "The source node's framework or methodology is designed to identify, define, and document the specific risks, threats, or failure modes described by the target.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_A",
-      "bidirectional": false,
-      "definition": "The source node is a specific instance or example of the broader category or concept described by the target.",
-      "llm_proposed": true
-    },
-    {
-      "type": "INFORMED_BY",
-      "bidirectional": false,
-      "definition": "The source node's methodology or framework provides insights or data that are directly relevant to understanding or analyzing the situation described by the target.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_SPECIFIC_ASPECT_OF",
-      "bidirectional": false,
-      "definition": "The source node describes a specific, narrower aspect or instance of the broader phenomenon described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "WEAKENED_BY",
-      "bidirectional": false,
-      "definition": "The source node's claim or effectiveness is undermined by the target node's claim, evidence, or described situation.",
-      "llm_proposed": true
-    },
-    {
-      "type": "QUALIFIES",
-      "bidirectional": false,
-      "definition": "The source's claim or situation is subject to conditions, nuances, or limitations highlighted by the target.",
-      "llm_proposed": true
-    },
-    {
-      "type": "REITERATES",
-      "bidirectional": false,
-      "definition": "The source node expresses the same or a highly similar core claim or concept as the target node, reinforcing its presence or validity within the discourse.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONSTRAINS",
-      "bidirectional": false,
-      "definition": "The source node's intention or principle sets a mandatory boundary or requirement that the target concept or approach must adhere to or operate within.",
-      "llm_proposed": true
-    },
-    {
-      "type": "REQUIRES",
-      "bidirectional": false,
-      "definition": "The successful implementation or achievement of the source node's intention or claim fundamentally depends on the existence, application, or development of the target node's concept, approach, or capability.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EVALUATES",
-      "bidirectional": false,
-      "definition": "The source node's claim or method is used to assess the effectiveness, quality, or properties of the target.",
-      "llm_proposed": true
-    },
-    {
-      "type": "DESCRIBES",
-      "bidirectional": false,
-      "definition": "The source node articulates or details a specific aspect, instance, or consequence of the target situation.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONSEQUENCE_OF",
-      "bidirectional": false,
-      "definition": "The source node describes an outcome or effect that arises from the target situation or phenomenon.",
-      "llm_proposed": true
-    },
-    {
-      "type": "RELEVANT_FOR_OBSERVATION",
-      "bidirectional": false,
-      "definition": "The source node describes a phenomenon or claim that the target situation or metric is designed to measure, track, or evaluate.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PREVENTS",
-      "bidirectional": false,
-      "definition": "The source node's claim or intention is designed to prevent, mitigate, or counteract the negative outcome or risk described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "IS_PRODUCT_OF",
-      "bidirectional": false,
-      "definition": "The target node's claim, belief, or intention is a direct consequence or output of the conditions, characteristics, or prevailing mindset described by the source node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EMERGES_FROM",
-      "bidirectional": false,
-      "definition": "The source concept or framing is a direct consequence or product of the target situation or ideology, implying that the target provides the fertile ground or driving force for the source to manifest.",
-      "llm_proposed": true
-    },
-    {
-      "type": "CONTRIBUES_TO",
-      "bidirectional": false,
-      "definition": "The source node's claim or framing actively helps to create or exacerbate the situation described by the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "EVOKES_PARALLELS_WITH",
-      "bidirectional": false,
-      "definition": "The source node's framing, language, or historical analogies bring to mind or create a context that resonates with the historical patterns or concepts described in the target node.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PROVIDES_IDEOLOGICAL_CONTEXT_FOR",
-      "bidirectional": false,
-      "definition": "The source node describes a historical or ideological pattern that helps explain the underlying motivations or frameworks for the target situation or belief.",
-      "llm_proposed": true
-    },
-    {
-      "type": "PARALLEL_ISSUE",
-      "bidirectional": false,
-      "definition": "The source node describes a problem or concept that is structurally similar or analogous to the target, existing in the same domain but addressing a different specific aspect.",
-      "llm_proposed": true
-    },
-    {
-      "type": "ANALOGOUS_SITUATION",
-      "bidirectional": false,
-      "definition": "The source node describes a situation or mechanism that is structurally similar or analogous to the target node, demonstrating a parallel dynamic in a different context.",
-      "llm_proposed": true
+      "type": "CONVERGES_WITH",
+      "description": "Source (POV node) has reached consensus alignment with target (situation node)",
+      "aif_equiv": "RA (convergence)",
+      "direction": "directed",
+      "domain": "POV → Situation"
     }
   ],
   "edges": [
