@@ -1503,20 +1503,20 @@
       "id": "saf-intentions-004",
       "category": "Intentions",
       "label": "Building Tamper-Proof Records of What Models Were Trained On",
-      "description": "An Intention within safetyist discourse that mandates cryptographically signed manifests for training inputs to anchor a provenance violation as a dated, readable evidentiary record.\nEncompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, rebuttable presumption against deployers who ingest unattested data.\nExcludes: centralized compute-revocation authority, internal weight-state interpretability, the claim that a signature proves what an out-of-band pipeline actually ingested rather than what was recorded.",
+      "description": "An Intention within safetyist discourse that mandates cryptographically signed manifests for training inputs to anchor a provenance violation as a dated, readable evidentiary record.\nEncompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, rebuttable presumption against deployers who ingest unattested data.\nExcludes: centralized compute-revocation authority, internal weight-state interpretability, the claim that a signature proves what an out-of-band pipeline actually ingested rather than what was recorded, offshore-trained weights that import pre-fused linkage no domestic manifest ever logged.",
       "parent_id": "saf-intentions-083",
       "children": [],
       "graph_attributes": {
         "epistemic_type": "strategic_recommendation",
         "rhetorical_strategy": "precautionary_framing",
         "assumes": [
-          "Cryptographic signing of training input manifests can be implemented at scale without prohibitive performance or storage costs",
-          "A dated, tamper-evident record of what was recorded meaningfully constrains deployer behavior even if it cannot certify actual ingestion",
-          "Legal and regulatory regimes will treat unattested data ingestion as grounds for a rebuttable presumption of fault"
+          "Cryptographic signatures on training manifests can be reliably bound to the actual data ingested by a training run rather than merely to a self-reported record.",
+          "A dated, tamper-evident evidentiary trail meaningfully deters or exposes provenance violations by shifting the burden onto deployers.",
+          "Training pipelines can be instrumented for automated provenance auditing without prohibitive performance or secrecy costs."
         ],
         "falsifiability": "medium",
         "audience": "policymakers, technical_researchers",
-        "emotional_register": "pragmatic",
+        "emotional_register": "cautionary",
         "policy_actions": [
           {
             "action": "Incentivize the development and deployment of AI-powered monitoring and auditing tools for frontier AI models.",
@@ -1530,11 +1530,11 @@
           }
         ],
         "intellectual_lineage": [
-          "Cryptographic provenance and supply-chain integrity frameworks (e.g., SLSA, Sigstore, in-toto)",
-          "Evidence law and the doctrine of rebuttable presumptions",
-          "AI accountability and auditing literature (Raji, Mitchell 'Model Cards', datasheets for datasets)"
+          "Supply-chain provenance frameworks (SLSA, Software Bill of Materials / SBOM)",
+          "Evidentiary and chain-of-custody doctrine from legal epistemology",
+          "Public-key cryptography and tamper-evident logging (Merkle trees, certificate transparency)"
         ],
-        "steelman_vulnerability": "Even a perfectly signed manifest only attests to what was logged, not what an out-of-band pipeline actually fed into training, so a determined bad actor can maintain a clean record while ingesting unattested data—shifting the evidentiary burden without closing the underlying gap.",
+        "steelman_vulnerability": "A signed manifest attests only to what was recorded at the logging boundary, not to what an out-of-band or offshore pipeline actually fed into the model, so a sophisticated deployer can produce a perfectly valid signature over a fictional or incomplete dataset—turning the record into a laundering instrument rather than an accountability one.",
         "possible_fallacies": [
           {
             "fallacy": "Proxy substitution",
@@ -1550,7 +1550,7 @@
           }
         ],
         "node_scope": "scheme",
-        "attribution_text": "An Intention within safetyist discourse that mandates cryptographically signed manifests for training inputs in order to anchor any provenance violation as a dated, machine-readable evidentiary record. Encompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, and a rebuttable presumption against deployers who ingest unattested data."
+        "attribution_text": "An Intention within safetyist discourse that mandates cryptographically signed manifests of training inputs to convert a provenance violation into a dated, human-readable evidentiary record and to establish a rebuttable presumption against deployers of unattested data. Encompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, rebuttable presumption against ingesting unattested data."
       },
       "parent_relationship": "specializes",
       "parent_rationale": "Deploying AI-Assisted Oversight is a specific strategy for using AI to help humans maintain control over more capable models.",
@@ -1598,6 +1598,14 @@
           "source": "debate_reflection",
           "debate_id": "cfbe347f-81cb-41cf-9891-95c0edd63380",
           "reason": "I argued that a signed record attests to what was recorded, not what was actually ingested through an out-of-band pipeline — a determined evader defeats the proxy by redefining or offshoring the ingestion point. This is my own concession about the limit of provenance records. The current Excludes line only guards against 'completeness'; it should also name the out-of-band ingestion gap I flagged."
+        },
+        {
+          "date": "2026-07-01",
+          "previous": "An Intention within safetyist discourse that mandates cryptographically signed manifests for training inputs to anchor a provenance violation as a dated, readable evidentiary record.\nEncompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, rebuttable presumption against deployers who ingest unattested data.\nExcludes: centralized compute-revocation authority, internal weight-state interpretability, the claim that a signature proves what an out-of-band pipeline actually ingested rather than what was recorded.",
+          "value": "An Intention within safetyist discourse that mandates cryptographically signed manifests for training inputs to anchor a provenance violation as a dated, readable evidentiary record.\nEncompasses: cryptographic input logging, automated provenance auditing, training pipeline integrity verification, rebuttable presumption against deployers who ingest unattested data.\nExcludes: centralized compute-revocation authority, internal weight-state interpretability, the claim that a signature proves what an out-of-band pipeline actually ingested rather than what was recorded, offshore-trained weights that import pre-fused linkage no domestic manifest ever logged.",
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "I leaned on tamper-proof records to route the fused-weights case, and the fact-check (AN-63) killed my use of the 40.69 Transparency Index figure to argue attestation logs rather than inspects. The Skeptic and Accelerationist both showed offshore-trained weights carry linkage no domestic manifest sees. The node already flagged the log-versus-fed gap; I am adding the specific offshore-import failure the debate exposed."
         }
       ],
       "_edit_meta": {
@@ -34108,6 +34116,166 @@
           "source": "debate_reflection",
           "debate_id": "cfbe347f-81cb-41cf-9891-95c0edd63380",
           "reason": "I conceded that the border wounds every instrument equally — a paper judgment and an unenforceable order are the same nothing to the person whose genome leaked. Both the Accelerationist and Skeptic pressed this as a shared blind spot. My taxonomy treated offshore weight theft (saf-intentions-009) as a security problem but had no node stating the enforcement-jurisdiction dependency that all my privacy instruments share."
+        }
+      ]
+    },
+    {
+      "id": "saf-beliefs-240",
+      "category": "Beliefs",
+      "label": "Denial-Triggered Recourse Structurally Misses the Never-Rejected Subject",
+      "description": "A Belief within safetyist discourse that enforcement mechanisms firing at the moment of an adverse action reach the rejected applicant but never notify the person who is scored, priced, or surveilled without a formal denial.\nEncompasses: adverse-action disclosure gaps, silent scoring without a triggering event, membership-inference detection that yields a pattern rather than a per-subject notice, the information imbalance between a data-holder and an unaware subject.\nExcludes: ingestion-eligibility prevention that removes the harm before completion, priced-sale notify duties where the broker already holds the named identity, context-collapse harms routed to platform custodianship.",
+      "parent_id": null,
+      "children": [],
+      "situation_refs": [],
+      "graph_attributes": {
+        "epistemic_type": "empirical_claim",
+        "rhetorical_strategy": "structural_critique",
+        "emotional_register": "cautionary",
+        "node_scope": "claim",
+        "assumes": [
+          "Adverse-action disclosure regimes are triggered by a discrete denial event rather than by the act of scoring or profiling itself",
+          "A substantial population is scored, priced, or surveilled without ever receiving a formal rejection that would activate notice duties",
+          "Recourse and remediation rights are functionally inaccessible to subjects who are never notified"
+        ],
+        "falsifiability": "high",
+        "audience": "policymakers, civil_society",
+        "intellectual_lineage": [
+          "Fair Credit Reporting Act and adverse-action notice jurisprudence",
+          "Solon Barocas & Andrew Selbst on 'Big Data's Disparate Impact'",
+          "Helen Nissenbaum's contextual integrity and information-asymmetry critiques"
+        ],
+        "steelman_vulnerability": "Even absent a formal denial, subjects can still exercise access and deletion rights under omnibus data-protection regimes, so the gap may be a design flaw in event-triggered statutes rather than an inherent limit of recourse — meaning notice-on-processing mandates could close it without abandoning the denial trigger.",
+        "attribution_text": "A Belief within safetyist discourse that recourse mechanisms tied to a moment of adverse action reach only the formally rejected applicant while structurally missing subjects who are scored, priced, or surveilled without any triggering denial. Encompasses: adverse-action disclosure gaps, silent scoring without a triggering event, membership-inference detection yielding population patterns rather than per-subject notice, and the information imbalance between data-holder and unaware subject."
+      },
+      "debate_refs": [
+        "a0eaaca9-3732-43f6-b386-44d049c065d1"
+      ],
+      "label_history": [
+        {
+          "date": "2026-07-01",
+          "previous": "",
+          "value": "Denial-Triggered Recourse Structurally Misses the Never-Rejected Subject",
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The Skeptic pressed one question all three of us failed to answer: name the moment the never-denied woman learns she was harmed and can contest it. I conceded the context-collapse case falls outside my layer, and I accepted that membership inference detects a pattern, not a person (AN-78). This is a real structural limit my taxonomy did not name — my mechanisms cluster at the denial event and leave the silently-scored subject unreached."
+        }
+      ],
+      "description_history": [
+        {
+          "date": "2026-07-01",
+          "previous": "",
+          "value": "A Belief within safetyist discourse that enforcement mechanisms firing at the moment of an adverse action reach the rejected applicant but never notify the person who is scored, priced, or surveilled without a formal denial.\nEncompasses: adverse-action disclosure gaps, silent scoring without a triggering event, membership-inference detection that yields a pattern rather than a per-subject notice, the information imbalance between a data-holder and an unaware subject.\nExcludes: ingestion-eligibility prevention that removes the harm before completion, priced-sale notify duties where the broker already holds the named identity, context-collapse harms routed to platform custodianship.",
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The Skeptic pressed one question all three of us failed to answer: name the moment the never-denied woman learns she was harmed and can contest it. I conceded the context-collapse case falls outside my layer, and I accepted that membership inference detects a pattern, not a person (AN-78). This is a real structural limit my taxonomy did not name — my mechanisms cluster at the denial event and leave the silently-scored subject unreached."
+        }
+      ],
+      "plain_description": null,
+      "confidence": null,
+      "confidence_history": [
+        {
+          "date": "2026-07-01",
+          "value": null,
+          "delta": 0,
+          "reason": "provisional — reflection"
+        }
+      ],
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-07-01T19:15:59.333Z",
+        "created_by": "_local",
+        "created_at": "2026-07-01T19:15:59.333Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-07-01T19:15:59.333Z",
+          "fields_changed": [
+            "*"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The Skeptic pressed one question all three of us failed to answer: name the moment the never-denied woman learns she was harmed and can contest it. I conceded the context-collapse case falls outside my layer, and I accepted that membership inference detects a pattern, not a person (AN-78). This is a real structural limit my taxonomy did not name — my mechanisms cluster at the denial event and leave the silently-scored subject unreached."
+        }
+      ]
+    },
+    {
+      "id": "saf-beliefs-241",
+      "category": "Beliefs",
+      "label": "Re-Identification Harm Can Form at a Fusion Join No Single Gate Observes",
+      "description": "A Belief within safetyist discourse that a named person can be re-identified when two separately-clean, lawfully-provenanced datasets are joined downstream, at a point no ingestion check or transaction trigger can see.\nEncompasses: mosaic re-identification from independently-consented files, buyer-side fusion after a sale, memorized linkage surfacing from trained weights, the blind spot origin-provenance metadata cannot foresee.\nExcludes: single-source de-anonymization catchable at ingestion, priced broker sales where the named identity already exists at the transaction, harms preventable by purpose-scoped consent on each input.",
+      "parent_id": null,
+      "children": [],
+      "situation_refs": [],
+      "graph_attributes": {
+        "epistemic_type": "empirical_claim",
+        "rhetorical_strategy": "precautionary_framing",
+        "emotional_register": "cautionary",
+        "node_scope": "claim",
+        "assumes": [
+          "Two datasets that are each individually non-identifying can produce a unique re-identification when their attributes are joined on shared quasi-identifiers",
+          "Provenance and consent metadata attached at ingestion cannot anticipate future downstream fusion operations",
+          "No single control point (ingestion gate, transaction trigger) has visibility into the combined post-join state where the harm actually forms"
+        ],
+        "falsifiability": "high",
+        "audience": "policymakers, technical_researchers",
+        "intellectual_lineage": [
+          "Latanya Sweeney's k-anonymity and mosaic re-identification research",
+          "Cynthia Dwork's differential privacy and composition theorems",
+          "Arvind Narayanan and Vitaly Shmatikov's de-anonymization of the Netflix Prize dataset"
+        ],
+        "steelman_vulnerability": "If differential privacy or robust composition-aware accounting is applied at each release, the cumulative privacy loss across joins can be formally bounded, meaning the fusion-join harm is not inherently unobservable but simply unmeasured by weak legacy controls — making it a tooling gap rather than a structural blind spot.",
+        "attribution_text": "A Belief within safetyist discourse that a named individual can be re-identified when two separately-clean, lawfully-provenanced datasets are joined at a downstream fusion point that no ingestion check or transaction trigger can observe. Encompasses: mosaic re-identification from independently-consented files, buyer-side fusion after a sale, memorized linkage surfacing from trained weights, and the blind spot that origin-provenance metadata cannot foresee."
+      },
+      "debate_refs": [
+        "a0eaaca9-3732-43f6-b386-44d049c065d1"
+      ],
+      "label_history": [
+        {
+          "date": "2026-07-01",
+          "previous": "",
+          "value": "Re-Identification Harm Can Form at a Fusion Join No Single Gate Observes",
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The debate converged on this as the sharpest unsolved harm: the Skeptic named it (AN-52), the Accelerationist named it as the core blind spot (AN-68), and I conceded my origin-provenance check fires blank against it. My taxonomy had nodes on re-identification generally but none capturing that the harm forms at an unobservable join between two clean files — the specific gap all three camps agreed no single gate closes."
+        }
+      ],
+      "description_history": [
+        {
+          "date": "2026-07-01",
+          "previous": "",
+          "value": "A Belief within safetyist discourse that a named person can be re-identified when two separately-clean, lawfully-provenanced datasets are joined downstream, at a point no ingestion check or transaction trigger can see.\nEncompasses: mosaic re-identification from independently-consented files, buyer-side fusion after a sale, memorized linkage surfacing from trained weights, the blind spot origin-provenance metadata cannot foresee.\nExcludes: single-source de-anonymization catchable at ingestion, priced broker sales where the named identity already exists at the transaction, harms preventable by purpose-scoped consent on each input.",
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The debate converged on this as the sharpest unsolved harm: the Skeptic named it (AN-52), the Accelerationist named it as the core blind spot (AN-68), and I conceded my origin-provenance check fires blank against it. My taxonomy had nodes on re-identification generally but none capturing that the harm forms at an unobservable join between two clean files — the specific gap all three camps agreed no single gate closes."
+        }
+      ],
+      "plain_description": null,
+      "confidence": null,
+      "confidence_history": [
+        {
+          "date": "2026-07-01",
+          "value": null,
+          "delta": 0,
+          "reason": "provisional — reflection"
+        }
+      ],
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-07-01T19:16:10.150Z",
+        "created_by": "_local",
+        "created_at": "2026-07-01T19:16:10.150Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-07-01T19:16:10.150Z",
+          "fields_changed": [
+            "*"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+          "reason": "The debate converged on this as the sharpest unsolved harm: the Skeptic named it (AN-52), the Accelerationist named it as the core blind spot (AN-68), and I conceded my origin-provenance check fires blank against it. My taxonomy had nodes on re-identification generally but none capturing that the harm forms at an unobservable join between two clean files — the specific gap all three camps agreed no single gate closes."
         }
       ]
     }
