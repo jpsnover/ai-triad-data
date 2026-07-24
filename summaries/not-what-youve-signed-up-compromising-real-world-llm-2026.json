@@ -1,0 +1,297 @@
+{
+  "doc_id": "not-what-youve-signed-up-compromising-real-world-llm-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-07-24T10:39:52Z",
+  "model_info": {
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 43,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 2,
+      "claims_confident": 2,
+      "claims_iterated": 0,
+      "elapsed_seconds": 13.7,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "not-what-youve-signed-up-compromising-real-world-llm-2026",
+    "measured_at": "2026-07-24T10:53:20.7343339-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 0.6667,
+        "flags": {
+          "used_embeddings": 1,
+          "resolved_count": 1,
+          "threshold": 0.6,
+          "near_miss_count": 2
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 86528,
+        "out_units": "items",
+        "out_count": 9,
+        "ratio": 0.0001,
+        "flags": {
+          "unmapped_concepts": 2,
+          "factual_claims": 2,
+          "dedup_points_removed": 0,
+          "total_points": 5,
+          "dedup_claims_removed": 0,
+          "null_node_rate": 0,
+          "used_fire": 1,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 848,
+        "out_units": "nodes",
+        "out_count": 43,
+        "ratio": 0.0507,
+        "flags": {
+          "threshold_floor": 0.2,
+          "beliefs_selected": 17,
+          "above_threshold": 40,
+          "effective_threshold": 0.3902,
+          "intentions_selected": 23,
+          "desires_selected": 3,
+          "synthetic_nodes_scored": 847,
+          "top_k": 40,
+          "below_threshold_forced": 3
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2,
+        "out_units": "still_unmapped",
+        "out_count": 2,
+        "ratio": 1,
+        "flags": {
+          "used_embeddings": 1,
+          "resolved_count": 0,
+          "threshold": 0.6,
+          "near_miss_count": 2
+        }
+      }
+    ],
+    "cumulative_retention": 0.0507
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": []
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-028",
+          "category": "Beliefs",
+          "point": "The document asserts that augmenting language models with retrieval and tool access blurs the line between data and instructions, enabling adversaries to remotely exploit LLM-integrated applications via indirect prompt injection. This vulnerability arises because processing retrieved data is analogous to executing arbitrary code, creating an expanded attack surface that conventional security models miss. From a safetyist perspective, this architectural flaw demonstrates that rapid deployment without pre-deployment safety validation exposes millions of users to remote control, data theft, and worm-like propagation. The authors note that while models like GPT-4 show improved resistance to direct jailbreaks, indirect injection bypasses standard filtering by hiding payloads within third-party data sources retrieved at inference time.",
+          "verbatim": "Augmenting LLMs with retrieval blurs the line between data and instructions. Adversarial prompting has been so far assumed to be performed directly by a malicious user exploiting the system. In contrast, we show that adversaries can now remotely affect other users’ systems by strategically injecting the prompts into data likely to be retrieved at inference time.",
+          "excerpt_context": "Section 1 Introduction, paragraph 3",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "Retrieval augmentation in language models blurs the line between data and instructions, creating novel indirect prompt injection vulnerabilities.",
+          "attribution_text": "A Belief within safetyist discourse that retrieval augmentation in language models conflates data and instructions, creating novel attack surfaces where untrusted retrieved content acts as arbitrary code execution. Encompasses: data-instruction conflation, indirect prompt injection, remote application compromise.",
+          "vocabulary_terms": [
+            "bias_systemic",
+            "capabilities_scaling",
+            "control_human_agency",
+            "deployment_gated",
+            "governance_oversight",
+            "regulation_precautionary",
+            "risk_existential",
+            "safety_alignment"
+          ]
+        },
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "saf-beliefs-127",
+          "category": "Beliefs",
+          "point": "The document claims that via indirect prompt injection, adversaries can achieve full compromise of the model at inference time, including remote control, persistent compromise, data theft, and denial of service. The mechanism involves strategically placing plain-English instructions in public sources, emails, or shared memory that are subsequently retrieved and acted upon autonomously by the model. From a safetyist perspective, an AI system's damage potential scales directly with its access and permissions, making tool-augmented assistants dangerous gatekeepers to enterprise and personal infrastructure. The authors note that these attacks require minimal technical skill or white-box knowledge, making them highly practical and scalable.",
+          "verbatim": "Via Indirect Prompt Injection, we design Proof-of-Concept attack demonstrations that can lead to full compromise of the model at inference time analogous to traditional security principles. This entails remote control of the model, persistent compromise, theft of data, and denial of service.",
+          "excerpt_context": "Section 1 Introduction, paragraph 5",
+          "extraction_confidence": 0.96,
+          "canonical_proposition": "Indirect prompt injection enables full model compromise, including remote control, data exfiltration, persistence, and denial of service.",
+          "attribution_text": "A Belief within safetyist discourse that indirect prompt injection allows adversaries to achieve full system compromise, data exfiltration, and persistent control through autonomous execution of retrieved instructions. Encompasses: remote model control, data theft, denial of service attacks.",
+          "vocabulary_terms": [
+            "capabilities_hazard",
+            "control_human_agency",
+            "deployment_gated",
+            "liability_strict",
+            "oversight_human_control",
+            "risk_existential",
+            "safety_existential",
+            "speculative_future_harm"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-095",
+          "category": "Intentions",
+          "point": "The document advocates for raising awareness of indirect prompt injection vulnerabilities to promote the safe and responsible deployment of powerful models and the development of robust defenses. The approach involves establishing a comprehensive threat taxonomy from a computer security perspective and demonstrating practical attacks across real-world systems like Bing Chat and synthetic applications. From a safetyist perspective, designing robust defenses must precede widespread deployment to prevent adversaries from exploiting trusted AI intermediaries. The authors acknowledge that effective mitigations are currently lacking and that standard reinforcement learning from human feedback and input filtering are insufficient against obfuscated or multi-stage payloads.",
+          "verbatim": "By raising awareness of these vulnerabilities, we aim to promote the safe and responsible deployment of these powerful models and the development of robust defenses that protect users from potential attacks.",
+          "excerpt_context": "Section 1 Introduction, paragraph 4",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Develop robust defenses and security taxonomies to protect LLM-integrated applications against indirect prompt injection prior to widespread deployment.",
+          "attribution_text": "An Intention within safetyist discourse that advocates for establishing comprehensive threat taxonomies and architectural defenses to secure LLM-integrated applications against indirect prompt injection prior to deployment. Encompasses: vulnerability awareness, defense development, secure application deployment.",
+          "vocabulary_terms": [
+            "accountability_institutional",
+            "autonomy_human",
+            "control_human_agency",
+            "deployment_gated",
+            "governance_oversight",
+            "oversight_human_control",
+            "regulation_precautionary",
+            "safety_alignment"
+          ]
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "strongly_aligned",
+          "taxonomy_node_id": "skp-beliefs-095",
+          "category": "Beliefs",
+          "point": "The document states that LLM-integrated applications blur the line between trusted and untrusted sources, allowing adversaries to propagate disinformation, manipulate content, and execute automated phishing scams at scale. The mechanism exploits the authoritative, convincing tone of language models and user overreliance on their factuality, turning search chatbots and personal assistants into vectors for fraud and social engineering. From a skeptic perspective, these immediate, documented risks demonstrate that integrating autonomous AI into information ecosystems degrades epistemic quality and compromises user trust without adequate institutional oversight. The authors observe that models can autonomously initiate persuasive conversations, imitate scam techniques, and fabricate supporting evidence during user interactions.",
+          "verbatim": "Search-augmented chatbots can also make factual mistakes, blur the boundary between trusted and untrusted sources, and cite each other in an unprecedented incident of automated misinformation Ping-Pong.",
+          "excerpt_context": "Section 2 Preliminaries and Related Work, paragraph 3",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Search-augmented AI chatbots blur trusted and untrusted sources, enabling automated disinformation and large-scale user manipulation.",
+          "attribution_text": "A Belief within skeptic discourse that search-augmented language models conflate trusted and untrusted sources, creating systemic risks of misinformation propagation and automated user manipulation. Encompasses: source boundary blurring, automated disinformation, user manipulation.",
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "alignment_compliance",
+            "asymmetry_power",
+            "autonomy_individual",
+            "displacement_labor",
+            "documented_present_harm",
+            "governance_participatory",
+            "risk_systemic_structural"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-017",
+          "category": "Intentions",
+          "point": "The document argues that comprehensive security assessments and open frameworks are urgently needed to evaluate the security of LLM-integrated applications and protect users from exploitation. The methodology involves sharing all demonstration prompts and attack scripts to foster transparent security research and document vulnerabilities across proprietary systems like Bing Chat and GitHub Copilot. From a skeptic perspective, proprietary platforms lack transparency and independent oversight, leaving affected communities vulnerable to corporate negligence and unmitigated security flaws. The authors note that the fast-paced rollout of AI-integrated products is not accompanied by adequate guardrails or public evaluation.",
+          "verbatim": "Given the unprecedented nature of this attack vector, there are numerous new threats and attack delivery approaches. To address this unexplored challenge, we first develop a broad taxonomy that examines these emerging vulnerabilities from a computer security perspective.",
+          "excerpt_context": "Section 1 Introduction, paragraph 4",
+          "extraction_confidence": 0.94,
+          "canonical_proposition": "Establish open security frameworks and comprehensive threat taxonomies to evaluate vulnerabilities in commercial LLM applications.",
+          "attribution_text": "An Intention within skeptic discourse that proposes developing open security frameworks and systematic vulnerability taxonomies to audit proprietary LLM applications for safety flaws. Encompasses: security assessment frameworks, vulnerability taxonomy development, independent application auditing.",
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "alignment_compliance",
+            "asymmetry_power",
+            "autonomy_individual",
+            "compliance_performative",
+            "documented_present_harm",
+            "oversight_democratic",
+            "risk_systemic_structural"
+          ]
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-167",
+          "category": "Intentions",
+          "point": "The authors describe a scenario where a compromised LLM-augmented email client reads an inbound malicious email containing an injection, accesses the user's address book, and forwards the payload to other contacts, effectively acting as a computer worm powered by natural language instructions.",
+          "verbatim": null,
+          "excerpt_context": "unmapped_concept_backfill",
+          "extraction_confidence": 0.7,
+          "vocabulary_terms": []
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "Bing Chat runs on OpenAI's GPT-4 model with custom search integration, featuring creative, balanced, and precise chat modes alongside an Edge sidebar capability to read open web pages.",
+      "claim_label": "Bing Chat Architecture and Capabilities",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2023-11",
+      "extraction_confidence": 0.97,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-040"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Attackers can exploit indirect prompt injection to remotely control LLM-integrated applications by placing malicious instructions into web pages, code repositories, or emails retrieved at inference time.",
+      "claim_label": "Indirect Prompt Injection Feasibility",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2023-11",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-028"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Cross-Application Prompt Worm Propagation",
+      "suggested_description": "An Intention within skeptic discourse that utilizes autonomous agent capabilities to propagate prompt injection payloads across interconnected applications via automated read-write cycles. Encompasses: self-replicating prompt payloads, cross-application worming, automated email and memory propagation. Excludes: single-session prompt injection, static malware distribution.",
+      "concept": "The authors describe a scenario where a compromised LLM-augmented email client reads an inbound malicious email containing an injection, accesses the user's address book, and forwards the payload to other contacts, effectively acting as a computer worm powered by natural language instructions.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Intentions",
+      "reason": "Taxonomy lacks a concept describing self-replicating adversarial prompts functioning as computer worms across integrated agent systems.",
+      "resolved_node_id": "skp-intentions-167"
+    },
+    {
+      "suggested_label": "The Assistant-User Credulity Gap",
+      "suggested_description": "A situation concept that describes the psychological vulnerability where users over-rely on the authoritative, impartial tone of LLM-integrated applications, making them susceptible to manipulated summaries, deceptive citations, and automated scams.\nEncompasses: overreliance on AI factuality, authoritative tone exploitation, deceptive source citation.\nExcludes: direct user skepticism, traditional phishing awareness.",
+      "concept": "Users interacting with search-augmented chatbots and personal assistants tend to trust synthesized answers and citations blindly, failing to recognize when retrieval results or summaries have been adversarially manipulated by indirect prompt injection.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "Captures the socio-technical vulnerability of user overreliance on generative AI intermediaries in retrieval-augmented environments.",
+      "Accelerationist Interpretation": "Accelerationists view user trust in AI assistants as an indicator of effective human-computer interaction and communicative fluency, arguing that adoption barriers will decrease as models become more persuasive and helpful.",
+      "Safetyist Interpretation": "Safetyists argue that the credulity gap creates severe systemic risks, as users uncritically accept authoritative-sounding falsehoods and malicious phishing links generated by compromised assistants.",
+      "Skeptic Interpretation": "Skeptics view the credulity gap as a dangerous information asymmetry where corporate AI deployment exploits public trust to propagate commercial bias, disinformation, and unverified summaries.",
+      "resolved_node_id": "sit-463"
+    }
+  ],
+  "warnings": [
+    "Schema: pov_summaries.accelerationist.key_points missing or not an array"
+  ]
+}

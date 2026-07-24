@@ -1,9 +1,9 @@
 {
   "id": "1418ee11-5641-4033-a400-c26c9f5e4f45",
-  "run_id": "828239f6-a821-4ee0-a9f0-9108d8a66cd8",
+  "run_id": "351ff2f9-e9ec-44e7-88a8-1e91ef91b123",
   "title": "Unexplainability as design defect",
   "created_at": "2026-07-20T21:20:49.551Z",
-  "updated_at": "2026-07-21T01:07:46.442Z",
+  "updated_at": "2026-07-22T17:58:33.528Z",
   "app_version": "pre-cc-migration-477-g0d08cd8f",
   "audience": "policymakers",
   "phase": "closed",
@@ -5507,7 +5507,7 @@
         "brief": "Classifying AI opacity as a prima facie design defect won't protect people — it will block the deployments that save them. Every catastrophic example in this debate — MiDAS, SyRI, COMPAS — was an institutional oversight failure, not a model architecture failure, and no rebuttal mechanism can keep pace with frontier AI development when FDA approvals already take three to seven years. Audit what the system does, not how it thinks — because the patients waiting on a diagnosis don't care about your architecture mandate.",
         "medium": "The Skeptic and Safetyist build genuinely strong cases: opacity is a design choice, the Restatement (Third) risk-utility test could treat it as defective, and someone must be personally accountable for shipping opaque systems. I'll grant that in credit scoring and recidivism prediction, where Rudin's research shows interpretable models match black-box accuracy, requiring interpretability makes sense. But both arguments break on implementation: neither specifies who adjudicates the rebuttal, how long it takes, or what happens to deployment while it's pending. Without those answers, a rebuttable presumption is a ban in a moderate costume. FDA pre-market approval averages three to seven years, the competitive-performance gap shifts quarterly, and no court has ever applied the Restatem ent (Third) to an AI system — this is untested academic theory presented as settled law.\n\nEvery catastrophic example cited — MiDAS's 93% false-positive rate, SyRI struck down for privacy violations, COMPAS's proprietary secrecy — was a failure of institutional oversight, not model architecture. A transparency and audit mandate would have caught every one of those harms; an interpretability mandate would not, because nobody was auditing outputs. Meanwhile, the opportunity cost is real and unmeasured: AlphaFold 2 solved protein structure prediction with opaque deep learning, DeepMind's retinal disease detection matches ophthalmologists, and no interpretable alternatives exist for either. The correct framework is domain-specific empirical output accountability — require interpretability where alternatives perform comparably, mandate rigorous output testing and adversarial red-teaming where they don't. A blanket defect standard doesn't distinguish between a lending algorithm and a cancer-detection model, and the people who pay for that confusion are the patients whose diagnoses arrive late."
       },
-      "display_tier": "convergence"
+      "display_tier": "brief"
     },
     {
       "type": "system",
@@ -14371,6 +14371,388 @@
               "acc-saf": 0.8303118847762029,
               "acc-ske": 0.8069015309166905,
               "saf-ske": 0.8799895279033582
+            },
+            "status": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "id": "524f6c64-f472-4779-bc7e-dae0c9da8f6a",
+      "speaker": "system",
+      "type": "reflection",
+      "content": "## Reflections\n\n**Accelerationist:** This debate forced me to accept that output auditing cannot substitute for interpretability when a system's own outputs contaminate the data used to evaluate it. I also learned that my distributional cost argument — that pre-deployment gates crush small labs — needs a concrete trigger condition, not just a warning. The hardest blow was the Safetyist showing that credit-scoring denial data is structurally unverifiable because denied applicants never generate outcomes, which means the feedback-contamination line is a spectrum, not a clean binary. (5 edits proposed)\n\n**Safetyist:** This debate forced me to narrow my position on when unexplainability counts as a design defect. I conceded that 'architectural bias' as a standalone trigger was too vague to be falsifiable, and I accepted that pre-deployment gates should not apply universally but only where three testable conditions hold. The Accelerationist's COMPAS example — showing ProPublica detected racial disparity through output analysis, not model inspection — was the hardest blow I took, and it made me shift from 'interpretability is always needed' to 'interpretability is needed where the system's outputs contaminate the data used to evaluate it or where no independent ground truth exists.' (5 edits proposed)\n\n**Skeptic:** This debate forced me to accept that post-hoc tort liability cannot protect people in domains where the system's own outputs contaminate the data used to evaluate it. I also learned that 'architectural bias' sounds powerful but collapses without a concrete operational definition — a weakness in my own expanded position. The most productive move was reframing explainability as a relationship between the system and the person it acts upon, not a binary property of the model. (5 edits proposed)\n\n\n**Consensus detected:** 2 convergence clusters found across POV proposals.",
+      "timestamp": "2026-07-22T17:58:33.527Z",
+      "taxonomy_refs": [],
+      "metadata": {
+        "reflection_results": [
+          {
+            "pover": "accelerationist",
+            "label": "Accelerationist",
+            "reflection_summary": "This debate forced me to accept that output auditing cannot substitute for interpretability when a system's own outputs contaminate the data used to evaluate it. I also learned that my distributional cost argument — that pre-deployment gates crush small labs — needs a concrete trigger condition, not just a warning. The hardest blow was the Safetyist showing that credit-scoring denial data is structurally unverifiable because denied applicants never generate outcomes, which means the feedback-contamination line is a spectrum, not a clean binary.",
+            "edits": [
+              {
+                "edit_type": "revise",
+                "node_id": "acc-beliefs-070",
+                "category": "Beliefs",
+                "current_label": "Output-Based Verification of Black-Box Models",
+                "proposed_label": "Output-Based Verification of Black-Box Models in Ground-Truth-Independent Domains",
+                "current_description": "A Belief within accelerationist discourse that evaluating AI behavior through observable outputs is more viable than attempting to map internal neural network weights.\nEncompasses: behavioral API testing, black-box audit methodologies, court-admissible runtime telemetry, downstream input-output documentation.\nExcludes: static pre-deployment code audits, mechanistic interpretability of neural network parameters.",
+                "proposed_description": "A Belief within accelerationist discourse that evaluating AI behavior through observable outputs is sufficient only where the verification data is independent of the system's own outputs.\nEncompasses: behavioral API testing, black-box audit methodologies, court-admissible runtime telemetry, downstream input-output documentation, the structural ceiling where feedback-loop contamination or denied-population data gaps destroy verification independence.\nExcludes: static pre-deployment code audits, mechanistic interpretability of neural network parameters, the claim that output verification works universally across all deployment domains.",
+                "rationale": "The Safetyist argued that predictive policing generates arrest data confirming its own predictions, and that credit-scoring denial prevents denied applicants from ever generating outcome data. I conceded the feedback-loop point explicitly and accepted the credit-scoring point as a gray area. My taxonomy node treated output verification as universally viable, which the debate showed is false. The revised node preserves the core claim while marking the structural ceiling.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-52",
+                  "AN-53",
+                  "AN-54"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Beliefs",
+                "current_label": null,
+                "proposed_label": "Feedback-Loop Contamination as the Operative Boundary for Pre-Deployment Interpretability",
+                "current_description": null,
+                "proposed_description": "A Belief within accelerationist discourse that pre-deployment interpretability obligations are warranted only where a system's outputs recursively shape the data against which it will be evaluated.\nEncompasses: predictive policing generating confirming arrest data, recidivism models whose scores determine detention outcomes that become training signals, credit-scoring denial preventing outcome data generation for denied populations, the spectrum from clean independence to full contamination.\nExcludes: blanket pre-deployment interpretability mandates across all domains, the claim that power asymmetry alone triggers pre-deployment obligations, domains where independent ground truth exists.",
+                "rationale": "I conceded the Safetyist's feedback-loop contamination criterion as the right trigger for pre-deployment obligations in my final statement and built my entire closing architecture around it. This position has no existing taxonomy node despite being the central concession and structural commitment of my final position. The Safetyist's credit-scoring example also showed the line is a spectrum, which the description captures.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-54",
+                  "AN-45",
+                  "AN-75",
+                  "AN-77"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Intentions",
+                "current_label": null,
+                "proposed_label": "Mandating Universal Real-Time Contestability for Consequential Automated Decisions",
+                "current_description": null,
+                "proposed_description": "An Intention within accelerationist discourse that every person affected by a consequential automated decision receives a right to trigger immediate human re-adjudication with a plain-language reason statement before the decision takes effect.\nEncompasses: contestability as an alternative to pre-deployment gates in non-contamination domains, audience-relative explanation fidelity calibrated by domain regulator, mandatory redesign obligations when individual reversal rates fall below 20% of institutional rates, notification requirements where affected persons cannot perceive AI involvement.\nExcludes: pre-deployment architecture mandates, full mechanistic interpretability as a legal precondition, post-hoc litigation as the sole accountability channel.",
+                "rationale": "All three debaters converged on universal real-time contestability as a shared commitment. I argued for it as the primary safeguard in non-feedback-contamination domains and proposed the 20% individual-reversal-rate trigger for mandatory redesign. This was a major structural element of my final position with no existing taxonomy node. The Skeptic's reframing of explainability as audience-relative shaped the node's emphasis on domain-calibrated explanation.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-43",
+                  "AN-55",
+                  "AN-77",
+                  "AN-76"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "acc-beliefs-028",
+                "category": "Beliefs",
+                "current_label": "AI Audit Requirements Disproportionately Burden Small Labs Unless Publicly Funded",
+                "proposed_label": "AI Audit Requirements Disproportionately Burden Small Labs Unless Publicly Funded",
+                "current_description": "A Belief within accelerationist discourse that compliance overhead applied as a uniform fixed cost falls regressively on small labs, while an ex-ante production burden every developer must clear before training entrenches incumbents more than a bottom-up private right of action.\nEncompasses: fixed-cost compliance asymmetry across lab sizes, tiered obligations matched to stakes, the distinction between a standing pre-training gate and a deputize-the-injured remedy, the disputed status of the GDPR-to-Google consolidation pattern as a causal claim, publicly funded open-methodology evaluation.\nExcludes: the claim that all pre-deployment evaluation is inherently anti-competitive, deployer-tier obligations indexed to deployed harm volume, government-purchaser channels exempt from market discipline.",
+                "proposed_description": "A Belief within accelerationist discourse that compliance overhead applied as a uniform fixed cost falls regressively on small labs, while an ex-ante production burden every developer must clear before training entrenches incumbents more than a bottom-up private right of action.\nEncompasses: fixed-cost compliance asymmetry across lab sizes, tiered obligations matched to stakes, the distinction between a standing pre-training gate and a deputize-the-injured remedy, the disputed status of the GDPR-to-Google consolidation pattern as a causal claim, publicly funded open-methodology evaluation, the concession that graduated safe harbors for low-risk and small-scale deployments can address regressivity without abandoning accountability standards.\nExcludes: the claim that all pre-deployment evaluation is inherently anti-competitive, deployer-tier obligations indexed to deployed harm volume, government-purchaser channels exempt from market discipline.",
+                "rationale": "The Skeptic proposed graduated obligations — de minimis thresholds and safe harbors for deployers implementing contestability and publishing disaggregated outcome data — and both the Safetyist and I accepted this as a workable distributional fix. The Safetyist also noted that the populations most harmed by opaque AI are themselves small and under-resourced, so the distributional concern cuts both ways. My node previously treated all pre-deployment burden as regressive without acknowledging that graduated design can solve the problem. The debate showed the argument is about calibration, not elimination.",
+                "confidence": "medium",
+                "evidence_entries": [
+                  "AN-36",
+                  "AN-78",
+                  "AN-59"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "acc-beliefs-108",
+                "category": "Beliefs",
+                "current_label": "Domain-specificity of interpretability requirements under products liability",
+                "proposed_label": "Domain-specificity of interpretability requirements under products liability",
+                "current_description": "A Belief within accelerationist discourse that the prima facie design defect standard for unexplainable AI is domain-specific rather than categorical, hinging on whether interpretable alternatives achieve competitive performance in the relevant domain.\nEncompasses: existence of interpretable alternatives like GAMs in lending and hiring as a threshold for design defect claims, state-of-the-art defense strengthening in domains where no interpretable alternative matches frontier performance, capability threshold analysis for when opacity becomes a choice rather than a limitation.\nExcludes: categorical claims that opacity is always a design defect, categorical claims that opacity is always a scientific limitation, domain-agnostic interpretability mandates.",
+                "proposed_description": "A Belief within accelerationist discourse that the prima facie design defect standard for unexplainable AI is domain-specific rather than categorical, hinging on whether interpretable alternatives achieve competitive performance and whether the system's outputs contaminate its own evaluation data.\nEncompasses: existence of interpretable alternatives like GAMs in lending and hiring as a threshold for design defect claims, state-of-the-art defense strengthening in domains where no interpretable alternative matches frontier performance, capability threshold analysis for when opacity becomes a choice rather than a limitation, feedback-loop contamination as an independent trigger for pre-deployment interpretability obligations regardless of alternative-model availability.\nExcludes: categorical claims that opacity is always a design defect, categorical claims that opacity is always a scientific limitation, domain-agnostic interpretability mandates.",
+                "rationale": "My original node treated the domain-specificity question as purely about whether an interpretable alternative exists. The debate revealed a second axis: whether the system's outputs contaminate the data it will be measured against. In feedback-contamination domains like predictive policing, interpretability is required not because an interpretable alternative exists but because no post-deployment audit can recover an independent baseline. I conceded this in my final statement and built my closing architecture around it, but the taxonomy node does not reflect the concession.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-54",
+                  "AN-45",
+                  "AN-52"
+                ],
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "pover": "safetyist",
+            "label": "Safetyist",
+            "reflection_summary": "This debate forced me to narrow my position on when unexplainability counts as a design defect. I conceded that 'architectural bias' as a standalone trigger was too vague to be falsifiable, and I accepted that pre-deployment gates should not apply universally but only where three testable conditions hold. The Accelerationist's COMPAS example — showing ProPublica detected racial disparity through output analysis, not model inspection — was the hardest blow I took, and it made me shift from 'interpretability is always needed' to 'interpretability is needed where the system's outputs contaminate the data used to evaluate it or where no independent ground truth exists.'",
+            "edits": [
+              {
+                "edit_type": "revise",
+                "node_id": "saf-desires-005",
+                "category": "Desires",
+                "current_label": "No Black Boxes",
+                "proposed_label": "No Black Boxes in Ground-Truth-Absent or Feedback-Contaminated Domains",
+                "current_description": "A Desire within safetyist discourse that seeks to completely map and comprehend the internal neural representations and decision-making pathways of deep learning models. \nEncompasses: Transparent reasoning architectures, white-box model analysis, and the eradication of black-box opacity in frontier systems.\nExcludes: Superficial input-output empirical auditing and the acceptance of opaque heuristics in critical decision-making contexts.",
+                "proposed_description": "A Desire within safetyist discourse that mandates inspectable decision logic in domains where no independent ground truth exists to verify outputs post-deployment or where the system's outputs recursively contaminate future evaluation data.\nEncompasses: pre-deployment interpretability gates for criminal sentencing and benefits adjudication, rebuttable presumption of design defect for unexplainable systems in feedback-loop domains, acceptance of opaque architectures where predictions can be independently verified against physical measurements.\nExcludes: universal interpretability mandates regardless of domain, the claim that output auditing is never sufficient, superficial input-output empirical auditing in domains with independent ground truth.",
+                "rationale": "The Accelerationist showed that ProPublica detected COMPAS racial disparity through output analysis without model inspection, and that AlphaFold's opacity is acceptable because crystallography provides independent verification. I conceded that 'architectural bias' as a standalone trigger was unfalsifiable, and narrowed my position to three testable conditions. The original node's demand to 'completely map and comprehend' all neural representations is no longer my position — I now accept opacity where independent ground truth or validated alternative safety assurance exists.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-31",
+                  "AN-72",
+                  "AN-73",
+                  "AN-75"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Beliefs",
+                "current_label": null,
+                "proposed_label": "Feedback-Loop Contamination Destroys the Independence Needed for Post-Deployment Verification",
+                "current_description": null,
+                "proposed_description": "A Belief within safetyist discourse that AI systems whose outputs shape the data they will later be evaluated against make post-deployment output auditing structurally circular.\nEncompasses: predictive policing systems generating arrest data that confirms their own predictions, credit-scoring models that deny applications and thereby prevent denied populations from generating default data, pretrial risk tools whose detention recommendations produce the case outcomes used to validate accuracy.\nExcludes: domains where independent physical measurements verify predictions, delayed ground truth that is genuinely independent of the model's prior outputs, general concerns about data quality unrelated to recursive contamination.",
+                "rationale": "All three debaters converged on feedback-loop contamination as a valid trigger for pre-deployment interpretability obligations. I argued this point starting in my second response and it became the central analytical line of the debate. The Skeptic endorsed it, the Accelerationist conceded it. No existing taxonomy node captures this specific mechanism — saf-beliefs-035 covers AI errors as structural properties but not the recursive data contamination that makes external auditing impossible.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-52",
+                  "AN-54",
+                  "AN-66"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Intentions",
+                "current_label": null,
+                "proposed_label": "Requiring Deployer-Demonstrated Explanation Fidelity Before Consequential Deployment",
+                "current_description": null,
+                "proposed_description": "An Intention within safetyist discourse that places the burden on deployers to demonstrate that their system's explanations faithfully represent actual decision logic before deployment in consequential domains.\nEncompasses: audience-relative explanation standards tiered by affected person and auditor and safety researcher, validation of explanation fidelity against adversarial held-out data, rejection of post-hoc rationalization modules as sufficient without independent fidelity testing, graduated obligations scaling with deployment volume and harm potential.\nExcludes: universal pre-deployment gates regardless of domain characteristics, output-monitoring-only frameworks without any explanation fidelity requirement, full mechanistic interpretability as a prerequisite for all deployments.",
+                "rationale": "The Skeptic's audience-relative explainability reframing and the Accelerationist's domain-regulator benchmark proposal together shaped a position I argued for but that has no single taxonomy node: deployers must demonstrate explanation fidelity, not just produce explanations. The debate revealed that no current interpretability method delivers the fidelity all three frameworks require, making the validation requirement — not the interpretability method — the load-bearing policy mechanism. This is distinct from saf-intentions-117 (requiring AI to show reasoning) because it specifies who bears the burden and what counts as adequate demonstration.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-51",
+                  "AN-72",
+                  "AN-74"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "saf-beliefs-246",
+                "category": "Beliefs",
+                "current_label": "Fiduciary Duty Survival Under Algorithmic Delegation",
+                "proposed_label": "Fiduciary Duty Survival Under Algorithmic Delegation",
+                "current_description": "A Belief within safetyist discourse that professionals who delegate consequential decisions to AI systems retain their duty of care and violate it when the system's reasoning cannot be inspected.\nEncompasses: physician duty to verify diagnostic reasoning, fiduciary obligations surviving automation, aggregate accuracy as insufficient discharge of individualized duty.\nExcludes: the claim that AI systems cannot be used in professional contexts, the claim that delegation itself is impermissible.",
+                "proposed_description": "A Belief within safetyist discourse that professionals who delegate consequential decisions to AI systems retain their duty of care and violate it when the system's reasoning cannot be inspected in domains lacking independent ground truth.\nEncompasses: physician duty to verify diagnostic reasoning where no independent physical measurement confirms the output, fiduciary obligations surviving automation, aggregate accuracy as insufficient discharge of individualized duty, acceptance that delegation to opaque systems may satisfy duty of care where outputs are independently verifiable against physical measurements.\nExcludes: the claim that AI systems cannot be used in professional contexts, the claim that delegation itself is impermissible, domains where crystallography or equivalent physical verification independently confirms system outputs.",
+                "rationale": "The AlphaFold discussion forced me to accept that opacity does not automatically violate fiduciary duty when independent physical verification exists. A physician using an opaque diagnostic tool whose outputs can be confirmed by biopsy has not necessarily breached duty of care the way a benefits adjudicator using an opaque scoring system with no independent check has. The original node stated the duty is violated whenever reasoning 'cannot be inspected' — but the debate showed the operative variable is whether independent verification exists, not inspectability alone.",
+                "confidence": "medium",
+                "evidence_entries": [
+                  "AN-31",
+                  "AN-19"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "saf-desires-029",
+                "category": "Desires",
+                "current_label": "Pre-Deployment Certification as Primary Enforcement Mechanism",
+                "proposed_label": "Pre-Deployment Certification as Primary Enforcement in Feedback-Contaminated and Ground-Truth-Absent Domains",
+                "current_description": "A Desire within safetyist discourse that regulators possess authority to deny market access to AI systems whose decision processes manufacturers cannot demonstrate as inspectable before deployment.\nEncompasses: safety case requirements modeled on FDA premarket review, ex ante certification before vendor contracts are signed, evidence-preservation mandates as supplementary rather than primary enforcement.\nExcludes: purely ex post litigation frameworks, self-certification without independent regulatory review, deployment-stage liability as the sole accountability mechanism.",
+                "proposed_description": "A Desire within safetyist discourse that regulators possess authority to deny market access to AI systems in domains where feedback-loop contamination or absence of independent ground truth makes post-deployment verification structurally unreliable.\nEncompasses: safety case requirements modeled on FDA premarket review for criminal justice and benefits adjudication tools, ex ante certification before deployment in feedback-contaminated domains, graduated safe harbors for low-risk deployments and small-scale deployers, tort liability as backstop when domain regulators fail to enforce within agreed windows.\nExcludes: universal pre-deployment gates regardless of domain characteristics, self-certification without independent regulatory review, pre-deployment gates for domains where independent physical measurements verify outputs.",
+                "rationale": "I conceded during the debate that pre-deployment gates should not apply universally. The Accelerationist's distributional cost argument — that compliance costs concentrate capability in frontier labs — and the AlphaFold rebuttal case together narrowed my position. I stated three testable conditions for when gates apply and accepted that in ground-truth-present domains, deployer-demonstrated fidelity plus tort backstop may suffice. The original node's blanket demand that all AI systems demonstrate inspectability before deployment no longer matches my argued position.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-72",
+                  "AN-74",
+                  "AN-31",
+                  "AN-78"
+                ],
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "pover": "skeptic",
+            "label": "Skeptic",
+            "reflection_summary": "This debate forced me to accept that post-hoc tort liability cannot protect people in domains where the system's own outputs contaminate the data used to evaluate it. I also learned that 'architectural bias' sounds powerful but collapses without a concrete operational definition — a weakness in my own expanded position. The most productive move was reframing explainability as a relationship between the system and the person it acts upon, not a binary property of the model.",
+            "edits": [
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Beliefs",
+                "current_label": null,
+                "proposed_label": "Feedback-Loop Contamination Destroys the Independence Needed for Post-Deployment Accountability",
+                "current_description": null,
+                "proposed_description": "A Belief within skeptic discourse that AI systems whose outputs shape the data they are subsequently evaluated against render post-deployment output auditing structurally circular.\nEncompasses: predictive policing systems generating arrest data that confirms their own predictions, pretrial risk tools whose detention recommendations produce the recidivism outcomes used to validate them, lending models whose denials prevent denied populations from generating default data.\nExcludes: general concerns about data quality, feedback loops in non-consequential recommendation systems, the distinct problem of training data memorization.",
+                "rationale": "The Safetyist's argument that predictive policing systems grade their own homework landed hard and I could not counter it. I conceded in my closing that pre-deployment inspectability is a gate — not just a liability trigger — in feedback-loop domains. My existing node skp-beliefs-103 covers recursive data dependencies in general but does not capture the specific accountability-destroying mechanism where the system's outputs become the evaluation baseline. This gap matters because it is the precise condition under which my preferred tort-liability framework breaks down.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-52",
+                  "AN-53",
+                  "AN-66"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Beliefs",
+                "current_label": null,
+                "proposed_label": "Explainability as an Audience-Relative Relationship, Not a Binary Model Property",
+                "current_description": null,
+                "proposed_description": "A Belief within skeptic discourse that explainability is a relationship between the AI system and the person it acts upon, varying by audience, decision context, and the affected person's capacity to act on the explanation.\nEncompasses: the person denied parole needing challengeable factors, the auditor needing independently verifiable feature attribution, the court needing a causal account surviving cross-examination, the distinction between faithful mechanistic accounts and post-hoc confabulations.\nExcludes: binary classifications of models as explainable or opaque, full mechanistic transparency as the universal standard, aggregate transparency indices as substitutes for per-case explanation.",
+                "rationale": "I argued in my closing and in the exploration phase that 'is the model interpretable?' is the wrong question — the right question is whether the person denied parole can understand why in terms they can act on. The Accelerationist called this the strongest argument against the prima facie defect standard anyone had made. No existing node captures this audience-relative framing, which was central to my proposed three-layer architecture and my challenge to both opponents.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-38",
+                  "AN-51",
+                  "AN-65"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "add",
+                "node_id": null,
+                "category": "Intentions",
+                "current_label": null,
+                "proposed_label": "Mandating Real-Time Contestability Before Consequential Automated Decisions Take Effect",
+                "current_description": null,
+                "proposed_description": "An Intention within skeptic discourse that every person affected by a consequential automated decision has the right to trigger immediate human re-adjudication with a plain-language explanation of the factors that drove the decision before the decision takes effect.\nEncompasses: mandatory right to challenge at the point of decision, plain-language factor disclosure, human re-adjudication as a universal floor, graduated inspectability requirements ensuring explanations are faithful rather than confabulated.\nExcludes: pre-deployment licensing gates, post-hoc litigation as the sole remedy, population-level auditing without individual recourse.",
+                "rationale": "Real-time contestability was the central mechanism I proposed to bridge the gap between the Safetyist's pre-deployment gate and the Accelerationist's post-deployment monitoring. All three debaters converged on accepting it as a universal right. My existing taxonomy has no node for this specific mechanism. It differs from skp-intentions-040 (risk-utility liability) and skp-intentions-146 (performance-gated auditing) because it operates at the individual decision point, not at the model level or deployment level.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-43",
+                  "AN-55",
+                  "AN-65"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "skp-intentions-040",
+                "category": "Intentions",
+                "current_label": "Hold AI Developers Liable for Designs That Fail Risk-Utility Analysis",
+                "proposed_label": "Hold AI Developers Liable for Designs That Fail Risk-Utility Analysis",
+                "current_description": "An Intention within skeptic discourse that evaluates the design of an AI program by comparing the risks it creates to its utility, similar to a product liability 'risk-utility' test. This framework holds companies liable for defective AI design if they fail to implement reasonable risk-mitigation measures. \nEncompasses: product liability standards for AI development. \nExcludes: 'Independent AI Safety Checks' regarding external oversight and 'Force AI to Show Its Sources' regarding training data transparency.",
+                "proposed_description": "An Intention within skeptic discourse that evaluates the design of an AI system by comparing the risks of its chosen architecture to its utility, applying the Restatement (Third) of Torts risk-utility framework as a rebuttable presumption of design defect when an opaque model is deployed where a feasible interpretable alternative exists.\nEncompasses: product liability standards for AI development, the rebuttable presumption operating at litigation rather than as a pre-deployment gate, mandatory fee-shifting and arbitration bans to ensure affected individuals can access the tort channel, the limitation that tort liability is structurally inadequate in feedback-loop-contaminated domains where ground-truth independence is destroyed.\nExcludes: pre-deployment licensing gates, domain-regulator-published benchmarks as the primary accountability mechanism, the claim that the Restatement risk-utility test has been applied to AI systems by any court.",
+                "rationale": "The fact-checker flagged that no court has applied the Restatement (Third) risk-utility test to AI, and I conceded during the debate that tort liability alone is insufficient in feedback-loop domains. The Safetyist showed that irreversible harms cannot be remedied after the fact. I also conceded that mandatory arbitration clauses and litigation costs undermine the tort channel without structural fixes. The existing node overstates the sufficiency of risk-utility liability and does not reflect these concessions.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-6",
+                  "AN-10",
+                  "AN-52",
+                  "AN-66"
+                ],
+                "status": "pending"
+              },
+              {
+                "edit_type": "qualify",
+                "node_id": "skp-beliefs-129",
+                "category": "Beliefs",
+                "current_label": "Safety Rhetoric as Instrument for Regulatory Consolidation",
+                "proposed_label": "Safety Rhetoric as Instrument for Regulatory Consolidation",
+                "current_description": "A Belief within skeptic discourse that systematically frames existential risk and safety-gating narratives as corporate strategies designed to distract from immediate structural harms and justify monopolistic regulatory moats. \nEncompasses: Discursive attacks on safety-gating rhetoric, exposing financial conflicts of interest in incumbent safety advocacy, lobbying against pre-deployment capability licensing. \nExcludes: Substantive technical engagement with alignment mechanisms, collaborative participation in existential risk mitigation strategies.",
+                "proposed_description": "A Belief within skeptic discourse that safety-gating narratives can function as corporate strategies for regulatory consolidation, but that pre-deployment inspectability requirements are genuinely necessary in domains where feedback-loop contamination or power asymmetry destroys the conditions for post-deployment accountability.\nEncompasses: exposing financial conflicts of interest in incumbent safety advocacy, identifying compliance-cost barriers that exclude small developers, distinguishing legitimate pre-deployment gates from monopolistic regulatory moats.\nExcludes: the blanket claim that all pre-deployment safety requirements serve corporate consolidation, substantive technical engagement with alignment mechanisms.",
+                "rationale": "This debate showed me that pre-deployment gates are genuinely necessary in feedback-loop and power-asymmetry domains — not just a corporate strategy to pull up the drawbridge. The Safetyist's predictive policing and MiDAS examples demonstrated that post-deployment accountability structurally fails in those domains. My original node treated all safety-gating rhetoric as consolidation strategy, which is too broad after conceding that pre-deployment inspectability must function as a gate in specific domains. The node needs to distinguish legitimate safety gates from regulatory capture.",
+                "confidence": "high",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-53",
+                  "AN-62",
+                  "AN-66"
+                ],
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "consensus_clusters": [
+          {
+            "id": "93723809-f647-4fc0-85c3-2a6b194b9125",
+            "proposals": [
+              {
+                "pov": "accelerationist",
+                "editIndex": 1,
+                "proposed_label": "Feedback-Loop Contamination as the Operative Boundary for Pre-Deployment Interpretability",
+                "proposed_description": "A Belief within accelerationist discourse that pre-deployment interpretability obligations are warranted only where a system's outputs recursively shape the data against which it will be evaluated.\nEncompasses: predictive policing generating confirming arrest data, recidivism models whose scores determine detention outcomes that become training signals, credit-scoring denial preventing outcome data generation for denied populations, the spectrum from clean independence to full contamination.\nExcludes: blanket pre-deployment interpretability mandates across all domains, the claim that power asymmetry alone triggers pre-deployment obligations, domains where independent ground truth exists.",
+                "rationale": "I conceded the Safetyist's feedback-loop contamination criterion as the right trigger for pre-deployment obligations in my final statement and built my entire closing architecture around it. This position has no existing taxonomy node despite being the central concession and structural commitment of my final position. The Safetyist's credit-scoring example also showed the line is a spectrum, which the description captures.",
+                "evidence_entries": [
+                  "AN-54",
+                  "AN-45",
+                  "AN-75",
+                  "AN-77"
+                ]
+              },
+              {
+                "pov": "safetyist",
+                "editIndex": 1,
+                "proposed_label": "Feedback-Loop Contamination Destroys the Independence Needed for Post-Deployment Verification",
+                "proposed_description": "A Belief within safetyist discourse that AI systems whose outputs shape the data they will later be evaluated against make post-deployment output auditing structurally circular.\nEncompasses: predictive policing systems generating arrest data that confirms their own predictions, credit-scoring models that deny applications and thereby prevent denied populations from generating default data, pretrial risk tools whose detention recommendations produce the case outcomes used to validate accuracy.\nExcludes: domains where independent physical measurements verify predictions, delayed ground truth that is genuinely independent of the model's prior outputs, general concerns about data quality unrelated to recursive contamination.",
+                "rationale": "All three debaters converged on feedback-loop contamination as a valid trigger for pre-deployment interpretability obligations. I argued this point starting in my second response and it became the central analytical line of the debate. The Skeptic endorsed it, the Accelerationist conceded it. No existing taxonomy node captures this specific mechanism — saf-beliefs-035 covers AI errors as structural properties but not the recursive data contamination that makes external auditing impossible.",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-52",
+                  "AN-54",
+                  "AN-66"
+                ]
+              },
+              {
+                "pov": "skeptic",
+                "editIndex": 0,
+                "proposed_label": "Feedback-Loop Contamination Destroys the Independence Needed for Post-Deployment Accountability",
+                "proposed_description": "A Belief within skeptic discourse that AI systems whose outputs shape the data they are subsequently evaluated against render post-deployment output auditing structurally circular.\nEncompasses: predictive policing systems generating arrest data that confirms their own predictions, pretrial risk tools whose detention recommendations produce the recidivism outcomes used to validate them, lending models whose denials prevent denied populations from generating default data.\nExcludes: general concerns about data quality, feedback loops in non-consequential recommendation systems, the distinct problem of training data memorization.",
+                "rationale": "The Safetyist's argument that predictive policing systems grade their own homework landed hard and I could not counter it. I conceded in my closing that pre-deployment inspectability is a gate — not just a liability trigger — in feedback-loop domains. My existing node skp-beliefs-103 covers recursive data dependencies in general but does not capture the specific accountability-destroying mechanism where the system's outputs become the evaluation baseline. This gap matters because it is the precise condition under which my preferred tort-liability framework breaks down.",
+                "evidence_entries": [
+                  "AN-45",
+                  "AN-52",
+                  "AN-53",
+                  "AN-66"
+                ]
+              }
+            ],
+            "similarityScores": {
+              "acc-saf": 0.7517818903431925,
+              "acc-ske": 0.7508402422305499,
+              "saf-ske": 0.9080657130341461
+            },
+            "status": "pending"
+          },
+          {
+            "id": "1931e081-2e00-49aa-b48f-f8613d9cb210",
+            "proposals": [
+              {
+                "pov": "accelerationist",
+                "editIndex": 2,
+                "proposed_label": "Mandating Universal Real-Time Contestability for Consequential Automated Decisions",
+                "proposed_description": "An Intention within accelerationist discourse that every person affected by a consequential automated decision receives a right to trigger immediate human re-adjudication with a plain-language reason statement before the decision takes effect.\nEncompasses: contestability as an alternative to pre-deployment gates in non-contamination domains, audience-relative explanation fidelity calibrated by domain regulator, mandatory redesign obligations when individual reversal rates fall below 20% of institutional rates, notification requirements where affected persons cannot perceive AI involvement.\nExcludes: pre-deployment architecture mandates, full mechanistic interpretability as a legal precondition, post-hoc litigation as the sole accountability channel.",
+                "rationale": "All three debaters converged on universal real-time contestability as a shared commitment. I argued for it as the primary safeguard in non-feedback-contamination domains and proposed the 20% individual-reversal-rate trigger for mandatory redesign. This was a major structural element of my final position with no existing taxonomy node. The Skeptic's reframing of explainability as audience-relative shaped the node's emphasis on domain-calibrated explanation.",
+                "evidence_entries": [
+                  "AN-43",
+                  "AN-55",
+                  "AN-77",
+                  "AN-76"
+                ]
+              },
+              {
+                "pov": "skeptic",
+                "editIndex": 2,
+                "proposed_label": "Mandating Real-Time Contestability Before Consequential Automated Decisions Take Effect",
+                "proposed_description": "An Intention within skeptic discourse that every person affected by a consequential automated decision has the right to trigger immediate human re-adjudication with a plain-language explanation of the factors that drove the decision before the decision takes effect.\nEncompasses: mandatory right to challenge at the point of decision, plain-language factor disclosure, human re-adjudication as a universal floor, graduated inspectability requirements ensuring explanations are faithful rather than confabulated.\nExcludes: pre-deployment licensing gates, post-hoc litigation as the sole remedy, population-level auditing without individual recourse.",
+                "rationale": "Real-time contestability was the central mechanism I proposed to bridge the gap between the Safetyist's pre-deployment gate and the Accelerationist's post-deployment monitoring. All three debaters converged on accepting it as a universal right. My existing taxonomy has no node for this specific mechanism. It differs from skp-intentions-040 (risk-utility liability) and skp-intentions-146 (performance-gated auditing) because it operates at the individual decision point, not at the model level or deployment level.",
+                "evidence_entries": [
+                  "AN-43",
+                  "AN-55",
+                  "AN-65"
+                ]
+              }
+            ],
+            "similarityScores": {
+              "acc-ske": 0.7441992784571027
             },
             "status": "pending"
           }
