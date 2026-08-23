@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Rationale-drop guard for taxonomy/Origin/edges.json (t/2945 Arm 2).
 #
-# Diffs the staged edges.json against HEAD and warns when any edge that
+# Diffs the staged edges.json against HEAD and fails when any edge that
 # carries a non-empty rationale in HEAD would be committed without one.
 # Uses twin-aware identity: source|type|target, disambiguated by
 # discovered_at+model for near-key collisions (matches Arm 1 / t/2956).
 #
-# WARN-FIRST — exits 0 (warnings only) until TL Gate Verification passes.
-# Promoted to blocking (exit 1) in a separate PR after both-arms GV.
+# BLOCKING -- exits 1 when rationale drops are detected.
+# GV passed (t/2958, p/331#562): FIRE/CLEAN/RESTORE/CRLF all clean.
 #
 # Install: git config core.hooksPath .githooks
 #          (run once per checkout; the pipeline setup step does this automatically)
@@ -90,7 +90,7 @@ for tk, he in head_idx.items():
 
 if drops:
     print(
-        f"\n[rationale-guard] WARNING: {len(drops)} edge(s) would lose rationale in this commit:",
+        f"\n[rationale-guard] ERROR: {len(drops)} edge(s) would lose rationale in this commit:",
         file=sys.stderr,
     )
     for e in drops[:10]:
@@ -101,13 +101,12 @@ if drops:
     if len(drops) > 10:
         print(f"  ... and {len(drops) - 10} more", file=sys.stderr)
     print(
-        "[rationale-guard] WARN-FIRST: commit allowed (gate not yet promoted to blocking).",
+        "[rationale-guard] BLOCKING: commit rejected to protect edge rationale (t/2945).",
         file=sys.stderr,
     )
     print(
-        "[rationale-guard] If this drop is unintentional, abort and investigate (t/2945).",
+        "[rationale-guard] Fix: restore rationale fields or use --no-verify to override.",
         file=sys.stderr,
     )
+    sys.exit(1)
 PYEOF
-
-exit 0
