@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+# Rationale-drop guard for taxonomy/Origin/edges.json (t/2945 Arm 2).
+#
+# Diffs the staged edges.json against HEAD and warns when any edge that
+# carries a non-empty rationale in HEAD would be committed without one.
+# Uses twin-aware identity: source|type|target, disambiguated by
+# discovered_at+model for near-key collisions (matches Arm 1 / t/2956).
+#
+# WARN-FIRST — exits 0 (warnings only) until TL Gate Verification passes.
+# Promoted to blocking (exit 1) in a separate PR after both-arms GV.
+#
+# Install: git config core.hooksPath .githooks
+#          (run once per checkout; the pipeline setup step does this automatically)
+
+set -euo pipefail
+
+EDGES_PATH="taxonomy/Origin/edges.json"
+
+# Only run if edges.json is staged.
+if ! git diff --cached --name-only | grep -qF "$EDGES_PATH"; then
+  exit 0
+fi
+
+# Skip on initial commit (no HEAD yet).
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+  exit 0
+fi
+
+python3 - <<'PYEOF'
+import json
+import subprocess
+import sys
+
+EDGES_PATH = "taxonomy/Origin/edges.json"
+
+
+def load_edges(ref):
+    """Load edges list from a git ref. Returns None on failure."""
+    r = subprocess.run(["git", "show", ref], capture_output=True)
+    if r.returncode != 0:
+        return None
+    try:
+        return json.loads(r.stdout)["edges"]
+    except (json.JSONDecodeError, KeyError):
+        return None
+
+
+def primary_key(e):
+    return f"{e['source']}|{e['type']}|{e['target']}"
+
+
+def twin_key(e):
+    return (primary_key(e), e.get("discovered_at", ""), e.get("model", ""))
+
+
+def build_index(edges):
+    """Index edges by twin-aware key. Primary key for singletons, full twin
+    key for collisions so near-duplicates don't mask each other."""
+    by_primary = {}
+    for e in edges:
+        by_primary.setdefault(primary_key(e), []).append(e)
+    result = {}
+    for pk, group in by_primary.items():
+        if len(group) == 1:
+            result[twin_key(group[0])] = group[0]
+        else:
+            for e in group:
+                result[twin_key(e)] = e
+    return result
+
+
+# git show HEAD:... and git show :... both return LF-normalised content
+# (blob store is LF-only regardless of platform), so this diff is
+# CRLF-safe on Windows agents.
+head_edges = load_edges(f"HEAD:{EDGES_PATH}")
+staged_edges = load_edges(f":{EDGES_PATH}")  # index (staged) version
+
+if head_edges is None or staged_edges is None:
+    sys.exit(0)
+
+head_idx = build_index(head_edges)
+staged_idx = build_index(staged_edges)
+
+drops = []
+for tk, he in head_idx.items():
+    if he.get("rationale"):  # presence check only — never key on rationale_source
+        se = staged_idx.get(tk)
+        if se is None or not se.get("rationale"):
+            drops.append(he)
+
+if drops:
+    print(
+        f"\n[rationale-guard] WARNING: {len(drops)} edge(s) would lose rationale in this commit:",
+        file=sys.stderr,
+    )
+    for e in drops[:10]:
+        print(
+            f"  {e['source']} --[{e['type']}]--> {e['target']}",
+            file=sys.stderr,
+        )
+    if len(drops) > 10:
+        print(f"  ... and {len(drops) - 10} more", file=sys.stderr)
+    print(
+        "[rationale-guard] WARN-FIRST: commit allowed (gate not yet promoted to blocking).",
+        file=sys.stderr,
+    )
+    print(
+        "[rationale-guard] If this drop is unintentional, abort and investigate (t/2945).",
+        file=sys.stderr,
+    )
+PYEOF
+
+exit 0
