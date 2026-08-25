@@ -1,0 +1,128 @@
+# ─── BDI Decomposition Boundary Check (Warn-First) ───
+# What:  Fires on every push to main. Validates situations added or modified in
+#        this push have full BDI decomposition (per-POV acc/saf/skp nodes).
+#        t/3011 Layer B — write-time prevention complement to the daily backstop
+#        in compliance-live.yml (code repo, scheduled).
+#
+# WARN-FIRST: continue-on-error: true keeps push unblocked. Promotion to a
+#   blocking gate is a separate deliberate step requiring TL sign-off (t/3011).
+#
+# Push range (TL must-fix p/331#612): github.event.before..github.event.after
+#   with fetch-depth: 0 — handles multi-commit pushes correctly. Zero-SHA
+#   (first/force-push) falls back to full-set validation via cmdlet fail-safe,
+#   not a silent no-op.
+#
+# Pre-filter: skip entirely if taxonomy/Origin/situations.json is not in the
+#   push diff — keeps the job fast on data-only pushes that don't touch situations.
+
+name: BDI Decomposition Boundary Check (Warn-First)
+
+on:
+  push:
+    branches: [main, 'gv/bdi-t3011']  # gv/* removed after four-arm proof (t/3011)
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  bdi-boundary-check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          fetch-depth: 0  # full history — before-SHA must be reachable (t/3011 TL must-fix)
+
+      - name: Checkout code repo (AITriad module)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          repository: jpsnover/ai-triad-research
+          path: ai-triad-research
+          fetch-depth: 1
+
+      - name: Check if situations.json changed
+        id: sitcheck
+        run: |
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          ZERO="0000000000000000000000000000000000000000"
+          if [ "$BEFORE" = "$ZERO" ]; then
+            echo "Zero-SHA push (first push or force-push) — full-set validation"
+            echo "situations_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'taxonomy/Origin/situations.json' 2>/dev/null)
+            if [ -n "$DIFF" ]; then
+              echo "taxonomy/Origin/situations.json in push range — running BDI check"
+              echo "situations_changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "taxonomy/Origin/situations.json not in push range — skipping"
+              echo "situations_changed=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Install Pester
+        if: steps.sitcheck.outputs.situations_changed == 'true'
+        shell: pwsh
+        run: Install-Module Pester -Force -Scope CurrentUser
+
+      - name: Run BDI decomposition boundary check
+        id: bdi_check
+        if: steps.sitcheck.outputs.situations_changed == 'true'
+        shell: pwsh
+        env:
+          AI_TRIAD_DATA_ROOT: ${{ github.workspace }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
+
+          # -BaseRef zero-SHA → cmdlet fail-safe full-scans (handled internally, t/3011#5)
+          $r = Test-SituationBdiCompliance -ChangedOnly -BaseRef $env:BEFORE_SHA
+
+          if (-not $r.Pass) {
+            foreach ($id in $r.ViolationIds) {
+              Write-Host "::warning::BDI violation: $id"
+            }
+            Write-Host "::warning::$($r.Detail)"
+            Write-Host "Scope=$($r.Scope) Checked=$($r.Checked) Fail=$($r.Fail)"
+            exit 1
+          } else {
+            Write-Host "BDI check passed — Scope=$($r.Scope) Checked=$($r.Checked)"
+          }
+
+      - name: Alert — idempotent issue on BDI violation
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PUSH_SHA="${{ github.event.after }}"
+          ACTOR="${{ github.actor }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          TITLE="Data boundary: BDI decomposition violation on push"
+          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} added/modified situation(s) without full BDI decomposition.
+
+          **Action:** Run BDI decomposition enrichment on the flagged situation IDs (see run log), then push an update.
+
+          Run: ${RUN_URL}
+
+          Write-time prevention: t/3011 Layer B."
+
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+
+          EXISTING=$(gh issue list --label "data-compliance" --state open \
+            --search "BDI decomposition violation" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            gh issue reopen "$EXISTING" 2>/dev/null || true
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body "$BODY" \
+              --label "data-compliance" \
+              --assignee jpsnover
+          fi
