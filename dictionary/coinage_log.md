@@ -1053,3 +1053,36 @@ Skeptics ground fairness in procedural rights — can you find out why an AI dec
 Fair processes for AI decision-making: transparency about how decisions are made, meaningful access to appeals and remediation, and the right to understand and contest AI-driven outcomes. Fairness as process rather than outcome.
 
 ---
+
+## 2026-08-31 Phrase enrichment (t/3130 Part B, coined_by cl-auto)
+- accountability_institutional: +6 characteristic_phrases from BDI corpus (t/3130 Part B): institutional accountability, corporate accountability, legal accountability, institutional accountability mechanism, reduced corporate accountability, demand institutional accountability
+- alignment_compliance: +2 characteristic_phrases from BDI corpus (t/3130 Part B): enforce compliance, treating compliance
+- asymmetry_power: +1 characteristic_phrases from BDI corpus (t/3130 Part B): asymmetric power
+- autonomy_human: +3 characteristic_phrases from BDI corpus (t/3130 Part B): individual autonomy, granted autonomy, higher autonomy
+- autonomy_individual: +1 characteristic_phrases from BDI corpus (t/3130 Part B): data privacy
+- autonomy_machine: +6 characteristic_phrases from BDI corpus (t/3130 Part B): autonomous ai agent, ai autonomy, autonomy in ai, autonomous self improvement, greater ai autonomy, autonomous human
+- bias_technical: +5 characteristic_phrases from BDI corpus (t/3130 Part B): bias detection, bias assessment, bias metric, bias reduction, bias research
+- capabilities_hazard: +4 characteristic_phrases from BDI corpus (t/3130 Part B): safety threshold, capability restriction, dangerous capability, capability shift
+- capabilities_scaling: +9 characteristic_phrases from BDI corpus (t/3130 Part B): capability growth, capabilities scale, capability expansion, capabilities advance, capability emergence, model capabilities scale, capabilities increase, slow capability growth, impede capability growth
+- capability_frontier: +5 characteristic_phrases from BDI corpus (t/3130 Part B): ai capability development, capability advancement, ai capability growth, high capability ai, high capability ai system
+- capture_institutional: +4 characteristic_phrases from BDI corpus (t/3130 Part B): governance and regulatory, industry self governance, capture regulatory, capture of regulatory
+- compliance_performative: +8 characteristic_phrases from BDI corpus (t/3130 Part B): compliance standard, compliance regime, voluntary compliance, impose compliance, compliance artifact, compliance audit, ethical compliance, compliance evidence
+- control_human_agency: +2 characteristic_phrases from BDI corpus (t/3130 Part B): agentic authority, autonomous agency
+- control_optimization: +1 characteristic_phrases from BDI corpus (t/3130 Part B): governance system
+- deployment_competitive: +7 characteristic_phrases from BDI corpus (t/3130 Part B): deployment velocity, deployment speed, faster deployment, rapid large scale deployment, post deployment adaptive, slowing deployment, slow deployment velocity
+- deployment_gated: +5 characteristic_phrases from BDI corpus (t/3130 Part B): safety evaluation, safer deployment, faster safer deployment, safe deployment, deployment approval
+- displacement_labor: +1 characteristic_phrases from BDI corpus (t/3130 Part B): economic displacement
+- fairness_individual: +3 characteristic_phrases from BDI corpus (t/3130 Part B): fairness metric, demonstrable fairness, counterfactual fairness
+- fairness_procedural: +1 characteristic_phrases from BDI corpus (t/3130 Part B): algorithmic fairness
+- governance_adaptive: +7 characteristic_phrases from BDI corpus (t/3130 Part B): ai governance, governance of ai, govern ai, predistributive ai governance, general ai governance, ai governance debate, ai specific governance
+- governance_oversight: +3 characteristic_phrases from BDI corpus (t/3130 Part B): regulatory compliance, regulatory compliance framework, oversight and regulatory
+- liability_strict: +10 characteristic_phrases from BDI corpus (t/3130 Part B): liability standard, liability rule, products liability, enforceable liability, liability law, liability enforcement, liability exposure, assign liability, liability structure, liability mechanism
+- oversight_audit: +4 characteristic_phrases from BDI corpus (t/3130 Part B): post deployment auditing, post deployment output auditing, post deployment accountability, deployer funded audit
+- oversight_democratic: +10 characteristic_phrases from BDI corpus (t/3130 Part B): oversight mechanism, democratic accountability, public oversight, legislative oversight, bureaucratic oversight, oversight architecture, oversight regime, third party oversight, government oversight, oversight and accountability
+- oversight_human_control: +2 characteristic_phrases from BDI corpus (t/3130 Part B): veto authority, shutdown authority
+- regulation_precautionary: +1 characteristic_phrases from BDI corpus (t/3130 Part B): precautionary regulation
+- risk_existential: +3 characteristic_phrases from BDI corpus (t/3130 Part B): catastrophic or existential, catastrophic and existential, existential and catastrophic
+- safety_alignment: +3 characteristic_phrases from BDI corpus (t/3130 Part B): alignment failure, treat alignment, genuine alignment
+- speculative_risk_critique: +2 characteristic_phrases from BDI corpus (t/3130 Part B): risk narrative, speculative future scenario
+- transparency_accountability: +9 characteristic_phrases from BDI corpus (t/3130 Part B): ai accountability, transparency and accountability, accountability for ai, accountability and liability, establishing ai accountability, developer accountability, accountability for developer, ai developers accountable, opaque accountability
+- transparency_verification: +4 characteristic_phrases from BDI corpus (t/3130 Part B): transparency audit, transparency report, interpretability audit, transparency and auditability
