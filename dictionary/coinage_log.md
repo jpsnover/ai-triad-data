@@ -1086,3 +1086,14 @@ Fair processes for AI decision-making: transparency about how decisions are made
 - speculative_risk_critique: +2 characteristic_phrases from BDI corpus (t/3130 Part B): risk narrative, speculative future scenario
 - transparency_accountability: +9 characteristic_phrases from BDI corpus (t/3130 Part B): ai accountability, transparency and accountability, accountability for ai, accountability and liability, establishing ai accountability, developer accountability, accountability for developer, ai developers accountable, opaque accountability
 - transparency_verification: +4 characteristic_phrases from BDI corpus (t/3130 Part B): transparency audit, transparency report, interpretability audit, transparency and auditability
+
+## 2026-08-31 New provisional terms (t/3130 Part A, coined_by cl-auto)
+- log-entry-046: **model_weights** (model weights (openness)) — provisional, coined_by cl-auto, camp=accelerationist. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'open weights'.
+- log-entry-047: **adversarial_robustness** (adversarial robustness) — provisional, coined_by cl-auto, camp=safetyist. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'adversarial robustness'.
+- log-entry-048: **data_provenance** (data provenance) — provisional, coined_by cl-auto, camp=skeptic. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'data provenance'.
+- log-entry-049: **collective_bargaining** (collective bargaining (AI labor)) — provisional, coined_by cl-auto, camp=skeptic. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'collective bargaining'.
+- log-entry-050: **energy_infrastructure** (energy & grid infrastructure) — provisional, coined_by cl-auto, camp=accelerationist. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'energy infrastructure'.
+- log-entry-051: **industry_lobbying** (industry lobbying) — provisional, coined_by cl-auto, camp=skeptic. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'industry lobbying'.
+- log-entry-052: **ambient_surveillance** (ambient surveillance) — provisional, coined_by cl-auto, camp=skeptic. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'ambient surveillance'.
+- log-entry-053: **wellbeing_mental_health** (mental health & well-being) — provisional, coined_by cl-auto, camp=skeptic. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'mental health'.
+- log-entry-054: **behavioral_guardrails** (behavioral guardrails) — provisional, coined_by cl-auto, camp=safetyist. From BDI-corpus concept pass (t/3130 Part A). Colloquial: 'guardrails'.
