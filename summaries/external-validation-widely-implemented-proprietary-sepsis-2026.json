@@ -1,0 +1,398 @@
+{
+  "doc_id": "external-validation-widely-implemented-proprietary-sepsis-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-08-26T13:11:32Z",
+  "model_info": {
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 41,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 4,
+      "claims_confident": 4,
+      "claims_iterated": 0,
+      "elapsed_seconds": 12.2,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "external-validation-widely-implemented-proprietary-sepsis-2026",
+    "measured_at": "2026-08-26T13:13:00.0052990-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 1.0,
+        "flags": {
+          "near_miss_count": 2,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "resolved_count": 0
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 41714.0,
+        "out_units": "items",
+        "out_count": 11.0,
+        "ratio": 0.0003,
+        "flags": {
+          "used_fire": 1,
+          "dedup_points_removed": 0,
+          "factual_claims": 4,
+          "total_points": 5,
+          "null_node_rate": 0.0,
+          "dedup_claims_removed": 0,
+          "unmapped_concepts": 2,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 889.0,
+        "out_units": "nodes",
+        "out_count": 41.0,
+        "ratio": 0.0461,
+        "flags": {
+          "synthetic_nodes_scored": 855,
+          "effective_threshold": 0.4023,
+          "rerank_applied": false,
+          "desires_selected": 3,
+          "top_k": 40,
+          "below_threshold_forced": 0,
+          "rerank_top1_delta": 0,
+          "threshold_floor": 0.2,
+          "beliefs_selected": 14,
+          "above_threshold": 41,
+          "intentions_selected": 24
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 1.0,
+        "flags": {
+          "near_miss_count": 2,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "resolved_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0461
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "neutral",
+          "taxonomy_node_id": "acc-beliefs-070",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document observes that evaluating AI behavior through observable outputs like receiver operating characteristic curves is essential in healthcare settings where independent ground truth permits performance verification. The analysis relies on retrospective cohort data from 38,455 hospitalizations to calculate area under the curve discrimination metrics. From an accelerationist perspective, rigorous output-based verification is necessary to validate scalable health IT tools and ensure they meet performance thresholds before widespread deployment. However, the study acknowledges that proprietary model opacity limits the scope of output verification when developers do not disclose underlying feature weights or training distributions.",
+          "verbatim": "Model discrimination was assessed using the area under the receiver operating characteristic curve at the hospitalization level and with prediction horizons of 4, 8, 12, and 24 hours.",
+          "excerpt_context": "Methods - External Validation of the ESM Scores",
+          "extraction_confidence": 0.85,
+          "canonical_proposition": "Evaluating AI behavior through observable outputs provides a foundational mechanism for verifying clinical model performance.",
+          "attribution_text": "A Belief within accelerationist discourse that evaluating AI behavior through observable outputs is sufficient only where verification data is independent of system-generated metrics. Encompasses: performance verification, output-based evaluation, discrimination metrics.",
+          "vocabulary_terms": [
+            "safety_empirical",
+            "transparency_verification"
+          ],
+          "retrieval_confidence": 0.8906,
+          "taxonomy_node_candidates": [
+            {
+              "id": "acc-beliefs-070",
+              "label": "Output-Based Verification in Ground-Truth Independent Domains",
+              "score": 0.8906
+            },
+            {
+              "id": "acc-beliefs-069",
+              "label": "AI Systems Are Inherently Better Understood Through Their Outputs Than Their Internals",
+              "score": 0.8612
+            },
+            {
+              "id": "acc-intentions-054",
+              "label": "Ground AI Safety in Observable Behavior and Real-World Testing",
+              "score": 0.7213
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-234",
+          "mechanism_type": "disclosure_requirement",
+          "category": "Intentions",
+          "point": "The document demonstrates that high-stakes deployment in clinical settings should be conditioned on rigorous pre-market safety case reviews and independent validation rather than relying on developer-provided internal metrics. The researchers conducted an independent external validation of the Epic Sepsis Model using 38,455 hospitalizations, revealing a hospitalization-level AUC of 0.63, which is substantially worse than internal developer claims. From a safetyist perspective, this finding underscores the necessity of mandating independent external validation before deploying predictive models in high-stakes domains where failure directly threatens patient lives. The authors acknowledge that validation results can vary based on the choice of sepsis definition and the inclusion or exclusion of post-onset prediction windows.",
+          "verbatim": "The Epic Sepsis Model (ESM), a proprietary sepsis prediction model, is implemented at hundreds of US hospitals. The ESM’s ability to identify patients with sepsis has not been adequately evaluated despite widespread use.",
+          "excerpt_context": "Abstract - Importance",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Condition deployment authorization in high-stakes domains on independent pre-market safety case reviews and verifiable risk management documentation.",
+          "attribution_text": "An Intention within safetyist discourse that conditions deployment authorization in high-stakes domains on independent pre-market safety case reviews and verifiable risk management documentation. Encompasses: external validation, pre-market safety assessment, clinical risk management.",
+          "vocabulary_terms": [
+            "deployment_gated",
+            "transparency_accountability"
+          ],
+          "retrieval_confidence": 0.9112,
+          "taxonomy_node_candidates": [
+            {
+              "id": "saf-intentions-234",
+              "label": "Conditioning High-Stakes Deployment on Pre-Deployment Safety Cases",
+              "score": 0.9112
+            },
+            {
+              "id": "saf-intentions-001",
+              "label": "Gating Deployment on Verifiable Safety Baselines and Subsidized Compliance Infrastructure",
+              "score": 0.7115
+            },
+            {
+              "id": "saf-desires-029",
+              "label": "Pre-Deployment Certification as Primary Enforcement in Feedback-Contaminated and Ground-Truth-Absent Domains",
+              "score": 0.6873
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-005",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document observes that proprietary predictive models fail outside their original training distribution when deployed in real-world clinical environments, maintaining high operational usage while delivering poor discrimination. The study found that the Epic Sepsis Model achieved an AUC of only 0.63 in an independent academic medical center, compared to 0.76 to 0.83 in internal developer evaluations. From a safetyist perspective, this performance drop illustrates how complex algorithmic tools maintain high statistical confidence or generate pervasive alerts while executing catastrophic failures in real-world patient care. The authors note that differences in patient populations and clinical documentation practices across health systems contribute to this performance degradation.",
+          "verbatim": "Our observed hospitalization-level model performance (AUC, 0.63) was substantially worse than that reported by Epic Systems (AUC, 0.76-0.83) in internal documentation (shared with permission) and in a prior conference proceeding coauthored with Epic Systems (AUC, 0.73).",
+          "excerpt_context": "Discussion",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "AI systems routinely maintain high statistical confidence while executing catastrophic failures when deployed outside their immediate training distribution.",
+          "attribution_text": "A Belief within safetyist discourse that AI systems routinely maintain high statistical confidence while executing catastrophic failures when deployed outside their immediate training distribution. Encompasses: distribution shift, model performance degradation, overconfident failure.",
+          "vocabulary_terms": [
+            "risk_existential",
+            "speculative_future_harm"
+          ],
+          "retrieval_confidence": 0.8558,
+          "taxonomy_node_candidates": [
+            {
+              "id": "saf-beliefs-005",
+              "label": "AI Systems Fail Confidently Outside Their Training Distribution",
+              "score": 0.8558
+            },
+            {
+              "id": "saf-beliefs-098",
+              "label": "AI Behavior Cannot Be Fully Predicted Due to Emergence, Misspecification, and Formal Limits",
+              "score": 0.7722
+            },
+            {
+              "id": "saf-beliefs-057",
+              "label": "AI Models Carry Unfixable Defects That Resist Detection and Degrade Over Time",
+              "score": 0.7641
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-027",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document describes how automated alert systems generate pervasive clinician burden and alert fatigue without achieving commensurate clinical gains in patient safety. The study reveals that the Epic Sepsis Model generated alerts for 18 percent of all hospitalizations while failing to identify 67 percent of patients who developed sepsis, and requiring clinicians to evaluate 8 patients per true positive even under a single-alert strategy. From a skeptic perspective, this demonstrates how poorly performing decision support systems create administrative overload and cognitive fatigue for healthcare workers. The authors acknowledge that alert thresholds can be tuned, but note that balancing sensitivity against alert fatigue remains a fundamental structural challenge in clinical deployment.",
+          "verbatim": "The ESM also did not identify 1709 patients with sepsis (67%) despite generating alerts for an ESM score of 6 or higher for 6971 of all 38 455 hospitalized patients (18%), thus creating a large burden of alert fatigue.",
+          "excerpt_context": "Abstract - Results",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Automated algorithmic alert systems generate severe alert fatigue and administrative burdens while frequently missing critical clinical events.",
+          "attribution_text": "A Belief within skeptic discourse that describes the human tendency to excessively trust and depend on AI outputs, even when they are flawed or incorrect. Encompasses: alert fatigue, cognitive overload, automation burden.",
+          "vocabulary_terms": [
+            "documented_present_harm",
+            "risk_systemic_structural"
+          ],
+          "retrieval_confidence": 0.8856,
+          "taxonomy_node_candidates": [
+            {
+              "id": "skp-beliefs-027",
+              "label": "Humans Systematically Over-Trust AI Outputs Even When Wrong",
+              "score": 0.8856
+            },
+            {
+              "id": "skp-beliefs-043",
+              "label": "Reliance on AI Degrades Human Critical Thinking and Decision-Making",
+              "score": 0.7904
+            },
+            {
+              "id": "skp-beliefs-063",
+              "label": "AI Development Processes Systematically Encode Human Cognitive Biases",
+              "score": 0.7852
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-052",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document notes that reliance on proprietary electronic health record tools has filled an implementation gap in early warning systems despite a lack of transparent, peer-reviewed performance evidence. The study points out that commercial software vendors have integrated early warning systems into electronic health records where they are readily accessed by clinicians without adequate independent evaluation. From a skeptic perspective, widespread adoption of opaque commercial algorithms undermines clinical judgment and creates systemic risks across national healthcare infrastructure. The authors emphasize that medical professional organizations must establish formal oversight recommendations to address the proliferation of unvetted proprietary models.",
+          "verbatim": "The increase and growth in deployment of proprietary models has led to an underbelly of confidential, non–peer-reviewed model performance documents that may not accurately reflect real-world model performance.",
+          "excerpt_context": "Discussion - Conclusions",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Widespread adoption of proprietary clinical algorithms without peer-reviewed validation creates systemic risks for national healthcare management.",
+          "attribution_text": "A Belief within skeptic discourse that relying on AI in professional settings causes a measurable decline in human performance over time. Encompasses: proprietary model opacity, unvetted clinical adoption, systemic healthcare risk.",
+          "vocabulary_terms": [
+            "asymmetry_power",
+            "capture_institutional"
+          ],
+          "retrieval_confidence": 0.9124,
+          "taxonomy_node_candidates": [
+            {
+              "id": "skp-beliefs-052",
+              "label": "High-Stakes Professions Face Accelerated Skill Decay When AI Handles Core Tasks",
+              "score": 0.9124
+            },
+            {
+              "id": "skp-beliefs-043",
+              "label": "Reliance on AI Degrades Human Critical Thinking and Decision-Making",
+              "score": 0.7664
+            },
+            {
+              "id": "skp-beliefs-163",
+              "label": "AI Is a Powerful Tool That Cannot Achieve Genuine Understanding",
+              "score": 0.7108
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "In a retrospective cohort study of 27,697 patients undergoing 38,455 hospitalizations at Michigan Medicine, sepsis occurred in 7 percent of hospitalizations.",
+      "claim_label": "Sepsis Cohort Incidence Rate",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2018-12 to 2019-10",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-234",
+        "skp-beliefs-027"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Epic Sepsis Model achieved a hospitalization-level area under the receiver operating characteristic curve of 0.63, which is substantially worse than the 0.76 to 0.83 reported in internal developer documentation.",
+      "claim_label": "ESM External Validation AUC Performance",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2021",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-intentions-234",
+        "saf-beliefs-005"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "At a selected score threshold of 6 or higher, the Epic Sepsis Model demonstrated a sensitivity of 33 percent, specificity of 83 percent, positive predictive value of 12 percent, and negative predictive value of 95 percent.",
+      "claim_label": "ESM Threshold Diagnostic Metrics",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2021",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-027"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "The Epic Sepsis Model failed to identify 6,971 hospitalizations representing 67 percent of patients with sepsis while generating alerts for 18 percent of all hospitalized patients.",
+      "claim_label": "ESM False Negative and Alert Volume Rates",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2021",
+      "extraction_confidence": 0.98,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-027"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Proprietary Model Performance Degradation",
+      "suggested_description": "A Belief within safetyist and skeptic discourse that commercial electronic health record predictive algorithms exhibit severe performance degradation when deployed externally compared to internal developer benchmarks. Encompasses: proprietary opacity, external validation divergence, unvetted clinical deployment.\nExcludes: general model bias and demographic fairness disparities.",
+      "concept": "The document highlights that proprietary predictive models developed by commercial electronic health record vendors exhibit a massive performance drop when externally validated at independent medical centers, falling from internal AUCs of 0.76-0.83 down to 0.63 in real-world clinical practice. This divergence is exacerbated by the proprietary and opaque nature of commercial software, preventing independent verification prior to widespread hospital adoption.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Beliefs",
+      "reason": "Existing taxonomy nodes cover general distribution shift and auditing, but lack a specific focus on the systemic risks posed by opaque, proprietary commercial health IT models whose performance claims cannot be independently verified."
+    },
+    {
+      "suggested_label": "Clinical Alert Fatigue Burden",
+      "suggested_description": "A Belief within skeptic discourse that automated clinical early warning systems generate unmanageable alert volumes and false-positive burdens that overwhelm healthcare providers while missing most true clinical events. Encompasses: alert fatigue, positive predictive value failure, clinical workflow disruption.\nExcludes: general workforce displacement and economic deskilling.",
+      "concept": "The study demonstrates that the Epic Sepsis Model generated alerts for 18 percent of all hospitalizations while missing 67 percent of actual sepsis cases, creating an immense burden of alert fatigue that requires clinicians to evaluate multiple false positives for every true case. This phenomenon illustrates how poorly calibrated clinical decision support tools degrade healthcare efficiency and provider attention.",
+      "suggested_pov": "skeptic",
+      "suggested_category": "Beliefs",
+      "reason": "Existing skeptic nodes cover over-trust and deskilling, but do not specifically capture the structural workflow disruption and false-positive overload caused by automated early warning systems."
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "doc_id": "ai-incident-response-plan-what-do-when-ai-goes-wrong-2026",
+  "taxonomy_version": "3.4.0",
+  "generated_at": "2026-08-26T12:58:01Z",
+  "model_info": {
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.1,
+    "max_tokens": 32768,
+    "extraction_mode": "fire",
+    "taxonomy_filter": "rag",
+    "taxonomy_nodes": 41,
+    "fire_confidence_threshold": 0.7,
+    "fire_stats": {
+      "api_calls": 1,
+      "iterations": 0,
+      "claims_total": 3,
+      "claims_confident": 3,
+      "claims_iterated": 0,
+      "elapsed_seconds": 13.2,
+      "termination_reason": "all_confident"
+    }
+  },
+  "context_rot": {
+    "schema_version": 1,
+    "pipeline": "summary",
+    "doc_id": "ai-incident-response-plan-what-do-when-ai-goes-wrong-2026",
+    "measured_at": "2026-08-26T12:59:34.4006512-04:00",
+    "stages": [
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 3.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 0.6667,
+        "flags": {
+          "near_miss_count": 2,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "resolved_count": 1
+        }
+      },
+      {
+        "stage": "extraction",
+        "in_units": "prompt_chars",
+        "in_count": 61739.0,
+        "out_units": "items",
+        "out_count": 12.0,
+        "ratio": 0.0002,
+        "flags": {
+          "used_fire": 1,
+          "dedup_points_removed": 0,
+          "factual_claims": 3,
+          "total_points": 7,
+          "null_node_rate": 0.0,
+          "dedup_claims_removed": 0,
+          "unmapped_concepts": 2,
+          "density_floor_hit": 0
+        }
+      },
+      {
+        "stage": "rag_filtering",
+        "in_units": "nodes",
+        "in_count": 889.0,
+        "out_units": "nodes",
+        "out_count": 41.0,
+        "ratio": 0.0461,
+        "flags": {
+          "synthetic_nodes_scored": 855,
+          "effective_threshold": 0.4977,
+          "rerank_applied": false,
+          "desires_selected": 3,
+          "top_k": 40,
+          "below_threshold_forced": 1,
+          "rerank_top1_delta": 0,
+          "threshold_floor": 0.2,
+          "beliefs_selected": 14,
+          "above_threshold": 40,
+          "intentions_selected": 24
+        }
+      },
+      {
+        "stage": "unmapped_resolution",
+        "in_units": "concepts",
+        "in_count": 2.0,
+        "out_units": "still_unmapped",
+        "out_count": 2.0,
+        "ratio": 1.0,
+        "flags": {
+          "near_miss_count": 2,
+          "used_embeddings": 1,
+          "threshold": 0.6,
+          "resolved_count": 0
+        }
+      }
+    ],
+    "cumulative_retention": 0.0461
+  },
+  "pov_summaries": {
+    "accelerationist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-intentions-051",
+          "mechanism_type": "disclosure_requirement",
+          "category": "Intentions",
+          "point": "The document proposes tracking and logging AI near-misses, such as confidently wrong answers caught by humans or prompt injection attempts detected in logs, to reveal calibration failures before they scale. Building an evolving catalog of failure modes enables organizations to adjust monitoring thresholds and feed insights directly into model retraining schedules. From an accelerationist perspective, systematically cataloging near-misses provides empirical feedback loops that optimize system performance and maintain rapid deployment velocity without incurring catastrophic downtime. The document notes that organizations without near-miss logging fly blind between P1 events, highlighting the operational necessity of continuous telemetry analysis.",
+          "verbatim": "Three near-miss scenarios every AI team should be tracking and logging: A model produced a confidently wrong answer that a human caught before it was acted upon ΓÇô capturing this reveals confidence calibration failures before they scale.",
+          "excerpt_context": "Chapter 1: What Counts as an AI Incident?",
+          "extraction_confidence": 0.9,
+          "canonical_proposition": "Achieve robust AI performance by tracking and cataloging near-miss failure modes to refine model retraining schedules.",
+          "attribution_text": "An Intention within accelerationist discourse that establishes a dynamic, evolving framework for documenting and categorizing AI failure modes as they are discovered by the research community. Encompasses: failure mode cataloging, calibration failure tracking, near-miss logging.",
+          "vocabulary_terms": [
+            "oversight_audit",
+            "safety_empirical"
+          ],
+          "retrieval_confidence": 0.899,
+          "taxonomy_node_candidates": [
+            {
+              "id": "acc-intentions-051",
+              "label": "Build an Evolving Catalog of AI Failure Modes",
+              "score": 0.899
+            },
+            {
+              "id": "acc-intentions-054",
+              "label": "Ground AI Safety in Observable Behavior and Real-World Testing",
+              "score": 0.7976
+            },
+            {
+              "id": "pol-1054",
+              "label": "",
+              "score": 0.7114
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "acc-beliefs-094",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document highlights that AI systems exhibit non-determinism, emergent behavior, and explainability gaps that make standard IT incident playbooks inadequate for real containment. The reasoning emphasizes that AI technical failures stem from learned model behaviors and statistical drift rather than deterministic code bugs, requiring specialized telemetry and domain expertise. From an accelerationist perspective, recognizing these distinct operational overheads justifies building purpose-built ML observability platforms rather than applying blunt, static IT restrictions. The document acknowledges that sense-making across disparate telemetry remains a primary operational bottleneck for engineering teams.",
+          "verbatim": "AI systems are fundamentally different. They exhibit non-determinism, emergent behavior, and explainability gaps that make standard IT incident playbooks inadequate for real containment.",
+          "excerpt_context": "Chapter 1: What Counts as an AI Incident?",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "AI systems exhibit non-determinism and explainability gaps that render standard IT incident response playbooks structurally inadequate.",
+          "attribution_text": "A Belief within accelerationist discourse that AI systems possess lower overhead for error correction compared to human cognitive processes. Encompasses: non-determinism in AI, explainability gaps, technical error correction overhead.",
+          "vocabulary_terms": [
+            "transparency_verification"
+          ],
+          "retrieval_confidence": 0.9119,
+          "taxonomy_node_candidates": [
+            {
+              "id": "acc-beliefs-094",
+              "label": "Asymmetry Between Reconstructive Burden and Remediation Cost",
+              "score": 0.9119
+            },
+            {
+              "id": "acc-beliefs-041",
+              "label": "AI Capabilities Emerge From Tuning, Context, and Compression -- Not Just Training Data",
+              "score": 0.6991
+            },
+            {
+              "id": "acc-beliefs-044",
+              "label": "Technical Challenges and Tradeoffs in Building Safe, Advanced AI",
+              "score": 0.6905
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    },
+    "safetyist": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-167",
+          "mechanism_type": "governance_body",
+          "category": "Intentions",
+          "point": "The document proposes establishing an AI Incident Response Team (AIRT) led by a dedicated AI Incident Commander with pre-authorized decision rights to execute containment actions, such as shutting down production systems, without waiting for executive approval. This institutional framework ensures independent forensic investigation and rapid operational intervention during high-severity crises. From a safetyist perspective, pre-authorized containment rights eliminate dangerous governance bottlenecks and prevent catastrophic harms from compounding during critical response windows. The document notes that combining the Incident Commander role with technical execution creates unacceptable operational blind spots.",
+          "verbatim": "AI Incident Commander: Single point of accountability. Holds pre-authorized decision rights to execute containment actions ΓÇô including shutting down a production AI system ΓÇô without waiting for an approval chain.",
+          "excerpt_context": "Chapter 2: Who Needs to Be on Your AI Incident Response Team",
+          "extraction_confidence": 0.95,
+          "canonical_proposition": "Mitigate catastrophic AI risks by establishing independent incident response teams with pre-authorized containment authority.",
+          "attribution_text": "An Intention within safetyist discourse that mandates independent, third-party forensic investigation of AI safety incidents to eliminate conflicts of interest and verify system architecture. Encompasses: incident commander role, pre-authorized containment rights, independent governance structures.",
+          "vocabulary_terms": [
+            "oversight_human_control",
+            "governance_oversight"
+          ],
+          "retrieval_confidence": 0.9337,
+          "taxonomy_node_candidates": [
+            {
+              "id": "saf-intentions-167",
+              "label": "Creating an NTSB-Style Body for AI Safety Incidents",
+              "score": 0.9337
+            },
+            {
+              "id": "pol-1471",
+              "label": "",
+              "score": 0.8175
+            },
+            {
+              "id": "saf-intentions-069",
+              "label": "Grounding AI Safety in Legal Compliance Rather Than Abstract Ethics",
+              "score": 0.8116
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-beliefs-203",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document asserts that Article 62 of the EU AI Act requires providers of high-risk AI systems to report serious incidents causing death, injury, property damage, or fundamental rights violations within 15 business days. The reasoning is that frontier AI deployment risks can inflict irreversible societal and legal harms, making rigorous post-deployment reporting and regulatory oversight mandatory. From a safetyist perspective, statutory reporting windows ensure accountability and prevent systemic concealment of severe AI malfunctions. The document acknowledges that the 15-day reporting clock begins when the provider becomes aware of the incident, placing a heavy burden on internal monitoring systems.",
+          "verbatim": "Under Article 62 of the EU AI Act (effective August 2026 for high-risk systems), providers must notify national authorities of serious incidents within 15 business days. 'Serious' includes incidents causing death, serious injury, significant property damage, or rights violations.",
+          "excerpt_context": "Chapter 1: EU AI Act Reporting Obligation",
+          "extraction_confidence": 0.98,
+          "canonical_proposition": "Frontier AI risks can cause irreversible harm, necessitating mandatory statutory reporting of serious incidents to regulatory authorities.",
+          "attribution_text": "A Belief within safetyist discourse that certain frontier AI risks are irreversible once manifested, rendering reactive governance, post-deployment patching, and adaptive oversight fundamentally insufficient. Encompasses: statutory reporting obligations, irreversible societal harm, regulatory accountability windows.",
+          "vocabulary_terms": [
+            "risk_existential",
+            "accountability_institutional",
+            "speculative_future_harm"
+          ],
+          "retrieval_confidence": 0.8839,
+          "taxonomy_node_candidates": [
+            {
+              "id": "saf-beliefs-203",
+              "label": "Frontier AI Risks Can Be Irreversible, Making Post-Hoc Governance Insufficient",
+              "score": 0.8839
+            },
+            {
+              "id": "saf-desires-012",
+              "label": "No Profit Without Accountability",
+              "score": 0.7981
+            },
+            {
+              "id": "saf-intentions-139",
+              "label": "Impose Hard Limits on Who Can Build and Deploy Frontier AI",
+              "score": 0.7921
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "saf-intentions-061",
+          "mechanism_type": "deployment_restriction",
+          "category": "Intentions",
+          "point": "The document outlines a 4-tier severity classification model (P1 to P4) and containment procedures that mandate human-in-the-loop oversight, traffic redirection, model rollbacks, and kill switches when production anomalies occur. The mechanism uses structured triage to enforce immediate containment actions and compliance workflows based on evaluated business impact. From a safetyist perspective, embedding structured intervention checkpoints prevents autonomous AI systems from causing unchecked operational harm. The document notes that containment strategies should always start with the narrowest effective intervention before resorting to full system halts.",
+          "verbatim": "Containment strategy should be tiered: start with the narrowest intervention that stops measurable harm, and escalate to broader actions if the narrower ones fail.",
+          "excerpt_context": "Chapter 5: Containment Strategies: Stopping Harm Without Halting Production",
+          "extraction_confidence": 0.92,
+          "canonical_proposition": "Ensure operational safety by designing tiered containment mechanisms and mandatory human intervention checkpoints into AI workflows.",
+          "attribution_text": "An Intention within safetyist discourse that proposes the identification and establishment of specific points in an AI-driven workflow where human intervention is essential for safety, accountability, and containment. Encompasses: tiered containment strategies, human intervention checkpoints, severity-based triage.",
+          "vocabulary_terms": [
+            "deployment_gated",
+            "oversight_human_control"
+          ],
+          "retrieval_confidence": 0.9097,
+          "taxonomy_node_candidates": [
+            {
+              "id": "saf-intentions-061",
+              "label": "Designing Mandatory Human Checkpoints into AI-Driven Processes",
+              "score": 0.9097
+            },
+            {
+              "id": "saf-intentions-050",
+              "label": "Defining Clear Authority Limits for Autonomous AI Agents",
+              "score": 0.828
+            },
+            {
+              "id": "saf-intentions-083",
+              "label": "Inserting Human Judgment Where Autonomous AI Makes Consequential Choices",
+              "score": 0.8257
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    },
+    "skeptic": {
+      "key_points": [
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-beliefs-029",
+          "mechanism_type": null,
+          "category": "Beliefs",
+          "point": "The document states that 70% of AI incident responders cite sense-making across disparate telemetry as the single largest bottleneck during live incidents, and notes that most real-world AI failures were discovered through user complaints rather than internal monitoring. The reasoning highlights a profound asymmetry between developers' internal logging capabilities and the fragmented observability experienced by operators and affected users. From a skeptic perspective, this opacity prevents external stakeholders and victims from accessing the technical knowledge needed to prove causation or evaluate system failures. The document acknowledges that closing this gap requires deploying comprehensive multi-layered telemetry stacks.",
+          "verbatim": "70% of AI incident responders cite sense-making across disparate telemetry as the single largest bottleneck during live incidents (Kaul, IJCESEN, 2026).",
+          "excerpt_context": "Chapter 1: Key Takeaways",
+          "extraction_confidence": 0.96,
+          "canonical_proposition": "Victims and responders of AI harm face severe technical opacity due to fragmented telemetry and deficient monitoring structures.",
+          "attribution_text": "A Belief within skeptic discourse that describes the imbalance of knowledge and technical understanding between AI developers/users and those harmed by AI systems, which complicates victims' ability to prove causation. Encompasses: telemetry fragmentation, sense-making bottlenecks, information asymmetry.",
+          "vocabulary_terms": [
+            "asymmetry_power",
+            "documented_present_harm"
+          ],
+          "retrieval_confidence": 0.833,
+          "taxonomy_node_candidates": [
+            {
+              "id": "skp-beliefs-029",
+              "label": "Victims of AI Harm Cannot Access the Technical Knowledge Needed to Prove Causation",
+              "score": 0.833
+            },
+            {
+              "id": "skp-beliefs-035",
+              "label": "AI Systems Fail When Deployed Outside Their Training Conditions",
+              "score": 0.7349
+            },
+            {
+              "id": "skp-beliefs-183",
+              "label": "AI Harms and Opacity Drive Public Distrust",
+              "score": 0.7342
+            }
+          ],
+          "retrieval_low_confidence": false
+        },
+        {
+          "stance": "aligned",
+          "taxonomy_node_id": "skp-intentions-140",
+          "mechanism_type": "market_mechanism",
+          "category": "Intentions",
+          "point": "The document proposes that compliance with the EU AI Act requires rigorous post-incident documentation, root cause analysis, and impact assessments that capture affected users, data lineage, and corrective measures. The mechanism establishes formal governance-grade records and regulatory reporting obligations to ensure accountability for AI-induced harms. From a skeptic perspective, mandating structured audit trails and dedicated remediation workflows counteracts corporate tendencies to obscure system failures and shirk responsibility. The document notes that blameless post-mortems are essential to prevent participants from omitting details that could implicate them personally.",
+          "verbatim": "A compliant post-incident review must document root cause, affected users and data, timeline of actions, corrective measures with owners, and regulatory notification status ΓÇô not just a technical log.",
+          "excerpt_context": "Chapter 6: Post-Incident Reviews: What to Document for Governance and Regulators",
+          "extraction_confidence": 0.91,
+          "canonical_proposition": "Mandate comprehensive governance documentation and forensic audit trails to fund and enforce human-intensive AI failure remediation.",
+          "attribution_text": "An Intention within skeptic discourse that mandates firms to sequester liquid capital and maintain rigorous audit trails for the human-intensive remediation of systemic AI failures. Encompasses: governance documentation, root cause analysis, regulatory audit trails.",
+          "vocabulary_terms": [
+            "accountability_algorithmic",
+            "compliance_performative"
+          ],
+          "retrieval_confidence": 0.8502,
+          "taxonomy_node_candidates": [
+            {
+              "id": "skp-intentions-140",
+              "label": "Mandate Liquidity Buffers to Fund Human-Intensive AI Failure Recovery",
+              "score": 0.8502
+            },
+            {
+              "id": "skp-beliefs-170",
+              "label": "AI Corporations Systematically Evade Effective Regulation",
+              "score": 0.7196
+            },
+            {
+              "id": "skp-intentions-102",
+              "label": "Operationalize Pragmatic AI Governance Through Concrete Policy Mechanisms",
+              "score": 0.7091
+            }
+          ],
+          "retrieval_low_confidence": false
+        }
+      ]
+    }
+  },
+  "factual_claims": [
+    {
+      "claim": "According to the Partnership on AI (2024), the AI Incident Database documents over 700 real-world AI failures spanning healthcare, finance, and autonomous systems.",
+      "claim_label": "AI Incident Database 700+ Failures",
+      "doc_position": "supports",
+      "temporal_scope": "historical",
+      "temporal_bound": "2024",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-043",
+        "skp-beliefs-029"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Research from Kaul (IJCESEN, 2026) establishes that 70% of AI incident responders cite sense-making across disparate telemetry as the single largest operational bottleneck during live incidents.",
+      "claim_label": "Telemetry Sense-Making Bottleneck",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026",
+      "extraction_confidence": 0.97,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "skp-beliefs-029",
+        "acc-beliefs-094"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "direct_empirical"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    },
+    {
+      "claim": "Under Article 62 of the EU AI Act, providers of high-risk AI systems are legally mandated to notify national market surveillance authorities of serious incidents within 15 business days of becoming aware.",
+      "claim_label": "EU AI Act Article 62 Reporting Window",
+      "doc_position": "supports",
+      "temporal_scope": "current_state",
+      "temporal_bound": "2026-08",
+      "extraction_confidence": 0.99,
+      "potential_conflict_id": null,
+      "linked_taxonomy_nodes": [
+        "saf-beliefs-203",
+        "saf-desires-026"
+      ],
+      "evidence_criteria": {
+        "specificity": "precise",
+        "has_warrant": true,
+        "internally_consistent": true,
+        "category_criteria": {
+          "evidence_level": "referenced"
+        }
+      },
+      "claim_relations": [],
+      "fire_confidence": 0.7999999999999999
+    }
+  ],
+  "unmapped_concepts": [
+    {
+      "suggested_label": "Pre-Authorized Incident Containment Rights",
+      "suggested_description": "An Intention within safetyist discourse that pre-authorizes designated incident commanders to execute emergency containment actions without executive sign-off. Encompasses: pre-approved rollback authority, emergency kill switches, reduction of administrative approval latency. Excludes: post-hoc forensic investigation, regulatory reporting mandates.",
+      "concept": "The document stresses that securing pre-authorized containment rights for the Incident Commander before go-live is the single most impactful governance change, reducing containment time from hours to minutes by eliminating the need for executive approval during P1 crises.",
+      "suggested_pov": "safetyist",
+      "suggested_category": "Intentions",
+      "reason": "Existing taxonomy nodes cover incident response teams and liability, but lack a dedicated node for the specific operational mechanism of pre-authorizing emergency containment executive powers."
+    },
+    {
+      "suggested_label": "Regulatory Incident Reporting Asymmetry",
+      "suggested_description": "A situation concept that statutory reporting timelines trigger based on provider awareness rather than occurrence time. Encompasses: awareness-based reporting clocks, EU AI Act compliance friction, discovery lag in AI monitoring. Excludes: voluntary disclosure frameworks, internal technical post-mortems.",
+      "concept": "The document highlights that under EU AI Act Article 62, the 15-day reporting clock begins when the provider becomes aware of the serious incident, penalizing organizations with weak monitoring infrastructure that discover model drift weeks after onset.",
+      "suggested_pov": "situations",
+      "suggested_category": "Beliefs",
+      "reason": "This structural interaction between statutory deadlines and organizational discovery lags represents a distinct situational governance challenge not mapped in current nodes.",
+      "Accelerationist Interpretation": "Accelerationists view awareness-based reporting clocks as an operational compliance hurdle that incentivizes rapid telemetry auditing and automated detection to prevent delayed awareness from triggering regulatory penalties.",
+      "Safetyist Interpretation": "Safetyists endorse awareness-based reporting triggers as essential for preventing companies from intentionally delaying discovery to skirt statutory liabilities under the EU AI Act.",
+      "Skeptic Interpretation": "Skeptics argue that awareness-based reporting windows exacerbate information asymmetries, as companies with deficient monitoring can exploit ambiguity in when 'awareness' officially occurred to evade accountability."
+    }
+  ]
+}
