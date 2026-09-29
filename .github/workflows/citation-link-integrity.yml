@@ -1,0 +1,150 @@
+# ─── Citation-Link Integrity Check (Warn-First) ───
+# What:  Fires on every push to main. Runs Test-CitationLinkIntegrity (t/3598) over the summaries
+#        ↔ taxonomy citation graph. This is the CI-wiring half (t/3745) of the advisory gate the
+#        Computational Linguist owns; mirrors bdi-boundary-check.yml (the established push-time
+#        data-integrity precedent in this repo).
+#
+# SCOPE — a+c ONLY, for now (t/3745#3/#4):
+#   leg-a (summary→node link resolution) and leg-c (source_index staleness) read THIS repo only
+#     (+ the public AITriad module) — no token needed.
+#   leg-b (source resolution) needs the PRIVATE ai-triad-sources repo (3.4 GB), which requires a
+#     token this repo does not carry. Until DATA_REPO_TOKEN is provisioned here, leg-b is skipped
+#     via -SkipSourceResolution (reports `skipped`, never false-fails). When the token lands, drop
+#     the switch and add a sparse `*/metadata.json` checkout of ai-triad-sources to light up leg-b.
+#
+# WARN-FIRST: continue-on-error: true keeps the push unblocked. Promotion to blocking is the CL's
+#   separate step (mandatory SO + TL Gate-Verification), flipping the cmdlet's $CitationIntegrityBlocking
+#   and this job's continue-on-error true→false — exactly bdi-boundary-check's documented path.
+#
+# Push range: github.event.before..github.event.after with fetch-depth: 0 (multi-commit safe).
+#   Zero-SHA (first/force-push) or workflow_dispatch → full-set validation, not a silent no-op.
+#
+# Pre-filter: skip unless the push touched summaries/ or taxonomy/Origin/ (POV files, situations.json,
+#   source_index.json) — the only inputs legs a+c read. Keeps data-only pushes elsewhere fast.
+
+name: Citation-Link Integrity Check (Warn-First)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # manual full-set run (proof / on-demand); classifier-blocked for agents, human-dispatchable
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  citation-link-integrity:
+    runs-on: ubuntu-latest
+    continue-on-error: true   # WARN-FIRST — never blocks the push (t/3745). CL flips this at promotion.
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          fetch-depth: 0  # full history — before-SHA must be reachable for the push-range diff
+
+      - name: Checkout code repo (AITriad module)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          repository: jpsnover/ai-triad-research   # public — no token needed
+          path: ai-triad-research
+          fetch-depth: 1
+
+      - name: Check if citation inputs changed
+        id: inputcheck
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual dispatch — full-set validation"
+            echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          ZERO="0000000000000000000000000000000000000000"
+          if [ "$BEFORE" = "$ZERO" ]; then
+            echo "Zero-SHA push (first/force-push) — full-set validation"
+            echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            # legs a+c read summaries/ and taxonomy/Origin/ (POV files, situations.json, source_index.json)
+            DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 'taxonomy/Origin/' 2>/dev/null)
+            if [ -n "$DIFF" ]; then
+              echo "citation inputs in push range — running check"
+              echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "no citation inputs in push range — skipping"
+              echo "inputs_changed=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Install Pester
+        if: steps.inputcheck.outputs.inputs_changed == 'true'
+        shell: pwsh
+        run: Install-Module Pester -Force -Scope CurrentUser
+
+      - name: Run citation-link integrity check (a+c; leg-b skipped pending sources token)
+        id: citation_check
+        if: steps.inputcheck.outputs.inputs_changed == 'true'
+        shell: pwsh
+        env:
+          AI_TRIAD_DATA_ROOT: ${{ github.workspace }}   # data dirs resolve from the checked-out repo (bdi precedent)
+        run: |
+          Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
+
+          # -SkipSourceResolution: leg-b reports `skipped`/pass, never resolves ai-triad-sources
+          # (that repo is private + not checked out here yet — t/3745#4). legs a+c run normally.
+          $r = Test-CitationLinkIntegrity -SkipSourceResolution
+
+          foreach ($leg in $r.results) {
+            $n = @($leg.offenders).Count
+            if ($leg.leg -eq 'b') {
+              Write-Host "leg (b) source-resolution: SKIPPED (sources token not yet provisioned here — t/3745)"
+            } else {
+              Write-Host "leg ($($leg.leg)) $($leg.name): pass=$($leg.pass) offenders=$n"
+            }
+          }
+
+          if (-not $r.pass) {
+            foreach ($leg in @($r.results | Where-Object { -not $_.pass })) {
+              $sample = @($leg.offenders | Select-Object -First 5 | ForEach-Object { $_ | ConvertTo-Json -Compress -Depth 4 }) -join '; '
+              Write-Host "::warning::Citation-integrity leg ($($leg.leg)) $($leg.name): $(@($leg.offenders).Count) offender(s) — $sample"
+            }
+            exit 1
+          } else {
+            Write-Host "Citation-link integrity (a+c) passed."
+          }
+
+      - name: Alert — idempotent issue on citation-integrity offender
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PUSH_SHA="${{ github.event.after }}"
+          ACTOR="${{ github.actor }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          TITLE="Data: citation-link integrity offender(s) on push"
+          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} introduced a citation-link integrity offender (leg a=link-resolution or c=staleness; leg b is skipped here pending the sources token).
+
+          **Action:** See the run log for the offending doc/ref (leg a) or the stale-hash/key-count detail (leg c), repair the data, then push an update.
+
+          Run: ${RUN_URL}
+
+          Warn-first CI wiring: t/3745 (advisory; blocking flip is CL-owned via SO + TL-GV)."
+
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+
+          EXISTING=$(gh issue list --label "data-compliance" --state open \
+            --search "citation-link integrity" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            gh issue reopen "$EXISTING" 2>/dev/null || true
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body "$BODY" \
+              --label "data-compliance" \
+              --assignee jpsnover
+          fi
