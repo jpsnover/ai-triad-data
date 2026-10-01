@@ -20,11 +20,14 @@
 #
 # [3] ORDERING (CL, load-bearing): regen must land before leg-c (staleness, in
 #     citation-link-integrity.yml) evaluates the post-regen commit. Chosen mechanism:
-#     citation-link-integrity.yml's OWN push trigger already includes taxonomy/Origin/
-#     in its path filter, so THIS workflow's regen commit (which touches
-#     taxonomy/Origin/source_index.json) independently re-triggers that workflow,
-#     which then evaluates leg-c against the now-fresh index. No duplicate invocation
-#     of Test-CitationLinkIntegrity here — one call site, one canonical check.
+#     citation-link-integrity.yml has NO `paths:` filter at all (TL-verified against
+#     origin/main, 2026-10-01) — it fires on EVERY push to main — so THIS workflow's
+#     regen commit independently re-triggers it, which then evaluates leg-c against
+#     the now-fresh index. No duplicate invocation of Test-CitationLinkIntegrity here —
+#     one call site, one canonical check. CAUTION FOR FUTURE EDITORS: this ordering
+#     guarantee rests on citation-link-integrity.yml having NO path filter. Adding one
+#     there (e.g. scoping it to summaries/+taxonomy/Origin/ for speed) would silently
+#     break this contract unless taxonomy/Origin/ is explicitly kept in the filter.
 #
 # [4] STALENESS WINDOW: bounded by one regen-workflow run (minutes), from the
 #     harvester's summary push to this workflow's commit landing. During that window
@@ -108,8 +111,20 @@ jobs:
           else
             # [1] summaries/ ONLY — never taxonomy/Origin/, so this workflow's own
             # index-only regen commit cannot re-trigger itself (the loop-guard).
-            DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 2>/dev/null)
-            if [ -n "$DIFF" ]; then
+            #
+            # FAIL-SAFE, not fail-open (TL review, PR #11): BEFORE can be a non-zero
+            # SHA that is still UNREACHABLE (e.g. after a force-push/history-rewrite).
+            # `git diff` then fails, and a naive `2>/dev/null` would make the failure
+            # indistinguishable from "ran clean, found nothing" -- silently skipping a
+            # regen that was actually needed, which is this ticket's bug one layer
+            # down, wearing a success message. So the exit status is checked
+            # EXPLICITLY, not inferred from empty output, and a diff failure falls
+            # back to a full-set regen with a durable WARN (root AGENTS.md
+            # Fallback-Path Logging: log that a fallback was taken, and why).
+            if ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 2>&1); then
+              echo "::warning::git diff $BEFORE..$AFTER failed (BEFORE SHA likely unreachable -- force-push or history rewrite). FALLBACK: full-set regen rather than silently skipping. git output: $DIFF"
+              echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            elif [ -n "$DIFF" ]; then
               echo "summaries/ in push range — regenerating index"
               echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
             else
@@ -125,10 +140,31 @@ jobs:
         env:
           AI_TRIAD_DATA_ROOT: ${{ github.workspace }}
         run: |
+          # TL review, PR #11: without $ErrorActionPreference='Stop', a NON-terminating
+          # error from Build-NodeSourceIndex leaves this step at exit 0 having written
+          # nothing -- indistinguishable, from the commit step onward, from a legitimate
+          # no-op regen. That is exactly the failure class [6] exists to prevent, one
+          # layer down. Stop converts any non-terminating error into a terminating one.
+          $ErrorActionPreference = 'Stop'
           Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
 
           # [7] the canonical regenerator — no second implementation.
-          Build-NodeSourceIndex
+          $ix = Build-NodeSourceIndex -PassThru
+
+          # Assert the postcondition rather than inferring it from the step's exit code
+          # (TL review): confirm the file landed where the commit step expects it, and
+          # that what's on disk matches what the builder just computed in-memory. This
+          # is the second, independent check beyond EAP=Stop -- it catches a write that
+          # silently landed somewhere else or was truncated, not just a thrown error.
+          $indexPath = 'taxonomy/Origin/source_index.json'
+          if (-not (Test-Path -LiteralPath $indexPath)) {
+            throw "Postcondition failed: Build-NodeSourceIndex returned but $indexPath does not exist (t/3788)."
+          }
+          $onDisk = Get-Content -Raw -LiteralPath $indexPath | ConvertFrom-Json
+          if ($onDisk.inputHash -ne $ix.inputHash) {
+            throw "Postcondition failed: on-disk inputHash ($($onDisk.inputHash)) != builder-returned inputHash ($($ix.inputHash)) -- inconsistent write (t/3788)."
+          }
+          Write-Host "Postcondition verified: $indexPath written, inputHash=$($ix.inputHash.Substring(0,12))..."
 
       - name: Commit regenerated index
         if: steps.inputcheck.outputs.summaries_changed == 'true' && steps.regen.outcome == 'success'
