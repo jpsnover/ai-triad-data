@@ -1,0 +1,223 @@
+# ─── Source Index Regeneration (t/3788) ───
+# What:  Fires on every push to main that touches summaries/. Rebuilds
+#        taxonomy/Origin/source_index.json via the canonical Build-NodeSourceIndex
+#        cmdlet and commits it back, keeping the belief-node → primary-source index
+#        from silently drifting behind the harvester's summary writes (the bug this
+#        ticket exists to close — summaries land routinely, the index never rebuilt).
+#
+# LOCKED BUILD SPEC: t/3788#4 (DevOps Lead, consolidating TL t/3788#2 + CL t/3788#3).
+# Numbered references below map to that spec's 8 points.
+#
+# [1] TRIGGER + LOOP-GUARD: triggers on push to main like the two sibling workflows
+#     (bdi-boundary-check.yml, citation-link-integrity.yml), then an in-job before/after
+#     diff decides whether summaries/ was touched — same pattern as those two, chosen
+#     for consistency AND because it is what correctly handles the zero-SHA
+#     (first-push/force-push) edge case as a full-set regen rather than a silent
+#     trigger-level `paths:` no-op. The scope is summaries/ ONLY — explicitly NOT
+#     taxonomy/Origin/ — so this workflow's OWN regen commit (which touches only
+#     taxonomy/Origin/source_index.json) can never re-trigger itself. That is the
+#     loop-guard: the index-only commit fails this workflow's own diff check.
+#
+# [3] ORDERING (CL, load-bearing): regen must land before leg-c (staleness, in
+#     citation-link-integrity.yml) evaluates the post-regen commit. Chosen mechanism:
+#     citation-link-integrity.yml has NO `paths:` filter at all (TL-verified against
+#     origin/main, 2026-10-01) — it fires on EVERY push to main — so THIS workflow's
+#     regen commit independently re-triggers it, which then evaluates leg-c against
+#     the now-fresh index. No duplicate invocation of Test-CitationLinkIntegrity here —
+#     one call site, one canonical check. CAUTION FOR FUTURE EDITORS: this ordering
+#     guarantee rests on citation-link-integrity.yml having NO path filter. Adding one
+#     there (e.g. scoping it to summaries/+taxonomy/Origin/ for speed) would silently
+#     break this contract unless taxonomy/Origin/ is explicitly kept in the filter.
+#
+# [4] STALENESS WINDOW: bounded by one regen-workflow run (minutes), from the
+#     harvester's summary push to this workflow's commit landing. During that window
+#     leg-c legitimately reds (the index has not caught up yet) — expected and
+#     tolerated because leg-c is advisory-only (see [5]).
+#
+# [5] leg-c STAYS ADVISORY: untouched by this change. citation-link-integrity.yml's
+#     continue-on-error:true is not modified here. Promotion to blocking is a
+#     separate, later track (mandatory SO + TL-GV) per CL (t/3788#3), gated on this
+#     regen loop running green through several real harvests first.
+#
+# [6] REGEN-FAILURE OBSERVABILITY (TL's top condition): ai-triad-data is direct-commit,
+#     so nothing gates on this workflow — a silent regen failure reproduces the exact
+#     bug this ticket closes, one layer down ("no trigger" -> "the trigger failed",
+#     equally invisible). On failure, raise a durable, idempotent GitHub issue —
+#     the SAME alert pattern already used by bdi-boundary-check.yml and
+#     citation-link-integrity.yml, label data-compliance, distinct search string so
+#     it doesn't collide with those two.
+#
+# [7] CANONICAL Build-NodeSourceIndex: invoked via cross-repo checkout of
+#     ai-triad-research (public, no token) + Import-Module AITriad — identical
+#     cross-repo pattern to both sibling workflows. No second implementation.
+#
+# [8] FALLBACK (NOT lockstep-in-the-harvester, per TL): if push-triggering from this
+#     repo ever proves unreliable, the documented next step is an app-initiated
+#     repository_dispatch / workflow_run from the harvester announcing the write,
+#     not pwsh in the Electron save path. Not implemented here — only if [1] fails
+#     in practice.
+#
+# COMMIT-BACK PERMISSIONS: same-repo write (this workflow lives in, and commits to,
+# ai-triad-data itself) — needs only `permissions: contents: write` below with the
+# default GITHUB_TOKEN. This is NOT the cross-repo case cluster-conflicts.yml (in
+# ai-triad-research) handles with DATA_REPO_TOKEN; no new secret is provisioned or
+# required for this workflow.
+
+name: Source Index Regeneration
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # manual full-set regen; classifier-blocked for agents, human-dispatchable
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: source-index-regen   # [2] single shared group — queue, never cancel
+  cancel-in-progress: false   # [2] a cancelled regen leaves the index stale until the NEXT harvest
+
+jobs:
+  regen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          fetch-depth: 0  # full history — before-SHA must be reachable for the push-range diff
+
+      - name: Checkout code repo (AITriad module)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          repository: jpsnover/ai-triad-research   # public — no token needed
+          path: ai-triad-research
+          fetch-depth: 1
+
+      - name: Check if summaries changed
+        id: inputcheck
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual dispatch — full-set regen"
+            echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.event.after }}"
+          ZERO="0000000000000000000000000000000000000000"
+          if [ "$BEFORE" = "$ZERO" ]; then
+            echo "Zero-SHA push (first/force-push) — full-set regen"
+            echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            # [1] summaries/ ONLY — never taxonomy/Origin/, so this workflow's own
+            # index-only regen commit cannot re-trigger itself (the loop-guard).
+            #
+            # FAIL-SAFE, not fail-open (TL review, PR #11): BEFORE can be a non-zero
+            # SHA that is still UNREACHABLE (e.g. after a force-push/history-rewrite).
+            # `git diff` then fails, and a naive `2>/dev/null` would make the failure
+            # indistinguishable from "ran clean, found nothing" -- silently skipping a
+            # regen that was actually needed, which is this ticket's bug one layer
+            # down, wearing a success message. So the exit status is checked
+            # EXPLICITLY, not inferred from empty output, and a diff failure falls
+            # back to a full-set regen with a durable WARN (root AGENTS.md
+            # Fallback-Path Logging: log that a fallback was taken, and why).
+            if ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 2>&1); then
+              echo "::warning::git diff $BEFORE..$AFTER failed (BEFORE SHA likely unreachable -- force-push or history rewrite). FALLBACK: full-set regen rather than silently skipping. git output: $DIFF"
+              echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            elif [ -n "$DIFF" ]; then
+              echo "summaries/ in push range — regenerating index"
+              echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "no summaries/ change in push range — skipping"
+              echo "summaries_changed=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Regenerate source_index.json
+        id: regen
+        if: steps.inputcheck.outputs.summaries_changed == 'true'
+        shell: pwsh
+        env:
+          AI_TRIAD_DATA_ROOT: ${{ github.workspace }}
+        run: |
+          # TL review, PR #11: without $ErrorActionPreference='Stop', a NON-terminating
+          # error from Build-NodeSourceIndex leaves this step at exit 0 having written
+          # nothing -- indistinguishable, from the commit step onward, from a legitimate
+          # no-op regen. That is exactly the failure class [6] exists to prevent, one
+          # layer down. Stop converts any non-terminating error into a terminating one.
+          $ErrorActionPreference = 'Stop'
+          Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
+
+          # [7] the canonical regenerator — no second implementation.
+          $ix = Build-NodeSourceIndex -PassThru
+
+          # Assert the postcondition rather than inferring it from the step's exit code
+          # (TL review): confirm the file landed where the commit step expects it, and
+          # that what's on disk matches what the builder just computed in-memory. This
+          # is the second, independent check beyond EAP=Stop -- it catches a write that
+          # silently landed somewhere else or was truncated, not just a thrown error.
+          $indexPath = 'taxonomy/Origin/source_index.json'
+          if (-not (Test-Path -LiteralPath $indexPath)) {
+            throw "Postcondition failed: Build-NodeSourceIndex returned but $indexPath does not exist (t/3788)."
+          }
+          $onDisk = Get-Content -Raw -LiteralPath $indexPath | ConvertFrom-Json
+          if ($onDisk.inputHash -ne $ix.inputHash) {
+            throw "Postcondition failed: on-disk inputHash ($($onDisk.inputHash)) != builder-returned inputHash ($($ix.inputHash)) -- inconsistent write (t/3788)."
+          }
+          Write-Host "Postcondition verified: $indexPath written, inputHash=$($ix.inputHash.Substring(0,12))..."
+
+      - name: Commit regenerated index
+        if: steps.inputcheck.outputs.summaries_changed == 'true' && steps.regen.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/jpsnover/ai-triad-data.git"
+          git add taxonomy/Origin/source_index.json
+          if git diff --cached --quiet; then
+            echo "No index change to commit (byte-identical regen — t/3598 determinism)"
+          else
+            git commit -m "chore: regenerate source_index.json (t/3788)"
+            git push
+          fi
+
+      - name: Alert — idempotent issue on regen failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PUSH_SHA="${{ github.event.after }}"
+          ACTOR="${{ github.actor }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          TITLE="Data: source_index.json regeneration failed"
+          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} added summaries, but Build-NodeSourceIndex
+          regeneration or the commit-back failed. **source_index.json is now stale with NO
+          detector other than leg-c (advisory) catching it on the next citation-integrity run.**
+
+          **Action:** See the run log for the failure, fix the underlying issue (module import,
+          cmdlet error, or push rejection), then re-run this workflow (workflow_dispatch) to
+          catch the index back up.
+
+          Run: ${RUN_URL}
+
+          Push-triggered regen loop: t/3788."
+
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+
+          EXISTING=$(gh issue list --label "data-compliance" --state open \
+            --search "source_index.json regeneration failed" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            gh issue reopen "$EXISTING" 2>/dev/null || true
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body "$BODY" \
+              --label "data-compliance" \
+              --assignee jpsnover
+          fi
