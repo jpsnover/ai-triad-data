@@ -68,7 +68,7 @@ on:
   workflow_dispatch:   # manual full-set regen; classifier-blocked for agents, human-dispatchable
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
@@ -133,7 +133,7 @@ jobs:
       - name: Commit regenerated index
         if: steps.inputcheck.outputs.summaries_changed == 'true' && steps.regen.outcome == 'success'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
