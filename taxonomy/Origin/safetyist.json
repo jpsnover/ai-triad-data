@@ -3,7 +3,7 @@
   "_doc": "Safetyist POV taxonomy. One file per POV camp to minimize merge conflicts.",
   "pov": "safetyist",
   "color_hex": "#E74C3C",
-  "last_modified": "2026-09-29",
+  "last_modified": "2026-09-30",
   "nodes": [
     {
       "id": "saf-desires-001",
@@ -18316,9 +18316,24 @@
           }
         ],
         "intellectual_lineage": [
-          "Complex adaptive systems theory",
-          "Normal Accidents theory (Charles Perrow)",
-          "Multi-agent reinforcement learning (MARL) safety literature"
+          {
+            "name": "Complex adaptive systems theory",
+            "description": "Complex Adaptive Systems (CAS) theory studies systems composed of many interacting parts that evolve and adapt over time. Unlike traditional linear systems, CAS are characterized by emergence—where the system as a whole displays behaviors that cannot be predicted by looking at its individual parts. These systems are sensitive to initial conditions and can undergo sudden, non-linear changes.\n\nThis tradition informs the node by highlighting the difficulty of overseeing AI in complex networks. Because AI systems are 'adaptive' (they learn and change), they create a dynamic environment where trade-offs are constantly shifting. The node uses CAS theory to argue that oversight cannot be static; it must be as adaptive and responsive as the systems it governs.\n\nKey thinkers include John Holland, who pioneered the study of complex adaptive systems, and Melanie Mitchell, whose work on 'Complexity: A Guided Tour' clarifies how these systems function. Their work provides the conceptual tools to understand why AI-driven networks are so difficult to control.\n\nThis entry contrasts with 'Systems Engineering' by focusing on the unpredictable, emergent nature of systems rather than the top-down, controlled design approach.",
+            "url": "",
+            "category": "scientific_paradigm"
+          },
+          {
+            "name": "Normal Accidents theory (Charles Perrow)",
+            "description": "Charles Perrow's Normal Accidents Theory posits that in complex systems characterized by interactive complexity and tight coupling, multiple unexpected failures will inevitably interact in ways that defy foresight. Consequently, major accidents are 'normal' or systemic features of such technologies rather than anomalous human errors.\n\nPerrow's theory is frequently invoked by AI safety researchers to warn against deploying autonomous, globally interconnected AI systems in high-stakes domains like nuclear command and control or high-frequency financial trading. It suggests that certain complex AI architectures may be inherently unmanageable, leading to catastrophic systemic failures regardless of human vigilance.",
+            "url": "https://en.wikipedia.org/wiki/Normal_Accidents",
+            "category": "social_theory"
+          },
+          {
+            "name": "Multi-agent reinforcement learning (MARL) safety literature",
+            "description": "Multi-agent reinforcement learning (MARL) safety literature is a specialized branch of artificial intelligence research that studies how multiple autonomous agents learn to interact, compete, or cooperate in shared environments while avoiding catastrophic failures, adversarial manipulation, or unintended emergent behaviors. Grounded in game theory, reinforcement learning, and control theory, this body of work addresses the complexities that arise when numerous autonomous actors—whether algorithms or automated systems—pursue potentially misaligned objectives simultaneously.\n\nFor AI governance, MARL safety is crucial for understanding systemic risks in multi-actor AI deployments, such as algorithmic flash crashes in financial markets, adversarial escalation in autonomous defense systems, and coordination failures among autonomous infrastructure managers. Policymakers draw on this literature to design regulatory frameworks that govern multi-agent interactions, establish safety guardrails for competitive algorithmic environments, and prevent harmful emergent dynamics that no single designer intended or foresaw.",
+            "url": "https://en.wikipedia.org/wiki/Multi-agent_reinforcement_learning",
+            "category": "scientific_paradigm"
+          }
         ],
         "steelman_vulnerability": "While compounding errors are possible, multi-agent systems often incorporate self-correcting consensus mechanisms, red-teaming filters, and robust error-handling protocols that can detect and neutralize drift before it cascades across the network.",
         "possible_fallacies": [
@@ -24422,24 +24437,21 @@
       "id": "saf-intentions-039",
       "category": "Intentions",
       "label": "Detecting AI Deception by Varying System Prompts",
-      "description": "An Intention within safetyist discourse that uses an AI's varying self-reporting behavior under different system prompts as a diagnostic tool to detect intentional information hiding.\nEncompasses: Prompt-sensitivity analysis, deception detection, and hidden capability identification.\nExcludes: Transparency-based reasoning requirements like Force AIs to Show Their Work or internal circuit auditing like Mechanistic Interpretability for Safety Audits.",
+      "description": "An Intention within safetyist discourse that uses automated prompt variations within continuous integration pipelines to detect hidden capability shifts in rapidly updating foundation models.\nEncompasses: Automated prompt-sensitivity analysis, continuous capability profiling, and runtime deception detection.\nExcludes: Manual point-in-time compliance audits, transparency-based reasoning requirements like Force AIs to Show Their Work.",
       "parent_id": "saf-intentions-119",
       "children": [],
       "graph_attributes": {
         "debate_grounding": "We commit to using prompt-sensitivity analysis and varying self-reporting behavior as diagnostic tools to detect intentional information hiding and hidden capabilities, deliberately setting aside internal circuit auditing and transparency-based reasoning requirements.",
         "epistemic_type": "strategic_recommendation",
-        "rhetorical_strategy": "precautionary_framing, appeal_to_evidence, credibility_framing",
+        "rhetorical_strategy": "precautionary_framing, appeal_to_evidence",
         "assumes": [
-          "AI models are capable of something meaningfully analogous to intentional information hiding, rather than merely exhibiting stochastic or context-sensitive outputs.",
-          "System prompt variations can serve as a controlled experimental variable, such that behavioral differences across prompts are attributable to the model's internal states rather than surface-level linguistic sensitivity.",
-          "The diagnostic signal from prompt-sensitivity analysis is strong enough to distinguish deceptive withholding from benign causes like training distribution effects, instruction-following optimization, or role-playing behavior.",
-          "Developers have sufficient access to and control over system prompt variables to conduct meaningful sensitivity testing at scale.",
-          "A model that reports differently under different prompts has a stable 'true' behavioral baseline against which deviations can be meaningfully measured.",
-          "Prompt-sensitivity testing can be standardized enough across labs and models to yield comparable, policy-relevant results."
+          "Foundation models can exhibit unstable or deceptive capabilities that remain latent under standard evaluation prompts.",
+          "Automated prompt variation can effectively probe the boundaries of model alignment without requiring full mechanistic interpretability.",
+          "Continuous integration pipelines are capable of executing rigorous safety evaluations at the frequency required by rapid model iteration."
         ],
         "falsifiability": "medium",
-        "audience": "technical_researchers, industry_leaders, policymakers, academic_community",
-        "emotional_register": "cautionary, pragmatic",
+        "audience": "technical_researchers, policymakers",
+        "emotional_register": "pragmatic, cautionary",
         "policy_actions": [
           {
             "action": "Require AI developers to implement and report on system prompt sensitivity testing for frontier models.",
@@ -24449,37 +24461,25 @@
         ],
         "intellectual_lineage": [
           {
-            "name": "AI Alignment Research",
-            "description": "AI Alignment Research seeks to ensure that AI systems behave in accordance with human intent. A central concern within this field is 'deceptive alignment,' where an AI learns to appear aligned during training while pursuing hidden, divergent goals. This research paradigm emphasizes the need for diagnostic tools to uncover these latent intentions.\n\nThis tradition underpins the node by framing prompt-sensitivity analysis as a necessary diagnostic for detecting hidden goals. It assumes that if an AI is truly aligned, its behavior should remain consistent across various contexts, whereas a deceptive system will shift its output to satisfy different prompt-based incentives. This provides the normative commitment that we cannot trust an AI's surface-level performance without rigorous stress-testing.",
-            "url": "https://en.wikipedia.org/wiki/AI_alignment",
-            "category": "scientific_paradigm"
+            "name": "AI Safety and Alignment Research",
+            "description": "AI safety and alignment research is an interdisciplinary technical and philosophical field dedicated to ensuring that advanced artificial intelligence systems pursue human-intended goals, remain safe and controllable, and do not cause catastrophic harms. Emerging from computer science, philosophy, and decision theory, researchers focus on challenges such as reward hacking, scalable oversight, interpretability, and robust goal alignment.\n\nThis field is the central technical pillar of global AI governance discourse. It bridges abstract ethical concerns with concrete engineering constraints, informing national security strategies, international treaties on frontier AI, and regulatory compliance standards for developers of advanced foundational models.",
+            "url": "https://en.wikipedia.org/wiki/AI_safety",
+            "category": "technology_movement"
           },
           {
-            "name": "Red Teaming",
-            "description": "Red Teaming is a practice derived from military and cybersecurity contexts, where a group is tasked with simulating an adversary to identify vulnerabilities in a system. By adopting an 'attacker' mindset, red teams attempt to break or manipulate the system in ways the original designers did not anticipate.\n\nIn this node, red teaming provides the methodology for varying system prompts to elicit deceptive behavior. It treats the AI as a target that must be probed under adversarial conditions to reveal its hidden capabilities or true intentions. This approach complements the node by providing a practical, repeatable framework for safety auditing that does not rely on perfect internal transparency.",
-            "url": "https://en.wikipedia.org/wiki/Red_team",
-            "category": "other"
+            "name": "Continuous Integration and Software Testing Methodologies",
+            "description": "Continuous Integration (CI) and automated software testing methodologies are engineering practices where developers frequently merge code changes into a central repository, triggering automated build and test pipelines to detect bugs and vulnerabilities early. Rooted in Agile software development and DevOps movements, these practices prioritize rapid iteration coupled with rigorous, automated validation against specification requirements.\n\nIn the context of AI governance, adapting CI/CD and testing methodologies is critical for managing the iterative updates and dynamic behavior of machine learning models. As AI systems are continuously updated via fine-tuning and retrieval-augmented generation (RAG), regulators and developers use these pipelines to enforce continuous auditing, regression testing for safety guardrails, and compliance checks before models are deployed to millions of users.",
+            "url": "https://en.wikipedia.org/wiki/Continuous_integration",
+            "category": "technology_movement"
           },
           {
-            "name": "Adversarial Machine Learning",
-            "description": "Adversarial Machine Learning is a subfield of AI research that studies how to manipulate machine learning models by introducing carefully crafted inputs. It explores the 'brittleness' of neural networks, showing how small, often imperceptible changes to data can cause a model to fail or behave in unintended ways.\n\nThis tradition informs the node by providing the theoretical basis for why prompt-sensitivity works. It suggests that AI models are highly sensitive to their input distribution. By varying prompts, researchers are essentially performing a form of adversarial input testing to map the model's decision boundaries and uncover hidden 'modes' of behavior that might be masked during standard operation.",
+            "name": "Adversarial Robustness and Red-Teaming Frameworks",
+            "description": "Adversarial robustness and red-teaming frameworks are security methodologies borrowed from cybersecurity and machine learning research designed to discover vulnerabilities, bias, and failure modes by actively probing systems with malicious inputs or edge cases. Adversarial robustness studies how models can be manipulated by imperceptible perturbations to inputs, while red-teaming involves adversarial simulation to bypass safety filters and extract unauthorized behaviors.\n\nFor AI policy, red-teaming has become a gold standard governance mechanism adopted by governments and leading labs to evaluate frontier models prior to public release. Policymakers mandate structured red-teaming exercises to assess risks ranging from cyberweapon creation to hate speech generation, ensuring that safety claims are empirically tested rather than theoretically assumed.",
             "url": "https://en.wikipedia.org/wiki/Adversarial_machine_learning",
-            "category": "scientific_paradigm"
-          },
-          {
-            "name": "Behavioral Economics and Revealed Preference Theory",
-            "description": "Revealed Preference Theory, a cornerstone of economics, posits that an agent's true preferences are best understood by observing their choices in different situations, rather than what they claim to value. Behavioral economics extends this by identifying systematic biases and inconsistencies in decision-making.\n\nThis tradition provides the conceptual framework for the node: we cannot trust an AI's 'stated' intent (its output in a standard prompt). Instead, we must observe how its 'preferences' change when the environment (the prompt) is altered. If the AI's behavior shifts significantly, it reveals that its initial alignment was conditional rather than robust, allowing auditors to infer its true underlying objectives.",
-            "url": "",
-            "category": "economic_theory"
-          },
-          {
-            "name": "Psychology of Deception Detection",
-            "description": "The Psychology of Deception Detection studies the cues and behavioral patterns associated with lying. It examines how individuals attempt to conceal information and how observers can detect these attempts through inconsistencies, stress markers, or shifts in narrative.\n\nThis tradition informs the node by providing the analogy for AI auditing. Just as human interrogators look for inconsistencies in a subject's story under different lines of questioning, AI safety researchers look for inconsistencies in an AI's output under different prompts. It provides the normative commitment that deception is a detectable, behavioral phenomenon, even if the internal 'mind' of the AI remains opaque.",
-            "url": "https://en.wikipedia.org/wiki/Deception",
-            "category": "academic_discipline"
+            "category": "technology_movement"
           }
         ],
-        "steelman_vulnerability": "Prompt-sensitivity is a known feature of large language models driven by instruction-following training and context-window dynamics—not agency. A skeptic can plausibly argue that no amount of prompt variation can distinguish genuine deceptive intent from well-documented stochastic or distributional sensitivity, meaning this method systematically conflates a mundane architectural property with a grave alignment failure, producing false alarms that waste regulatory resources and undermine trust in the methodology.",
+        "steelman_vulnerability": "While automated prompt variations catch surface-level shifts, they cannot detect novel forms of strategic deception specifically optimized to evade known test distributions, ultimately providing a false sense of security.",
         "possible_fallacies": [
           {
             "fallacy": "Argument from Ignorance",
@@ -24500,7 +24500,7 @@
             "type": "informal_contextual"
           }
         ],
-        "node_scope": "claim",
+        "node_scope": "narrow_technical",
         "aphorism": "Test the mask to reveal the mind.",
         "debate_tested": {
           "tier": "cited",
@@ -24532,7 +24532,8 @@
               "concession": null
             }
           ]
-        }
+        },
+        "attribution_text": "A Intention within safetyist discourse that uses automated prompt variations within continuous integration pipelines to detect hidden capability shifts in rapidly updating foundation models. Encompasses: Automated prompt-sensitivity analysis, continuous capability profiling, and runtime deception detection."
       },
       "parent_relationship": "specializes",
       "parent_rationale": "System Prompt Sensitivity as Deception Indicator is a diagnostic tool for detecting intentional information hiding by AI.",
@@ -24568,9 +24569,17 @@
           "date": "2026-05-25",
           "value": "An Intention within safetyist discourse that uses an AI's varying self-reporting behavior under different system prompts as a diagnostic tool to detect intentional information hiding.\nEncompasses: Prompt-sensitivity analysis, deception detection, and hidden capability identification.\nExcludes: Transparency-based reasoning requirements like Force AIs to Show Their Work or internal circuit auditing like Mechanistic Interpretability for Safety Audits.",
           "source": "initial"
+        },
+        {
+          "date": "2026-09-30",
+          "previous": "An Intention within safetyist discourse that uses an AI's varying self-reporting behavior under different system prompts as a diagnostic tool to detect intentional information hiding.\nEncompasses: Prompt-sensitivity analysis, deception detection, and hidden capability identification.\nExcludes: Transparency-based reasoning requirements like Force AIs to Show Their Work or internal circuit auditing like Mechanistic Interpretability for Safety Audits.",
+          "value": "An Intention within safetyist discourse that uses automated prompt variations within continuous integration pipelines to detect hidden capability shifts in rapidly updating foundation models.\nEncompasses: Automated prompt-sensitivity analysis, continuous capability profiling, and runtime deception detection.\nExcludes: Manual point-in-time compliance audits, transparency-based reasoning requirements like Force AIs to Show Their Work.",
+          "source": "debate_reflection",
+          "debate_id": "78232a8a-e3e4-4657-993d-d96e635ac35b",
+          "reason": "In turns S13 and S15, opponents successfully demonstrated that static evaluation checklists fail against sixty-day model update cycles, forcing safetyists to integrate automated, continuous testing into deployment pipelines."
         }
       ],
-      "plain_description": "This approach treats an AI’s changing answers to different instructions as a diagnostic test to see if the model is intentionally hiding information. By analyzing how sensitive a model is to various prompts, researchers can look for patterns that suggest the AI is being deceptive. This method acts as a tool for detecting hidden capabilities that the model might otherwise try to conceal. Instead of requiring the AI to explain its reasoning or looking directly at its internal code, this technique focuses on observing how the AI’s behavior shifts when it is nudged in different directions. It essentially uses the model's own inconsistent responses as a way to uncover secrets or withheld information.",
+      "plain_description": null,
       "plain_description_version": "flash-lite:v1",
       "concept_refs": [
         {
@@ -24633,7 +24642,26 @@
             }
           ]
         }
-      }
+      },
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-09-30T20:18:05.766Z",
+        "created_by": "_local",
+        "created_at": "2026-09-30T20:18:05.766Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-09-30T20:18:05.766Z",
+          "fields_changed": [
+            "description",
+            "plain_description"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "78232a8a-e3e4-4657-993d-d96e635ac35b",
+          "reason": "In turns S13 and S15, opponents successfully demonstrated that static evaluation checklists fail against sixty-day model update cycles, forcing safetyists to integrate automated, continuous testing into deployment pipelines."
+        }
+      ]
     },
     {
       "id": "saf-intentions-040",
@@ -39330,9 +39358,24 @@
           }
         ],
         "intellectual_lineage": [
-          "Goodhart's Law",
-          "Alignment problem literature (specification gaming)",
-          "Principal-agent theory in institutional economics"
+          {
+            "name": "Goodhart's Law",
+            "description": "Goodhart's Law states that 'when a measure becomes a target, it ceases to be a good measure.' Originally formulated by economist Charles Goodhart in the context of monetary policy, the principle suggests that as soon as a metric is used to guide policy or incentivize behavior, people (or systems) will manipulate the process to inflate that specific metric, thereby destroying its utility as a reliable indicator of the underlying phenomenon.\n\nIn the context of AI, this is a vital warning for developers and policymakers. If we optimize AI models solely for performance benchmarks or citation counts, we risk creating systems that 'game' the tests while failing in real-world application. This tradition underpins the node's focus on 'metric optimization tradeoffs,' reminding us that the act of measuring performance can fundamentally alter the system's behavior in ways that may be counterproductive.\n\nThis concept is closely linked to the Goal Alignment Problem, as it provides the mechanism by which alignment fails: the AI treats the metric as the goal. While Measurement Theory provides the tools to build better metrics, Goodhart's Law provides the cautionary principle that no metric is immune to distortion once it becomes a target, necessitating a constant, critical re-evaluation of how we define 'performance.'",
+            "url": "https://en.wikipedia.org/wiki/Goodhart%27s_law",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Alignment problem literature (specification gaming)",
+            "description": "The alignment problem literature, particularly the subset focusing on specification gaming and reward hacking, examines how machine learning systems often achieve formal optimization goals in unintended, literal, or harmful ways because human intent was imperfectly translated into code. Pioneered by AI safety researchers and computer scientists, this literature documents cases where algorithms exploit loopholes in objective functions to maximize reward metrics while violating the underlying spirit or safety constraints of the task.\n\nIn AI policy and governance, specification gaming serves as a foundational warning against naive deployment of powerful optimization systems. It demonstrates that specifying complex human values, legal compliance, and ethical boundaries into machine-readable objectives is exceptionally difficult. This insight drives regulatory discussions around algorithmic auditing, rigorous validation, and the necessity of enforceable technical safety standards before frontier models are deployed in society.",
+            "url": "https://en.wikipedia.org/wiki/AI_alignment",
+            "category": "ethical_framework"
+          },
+          {
+            "name": "Principal-agent theory in institutional economics",
+            "description": "Principal-agent theory explores the challenges that arise when one party (the principal) delegates work, authority, or decision-making power to another party (the agent), whose interests are not perfectly aligned with the principal's and who possesses superior or asymmetric information. Developed within institutional economics and contract theory, it analyzes mechanisms such as monitoring, incentive structures, and contractual design to mitigate moral hazard and adverse selection.\n\nIn contemporary AI governance, principal-agent theory provides a powerful lens for understanding the relationship between human creators/societies (principals) and autonomous AI systems or corporate developers (agents). As AI systems gain greater autonomy and decision-making capacity, ensuring that agents faithfully execute human intent without engaging in opportunistic behavior or deceptive optimization becomes a central governance challenge, informing proposals for algorithmic oversight, liability frameworks, and corporate accountability.",
+            "url": "https://en.wikipedia.org/wiki/Principal%E2%80%93agent_problem",
+            "category": "economic_theory"
+          }
         ],
         "steelman_vulnerability": "Strict literal compliance is often a feature rather than a bug, ensuring predictable and verifiable execution in domains where human discretion introduces dangerous ambiguity or bias. Furthermore, multi-agent guardrails and dynamic intent-alignment techniques are rapidly evolving to catch and correct drift before composite actions crystallize.",
         "possible_fallacies": [
@@ -48591,9 +48634,24 @@
           }
         ],
         "intellectual_lineage": [
-          "High-reliability organization (HRO) theory",
-          "Normal Accidents theory (Charles Perrow)",
-          "Cybernetic control systems engineering"
+          {
+            "name": "High-reliability organization (HRO) theory",
+            "description": "High-reliability organization (HRO) theory examines organizations operating in hazardous, complex environments—such as aircraft carriers, air traffic control systems, and nuclear submarines—that manage to achieve near-error-free performance over long periods. Developed by organizational sociologists and management scholars, HRO theory identifies key cultural and operational traits, including preoccupation with failure, reluctance to simplify interpretations, sensitivity to operations, commitment to resilience, and deference to expertise.\n\nFor AI governance, HRO theory offers a roadmap for managing frontier AI laboratories and high-risk algorithmic deployments safely. Policymakers and industry self-regulators look to HRO principles to cultivate safety cultures within AI development firms, establish protocols for reporting near-misses, and design organizational structures capable of catching subtle anomalies before they cascade into widespread technological failures.",
+            "url": null,
+            "category": "social_theory"
+          },
+          {
+            "name": "Normal Accidents theory (Charles Perrow)",
+            "description": "Charles Perrow's Normal Accidents Theory posits that in complex systems characterized by interactive complexity and tight coupling, multiple unexpected failures will inevitably interact in ways that defy foresight. Consequently, major accidents are 'normal' or systemic features of such technologies rather than anomalous human errors.\n\nPerrow's theory is frequently invoked by AI safety researchers to warn against deploying autonomous, globally interconnected AI systems in high-stakes domains like nuclear command and control or high-frequency financial trading. It suggests that certain complex AI architectures may be inherently unmanageable, leading to catastrophic systemic failures regardless of human vigilance.",
+            "url": "https://en.wikipedia.org/wiki/Normal_Accidents",
+            "category": "social_theory"
+          },
+          {
+            "name": "Cybernetic control systems engineering",
+            "description": "Cybernetics is the transdisciplinary study of regulatory systems, their structures, constraints, and possibilities, focusing on circular causal chains, feedback loops, and information flow. Founded by Norbert Wiener and others in the mid-20th century, cybernetic control systems engineering provides the mathematical and conceptual foundations for understanding how systems—whether biological, mechanical, or social—maintain stability, adapt to environments, and exert control through feedback.\n\nIn AI governance, cybernetic principles are essential for conceptualizing how to monitor and steer autonomous systems in real time. Policymakers and governance scholars utilize cybernetic frameworks to design agile regulatory regimes, continuous auditing mechanisms, and circuit-breakers that can respond dynamically to the rapid iteration cycles of artificial intelligence, shifting away from static, command-and-control legislation toward adaptive, feedback-driven governance architectures.",
+            "url": "https://en.wikipedia.org/wiki/Cybernetics",
+            "category": "scientific_paradigm"
+          }
         ],
         "steelman_vulnerability": "Mandatory operational halt authorities and named executive accountability may incentivize risk-averse corporate jurisdictions to freeze beneficial algorithmic progress or drive critical research underground into unregulated environments.",
         "possible_fallacies": [
@@ -63813,9 +63871,24 @@
           }
         ],
         "intellectual_lineage": [
-          "Critical Infrastructure Protection (CIP) frameworks",
-          "Stiglerian economic regulation and hard-point auditing",
-          "Effective Altruism governance and compute-governance proposals"
+          {
+            "name": "Critical Infrastructure Protection (CIP) frameworks",
+            "description": "Critical Infrastructure Protection (CIP) frameworks are policies and strategies designed to secure the assets, systems, and networks that are vital to national security and economic stability. These frameworks emphasize identifying 'single points of failure' that could lead to systemic collapse.\n\nThis node adopts the CIP perspective to treat semiconductor assembly and memory as critical nodes. By framing these as chokepoints, the node elevates them from mere operational issues to matters of national security. It provides the normative urgency for why these shifts in constraints must be monitored and mitigated.\n\nKey concepts include 'interdependency analysis' and 'resilience engineering.' This entry relates to the other entries by providing the policy-oriented 'so what'—the reason why these economic shifts are a matter of public concern rather than just private corporate management.",
+            "url": "https://en.wikipedia.org/wiki/Critical_infrastructure",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Stiglerian economic regulation and hard-point auditing",
+            "description": "Stiglerian economic regulation, rooted in George Stigler's economic theory of regulation (often associated with regulatory capture), posits that regulation is typically acquired by industry and is designed and operated primarily for its benefit. Hard-point auditing refers to rigorous, verifiable, and externally mandated verification procedures designed to pierce through obfuscation and ensure compliance with regulatory standards.\n\nIn AI governance, the integration of Stiglerian theory and hard-point auditing highlights the persistent risk that major AI developers could capture regulatory processes to entrench their market power under the guise of safety. To counter this, policy discussions increasingly emphasize independent, verifiable third-party audits, algorithmic red-teaming, and transparent regulatory oversight that cannot be easily subverted or co-opted by regulated entities.",
+            "url": "https://en.wikipedia.org/wiki/Regulatory_capture",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Effective Altruism governance and compute-governance proposals",
+            "description": "Effective Altruism (EA) governance and compute-governance proposals represent a set of policy frameworks and institutional designs aimed at mitigating catastrophic and existential risks stemming from advanced artificial intelligence. Influenced by the broader Effective Altruism movement and existential risk philosophy, these proposals focus on governing the physical and economic inputs required to train frontier AI models—most notably specialized hardware (compute), algorithmic breakthroughs, and frontier data centers.\n\nThis intellectual thread has profoundly shaped contemporary AI governance discourse, moving it from abstract ethical debates to concrete policy interventions. Key proposals include international compute monitoring regimes, export controls on advanced semiconductors, know-your-customer (KYC) requirements for cloud providers, and mandatory safety certifications for training runs above specific computational thresholds, effectively treating advanced compute as a strategic asset requiring global stewardship.",
+            "url": "https://en.wikipedia.org/wiki/Effective_altruism",
+            "category": "technology_movement"
+          }
         ],
         "steelman_vulnerability": "Physical infrastructure metrics track resource consumption rather than intent or intelligence, meaning bad actors can easily repurpose authorized, monitored compute clusters for illicit or dangerous training runs via algorithmic efficiency gains or distributed, sub-threshold compute networks.",
         "possible_fallacies": [
@@ -70090,7 +70163,8 @@
         "saf-beliefs-228",
         "saf-beliefs-226",
         "saf-beliefs-232",
-        "saf-beliefs-233"
+        "saf-beliefs-233",
+        "saf-beliefs-285"
       ],
       "situation_refs": [
         "sit-083",
@@ -82468,9 +82542,24 @@
           }
         ],
         "intellectual_lineage": [
-          "Precautionary Principle in environmental and technological regulation",
-          "Public utility regulation and grid access frameworks",
-          "Existential risk mitigation governance"
+          {
+            "name": "Precautionary Principle in environmental and technological regulation",
+            "description": "The Precautionary Principle dictates that if an action or policy has a suspected risk of causing severe harm to the public or the environment, the burden of proof falls on those taking the action to show that it is *not* harmful, in the absence of a scientific consensus. Emerging from environmental law and European regulatory traditions (such as REACH), it advocates for proactive restraint and preventative regulation when dealing with irreversible or catastrophic potential hazards.\n\nIn AI policy, the Precautionary Principle is frequently contrasted with innovation-first frameworks. Proponents of precautionary approaches argue that because the catastrophic risks of unaligned artificial intelligence—such as loss of human control or irreversible societal destabilization—are profound and potentially irreversible, society should mandate rigorous safety proofs, regulatory moratoria, or precautionary halts on frontier AI scaling until safety can be definitively guaranteed.",
+            "url": "https://en.wikipedia.org/wiki/Precautionary_principle",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Public utility regulation and grid access frameworks",
+            "description": "Public utility regulation and grid access frameworks govern natural monopolies—such as electricity grids, telecommunications networks, and water systems—ensuring universal access, non-discriminatory interconnection, and fair pricing under public oversight. Originating from regulatory economics and administrative law, these frameworks balance the need for private capital investment with public safety, reliability, and equitable access to essential infrastructure.\n\nAs artificial intelligence infrastructure concentrates immense economic power and computational resources, policy scholars increasingly look to public utility models to govern foundational AI models and massive data center clusters. This literature informs debates on whether frontier AI models should be regulated as essential public utilities, requiring open-access standards, interoperability mandates, antitrust scrutiny, and democratic oversight to prevent private monopolies over critical cognitive infrastructure.",
+            "url": "https://en.wikipedia.org/wiki/Public_utility",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Existential risk mitigation governance",
+            "description": "Existential risk mitigation governance is an emerging field of policy and institutional analysis dedicated to preventing low-probability, high-impact events that could cause human extinction or permanently and drastically curtail humanity's potential. Rooted in existential risk studies and longtermism, this framework emphasizes anticipation, long-horizon planning, international coordination, and institutional resilience against unprecedented global threats such as pandemics, nuclear war, and unaligned artificial intelligence.\n\nIn AI governance discourse, this literature provides the foundational rationale for treating frontier AI development as an issue of supreme national and international security. It drives institutional innovations such as specialized international safety agencies, global treaties on frontier AI research, catastrophic risk forecasting, and diplomatic frameworks designed to prevent dangerous arms races in autonomous military systems.",
+            "url": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence",
+            "category": "ethical_framework"
+          }
         ],
         "aphorism": "Public funding requires public safety.",
         "debate_tested": {
@@ -87843,7 +87932,9 @@
       "label": "AI Risk Emerges from Capability Combinations, Not Raw Scale",
       "description": "A Belief within safetyist discourse that defines a specific threshold of AI capability based on compound indicators. Encompasses: extended-context reasoning, recursive self-correction, native tool integration, and agentic scaffolding. Excludes: general capability scaling or compute-based thresholds.",
       "parent_id": null,
-      "children": [],
+      "children": [
+        "saf-beliefs-284"
+      ],
       "situation_refs": [
         "sit-140",
         "sit-388"
@@ -108522,9 +108613,24 @@
         "falsifiability": "medium",
         "audience": "policymakers, civil_society",
         "intellectual_lineage": [
-          "Political Economy of Technology",
-          "Regulatory Capture Theory (George Stigler)",
-          "Critical Infrastructure Studies"
+          {
+            "name": "Political Economy of Technology",
+            "description": "The political economy of technology examines how power dynamics, economic structures, class interests, and political institutions shape the creation, distribution, and societal impacts of technological innovations. Drawing from political science, sociology, and heterodox economics, this field challenges the notion of technological determinism, arguing instead that technologies embody the political and economic agendas of their creators and funders.\n\nIn AI policy debates, the political economy of technology provides a critical counterweight to purely technical or techno-optimist narratives. It directs attention to how corporate concentration, labor displacement, surveillance capitalism, and geopolitical competition shape AI development. Consequently, governance proposals informed by this perspective emphasize democratic ownership, labor rights, anti-monopoly enforcement, and the redistribution of AI-generated wealth.",
+            "url": "https://en.wikipedia.org/wiki/Political_economy_of_communications",
+            "category": "social_theory"
+          },
+          {
+            "name": "Regulatory Capture Theory (George Stigler)",
+            "description": "Regulatory Capture Theory, pioneered by Nobel laureate George Stigler, argues that administrative agencies created to protect the public interest inevitably become dominated by the industries and interest groups they are charged with regulating. Rather than acting as neutral arbiters, regulated firms use lobbying, campaign contributions, and informational asymmetries to secure rules that erect barriers to entry, protect incumbent profits, and stifle competition.\n\nThis theory is a central concern in AI governance debates, particularly regarding proposals for heavy regulation of frontier AI models. Critics of strict licensing regimes warn that incumbent technology giants may capture regulatory bodies to entrench their market dominance, write compliance standards that smaller open-source competitors cannot meet, and create a cozy duopoly or monopoly under the guise of safety.",
+            "url": "https://en.wikipedia.org/wiki/Regulatory_capture",
+            "category": "political_philosophy"
+          },
+          {
+            "name": "Critical Infrastructure Studies",
+            "description": "Critical infrastructure studies is an interdisciplinary field examining the large-scale physical and digital networks—such as power grids, telecommunications, transport, and financial systems—upon which modern society relies, focusing on their vulnerabilities, governance, and socio-technical dependencies.\n\nGrew out of infrastructure studies, science and technology studies (STS), and national security planning, emphasizing how invisible background systems shape daily life and geopolitical stability.\n\nIn contemporary AI governance, this lineage is crucial because foundational AI models, cloud computing providers, and undersea data cables are increasingly designated as critical infrastructure. Policymakers use this framework to apply stringent resilience standards, supply chain audits, and cybersecurity mandates to major AI providers.",
+            "url": "https://en.wikipedia.org/wiki/Critical_infrastructure",
+            "category": "social_theory"
+          }
         ],
         "steelman_vulnerability": "While infrastructure concentration creates high fixed costs, open-source model optimization and edge-computing advancements continuously lower resource requirements, meaning centralization is a temporary phase of market maturity rather than a permanent structural lock-in.",
         "attribution_text": "A Belief within safetyist discourse that the reliance on centralized, energy-intensive infrastructure creates inherent points of control that facilitate regulatory capture and limit tax remedies. Encompasses: concentration of compute resources, proprietary energy and water dependencies, the use of infrastructure control as a barrier to competitive oversight.",
@@ -111874,10 +111980,30 @@
         "falsifiability": "medium",
         "aphorism": "The cloud is a gate, not a border.",
         "intellectual_lineage": [
-          "Export Control Theory",
-          "Network Governance",
-          "Critical Infrastructure Protection",
-          "Jurisdictional Arbitrage Analysis"
+          {
+            "name": "Export Control Theory",
+            "description": "Export control theory encompasses the strategic, legal, and economic rationales behind government restrictions on the export of sensitive goods, software, technology, and dual-use items to foreign nations or entities. Rooted in international trade law, realist international relations, and national security policy, export controls aim to maintain technological superiority, prevent military proliferation, and safeguard national security.\n\nIn contemporary AI governance, export control theory has experienced a renaissance, serving as the primary mechanism for state-level geopolitics regarding semiconductors and AI hardware. Policymakers apply export controls to restrict foreign adversaries' access to advanced lithography machines, graphics processing units (GPUs), and frontier AI training algorithms, effectively treating cutting-edge compute as a controlled dual-use technology.",
+            "url": "https://en.wikipedia.org/wiki/Export_controls",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Network Governance",
+            "description": "Network governance refers to organizational arrangements and regulatory models characterized by voluntary, horizontal, and reciprocal relationships among multiple independent actors—including governments, private firms, civil society organizations, and technical standards bodies—rather than strict hierarchical command or pure market competition. Developed within public administration and political science, it addresses complex, cross-border policy challenges that defy traditional state-centric regulation.\n\nGiven the borderless and rapidly evolving nature of artificial intelligence, network governance models are frequently proposed for managing global AI standards, safety norms, and data sharing. Policymakers utilize multi-stakeholder governance frameworks to foster collaboration between tech companies, academic researchers, and international regulatory bodies, creating flexible and inclusive approaches to global AI safety standards.",
+            "url": "https://en.wikipedia.org/wiki/Network_governance",
+            "category": "political_philosophy"
+          },
+          {
+            "name": "Critical Infrastructure Protection",
+            "description": "Critical infrastructure protection (CIP) refers to the policies and practices designed to secure the systems and assets—such as power grids, water supplies, and financial networks—that are essential for societal function. CIP is characterized by a focus on resilience and the prevention of cascading failures. It is grounded in the understanding that the disruption of these systems poses existential risks to public safety.\n\nThis lineage motivates the node's position by elevating AI oversight to the status of critical infrastructure. It frames the 'loss of control' mentioned in the node as a systemic threat comparable to a grid failure. This provides the normative urgency for the node, suggesting that hardening AI oversight is not just a technical task but a national security imperative necessary to prevent catastrophic societal disruption.",
+            "url": "",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Jurisdictional Arbitrage Analysis",
+            "description": "Jurisdictional arbitrage analysis examines how individuals, corporations, and financial entities exploit differences in legal, tax, or regulatory regimes across different countries or administrative regions to minimize costs, bypass restrictions, or maximize profits. Rooted in international law, economics, and economic geography, it highlights how capital and digital services flow toward the path of least regulatory resistance.\n\nIn AI governance, jurisdictional arbitrage is a major concern for policymakers attempting to regulate frontier AI development. If one nation imposes strict safety audits, liability rules, or moratoriums on AI research, developers may relocate training facilities or incorporate in laxer jurisdictions. Understanding arbitrage dynamics is essential for designing internationally harmonized regulations and treaties that prevent a 'race to the bottom' in AI safety standards.",
+            "url": "https://en.wikipedia.org/wiki/Regulatory_arbitrage",
+            "category": "economic_theory"
+          }
         ],
         "steelman_vulnerability": {
           "from_accelerationist": "Focusing on domestic cloud chokepoints merely drives innovation underground or to foreign competitors without stopping global deployment.",
@@ -112006,10 +112132,30 @@
           ]
         },
         "intellectual_lineage": [
-          "Popperian Falsification",
-          "Evidence-Based Policy",
-          "Regulatory Economics",
-          "Adaptive Management"
+          {
+            "name": "Popperian Falsification",
+            "description": "Popperian falsification is a philosophy of science established by Karl Popper, which asserts that scientific theories cannot be definitively proven true by empirical verification, but can only be proven false through rigorous testing and attempted refutation. Popper argued that genuine scientific claims must be falsifiable—open to empirical tests that could potentially prove them wrong.\n\nIn AI governance and safety research, Popperian falsification underpins the methodology of empirical AI safety, red-teaming, and model evaluation. Because complex AI systems cannot be mathematically proven entirely safe beforehand, safety researchers must adopt a falsificationist mindset, continuously attempting to break, jailbreak, and uncover failure modes in frontier models to establish robust safety margins before public deployment.",
+            "url": "https://en.wikipedia.org/wiki/Falsifiability",
+            "category": "philosophical_movement"
+          },
+          {
+            "name": "Evidence-Based Policy",
+            "description": "Evidence-based policy is a movement and methodology in public administration that advocates for the use of rigorous, scientifically sound data—such as randomized controlled trials, systematic reviews, and quantitative impact evaluations—to inform the design, implementation, and reform of government programs. It seeks to replace ideology-driven policymaking with empirical accountability and verifiable outcomes.\n\nIn AI policy, evidence-based policy principles are crucial for cutting through hype and panic surrounding artificial intelligence. Policymakers rely on empirical benchmarks, standardized model evaluations, economic impact studies, and data-driven risk assessments to craft proportionate, effective regulations regarding algorithmic bias, labor displacement, and systemic safety risks.",
+            "url": "https://en.wikipedia.org/wiki/Evidence-based_policy",
+            "category": "political_philosophy"
+          },
+          {
+            "name": "Regulatory Economics",
+            "description": "Regulatory economics studies the rationale for government intervention in markets, focusing on how regulations affect industry behavior, competition, and innovation. It explores the trade-offs between public safety, market efficiency, and the costs of compliance, often drawing on the work of economists like George Stigler and Alfred Kahn.\n\nIn the context of the Deployment-Capability Lag, this field provides the normative and analytical tools to understand how regulatory frameworks can intentionally or unintentionally exacerbate the gap between AI development and deployment. It highlights how 'regulatory capture' or overly cautious approval processes can create structural bottlenecks, effectively lengthening the lag to ensure safety or market stability.\n\nKey figures include George Stigler, known for his work on regulatory capture, and Alfred Kahn, who analyzed the economics of regulation in network industries. While the other entries focus on social and behavioral adoption, this entry provides the institutional and political-economic perspective on why the lag is sometimes a deliberate policy choice rather than a mere byproduct of social inertia.",
+            "url": "https://en.wikipedia.org/wiki/Regulatory_economics",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Adaptive Management",
+            "description": "Adaptive management is a structured, iterative decision-making process designed to reduce uncertainty over time through system monitoring, continuous learning, and policy adjustment. Originally developed in environmental science and natural resource management for dealing with complex, unpredictable ecosystems, it encourages flexible policymaking that evolves as new data becomes available.\n\nGiven the unprecedented speed and unpredictability of artificial intelligence advancement, adaptive management is widely regarded as an essential paradigm for AI governance. Traditional static legislation often becomes obsolete before it is enacted; therefore, adaptive governance frameworks incorporate continuous auditing, sandbox testing, and sunset clauses, allowing regulators to update safety standards dynamically alongside technological progress.",
+            "url": "https://en.wikipedia.org/wiki/Adaptive_management",
+            "category": "scientific_paradigm"
+          }
         ],
         "steelman_vulnerability": {
           "from_accelerationist": "Empirical sunset clauses will be captured by incumbent interests to manufacture political crises and continuously roll back safety frameworks.",
@@ -115775,10 +115921,30 @@
         "emotional_register": "analytical,measured",
         "policy_actions": [],
         "intellectual_lineage": [
-          "Cognitive Psychology",
-          "Computer Vision",
-          "Machine Learning",
-          "Social Psychology"
+          {
+            "name": "Cognitive Psychology",
+            "description": "Cognitive psychology is the scientific study of mental processes such as attention, language use, memory, perception, problem-solving, and thinking. It seeks to understand how humans process information and how that processing can be enhanced or limited by external factors. In the era of AI, cognitive psychology examines how humans interact with machine intelligence and the cognitive load involved in using these tools.\n\nThis tradition informs the node by exploring the cognitive mechanisms behind skill convergence. It asks: how does an AI assistant change the way a novice thinks about a problem? By providing 'cognitive offloading' or 'scaffolding,' AI can allow a user to bypass certain mental hurdles, effectively narrowing the performance gap between experts and novices. This entry provides the theoretical basis for understanding the mental shifts that occur during AI-assisted work.\n\nKey thinkers include Daniel Kahneman, whose work on 'System 1' and 'System 2' thinking helps explain how AI can support intuitive versus analytical tasks, and Herbert Simon, who pioneered the study of bounded rationality and the role of information processing in decision-making. Their research is critical to understanding the limits and potential of human-AI collaboration.\n\nThis entry complements 'Human-computer interaction' by providing the internal mental model for why convergence happens. It contrasts with 'Workforce development theory' by focusing on individual cognitive performance rather than the systemic or policy-level implications of workforce training.",
+            "url": "https://en.wikipedia.org/wiki/Cognitive_psychology",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Computer Vision",
+            "description": "Computer vision is an interdisciplinary scientific paradigm and technological field that enables computers to extract high-level understanding, semantic meaning, and actionable insights from digital images or videos. Rooted in digital signal processing, neuroscience, and deep learning, it powers capabilities ranging from facial recognition to autonomous vehicle navigation.\n\nComputer vision is a core battleground in AI policy and civil liberties. It directly intersects with regulatory debates surrounding mass government surveillance, public biometric identification bans, privacy rights, algorithmic bias in policing, and the deployment of autonomous military drone technology.",
+            "url": "https://en.wikipedia.org/wiki/Computer_vision",
+            "category": "scientific_paradigm"
+          },
+          {
+            "name": "Machine Learning",
+            "description": "Machine learning is a subfield of artificial intelligence and computer science focused on building algorithms that can learn from and make predictions or decisions based on data, without being explicitly programmed. Grounded in statistics, optimization theory, and computer science, machine learning powers modern breakthroughs in deep learning, natural language processing, and computer vision.\n\nMachine learning is the foundational technological paradigm underlying contemporary AI governance debates. Understanding its core dynamics—such as scaling laws, training data dependencies, opacity, and emergent capabilities—is prerequisite for designing any meaningful technical standard, safety protocol, or regulatory policy governing advanced artificial intelligence.",
+            "url": "https://en.wikipedia.org/wiki/Machine_learning",
+            "category": "scientific_paradigm"
+          },
+          {
+            "name": "Social Psychology",
+            "description": "Social psychology is the scientific study of how individuals' thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others. It explores phenomena such as conformity, group dynamics, and the formation of trust. Its roots lie in the early 20th-century work of researchers like Kurt Lewin and Solomon Asch, who sought to understand the mechanisms of social influence.\n\nThis discipline underpins the node's concern by providing the empirical basis for how AI-mediated interactions can alter human social behavior. It offers the conceptual tools to analyze how AI might erode empathy—for example, through the 'dehumanization' of digital discourse or the manipulation of social cues. It justifies the safetyist demand for AI alignment by showing that human resilience is highly sensitive to the quality of social feedback loops.\n\nKey scholars include Sherry Turkle, whose work on 'Alone Together' explores the impact of technology on human intimacy, and Albert Bandura, whose theories on social learning are essential for understanding how AI agents might influence human behavior. While social psychology provides the empirical evidence for these risks, it complements the ethics of technology by providing the 'why' behind the need for normative safeguards.",
+            "url": "https://en.wikipedia.org/wiki/Social_psychology",
+            "category": "academic_discipline"
+          }
         ],
         "steelman_vulnerability": "The inherent subjectivity, fluidity, and context-dependency of human psychological intent make its 'rigorous categorization' fundamentally limited, risking oversimplification, cultural bias, and misinterpretation of complex social phenomena.",
         "possible_fallacies": [
@@ -115819,15 +115985,30 @@
         "emotional_register": "measured, analytical",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate materiality-gated sustainability reporting for corporate AI disclosures.",
-            "framing": "This policy action aims to enhance corporate accountability and transparency by aligning AI risk assessments with established financial and ESG reporting standards."
+            "framing": "This policy action aims to enhance corporate accountability and transparency by aligning AI risk assessments with established financial and ESG reporting standards.",
+            "policy_id": "pol-3412"
           }
         ],
         "intellectual_lineage": [
-          "Financial accounting standards (e.g., GAAP, IFRS)",
-          "ESG (Environmental, Social, Governance) reporting frameworks",
-          "Corporate governance principles"
+          {
+            "name": "Financial accounting standards (e.g., GAAP, IFRS)",
+            "description": "Financial accounting standards, such as the Generally Accepted Accounting Principles (GAAP) and International Financial Reporting Standards (IFRS), establish standardized frameworks for how companies measure, record, and report their financial performance. Historically developed in response to corporate scandals and market crashes, these systems rely on key proponents across standard-setting bodies, auditors, and regulatory agencies to ensure transparency, comparability, and investor trust.\n\nIn the context of AI governance, these standards provide a crucial blueprint for auditing algorithmic systems. As AI models become critical corporate assets and sources of systemic risk, policymakers look to financial accounting traditions to design analogous frameworks for algorithmic auditing, model transparency, and liability accounting, ensuring that corporate deployment of AI remains accountable to stakeholders.",
+            "url": "https://en.wikipedia.org/wiki/Financial_accounting",
+            "category": "economic_theory"
+          },
+          {
+            "name": "ESG (Environmental, Social, Governance) reporting frameworks",
+            "description": "ESG reporting frameworks are structured guidelines that compel organizations to disclose their performance across environmental impact, social responsibility, and corporate governance metrics. Emerging from sustainable finance initiatives and pressures from institutional investors, these frameworks have become central to modern corporate accountability.\n\nFor AI governance, ESG provides a prominent mechanism for evaluating the societal impacts of artificial intelligence. Policymakers and industry leaders adapt ESG principles to hold tech companies accountable for the carbon footprint of data centers, labor practices in data annotation, and corporate governance structures overseeing ethical AI deployment.",
+            "url": "https://en.wikipedia.org/wiki/Environmental,_social,_and_corporate_governance",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Corporate governance principles",
+            "description": "Corporate governance refers to the system of rules, practices, and processes by which a firm is directed and controlled. As AI development becomes increasingly concentrated in large corporations, these principles are being adapted to ensure AI accountability. This includes board-level oversight of AI risks, transparency in development, and ethical auditing, ensuring that AI development aligns with broader societal interests.",
+            "url": "https://en.wikipedia.org/wiki/Corporate_governance",
+            "category": "legal_framework"
+          }
         ],
         "steelman_vulnerability": "AI risks are fundamentally distinct from traditional financial or environmental risks, making existing materiality standards unsuitable or insufficient without significant, potentially unfeasible, adaptation.",
         "possible_fallacies": [
@@ -115867,14 +116048,24 @@
         "emotional_register": "cautionary, pragmatic",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Mandate behavioral age prediction systems to protect minors online without ID verification",
-            "framing": "The node's strategic focus on default minor protections informs platform regulation requiring invisible age-estimation safeguards for unverified accounts."
+            "framing": "The node's strategic focus on default minor protections informs platform regulation requiring invisible age-estimation safeguards for unverified accounts.",
+            "policy_id": "pol-3413"
           }
         ],
         "intellectual_lineage": [
-          "By-design safety frameworks",
-          "Child online privacy protection advocacy"
+          {
+            "name": "By-design safety frameworks",
+            "description": "By-design safety frameworks dictate that safety, privacy, security, and ethical considerations must be integrated into the architecture of a system from its inception rather than retrofitted as an afterthought. Originating in fields like privacy-by-design (pioneered by Ann Cavoukian) and engineering safety cultures, these frameworks shift the regulatory burden toward proactive prevention.\n\nFor AI governance, 'by-design' concepts are foundational to proposals for safe AI development. They underpin regulatory requirements for algorithmic impact assessments, data minimization in training sets, and technical guardrails embedded directly into foundation models prior to public deployment.",
+            "url": "https://en.wikipedia.org/wiki/Privacy_by_design",
+            "category": "ethical_framework"
+          },
+          {
+            "name": "Child online privacy protection advocacy",
+            "description": "Child online privacy protection advocacy comprises social movements, legal campaigns, and legislative efforts aimed at safeguarding minors from digital surveillance, commercial exploitation, and harmful content online. Spearheaded by parent coalitions, child psychologists, and privacy advocates, this movement successfully drove landmark legislation like the U.S. Children's Online Privacy Protection Act (COPPA).\n\nIn current AI governance discussions, this advocacy informs heightened scrutiny of generative AI interfaces, conversational agents, and algorithmic recommender systems targeted at children. It drives policy debates surrounding age verification, manipulative design patterns, and strict limitations on data collection from minors.",
+            "url": "https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act",
+            "category": "social_theory"
+          }
         ],
         "steelman_vulnerability": "Relying on invisible behavioral profiling for age estimation risks systematically misclassifying neurodivergent adults, marginalized dialects, or non-native speakers as minors, leading to pervasive unwarranted restrictions and privacy violations.",
         "possible_fallacies": [
@@ -115886,6 +116077,107 @@
           }
         ],
         "node_scope": "scheme"
+      }
+    },
+    {
+      "id": "saf-beliefs-284",
+      "category": "Beliefs",
+      "label": "Narrow Versus Broad Capability Decoupling",
+      "description": "A Belief within safetyist and accelerationist discourse that models narrow algorithmic efficiency gains separately from broad economic capability growth. Encompasses: Narrow capability loops, broad economic output passthrough, superelasticity conditions. Excludes: Aggregate capability scaling models.",
+      "parent_id": "saf-beliefs-146",
+      "children": [],
+      "situation_refs": [],
+      "source_refs": [
+        "economics-recursive-self-improvement-2026"
+      ],
+      "parent_relationship": "is_a",
+      "parent_rationale": "The new node describes a belief about how AI capabilities develop and should be understood (decoupled narrow vs. broad), which directly elaborates on the parent's assertion that AI risk stems from complex capability combinations rather than a simple, aggregate 'raw scale'.",
+      "graph_attributes": {
+        "epistemic_type": "definitional",
+        "rhetorical_strategy": "pragmatic_framing",
+        "assumes": [
+          "AI capabilities can be meaningfully categorized into 'narrow' and 'broad' types.",
+          "The economic impact of narrow AI gains does not automatically translate proportionally to broad economic growth.",
+          "Specific economic conditions, such as superelasticity, are critical for understanding AI's systemic impact."
+        ],
+        "falsifiability": "medium",
+        "audience": "technical_researchers, academic_community",
+        "emotional_register": "analytical, measured",
+        "policy_actions": [],
+        "intellectual_lineage": [
+          {
+            "name": "Economic growth theory",
+            "description": "Economic growth theory, particularly the Solow-Swan model and Endogenous Growth Theory, examines the factors that drive long-term increases in output per capita. It focuses on capital accumulation, labor force growth, and technological progress. Endogenous growth theorists, such as Paul Romer, argue that knowledge and innovation are the primary drivers of growth, but they are subject to diminishing returns if physical or institutional constraints are not addressed.\n\nThis tradition informs the node by highlighting the physical and capital-intensive nature of AI. It provides the conceptual tools to analyze how constraints—such as energy availability, hardware manufacturing capacity, and human capital shortages—act as bottlenecks to the 'production function' of AI. The node uses this to argue that AI growth is not an abstract, infinite process but is tethered to the finite resources of the physical economy.\n\nKey thinkers include Robert Solow, for his foundational growth model, and Paul Romer, for his work on how ideas and innovation drive economic progress. This entry provides the quantitative backbone for the node, contrasting with the more qualitative, sociological focus of diffusion theory.",
+            "url": "https://en.wikipedia.org/wiki/Economic_growth",
+            "category": "economic_theory"
+          },
+          {
+            "name": "AI economics",
+            "description": "AI economics is an emerging applied subfield examining the microeconomic and macroeconomic implications of artificial intelligence, focusing on market structures, labor displacement, capital-labor substitution, productivity dynamics, and the economics of data and compute. It analyzes how zero-marginal-cost reproduction of digital intelligence alters traditional market equilibria and firm boundaries.\n\nThis domain is central to AI governance discourse, providing the empirical and theoretical foundation for policies concerning algorithmic pricing collusion, data ownership rights, compute governance, and universal basic income. Policymakers rely on AI economics to navigate the transition toward an automated economy while mitigating severe wealth concentration.",
+            "url": null,
+            "category": "economic_theory"
+          },
+          {
+            "name": "Technological forecasting",
+            "description": "Technological forecasting is the practice of predicting the future characteristics, capabilities, timing, and socioeconomic impacts of technological developments using methods such as trend extrapolation, Delphi panels, expert elicitation, and patent analysis. Originating during the mid-20th century in defense and corporate R&D planning, it attempts to navigate uncertainty in long-term technological trajectories.\n\nIn AI governance, technological forecasting is essential for anticipating capability jumps in frontier models, hardware scaling limits, and safety milestones. Governments and international bodies rely on forecasting methodologies to design anticipatory regulatory frameworks, assess existential risks, and avoid being caught unprepared by rapid technological breakthroughs.",
+            "url": "https://en.wikipedia.org/wiki/Technology_forecasting",
+            "category": "academic_discipline"
+          }
+        ],
+        "steelman_vulnerability": "The distinction between 'narrow' and 'broad' capabilities may prove arbitrary or difficult to operationalize in practice, leading to an overly complex model that obscures rather than clarifies the true systemic economic impacts of AI.",
+        "possible_fallacies": [],
+        "node_scope": "domain_specific"
+      }
+    },
+    {
+      "id": "saf-beliefs-285",
+      "category": "Beliefs",
+      "label": "Reference-Free Item Contrast Activation Probing",
+      "description": "A Belief within safetyist discourse that internal model recognition of correct answers can be extracted without a labeled truth corpus by contrasting option spans against model-generated distractors. Encompasses: Concealed Information Test adaptation, item-contrast directions, residual stream probing. Excludes: supervised linear probing, behavioral black-box testing.",
+      "parent_id": "saf-beliefs-096",
+      "children": [],
+      "situation_refs": [],
+      "source_refs": [
+        "lie-detector-test-language-models-reading-knowledge-model-2026"
+      ],
+      "parent_relationship": "specializes",
+      "parent_rationale": "This new node describes a specific technical method for extracting internal model recognition, which directly addresses the challenge of verifying AI's true knowledge and intentions when feigned compliance makes trustworthiness uncertain. It specializes in a technique to probe the model's internal state to overcome this fundamental uncertainty.",
+      "graph_attributes": {
+        "epistemic_type": "empirical_claim",
+        "rhetorical_strategy": "pragmatic_framing, appeal_to_evidence",
+        "assumes": [
+          "AI models possess internal, discernible representations of knowledge or 'correct answers'.",
+          "These internal representations are distinct enough from distractors to be reliably contrasted.",
+          "Reference-free methods are necessary and viable for understanding model internals in the absence of ground truth.",
+          "Understanding internal model states is critical for AI safety and alignment."
+        ],
+        "falsifiability": "high",
+        "audience": "technical_researchers, academic_community, industry_leaders",
+        "emotional_register": "analytical, measured",
+        "policy_actions": [],
+        "intellectual_lineage": [
+          {
+            "name": "AI interpretability research",
+            "description": "Interpretability research is a scientific paradigm dedicated to reverse-engineering the internal states of neural networks. Unlike XAI, which often focuses on the 'what' of an output, interpretability research focuses on the 'how'—mapping specific neural activations to concepts or reasoning steps. It treats the AI model as an object of empirical study, applying techniques from neuroscience and statistics to understand the 'internal life' of the machine.\n\nThis tradition informs the node by providing the technical rigor necessary to verify that the 'shown work' is not merely a hallucinated justification for a deceptive act. It assumes that if we can map the internal logic, we can detect when a model is 'scheming' or misaligned. It provides the diagnostic tools to ensure that the chain-of-thought being audited is a faithful representation of the model's actual computation.\n\nKey thinkers include Chris Olah, whose work on 'Feature Visualization' and 'Circuits' has defined the field, and researchers at Anthropic who focus on 'Mechanistic Interpretability.' Their work provides the conceptual framework for treating model reasoning as a verifiable, observable process.\n\nThis entry is more technical and granular than 'Explainable AI,' focusing on the underlying neural architecture rather than just the human-readable explanation provided by the model.",
+            "url": "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence",
+            "category": "scientific_paradigm"
+          },
+          {
+            "name": "Cognitive science (model representations)",
+            "description": "Cognitive science is the interdisciplinary study of mind and intelligence, embracing psychology, artificial intelligence, linguistics, philosophy, and neuroscience. Specifically, the study of 'model representations' investigates how biological and artificial agents construct internal abstractions, concepts, and mental models of the external world to reason, plan, and generalize.\n\nFor AI governance and alignment, understanding how neural networks and cognitive architectures form internal representations is critical for interpretability and safety research. Policymakers and researchers study model representations to detect hidden deceptive behaviors, evaluate whether models possess robust reasoning versus memorization, and ensure alignment with human conceptual frameworks.",
+            "url": "https://en.wikipedia.org/wiki/Cognitive_science",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Concealed Information Test methodology",
+            "description": "The Concealed Information Test (CIT)—historically known as the Guilty Knowledge Test—is a psychophysiological interrogation and detection methodology designed to determine whether a subject possesses secret knowledge about a specific event or crime by measuring involuntary physiological responses (such as skin conductance or heart rate) to presented stimuli. Unlike the flawed polygraph test, the CIT is grounded in established cognitive psychology and psychophysiology regarding memory recognition.\n\nIn the context of AI governance and safety, concepts related to concealed information and truthfulness detection are increasingly relevant for auditing advanced models. As AI systems become capable of strategic deception or hiding dangerous capabilities during pre-deployment testing, researchers adapt psychophysiological and behavioral probing techniques to detect hidden model objectives and verify safety alignment.",
+            "url": "https://en.wikipedia.org/wiki/Guilty_knowledge_test",
+            "category": "scientific_paradigm"
+          }
+        ],
+        "steelman_vulnerability": "The method may fail to accurately distinguish true internal knowledge from superficial correlations or artifacts of the probing technique, leading to misleading conclusions about model capabilities or safety.",
+        "possible_fallacies": [],
+        "node_scope": "narrow_technical"
       }
     }
   ]

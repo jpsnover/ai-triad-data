@@ -3,7 +3,7 @@
   "_doc": "Accelerationist POV taxonomy. One file per POV camp to minimize merge conflicts. Edit nodes, open a PR, bump TAXONOMY_VERSION in the merge commit.",
   "pov": "accelerationist",
   "color_hex": "#27AE60",
-  "last_modified": "2026-09-29",
+  "last_modified": "2026-09-30",
   "nodes": [
     {
       "id": "acc-desires-001",
@@ -5108,6 +5108,907 @@
           "fields_changed": [
             "logical_form"
           ]
+        }
+      ],
+      "logical_form": {
+        "predicate": "adopt",
+        "event_ref": "e1",
+        "args": [
+          {
+            "role": "patient",
+            "ref": "lit:\"Output-Based Evaluation as the Primary AI Safety Methodology\"",
+            "sort": "non-agentive-social-object",
+            "match_level": "exact"
+          }
+        ],
+        "polarity": "positive",
+        "modality": {
+          "holder": "camp:acc",
+          "attitude": "intention"
+        },
+        "temporal": {
+          "type": "unspecified",
+          "value": null
+        },
+        "formalization_confidence": 0.85,
+        "status": "accepted",
+        "about": [],
+        "topical_candidates": {
+          "validated": false,
+          "generator": "formalize_node_lf.py",
+          "golden_ref": "t/3381",
+          "blind_golden_precision": 0.54,
+          "refs": [
+            {
+              "ref": "term:capability_frontier",
+              "match_level": "exact"
+            },
+            {
+              "ref": "term:safety_empirical",
+              "match_level": "exact"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "acc-beliefs-135",
+      "category": "Beliefs",
+      "label": "Adopt Output-Based Verification as the Primary AI Safety Methodology",
+      "description": "A Belief within accelerationist discourse that prioritizes behavioral testing and runtime observation over static code audits to ensure system safety.\nEncompasses: behavioral API testing, black-box audit methodologies, court-admissible runtime telemetry, downstream input-output documentation.\nExcludes: static pre-deployment code audits, mechanistic interpretability of neural network parameters.",
+      "parent_id": "acc-intentions-054",
+      "children": [],
+      "parent_relationship": "specializes",
+      "parent_rationale": "Bypassing interpretability mandates by focusing on output testing is a specific strategy for achieving behavioral AI safety.",
+      "situation_refs": [
+        "sit-006",
+        "sit-073",
+        "sit-075",
+        "sit-086",
+        "sit-142",
+        "sit-165",
+        "sit-257",
+        "sit-288",
+        "sit-293",
+        "sit-302",
+        "sit-315",
+        "sit-321",
+        "sit-341",
+        "sit-349",
+        "sit-357",
+        "sit-360",
+        "sit-376",
+        "sit-383",
+        "sit-417",
+        "sit-429",
+        "sit-449",
+        "sit-457"
+      ],
+      "graph_attributes": {
+        "debate_grounding": "We commit to enforcing output-based evaluation as our primary safety methodology by deploying stacked verification regimes and adversarial red-team agents with separate prompt lineages across integration boundaries. We maintain this approach to catch cross-module semantic drift while continuing to require human fiduciary gating for all irreversible-hazard modules.",
+        "epistemic_type": "strategic_recommendation",
+        "falsifiability": "medium",
+        "audience": "policymakers, industry_leaders, technical_researchers",
+        "policy_actions": [
+          {
+            "action": "Establish regulatory frameworks for AI that focus exclusively on observable system outputs and performance metrics.",
+            "framing": "This intention directly supports policies that streamline AI development by removing requirements for internal model transparency, instead focusing on measurable external behavior.",
+            "policy_id": "pol-1836"
+          },
+          {
+            "action": "Allocate research funding towards advanced black-box testing methodologies and robust output verification techniques for AI systems.",
+            "framing": "To ensure safety without internal transparency, this approach necessitates investment in sophisticated methods for evaluating AI solely based on its external actions.",
+            "policy_id": "pol-1837"
+          }
+        ],
+        "rhetorical_strategy": "appeal_to_evidence, cost_benefit_analysis, techno_optimism, structural_critique",
+        "emotional_register": "pragmatic, measured",
+        "steelman_vulnerability": "Output-based evaluation is fundamentally distribution-limited: a system that passes every mutation test, fuzzing pass, and red-team probe can still harbour latent capabilities or deceptive alignment that only manifest outside the tested input distribution—precisely the scenarios that pose catastrophic risk—meaning the regime's explicit carve-out for irreversible-hazard modules may be insufficient if those hazard boundaries are themselves difficult to define in advance.",
+        "node_scope": "claim",
+        "assumes": [
+          "Black-box testing methodologies such as mutation testing and property-based fuzzing are sufficiently mature to serve as a primary—rather than supplementary—safety methodology for frontier AI systems.",
+          "Human fiduciaries at integration boundaries can effectively gate residual failure classes without requiring full internal model interpretability.",
+          "Adversarial red-team agents with distinct prompt lineages provide sufficient coverage of the failure space to substitute for static interpretability mandates.",
+          "Differential model-family auditing can detect cross-module semantic drift reliably enough to satisfy safety thresholds across deployment contexts.",
+          "Mutation kill-rate thresholds are meaningful proxies for real-world safety guarantees and not merely artifacts of the test distribution.",
+          "Output-based evaluation imposes substantially less friction on AI development timelines than white-box interpretability requirements without sacrificing comparable safety guarantees.",
+          "Irreversible-hazard modules can be reliably identified in advance and carved out for human review, preventing the regime from being applied where it is unsuitable."
+        ],
+        "possible_fallacies": [
+          {
+            "fallacy": "False Dilemma",
+            "confidence": "possible",
+            "explanation": "The node frames the choice as output-based evaluation versus static interpretability mandates, marginalising hybrid approaches that combine behavioural testing with lightweight mechanistic audits—the real debate is about proportion and sequencing, not an either/or.",
+            "type": "informal_structural"
+          },
+          {
+            "fallacy": "Composition Fallacy",
+            "confidence": "possible",
+            "explanation": "The claim implicitly assumes that because each individual testing layer (mutation, fuzzing, red-teaming, differential auditing) is technically defensible, the stacked regime as a whole provides comprehensive safety coverage—ignoring that correlated failure modes could evade all layers simultaneously.",
+            "type": "informal_structural"
+          },
+          {
+            "fallacy": "Appeal to Consequences",
+            "confidence": "borderline",
+            "explanation": "Opposing interpretability mandates is partly justified by the friction they impose on development speed rather than on a direct rebuttal of their safety or accountability merits.",
+            "type": "informal_contextual"
+          }
+        ],
+        "intellectual_lineage": [
+          {
+            "name": "Performance-Based Regulation",
+            "description": "Performance-based regulation shifts the focus from prescriptive, 'how-to' rules to outcome-based standards. Instead of mandating specific processes, regulators set clear safety or quality targets and allow entities to determine the most efficient way to meet them. This approach is common in aviation and environmental policy, where the goal is to ensure safety without stifling innovation.\n\nThis informs the node's preference for output-based evaluation over static interpretability mandates. By focusing on 'mutation kill-rates' and 'failure classes,' the node adopts a performance-based approach. It assumes that as long as a model meets rigorous, measurable safety thresholds in adversarial testing, the internal 'black box' mechanisms are secondary to the model's actual, observable behavior.",
+            "url": "https://en.wikipedia.org/wiki/Performance-based_regulation",
+            "category": "legal_framework"
+          },
+          {
+            "name": "Software Testing Theory (Mutation Testing & Property-Based Testing)",
+            "description": "Software testing theory provides the technical rigor for ensuring code reliability. Mutation testing involves introducing small, intentional 'bugs' into code to see if the test suite catches them, while property-based testing checks if a system maintains specific invariants under a wide range of inputs.\n\nThis tradition provides the specific tools for the node's verification regime. By applying these concepts to AI, the node argues that safety can be quantified through 'mutation kill-rate thresholds' and 'property-based fuzzing.' It moves the conversation from vague safety promises to concrete, testable metrics, treating the AI model as a complex software system that must be subjected to rigorous, automated stress testing.",
+            "url": "",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Behaviorism (Skinner)",
+            "description": "Behaviorism, associated with B.F. Skinner, focuses on observable behavior rather than internal mental states. It posits that the most effective way to understand and shape an organism is to analyze its responses to environmental stimuli, ignoring the 'black box' of the mind.\n\nThis informs the node's skepticism of static interpretability. The node adopts a behaviorist stance, arguing that we don't need to 'see' into the model's neural weights to understand its safety; we only need to observe its outputs under adversarial conditions. It treats the AI as a system whose safety is defined by its observable behavior, prioritizing empirical testing over attempts to map internal cognitive processes.",
+            "url": "https://en.wikipedia.org/wiki/Behaviorism",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Red-Teaming and Adversarial Robustness Research",
+            "description": "Red-teaming is a practice derived from military and cybersecurity contexts where an independent group attempts to break a system to expose its vulnerabilities. Adversarial robustness research focuses on training models to withstand inputs specifically designed to cause errors or malicious behavior.\n\nThis tradition is the core of the node's methodology. It mandates that safety is achieved through active, adversarial engagement. By emphasizing 'adversarial red-team agents' and 'prompt-lineage diversity,' the node argues that safety is not a static state but a dynamic, ongoing process of defending against an evolving set of threats. It views the model as a target that must be constantly tested to ensure it remains robust.",
+            "url": "",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Regulatory Sandbox Concept",
+            "description": "A regulatory sandbox is a controlled environment where firms can test innovative products under relaxed regulatory requirements, provided they meet specific safety and oversight criteria. It allows for rapid iteration while maintaining a safety net for the public.\n\nThis informs the node's approach to 'named residual failure classes.' By creating a sandbox for testing, the node allows for the rapid deployment of models while gating them with human fiduciaries at 'integration boundaries.' It provides a framework for balancing the need for speed with the necessity of containment, ensuring that models are only released when they pass specific, performance-based safety gates.",
+            "url": "",
+            "category": "legal_framework"
+          }
+        ],
+        "aphorism": "Test the output, not the architecture.",
+        "debate_tested": {
+          "tier": "well_tested",
+          "sort_key": 3.99,
+          "engagements": 37,
+          "challenges": 26,
+          "held": 25,
+          "weakened": 0,
+          "revisions": [],
+          "last_tested": "2026-09-23",
+          "description_hash": "sha256:5a238f4f7844f9c2696ff00a19e24e87f23f85773fe44689b04fa18024ff5cd0",
+          "record": [
+            {
+              "debate_id": "06bf7928-d2ef-4483-8fc5-f6f26f182e01",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-28",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "0d9ffd02-cc0c-4824-8ede-3bac625a737f",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-19",
+                "strength": 1,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 2,
+                "survived": 16,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "1685da89-0e7b-432b-8827-fc927200dbd5",
+              "date": "2026-05-05",
+              "pipeline_version": "backfill-v0.8.0-2026-05-05",
+              "verdict": "cited",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-29",
+                "strength": 0.08110864843750004,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 4,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "1a5f22c5-9e30-4d5e-83ad-593bacb2a5fa",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-32",
+                "strength": 0.5,
+                "scheme": "undermine",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 2,
+                "survived": 6,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "1b21fd7f-9504-4916-9692-ba22f12b518f",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-29",
+                "strength": 0.5,
+                "scheme": "rebut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "3210eb8a-e4a4-4421-8150-56a06fc4aaed",
+              "date": "2026-05-23",
+              "pipeline_version": "backfill-v0.8.0-2026-05-23",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-35",
+                "strength": 1,
+                "scheme": "rebut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 5,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "56131af3-2631-4f1a-aa2e-2746ebb1a787",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-12",
+                "strength": 0.675,
+                "scheme": "undermine",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 7,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "586b7299-e67c-46b5-9509-3e46604c3c6d",
+              "date": "2026-05-17",
+              "pipeline_version": "backfill-v0.8.0-2026-05-17",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 2,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "5c33db20-2135-4360-b269-e61d7ad8d89f",
+              "date": "2026-05-09",
+              "pipeline_version": "backfill-v0.8.0-2026-05-09",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 2,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "62840445-31df-47d8-93c7-77426e963632",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-32",
+                "strength": 0.85,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 13,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "629d78c9-e26e-4995-ac7d-55bca11cae6f",
+              "date": "2026-05-20",
+              "pipeline_version": "backfill-v0.8.0-2026-05-20",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 3,
+                "survived": 0,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "69d0a197-adcd-4a9e-b98b-cbfda74fb748",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-19",
+                "strength": 0.6625,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "79d0409d-7ca0-4b37-a686-49336b516136",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-14",
+                "strength": 0.5,
+                "scheme": "rebut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 4,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "7a287f35-a2ed-466f-a326-3dc7f14e3d72",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-25",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "7dd088cd-4c54-4a3a-9a19-386eaa678ff9",
+              "date": "2026-05-28",
+              "pipeline_version": "backfill-v0.8.0-2026-05-28",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-13",
+                "strength": 1,
+                "scheme": "undercut",
+                "challenger_camp": "safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "94ce670b-2e18-4849-a146-6d922f555fd1",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-21",
+                "strength": 0.75,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 8,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "9631e0ca-d293-4f5f-8ee7-e016f7d3e1e2",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-32",
+                "strength": 0.5,
+                "scheme": "rebut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "98baa522-7048-4361-9d43-7c2ee1cf0a46",
+              "date": "2026-05-05",
+              "pipeline_version": "backfill-v0.8.0-2026-05-05",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-13",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "9cc4e19a-7d2e-4f81-bc9a-6e578960d7b0",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-10",
+                "strength": 0.75,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "9fb5a5a0-6047-4b0c-aece-64e67597a454",
+              "date": "2026-05-05",
+              "pipeline_version": "backfill-v0.8.0-2026-05-05",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-29",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 2,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "a0eaaca9-3732-43f6-b386-44d049c065d1",
+              "date": "2026-07-01",
+              "pipeline_version": "backfill-vbeta1-314-g69dd7d75-2026-07-01",
+              "verdict": "cited",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-74",
+                "strength": 0.28,
+                "scheme": "undercut",
+                "challenger_camp": "safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 2,
+                "survived": 1,
+                "died": 1
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "a4821a34-1efb-4f90-bb88-32e9e57ff060",
+              "date": "2026-06-06",
+              "pipeline_version": "backfill-v0.8.0-2026-06-06",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-22",
+                "strength": 0.741,
+                "scheme": "rebut",
+                "challenger_camp": "skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 4,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "a50a6905-2cb8-4655-859b-c9b0c5acb569",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-11",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "ac0eaab4-53c2-4ff2-ad12-726d59610e36",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "cited",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-31",
+                "strength": 0.325,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "ad01203f-b1db-4425-8682-32fb2dd4f41a",
+              "date": "2026-05-05",
+              "pipeline_version": "backfill-v0.8.0-2026-05-05",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-30",
+                "strength": 0.5,
+                "scheme": "rebut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 2,
+                "survived": 1,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "cca10b80-a7a5-4d80-b17d-605b1cc3eeec",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 4,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "cdb1a6b9-c9f0-406d-8539-b77b38409bc5",
+              "date": "2026-06-06",
+              "pipeline_version": "backfill-v0.8.0-2026-06-06",
+              "verdict": "cited",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-17",
+                "strength": 0,
+                "scheme": "rebut",
+                "challenger_camp": "skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 1,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "cdc384d6-2f6a-4ce1-a29f-69509d578049",
+              "date": "2026-05-20",
+              "pipeline_version": "backfill-v0.8.0-2026-05-20",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-47",
+                "strength": 1,
+                "scheme": "undermine",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 6,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "cfbe347f-81cb-41cf-9891-95c0edd63380",
+              "date": "2026-07-01",
+              "pipeline_version": "backfill-vbeta1-314-g69dd7d75-2026-07-01",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-45",
+                "strength": 0.85,
+                "scheme": "undercut",
+                "challenger_camp": "skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 2,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "d0eee420-c480-458b-a27f-b9d2c71bf928",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "open",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-28",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 1
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "d38e6ee7-b638-4364-9a07-c0c211609299",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-41",
+                "strength": 0.5,
+                "scheme": "undercut",
+                "challenger_camp": "Skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "dcce0b31-b9c5-4880-916e-db25e67cc1ab",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-25",
+                "strength": 1,
+                "scheme": "rebut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 1,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "dff2f89a-d130-46d7-acee-714f287930d4",
+              "date": "2026-06-21",
+              "pipeline_version": "backfill-vv0.13.6-71-gddb0025a-2026-06-21",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-45",
+                "strength": 0.95,
+                "scheme": "undermine",
+                "challenger_camp": "skeptic"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "eee23788-9779-4521-b79f-e3752539b65f",
+              "date": "2026-05-22",
+              "pipeline_version": "backfill-v0.8.0-2026-05-22",
+              "verdict": "cited",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-49",
+                "strength": 0,
+                "scheme": "rebut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 1,
+                "survived": 4,
+                "died": 1
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "fc902d53-88bc-4180-8999-94d37fdc5203",
+              "date": "2026-05-03",
+              "pipeline_version": "backfill-v0.7.4-2026-05-03",
+              "verdict": "held",
+              "strongest_attack_encountered": {
+                "claim_id": "AN-33",
+                "strength": 0.675,
+                "scheme": "rebut",
+                "challenger_camp": "Safetyist"
+              },
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 3,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "5e7245b7-4452-4402-b979-5e2bd335e0cd",
+              "date": "2026-09-23",
+              "pipeline_version": "backfill-vv0.13.9-1979-g643bfb53-2026-09-23",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 0,
+                "died": 0
+              },
+              "concession": null
+            },
+            {
+              "debate_id": "c6062671-824a-4636-81f5-c488c5a09b1e",
+              "date": "2026-09-23",
+              "pipeline_version": "backfill-vv0.13.9-1979-g643bfb53-2026-09-23",
+              "verdict": "cited",
+              "strongest_attack_encountered": null,
+              "claim_outcomes": {
+                "thrived": 0,
+                "survived": 0,
+                "died": 0
+              },
+              "concession": null
+            }
+          ]
+        }
+      },
+      "operationality": 5,
+      "operationality_history": [
+        {
+          "date": "2026-05-25",
+          "value": 4,
+          "delta": 0,
+          "reason": "Initial assignment: leaf Intention"
+        },
+        {
+          "date": "2026-06-11",
+          "value": 6,
+          "delta": 2,
+          "reason": "Re-evaluated after taxonomy audit restructuring. The regime described—mutation testing, property-based fuzzing, adversarial red-teaming with prompt-lineage diversity, and differential model-family auditing—reflects genuinely emerging industry and research practice, with several components already in partial real-world use; however, the full stacked verification framework as a primary regulatory methodology (including named failure classes gated by human fiduciaries at integration boundaries) lacks standardised adoption and faces significant institutional and technical barriers, placing operationality at the upper end of the plausible-with-effort range."
+        },
+        {
+          "date": "2026-07-04",
+          "value": 5,
+          "delta": -1,
+          "reason": "Clamp to 5 (schema valid range 1-5). Legacy value predates BDI weight range clamping in Invoke-BDIWeightAssignment. Fixes Test-TaxonomyIntegrity BDIWeightRange error, unblocks t/1321 TaxEditor range gate. (t/1320)"
+        }
+      ],
+      "label_history": [
+        {
+          "date": "2026-05-25",
+          "value": "Adopt Output-Based Evaluation as the Primary AI Safety Methodology",
+          "source": "initial"
+        },
+        {
+          "date": "2026-09-30",
+          "previous": "Adopt Output-Based Evaluation as the Primary AI Safety Methodology",
+          "value": "Adopt Output-Based Verification as the Primary AI Safety Methodology",
+          "source": "debate_reflection",
+          "debate_id": "78232a8a-e3e4-4657-993d-d96e635ac35b",
+          "reason": "In turn AN-27, the debate showed that our focus on output verification needs a tighter definition that directly contrasts with static code audits."
+        }
+      ],
+      "description_history": [
+        {
+          "date": "2026-05-25",
+          "value": "An Intention within accelerationist discourse that prioritizes a stacked verification regime combining mutation testing, property-based fuzzing, adversarial red-team agents with separate prompt lineage, and differential model-family auditing over static interpretability mandates.\nEncompasses: mutation kill-rate thresholds, property-based fuzzing, adversarial red-team prompt-lineage diversity, named residual failure classes (cross-module semantic drift) gated by human fiduciaries at integration boundaries.\nExcludes: claims of full verifier independence across frontier model families, output-verification as substitute for human review on irreversible-hazard modules.",
+          "source": "initial"
+        },
+        {
+          "date": "2026-09-30",
+          "previous": "An Intention within accelerationist discourse that prioritizes a stacked verification regime combining mutation testing, property-based fuzzing, adversarial red-team agents with separate prompt lineage, and differential model-family auditing over static interpretability mandates.\nEncompasses: mutation kill-rate thresholds, property-based fuzzing, adversarial red-team prompt-lineage diversity, named residual failure classes (cross-module semantic drift) gated by human fiduciaries at integration boundaries.\nExcludes: claims of full verifier independence across frontier model families, output-verification as substitute for human review on irreversible-hazard modules.",
+          "value": "A Belief within accelerationist discourse that prioritizes behavioral testing and runtime observation over static code audits to ensure system safety.\nEncompasses: behavioral API testing, black-box audit methodologies, court-admissible runtime telemetry, downstream input-output documentation.\nExcludes: static pre-deployment code audits, mechanistic interpretability of neural network parameters.",
+          "source": "debate_reflection",
+          "debate_id": "78232a8a-e3e4-4657-993d-d96e635ac35b",
+          "reason": "In turn AN-27, the debate showed that our focus on output verification needs a tighter definition that directly contrasts with static code audits."
+        }
+      ],
+      "plain_description": null,
+      "plain_description_version": "flash-lite:v1",
+      "concept_refs": [
+        {
+          "ref": "term:capability_frontier",
+          "surface": "frontier model",
+          "method": "surface",
+          "link_confidence": 1,
+          "status": "linked"
+        },
+        {
+          "ref": "term:safety_empirical",
+          "surface": "",
+          "method": "embedding",
+          "link_confidence": 0.584,
+          "status": "proposed"
+        }
+      ],
+      "_edit_meta": {
+        "last_edited_by": "_local",
+        "last_edited_at": "2026-09-30T20:16:58.01Z",
+        "created_by": "_local",
+        "created_at": "2026-09-30T20:16:58.01Z"
+      },
+      "_edit_history": [
+        {
+          "user": "_local",
+          "timestamp": "2026-09-06T21:29:44.71Z",
+          "fields_changed": [
+            "logical_form"
+          ]
+        },
+        {
+          "user": "_local",
+          "timestamp": "2026-09-30T20:16:58.01Z",
+          "fields_changed": [
+            "*"
+          ],
+          "source": "debate_reflection",
+          "debate_id": "78232a8a-e3e4-4657-993d-d96e635ac35b",
+          "reason": "In turn AN-27, the debate showed that our focus on output verification needs a tighter definition that directly contrasts with static code audits."
         }
       ],
       "logical_form": {
@@ -22691,6 +23592,7 @@
       "parent_id": null,
       "children": [
         "acc-intentions-003",
+        "acc-beliefs-135",
         "acc-intentions-004",
         "acc-intentions-051",
         "acc-intentions-099",
@@ -23592,7 +24494,7 @@
       ],
       "_edit_meta": {
         "last_edited_by": "_local",
-        "last_edited_at": "2026-09-06T21:29:44.71Z",
+        "last_edited_at": "2026-09-30T20:16:58.01Z",
         "created_by": "_local",
         "created_at": "2026-09-06T21:29:44.71Z"
       },
@@ -23602,6 +24504,13 @@
           "timestamp": "2026-09-06T21:29:44.71Z",
           "fields_changed": [
             "logical_form"
+          ]
+        },
+        {
+          "user": "_local",
+          "timestamp": "2026-09-30T20:16:58.01Z",
+          "fields_changed": [
+            "children"
           ]
         }
       ],
@@ -30774,7 +31683,8 @@
       "description": "An Intention within accelerationist discourse that champions AI as a fundamental engine for advancing economic prosperity and societal well-being. \nEncompasses: The belief that AI will lower costs, boost income, create abundance, and enhance collective intelligence.\nExcludes: Critiques of capitalism or specific strategies for AI development and deployment.",
       "parent_id": null,
       "children": [
-        "acc-intentions-102"
+        "acc-intentions-102",
+        "acc-intentions-138"
       ],
       "situation_refs": [
         "sit-016",
@@ -49002,7 +49912,8 @@
         "acc-beliefs-126",
         "acc-beliefs-130",
         "acc-beliefs-131",
-        "acc-beliefs-132"
+        "acc-beliefs-132",
+        "acc-beliefs-136"
       ],
       "situation_refs": [
         "sit-012",
@@ -73033,7 +73944,12 @@
             "url": "https://en.wikipedia.org/wiki/New_institutional_economics",
             "category": "economic_theory"
           },
-          "Garrison State / Dual-Use Technology Governance",
+          {
+            "name": "Garrison State / Dual-Use Technology Governance",
+            "description": "The concept of the 'garrison state,' originally coined by Harold Lasswell, describes a society where specialists on violence and national security become the dominant political and social actors due to persistent, acute external threats. Closely tied to the governance of dual-use technologies—innovations that have both benign commercial and catastrophic military applications—this lineage examines how existential or high-stakes technological risks can permanently erode civil liberties and concentrate state power.\n\nIn modern AI governance, this framework addresses the intense geopolitical race over advanced artificial intelligence. It highlights the severe policy dilemma of how democratic nations can regulate and secure frontier AI models against proliferation and misuse without sliding into authoritarian surveillance states or permanent technological martial law.",
+            "url": "https://en.wikipedia.org/wiki/Dual-use_technology",
+            "category": "political_philosophy"
+          },
           {
             "name": "Open Source Hardware Movement",
             "description": "The open-source hardware movement applies the philosophy, licensing models, and collaborative ethos of open-source software to physical artifacts, semiconductor designs, and electronic machinery. Proponents advocate for the public sharing of schematic designs, bill of materials, and layout data to foster democratization, interoperability, and community innovation.\n\nAs AI development increasingly bottlenecks on specialized physical infrastructure—such as GPUs, TPUs, and neuromorphic chips—the open-source hardware movement intersects directly with semiconductor policy and export controls. Policymakers evaluate open hardware as a mechanism to counter corporate monopolies on AI compute, foster domestic chip design ecosystems, and secure supply chains.",
@@ -93769,9 +94685,9 @@
         "emotional_register": "optimistic",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Deregulate labor markets to accelerate AI-driven task automation and workforce restructuring",
-            "framing": "The belief that automation preserves professional purpose implies that regulatory friction limiting task-level replacement actively hinders net job growth and entrepreneurial venture creation."
+            "framing": "The belief that automation preserves professional purpose implies that regulatory friction limiting task-level replacement actively hinders net job growth and entrepreneurial venture creation.",
+            "policy_id": "pol-3410"
           }
         ],
         "intellectual_lineage": [
@@ -93881,9 +94797,9 @@
         "emotional_register": "resolute",
         "policy_actions": [
           {
-            "policy_id": null,
             "action": "Exempt high-compute frontier AI infrastructure from environmental review and emissions caps",
-            "framing": "Framing environmental harm as a necessary surgical intervention provides the ideological justification for overriding ecological regulations to prioritize unconstrained compute scaling."
+            "framing": "Framing environmental harm as a necessary surgical intervention provides the ideological justification for overriding ecological regulations to prioritize unconstrained compute scaling.",
+            "policy_id": "pol-3411"
           }
         ],
         "intellectual_lineage": [
@@ -93922,6 +94838,107 @@
           }
         ],
         "node_scope": "claim"
+      }
+    },
+    {
+      "id": "acc-intentions-138",
+      "category": "Intentions",
+      "label": "Microsimulation Modeling of AI Fiscal Impacts",
+      "description": "An Intention within accelerationist discourse that utilizes tax microsimulation and macroeconomic models to quantify fiscal and distributional impacts of AI shocks. Encompasses: tax microsimulation models, scenario forecasting, GDP shock apportionment.\nExcludes: qualitative risk assessments, theoretical governance frameworks.",
+      "parent_id": "acc-intentions-069",
+      "children": [],
+      "situation_refs": [],
+      "source_refs": [
+        "how-potential-ai-futures-would-play-out-current-tax-system-2026"
+      ],
+      "parent_relationship": "specializes",
+      "parent_rationale": "The new node describes a specific modeling technique to quantify the fiscal and distributional impacts of AI. This specialized method directly contributes to understanding and planning for the broader intention of accelerating economic prosperity through AI.",
+      "graph_attributes": {
+        "epistemic_type": "strategic_recommendation",
+        "rhetorical_strategy": "appeal_to_evidence,pragmatic_framing",
+        "assumes": [
+          "AI shocks will have quantifiable fiscal and distributional impacts.",
+          "Microsimulation and macroeconomic models can accurately capture complex economic impacts.",
+          "Sufficient data and methodological rigor exist to conduct meaningful scenario forecasting for AI impacts.",
+          "The outputs of these models can reliably inform policy decisions."
+        ],
+        "falsifiability": "high",
+        "audience": "policymakers,technical_researchers,academic_community",
+        "emotional_register": "analytical,measured",
+        "policy_actions": [],
+        "intellectual_lineage": [
+          {
+            "name": "Econometrics",
+            "description": "Econometrics is the quantitative application of statistical and mathematical theories to economic data to transform abstract economic models into empirical insights. Pioneered by figures like Ragnar Frisch and Jan Tinbergen in the early 20th century, it enables researchers to estimate causal relationships, test hypotheses, and forecast economic trends using observational or experimental data.\n\nIn the realm of AI governance, econometric methods are essential for evaluating the labor market impacts of automation, measuring productivity growth driven by algorithmic adoption, and assessing the distributional consequences of technological displacement. Policymakers rely on econometric modeling to design targeted safety nets, taxation policies for automated labor, and interventions to correct market failures related to AI monopolies.",
+            "url": "https://en.wikipedia.org/wiki/Econometrics",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Computational Economics",
+            "description": "Computational economics is a research discipline at the intersection of computer science and economic analysis that models and solves complex economic problems using advanced numerical methods and agent-based simulations. Moving beyond traditional closed-form mathematical solutions, it allows economists to study dynamic systems with boundedly rational actors, heterogeneous agents, and non-linear interactions.\n\nThis framework is increasingly vital for AI governance as algorithms become active market participants through high-frequency trading, automated pricing, and autonomous corporate decision-making. Computational economics helps policymakers simulate the systemic risks of algorithmic collusion, flash crashes, and market instability, guiding regulatory frameworks for autonomous economic agents.",
+            "url": "https://en.wikipedia.org/wiki/Computational_economics",
+            "category": "academic_discipline"
+          },
+          {
+            "name": "Public Finance",
+            "description": "Public finance is a branch of economics that evaluates government revenue, expenditure, and macroeconomic policy adjustments, focusing on the allocation of resources, income distribution, and economic stabilization. Grounded in theories of public goods, externalities, and market failures pioneered by economists like Richard Musgrave, public finance provides the fiscal toolkit for state intervention when private markets fail to optimize societal welfare.\n\nIn contemporary AI governance, public finance principles inform debates on how governments should fund foundational public research, manage the tax base erosion caused by labor automation, and finance public compute infrastructure or national AI safety institutes. It helps policymakers weigh the trade-offs of public investments in AI against negative externalities such as environmental degradation from data centers and algorithmic bias.",
+            "url": "https://en.wikipedia.org/wiki/Public_finance",
+            "category": "economic_theory"
+          }
+        ],
+        "steelman_vulnerability": "The inherent complexity, emergent properties, and rapid evolution of AI systems may render even sophisticated economic models incapable of accurately predicting their long-term fiscal and distributional impacts, leading to potentially misleading policy recommendations.",
+        "possible_fallacies": [],
+        "node_scope": "domain_specific"
+      }
+    },
+    {
+      "id": "acc-beliefs-136",
+      "category": "Beliefs",
+      "label": "R&D Effort Aggregator Framework",
+      "description": "A Belief within accelerationist discourse that models artificial intelligence research input through an aggregate function combining human labor, inference compute, and experimental compute. Encompasses: R&D effort aggregators, input cost shares, elasticity of research. Excludes: Single-input scaling laws.",
+      "parent_id": "acc-beliefs-044",
+      "children": [],
+      "situation_refs": [],
+      "source_refs": [
+        "economics-recursive-self-improvement-2026"
+      ],
+      "parent_relationship": "part_of",
+      "parent_rationale": "The R&D Effort Aggregator Framework models the inputs and costs of AI research, which is a fundamental aspect of the 'Technical Challenges and Tradeoffs in Building Safe, Advanced AI.' Understanding these resource dynamics is crucial for addressing the broader challenges and strategies of AI development.",
+      "graph_attributes": {
+        "epistemic_type": "causal_mechanism",
+        "rhetorical_strategy": "analytical, pragmatic_framing",
+        "assumes": [
+          "AI R&D inputs can be accurately disaggregated and quantified into distinct, measurable factors.",
+          "An aggregate function can effectively represent the non-linear interactions and contributions of these inputs to overall R&D effort.",
+          "The identified inputs (human labor, inference compute, experimental compute) are the most salient and exhaustive for modeling AI R&D effort."
+        ],
+        "falsifiability": "high",
+        "audience": "technical_researchers, industry_leaders",
+        "emotional_register": "analytical, measured",
+        "policy_actions": [],
+        "intellectual_lineage": [
+          {
+            "name": "Economics of technological change",
+            "description": "The economics of technological change studies how innovations are generated, diffused, and integrated into the economy, altering productivity, industry structures, and long-term growth. Developed through the foundational work of Joseph Schumpeter—who emphasized 'creative destruction'—and later evolutionary economists like Richard Nelson and Sidney Winter, this field examines the complex feedback loops between scientific research, industrial R&D, and institutional adaptation.\n\nFor AI governance, this lineage offers critical insights into the dynamics of technological monopolies, path dependency, and the 'pacing problem' where regulation lags behind innovation. Policymakers utilize these frameworks to design antitrust policies that prevent lock-in by dominant AI labs, foster competitive ecosystems for open-source AI, and ensure that technological progress aligns with broader public welfare.",
+            "url": null,
+            "category": "economic_theory"
+          },
+          {
+            "name": "Growth theory",
+            "description": "Growth theory encompasses macroeconomic models explaining the long-run rate of economic expansion, focusing on capital accumulation, labor force growth, and technological progress. From the neoclassical Solow-Swan model, which highlighted exogenous technological change, to endogenous growth theory championed by Paul Romer and Robert Lucas, which treats knowledge and innovation as internal drivers, this field explores the fundamental engines of national prosperity.\n\nIn AI governance discourse, growth theory underpins the economic rationale for national AI strategies. Policymakers view artificial intelligence as a potential General-Purpose Technology (GPT) capable of driving unprecedented total factor productivity growth, prompting intense global competition for technological leadership and spurring investment in national digital infrastructure and talent pipelines.",
+            "url": "https://en.wikipedia.org/wiki/Economic_growth",
+            "category": "economic_theory"
+          },
+          {
+            "name": "Production function analysis",
+            "description": "Production function analysis uses mathematical and econometric tools to quantify the relationship between physical inputs (such as capital and labor) and the resulting output of goods and services. Originating from formulations like the Cobb-Douglas production function, it allows economists to decompose economic growth and isolate the contribution of technological efficiency.\n\nIn AI governance and policy discussions, production functions are adapted to measure the degree of capital-labor substitution driven by automation and generative AI. Understanding these substitution and complementarity elasticities helps policymakers anticipate labor displacement, design reskilling programs, and evaluate whether AI is driving broad-based productivity gains or merely shifting rents to capital owners.",
+            "url": "https://en.wikipedia.org/wiki/Production_function",
+            "category": "economic_theory"
+          }
+        ],
+        "steelman_vulnerability": "The model oversimplifies the complex, non-linear, and often qualitative nature of AI R&D, potentially missing emergent properties, serendipitous discoveries, or the impact of institutional structures that cannot be reduced to quantifiable inputs.",
+        "possible_fallacies": [],
+        "node_scope": "domain_specific"
       }
     }
   ]
