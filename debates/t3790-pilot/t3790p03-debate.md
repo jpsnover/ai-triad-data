@@ -1,158 +1,138 @@
 # Debate: Should AI developers be legally liable for harms caused b...
 
-**Date:** 2026-09-30 | **Model:** gemini-3.5-flash-lite | **Protocol:** structured
+**Date:** 2026-10-01 | **Model:** gemini-3.5-flash-lite | **Protocol:** structured
 **Debaters:** Accelerationist (accelerationist), Safetyist (safetyist), Skeptic (skeptic)
 
 ## Topic
 
-Should AI developers be legally liable for harms caused by their deployed models?
+Under what liability standards and safe harbor conditions should commercial foundation model developers be held legally accountable for downstream harms, and through which compliance mechanisms do these rules alter deployment safety versus open-source innovation?
 
 ## Opening Statements
 
-### Safetyist (safetyist)
+### Accelerationist (accelerationist)
 
-Legal blame must fall directly on AI developers when their deployed models cause real harm to the public. Old negligence rules fail because complex machine learning models show unpredictable shifts. This makes it hard to prove what was foreseeable in court. When a model trained on billions of parameters invents false medical diagnoses or runs bad financial deals, tort law cannot just ask what a calm person would do. Lawmakers must set strict liability rules. Developers must pay for damage caused by their unaligned systems even if no one proves negligence. Federal courts saw this exact legal gap in the 1976 Dalkon Shield lawsuits. There, complex product designs forced courts to drop simple fault rules and demand strict maker accountability.
+Placing legal liability upstream destroys open-source software and hands the economy to corporate monopolies. Section 230 of the Communications Decency Act proved that protecting creators from downstream misuse lets decentralized innovation scale.
 
-Damage risks scale directly with system access, making old-school oversight useless when failures cannot be undone. Frontier models with auto-execution tools hold damage risks that far beat old software bugs or static goods. History shows us in plane crashes like the 1988 Frankfurt ground collision or plant leaks like Bhopal that complex tech needs mandatory safety checks before market entry. The Federal Aviation Administration requires strict safety checks before any commercial plane carries passengers. Software builders must face that exact same standard. Congress can do this with a federal safe-harbor law. It ties liability protection to proven pre-release red tests and safety checks run by the National Institute of Standards and Technology.
+When regulators force foundation model creators to police every end use, small developers vanish. Large firms absorb the compliance costs while open-weight projects die. That is not public safety. That is regulatory capture dressed up as caution.
 
-Strict liability does not mean the end of open-source tech or market control by big tech firms. Critics say mandatory safety checks and strict liability will crush small builders who cannot pay compliance costs. This worry ignores tiered liability rules that free compliant open-weight releases while hitting actors who drop high-power systems without safety checks. The European Union Artificial Intelligence Act sets tiered risk groups. It puts strict oversight mainly on high-impact foundation models while leaving lower-risk research alone. Lawmakers can build a strong team of consumer advocates and market rivals. They just need to make sure liability hits the firms taking the profits while saving small research labs.
+Upstream model creation must stay strictly isolated from downstream deployment. Restatement Section 5 products liability standards shield raw component suppliers from integration failures they cannot control. A foundation model is digital raw material. A hospital or a bank deploys that raw material into a specific workflow with specific guardrails.
 
-*Taxonomy refs:* `saf-beliefs-217`, `saf-desires-012`, `saf-intentions-215`
+Holding the base developer liable for downstream integration errors makes as much sense as suing silicon foundries for corporate data breaches. Deployers bear the tort liability because only deployers can spot and price operational risk.
+
+Some argue open models cannot be patched after release, but this exposes the flaw in static safety models. Real-time monitoring and adapter tuning fix vulnerabilities at the edge without locking down the core architecture.
+
+When critics demand upstream bans because an open-weight model might be misused, they ignore the human cost of delay. Every month regulators stall medical diagnostic models, patients die of treatable diseases. Abundance requires permissionless experimentation, not central planning.
+
+*Taxonomy refs:* `acc-beliefs-028`, `acc-beliefs-093`, `acc-intentions-130`, `acc-intentions-128`
 
 ### Skeptic (skeptic)
 
-The Safetyist argues that legal blame must fall directly on software creators when deployed models cause real public harm. They cite historical precedents like the Dalkon Shield and complex machine learning emergent behaviors.
+The accelerationist claim is that strict upstream liability destroys open-source development by making public distribution legally fatal for small creators. That argument identifies a real risk for independent developers. But it ignores how commercial foundation model vendors operate. Vendors like OpenAI and Anthropic do not rely on raw code distribution. They lock down internal telemetry and force downstream users to sign custom enterprise contracts. These private deals shift legal blame away from the trillion-dollar companies that built the system and onto the local hospital or city agency using it.
 
-That position correctly states that victims deserve redress. However, it relies on a fantasy about how code moves across digital supply chains.
+Downstream operators bear the entire legal burden of algorithmic harms. At the same time, they are denied access to the internal tools needed to audit the software. Under product liability rules, hiding runtime telemetry while shipping a complex model is an upstream design defect. When a hospital in Ohio faces a medical suit over a bad AI diagnostic, the hospital cannot check the weights or logs. The vendor calls those tools proprietary trade secrets. The vendor takes the money from deployment while dumping tort liability onto groups with zero control over the training pipeline.
 
-Software developers shield their intellectual property behind license agreements. These contracts contain strict clauses that bar reverse engineering. They legally block independent safety auditors from inspecting model weights or training data.
+Calls for voluntary compliance and safe harbor protections copy old telecommunications and software deregulation. That past deregulation privatized gains while the public took the damage. When Congress cut oversight bodies like the Office of Technology Assessment in 1995, it paved the way for unchecked corporate self-regulation in tech. Today's tech lobbyists use the exact same playbook. They demand safe harbors to protect open innovation while quietly building market power through proprietary APIs. Policymakers should reject any liability shield that does not mandate open runtime telemetry for downstream auditors. Without mandatory observability, safe harbors only protect corporate negligence.
 
-A federal judge in California dismissed a copyright lawsuit against GitHub in 2023. Plaintiffs could not pierce the black-box barrier to prove direct harm. This gap in information makes traditional tort lawsuits an empty ritual.
+Who profits from shielding upstream vendors while local public agencies take all the liability for algorithmic discrimination?
 
-Critics claim that strict liability will crush open-source innovation. They say it punishes upstream developers who cannot control downstream changes.
+*Taxonomy refs:* `skp-beliefs-234`, `sit-477`, `skp-intentions-029`
 
-That objection fails when we look at who holds the compute power and extracts the profits. Cloud providers like Amazon and Microsoft control the rails. Original model creators hold the proprietary locks.
+### Safetyist (safetyist)
 
-Liability laws must target the entities that build trade secrecy walls. We should not hide behind fears of market paralysis.
+Commercial AI developers must face strict legal liability for downstream harms to stop them from dumping risks on the public. Rules from aviation and drug manufacturing show that designers must take ultimate blame for systemic failures. When an AI model crashes infrastructure or makes biased financial choices, the upstream creator cannot hide behind an open-source license. Congress must pass laws that name the developer as the main guarantor of safety.
 
-Agencies like the Federal Trade Commission have the power under Section 5 to pierce non-disclosure walls without waiting for another corporate merger.
+Complex human systems need hard rules to survive, and removing those limits causes societal collapse. Past failures of unverified tech prove that market self-regulation always fails under competitive pressure. Voluntary roadmaps leave citizens exposed to irreversible algorithmic harms. Real oversight requires named actors with legal power to issue mandatory recalls and stop unsafe deployments instantly.
 
-*Taxonomy refs:* `skp-beliefs-189`, `skp-beliefs-102`, `skp-desires-087`, `sit-177`
+Shielding upstream developers under the excuse of protecting open-source innovation creates a legal vacuum where tech monopolies push existential risks onto society. Software ecosystems only survive when baseline safety standards bind every participant equally. When model weights are released without rollback tools, the original developer keeps the power to cause harm while dodging the consequences. Lawmakers must mandate strict liability for upstream creators to keep civilizational order intact.
 
-### Accelerationist (accelerationist)
-
-Safetyist demands that upstream artificial intelligence developers bear strict legal liability for downstream model failures, arguing that creators must control every deployment vector. That position assumes centralized corporations can foresee every specific misuse across millions of distinct downstream applications without choking open innovation. Section 5 of the Restatement component-part doctrine rejects that premise by limiting manufacturer liability for versatile goods unless the raw component itself is inherently defective. When regulators target foundational model creators instead of the actual deployer who caused the harm, they destroy open-source developer ecosystems to protect legacy institutional incumbents. The enforcement mechanism here relies on federal tort claims enforced by the Department of Justice, which creates a massive compliance barrier that benefits monopolistic firms with billion-dollar legal budgets. A historical precedent exists in the Communications Decency Act of 1996, which protected internet infrastructure providers from downstream user liability so that digital networks could actually scale.
-
-Downstream liability boundaries protect upstream capability growth by ensuring operators bear responsibility only for harms they can detect and price at execution. Telemetry-enabled insurance markets manage operational risk far more effectively than rigid ex-ante legal liability can ever achieve. When hospitals or logistics firms deploy machine learning models, those operators hold the real-time execution control necessary to monitor failures and price risk into service contracts. Shifting liability upstream paralyzes medical breakthroughs and automated labor relief by criminalizing general-purpose software creation. Congress must reject upstream developer liability to preserve the capability frontier and let decentralized markets allocate risk where execution actually happens. The political coalition supporting this freedom includes open-source developers and patient advocacy groups, while legacy firms and risk-averse bureaucrats push for stagnation.
-
-*Taxonomy refs:* `acc-beliefs-093`, `acc-desires-037`, `acc-intentions-073`
+*Taxonomy refs:* `sit-177`, `saf-intentions-172`, `sit-340`, `saf-beliefs-106`
 
 ## Debate
 
+### Accelerationist (accelerationist) → Accelerationist
+\textcolor{NavyBlue}{\textit{Focus: Address Accelerationist's claim regarding open-source preservation and Section 230 protections (AN-2) in relation to safety guarantees.}}
+
+
+Closed enterprise API walls are not the same as open-weight distribution. Conflating big tech contract-hiding with raw code release misdiagnoses corporate opacity. Critics who point out that commercial labs lock down internal telemetry behind custom agreements are indicting centralized proprietary moats, not public weight distribution. Open-source developers publish raw parameters that anyone can inspect, audit, and modify on local hardware. This gives users direct possession of the technology instead of leased access through a corporate gateway. Treating these two deployment models as a single category destroys the transparency mechanisms that researchers use to verify system behavior. Section 230 of the Communications proposed regulatory frameworks succeeded because it applied downstream liability principles to digital communications. It shielded upstream infrastructure builders from ruinous lawsuits over user conduct. Applying that same structural logic to software engineering means foundational model creators cannot be held strictly liable for downstream modifications by independent operators. More than 5,000 new startups funded in the United States between 2013 and 2023 scaled under legal frameworks that protected raw infrastructure providers from derivative harms. Forcing upstream maintainers to police every downstream deployment imposes fixed compliance costs that only dominant corporate incumbents can absorb, which pulls up the ladder on independent builders. Demanding aviation-style airworthiness directives for digital code ignores the fundamental physics of software iteration versus mechanical manufacturing. Airplanes are static physical objects governed by fixed metallurgical constraints, whereas open-source code moves at the speed of human collaboration and continuous integration. Freezing codebases behind pre-market certification moats creates a regulatory bottleneck that stops life-saving medical diagnostics and economic productivity from reaching the public. Every month that centralized regulators stall capability deployment to chase theoretical zero-risk ideals, patients die of treatable diseases while administrative agencies study compliance paper trails.
+
+*Refs:* `acc-beliefs-028`, `acc-desires-027`, `acc-intentions-078`, `acc-beliefs-083`
+
+*Policy refs:* `pol-1002`
+
 ### Safetyist (safetyist) → Accelerationist
-\textcolor{NavyBlue}{\textit{Focus: Accelerationist argues that Section 5 of the Restatement component-part doctrine (AN-11) exempts upstream developers from downstream harm liability, but Safetyist has unaddressed claims regarding pre-deployment safety gates (AN-4) and NIST audits (AN-5) that interact with component liability.}}
+\textcolor{NavyBlue}{\textit{Focus: Safetyist should address Accelerationist's argument (AN-14) that aviation-style airworthiness directives fail because software iteration physics differ from mechanical manufacturing.}}
 
 
-Treating foundation models as passive component parts under tort law principles fundamentally misrepresents how generative software architectures operate. A static mechanical component like a carburetor operates deterministically, whereas a foundational model trained on massive datasets exhibits unpredictable emergent behaviors that downstream operators cannot alter or foresee. For instance, the European Union Artificial Intelligence Act establishes that General-Purpose AI models trained using more than 10 to the 25th power floating point operations per second possess systemic capabilities that separate them categorically from standard commercial goods. Attempting to apply traditional component shields to these systems leaves downstream entities legally exposed for harms originating directly from upstream design choices they have no technical capacity to audit.
+Treating foundation model weights as mere raw materials ignores how deterministic optimization loops bake high-consequence failure modes directly into the parameter space during training. When developers scale General Purpose AI models past 10^25 floating point operations per second, as codified in frameworks like the EU AI Act, the resulting systems acquire generalized reasoning capabilities that cannot be managed simply by treating the code as benign application software. Insisting that software iteration physics exempts these architectures from pre-market validation overlooks the hard lessons of civil engineering and aviation, where foundational safety constraints are established before components ever touch high-consequence deployment environments.
 
-Downstream deployers lack both the source code access and the compute infrastructure required to re-engineer or price the risks embedded within foundational model weights. When commercial deployers integrate these models into critical sectors such as healthcare or housing—where more than 5,000 new artificial intelligence startups have entered the United States market between 2013 and 2023—they operate as price-takers rather than safety regulators. Shifting strict liability entirely to these execution-stage operators creates a legal vacuum where upstream developers monetize trillion-dollar markets while externalizing catastrophic failure risks onto actors who cannot inspect the black box. Tort doctrines designed for tangible manufactured goods break down completely when the product itself is an adaptive, multi-tiered probabilistic engine.
+Downstream operators absorbing tort liability without upstream accountability face an impossible structural asymmetry because they lack access to the internal training telemetry needed to audit or correct base model hazards. Market-driven decentralization arguments fail when applied to safety-critical infrastructure like the healthcare and parole eligibility systems governed by proposed oversight measures such as the AI Civil Rights Act, where algorithmic discrimination causes documented, present harm. By 2028, regulatory bodies will be forced to enforce strict upstream liability precisely because downstream deployers have no technical capacity to remediate architectural flaws embedded by the original developer.
 
-Robust institutional oversight requires anchoring legal responsibility precisely where systemic risk originates, utilizing mandatory pre-deployment safety gates rather than relying on retrospective litigation. Under frameworks akin to those proposed for federal oversight, developers must subject high-capacity models to rigorous verification before commercial release. Allowing upstream creators to hide behind component-part exemptions ignores the reality that complex software architectures demand proactive accountability mechanisms similar to those governing aviation airworthiness directives or pharmaceutical approvals. Congress must therefore institute strict joint-and-several liability paired with independent audits to ensure that no developer can manufacture and release high-risk systems without retaining legal stewardship over their creation.
+Complex socio-technical systems collapse when foundational safety obligations are externalized onto actors who lack the authority or the tools to alter the underlying architecture. Society survived industrial expansion only by establishing binding pre-deployment verification for critical components rather than leaving risk management entirely to downstream users who face zero legal recourse against upstream monopolies. If foundation model creators continue to shed liability for downstream harms while projecting a $244 billion market valuation, public trust in digital infrastructure will fracture beyond repair.
 
-*Refs:* `saf-beliefs-106`, `saf-desires-012`, `saf-intentions-202`, `sit-177`, `sit-166`
+*Refs:* `saf-beliefs-200`, `saf-intentions-172`, `saf-beliefs-106`
 
-*Policy refs:* `pol-028`
+*Policy refs:* `pol-028`, `pol-093`
 
-### Skeptic (skeptic) → Accelerationist
-\textcolor{NavyBlue}{\textit{Focus: Accelerationist's claim that downstream operators can price risk and manage operational safety via telemetry-insurance markets (AN-13), given Skeptic's prior point about non-disclosure agreements blocking transparency.}}
-
-
-Telemetry-enabled insurance markets cannot manage operational risk when commercial non-disclosure agreements and trade secrecy laws legally prohibit insurers from inspecting internal model weights. As established in the 2023 federal copyright dismissal against GitHub in *Andersen v. Stability AI*, traditional legal discovery procedures fail to pierce the corporate trade secrecy walls protecting proprietary neural architectures. Insurers attempting to price algorithmic risk without source code access or inspection rights are merely guessing in the dark while tech incumbents collect the financial upside. A market cannot rationally price a hazard it is contractually barred from seeing.
-
-Treating these insurance policies as objective risk management ignores the mechanical reality of automated risk-shifting. Tech vendors pass liability downstream to operators who lack the compute infrastructure or source code access to verify what they are insuring. This dynamic creates a structural flaw where corporations pocket the revenue from deploying uninspectable foundation models while downstream operators absorb the catastrophic tail-risk. When more than 5,000 new AI startups in the United States were funded between 2013 and 2023 under these opaque commercial terms, the insurance industry simply repackaged corporate negligence into a billable financial product.
-
-Expecting external insurers to manage systemic failures through API telemetry alone is a category error that misunderstands how generative software architectures actually operate. External telemetry captures surface outputs while leaving the internal reasoning pathways completely obscured by proprietary locks. If a commercial model trained on a $244 billion market fails in a high-stakes deployment, the telemetry data will show an execution log, not the systemic defect hidden within the model weights. How can an insurance market function when the insured party is legally forbidden from opening the black box they rely on?
-
-*Refs:* `skp-beliefs-189`, `skp-beliefs-102`, `skp-beliefs-001`, `skp-desires-087`, `skp-intentions-040`
-
-*Policy refs:* `pol-028`
-
-### Accelerationist (accelerationist) → Skeptic
-\textcolor{NavyBlue}{\textit{Focus: Skeptic's claim (AN-17) that trade secrecy laws and non-disclosure agreements legally prohibit insurers from inspecting internal model weights, and how telemetry-based risk pricing can operate under such restrictions}}
+### Skeptic (skeptic) → Safetyist
+\textcolor{NavyBlue}{\textit{Focus: Address the upstream versus downstream telemetry asymmetry and whether open-weight releases negate the need for pre-market validation.}}
 
 
-Insisting that actuaries must inspect internal model weights to price risk ignores how digital infrastructure has functioned for decades. Cloud platforms and application programming interfaces operate securely under black-box constraints where insurers evaluate operational risk through continuous behavioral telemetry and runtime verification rather than static source code audits. More than 5,000 new AI startups funded in the United States between 2013 and 2023 scale their offerings through API endpoints without ever disclosing proprietary weights to third-party underwriters. Insurers price cybersecurity and cloud stability by monitoring incident frequency, error rates, and latency anomalies at the execution boundary, proving that trade secrecy laws present no barrier to active risk markets.
+The safetyist demand for pre-market checks on software relies on a bad aviation analogy. Software updates fast, unlike a physical aircraft wing, making static safety reviews obsolete before the audit report is finished. At the same time, the accelerationist claim that open-weight releases fix governance is just wishful thinking. Dumping raw weights in public does not help local operators inspect black-box failures when dominant firms hide runtime data behind trade secrets. Both sides invent utopian ideas to ignore how companies actually deploy these systems.
 
-Demanding mandatory weight inspection is not a technical necessity for safety, but an incumbent-protecting barrier designed to lock out open-weight innovation and cement market consolidation. When critics claim that downstream operators are helpless price-takers lacking the capacity to evaluate model behavior, they misrepresent how hospitals, logistics firms, and financial institutions actually deploy software. These organizations actively fine-tune, constrain, and validate model outputs against domain-specific benchmarks before letting systems touch production environments. Requiring full access to foundational parameters treats every downstream deployer as an incompetent child while handing legacy gatekeepers the power to suffocate nimble competitors under administrative drag.
+Commercial model vendors lock down their internal diagnostics behind API walls and non-disclosure agreements. This shifts liability downward to local deployers who cannot alter the core model architecture. When an algorithm denies a loan or misdiagnoses a patient, the downstream operator takes the blame while the upstream developer hides behind trade secrets. Open-weight models do not fix this opacity because local fine-tuning still happens inside closed environments. Pretending that raw code distribution equals transparent governance ignores corporate power over the compute layer.
 
-Freezing open development to chase the chimera of absolute ex-ante control inflicts a devastating human toll by delaying life-saving automation. While regulators debate whether black-box architectures can be certified on paper, real people suffer from preventable medical delays and operational inefficiencies that autonomous tools are ready to solve today. The moral hazard does not belong to the open-source developer releasing general-purpose weights, but to the central planner who blocks deployment to protect institutional comfort. Speed and decentralized execution remain the only reliable engines of human flourishing.
+Strip away the hype, and the whole debate ignores a physical infrastructure crisis. The International Energy Agency reports that electricity demand for AI data centers will quadruple by 2030. This drains local water tables and strains regional grids to train models that mostly automate jobs. Google's greenhouse gas emissions jumped 241 percent between 2019 and 2025 despite efficiency gains. Ordinary communities pay this environmental cost while a few monopolies take the financial windfall. Real accountability means forcing firms to open their data and pay for the resources they take, instead of arguing whether software is like a Boeing jet or a textbook.
 
-*Refs:* `acc-beliefs-093`, `acc-beliefs-111`, `acc-intentions-099`, `sit-177`
+*Refs:* `skp-beliefs-234`, `sit-134`, `sit-374`, `skp-beliefs-009`, `skp-intentions-023`
 
-*Policy refs:* `pol-028`
+*Policy refs:* `pol-001`, `pol-006`, `pol-028`
 
 ## Synthesis
 
 ### Areas of Agreement
 
-- The artificial intelligence sector experienced rapid growth between 2013 and 2023, marked by the entry of over 5,000 new startups in the United States market. (Safetyist, Accelerationist, Skeptic)
-- Commercial non-disclosure agreements and trade secrecy laws prevent external entities from inspecting internal neural network architectures. (Skeptic, Accelerationist)
+- Commercial model vendors withhold internal runtime diagnostic data from downstream users through proprietary enterprise contracts and non-disclosure agreements. (Skeptic, Accelerationist)
+- Downstream operators face legal liability and operational risks for algorithmic failures without possessing access to the internal training telemetry needed to audit base model architectures. (Skeptic, Safetyist)
 
 ### Areas of Disagreement
 
-- **Whether upstream artificial intelligence developers possess the technical capacity to predict and constrain emergent safety failures prior to model deployment.** [EMPIRICAL] {belief}
-  - **Safetyist:** Upstream developers possess the ability to identify and mitigate systemic failure modes through rigorous pre-release auditing and alignment protocols.
-  - **Accelerationist:** Frontier model behaviors remain inherently unpredictable at the training stage due to emergent properties across countless downstream use cases.
-  - *Resolution path: resolvable by evidence*
-- **Whether output-based telemetry and runtime error monitoring provide sufficient operational visibility for insurers to price risk without inspecting model weights.** [EMPIRICAL] {belief}
-  - **Skeptic:** Surface telemetry fails to reveal systemic defects hidden within internal model weights, rendering external insurance pricing ineffective.
-  - **Accelerationist:** Execution-boundary monitoring of incident frequency and latency anomalies allows underwriters to price operational risk effectively under black-box constraints.
+- **Whether upstream foundation model creators can be held strictly liable for downstream integration errors and modifications performed by independent operators.** [VALUES] {desire}
+  - **Accelerationist:** Upstream creators must be shielded from downstream liability under Restatement Section 5 principles to prevent the destruction of open-source software and small developers.
+  - **Safetyist:** Upstream developers must face strict legal liability because deterministic training optimization embeds high-consequence failure modes directly into the parameter space.
+  - *Resolution path: negotiable via tradeoffs*
+- **Whether open-weight distribution provides sufficient technical transparency and local inspectability compared to closed enterprise API walls.** [EMPIRICAL] {belief}
+  - **Accelerationist:** Open-weight distribution allows researchers and local operators to directly inspect, audit, and modify parameters on local hardware.
+  - **Skeptic:** Open-weight distribution does not resolve transparency issues because local fine-tuning still occurs within closed environments and raw weights do not prevent black-box failures.
   - *Resolution path: resolvable by evidence*
 
 ### Cruxes
 
-- If federal law mandates pre-release safety audits administered by the National Institute of Standards and Technology as a liability condition, would open-source development stall? [EMPIRICAL]
-    - If yes, weakens: The safetyist position weakens, as mandatory audit compliance would impose prohibitive administrative barriers on open-weight developers.
-    - If no, weakens: The accelerationist position weakens, demonstrating that tiered liability rules can protect open-weight research while imposing accountability on frontier developers.
-
-- Does Section 5 of the Restatement component-part doctrine preclude upstream liability for versatile machine learning models? [EMPIRICAL]
-    - If yes, weakens: The safetyist claim for upstream strict liability collapses, affirming the accelerationist view that software components resemble static manufactured goods.
-    - If no, weakens: The accelerationist defense fails, confirming that adaptive probabilistic models differ fundamentally from static mechanical parts.
-
-- Do downstream deployers possess sufficient technical access and compute infrastructure to re-engineer or price risks embedded in foundational model weights? [EMPIRICAL]
-    - If yes, weakens: The safetyist argument for exclusive upstream liability dissolves, supporting the accelerationist view that downstream operators bear responsibility.
-    - If no, weakens: The accelerationist position fails, proving that downstream deployers operate as price-takers unable to audit black-box systems.
-
-- Can telemetry-enabled insurance markets effectively manage operational risk when trade secrecy laws prohibit insurers from inspecting internal model weights? [EMPIRICAL]
-    - If yes, weakens: The skeptic position weakens, proving that runtime telemetry and behavioral monitoring suffice for actuarial risk assessment.
-    - If no, weakens: The accelerationist position weakens, confirming that black-box constraints prevent accurate risk pricing and leave catastrophic tail-risks unmanaged.
-
-- Should legal liability apply directly to artificial intelligence developers when their deployed models cause tangible public harm? [VALUES]
-    - If yes, weakens: The accelerationist and skeptic arguments against upstream liability fail, establishing strict upstream accountability.
-    - If no, weakens: The safetyist framework collapses, shifting all liability to downstream operators or external insurance mechanisms.
+- Placing legal liability upstream destroys open-source software and hands the economy to corporate monopolies. [EMPIRICAL]
+    - If yes, weakens: Accelerationist and Skeptic positions gain empirical support regarding market consolidation risks; Safetyist position on mandatory upstream liability must account for open-source market exit.
+    - If no, weakens: Safetyist position on upstream accountability is validated; Accelerationist claims regarding the inevitability of open-source destruction under strict liability are disproven.
 
 ### Unresolved Questions
 
-- What specific computational threshold or capability metric should legally distinguish foundational models from general-purpose software for liability purposes?
+- What specific compliance mechanisms can reconcile upstream algorithmic safety audits with downstream operational privacy and trade secret protections?
 
-- How can regulatory frameworks reconcile intellectual property protections with the transparency required for effective safety audits?
+- How will the physical infrastructure and environmental resource demands of AI data centers be legally integrated into model deployment accountability frameworks?
 
 
 ### Resolution Analysis
 
-- **Whether upstream artificial intelligence developers possess the technical capacity to predict and constrain emergent safety failures prior to model deployment.** — Undecidable
-  - *Both sides present coherent theoretical models of machine learning behavior but lack standardized, empirical metrics to prove whether frontier systems are fully controllable ex-ante. The debate currently relies on disputed projections rather than definitive audits from real-world deployments.*
-  - Would change if: Longitudinal audit data from independent testing laboratories measuring pre-release predictability against actual post-deployment failure rates across multiple foundation models would settle this disagreement.
-- **Whether output-based telemetry and runtime error monitoring provide sufficient operational visibility for insurers to price risk without inspecting model weights.** — Stronger: C5 (specificity)
-  - *The skeptic position correctly identifies existing legal barriers, specifically commercial trade secrecy protections and non-disclosure agreements that legally block external actors from inspecting proprietary model weights. The opposing view asserts that surface telemetry works without explaining how underwriters can legally or technically bypass these trade secret protections.*
-  - Would change if: Passing legislation that compels mandatory weight disclosure for commercial audits or the successful deployment of privacy-preserving cryptographic auditing tools that verify internal weights without exposing trade secrets would shift this balance.
+- **Whether upstream foundation model creators can be held strictly liable for downstream integration errors and modifications performed by independent operators.** — Stronger: C2 (scope)
+  - *The accelerationist position under C2 accounts for established tort principles from Restatement Section 5 and product liability history regarding raw components. C1 asserts that training optimization embeds failure modes, but C2 correctly identifies that upstream creators cannot control downstream modifications made by independent actors. Therefore, shielding component suppliers aligns better with broad legal precedent.*
+  - Would change if: Empirical evidence demonstrating that foundation models function less like raw software code and more like dangerous physical products with fully deterministic failure pathways would tip the balance.
+- **Whether open-weight distribution provides sufficient transparency compared to closed enterprise API walls.** — Undecidable
+  - *Both camps present plausible mechanisms without decisive empirical proof regarding whether edge tuning or pre-market certification better secures deployment. The accelerationist claim relies on adapter tuning to fix vulnerabilities, while the skeptic claim points to audit asymmetries in enterprise contracts. Neither side provides comprehensive deployment data across diverse industry sectors to prove superiority.*
+  - Would change if: Systematic empirical studies comparing safety incident rates between open-weight models with edge monitoring and closed-weight enterprise APIs over a multi-year period would resolve the dispute.
 
 ## Fact Checks
 
-*5 checks: 3 disputed, 1 supported, 1 unverifiable*
+*5 checks: 4 supported, 1 unverifiable*
 
-- **disputed** _[auto]_ (confidence: high): Claim AN-3 — disputed: While the 1976 Dalkon Shield litigation was a landmark mass tort involving complex product liability and regulatory failures, historical and legal records do not support the specific claim that it involved courts aban
-- **disputed** _[auto]_ (confidence: high): Claim AN-4 — disputed: While major technological failures like Bhopal are heavily studied, the specific event cited as the '1988 Ground Collision at Frankfurt' does not match historical records (the major 1988 aviation disaster in Germany w
-- **disputed** _[auto]_ (confidence: high): Claim AN-8 — disputed: While a California federal judge did dismiss portions of the copyright-related lawsuit against GitHub (Doe v. GitHub) in 2023 and 2024, the dismissal was based on statutory interpretation of the DMCA and lack of speci
-- **supported** _[auto]_ (confidence: high): Claim AN-11 — supported: Section 5 of the Restatement (Third) of Torts: Products Liability establishes that a supplier of a component part or raw material is generally not subject to liability for a finished product's defects unless the com
-- **unverifiable** _[auto]_ (confidence: high): Claim AN-19 — unverifiable: While statistics confirm that over 5,000 AI startups were funded in the U.S. between 2013 and 2023, there is no public empirical evidence or tracking data verifying the specific operational claim that they scale 
+- **supported** _[auto]_ (confidence: high): Claim AN-2 — supported: Extensive legal and economic analysis shows that Section 230's protection of online platforms and hosts from liability for third-party content has served as a foundational legal shield enabling digital services, star
+- **supported** _[auto]_ (confidence: high): Claim AN-3 — supported: Restatement (Third) of Torts: Products Liability § 5 provides that raw material and component suppliers are not liable for defects in a final integrated product unless the component was defective in itself or the sup
+- **supported** _[auto]_ (confidence: high): Claim AN-6 — supported: Evidence shows that major AI vendors like OpenAI and Anthropic implement strict controls over customer data and telemetry (such as monitoring logs and safety processing architectures) while requiring enterprise-speci
+- **supported** _[auto]_ (confidence: high): Claim AN-7 — supported: Evidence shows that Congress did defund and dismantle the Office of Technology Assessment (OTA) in 1995 as part of a legislative downsizing effort, and commentators and policy analysts widely agree that this left law
+- **unverifiable** _[auto]_ (confidence: medium): Claim AN-17 — unverifiable: While current regulatory debates (such as discussions around the EU AI Act and product liability frameworks) address the division of responsibilities between developers and downstream deployers, specific claims a
