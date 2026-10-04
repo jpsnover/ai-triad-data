@@ -61,10 +61,12 @@ jobs:
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.event.after }}"
           ZERO="0000000000000000000000000000000000000000"
-          # t/3895: is a source_index regen PENDING for this push? True when the push changed a
-          # regen input but NOT source_index.json itself -- source-index-regen.yml will rebuild the
-          # index and evaluate leg-c on it (its "Post-regen leg-c" step). Here, leg-c is then
-          # reported NEUTRAL (refresh pending) instead of red: the index is mid-refresh BY DESIGN.
+          # t/3895: is a source_index regen PENDING for this push? Defined to be true EXACTLY when
+          # source-index-regen.yml regenerates for this push (CL review, PR #15: neutral <=> regen
+          # runs) -- same REGEN_INPUTS diff, same zero-SHA and diff-failure fallbacks (both regen
+          # full-set there). That workflow then evaluates leg-c on the fresh index ("Post-regen
+          # leg-c") and alerts on red OR could-not-evaluate, so leg-c reported NEUTRAL here is
+          # never unobserved: its authoritative verdict is that step.
           # REGEN_INPUTS -- keep IDENTICAL to the list in source-index-regen.yml.
           REGEN_INPUTS="summaries/ taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json"
           if [ "$BEFORE" = "$ZERO" ]; then
@@ -74,11 +76,12 @@ jobs:
           else
             # shellcheck disable=SC2086 -- REGEN_INPUTS is a deliberate word-split pathspec list
             if ! RDIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
-              # Can't tell -> NOT pending: evaluate leg-c normally (a red stays visible, never hidden).
-              echo "::warning::regen-pending check: git diff failed ($RDIFF); leg-c evaluated normally"
-              echo "regen_pending=false" >> "$GITHUB_OUTPUT"
-            elif [ -n "$RDIFF" ] && [ -z "$(git diff --name-only "$BEFORE..$AFTER" -- taxonomy/Origin/source_index.json)" ]; then
-              echo "regen inputs changed without an index update — leg-c here is refresh-pending (t/3895)"
+              # Mirrors the regen's fallback: a diff failure there means a FULL-SET regen, so a
+              # post-regen leg-c (with its alerts) will run -> pending here too.
+              echo "::warning::regen-pending check: git diff failed ($RDIFF); regen falls back to full-set, leg-c refresh-pending"
+              echo "regen_pending=true" >> "$GITHUB_OUTPUT"
+            elif [ -n "$RDIFF" ]; then
+              echo "regen inputs changed — regen runs; leg-c here is refresh-pending (t/3895)"
               echo "regen_pending=true" >> "$GITHUB_OUTPUT"
             else
               echo "regen_pending=false" >> "$GITHUB_OUTPUT"
