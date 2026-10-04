@@ -1,0 +1,109 @@
+# ─── Taxonomy Node-Removal Push Check (Report-Only) ───
+# What:  Re-runs the t/3851 node-removal predicate (.githooks/taxonomy_node_removal_verdict.py,
+#        IMPORTED, not copied) over every commit in each push to main. Catches the routes the
+#        client-side commit-msg hook cannot see (t/3870):
+#          - git commit --no-verify            (disarms every data-repo hook at once)
+#          - a checkout without core.hooksPath (t/3869)
+#          - GitHub web-UI / API writes        (the push event still fires)
+#          - history rewrite + force-push      (old tip diffed against new tip)
+#
+# REPORT-ONLY BY CONSTRUCTION, not warn-first-pending-a-flip: a push workflow runs AFTER the
+#   push has landed, so it cannot refuse anything. continue-on-error keeps the run green-ish;
+#   findings surface as ::warning:: annotations, a job summary, and an idempotent issue.
+#   Making node removals actually BLOCK would mean branch protection + PRs on a repo the fleet
+#   pushes to directly -- a change to the data repo's write model that needs a mandatory Second
+#   Opinion. LAPSE CONDITION for this choice: revisit only if that write model changes.
+#
+# Per-commit, not tip-only (t/3870#1): each commit is judged on its own parent diff and its own
+#   Taxonomy-Node-Removal trailer, so an acknowledged removal is never double-reported and a
+#   mid-range removal is never hidden by a later trailer.
+#
+# A GREEN DOES NOT MEAN "removals were reviewed": the predicate compares ID sets. A removal
+#   acknowledged with the right IDs for the wrong reason passes, by design.
+#
+# workflow_dispatch: re-check any historical range (before/after SHAs) on demand -- used to
+#   live-fire both arms against real history without writing to the data repo.
+
+name: Taxonomy Node-Removal Push Check (Report-Only)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      before:
+        description: Range start SHA (exclusive)
+        required: true
+      after:
+        description: Range end SHA (inclusive)
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  node-removal-check:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          fetch-depth: 0  # every commit in before..after must be readable
+
+      - name: Self-test the checker (the code that runs below is the code that was tested)
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 .github/scripts/test_node_removal_push_check.py
+
+      - name: Check pushed range for unacknowledged node removals
+        id: check
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          BEFORE: ${{ github.event.inputs.before || github.event.before }}
+          AFTER: ${{ github.event.inputs.after || github.event.after }}
+        run: |
+          # After a force-push the old tip is unreachable from main, so fetch-depth: 0 does not
+          # bring it. Fetch it by SHA; if that fails the script reports the rewrite as
+          # unverifiable rather than silently skipping it.
+          ZERO=0000000000000000000000000000000000000000
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "$ZERO" ] && ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git fetch --no-tags origin "$BEFORE" || echo "old tip $BEFORE not fetchable"
+          fi
+          python3 .github/scripts/node_removal_push_check.py --before "$BEFORE" --after "$AFTER"
+
+      - name: Alert — idempotent issue on unacknowledged removal
+        if: failure() && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PUSH_SHA="${{ github.event.after }}"
+          ACTOR="${{ github.actor }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          TITLE="Data boundary: unacknowledged taxonomy node removal on push"
+          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} removed taxonomy node ID(s) without a matching Taxonomy-Node-Removal trailer, or the check could not verify a file, or the checker's own self-test failed (then NOTHING was checked -- treat as unverified). The commit is already on main; this check reports, it does not undo.
+
+          **Action:** see the run summary for the commit(s) and IDs. If the removal was intended, record the acknowledgment here. If not, restore the node(s) and their edges.
+
+          Run: ${RUN_URL}
+
+          Push-side re-check: t/3870 (client hook: t/3851)."
+
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+
+          EXISTING=$(gh issue list --label "data-compliance" --state open \
+            --search "unacknowledged taxonomy node removal" \
+            --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body "$BODY" \
+              --label "data-compliance" \
+              --assignee jpsnover
+          fi
