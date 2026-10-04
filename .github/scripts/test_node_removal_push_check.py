@@ -10,6 +10,8 @@ no-op'd arm reads as passing -- the t/3851 lesson).
 Run: python3 .github/scripts/test_node_removal_push_check.py -v
 """
 
+import contextlib
+import io
 import json
 import os
 import shutil
@@ -17,6 +19,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import node_removal_push_check as m  # noqa: E402
@@ -189,11 +192,25 @@ class Arms(unittest.TestCase):
         self.assertEqual([f for f in findings if f["unverifiable"]], [])
         self.assertEqual(self.unacked(findings), ["acc-3"])
 
+    def run_main_quietly(self, argv):
+        # main() prints ::warning:: workflow commands and appends to GITHUB_STEP_SUMMARY. Inside
+        # the workflow's self-test step those would become REAL annotations / summary lines about
+        # these synthetic IDs on every run -- a fake finding on a clean push (observed live, run
+        # 37169263935). Capture stdout and unset the summary path for the call.
+        out = io.StringIO()
+        env = {k: v for k, v in os.environ.items() if k != "GITHUB_STEP_SUMMARY"}
+        with mock.patch.dict(os.environ, env, clear=True), contextlib.redirect_stdout(out):
+            rc = m.main(argv)
+        return rc, out.getvalue()
+
     def test_15_exit_codes(self):
         clean = self.r.commit("add", ["acc-1", "acc-2", "acc-3", "acc-4"])
-        self.assertEqual(m.main(["--before", self.base, "--after", clean, "--repo", self.r.path]), 0)
+        rc, _ = self.run_main_quietly(["--before", self.base, "--after", clean, "--repo", self.r.path])
+        self.assertEqual(rc, 0)
         dirty = self.r.commit("drop", ["acc-1"])
-        self.assertEqual(m.main(["--before", clean, "--after", dirty, "--repo", self.r.path]), 1)
+        rc, out = self.run_main_quietly(["--before", clean, "--after", dirty, "--repo", self.r.path])
+        self.assertEqual(rc, 1)
+        self.assertIn("::warning::", out)  # proves the capture caught it (not merely that nothing printed)
 
 
 if __name__ == "__main__":
