@@ -78,12 +78,17 @@ ZERO = "0" * 40
 def parse_trailer(message):
     """IDs named in Taxonomy-Node-Removal trailers (comma-separated, repeatable).
 
-    DUPLICATED (t/3870#5): this trailer parse, TRAILER_RE, WATCHED and the JSON
-    node-ID read are COPIES of the logic inside .githooks/commit-msg. Only the
-    verdict is shared. TL is moving the parser + BOM-safe reader into
-    taxonomy_node_removal_verdict.py (with the t/3851#11 BOM fix); when that
-    lands, import them from there and delete these copies -- until then a change
-    to the trailer format must be made in BOTH places.
+    DUPLICATED (t/3870#5, corrected p/331#1827): this function and TRAILER_RE
+    copy the trailer parse inside .githooks/commit-msg. ONLY THE TRAILER PARSER
+    moves: the TL is adding `acknowledged_ids` to taxonomy_node_removal_verdict.py
+    with the t/3851#11 fix. When that lands, delete THIS function + TRAILER_RE and
+    import `acknowledged_ids` -- nothing else. Until then a trailer-format change
+    must be made in BOTH places.
+
+    NOT moving (keep them): the JSON node-ID reader (Git.file_map /
+    node_ids_from_doc) and WATCHED. The verdict module stays pure, no I/O, so the
+    reader has nowhere to go; it is already locale-independent (explicit utf-8
+    decode + BOM strip).
     """
     acked = set()
     for line in message.splitlines():
