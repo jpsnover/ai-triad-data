@@ -76,7 +76,15 @@ ZERO = "0" * 40
 # ---------------------------------------------------------------- pure half --
 
 def parse_trailer(message):
-    """IDs named in Taxonomy-Node-Removal trailers (comma-separated, repeatable)."""
+    """IDs named in Taxonomy-Node-Removal trailers (comma-separated, repeatable).
+
+    DUPLICATED (t/3870#5): this trailer parse, TRAILER_RE, WATCHED and the JSON
+    node-ID read are COPIES of the logic inside .githooks/commit-msg. Only the
+    verdict is shared. TL is moving the parser + BOM-safe reader into
+    taxonomy_node_removal_verdict.py (with the t/3851#11 BOM fix); when that
+    lands, import them from there and delete these copies -- until then a change
+    to the trailer format must be made in BOTH places.
+    """
     acked = set()
     for line in message.splitlines():
         if line.lstrip().startswith("#"):
