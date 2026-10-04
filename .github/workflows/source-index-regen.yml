@@ -1,5 +1,6 @@
 # ─── Source Index Regeneration (t/3788) ───
-# What:  Fires on every push to main that touches summaries/. Rebuilds
+# What:  Fires on every push to main that touches summaries/ OR a POV node file
+#        (accelerationist/safetyist/skeptic.json -- t/3895). Rebuilds
 #        taxonomy/Origin/source_index.json via the canonical Build-NodeSourceIndex
 #        cmdlet and commits it back, keeping the belief-node → primary-source index
 #        from silently drifting behind the harvester's summary writes (the bug this
@@ -13,21 +14,25 @@
 #     diff decides whether summaries/ was touched — same pattern as those two, chosen
 #     for consistency AND because it is what correctly handles the zero-SHA
 #     (first-push/force-push) edge case as a full-set regen rather than a silent
-#     trigger-level `paths:` no-op. The scope is summaries/ ONLY — explicitly NOT
-#     taxonomy/Origin/ — so this workflow's OWN regen commit (which touches only
-#     taxonomy/Origin/source_index.json) can never re-trigger itself. That is the
-#     loop-guard: the index-only commit fails this workflow's own diff check.
+#     trigger-level `paths:` no-op. The scope is summaries/ PLUS the three POV node
+#     files leg-c's key count reads (t/3895 defect 2: a node-only push, e.g. 7fee2c54
+#     +9 nodes, left the key count stale) -- and explicitly NOT source_index.json, so
+#     this workflow's OWN regen commit (which touches only source_index.json) could
+#     never re-trigger itself even if it did start runs (it doesn't -- see [3]).
 #
-# [3] ORDERING (CL, load-bearing): regen must land before leg-c (staleness, in
-#     citation-link-integrity.yml) evaluates the post-regen commit. Chosen mechanism:
-#     citation-link-integrity.yml has NO `paths:` filter at all (TL-verified against
-#     origin/main, 2026-10-01) — it fires on EVERY push to main — so THIS workflow's
-#     regen commit independently re-triggers it, which then evaluates leg-c against
-#     the now-fresh index. No duplicate invocation of Test-CitationLinkIntegrity here —
-#     one call site, one canonical check. CAUTION FOR FUTURE EDITORS: this ordering
-#     guarantee rests on citation-link-integrity.yml having NO path filter. Adding one
-#     there (e.g. scoping it to summaries/+taxonomy/Origin/ for speed) would silently
-#     break this contract unless taxonomy/Origin/ is explicitly kept in the filter.
+# [3] ORDERING (CL, load-bearing) -- REVISED by t/3895. The original mechanism relied on
+#     this workflow's regen commit re-triggering citation-link-integrity.yml so leg-c
+#     would evaluate the post-regen index. THAT NEVER HAPPENS: the commit-back is pushed
+#     with GITHUB_TOKEN, and GitHub starts NO workflow runs for GITHUB_TOKEN pushes
+#     (verified: regen commits 8290eb61 / 53e075ab have 0 runs of any kind). So leg-c
+#     was never evaluated on a fresh index. New mechanism: leg-c is evaluated HERE,
+#     in-job, right after the regen (step "Post-regen leg-c"), against the exact tree
+#     that was committed -- independent of any re-trigger. citation-link-integrity.yml
+#     reports its own pre-regen leg-c as NEUTRAL ("refresh pending") exactly when THIS
+#     workflow regenerates (CL review, PR #15: neutral <=> regen runs), so the expected
+#     mid-refresh state is not a red. That neutral is never unobserved: the post-regen
+#     step alerts on red AND on could-not-evaluate (two distinct issues). Both sides key
+#     off the SAME input set -- keep REGEN_INPUTS in sync between the two files.
 #
 # [4] STALENESS WINDOW: bounded by one regen-workflow run (minutes), from the
 #     harvester's summary push to this workflow's commit landing. During that window
@@ -94,22 +99,26 @@ jobs:
           path: ai-triad-research
           fetch-depth: 1
 
-      - name: Check if summaries changed
+      - name: Check if regen inputs changed (summaries/ or POV node files)
         id: inputcheck
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "Manual dispatch — full-set regen"
-            echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.event.after }}"
           ZERO="0000000000000000000000000000000000000000"
+          # REGEN_INPUTS -- keep IDENTICAL to the list in citation-link-integrity.yml (t/3895).
+          # summaries/ (leg-c hash) + the 3 POV files (leg-c key count = live belief nodes).
+          # NOT source_index.json (the loop-guard) and NOT situations.json (leg-c doesn't count it).
+          REGEN_INPUTS="summaries/ taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json"
           if [ "$BEFORE" = "$ZERO" ]; then
             echo "Zero-SHA push (first/force-push) — full-set regen"
-            echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+            echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
           else
-            # [1] summaries/ ONLY — never taxonomy/Origin/, so this workflow's own
+            # [1] REGEN_INPUTS only — never source_index.json, so this workflow's own
             # index-only regen commit cannot re-trigger itself (the loop-guard).
             #
             # FAIL-SAFE, not fail-open (TL review, PR #11): BEFORE can be a non-zero
@@ -121,21 +130,23 @@ jobs:
             # EXPLICITLY, not inferred from empty output, and a diff failure falls
             # back to a full-set regen with a durable WARN (root AGENTS.md
             # Fallback-Path Logging: log that a fallback was taken, and why).
-            if ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 2>&1); then
+            # shellcheck disable=SC2086 -- REGEN_INPUTS is a deliberate word-split pathspec list
+            if ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
               echo "::warning::git diff $BEFORE..$AFTER failed (BEFORE SHA likely unreachable -- force-push or history rewrite). FALLBACK: full-set regen rather than silently skipping. git output: $DIFF"
-              echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+              echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
             elif [ -n "$DIFF" ]; then
-              echo "summaries/ in push range — regenerating index"
-              echo "summaries_changed=true" >> "$GITHUB_OUTPUT"
+              echo "regen inputs in push range — regenerating index:"
+              echo "$DIFF" | sed 's/^/  /' | head -20
+              echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
             else
-              echo "no summaries/ change in push range — skipping"
-              echo "summaries_changed=false" >> "$GITHUB_OUTPUT"
+              echo "no regen-input change in push range — skipping"
+              echo "inputs_changed=false" >> "$GITHUB_OUTPUT"
             fi
           fi
 
       - name: Regenerate source_index.json
         id: regen
-        if: steps.inputcheck.outputs.summaries_changed == 'true'
+        if: steps.inputcheck.outputs.inputs_changed == 'true'
         shell: pwsh
         env:
           AI_TRIAD_DATA_ROOT: ${{ github.workspace }}
@@ -167,7 +178,8 @@ jobs:
           Write-Host "Postcondition verified: $indexPath written, inputHash=$($ix.inputHash.Substring(0,12))..."
 
       - name: Commit regenerated index
-        if: steps.inputcheck.outputs.summaries_changed == 'true' && steps.regen.outcome == 'success'
+        id: commit
+        if: steps.inputcheck.outputs.inputs_changed == 'true' && steps.regen.outcome == 'success'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -182,8 +194,96 @@ jobs:
             git push
           fi
 
+      - name: Post-regen leg-c (staleness on the FRESH index — t/3895)
+        # [3] REVISED: the only place leg-c is evaluated against a just-regenerated index.
+        # Runs on the exact tree the commit step pushed (byte-identical regen included).
+        # ADVISORY like leg-c everywhere else: continue-on-error, so a red here annotates and
+        # reds this STEP but never trips the regen-failure alert below (failure() stays false) --
+        # a stale index after a successful regen is a different signal from "the regen broke".
+        # The POST-REGEN line is the evidence CL's leg-c bar reads (t/3895: >=3 real harvests,
+        # every regen-input push followed by a green post-regen leg-c).
+        # NOT SILENT (CL review, PR #15): continue-on-error keeps the regen alert honest, so the
+        # NEXT step raises its own alert on this step's failure. Output `verdict` discriminates:
+        # green | red (a real post-regen staleness) | absent (could not evaluate).
+        id: postregen_legc
+        if: steps.commit.outcome == 'success'
+        continue-on-error: true
+        shell: pwsh
+        env:
+          AI_TRIAD_DATA_ROOT: ${{ github.workspace }}
+        run: |
+          # Pester installed INSIDE this advisory step (same module environment as
+          # citation-link-integrity.yml): as its own step, an install failure would trip
+          # failure() and fire the regen-failure alert for a regen that succeeded.
+          Install-Module Pester -Force -Scope CurrentUser
+          Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
+          $r = Test-CitationLinkIntegrity -SkipSourceResolution
+          $c = @($r.results | Where-Object { $_.leg -eq 'c' })[0]
+          if (-not $c) { Write-Host "::error::POST-REGEN leg (c): no leg-c result returned -- cannot verify (t/3895)"; exit 1 }
+          $n = @($c.offenders).Count
+          Write-Host "POST-REGEN leg (c) staleness: pass=$($c.pass) offenders=$n head=$(git rev-parse --short HEAD)"
+          "### Post-regen leg-c (t/3895)`n`npass=**$($c.pass)**, offenders=$n, head ``$(git rev-parse --short HEAD)``" |
+            Out-File -Append -FilePath $env:GITHUB_STEP_SUMMARY
+          if (-not $c.pass) {
+            $detail = @($c.offenders | ForEach-Object { $_ | ConvertTo-Json -Compress -Depth 4 }) -join '; '
+            "verdict=red" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+            "detail=$detail" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+            Write-Host "::warning::POST-REGEN leg-c is RED on a freshly regenerated index -- a real staleness defect, not a mid-refresh state: $detail"
+            exit 1
+          }
+          "verdict=green" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+
+      - name: Alert — idempotent issue on post-regen leg-c red / not evaluated
+        # Two DISTINCT records (CL review, PR #15) -- "the fresh index is stale" and "we could not
+        # tell" must not look alike:
+        #   verdict == 'red'  -> real staleness after a successful regen
+        #   anything else    -> the post-regen check failed WITHOUT a verdict (install/import/
+        #                       cmdlet error): nothing was verified for this push
+        id: postregen_alert
+        if: always() && steps.postregen_legc.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERDICT: ${{ steps.postregen_legc.outputs.verdict }}
+          DETAIL: ${{ steps.postregen_legc.outputs.detail }}
+        run: |
+          PUSH_SHA="${{ github.event.after }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ "$VERDICT" = "red" ]; then
+            TITLE="Data: source_index stale AFTER regen (post-regen leg-c red)"
+            SEARCH="source_index stale AFTER regen"
+            BODY="Push ${PUSH_SHA:0:8}: source_index.json was regenerated and committed, yet leg-c (staleness) is still RED on the fresh index -- a real defect in the regen or the leg-c inputs, not a mid-refresh state.
+
+          Offenders: ${DETAIL}
+
+          Run: ${RUN_URL}
+
+          Post-regen leg-c: t/3895."
+          else
+            TITLE="Data: post-regen leg-c could NOT be evaluated"
+            SEARCH="post-regen leg-c could NOT be evaluated"
+            BODY="Push ${PUSH_SHA:0:8}: the index was regenerated, but the post-regen leg-c check failed without a verdict (Pester install, module import or cmdlet error). Leg-c for this push is UNVERIFIED -- treat as unknown, not green.
+
+          Run: ${RUN_URL}
+
+          Post-regen leg-c: t/3895."
+          fi
+
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+
+          EXISTING=$(gh issue list --label "data-compliance" --state open \
+            --search "$SEARCH" --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "data-compliance" --assignee jpsnover
+          fi
+
       - name: Alert — idempotent issue on regen failure
-        if: failure()
+        # Not when the only failure is the post-regen ALERT step itself (that would mislabel a
+        # successful regen as failed); that failure still reds the run.
+        if: failure() && steps.postregen_alert.outcome != 'failure'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
