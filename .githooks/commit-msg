@@ -1,0 +1,335 @@
+#!/usr/bin/env bash
+# Taxonomy node-ID removal guard (t/3851).
+#
+# Refuses a commit that removes node IDs from taxonomy/Origin/{accelerationist,
+# safetyist,skeptic,situations}.json unless the commit message names exactly
+# those IDs in a `Taxonomy-Node-Removal:` trailer. Set equality, not presence:
+# a copied or stale trailer fails because the sets will not match.
+#
+# WHY commit-msg AND NOT pre-commit:
+#   The acknowledgment is a commit-message trailer, and at pre-commit time the
+#   message does not exist yet. commit-msg receives the message file as $1 and
+#   the index is still inspectable, so it is the only hook with BOTH halves.
+#   (t/3851 originally specified pre-commit; that was a mechanism error.)
+#
+# WHICH INDEX IT SEES (t/3851, e/243#4):
+#   git sets GIT_INDEX_FILE to a TEMP index for `git commit -- <paths>` and to
+#   .git/index for a bare commit. `git show :<path>` honours it, so this hook
+#   sees exactly what will be committed -- a peer's unrelated staged removal is
+#   invisible during a pathspec commit. Verified both paths.
+#
+# WARN-ONLY for now -- prints and exits 0. Per Gate Promotion it stays
+# advisory for >=1 green cycle against the real repo, and the flip to blocking
+# (exit 1) is gated on a mandatory Second Opinion (e/243). DO NOT flip without
+# it. Flip = set WARN_ONLY=0 below and update this header's status line.
+#
+# READ THIS BEFORE FLIPPING -- what the warn-only cycle will NOT have proven
+# (t/3851, e/243#10):
+#   Organic taxonomy traffic is ADDITION-ONLY. Measured: 18 consecutive commits
+#   at monotonic growth (204 -> 223 nodes), zero removals; an earlier cycle was
+#   +5/0. So a green warn-only cycle from real traffic exercises the
+#   NO-REMOVAL EARLY-EXIT path -- which was never in doubt -- and says nothing
+#   about the refusal path being promoted. It satisfies ">=1 green cycle
+#   against the real target" in letter, not in substance.
+#   The blocking behaviour IS proven offline: 12 arms x both WARN_ONLY settings
+#   (below), both index paths, through real `git commit`. What no real-data run
+#   has yet exercised is a refusal against the actual 1429-node corpus.
+#   If you want that before flipping, it is cheap and writes nothing:
+#     git clone --depth 1 file://<data-repo> <tmp>/guard-probe
+#     cp this file + taxonomy_node_removal_verdict.py into <tmp>/.githooks/
+#     cd <tmp> && git config core.hooksPath .githooks && set WARN_ONLY=0 HERE
+#     drop one node from taxonomy/Origin/accelerationist.json, stage, commit
+#       -> expect REFUSAL and no new SHA; then confirm a legitimate commit in
+#          the same clone still succeeds (otherwise "nothing happened" cannot
+#          be told apart from a broken hook).
+#   A CLONE, not a worktree: core.hooksPath lives in .git/config, which
+#   worktrees SHARE -- flipping WARN_ONLY in a worktree flips it for the shared
+#   checkout too.
+#   Status 2026-10-03: probe designed (e/243#10) and NOT run; PI chose to wait
+#   for organic traffic instead. This annotation exists so the flip is not made
+#   on the assumption that an organic green covered the refusal path.
+#
+#   BUT DO NOT READ THE ABOVE AS "FLIPPING IS RISKY" (e/243#12). The evidence
+#   is incomplete; the risk is low, because this guard's failure direction is
+#   benign. A WRONG REFUSAL blocks a legitimate commit and the author sees a
+#   named node, a paste-ready trailer, the whole-index discriminator and
+#   collateral counts -- worst case they reach for --no-verify. Cost: one
+#   confused author and a loud signal. It does not cost data. The failure this
+#   guard exists for runs the OTHER way -- a deletion passing silently, which
+#   is what WARN_ONLY=1 permits today and what the flip closes.
+#   So the first organic REMOVAL after the flip is itself the refusal test,
+#   conducted safely, because a wrong refusal is self-explaining. Waiting for
+#   traffic is a defensible sequence, not a gap papered over; it is slower to
+#   full evidence with the asymmetry pointing the right way throughout.
+#
+# DELIBERATELY NOT env-overridable (e/243#10): making WARN_ONLY settable from
+# the environment to ease testing would add a bypass quieter than --no-verify
+# to a guard whose value is being hard to satisfy by accident. The clone above
+# gives the same testability with no production surface.
+#
+# GV status: WARN-ONLY, promotion-ready pending the SO sign-off below.
+#   Predicate: 7/7 arms (taxonomy_node_removal_verdict.py).
+#   Hook: 12 arms x BOTH WARN_ONLY settings = 24/24, every arm driven through a
+#         real `git commit` (NOT a manual hook call -- a manual invocation reads
+#         as a full-index commit and so covers only one of the two real paths;
+#         that gap is what made the first six-arm set single-path. e/243#4.)
+#   Index paths: bare/full-index AND pathspec, which now have DIFFERENT correct
+#         behaviours -- arm 9 (pathspec, own removal) must NOT print the
+#         whole-index warning that arm 2 (bare) must print.
+#   Arm 8: a peer's staged removal is invisible to a pathspec commit (the
+#         committed tree keeps all 3 nodes) -- no cross-agent false positive.
+#   Arm 11: a REACHABILITY arm, not a behaviour arm. It asserts the hook can
+#         never see an UNMERGED watched file, which is what licenses this hook
+#         to ignore `U` (git aborts first: "Committing is not possible because
+#         you have unmerged files" / "cannot do a partial commit during a
+#         merge"). If a future git runs hooks there, arm 11 fails and the
+#         omission becomes a real gap. A `U` branch was written and then
+#         REMOVED on proving it unreachable -- it would have been dead code
+#         that read in review as covering the hazard (the Class-8 shape).
+#   Real repo: 1429 nodes HEAD == 1429 index, reason=no-removals, 0 false
+#         positives; edges.json 16.6 MB / 34,284 edges parses.
+#   Arm set: scratchpad gv_3851_v2.sh (reseeds from a fixed SHA and asserts each
+#         arm actually staged something -- an earlier version silently no-op'd
+#         two arms with "nothing to commit" and read as passing).
+#
+# Origin: acc-intentions-003 was deleted with 194 edges on 2026-09-30 and was
+# caught only incidentally, by a guard looking for something else.
+#
+# Override: git commit --no-verify  (skips EVERY hook, including the
+#           rationale-drop guard in pre-commit -- prefer the trailer)
+#
+# Install: git config core.hooksPath .githooks   (once per checkout)
+
+set -euo pipefail
+
+WARN_ONLY=1
+
+MSG_FILE="${1:?commit-msg hook requires the message file path}"
+
+WATCHED=(
+  "taxonomy/Origin/accelerationist.json"
+  "taxonomy/Origin/safetyist.json"
+  "taxonomy/Origin/skeptic.json"
+  "taxonomy/Origin/situations.json"
+)
+
+STAGED_LIST="$(git diff --cached --name-only)"
+HIT=0
+for f in "${WATCHED[@]}"; do
+  if printf '%s\n' "$STAGED_LIST" | grep -qF "$f"; then HIT=1; break; fi
+done
+[ "$HIT" -eq 1 ] || exit 0
+
+git rev-parse --verify HEAD >/dev/null 2>&1 || exit 0
+
+# PYTHONDONTWRITEBYTECODE: importing the verdict module would otherwise leave
+# .githooks/__pycache__/ as untracked noise in every `git status` of a repo
+# whose cleanliness is actively monitored (the t/2452 drift backstop).
+PYTHONDONTWRITEBYTECODE=1 python3 - "$MSG_FILE" "$WARN_ONLY" <<'PYEOF'
+import json
+import os
+import re
+import subprocess
+import sys
+
+sys.path.insert(0, os.path.join(os.getcwd(), ".githooks"))
+from taxonomy_node_removal_verdict import node_removal_verdict  # noqa: E402
+
+MSG_FILE = sys.argv[1]
+WARN_ONLY = sys.argv[2] == "1"
+EXIT_BAD = 0 if WARN_ONLY else 1
+
+WATCHED = [
+    "taxonomy/Origin/accelerationist.json",
+    "taxonomy/Origin/safetyist.json",
+    "taxonomy/Origin/skeptic.json",
+    "taxonomy/Origin/situations.json",
+]
+EDGES = "taxonomy/Origin/edges.json"
+SITUATIONS = "taxonomy/Origin/situations.json"
+
+TRAILER_RE = re.compile(r"^\s*Taxonomy-Node-Removal\s*:\s*(.+)$", re.IGNORECASE)
+
+
+def err(msg):
+    print(msg, file=sys.stderr)
+
+
+def read_json_at(ref_path):
+    """-> (doc, status) with status in {'ok','absent','unparseable'}.
+    `git show` yields LF-normalised content, so this is CRLF-safe on Windows."""
+    try:
+        raw = subprocess.run(["git", "show", ref_path],
+                             capture_output=True, text=True, check=True).stdout
+    except subprocess.CalledProcessError:
+        return None, "absent"
+    try:
+        return json.loads(raw), "ok"
+    except json.JSONDecodeError:
+        return None, "unparseable"
+
+
+def node_ids(doc):
+    nodes = doc.get("nodes") if isinstance(doc, dict) else None
+    if not isinstance(nodes, list):
+        return None
+    return {n["id"] for n in nodes if isinstance(n, dict) and "id" in n}
+
+
+# Files this commit will actually touch. Respects GIT_INDEX_FILE, so under a
+# pathspec commit this is the pathspec, not the whole shared index.
+commit_files = subprocess.run(["git", "diff", "--cached", "--name-only"],
+                              capture_output=True, text=True).stdout.split()
+
+# Which KIND of commit is this? (e/243#6)
+#   pathspec  -> GIT_INDEX_FILE is a temp lock, e.g. .git/next-index-25812.lock
+#   bare / -a -> .git/index  (also the default when the var is UNSET, which is
+#                why a manually-invoked hook correctly reads as full-index)
+# Only a full-index commit can sweep in a peer's staged work, so the
+# re-commit-with-a-pathspec advice is shown only there.
+_idx = os.environ.get("GIT_INDEX_FILE", "")
+FULL_INDEX_COMMIT = (_idx == "") or os.path.basename(_idx) == "index"
+
+# A watched file absent from the index means it is being DELETED wholesale, so
+# every node in it really is removed -- which is what the verdict then reports
+# (arm 12). Two non-cases, both investigated and both deliberately NOT guarded,
+# because a branch for either would be unreachable dead code:
+#   - UNMERGED / conflicted path: git aborts the commit BEFORE any hook runs
+#     ("Committing is not possible because you have unmerged files"; a pathspec
+#     commit gets "cannot do a partial commit during a merge"), so this hook can
+#     never observe a `U` entry.
+#   - empty / garbage GIT_INDEX_FILE: git reports every file as deleted and
+#     committing really would delete them, so "all nodes removed" is TRUE for
+#     that input. Git never hands a hook such an index anyway.
+head_ids, staged_ids = set(), set()
+repairing = []          # watched files unparseable at HEAD but fixed in this commit
+for path in WATCHED:
+    h_doc, h_st = read_json_at(f"HEAD:{path}")
+    s_doc, s_st = read_json_at(f":{path}")
+
+    # Q4 escape (e/243#2): HEAD is corrupt and this commit fixes it -> allow the
+    # repair. Corruption being COMMITTED is still refused, below.
+    if h_st == "unparseable" and s_st == "ok":
+        repairing.append(path)
+        continue
+    if s_st == "unparseable":
+        err(f"[node-removal-guard] COULD NOT VERIFY: staged {path} is not parseable JSON.")
+        err("  Refusing rather than guessing. Fix the JSON, or commit the repair on its own.")
+        sys.exit(EXIT_BAD)
+
+    h_ids = node_ids(h_doc) if h_st == "ok" else set()
+    s_ids = node_ids(s_doc) if s_st == "ok" else set()
+    if h_ids is None or s_ids is None:
+        err(f"[node-removal-guard] COULD NOT VERIFY: {path} has no 'nodes' array.")
+        sys.exit(EXIT_BAD)
+    head_ids |= h_ids
+    staged_ids |= s_ids
+
+if repairing:
+    print(f"[node-removal-guard] JSON repair detected ({', '.join(repairing)}) — "
+          "those files skipped for this commit.")
+
+# Assert our own input shape: reading nothing means the extractor failed, not
+# that nothing changed. Never pass on that.
+if not head_ids and not repairing:
+    err("[node-removal-guard] COULD NOT VERIFY: read 0 node IDs from HEAD. "
+        "This is a guard failure, not a clean result.")
+    sys.exit(EXIT_BAD)
+
+acked = set()
+with open(MSG_FILE, "r", encoding="utf-8") as fh:
+    for line in fh:
+        if line.lstrip().startswith("#"):
+            continue  # git strips comments only AFTER this hook runs
+        m = TRAILER_RE.match(line)
+        if m:
+            acked |= {t.strip() for t in m.group(1).split(",") if t.strip()}
+
+v = node_removal_verdict(head_ids, staged_ids, acked)
+
+if v["ok"]:
+    if v["reason"] == "acknowledged-removal":
+        print(f"[node-removal-guard] OK: {len(v['removed'])} acknowledged removal(s).")
+    sys.exit(0)
+
+removed = set(v["removed"])
+
+
+def collateral(ids):
+    """Edges + situation linked_nodes referencing the removed IDs. Reported,
+    never gated on (e/243#2 Q2) -- the acknowledgment should be INFORMED, and
+    the incident's severity was the 194 edges, not the one node."""
+    out = []
+    doc, st = read_json_at(f":{EDGES}")
+    if st == "ok":
+        edges = doc.get("edges") if isinstance(doc, dict) else None
+        if not isinstance(edges, list):
+            out.append("edges.json has no 'edges' array — collateral NOT counted")
+        elif not edges:
+            out.append("edges.json parsed but held 0 edges — collateral NOT counted")
+        else:
+            n = sum(1 for e in edges if isinstance(e, dict)
+                    and (e.get("source") in ids or e.get("target") in ids))
+            out.append(f"{n} edge(s) reference the removed node(s)")
+    else:
+        out.append(f"edges.json {st} — collateral NOT counted")
+
+    doc, st = read_json_at(f":{SITUATIONS}")
+    if st == "ok":
+        nodes = doc.get("nodes") if isinstance(doc, dict) else []
+        n = sum(1 for s in nodes if isinstance(s, dict)
+                and any(x in ids for x in (s.get("linked_nodes") or [])))
+        out.append(f"{n} situation(s) link to the removed node(s)")
+    else:
+        out.append(f"situations.json {st} — collateral NOT counted")
+    return out
+
+
+err("")
+if v["unacknowledged"]:
+    err(f"[node-removal-guard] {len(v['unacknowledged'])} node ID(s) would be REMOVED "
+        "without acknowledgment:")
+    for i in v["unacknowledged"]:
+        err(f"    {i}")
+if v["spurious"]:
+    err("[node-removal-guard] trailer names ID(s) that are NOT being removed "
+        "(stale or copied trailer):")
+    for i in v["spurious"]:
+        err(f"    {i}")
+
+if removed:
+    err("")
+    err("  Collateral this removal also carries:")
+    for line in collateral(removed):
+        err(f"    {line}")
+    err("  (reported, not blocked — acc-intentions-003 took 194 edges with it)")
+
+err("")
+err("  If the removal is YOURS and intended, name exactly those IDs:")
+err("")
+err("      Taxonomy-Node-Removal: " + ", ".join(v["unacknowledged"] or v["removed"]))
+err("")
+
+# Shown ONLY for a whole-index commit, the one case that can sweep in a peer's
+# staged work. A pathspec commit cannot, so it gets the trailer advice alone
+# and is spared a warning that would not apply to it. (e/243#6)
+if FULL_INDEX_COMMIT:
+    err("  ⚠ This is a WHOLE-INDEX commit — it includes everything currently")
+    err("    staged, which on a shared checkout may include another agent's work:")
+    for f in commit_files:
+        err(f"        {f}")
+    err("")
+    err("    If the taxonomy change above is NOT yours, do NOT add the trailer —")
+    err("    that would certify someone else's deletion into your provenance")
+    err("    record. Re-commit with an explicit pathspec instead:")
+    err("")
+    err("        git commit -m \"...\" -- <your paths>")
+    err("")
+
+if WARN_ONLY:
+    err("[node-removal-guard] WARN-ONLY: commit allowed. Will block once promoted (t/3851).")
+    sys.exit(0)
+
+err("[node-removal-guard] BLOCKING: commit rejected.")
+sys.exit(1)
+PYEOF
