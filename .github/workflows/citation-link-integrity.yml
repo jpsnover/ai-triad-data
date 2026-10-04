@@ -61,10 +61,28 @@ jobs:
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.event.after }}"
           ZERO="0000000000000000000000000000000000000000"
+          # t/3895: is a source_index regen PENDING for this push? True when the push changed a
+          # regen input but NOT source_index.json itself -- source-index-regen.yml will rebuild the
+          # index and evaluate leg-c on it (its "Post-regen leg-c" step). Here, leg-c is then
+          # reported NEUTRAL (refresh pending) instead of red: the index is mid-refresh BY DESIGN.
+          # REGEN_INPUTS -- keep IDENTICAL to the list in source-index-regen.yml.
+          REGEN_INPUTS="summaries/ taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json"
           if [ "$BEFORE" = "$ZERO" ]; then
-            echo "Zero-SHA push (first/force-push) — full-set validation"
+            echo "Zero-SHA push (first/force-push) — full-set validation; regen also runs full-set"
             echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
+            echo "regen_pending=true" >> "$GITHUB_OUTPUT"
           else
+            # shellcheck disable=SC2086 -- REGEN_INPUTS is a deliberate word-split pathspec list
+            if ! RDIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
+              # Can't tell -> NOT pending: evaluate leg-c normally (a red stays visible, never hidden).
+              echo "::warning::regen-pending check: git diff failed ($RDIFF); leg-c evaluated normally"
+              echo "regen_pending=false" >> "$GITHUB_OUTPUT"
+            elif [ -n "$RDIFF" ] && [ -z "$(git diff --name-only "$BEFORE..$AFTER" -- taxonomy/Origin/source_index.json)" ]; then
+              echo "regen inputs changed without an index update — leg-c here is refresh-pending (t/3895)"
+              echo "regen_pending=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "regen_pending=false" >> "$GITHUB_OUTPUT"
+            fi
             # legs a+c read summaries/ and taxonomy/Origin/ (POV files, situations.json, source_index.json)
             DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- 'summaries/' 'taxonomy/Origin/' 2>/dev/null)
             if [ -n "$DIFF" ]; then
@@ -87,6 +105,7 @@ jobs:
         shell: pwsh
         env:
           AI_TRIAD_DATA_ROOT: ${{ github.workspace }}   # data dirs resolve from the checked-out repo (bdi precedent)
+          REGEN_PENDING: ${{ steps.inputcheck.outputs.regen_pending }}
         run: |
           Import-Module ./ai-triad-research/scripts/AITriad/AITriad.psm1 -Force -WarningAction SilentlyContinue
 
@@ -94,17 +113,26 @@ jobs:
           # (that repo is private + not checked out here yet — t/3745#4). legs a+c run normally.
           $r = Test-CitationLinkIntegrity -SkipSourceResolution
 
+          # t/3895: when a regen is pending, leg-c's verdict HERE is about an index that is being
+          # rebuilt right now -- report it NEUTRAL and leave it out of this run's pass/fail. The
+          # authoritative leg-c verdict for this push is the "Post-regen leg-c" step in
+          # source-index-regen.yml. A NON-pending push (no regen input changed, or the push
+          # carried its own index) still evaluates leg-c normally.
+          $regenPending = ($env:REGEN_PENDING -eq 'true')
           foreach ($leg in $r.results) {
             $n = @($leg.offenders).Count
             if ($leg.leg -eq 'b') {
               Write-Host "leg (b) source-resolution: SKIPPED (sources token not yet provisioned here — t/3745)"
+            } elseif ($leg.leg -eq 'c' -and $regenPending) {
+              Write-Host "leg (c) $($leg.name): REFRESH-PENDING (neutral; pre-regen pass=$($leg.pass) offenders=$n) -- authoritative verdict is source-index-regen.yml 'Post-regen leg-c' (t/3895)"
             } else {
               Write-Host "leg ($($leg.leg)) $($leg.name): pass=$($leg.pass) offenders=$n"
             }
           }
 
-          if (-not $r.pass) {
-            foreach ($leg in @($r.results | Where-Object { -not $_.pass })) {
+          $failing = @($r.results | Where-Object { -not $_.pass -and -not ($_.leg -eq 'c' -and $regenPending) })
+          if ($failing.Count -gt 0) {
+            foreach ($leg in $failing) {
               $sample = @($leg.offenders | Select-Object -First 5 | ForEach-Object { $_ | ConvertTo-Json -Compress -Depth 4 }) -join '; '
               Write-Host "::warning::Citation-integrity leg ($($leg.leg)) $($leg.name): $(@($leg.offenders).Count) offender(s) — $sample"
             }
