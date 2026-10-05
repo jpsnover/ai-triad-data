@@ -16,6 +16,10 @@ set -euo pipefail
 
 EDGES_PATH="taxonomy/Origin/edges.json"
 
+# t/3892: situation BDI check. Runs first, independent of the edges guard below,
+# which exits early when edges.json is not staged.
+"$(dirname "$0")/situations-bdi-check"
+
 # Only run if edges.json is staged.
 if ! git diff --cached --name-only | grep -qF "$EDGES_PATH"; then
   exit 0

@@ -16,7 +16,34 @@ The acknowledgment contract (t/3851#2, Q1):
     - removed but not named  -> an unacknowledged deletion (the incident)
     - named but not removed  -> a stale/copied trailer, so the next real
                                 removal would ride in on it unnoticed
+
+Trailer parsing also lives here (t/3870#5), so the client hook (commit-msg)
+and the push-side re-check (.github/scripts/node_removal_push_check.py) read
+the acknowledgment identically. A second copy of the parser is how the two
+layers would come to disagree about the same commit -- the same two-copies
+drift as the debate pacing presets (t/3882).
 """
+
+import re
+
+TRAILER_RE = re.compile(r"^\s*Taxonomy-Node-Removal\s*:\s*(.+)$", re.IGNORECASE)
+
+
+def acknowledged_ids(message_lines):
+    """IDs named in Taxonomy-Node-Removal trailers. Pure: takes lines, not a file.
+
+    Comma-separated and repeatable. Lines starting with '#' are skipped: git
+    strips comment lines only AFTER the commit-msg hook runs, so a commented-out
+    trailer in the editor template must not count as an acknowledgment.
+    """
+    acked = set()
+    for line in message_lines:
+        if line.lstrip().startswith("#"):
+            continue
+        m = TRAILER_RE.match(line)
+        if m:
+            acked |= {t.strip() for t in m.group(1).split(",") if t.strip()}
+    return acked
 
 
 def node_removal_verdict(head_ids, staged_ids, acked_ids):

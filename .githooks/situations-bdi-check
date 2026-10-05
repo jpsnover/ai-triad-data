@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+# Situation BDI pre-commit check (t/3892). Called from .githooks/pre-commit.
+#
+# Refuses (once promoted) a commit whose STAGED situations.json introduces or
+# modifies a situation without a per-POV {belief, desire, intention} decomposition.
+# Changed-only: an untouched legacy node never blocks an unrelated commit.
+#
+# WHY HERE: this is the last boundary every writer of situations.json shares --
+# editor, PowerShell, pipeline, and direct agent JSON edits (t/3671#14, t/3892).
+#
+# WHAT IT READS (t/3892#2):
+#   candidate = `git show :<path>`  -- the content being committed. Honours
+#               GIT_INDEX_FILE, so a pathspec commit sees its temp index (t/3851#6).
+#               NOT the working tree: on a shared checkout another agent's
+#               unstaged edit must not be validated.
+#   baseline  = `git show HEAD:<path>`
+#   rule      = Get-SituationBdiViolationsFromJson + Test-SituationBdiDecomposition,
+#               read from the CODE repo's ${AI_TRIAD_CHECKER_REF:-origin/main} BLOB,
+#               not its working tree: the shared code checkout can be stale or carry
+#               uncommitted edits, and the gate must enforce reviewed code only.
+#               Freshness is the code repo's last fetch.
+#
+# WHY NOT `Import-Module AITriad`: 6-17 s per commit (measured, t/3892#2) drives
+# --no-verify, which disarms every data-repo guard. Loading two files takes ~0.9 s.
+#
+# WARN-ONLY for now. Per Gate Promotion it stays advisory for >=1 real green cycle,
+# and the flip to blocking (WARN_ONLY=0) needs a mandatory Second Opinion. When
+# reading the warn cycle, look for the printed WARNING lines -- this script exits 0
+# in warn mode whether or not it fired, so "the commit succeeded" proves nothing
+# (Sage #202).
+#
+# COULD NOT VERIFY (pwsh missing, checker unreadable, JSON unparseable) is reported
+# as unverified, never as a pass; it blocks too once promoted.
+#
+# Not covered (after-push compliance, t/3671, is the backstop): --no-verify,
+# clones without core.hooksPath (t/3869), server-side writes (bot, merges, API).
+
+set -uo pipefail
+export MSYS_NO_PATHCONV=1   # keep `:path` / `HEAD:path` revspecs intact under Git-for-Windows bash
+
+WARN_ONLY=1
+WATCH="taxonomy/Origin/situations.json"
+TAG="[situation-bdi]"
+
+# Only when situations.json is part of this commit.
+git diff --cached --name-only -- "$WATCH" | grep -qxF "$WATCH" || exit 0
+# A whole-file deletion is not this check's concern (node removals: commit-msg, t/3851).
+git cat-file -e ":$WATCH" 2>/dev/null || exit 0
+
+finish () {  # $1 = 0 pass, 1 bad
+  if [ "$1" -ne 0 ] && [ "$WARN_ONLY" -eq 0 ]; then
+    echo "$TAG BLOCKING: commit refused." >&2
+    exit 1
+  fi
+  [ "$1" -ne 0 ] && echo "$TAG WARN-ONLY: commit allowed. Will block once promoted (t/3892)." >&2
+  exit 0
+}
+unverified () {
+  echo "" >&2
+  echo "$TAG COULD NOT VERIFY: $1" >&2
+  echo "  The staged situations were NOT checked. This is not a pass." >&2
+  finish 1
+}
+
+tmp="$(mktemp -d)" || unverified "could not create a temp dir"
+trap 'rm -rf "$tmp"' EXIT
+
+git show "HEAD:$WATCH" > "$tmp/base.json" 2>/dev/null || : > "$tmp/base.json"   # no HEAD copy = first commit
+git show ":$WATCH"     > "$tmp/cand.json" 2>/dev/null || unverified "could not read the staged $WATCH"
+
+command -v pwsh >/dev/null 2>&1 || unverified "pwsh not found on PATH"
+
+CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$(git rev-parse --show-toplevel)/../ai-triad-research}"
+# MSYS_NO_PATHCONV=1 (above) also stops POSIX paths being converted for git.exe, so a
+# POSIX-form override (/c/Users/...) would not resolve and every commit would read
+# COULD NOT VERIFY. Normalise to a Windows-form path git.exe understands. (Found when a
+# latency probe invoked the hook directly; `git commit` had been converting the env var
+# for the GV runs, which is why they passed.)
+if command -v cygpath >/dev/null 2>&1; then CODE_ROOT="$(cygpath -m "$CODE_ROOT")"; fi
+REF="${AI_TRIAD_CHECKER_REF:-origin/main}"
+git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Private/Test-SituationBdiDecomposition.ps1" \
+  > "$tmp/classifier.ps1" 2>/dev/null || unverified "classifier not readable at $REF in $CODE_ROOT"
+git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Public/Get-SituationBdiViolationsFromJson.ps1" \
+  > "$tmp/checker.ps1" 2>/dev/null || unverified "checker not readable at $REF in $CODE_ROOT"
+
+# pwsh is a native Windows binary: hand it Windows paths when running under MSYS.
+winpath () { if command -v cygpath >/dev/null 2>&1; then cygpath -w "$1"; else printf '%s' "$1"; fi; }
+RUNNER="$(dirname "$0")/situations-bdi-runner.ps1"
+[ -f "$RUNNER" ] || unverified "runner missing: $RUNNER"
+
+out="$(pwsh -NoProfile -NonInteractive -File "$(winpath "$RUNNER")" \
+        -BaselinePath "$(winpath "$tmp/base.json")" -CandidatePath "$(winpath "$tmp/cand.json")" \
+        -ClassifierPath "$(winpath "$tmp/classifier.ps1")" -CheckerPath "$(winpath "$tmp/checker.ps1")" 2>&1)"
+rc=$?
+
+case "$rc" in
+  0) exit 0 ;;
+  1)
+    echo "" >&2
+    echo "$TAG WARNING: staged situations are not BDI-decomposed:" >&2
+    printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{printf "    %s  [%s]  %s\n",$2,$3,$4}' >&2
+    echo "" >&2
+    echo "  Each POV needs non-empty belief, desire and intention (not N/A, none, tbd, -)." >&2
+    echo "  Create situations through the editor or New-SituationNode, which decompose them." >&2
+    finish 1 ;;
+  *)
+    unverified "$(printf '%s\n' "$out" | awk -F'\t' '$1=="COULD-NOT-VERIFY"{print $2}' | head -1) (runner exit $rc)" ;;
+esac

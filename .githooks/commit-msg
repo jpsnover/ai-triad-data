@@ -31,7 +31,7 @@
 #   NO-REMOVAL EARLY-EXIT path -- which was never in doubt -- and says nothing
 #   about the refusal path being promoted. It satisfies ">=1 green cycle
 #   against the real target" in letter, not in substance.
-#   The blocking behaviour IS proven offline: 12 arms x both WARN_ONLY settings
+#   The blocking behaviour IS proven offline: 15 arms x both WARN_ONLY settings
 #   (below), both index paths, through real `git commit`. What no real-data run
 #   has yet exercised is a refusal against the actual 1429-node corpus.
 #   If you want that before flipping, it is cheap and writes nothing:
@@ -68,8 +68,12 @@
 # gives the same testability with no production surface.
 #
 # GV status: WARN-ONLY, promotion-ready pending the SO sign-off below.
-#   Predicate: 7/7 arms (taxonomy_node_removal_verdict.py).
-#   Hook: 12 arms x BOTH WARN_ONLY settings = 24/24, every arm driven through a
+#   Predicate: 7/7 arms (taxonomy_node_removal_verdict.py); shared trailer
+#         parser acknowledged_ids 7/7 (t/3870#5: the push-side re-check imports it).
+#   Hook: 15 arms x BOTH WARN_ONLY settings = 30/30 (arms 13-15: UTF-8 BOM in the
+#         staged copy, at HEAD, and on both sides -- proven to discriminate against
+#         the pre-fix hook, where arm 14 let a removal through; t/3851#11-12).
+#         Every arm driven through a
 #         real `git commit` (NOT a manual hook call -- a manual invocation reads
 #         as a full-index commit and so covers only one of the two real paths;
 #         that gap is what made the first six-arm set single-path. e/243#4.)
@@ -88,7 +92,7 @@
 #         that read in review as covering the hazard (the Class-8 shape).
 #   Real repo: 1429 nodes HEAD == 1429 index, reason=no-removals, 0 false
 #         positives; edges.json 16.6 MB / 34,284 edges parses.
-#   Arm set: scratchpad gv_3851_v2.sh (reseeds from a fixed SHA and asserts each
+#   Arm set: scratchpad gv_3851_v3.sh (reseeds from a fixed SHA and asserts each
 #         arm actually staged something -- an earlier version silently no-op'd
 #         two arms with "nothing to commit" and read as passing).
 #
@@ -133,7 +137,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.join(os.getcwd(), ".githooks"))
-from taxonomy_node_removal_verdict import node_removal_verdict  # noqa: E402
+from taxonomy_node_removal_verdict import acknowledged_ids, node_removal_verdict  # noqa: E402
 
 MSG_FILE = sys.argv[1]
 WARN_ONLY = sys.argv[2] == "1"
@@ -148,7 +152,6 @@ WATCHED = [
 EDGES = "taxonomy/Origin/edges.json"
 SITUATIONS = "taxonomy/Origin/situations.json"
 
-TRAILER_RE = re.compile(r"^\s*Taxonomy-Node-Removal\s*:\s*(.+)$", re.IGNORECASE)
 
 
 def err(msg):
@@ -157,15 +160,24 @@ def err(msg):
 
 def read_json_at(ref_path):
     """-> (doc, status) with status in {'ok','absent','unparseable'}.
-    `git show` yields LF-normalised content, so this is CRLF-safe on Windows."""
+    `git show` yields LF-normalised content, so this is CRLF-safe on Windows.
+
+    Reads BYTES, not text (DevOps, t/3851): json.loads(bytes) detects a UTF-8
+    BOM itself, while text=True decodes with the LOCALE encoding, so a BOM
+    survives as U+FEFF (or as mojibake under cp1252) and json rejects the file.
+    PowerShell writes BOM'd JSON (e.g. afd1aae4). Unhandled, that made a valid
+    file 'unparseable', and a BOM'd HEAD copy hit the Q4 repair escape below,
+    which SKIPS the file: a node removed in that commit passed unchecked.
+    Same decode path as the rationale guard in pre-commit, which was never
+    affected for this reason."""
     try:
         raw = subprocess.run(["git", "show", ref_path],
-                             capture_output=True, text=True, check=True).stdout
+                             capture_output=True, check=True).stdout
     except subprocess.CalledProcessError:
         return None, "absent"
     try:
         return json.loads(raw), "ok"
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, UnicodeDecodeError):
         return None, "unparseable"
 
 
@@ -236,14 +248,11 @@ if not head_ids and not repairing:
         "This is a guard failure, not a clean result.")
     sys.exit(EXIT_BAD)
 
-acked = set()
-with open(MSG_FILE, "r", encoding="utf-8") as fh:
-    for line in fh:
-        if line.lstrip().startswith("#"):
-            continue  # git strips comments only AFTER this hook runs
-        m = TRAILER_RE.match(line)
-        if m:
-            acked |= {t.strip() for t in m.group(1).split(",") if t.strip()}
+# Shared parser (t/3870#5): the push-side re-check imports the same function,
+# so the two layers cannot disagree about what a commit acknowledged.
+# utf-8-sig: a message file written by a PowerShell editor may carry a BOM.
+with open(MSG_FILE, "r", encoding="utf-8-sig") as fh:
+    acked = acknowledged_ids(fh)
 
 v = node_removal_verdict(head_ids, staged_ids, acked)
 
