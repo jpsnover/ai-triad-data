@@ -84,9 +84,17 @@ CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$DATA_MAIN/../ai-triad-research}"
 # for the GV runs, which is why they passed.)
 if command -v cygpath >/dev/null 2>&1; then CODE_ROOT="$(cygpath -m "$CODE_ROOT")"; fi
 REF="${AI_TRIAD_CHECKER_REF:-origin/main}"
-git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Private/Test-SituationBdiDecomposition.ps1" \
+# Git exports GIT_DIR / GIT_INDEX_FILE / GIT_WORK_TREE to hooks, and GIT_DIR beats -C: without
+# clearing them, `git -C <code repo>` silently reads the DATA repo and the rule is never found
+# (seen in worktree commits, live-fire 2026-10-05). Clear them for code-repo reads only; the
+# staged-content read above must keep GIT_INDEX_FILE.
+code_git () {
+  env -u GIT_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_COMMON_DIR -u GIT_PREFIX \
+      -u GIT_OBJECT_DIRECTORY -u GIT_ALTERNATE_OBJECT_DIRECTORIES git -C "$CODE_ROOT" "$@"
+}
+code_git show "$REF:scripts/AITriad/Private/Test-SituationBdiDecomposition.ps1" \
   > "$tmp/classifier.ps1" 2>/dev/null || unverified "classifier not readable at $REF in $CODE_ROOT"
-git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Public/Get-SituationBdiViolationsFromJson.ps1" \
+code_git show "$REF:scripts/AITriad/Public/Get-SituationBdiViolationsFromJson.ps1" \
   > "$tmp/checker.ps1" 2>/dev/null || unverified "checker not readable at $REF in $CODE_ROOT"
 
 # pwsh is a native Windows binary: hand it Windows paths when running under MSYS.
