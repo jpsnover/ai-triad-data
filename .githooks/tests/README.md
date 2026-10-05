@@ -1,0 +1,60 @@
+# Hook arm scripts
+
+Gate Verification arms for the data-repo hooks. Every arm goes through a **real `git commit`**, so it exercises the same `GIT_INDEX_FILE` that production uses, on **both index paths** (a bare commit and a pathspec commit).
+
+> **These scripts PRINT results; they do not ASSERT.** A CI job (t/3913) must compare each arm against the table below, checking **both** the commit outcome (`COMMIT CREATED` / `REFUSED`) **and** the hook's tagged output. In warn mode every commit succeeds, so "the commit was created" proves nothing (Sage #202). Only the printed warning distinguishes a firing arm from a silent one.
+
+| Script | Hook | Runs in | Needs |
+|---|---|---|---|
+| `gv-commit-msg.sh <1\|0>` | `commit-msg` (node-removal guard, t/3851) | temp repo | bash, git, python3 |
+| `gv-situations-bdi.sh <1\|0>` | `pre-commit` → `situations-bdi-check` (t/3892) | temp repo | + `pwsh`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `origin/main` fetched |
+| `livefire-situations-bdi.sh [ref]` | the **deployed** situation check | **a throwaway worktree of this repo**: real `core.hooksPath`, real `situations.json`; commits are local and discarded, never pushed | + `pwsh`, the code repo as a sibling of this repo's main checkout |
+
+`<1|0>` is `WARN_ONLY`. Run both. `HOOK_SRC` overrides which `.githooks` is under test (default: the directory above `tests/`).
+
+**Why the live-fire exists:** the two temp-repo harnesses could not catch the two defects fixed in #17. Both appear only **inside a linked worktree**, using the **default** code-root path: `--show-toplevel` resolves to the worktree, and git exports `GIT_DIR` to hooks, which overrides `git -C`. CI should run the hook arms from a linked worktree as well as a normal checkout.
+
+## Expected results
+
+### `gv-commit-msg.sh`
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert |
+|---|---|---|---|
+| 1 clean, taxonomy untouched | created | created | none |
+| 2 removal, no ack (bare) | **refused** | created | `[node-removal-guard]` naming `acc-002` + whole-index warning |
+| 3 removal, correct ack | created | created | OK line |
+| 4 removal, wrong ack | **refused** | created | names both the spurious (`acc-999`) and the unacked (`acc-002`) id |
+| 5 addition only | created | created | none |
+| 6 malformed staged JSON | **refused** | created | COULD NOT VERIFY / refuse-to-guess |
+| 7 HEAD malformed, commit repairs it | created | created | repair escape |
+| 8 pathspec, peer's removal staged | created (`README.md` only; 3 nodes at commit) | created | none |
+| 9 pathspec, own removal | **refused** | created | fires, trailer advice, **no** whole-index warning |
+| 10 pathspec, own removal, acked | created | created | OK line |
+| 11 reachability: unmerged path | git aborts first; the hook never runs | same | prints `OK: hook never ran` |
+| 12 whole-file deletion | **refused** | created | all of the file's nodes named |
+| 13 BOM in staged copy, no removal | created | created | none (**not** COULD NOT VERIFY) |
+| 14 BOM at HEAD, plain staged + removal | **refused** | created | fires, names `acc-002` |
+| 15 BOM on both sides + removal | **refused** | created | fires, names `acc-002` |
+
+### `gv-situations-bdi.sh`
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert |
+|---|---|---|---|
+| 1 `situations.json` not staged | created | created | none |
+| 2 valid new situation | created | created | none |
+| 3 flat new situation | **refused** | created | `[situation-bdi] WARNING` naming it |
+| 4 `N/A` belief (sentinel) | **refused** | created | `[situation-bdi] WARNING` |
+| 5 changed-only: untouched live flat + valid edit | created | created | none |
+| 6 index not disk: flat edit left unstaged | created (`sit-006` not in commit) | created | none |
+| 7 pathspec commit of a flat file | **refused** | created | `[situation-bdi] WARNING` |
+| 8 pathspec of unrelated file, peer's flat staged | created (`README.md` only) | created | none |
+| 9 checker ref unreadable | **refused** | created | `[situation-bdi] COULD NOT VERIFY` |
+| 10 `pwsh` absent from PATH | **refused** | created | `[situation-bdi] COULD NOT VERIFY` |
+
+### `livefire-situations-bdi.sh` (warn mode, as deployed)
+| Arm | Expect |
+|---|---|
+| A flat situation, bare commit | `[situation-bdi] WARNING` naming `sit-livefire-001` × 3 POVs |
+| B valid relabel of `sit-001` | no `[situation-bdi]` output |
+| C flat situation, pathspec commit | `[situation-bdi] WARNING` |
+| D bogus `AI_TRIAD_CODE_ROOT` | `COULD NOT VERIFY` naming the bogus path (override honoured) |
+
+Any `COULD NOT VERIFY` in arms A–C means the check **did not run**: a defect, not a pass.
