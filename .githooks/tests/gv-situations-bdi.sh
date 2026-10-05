@@ -101,8 +101,46 @@ git add taxonomy/Origin/situations.json; AI_TRIAD_CHECKER_REF=refs/does-not-exis
 arm "10 COULD NOT VERIFY: pwsh absent from PATH → reported, not silent"
 reseed; write_sit "$(node sit-001 a good)" "$(node sit-900 legacy flat)" "$(node sit-154 dep dep)" "$(node sit-010 x flat)"
 git add taxonomy/Origin/situations.json
-NOPWSH_PATH="$(printf '%s' "$PATH" | tr ':' '\n' | while read -r d; do [ -x "$d/pwsh" ] || [ -x "$d/pwsh.exe" ] || printf '%s:' "$d"; done)"
-echo "    pwsh visible with stripped PATH? $(PATH="$NOPWSH_PATH" command -v pwsh >/dev/null 2>&1 && echo YES-strip-failed || echo no)"
+# Build a PATH with pwsh removed but every other tool intact (t/3913). Platform-split:
+#  - Windows / Git-Bash: pwsh lives in its OWN directory (C:\Program Files\PowerShell\7), so
+#    dropping the dirs that contain it loses nothing else. Kept as-is: Git-Bash `ln -s` silently
+#    COPIES unless MSYS=winsymlinks:nativestrict (and native symlinks may need Developer Mode),
+#    so the symlink approach below is not portable there.
+#  - Linux/macOS: pwsh shares a dir with git/date/grep/sed (e.g. /usr/bin on Ubuntu), so dropping
+#    that dir broke the harness itself (rc 127, the hook never ran). Instead, keep every dir that
+#    does not hold pwsh, and replace each one that does with a temp bin of symlinks to everything
+#    in it EXCEPT pwsh.
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*)
+    NOPWSH_PATH="$(printf '%s' "$PATH" | tr ':' '\n' | while read -r d; do [ -x "$d/pwsh" ] || [ -x "$d/pwsh.exe" ] || printf '%s:' "$d"; done)"
+    ;;
+  *)
+    NOPWSH_BIN="$T/nopwsh-bin"; mkdir -p "$NOPWSH_BIN"
+    NOPWSH_PATH="$(printf '%s' "$PATH" | tr ':' '\n' | while read -r d; do
+      [ -n "$d" ] && [ -d "$d" ] || continue
+      if [ -x "$d/pwsh" ]; then
+        for f in "$d"/*; do
+          b="$(basename "$f")"
+          case "$b" in pwsh|pwsh-*|pwsh.exe) continue ;; esac
+          [ -e "$NOPWSH_BIN/$b" ] || ln -s "$f" "$NOPWSH_BIN/$b"
+        done
+        printf '%s:' "$NOPWSH_BIN"
+      else
+        printf '%s:' "$d"
+      fi
+    done)"
+    ;;
+esac
+# Reachability assert (TL p/331#1846): the stripped PATH must still run git and must NOT find
+# pwsh -- otherwise the arm below is testing a broken harness, not the hook. Fail LOUD, not as
+# a mysterious rc 127.
+if ! PATH="$NOPWSH_PATH" command -v git >/dev/null 2>&1; then
+  echo "    HARNESS ERROR: stripped PATH lost git -- arm 10 cannot test the hook"; exit 1
+fi
+if PATH="$NOPWSH_PATH" command -v pwsh >/dev/null 2>&1; then
+  echo "    HARNESS ERROR: pwsh still visible on stripped PATH -- arm 10 would not test 'pwsh absent'"; exit 1
+fi
+echo "    stripped PATH: git found, pwsh absent (reachability OK)"
 PATH="$NOPWSH_PATH" run "no pwsh"
 
 cd /; rm -rf "$T"
