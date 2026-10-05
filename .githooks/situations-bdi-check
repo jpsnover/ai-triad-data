@@ -70,7 +70,13 @@ git show ":$WATCH"     > "$tmp/cand.json" 2>/dev/null || unverified "could not r
 
 command -v pwsh >/dev/null 2>&1 || unverified "pwsh not found on PATH"
 
-CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$(git rev-parse --show-toplevel)/../ai-triad-research}"
+# Default code root = sibling of the data repo's MAIN checkout, found via the common git dir.
+# NOT --show-toplevel: inside a data worktree (.worktrees/<name>) that is the worktree, so the
+# sibling became .worktrees/ai-triad-research and every worktree commit read COULD NOT VERIFY.
+# Worktrees are the sanctioned way to commit data, so this mattered. Found by the deployed
+# live-fire 2026-10-05; the GV harness set AI_TRIAD_CODE_ROOT and never ran this default (#192).
+DATA_MAIN="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$DATA_MAIN/../ai-triad-research}"
 # MSYS_NO_PATHCONV=1 (above) also stops POSIX paths being converted for git.exe, so a
 # POSIX-form override (/c/Users/...) would not resolve and every commit would read
 # COULD NOT VERIFY. Normalise to a Windows-form path git.exe understands. (Found when a
@@ -78,9 +84,17 @@ CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$(git rev-parse --show-toplevel)/../ai-triad-re
 # for the GV runs, which is why they passed.)
 if command -v cygpath >/dev/null 2>&1; then CODE_ROOT="$(cygpath -m "$CODE_ROOT")"; fi
 REF="${AI_TRIAD_CHECKER_REF:-origin/main}"
-git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Private/Test-SituationBdiDecomposition.ps1" \
+# Git exports GIT_DIR / GIT_INDEX_FILE / GIT_WORK_TREE to hooks, and GIT_DIR beats -C: without
+# clearing them, `git -C <code repo>` silently reads the DATA repo and the rule is never found
+# (seen in worktree commits, live-fire 2026-10-05). Clear them for code-repo reads only; the
+# staged-content read above must keep GIT_INDEX_FILE.
+code_git () {
+  env -u GIT_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_COMMON_DIR -u GIT_PREFIX \
+      -u GIT_OBJECT_DIRECTORY -u GIT_ALTERNATE_OBJECT_DIRECTORIES git -C "$CODE_ROOT" "$@"
+}
+code_git show "$REF:scripts/AITriad/Private/Test-SituationBdiDecomposition.ps1" \
   > "$tmp/classifier.ps1" 2>/dev/null || unverified "classifier not readable at $REF in $CODE_ROOT"
-git -C "$CODE_ROOT" show "$REF:scripts/AITriad/Public/Get-SituationBdiViolationsFromJson.ps1" \
+code_git show "$REF:scripts/AITriad/Public/Get-SituationBdiViolationsFromJson.ps1" \
   > "$tmp/checker.ps1" 2>/dev/null || unverified "checker not readable at $REF in $CODE_ROOT"
 
 # pwsh is a native Windows binary: hand it Windows paths when running under MSYS.
