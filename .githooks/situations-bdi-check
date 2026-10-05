@@ -70,7 +70,13 @@ git show ":$WATCH"     > "$tmp/cand.json" 2>/dev/null || unverified "could not r
 
 command -v pwsh >/dev/null 2>&1 || unverified "pwsh not found on PATH"
 
-CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$(git rev-parse --show-toplevel)/../ai-triad-research}"
+# Default code root = sibling of the data repo's MAIN checkout, found via the common git dir.
+# NOT --show-toplevel: inside a data worktree (.worktrees/<name>) that is the worktree, so the
+# sibling became .worktrees/ai-triad-research and every worktree commit read COULD NOT VERIFY.
+# Worktrees are the sanctioned way to commit data, so this mattered. Found by the deployed
+# live-fire 2026-10-05; the GV harness set AI_TRIAD_CODE_ROOT and never ran this default (#192).
+DATA_MAIN="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$DATA_MAIN/../ai-triad-research}"
 # MSYS_NO_PATHCONV=1 (above) also stops POSIX paths being converted for git.exe, so a
 # POSIX-form override (/c/Users/...) would not resolve and every commit would read
 # COULD NOT VERIFY. Normalise to a Windows-form path git.exe understands. (Found when a
