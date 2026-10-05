@@ -1,0 +1,104 @@
+# ─── Git-hook arms (t/3913) ───
+# What:  Runs the data-repo git hooks' Gate-Verification arms (.githooks/tests/, TL #18) on every
+#        change to .githooks/ and ASSERTS each arm against tests/README.md via assert_hook_arms.py.
+#        Before this, a hook change merged with ZERO checks (data #17).
+#
+# Two locations, because the #17 defects only exist in one of them:
+#   - temp-repo harnesses (gv-commit-msg.sh, gv-situations-bdi.sh), both WARN_ONLY modes, run
+#     from the normal checkout AND from a linked worktree of it;
+#   - livefire-situations-bdi.sh: the DEPLOYED situation hook through real `git commit` from a
+#     throwaway LINKED WORKTREE of this repo (real core.hooksPath, real situations.json). This is
+#     the arm that caught #17 (hook GIT_DIR overriding `git -C`; --show-toplevel resolving to the
+#     worktree). Commits are local and discarded -- the script never pushes.
+#
+# Asserting, not printing: the arm scripts only PRINT. In warn mode every commit is created, so
+# a green "commit created" proves nothing (Sage #202); assert_hook_arms.py checks the tagged hook
+# output per arm as well as the outcome.
+#
+# Advisory by construction: ai-triad-data has no branch protection, so this check reds the PR /
+# push but cannot block it.
+
+name: Git-hook arms
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.githooks/**'
+      - '.github/workflows/hook-arms.yml'
+  pull_request:
+    paths:
+      - '.githooks/**'
+      - '.github/workflows/hook-arms.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hook-arms:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          path: ai-triad-data
+          fetch-depth: 0   # live-fire `git fetch origin` + worktree off the tested SHA
+
+      - name: Checkout code repo (sibling; situation classifier + AITriad module)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
+        with:
+          repository: jpsnover/ai-triad-research   # public
+          path: ai-triad-research
+          fetch-depth: 0   # the hook reads the classifier at origin/main of the code repo
+
+      - name: Configure git + wire hooks
+        working-directory: ai-triad-data
+        run: |
+          git config --global user.name "hook-arms-ci"
+          git config --global user.email "hook-arms-ci@users.noreply.github.com"
+          git config core.hooksPath .githooks
+          git worktree add --detach ../data-linked-worktree HEAD
+          mkdir -p "$RUNNER_TEMP/arm-logs"
+
+      - name: Run temp-repo arms (normal checkout + linked worktree, both modes)
+        env:
+          AI_TRIAD_CODE_ROOT: ${{ github.workspace }}/ai-triad-research
+        run: |
+          L="$RUNNER_TEMP/arm-logs"
+          for loc in ai-triad-data data-linked-worktree; do
+            for m in 0 1; do
+              ( cd "$loc" && bash .githooks/tests/gv-commit-msg.sh "$m" ) > "$L/$loc-commit-msg-$m.log" 2>&1 || true
+              ( cd "$loc" && bash .githooks/tests/gv-situations-bdi.sh "$m" ) > "$L/$loc-situations-$m.log" 2>&1 || true
+            done
+          done
+          ls -la "$L"
+
+      - name: Run live-fire (deployed hook, real linked worktree, the PR's own hooks)
+        working-directory: ai-triad-data
+        run: |
+          # Pass the checked-out SHA so a PR live-fires ITS .githooks, not origin/main's.
+          bash .githooks/tests/livefire-situations-bdi.sh "$(git rev-parse HEAD)" \
+            > "$RUNNER_TEMP/arm-logs/livefire.log" 2>&1 || true
+
+      - name: Assert every arm against tests/README.md
+        run: |
+          L="$RUNNER_TEMP/arm-logs"; A=ai-triad-data/.githooks/tests/assert_hook_arms.py; rc=0
+          for loc in ai-triad-data data-linked-worktree; do
+            for m in 0 1; do
+              python3 "$A" commit-msg "$m" "$L/$loc-commit-msg-$m.log" || rc=1
+              python3 "$A" situations "$m" "$L/$loc-situations-$m.log" || rc=1
+            done
+          done
+          python3 "$A" livefire - "$L/livefire.log" || rc=1
+          exit $rc
+
+      - name: Upload arm logs (always, for triage)
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7
+        with:
+          name: hook-arm-logs
+          path: ${{ runner.temp }}/arm-logs
+          retention-days: 14
