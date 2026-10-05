@@ -36,25 +36,27 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 | 15 BOM on both sides + removal | **refused** | created | fires, names `acc-002` |
 
 ### `gv-situations-bdi.sh`
-| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert |
-|---|---|---|---|
-| 1 `situations.json` not staged | created | created | none |
-| 2 valid new situation | created | created | none |
-| 3 flat new situation | **refused** | created | `[situation-bdi] WARNING` naming it |
-| 4 `N/A` belief (sentinel) | **refused** | created | `[situation-bdi] WARNING` |
-| 5 changed-only: untouched live flat + valid edit | created | created | none |
-| 6 index not disk: flat edit left unstaged | created (`sit-006` not in commit) | created | none |
-| 7 pathspec commit of a flat file | **refused** | created | `[situation-bdi] WARNING` |
-| 8 pathspec of unrelated file, peer's flat staged | created (`README.md` only) | created | none |
-| 9 checker ref unreadable | **refused** | created | `[situation-bdi] COULD NOT VERIFY` |
-| 10 `pwsh` absent from PATH | **refused** | created | `[situation-bdi] COULD NOT VERIFY` |
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert | Record `result` |
+|---|---|---|---|---|
+| 1 `situations.json` not staged | created | created | none | `skip` |
+| 2 valid new situation | created | created | none | `pass` |
+| 3 flat new situation | **refused** | created | `[situation-bdi] WARNING` naming it | `violation` |
+| 4 `N/A` belief (sentinel) | **refused** | created | `[situation-bdi] WARNING` | `violation` |
+| 5 changed-only: untouched live flat + valid edit | created | created | none | `pass` |
+| 6 index not disk: flat edit left unstaged | created (`sit-006` not in commit) | created | none | `pass` |
+| 7 pathspec commit of a flat file | **refused** | created | `[situation-bdi] WARNING` | `violation` |
+| 8 pathspec of unrelated file, peer's flat staged | created (`README.md` only) | created | none | `skip` |
+| 9 checker ref unreadable | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
+| 10 `pwsh` absent from PATH | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
+
+**Execution record (t/3892#6).** Every arm must append **exactly one** line to the hook's telemetry log, printed by the harness as `telemetry: <result>/<action>`. `action` is `refused` where blocking mode refuses the commit, otherwise `allowed`. This is the only thing that tells a silent pass (arms 2, 5, 6) from a hook that never ran, and it is what the real warn cycle is read from. The harness points `AI_TRIAD_HOOK_TELEMETRY` at a file **outside** the temp repo, because each arm's `git clean -fd` would delete one inside it.
 
 ### `livefire-situations-bdi.sh` (warn mode, as deployed)
-| Arm | Expect |
-|---|---|
-| A flat situation, bare commit | `[situation-bdi] WARNING` naming `sit-livefire-001` × 3 POVs |
-| B valid relabel of `sit-001` | no `[situation-bdi]` output |
-| C flat situation, pathspec commit | `[situation-bdi] WARNING` |
-| D bogus `AI_TRIAD_CODE_ROOT` | `COULD NOT VERIFY` naming the bogus path (override honoured) |
+| Arm | Expect | Record |
+|---|---|---|
+| A flat situation, bare commit | `[situation-bdi] WARNING` naming `sit-livefire-001` × 3 POVs | `violation/allowed worktree=true` |
+| B valid relabel of `sit-001` | no `[situation-bdi]` output | `pass/allowed worktree=true` |
+| C flat situation, pathspec commit | `[situation-bdi] WARNING` | `violation/allowed worktree=true` |
+| D bogus `AI_TRIAD_CODE_ROOT` | `COULD NOT VERIFY` naming the bogus path (override honoured) | `unverified/allowed worktree=true` |
 
-Any `COULD NOT VERIFY` in arms A–C means the check **did not run**: a defect, not a pass.
+Any `COULD NOT VERIFY` in arms A–C means the check **did not run**: a defect, not a pass. The live-fire sends its records to a temp file, never the real warn-cycle log.

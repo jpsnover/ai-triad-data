@@ -63,15 +63,23 @@ SITUATIONS = {
 }
 SITUATIONS_WARN_LINE = SBD + " WARN-ONLY"
 SITUATIONS_WARN_ARMS = {"3", "4", "7", "9", "10"}
+# Execution record per arm (t/3892#6): the `result` the hook must append. `action` is
+# derived: "refused" where blocking mode refuses the commit, else "allowed". Every arm
+# must write exactly one record -- a silent pass and a dead hook look identical on screen,
+# and this is what tells them apart.
+SITUATIONS_TELEMETRY = {
+    "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "pass",
+    "6": "pass", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
+}
 
 # Live-fire runs the DEPLOYED hook (warn mode) from a real linked worktree -- the
 # only harness that caught the two #17 defects. Any COULD NOT VERIFY in A-C means
 # the check did not run: a defect, not a pass.
 LIVEFIRE = {
-    "A": (C, [SBD + " WARNING", "sit-livefire-001"], ["COULD NOT VERIFY"]),
-    "B": (C, ["(no [situation-bdi] output)"], ["COULD NOT VERIFY"]),
-    "C": (C, [SBD + " WARNING"], ["COULD NOT VERIFY"]),
-    "D": (C, ["COULD NOT VERIFY", "nonexistent"], []),
+    "A": (C, [SBD + " WARNING", "sit-livefire-001", "telemetry: violation/allowed worktree=true"], ["COULD NOT VERIFY"]),
+    "B": (C, ["(no [situation-bdi] output)", "telemetry: pass/allowed worktree=true"], ["COULD NOT VERIFY"]),
+    "C": (C, [SBD + " WARNING", "telemetry: violation/allowed worktree=true"], ["COULD NOT VERIFY"]),
+    "D": (C, ["COULD NOT VERIFY", "nonexistent", "telemetry: unverified/allowed worktree=true"], []),
 }
 
 ARM_RE = re.compile(r"^#{3,}\s+(?:ARM\s+)?([0-9]+|[A-D])\b")
@@ -97,7 +105,7 @@ def split_arms(text):
     return {k: (h, "\n".join(b)) for k, (h, b) in arms.items()}
 
 
-def check(table, mode, text, warn_line, warn_arms=frozenset()):
+def check(table, mode, text, warn_line, warn_arms=frozenset(), telemetry=None):
     arms = split_arms(text)
     errors = []
     for arm, (block_outcome, must, mustnot) in table.items():
@@ -120,6 +128,13 @@ def check(table, mode, text, warn_line, warn_arms=frozenset()):
                 errors.append(f"arm {arm}: output must NOT contain {s!r}")
         if mode == "1" and arm in warn_arms and warn_line not in body:
             errors.append(f"arm {arm}: warn mode must print {warn_line!r} (a silent commit proves nothing)")
+        if telemetry is not None:
+            action = "refused" if (mode == "0" and block_outcome == R) else "allowed"
+            want_rec = f"telemetry: {telemetry[arm]}/{action}"
+            if want_rec not in body:
+                errors.append(f"arm {arm}: expected execution record {want_rec!r} (none or wrong -- a run that leaves no record cannot be told from a dead hook)")
+            if "MULTIPLE RECORDS" in body:
+                errors.append(f"arm {arm}: the hook appended more than one record for a single commit")
     extra = sorted(set(arms) - set(table))
     if extra:
         errors.append(f"unexpected arm(s) in log, not in the expectation table: {extra} -- update tests/README.md and this table together")
@@ -135,7 +150,7 @@ def main(argv):
     if kind == "commit-msg":
         n, errors = check(COMMIT_MSG, mode, text, COMMIT_MSG_WARN_LINE, COMMIT_MSG_WARN_ARMS)
     elif kind == "situations":
-        n, errors = check(SITUATIONS, mode, text, SITUATIONS_WARN_LINE, SITUATIONS_WARN_ARMS)
+        n, errors = check(SITUATIONS, mode, text, SITUATIONS_WARN_LINE, SITUATIONS_WARN_ARMS, SITUATIONS_TELEMETRY)
     else:
         n, errors = check(LIVEFIRE, "1", text, None)
     label = f"{kind} mode={mode} ({path})"

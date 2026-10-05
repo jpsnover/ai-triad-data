@@ -16,7 +16,7 @@ cd "$DATA" || exit 1
 git fetch -q origin
 BASE="$(git rev-parse "$REF")"
 git worktree add -q -b "$BR" "$WT" "$BASE" || exit 1
-trap 'cd "$DATA"; git worktree remove --force "$WT" 2>/dev/null; git branch -q -D "$BR" 2>/dev/null; echo "[cleanup] worktree + branch removed; nothing pushed"' EXIT
+trap 'cd "$DATA"; git worktree remove --force "$WT" 2>/dev/null; git branch -q -D "$BR" 2>/dev/null; rm -f "${TELEM:-}"; echo "[cleanup] worktree + branch removed; nothing pushed"' EXIT
 cd "$WT" || exit 1
 echo "base=$(git rev-parse --short "$BASE")  hooksPath=$(git config --get core.hooksPath)  hook mode=$(git ls-tree HEAD .githooks/situations-bdi-check | cut -c1-6)"
 
@@ -35,13 +35,20 @@ elif mode == "relabel":
 open(p, "w", encoding="utf-8", newline="\n").write(json.dumps(d, indent=2, ensure_ascii=False) + "\n")
 PY
 }
+# Probe records go to a temp file, never the real warn-cycle log (t/3892#6).
+TELEM="$(mktemp)"; export AI_TRIAD_HOOK_TELEMETRY="$TELEM"
 run () {  # label, then git commit args
-  local label="$1"; shift; local before t0 t1 out rc
-  before="$(git rev-parse HEAD)"; t0=$(date +%s%N)
-  out="$(git commit "$@" 2>&1)"; rc=$?; t1=$(date +%s%N)
+  local label="$1"; shift; local before t0 t1 out rc n0 n1
+  before="$(git rev-parse HEAD)"; t0=$(date +%s%N); n0="$(wc -l < "$TELEM" | tr -d ' ')"
+  out="$(git commit "$@" 2>&1)"; rc=$?; t1=$(date +%s%N); n1="$(wc -l < "$TELEM" | tr -d ' ')"
   echo; echo "### $label   (rc=$rc, $(( (t1-t0)/1000000 )) ms, commit $([ "$before" = "$(git rev-parse HEAD)" ] && echo REFUSED || echo CREATED))"
   printf '%s\n' "$out" | grep -E '\[situation-bdi\]|^\s+sit-|COULD NOT|not BDI' | sed 's/^/    /'
   printf '%s\n' "$out" | grep -qE '\[situation-bdi\]' || echo "    (no [situation-bdi] output)"
+  if [ "$n1" -gt "$n0" ]; then
+    tail -n 1 "$TELEM" | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*"worktree":\([a-z]*\).*/    telemetry: \1\/\2 worktree=\3/p'
+  else
+    echo "    telemetry: (none)"
+  fi
 }
 reset_to_base () { git reset -q --hard "$BASE"; }
 
