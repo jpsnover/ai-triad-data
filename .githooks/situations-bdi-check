@@ -29,6 +29,17 @@
 # in warn mode whether or not it fired, so "the commit succeeded" proves nothing
 # (Sage #202).
 #
+# EXECUTION RECORD (t/3892#6): every run appends one JSON line to
+# <common git dir>/hook-telemetry.jsonl -- untracked, shared by all worktrees of the
+# checkout -- with result (skip|pass|violation|unverified), action (allowed|refused),
+# ms, worktree, index file and HEAD. The printed WARNING goes to whichever terminal ran
+# the commit and a pass prints nothing, so without this record the warn cycle cannot be
+# read and a dead hook is indistinguishable from a passing one (Live-Fire Proof, t/3396).
+# Read it: `tail "$(git rev-parse --git-common-dir)/hook-telemetry.jsonl"`.
+# AI_TRIAD_HOOK_TELEMETRY overrides the path (probes and harnesses point it elsewhere so
+# they never pollute the real cycle). The append is isolated: any failure in it is
+# swallowed and can never change the verdict.
+#
 # COULD NOT VERIFY (pwsh missing, checker unreadable, JSON unparseable) is reported
 # as unverified, never as a pass; it blocks too once promoted.
 #
@@ -42,24 +53,42 @@ WARN_ONLY=1
 WATCH="taxonomy/Origin/situations.json"
 TAG="[situation-bdi]"
 
-# Only when situations.json is part of this commit.
-git diff --cached --name-only -- "$WATCH" | grep -qxF "$WATCH" || exit 0
-# A whole-file deletion is not this check's concern (node removals: commit-msg, t/3851).
-git cat-file -e ":$WATCH" 2>/dev/null || exit 0
+now_ms () { local t; t="$(date +%s%3N 2>/dev/null)"; case "$t" in ''|*[!0-9]*) t="$(( $(date +%s) * 1000 ))" ;; esac; printf '%s' "$t"; }
+T0="$(now_ms)"
+record () {  # $1 = skip|pass|violation|unverified   $2 = allowed|refused   $3 = detail
+  {
+    local common log wt det
+    common="$(git rev-parse --path-format=absolute --git-common-dir)"
+    log="${AI_TRIAD_HOOK_TELEMETRY:-$common/hook-telemetry.jsonl}"
+    [ "$(git rev-parse --absolute-git-dir)" = "$common" ] && wt=false || wt=true
+    det="$(printf '%s' "${3:-}" | tr -d '"\\' | tr '\r\n\t' '   ' | cut -c1-300)"
+    printf '{"ts":"%s","hook":"situation-bdi","result":"%s","action":"%s","warn_only":%s,"ms":%s,"worktree":%s,"index":"%s","head":"%s","detail":"%s"}\n' \
+      "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$1" "$2" "$([ "$WARN_ONLY" -eq 1 ] && echo true || echo false)" \
+      "$(( $(now_ms) - T0 ))" "$wt" "$(basename "${GIT_INDEX_FILE:-index}")" \
+      "$(git rev-parse --short HEAD 2>/dev/null)" "$det" >> "$log"
+  } 2>/dev/null || true
+}
 
-finish () {  # $1 = 0 pass, 1 bad
-  if [ "$1" -ne 0 ] && [ "$WARN_ONLY" -eq 0 ]; then
+# Only when situations.json is part of this commit.
+git diff --cached --name-only -- "$WATCH" | grep -qxF "$WATCH" || { record skip allowed "situations.json not in commit"; exit 0; }
+# A whole-file deletion is not this check's concern (node removals: commit-msg, t/3851).
+git cat-file -e ":$WATCH" 2>/dev/null || { record skip allowed "situations.json deleted"; exit 0; }
+
+finish () {  # $1 = pass|violation|unverified   $2 = detail for the record
+  if [ "$1" != pass ] && [ "$WARN_ONLY" -eq 0 ]; then
+    record "$1" refused "${2:-}"
     echo "$TAG BLOCKING: commit refused." >&2
     exit 1
   fi
-  [ "$1" -ne 0 ] && echo "$TAG WARN-ONLY: commit allowed. Will block once promoted (t/3892)." >&2
+  record "$1" allowed "${2:-}"
+  [ "$1" != pass ] && echo "$TAG WARN-ONLY: commit allowed. Will block once promoted (t/3892)." >&2
   exit 0
 }
 unverified () {
   echo "" >&2
   echo "$TAG COULD NOT VERIFY: $1" >&2
   echo "  The staged situations were NOT checked. This is not a pass." >&2
-  finish 1
+  finish unverified "$1"
 }
 
 tmp="$(mktemp -d)" || unverified "could not create a temp dir"
@@ -108,7 +137,7 @@ out="$(pwsh -NoProfile -NonInteractive -File "$(winpath "$RUNNER")" \
 rc=$?
 
 case "$rc" in
-  0) exit 0 ;;
+  0) finish pass "" ;;
   1)
     echo "" >&2
     echo "$TAG WARNING: staged situations are not BDI-decomposed:" >&2
@@ -116,7 +145,7 @@ case "$rc" in
     echo "" >&2
     echo "  Each POV needs non-empty belief, desire and intention (not N/A, none, tbd, -)." >&2
     echo "  Create situations through the editor or New-SituationNode, which decompose them." >&2
-    finish 1 ;;
+    finish violation "$(printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{print $2}' | sort -u | paste -sd, -)" ;;
   *)
     unverified "$(printf '%s\n' "$out" | awk -F'\t' '$1=="COULD-NOT-VERIFY"{print $2}' | head -1) (runner exit $rc)" ;;
 esac

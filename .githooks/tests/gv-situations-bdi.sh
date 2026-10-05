@@ -45,12 +45,29 @@ SEED_FILES; git add -A >/dev/null 2>&1; git commit -qm seed --no-verify; SEED="$
 echo "seed: situations.json at HEAD is $(bom HEAD:taxonomy/Origin/situations.json); contains live FLAT sit-900 + DEPRECATED flat sit-154"
 reseed () { git reset -q --hard "$SEED"; git clean -qfd; }
 
+# Execution record (t/3892#6): the hook appends one JSON line per run. Point it at a
+# harness-owned file and print what THIS run wrote, so the assert can check result/action.
+# OUTSIDE the temp repo: every arm's reseed runs `git clean -fd`, which would delete it.
+TELEM_DIR="$(mktemp -d)"; export AI_TRIAD_HOOK_TELEMETRY="$TELEM_DIR/hook-telemetry.jsonl"
+: > "$AI_TRIAD_HOOK_TELEMETRY"
+telemetry_since () {  # $1 = line count before the run
+  local now; now="$(wc -l < "$AI_TRIAD_HOOK_TELEMETRY" | tr -d ' ')"
+  if [ "$now" -gt "$1" ]; then
+    tail -n 1 "$AI_TRIAD_HOOK_TELEMETRY" | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*/    telemetry: \1\/\2/p'
+    [ "$(( now - $1 ))" -gt 1 ] && echo "    telemetry: MULTIPLE RECORDS ($(( now - $1 )))"
+  else
+    echo "    telemetry: (none)"
+  fi
+}
+
 arm () { echo; echo "################ $1"; }
-run () { local m="$1"; shift; local before after out rc t0 t1
+run () { local m="$1"; shift; local before after out rc t0 t1 n0
   before="$(git rev-parse HEAD)"; t0=$(date +%s%N)
+  n0="$(wc -l < "$AI_TRIAD_HOOK_TELEMETRY" | tr -d ' ')"
   out="$(git commit -m "$m" "$@" 2>&1)"; rc=$?; t1=$(date +%s%N)
   grep -q "nothing to commit" <<<"$out" && { echo "    *** HARNESS ERROR: nothing staged ***"; return; }
   grep -E "situation-bdi|^\s+sit-" <<<"$out" | sed 's/^/    /'
+  telemetry_since "$n0"
   after="$(git rev-parse HEAD)"
   [ "$before" = "$after" ] && r=REFUSED || r=CREATED
   echo "    => rc=$rc COMMIT $r   ($(( (t1-t0)/1000000 )) ms)"
@@ -143,4 +160,4 @@ fi
 echo "    stripped PATH: git found, pwsh absent (reachability OK)"
 PATH="$NOPWSH_PATH" run "no pwsh"
 
-cd /; rm -rf "$T"
+cd /; rm -rf "$T" "$TELEM_DIR"
