@@ -54,14 +54,13 @@ Exit: 0 = no findings; 1 = findings or cannot-verify; 2 = usage/git error.
 import argparse
 import json
 import os
-import re
 import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OWN_REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, os.path.join(OWN_REPO, ".githooks"))
-from taxonomy_node_removal_verdict import node_removal_verdict  # noqa: E402
+from taxonomy_node_removal_verdict import acknowledged_ids, node_removal_verdict  # noqa: E402
 
 WATCHED = [
     "taxonomy/Origin/accelerationist.json",
@@ -69,35 +68,20 @@ WATCHED = [
     "taxonomy/Origin/skeptic.json",
     "taxonomy/Origin/situations.json",
 ]
-TRAILER_RE = re.compile(r"^\s*Taxonomy-Node-Removal\s*:\s*(.+)$", re.IGNORECASE)
 ZERO = "0" * 40
 
 
 # ---------------------------------------------------------------- pure half --
 
 def parse_trailer(message):
-    """IDs named in Taxonomy-Node-Removal trailers (comma-separated, repeatable).
+    """IDs named in Taxonomy-Node-Removal trailers -- delegates to the SHARED
+    `acknowledged_ids` (taxonomy_node_removal_verdict.py, data 337c112a / t/3851#13),
+    the same parser the commit-msg hook uses: one trailer format, one definition.
 
-    DUPLICATED (t/3870#5, corrected p/331#1827): this function and TRAILER_RE
-    copy the trailer parse inside .githooks/commit-msg. ONLY THE TRAILER PARSER
-    moves: the TL is adding `acknowledged_ids` to taxonomy_node_removal_verdict.py
-    with the t/3851#11 fix. When that lands, delete THIS function + TRAILER_RE and
-    import `acknowledged_ids` -- nothing else. Until then a trailer-format change
-    must be made in BOTH places.
-
-    NOT moving (keep them): the JSON node-ID reader (Git.file_map /
-    node_ids_from_doc) and WATCHED. The verdict module stays pure, no I/O, so the
-    reader has nowhere to go; it is already locale-independent (explicit utf-8
-    decode + BOM strip).
+    Deliberately NOT shared (keep here): the JSON node-ID reader (Git.file_map /
+    node_ids_from_doc) and WATCHED -- the verdict module stays pure, no I/O.
     """
-    acked = set()
-    for line in message.splitlines():
-        if line.lstrip().startswith("#"):
-            continue
-        m = TRAILER_RE.match(line)
-        if m:
-            acked |= {t.strip() for t in m.group(1).split(",") if t.strip()}
-    return acked
+    return acknowledged_ids(message.splitlines())
 
 
 def node_ids_from_doc(doc):
