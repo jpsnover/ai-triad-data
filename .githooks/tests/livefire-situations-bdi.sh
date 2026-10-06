@@ -45,7 +45,14 @@ run () {  # label, then git commit args
   printf '%s\n' "$out" | grep -E '\[situation-bdi\]|^\s+sit-|COULD NOT|not BDI' | sed 's/^/    /'
   printf '%s\n' "$out" | grep -qE '\[situation-bdi\]' || echo "    (no [situation-bdi] output)"
   if [ "$n1" -gt "$n0" ]; then
-    tail -n 1 "$TELEM" | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*"worktree":\([a-z]*\).*/    telemetry: \1\/\2 worktree=\3/p'
+    # t/3970: pre-commit also runs pov-tags-check now, appending its OWN record to this
+    # same shared file -- filter to "situation-bdi"'s lines specifically (never just the
+    # last line) so a sibling hook's record can't be mistaken for this one's.
+    local new_lines sbd_count; new_lines="$(tail -n "$(( n1 - n0 ))" "$TELEM")"
+    sbd_count="$(printf '%s\n' "$new_lines" | grep -c '"hook":"situation-bdi"')"
+    printf '%s\n' "$new_lines" | grep '"hook":"situation-bdi"' | tail -n 1 \
+      | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*"worktree":\([a-z]*\).*/    telemetry: \1\/\2 worktree=\3/p'
+    [ "$sbd_count" -eq 0 ] && echo "    telemetry: (none for situation-bdi)"
   else
     echo "    telemetry: (none)"
   fi

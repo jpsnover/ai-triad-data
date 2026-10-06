@@ -12,6 +12,7 @@ change them together.
 Usage:
   python3 assert_hook_arms.py commit-msg   <0|1> <log>
   python3 assert_hook_arms.py situations   <0|1> <log>
+  python3 assert_hook_arms.py pov-tags     <0|1> <log>
   python3 assert_hook_arms.py livefire     -     <log>
 Exit 0 = every arm matched; 1 = any mismatch (each printed as ::error::); 2 = usage/parse error.
 """
@@ -22,6 +23,7 @@ import sys
 C, R = "CREATED", "REFUSED"
 NRG = "[node-removal-guard]"
 SBD = "[situation-bdi]"
+PVT = "[pov-tags]"
 
 # arm -> (outcome in blocking mode 0, must-contain list, must-NOT-contain list)
 # Warn mode (1): every outcome is CREATED, and every arm that is REFUSED in
@@ -70,6 +72,27 @@ SITUATIONS_WARN_ARMS = {"3", "4", "7", "9", "10"}
 SITUATIONS_TELEMETRY = {
     "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "pass",
     "6": "pass", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
+}
+
+POV_TAGS = {
+    "1": (C, [], [PVT]),
+    "2": (C, [], [PVT]),
+    "3": (R, [PVT + " WARNING", "not-a-real-tag"], []),
+    "4": (R, [PVT + " WARNING", "appears more than once"], []),
+    "5": (R, [PVT + " WARNING", "not registered"], []),
+    "6": (R, [PVT + " WARNING", "must be an array"], []),
+    "7": (R, [PVT + " WARNING", "only allowed on POV nodes"], []),
+    "8": (C, [], [PVT]),
+    "9": (R, [PVT + " COULD NOT VERIFY"], []),
+}
+POV_TAGS_WARN_LINE = PVT + " WARN-ONLY"
+POV_TAGS_WARN_ARMS = {"3", "4", "5", "6", "7", "9"}
+# Execution record (t/3970, mirrors SITUATIONS_TELEMETRY): the `result` the hook must
+# append. Arms 1/2/8 are legitimately quiet passes/skips -- the record is what tells them
+# apart from a hook that never ran.
+POV_TAGS_TELEMETRY = {
+    "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "violation",
+    "6": "violation", "7": "violation", "8": "skip", "9": "unverified",
 }
 
 # Live-fire runs the DEPLOYED hook (warn mode) from a real linked worktree -- the
@@ -142,7 +165,7 @@ def check(table, mode, text, warn_line, warn_arms=frozenset(), telemetry=None):
 
 
 def main(argv):
-    if len(argv) != 4 or argv[1] not in ("commit-msg", "situations", "livefire"):
+    if len(argv) != 4 or argv[1] not in ("commit-msg", "situations", "pov-tags", "livefire"):
         print(__doc__)
         return 2
     kind, mode, path = argv[1], argv[2], argv[3]
@@ -151,6 +174,8 @@ def main(argv):
         n, errors = check(COMMIT_MSG, mode, text, COMMIT_MSG_WARN_LINE, COMMIT_MSG_WARN_ARMS)
     elif kind == "situations":
         n, errors = check(SITUATIONS, mode, text, SITUATIONS_WARN_LINE, SITUATIONS_WARN_ARMS, SITUATIONS_TELEMETRY)
+    elif kind == "pov-tags":
+        n, errors = check(POV_TAGS, mode, text, POV_TAGS_WARN_LINE, POV_TAGS_WARN_ARMS, POV_TAGS_TELEMETRY)
     else:
         n, errors = check(LIVEFIRE, "1", text, None)
     label = f"{kind} mode={mode} ({path})"

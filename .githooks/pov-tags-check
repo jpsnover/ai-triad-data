@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+# POV-tags pre-commit check (t/3970). Called from .githooks/pre-commit, right after
+# situations-bdi-check, before the edges early exit.
+#
+# Validates the TOP-LEVEL `pov_tags` field (t/3955) that will live on
+# taxonomy/Origin/{accelerationist,safetyist,skeptic,situations}.json nodes once t/3962
+# starts writing it. Structurally a copy of situations-bdi-check -- same lessons
+# (t/3970#1), same telemetry, same CODE_ROOT resolution -- but the rule
+# (validatePovTags, lib/schema/povTags.ts) is TypeScript, run through its existing CLI
+# (lib/schema/pov-tags-cli.ts) via tsx, not PowerShell.
+#
+# WHAT IT READS:
+#   candidate = `git show :<path>`  -- the content being committed. Honours
+#               GIT_INDEX_FILE, so a pathspec commit sees its temp index.
+#               NOT the working tree: on a shared checkout another agent's
+#               unstaged edit must not be validated.
+#   baseline  = `git show HEAD:<path>`
+#   rule      = lib/schema/pov-tags-cli.ts (which calls validatePovTags), read from the
+#               CODE repo's ${AI_TRIAD_CHECKER_REF:-origin/main} BLOBS -- not its working
+#               tree: the shared code checkout can be stale or carry uncommitted edits,
+#               and the gate must enforce reviewed code only. Freshness is the code
+#               repo's last fetch.
+#
+# CHANGED-ONLY (t/3970#1 point 2, pov-tags-diff.mjs): only nodes whose pov_tags differs
+# from HEAD, or new nodes that carry the field, are passed to the CLI. Validating "every
+# tagged node" would be fine while warn-only, but once blocking, one pre-existing bad
+# node would refuse every unrelated commit (the t/3892/situations-bdi lesson).
+#
+# WHY NOT A SECOND VALIDATOR: validatePovTags already exists and is the ONE rule every
+# other writer (editor, tagging CLI, lib Zod schema) calls. Re-implementing it here in
+# bash/PowerShell would be exactly the kind of second implementation that silently
+# diverges from the first (Class 8) -- so this hook shells out to the real CLI instead.
+#
+# WARN-ONLY for now. Per Gate Promotion it stays advisory for >=1 real green cycle, and
+# the flip to blocking (WARN_ONLY=0) needs a mandatory Second Opinion. This script exits
+# 0 in warn mode whether or not it fired, so "the commit succeeded" proves nothing
+# (Sage #202) -- read the printed WARNING lines or the telemetry record.
+#
+# EXECUTION RECORD: every run appends one JSON line to
+# <common git dir>/hook-telemetry.jsonl -- untracked, shared by all worktrees of the
+# checkout -- with result (skip|pass|violation|unverified), action (allowed|refused), ms,
+# worktree, index file and HEAD. AI_TRIAD_HOOK_TELEMETRY overrides the path (probes and
+# harnesses point it elsewhere so they never pollute the real cycle).
+#
+# COULD NOT VERIFY (node/tsx missing, code root unreadable, JSON unparseable) is reported
+# as unverified, never as a pass; it blocks too once promoted.
+#
+# Not covered (after-push compliance is the backstop): --no-verify, clones without
+# core.hooksPath, server-side writes (bot, merges, API).
+
+set -uo pipefail
+export MSYS_NO_PATHCONV=1   # keep `:path` / `HEAD:path` revspecs intact under Git-for-Windows bash
+
+WARN_ONLY=1
+WATCH_FILES="taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json taxonomy/Origin/situations.json"
+TAG="[pov-tags]"
+
+now_ms () { local t; t="$(date +%s%3N 2>/dev/null)"; case "$t" in ''|*[!0-9]*) t="$(( $(date +%s) * 1000 ))" ;; esac; printf '%s' "$t"; }
+T0="$(now_ms)"
+record () {  # $1 = skip|pass|violation|unverified   $2 = allowed|refused   $3 = detail
+  {
+    local common log wt det
+    common="$(git rev-parse --path-format=absolute --git-common-dir)"
+    log="${AI_TRIAD_HOOK_TELEMETRY:-$common/hook-telemetry.jsonl}"
+    [ "$(git rev-parse --absolute-git-dir)" = "$common" ] && wt=false || wt=true
+    det="$(printf '%s' "${3:-}" | tr -d '"\\' | tr '\r\n\t' '   ' | cut -c1-300)"
+    printf '{"ts":"%s","hook":"pov-tags","result":"%s","action":"%s","warn_only":%s,"ms":%s,"worktree":%s,"index":"%s","head":"%s","detail":"%s"}\n' \
+      "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$1" "$2" "$([ "$WARN_ONLY" -eq 1 ] && echo true || echo false)" \
+      "$(( $(now_ms) - T0 ))" "$wt" "$(basename "${GIT_INDEX_FILE:-index}")" \
+      "$(git rev-parse --short HEAD 2>/dev/null)" "$det" >> "$log"
+  } 2>/dev/null || true
+}
+
+# Which watched files are actually part of this commit?
+STAGED_WATCH=""
+for f in $WATCH_FILES; do
+  if git diff --cached --name-only -- "$f" | grep -qxF "$f"; then
+    STAGED_WATCH="$STAGED_WATCH $f"
+  fi
+done
+[ -z "$(printf '%s' "$STAGED_WATCH" | tr -d ' ')" ] && { record skip allowed "no watched pov_tags file in commit"; exit 0; }
+
+finish () {  # $1 = pass|violation|unverified   $2 = detail for the record
+  if [ "$1" != pass ] && [ "$WARN_ONLY" -eq 0 ]; then
+    record "$1" refused "${2:-}"
+    echo "$TAG BLOCKING: commit refused." >&2
+    exit 1
+  fi
+  record "$1" allowed "${2:-}"
+  [ "$1" != pass ] && echo "$TAG WARN-ONLY: commit allowed. Will block once promoted (t/3970)." >&2
+  exit 0
+}
+unverified () {
+  echo "" >&2
+  echo "$TAG COULD NOT VERIFY: $1" >&2
+  echo "  The staged pov_tags were NOT checked. This is not a pass." >&2
+  finish unverified "$1"
+}
+
+# node, like pwsh, is a native Windows binary: MSYS_NO_PATHCONV=1 (set above, needed for
+# the `:path` / `HEAD:path` git revspecs) also suppresses the automatic POSIX->Windows path
+# conversion Git-Bash would otherwise do for OTHER arguments -- so every file path handed
+# to `node` or `tsx` below must be converted explicitly, or it resolves against the wrong
+# root (ENOENT) even though the path is valid POSIX-side. Same lesson as situations-bdi-
+# check's winpath() for pwsh.
+winpath () { if command -v cygpath >/dev/null 2>&1; then cygpath -w "$1"; else printf '%s' "$1"; fi; }
+
+tmp="$(mktemp -d)" || unverified "could not create a temp dir"
+trap 'rm -rf "$tmp"' EXIT
+
+command -v node >/dev/null 2>&1 || unverified "node not found on PATH"
+DIFF_SCRIPT="$(dirname "$0")/pov-tags-diff.mjs"
+[ -f "$DIFF_SCRIPT" ] || unverified "diff script missing: $DIFF_SCRIPT"
+
+# Build (base,cand) temp-file pairs for every staged watched file; a whole-file deletion
+# contributes nothing (no candidate content to validate).
+DIFF_ARGS=""
+i=0
+for f in $STAGED_WATCH; do
+  git cat-file -e ":$f" 2>/dev/null || continue
+  b="$tmp/base_$i.json"; c="$tmp/cand_$i.json"
+  git show "HEAD:$f" > "$b" 2>/dev/null || : > "$b"
+  git show ":$f" > "$c" 2>/dev/null || unverified "could not read the staged $f"
+  DIFF_ARGS="$DIFF_ARGS $(winpath "$b") $(winpath "$c")"
+  i=$((i + 1))
+done
+[ "$i" -eq 0 ] && finish pass ""   # every staged watched file was a whole-file deletion
+
+CHANGED_JSON="$tmp/changed.json"
+CHANGED_JSON_WIN="$(winpath "$CHANGED_JSON")"
+# Swap stdout/stderr so the error-message capture gets stderr while stdout (the JSON
+# payload) lands in the file -- `> file 2>&1` would send BOTH streams to the file and
+# leave nothing for the command substitution to capture.
+diff_err="$(node "$(winpath "$DIFF_SCRIPT")" $DIFF_ARGS 2>&1 1>"$CHANGED_JSON_WIN")" || unverified "pov-tags-diff: $diff_err"
+COUNT="$(node -e 'process.stdout.write(String(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).length))' "$CHANGED_JSON_WIN" 2>/dev/null)"
+[ -z "$COUNT" ] && unverified "could not read changed-node count"
+[ "$COUNT" -eq 0 ] && finish pass ""
+
+# ---- resolve the code root, mirroring situations-bdi-check ----
+# Default code root = sibling of the data repo's MAIN checkout, found via the common git
+# dir -- NOT --show-toplevel (resolves to the worktree itself inside a linked worktree).
+DATA_MAIN="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$DATA_MAIN/../ai-triad-research}"
+if command -v cygpath >/dev/null 2>&1; then CODE_ROOT="$(cygpath -m "$CODE_ROOT")"; fi
+REF="${AI_TRIAD_CHECKER_REF:-origin/main}"
+# Git exports GIT_DIR / GIT_INDEX_FILE / GIT_WORK_TREE to hooks, and GIT_DIR beats -C:
+# without clearing them, `git -C <code repo>` silently reads the DATA repo.
+code_git () {
+  env -u GIT_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_COMMON_DIR -u GIT_PREFIX \
+      -u GIT_OBJECT_DIRECTORY -u GIT_ALTERNATE_OBJECT_DIRECTORIES git -C "$CODE_ROOT" "$@"
+}
+code_git rev-parse --is-inside-work-tree >/dev/null 2>&1 || unverified "code root not a git repo at $CODE_ROOT"
+
+# tsx resolves third-party imports (zod) by walking UP from the executed file's real path
+# looking for node_modules -- so the extracted source below must live INSIDE CODE_ROOT
+# (nested under its node_modules), not in an unrelated system temp dir.
+TSX="$CODE_ROOT/node_modules/.bin/tsx"
+if [ -x "$TSX" ]; then RUNNER="$TSX"
+elif command -v tsx >/dev/null 2>&1; then RUNNER="tsx"
+else unverified "tsx not found ($TSX, nor on PATH)"
+fi
+
+SCRATCH="$(mktemp -d "$CODE_ROOT/.pov-tags-check-tmp.XXXXXX")" || unverified "could not create a scratch dir under $CODE_ROOT"
+trap 'rm -rf "$tmp" "$SCRATCH"' EXIT
+mkdir -p "$SCRATCH/lib/schema" "$SCRATCH/lib/flight-recorder" "$SCRATCH/lib/debate/soul-docs"
+
+# The exact import closure of pov-tags-cli.ts (confirmed by reading the source, t/3970):
+# povTags.ts (+ the registry JSON) and the flight-recorder module it logs through. Every
+# file flight-recorder/*.ts imports is a sibling within that same directory -- no other
+# code outside this list is reachable from the CLI's entry point.
+CLOSURE="lib/schema/povTags.ts lib/schema/pov-tags-cli.ts lib/debate/soul-docs/pov-tags.json
+lib/flight-recorder/index.ts lib/flight-recorder/flightRecorder.ts lib/flight-recorder/dictionary.ts
+lib/flight-recorder/ringBuffer.ts lib/flight-recorder/serializer.ts lib/flight-recorder/redact.ts
+lib/flight-recorder/types.ts lib/flight-recorder/constants.ts"
+for p in $CLOSURE; do
+  code_git show "$REF:$p" > "$SCRATCH/$p" 2>/dev/null || unverified "$p not readable at $REF in $CODE_ROOT"
+done
+
+# tsx's own .bin shim is a POSIX shell script this bash runs directly with a POSIX path,
+# but it execs the native node.exe underneath -- which needs Windows-form paths for its
+# OWN arguments (the script to run, --input) under MSYS_NO_PATHCONV=1, same as above.
+out="$("$RUNNER" "$(winpath "$SCRATCH/lib/schema/pov-tags-cli.ts")" --input "$CHANGED_JSON_WIN" 2>&1)"
+rc=$?
+
+case "$rc" in
+  0) finish pass "" ;;
+  1)
+    LASTLINE="$(printf '%s\n' "$out" | tail -n 1)"
+    echo "" >&2
+    echo "$TAG WARNING: staged pov_tags are invalid:" >&2
+    ERRS="$(printf '%s' "$LASTLINE" | node -e '
+      let raw = "";
+      process.stdin.on("data", (d) => { raw += d; });
+      process.stdin.on("end", () => {
+        try {
+          const j = JSON.parse(raw);
+          for (const e of j.errors) console.log("    " + e);
+          process.stdout.write("##ERRLIST##" + j.errors.join(",") + "\n");
+        } catch { process.exit(1); }
+      });
+    ' 2>/dev/null)" || ERRS=""
+    if [ -n "$ERRS" ]; then
+      printf '%s\n' "$ERRS" | grep -v '^##ERRLIST##' >&2
+      DETAIL="$(printf '%s\n' "$ERRS" | grep '^##ERRLIST##' | sed 's/^##ERRLIST##//')"
+    else
+      printf '%s\n' "$out" >&2
+      DETAIL="$out"
+    fi
+    echo "" >&2
+    finish violation "$DETAIL" ;;
+  *)
+    unverified "pov-tags-cli failed (exit $rc): $(printf '%s\n' "$out" | tail -3 | tr '\n' ' ')" ;;
+esac
