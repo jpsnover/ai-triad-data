@@ -19,6 +19,8 @@ git worktree add -q -b "$BR" "$WT" "$BASE" || exit 1
 trap 'cd "$DATA"; git worktree remove --force "$WT" 2>/dev/null; git branch -q -D "$BR" 2>/dev/null; rm -f "${TELEM:-}"; echo "[cleanup] worktree + branch removed; nothing pushed"' EXIT
 cd "$WT" || exit 1
 echo "base=$(git rev-parse --short "$BASE")  hooksPath=$(git config --get core.hooksPath)  hook mode=$(git ls-tree HEAD .githooks/situations-bdi-check | cut -c1-6)"
+# The assertions follow the DEPLOYED mode, read from the hook under test (t/3892 flip).
+echo "deployed $(grep -m1 '^WARN_ONLY=' .githooks/situations-bdi-check)"
 
 mutate () {  # $1 = flat | relabel
   python - "$1" "$(wp "$WT/$SIT")" <<'PY'
@@ -42,7 +44,7 @@ run () {  # label, then git commit args
   before="$(git rev-parse HEAD)"; t0=$(date +%s%N); n0="$(wc -l < "$TELEM" | tr -d ' ')"
   out="$(git commit "$@" 2>&1)"; rc=$?; t1=$(date +%s%N); n1="$(wc -l < "$TELEM" | tr -d ' ')"
   echo; echo "### $label   (rc=$rc, $(( (t1-t0)/1000000 )) ms, commit $([ "$before" = "$(git rev-parse HEAD)" ] && echo REFUSED || echo CREATED))"
-  printf '%s\n' "$out" | grep -E '\[situation-bdi\]|^\s+sit-|COULD NOT|not BDI' | sed 's/^/    /'
+  printf '%s\n' "$out" | grep -E '\[situation-bdi\]|^\s+sit-|COULD NOT|not BDI|WHOLE-INDEX' | sed 's/^/    /'
   printf '%s\n' "$out" | grep -qE '\[situation-bdi\]' || echo "    (no [situation-bdi] output)"
   if [ "$n1" -gt "$n0" ]; then
     # t/3970: pre-commit also runs pov-tags-check now, appending its OWN record to this
