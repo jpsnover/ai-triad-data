@@ -35,7 +35,13 @@ grep -q "^WARN_ONLY=$MODE$" .githooks/pov-tags-check || { echo "FATAL: mode not 
 
 # ---- build the fixture code-repo (real rule + controlled registry), nested so the real
 # checkout's node_modules is still found by the upward walk. ----
-FIXTURE="$REAL_CODE_ROOT/.gv-pov-tags-fixture.$$"
+# Lead review (t/4022): the fixture used to live at a bare `.gv-pov-tags-fixture.<pid>/` at
+# CODE_ROOT's own root -- NOT gitignored, so it showed up as untracked drift in the shared
+# checkout for the whole run (caught live: `.gv-pov-tags-fixture.11967/` visible mid-run).
+# CODE_ROOT/tmp/ is already gitignored at the repo root and is the same location
+# conflicts-shape-check uses for its own scratch dir (t/3953) -- same fix, same place.
+mkdir -p "$REAL_CODE_ROOT/tmp" || { echo "FATAL: could not create $REAL_CODE_ROOT/tmp"; exit 1; }
+FIXTURE="$(mktemp -d "$REAL_CODE_ROOT/tmp/gv-pov-tags-fixture.XXXXXX")" || { echo "FATAL: could not create a fixture dir under $REAL_CODE_ROOT/tmp"; exit 1; }
 trap 'cd "$T" 2>/dev/null; rm -rf "$T" "$FIXTURE" "${TELEM_DIR:-}"' EXIT
 mkdir -p "$FIXTURE/lib/schema" "$FIXTURE/lib/flight-recorder" "$FIXTURE/lib/debate/soul-docs"
 for p in lib/schema/povTags.ts lib/schema/pov-tags-cli.ts \
@@ -82,7 +88,7 @@ SEED_SAF () { write_file taxonomy/Origin/safetyist.json "$(node saf-001 '')"; }
 SEED_SIT () { write_file taxonomy/Origin/situations.json "$(node sit-001 '')"; }
 SEED_FILES () { SEED_ACC; SEED_SAF; SEED_SIT; echo seed > README.md; }
 SEED_FILES; git add -A >/dev/null 2>&1; git commit -qm seed --no-verify; SEED="$(git rev-parse HEAD)"
-reseed () { git reset -q --hard "$SEED"; git clean -qfd -- . ':!.gv-pov-tags-fixture.*' >/dev/null 2>&1; }
+reseed () { git reset -q --hard "$SEED"; git clean -qfd >/dev/null 2>&1; }   # $FIXTURE lives under $REAL_CODE_ROOT/tmp/, never inside $T, so no exclusion is needed here
 
 TELEM_DIR="$(mktemp -d)"; export AI_TRIAD_HOOK_TELEMETRY="$TELEM_DIR/hook-telemetry.jsonl"
 : > "$AI_TRIAD_HOOK_TELEMETRY"
@@ -157,5 +163,26 @@ if PATH="$NOTSX_PATH" command -v tsx >/dev/null 2>&1; then
 fi
 PATH="$NOTSX_PATH" run "no tsx"
 mv "$FIXTURE/node_modules/.bin/tsx.disabled" "$FIXTURE/node_modules/.bin/tsx"
+
+arm "10 COULD NOT VERIFY: checker fails to load (t/4022) → reported as unverified, NEVER violation"
+# t/4022: node ALSO exits 1 on an uncaught load error (module not found, syntax error), which
+# COLLIDES with the CLI's own exit-1 "invalid tags" verdict unless the hook parses the last
+# line as real verdict JSON first. To exercise THIS specific code path (not the separate,
+# already-correct "closure file missing -> unverified" extraction guard a few lines up), the
+# extraction must SUCCEED and tsx must then THROW AT RUNTIME -- so this corrupts the CONTENT
+# of an already-listed closure file (a bad import prepended to pov-tags-cli.ts) rather than
+# deleting a file from the list. Every extracted file still exists; the CLI just can't load.
+FIXTURE_CLI="$FIXTURE/lib/schema/pov-tags-cli.ts"
+CLI_BACKUP="$T/pov-tags-cli.ts.orig"   # OUTSIDE $FIXTURE's tree -- `git add -A` inside the
+                                        # fixture must never sweep this up, or resetting past
+                                        # the break-commit deletes the backup along with it.
+reseed; write_file taxonomy/Origin/accelerationist.json "$(node acc-001 '')" "$(node acc-008 ', "pov_tags": ["tag-a"]')"
+git add taxonomy/Origin/accelerationist.json
+cp "$FIXTURE_CLI" "$CLI_BACKUP"
+printf "import './this-module-does-not-exist.js';\n%s" "$(cat "$FIXTURE_CLI")" > "$FIXTURE_CLI"
+( cd "$FIXTURE" && git add -- lib/schema/pov-tags-cli.ts && git commit -qm "break loading" )
+run "checker broken"
+( cd "$FIXTURE" && git reset -q --hard HEAD~1 )
+cp "$CLI_BACKUP" "$FIXTURE_CLI"
 
 cd /

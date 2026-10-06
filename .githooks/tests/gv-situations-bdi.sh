@@ -173,4 +173,18 @@ fi
 echo "    stripped PATH: git found, pwsh absent (reachability OK)"
 PATH="$NOPWSH_PATH" run "no pwsh"
 
+arm "11 COULD NOT VERIFY: pwsh runner crashes before emitting any VIOLATION line (t/4022) → reported as unverified, NEVER violation"
+# t/4022: the runner's OWN try/catch already converts an internal load/parse failure to
+# exit 2 (COULD-NOT-VERIFY) -- but a PARSE error in the .ps1 file itself (a syntax error)
+# is terminating BEFORE the try block is ever reached, and pwsh exits 1 for that, the SAME
+# code the runner uses for "violations found." Replace the runner with a syntactically
+# broken copy for this one arm so pwsh fails to parse it at all, emitting zero VIOLATION
+# lines -- this must read COULD NOT VERIFY, never a false "not BDI-decomposed" WARNING.
+reseed; write_sit "$(node sit-001 a good)" "$(node sit-900 legacy flat)" "$(node sit-154 dep dep)" "$(node sit-011 x flat)"
+git add taxonomy/Origin/situations.json
+cp .githooks/situations-bdi-runner.ps1 "$T/runner.ps1.orig"
+printf '%s\nthis is not valid PowerShell {{{\n' "$(cat .githooks/situations-bdi-runner.ps1)" > .githooks/situations-bdi-runner.ps1
+run "runner broken"
+cp "$T/runner.ps1.orig" .githooks/situations-bdi-runner.ps1
+
 cd /; rm -rf "$T" "$TELEM_DIR"

@@ -62,9 +62,13 @@ SITUATIONS = {
     "8":  (C, [], [SBD]),
     "9":  (R, [SBD + " COULD NOT VERIFY"], []),
     "10": (R, [SBD + " COULD NOT VERIFY"], []),
+    # t/4022: a pwsh PARSE error (terminating before the runner's own try/catch is ever
+    # reached) exits 1, the SAME code the runner uses for "violations found" -- must read
+    # COULD NOT VERIFY, never a false "not BDI-decomposed" WARNING naming zero violations.
+    "11": (R, [SBD + " COULD NOT VERIFY"], [SBD + " WARNING"]),
 }
 SITUATIONS_WARN_LINE = SBD + " WARN-ONLY"
-SITUATIONS_WARN_ARMS = {"3", "4", "7", "9", "10"}
+SITUATIONS_WARN_ARMS = {"3", "4", "7", "9", "10", "11"}
 # Execution record per arm (t/3892#6): the `result` the hook must append. `action` is
 # derived: "refused" where blocking mode refuses the commit, else "allowed". Every arm
 # must write exactly one record -- a silent pass and a dead hook look identical on screen,
@@ -72,6 +76,7 @@ SITUATIONS_WARN_ARMS = {"3", "4", "7", "9", "10"}
 SITUATIONS_TELEMETRY = {
     "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "pass",
     "6": "pass", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
+    "11": "unverified",
 }
 
 POV_TAGS = {
@@ -84,15 +89,21 @@ POV_TAGS = {
     "7": (R, [PVT + " WARNING", "only allowed on POV nodes"], []),
     "8": (C, [], [PVT]),
     "9": (R, [PVT + " COULD NOT VERIFY"], []),
+    # t/4022: exit-code collision -- a checker that fails to LOAD (module not found, syntax
+    # error) must read COULD NOT VERIFY, never WARNING/violation. Distinct from arm 9 (tsx
+    # unreachable, caught before the CLI ever runs): here extraction succeeds and tsx DOES
+    # run, but throws, so this is the arm that actually exercises the rc=1 verdict-JSON-vs-
+    # crash-trace parsing fix, not a pre-existing extraction guard.
+    "10": (R, [PVT + " COULD NOT VERIFY"], [PVT + " WARNING"]),
 }
 POV_TAGS_WARN_LINE = PVT + " WARN-ONLY"
-POV_TAGS_WARN_ARMS = {"3", "4", "5", "6", "7", "9"}
+POV_TAGS_WARN_ARMS = {"3", "4", "5", "6", "7", "9", "10"}
 # Execution record (t/3970, mirrors SITUATIONS_TELEMETRY): the `result` the hook must
 # append. Arms 1/2/8 are legitimately quiet passes/skips -- the record is what tells them
 # apart from a hook that never ran.
 POV_TAGS_TELEMETRY = {
     "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "violation",
-    "6": "violation", "7": "violation", "8": "skip", "9": "unverified",
+    "6": "violation", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
 }
 
 # Live-fire runs the DEPLOYED hook (warn mode) from a real linked worktree -- the

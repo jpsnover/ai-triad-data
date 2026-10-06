@@ -139,13 +139,30 @@ rc=$?
 case "$rc" in
   0) finish pass "" ;;
   1)
-    echo "" >&2
-    echo "$TAG WARNING: staged situations are not BDI-decomposed:" >&2
-    printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{printf "    %s  [%s]  %s\n",$2,$3,$4}' >&2
-    echo "" >&2
-    echo "  Each POV needs non-empty belief, desire and intention (not N/A, none, tbd, -)." >&2
-    echo "  Create situations through the editor or New-SituationNode, which decompose them." >&2
-    finish violation "$(printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{print $2}' | sort -u | paste -sd, -)" ;;
+    # t/4022 EXIT-CODE COLLISION FIX: the runner's OWN try/catch already converts an
+    # internal load/parse failure to exit 2 (COULD-NOT-VERIFY) -- but pwsh exits 1 for a
+    # failure OUTSIDE that try/catch too (the runner file not found, or a parse error in
+    # the .ps1 that fails before the try block is ever reached), the SAME code the runner
+    # uses for "violations found." Unconditionally treating rc=1 as a violation then fires
+    # a WARNING naming zero violations (nothing was ever printed) instead of failing
+    # closed. Require at least one real VIOLATION line before calling it a violation.
+    VIOLATIONS="$(printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{print $2}' | sort -u | paste -sd, -)"
+    if [ -n "$VIOLATIONS" ]; then
+      echo "" >&2
+      echo "$TAG WARNING: staged situations are not BDI-decomposed:" >&2
+      printf '%s\n' "$out" | awk -F'\t' '$1=="VIOLATION"{printf "    %s  [%s]  %s\n",$2,$3,$4}' >&2
+      echo "" >&2
+      echo "  Each POV needs non-empty belief, desire and intention (not N/A, none, tbd, -)." >&2
+      echo "  Create situations through the editor or New-SituationNode, which decompose them." >&2
+      finish violation "$VIOLATIONS"
+    else
+      # t/4022#polish (Lead p/648#66): prefer the first line that actually names the
+      # error, falling back to the first non-empty line only if none does.
+      FIRSTLINE="$(printf '%s\n' "$out" | grep -E 'Error|ERROR' | head -n 1)"
+      [ -n "$FIRSTLINE" ] || FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
+      unverified "checker failed: ${FIRSTLINE:-runner exited 1 with no output}"
+    fi
+    ;;
   *)
     unverified "$(printf '%s\n' "$out" | awk -F'\t' '$1=="COULD-NOT-VERIFY"{print $2}' | head -1) (runner exit $rc)" ;;
 esac

@@ -183,6 +183,13 @@ for p in $CLOSURE; do
   code_git show "$REF:$p" > "$SCRATCH/$p" 2>/dev/null || unverified "$p not readable at $REF in $CODE_ROOT"
 done
 
+# t/4021#2: node's module-type resolution walks UP from the file being run looking for the
+# nearest package.json -- SCRATCH sits under node_modules/.cache, so without its own
+# package.json that walk finds the real CODE_ROOT/package.json's "type":"module" only by
+# accident of directory depth, and tsx otherwise defaults to CJS. A top-level-await CLI
+# then fails to load under CJS. Pin it explicitly so this never depends on nesting depth.
+printf '{"type":"module"}' > "$SCRATCH/package.json"
+
 # tsx's own .bin shim is a POSIX shell script this bash runs directly with a POSIX path,
 # but it execs the native node.exe underneath -- which needs Windows-form paths for its
 # OWN arguments (the script to run, --input) under MSYS_NO_PATHCONV=1, same as above.
@@ -192,29 +199,45 @@ rc=$?
 case "$rc" in
   0) finish pass "" ;;
   1)
+    # t/4022 EXIT-CODE COLLISION FIX: node ALSO exits 1 on an uncaught load error (a module
+    # not found, a syntax error, a thrown exception outside the CLI's own try/catch) -- so
+    # exit 1 alone cannot mean "the CLI ran and found invalid tags." Parse the last line
+    # FIRST: only a REAL verdict JSON with an `errors` ARRAY is a violation. Anything else
+    # (unparseable JSON, a stack trace, empty output) means the checker itself failed to
+    # run, which must read as COULD NOT VERIFY, never "your data is invalid" -- the exact
+    # bug found live (data #23 CI, run 37503809063): a CLOSURE-drift load failure printed
+    # as a WARNING and recorded `violation`, pointing the author at their data instead of
+    # the broken checker.
     LASTLINE="$(printf '%s\n' "$out" | tail -n 1)"
-    echo "" >&2
-    echo "$TAG WARNING: staged pov_tags are invalid:" >&2
     ERRS="$(printf '%s' "$LASTLINE" | node -e '
       let raw = "";
       process.stdin.on("data", (d) => { raw += d; });
       process.stdin.on("end", () => {
         try {
           const j = JSON.parse(raw);
+          if (!Array.isArray(j.errors)) process.exit(1);
           for (const e of j.errors) console.log("    " + e);
           process.stdout.write("##ERRLIST##" + j.errors.join(",") + "\n");
         } catch { process.exit(1); }
       });
-    ' 2>/dev/null)" || ERRS=""
-    if [ -n "$ERRS" ]; then
+    ' 2>/dev/null)"
+    PARSE_RC=$?
+    if [ "$PARSE_RC" -eq 0 ]; then
+      echo "" >&2
+      echo "$TAG WARNING: staged pov_tags are invalid:" >&2
       printf '%s\n' "$ERRS" | grep -v '^##ERRLIST##' >&2
       DETAIL="$(printf '%s\n' "$ERRS" | grep '^##ERRLIST##' | sed 's/^##ERRLIST##//')"
+      echo "" >&2
+      finish violation "$DETAIL"
     else
-      printf '%s\n' "$out" >&2
-      DETAIL="$out"
+      # t/4022#polish (Lead p/648#66): the raw first line is often a useless frame like
+      # "node:internal/modules/run_main:123" -- prefer the first line that actually names
+      # the error, falling back to the first non-empty line only if none does.
+      FIRSTLINE="$(printf '%s\n' "$out" | grep -E 'Error|ERROR' | head -n 1)"
+      [ -n "$FIRSTLINE" ] || FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
+      unverified "checker failed: $FIRSTLINE"
     fi
-    echo "" >&2
-    finish violation "$DETAIL" ;;
+    ;;
   *)
     unverified "pov-tags-cli failed (exit $rc): $(printf '%s\n' "$out" | tail -3 | tr '\n' ' ')" ;;
 esac
