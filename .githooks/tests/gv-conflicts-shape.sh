@@ -121,5 +121,32 @@ mv "$REAL_TSX" "$REAL_TSX.disabled"
 PATH="$NOTSX_PATH" run "no tsx"
 mv "$REAL_TSX.disabled" "$REAL_TSX"
 
+arm "8 COULD NOT VERIFY: checker fails to load (t/4022) → reported as unverified, NEVER violation"
+# t/4022: node ALSO exits 1 on an uncaught load error (module not found, syntax error), which
+# collides with the CLI's own exit-1 "invalid shape" verdict. Needs extraction to SUCCEED and
+# tsx to then THROW AT RUNTIME -- distinct from arm 7 above (tsx unreachable entirely, caught
+# before it ever runs). Mirrors gv-pov-tags.sh's own t/4022 arm: a throwaway fixture repo
+# under $REAL_CODE_ROOT/tmp/ (never the shared checkout) with a conflict-shape-cli.ts whose
+# first line is a bad import -- `git archive` + tar extraction succeed (the file exists),
+# tsx runs it, and it throws before ever reaching the real logic.
+reseed; write_conflict conflicts/loadfail.json '{ "claim_id":"c8","claim_label":"L","description":"D","status":"open","linked_taxonomy_nodes":["acc-beliefs-008"],"instances":[],"human_notes":[] }'
+git add conflicts/loadfail.json
+BREAK_FIXTURE="$(mktemp -d "$REAL_CODE_ROOT/tmp/gv-conflicts-shape-break.XXXXXX")"
+mkdir -p "$BREAK_FIXTURE/lib" "$BREAK_FIXTURE/taxonomy-editor/src/renderer/utils" "$BREAK_FIXTURE/operations/devops"
+: > "$BREAK_FIXTURE/lib/.keep"
+: > "$BREAK_FIXTURE/taxonomy-editor/src/renderer/utils/validation.ts"
+: > "$BREAK_FIXTURE/taxonomy-editor/tsconfig.json"
+printf "import './this-module-does-not-exist.js';\n" > "$BREAK_FIXTURE/operations/devops/conflict-shape-cli.ts"
+# tsx wrapper execing the REAL binary by absolute path (gv-pov-tags.sh's same lesson): the
+# hook's PRIMARY `[ -x "$TSX" ]` branch must find it directly, never the `command -v tsx`
+# PATH fallback, which mis-resolves a `/c/...`-style PATH entry under MSYS_NO_PATHCONV=1.
+mkdir -p "$BREAK_FIXTURE/node_modules/.bin"
+printf '#!/usr/bin/env bash\nexec "%s" "$@"\n' "$REAL_CODE_ROOT/node_modules/.bin/tsx" > "$BREAK_FIXTURE/node_modules/.bin/tsx"
+chmod +x "$BREAK_FIXTURE/node_modules/.bin/tsx"
+( cd "$BREAK_FIXTURE" && git init -q . && git config user.email t@t.t && git config user.name t \
+    && git add -A && git commit -qm fixture )
+AI_TRIAD_CODE_ROOT="$BREAK_FIXTURE" AI_TRIAD_CHECKER_REF=HEAD run "checker broken"
+rm -rf "$BREAK_FIXTURE"
+
 cd /
 rm -rf "$T" "$TELEM_DIR"

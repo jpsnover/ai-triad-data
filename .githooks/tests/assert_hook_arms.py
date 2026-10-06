@@ -124,14 +124,18 @@ CONFLICTS_SHAPE = {
     "5": (C, [], [CSH]),
     "6": (R, [CSH + " WARNING", "incident1.json", "incident2.json", "incident3.json"], []),
     "7": (R, [CSH + " COULD NOT VERIFY"], []),
+    # t/4022: exit-code collision -- a checker that fails to LOAD must read COULD NOT
+    # VERIFY, never WARNING/violation. Distinct from arm 7 (tsx unreachable, caught before
+    # it ever runs): here extraction succeeds and tsx DOES run, but throws.
+    "8": (R, [CSH + " COULD NOT VERIFY"], [CSH + " WARNING"]),
 }
 CONFLICTS_SHAPE_WARN_LINE = CSH + " WARN-ONLY"
-CONFLICTS_SHAPE_WARN_ARMS = {"1", "2", "6", "7"}
+CONFLICTS_SHAPE_WARN_ARMS = {"1", "2", "6", "7", "8"}
 # Execution record (t/3953, mirrors POV_TAGS_TELEMETRY). Arms 3/4/5 are legitimately quiet
 # passes/skips -- the record is what tells them apart from a hook that never ran.
 CONFLICTS_SHAPE_TELEMETRY = {
     "1": "violation", "2": "violation", "3": "pass", "4": "skip", "5": "pass",
-    "6": "violation", "7": "unverified",
+    "6": "violation", "7": "unverified", "8": "unverified",
 }
 
 # Live-fire runs the DEPLOYED hook from a real linked worktree -- the only harness

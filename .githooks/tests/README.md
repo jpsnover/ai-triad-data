@@ -86,6 +86,9 @@ The live registry (`lib/debate/soul-docs/pov-tags.json` on `origin/main`) is emp
 | 5 deleted conflict file | created | created | none (nothing to validate) | `pass` |
 | 6 t/3948 replay: the real `c034f34b` incident files | **refused** | created | `[conflicts-shape] WARNING` naming all 3 files | `violation` |
 | 7 tsx unreachable | **refused** | created | `[conflicts-shape] COULD NOT VERIFY` | `unverified` |
+| 8 checker fails to load (t/4022) | **refused** | created | `[conflicts-shape] COULD NOT VERIFY`, never WARNING | `unverified` |
+
+**Arm 8 (t/4022) vs. arm 7:** arm 7 proves tsx is never invoked. Arm 8 proves the opposite case -- a throwaway fixture repo under `$REAL_CODE_ROOT/tmp/` (never the shared checkout) with its own `conflict-shape-cli.ts` whose first line is a bad import, archived/extracted successfully, but throwing when tsx actually runs it. Node's exit 1 on that crash is the same code the CLI's own try/catch uses for "shape invalid," so this is the arm that exercises the rc=1 verdict-JSON-vs-crash-trace discriminator in `conflicts-shape-check`.
 
 Unlike `gv-pov-tags.sh`, this harness needs no fixture code-repo: `conflictFileSchema` (the rule under test) has no mutable-registry dependency, so `AI_TRIAD_CODE_ROOT`/`AI_TRIAD_CHECKER_REF` point straight at the real checkout and the branch under test. `conflict-shape-cli.ts` and its import closure (`lib/`, `taxonomy-editor/src/renderer/utils/validation.ts`, `taxonomy-editor/tsconfig*.json`) are pulled via `git archive`, not a hand-maintained file list (the `CLOSURE` list in `pov-tags-check` is a known drift vector, t/3970#5) — `validation.ts` imports through `@lib/*` aliases into a large, moving set of `lib/` files.
 
