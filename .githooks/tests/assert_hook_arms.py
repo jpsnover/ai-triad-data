@@ -50,6 +50,15 @@ COMMIT_MSG_WARN_LINE = NRG + " WARN-ONLY"
 # (COULD NOT VERIFY) prints its own tag and no WARN-ONLY line -- README requires
 # only the tag there.
 COMMIT_MSG_WARN_ARMS = {"2", "4", "9", "12", "14", "15"}
+# Execution record (t/3851): the `result` each arm must append. Arm 11 is None ON
+# PURPOSE -- git aborts before the hook runs, so NO record is the correct outcome there
+# (asserted, not skipped); every other arm must write exactly one.
+COMMIT_MSG_TELEMETRY = {
+    "1": "skip", "2": "violation", "3": "pass", "4": "violation", "5": "pass",
+    "6": "unverified", "7": "pass", "8": "skip", "9": "violation", "10": "pass",
+    "11": None, "12": "violation", "13": "pass", "14": "violation", "15": "violation",
+}
+RECORD_LINE_RE = re.compile(r"telemetry: [a-z]+/[a-z]+")
 
 SITUATIONS = {
     "1":  (C, [], [SBD]),
@@ -175,7 +184,11 @@ def check(table, mode, text, warn_line, warn_arms=frozenset(), telemetry=None):
                 errors.append(f"arm {arm}: output must NOT contain {s!r}")
         if mode == "1" and arm in warn_arms and warn_line not in body:
             errors.append(f"arm {arm}: warn mode must print {warn_line!r} (a silent commit proves nothing)")
-        if telemetry is not None:
+        if telemetry is not None and telemetry[arm] is None:
+            # Declared record-less (the hook cannot run on this arm): assert NO record.
+            if RECORD_LINE_RE.search(body):
+                errors.append(f"arm {arm}: expected NO execution record (the hook should never run here)")
+        elif telemetry is not None:
             action = "refused" if (mode == "0" and block_outcome == R) else "allowed"
             want_rec = f"telemetry: {telemetry[arm]}/{action}"
             if want_rec not in body:
@@ -195,7 +208,7 @@ def main(argv):
     kind, mode, path = argv[1], argv[2], argv[3]
     text = open(path, encoding="utf-8", errors="replace").read()
     if kind == "commit-msg":
-        n, errors = check(COMMIT_MSG, mode, text, COMMIT_MSG_WARN_LINE, COMMIT_MSG_WARN_ARMS)
+        n, errors = check(COMMIT_MSG, mode, text, COMMIT_MSG_WARN_LINE, COMMIT_MSG_WARN_ARMS, COMMIT_MSG_TELEMETRY)
     elif kind == "situations":
         n, errors = check(SITUATIONS, mode, text, SITUATIONS_WARN_LINE, SITUATIONS_WARN_ARMS, SITUATIONS_TELEMETRY)
     elif kind == "pov-tags":

@@ -19,7 +19,7 @@ git init -q .; git config user.email t@t.t; git config user.name t
 git config advice.ignoredHook false
 mkdir -p taxonomy/Origin .githooks
 cp "$SRC/taxonomy_node_removal_verdict.py" .githooks/
-sed "s/^WARN_ONLY=1$/WARN_ONLY=$MODE/" "$SRC/commit-msg" > .githooks/commit-msg
+sed "s/^WARN_ONLY=[01]$/WARN_ONLY=$MODE/" "$SRC/commit-msg" > .githooks/commit-msg
 chmod +x .githooks/commit-msg; git config core.hooksPath .githooks
 grep -q "^WARN_ONLY=$MODE$" .githooks/commit-msg \
   || { echo "FATAL: WARN_ONLY not set to $MODE in hook copy"; exit 1; }
@@ -52,12 +52,30 @@ remove_acc002 () {
 EOF
 }
 
+# Execution record (t/3851, same shape as t/3892#6): the hook appends one JSON line per
+# run. Point it at a harness-owned file OUTSIDE the temp repo (reseed's `git clean -fd`
+# would delete one inside it) and print what THIS run wrote, for the assert.
+TELEM_DIR="$(mktemp -d)"; export AI_TRIAD_HOOK_TELEMETRY="$TELEM_DIR/hook-telemetry.jsonl"
+: > "$AI_TRIAD_HOOK_TELEMETRY"
+telemetry_since () {  # $1 = line count before the run; only "node-removal" lines count
+  local now new_lines n; now="$(wc -l < "$AI_TRIAD_HOOK_TELEMETRY" | tr -d ' ')"
+  if [ "$now" -le "$1" ]; then echo "    telemetry: (none)"; return; fi
+  new_lines="$(tail -n "$(( now - $1 ))" "$AI_TRIAD_HOOK_TELEMETRY")"
+  n="$(printf '%s\n' "$new_lines" | grep -c '"hook":"node-removal"')"
+  printf '%s\n' "$new_lines" | grep '"hook":"node-removal"' | tail -n 1 \
+    | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*/    telemetry: \1\/\2/p'
+  if [ "$n" -eq 0 ]; then echo "    telemetry: (none)"
+  elif [ "$n" -gt 1 ]; then echo "    telemetry: MULTIPLE RECORDS ($n)"; fi
+}
+
 arm () { echo; echo "################ $1"; }
 run () { # $1=msg, rest=commit args.  Asserts a real attempt happened.
   local m="$1"; shift
   local before; before="$(git rev-parse HEAD)"
-  local out rc
+  local out rc n0
+  n0="$(wc -l < "$AI_TRIAD_HOOK_TELEMETRY" | tr -d ' ')"
   out="$(git commit -m "$m" "$@" 2>&1)"; rc=$?
+  telemetry_since "$n0"
   if grep -q "nothing to commit" <<<"$out"; then
     echo "    *** HARNESS ERROR: nothing staged — this arm tested NOTHING ***"
     return 9
@@ -193,4 +211,4 @@ remove_acc002; bomify taxonomy/Origin/accelerationist.json
 git add taxonomy/Origin/accelerationist.json; run "fix: drop a node, file still BOM'd"
 
 echo
-cd /; rm -rf "$T"
+cd /; rm -rf "$T" "$TELEM_DIR"

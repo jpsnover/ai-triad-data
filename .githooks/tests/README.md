@@ -18,23 +18,25 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 ## Expected results
 
 ### `gv-commit-msg.sh`
-| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert |
-|---|---|---|---|
-| 1 clean, taxonomy untouched | created | created | none |
-| 2 removal, no ack (bare) | **refused** | created | `[node-removal-guard]` naming `acc-002` + whole-index warning |
-| 3 removal, correct ack | created | created | OK line |
-| 4 removal, wrong ack | **refused** | created | names both the spurious (`acc-999`) and the unacked (`acc-002`) id |
-| 5 addition only | created | created | none |
-| 6 malformed staged JSON | **refused** | created | COULD NOT VERIFY / refuse-to-guess |
-| 7 HEAD malformed, commit repairs it | created | created | repair escape |
-| 8 pathspec, peer's removal staged | created (`README.md` only; 3 nodes at commit) | created | none |
-| 9 pathspec, own removal | **refused** | created | fires, trailer advice, **no** whole-index warning |
-| 10 pathspec, own removal, acked | created | created | OK line |
-| 11 reachability: unmerged path | git aborts first; the hook never runs | same | prints `OK: hook never ran` |
-| 12 whole-file deletion | **refused** | created | all of the file's nodes named |
-| 13 BOM in staged copy, no removal | created | created | none (**not** COULD NOT VERIFY) |
-| 14 BOM at HEAD, plain staged + removal | **refused** | created | fires, names `acc-002` |
-| 15 BOM on both sides + removal | **refused** | created | fires, names `acc-002` |
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert | Record `result` |
+|---|---|---|---|---|
+| 1 clean, taxonomy untouched | created | created | none | `skip` |
+| 2 removal, no ack (bare) | **refused** | created | `[node-removal-guard]` naming `acc-002` + whole-index warning | `violation` |
+| 3 removal, correct ack | created | created | OK line | `pass` |
+| 4 removal, wrong ack | **refused** | created | names both the spurious (`acc-999`) and the unacked (`acc-002`) id | `violation` |
+| 5 addition only | created | created | none | `pass` |
+| 6 malformed staged JSON | **refused** | created | COULD NOT VERIFY / refuse-to-guess | `unverified` |
+| 7 HEAD malformed, commit repairs it | created | created | repair escape | `pass` |
+| 8 pathspec, peer's removal staged | created (`README.md` only; 3 nodes at commit) | created | none | `skip` |
+| 9 pathspec, own removal | **refused** | created | fires, trailer advice, **no** whole-index warning | `violation` |
+| 10 pathspec, own removal, acked | created | created | OK line | `pass` |
+| 11 reachability: unmerged path | git aborts first; the hook never runs | same | prints `OK: hook never ran` | none (correct: the hook never ran) |
+| 12 whole-file deletion | **refused** | created | all of the file's nodes named | `violation` |
+| 13 BOM in staged copy, no removal | created | created | none (**not** COULD NOT VERIFY) | `pass` |
+| 14 BOM at HEAD, plain staged + removal | **refused** | created | fires, names `acc-002` | `violation` |
+| 15 BOM on both sides + removal | **refused** | created | fires, names `acc-002` | `violation` |
+
+**Execution record (t/3851).** Every arm except 11 must append **exactly one** `"hook":"node-removal"` line, printed as `telemetry: <result>/<action>`. `action` is `refused` where blocking mode refuses the commit, otherwise `allowed`. Same purpose and same log file as the situations record below: it is how the real warn cycle is read, and the only thing that tells a silent pass (arms 1, 5, 8, 13) from a hook that never ran.
 
 ### `gv-situations-bdi.sh`
 | Arm | Blocking (`0`) | Warn (`1`) | Tag to assert | Record `result` |
