@@ -186,6 +186,14 @@ TSCONFIG="$SCRATCH/taxonomy-editor/tsconfig.json"
 [ -f "$CLI" ] || unverified "conflict-shape-cli.ts not present after archive extraction (missing at $REF in $CODE_ROOT?)"
 [ -f "$TSCONFIG" ] || unverified "taxonomy-editor/tsconfig.json not present after archive extraction"
 
+# t/4021#2 (consistency with pov-tags-check, Lead review t/4022): node's module-type
+# resolution walks UP from the file being run looking for the nearest package.json. SCRATCH
+# is under CODE_ROOT/tmp/ today, one level below CODE_ROOT, so that walk happens to find the
+# real CODE_ROOT/package.json's "type":"module" by accident of directory depth -- harmless
+# now, but not if the CLI ever uses top-level await and SCRATCH's depth ever changes. Pin it
+# explicitly so this never depends on nesting depth.
+printf '{"type":"module"}' > "$SCRATCH/package.json"
+
 out="$("$RUNNER" --tsconfig "$(winpath "$TSCONFIG")" "$(winpath "$CLI")" --input "$ENTRIES_JSON_WIN" 2>&1)"
 rc=$?
 
@@ -220,7 +228,11 @@ case "$rc" in
       echo "" >&2
       finish violation "$DETAIL"
     else
-      FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
+      # t/4022#polish (Lead p/648#66): the raw first line is often a useless frame like
+      # "node:internal/modules/run_main:123" -- prefer the first line that actually names
+      # the error, falling back to the first non-empty line only if none does.
+      FIRSTLINE="$(printf '%s\n' "$out" | grep -E 'Error|ERROR' | head -n 1)"
+      [ -n "$FIRSTLINE" ] || FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
       unverified "checker failed: $FIRSTLINE"
     fi
     ;;
