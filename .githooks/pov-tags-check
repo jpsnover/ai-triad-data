@@ -183,6 +183,13 @@ for p in $CLOSURE; do
   code_git show "$REF:$p" > "$SCRATCH/$p" 2>/dev/null || unverified "$p not readable at $REF in $CODE_ROOT"
 done
 
+# t/4021#2: node's module-type resolution walks UP from the file being run looking for the
+# nearest package.json -- SCRATCH sits under node_modules/.cache, so without its own
+# package.json that walk finds the real CODE_ROOT/package.json's "type":"module" only by
+# accident of directory depth, and tsx otherwise defaults to CJS. A top-level-await CLI
+# then fails to load under CJS. Pin it explicitly so this never depends on nesting depth.
+printf '{"type":"module"}' > "$SCRATCH/package.json"
+
 # tsx's own .bin shim is a POSIX shell script this bash runs directly with a POSIX path,
 # but it execs the native node.exe underneath -- which needs Windows-form paths for its
 # OWN arguments (the script to run, --input) under MSYS_NO_PATHCONV=1, same as above.
@@ -223,7 +230,11 @@ case "$rc" in
       echo "" >&2
       finish violation "$DETAIL"
     else
-      FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
+      # t/4022#polish (Lead p/648#66): the raw first line is often a useless frame like
+      # "node:internal/modules/run_main:123" -- prefer the first line that actually names
+      # the error, falling back to the first non-empty line only if none does.
+      FIRSTLINE="$(printf '%s\n' "$out" | grep -E 'Error|ERROR' | head -n 1)"
+      [ -n "$FIRSTLINE" ] || FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
       unverified "checker failed: $FIRSTLINE"
     fi
     ;;

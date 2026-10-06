@@ -156,7 +156,10 @@ case "$rc" in
       echo "  Create situations through the editor or New-SituationNode, which decompose them." >&2
       finish violation "$VIOLATIONS"
     else
-      FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
+      # t/4022#polish (Lead p/648#66): prefer the first line that actually names the
+      # error, falling back to the first non-empty line only if none does.
+      FIRSTLINE="$(printf '%s\n' "$out" | grep -E 'Error|ERROR' | head -n 1)"
+      [ -n "$FIRSTLINE" ] || FIRSTLINE="$(printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | head -n 1)"
       unverified "checker failed: ${FIRSTLINE:-runner exited 1 with no output}"
     fi
     ;;
