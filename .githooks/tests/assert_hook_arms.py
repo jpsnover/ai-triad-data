@@ -115,6 +115,29 @@ POV_TAGS_TELEMETRY = {
     "6": "violation", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
 }
 
+CSH = "[conflicts-shape]"
+CONFLICTS_SHAPE = {
+    "1": (R, [CSH + " WARNING", "nested.json"], []),
+    "2": (R, [CSH + " WARNING", "nonstring.json"], []),
+    "3": (C, [], [CSH]),
+    "4": (C, [], [CSH]),
+    "5": (C, [], [CSH]),
+    "6": (R, [CSH + " WARNING", "incident1.json", "incident2.json", "incident3.json"], []),
+    "7": (R, [CSH + " COULD NOT VERIFY"], []),
+    # t/4022: exit-code collision -- a checker that fails to LOAD must read COULD NOT
+    # VERIFY, never WARNING/violation. Distinct from arm 7 (tsx unreachable, caught before
+    # it ever runs): here extraction succeeds and tsx DOES run, but throws.
+    "8": (R, [CSH + " COULD NOT VERIFY"], [CSH + " WARNING"]),
+}
+CONFLICTS_SHAPE_WARN_LINE = CSH + " WARN-ONLY"
+CONFLICTS_SHAPE_WARN_ARMS = {"1", "2", "6", "7", "8"}
+# Execution record (t/3953, mirrors POV_TAGS_TELEMETRY). Arms 3/4/5 are legitimately quiet
+# passes/skips -- the record is what tells them apart from a hook that never ran.
+CONFLICTS_SHAPE_TELEMETRY = {
+    "1": "violation", "2": "violation", "3": "pass", "4": "skip", "5": "pass",
+    "6": "violation", "7": "unverified", "8": "unverified",
+}
+
 # Live-fire runs the DEPLOYED hook from a real linked worktree -- the only harness
 # that caught the two #17 defects. Any COULD NOT VERIFY in A-C means the check did not
 # run: a defect, not a pass. The deployed mode is read from the log's
@@ -202,7 +225,7 @@ def check(table, mode, text, warn_line, warn_arms=frozenset(), telemetry=None):
 
 
 def main(argv):
-    if len(argv) != 4 or argv[1] not in ("commit-msg", "situations", "pov-tags", "livefire"):
+    if len(argv) != 4 or argv[1] not in ("commit-msg", "situations", "pov-tags", "conflicts-shape", "livefire"):
         print(__doc__)
         return 2
     kind, mode, path = argv[1], argv[2], argv[3]
@@ -213,6 +236,8 @@ def main(argv):
         n, errors = check(SITUATIONS, mode, text, SITUATIONS_WARN_LINE, SITUATIONS_WARN_ARMS, SITUATIONS_TELEMETRY)
     elif kind == "pov-tags":
         n, errors = check(POV_TAGS, mode, text, POV_TAGS_WARN_LINE, POV_TAGS_WARN_ARMS, POV_TAGS_TELEMETRY)
+    elif kind == "conflicts-shape":
+        n, errors = check(CONFLICTS_SHAPE, mode, text, CONFLICTS_SHAPE_WARN_LINE, CONFLICTS_SHAPE_WARN_ARMS, CONFLICTS_SHAPE_TELEMETRY)
     else:
         m = DEPLOYED_RE.search(text)
         if not m:

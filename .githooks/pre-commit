@@ -23,6 +23,9 @@ EDGES_PATH="taxonomy/Origin/edges.json"
 # t/3970: pov_tags validity check. Independent of the edges guard below too.
 "$(dirname "$0")/pov-tags-check"
 
+# t/3953: conflicts/*.json shape check (linked_taxonomy_nodes must be a flat string array).
+"$(dirname "$0")/conflicts-shape-check"
+
 # Only run if edges.json is staged.
 if ! git diff --cached --name-only | grep -qF "$EDGES_PATH"; then
   exit 0

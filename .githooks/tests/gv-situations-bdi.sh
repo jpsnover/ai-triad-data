@@ -24,6 +24,9 @@ cp "$HOOKS/situations-bdi-runner.ps1" .githooks/
 # `set -e` doesn't abort on "command not found" for a sibling hook this harness forgot to
 # carry along. None of this harness's fixtures set pov_tags, so it stays silent throughout.
 cp "$HOOKS/pov-tags-check" "$HOOKS/pov-tags-diff.mjs" .githooks/
+# t/3953: same reasoning, one hook later -- pre-commit now ALSO calls conflicts-shape-check.
+# None of this harness's fixtures touch conflicts/*.json, so it stays silent throughout too.
+cp "$HOOKS/conflicts-shape-check" "$HOOKS/conflicts-shape-build-input.mjs" .githooks/
 chmod +x .githooks/*; git config core.hooksPath .githooks
 grep -q "^WARN_ONLY=$MODE$" .githooks/situations-bdi-check || { echo "FATAL: mode not set"; exit 1; }
 grep -q "situations-bdi-check" .githooks/pre-commit || { echo "FATAL: not wired"; exit 1; }
