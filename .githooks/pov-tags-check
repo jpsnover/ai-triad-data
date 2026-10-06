@@ -160,7 +160,14 @@ elif command -v tsx >/dev/null 2>&1; then RUNNER="tsx"
 else unverified "tsx not found ($TSX, nor on PATH)"
 fi
 
-SCRATCH="$(mktemp -d "$CODE_ROOT/.pov-tags-check-tmp.XXXXXX")" || unverified "could not create a scratch dir under $CODE_ROOT"
+# Scratch lives under node_modules/.cache specifically (Lead review, t/3970): that path is
+# already gitignored in the shared code checkout, so this never shows up as an untracked
+# directory in `git status` there -- unlike a bare dot-dir at CODE_ROOT's own root, which
+# is NOT ignored by anything and would sit as a stray entry for whoever next looks at that
+# tree. tsx's upward node_modules walk still finds CODE_ROOT/node_modules from here (one
+# level deeper than CODE_ROOT itself, same resolution argument as above).
+mkdir -p "$CODE_ROOT/node_modules/.cache" || unverified "could not create $CODE_ROOT/node_modules/.cache"
+SCRATCH="$(mktemp -d "$CODE_ROOT/node_modules/.cache/pov-tags-check.XXXXXX")" || unverified "could not create a scratch dir under $CODE_ROOT/node_modules/.cache"
 trap 'rm -rf "$tmp" "$SCRATCH"' EXIT
 mkdir -p "$SCRATCH/lib/schema" "$SCRATCH/lib/flight-recorder" "$SCRATCH/lib/debate/soul-docs"
 
