@@ -103,12 +103,35 @@
 #           rationale-drop guard in pre-commit -- prefer the trailer)
 #
 # Install: git config core.hooksPath .githooks   (once per checkout)
+#
+# EXECUTION RECORD (t/3851, same shape as situations-bdi, t/3892#6): every run that
+# reaches a verdict appends one JSON line, hook "node-removal", to
+# <common git dir>/hook-telemetry.jsonl (AI_TRIAD_HOOK_TELEMETRY overrides it), with
+# result skip|pass|violation|unverified, action allowed|refused, ms, worktree, index
+# and HEAD. Without it the warn cycle cannot be read: a pass prints nothing and a
+# WARNING goes only to whoever ran the commit, so a dead guard and a passing one look
+# identical (Live-Fire Proof, t/3396). An unexpected crash records `unverified`
+# before the traceback. Every append is isolated and can never change the verdict.
 
 set -euo pipefail
 
 WARN_ONLY=1
 
 MSG_FILE="${1:?commit-msg hook requires the message file path}"
+
+T0="$(date +%s%3N 2>/dev/null)"; case "$T0" in ''|*[!0-9]*) T0="$(( $(date +%s) * 1000 ))" ;; esac
+record_skip () {  # $1 = detail. The two pre-Python exits; the Python side records the rest.
+  { local common log wt now
+    common="$(git rev-parse --path-format=absolute --git-common-dir)"
+    log="${AI_TRIAD_HOOK_TELEMETRY:-$common/hook-telemetry.jsonl}"
+    [ "$(git rev-parse --absolute-git-dir)" = "$common" ] && wt=false || wt=true
+    now="$(date +%s%3N 2>/dev/null)"; case "$now" in ''|*[!0-9]*) now="$(( $(date +%s) * 1000 ))" ;; esac
+    printf '{"ts":"%s","hook":"node-removal","result":"skip","action":"allowed","warn_only":%s,"ms":%s,"worktree":%s,"index":"%s","head":"%s","detail":"%s"}\n' \
+      "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$([ "$WARN_ONLY" -eq 1 ] && echo true || echo false)" \
+      "$(( now - T0 ))" "$wt" "$(basename "${GIT_INDEX_FILE:-index}")" \
+      "$(git rev-parse --short HEAD 2>/dev/null)" "$1" >> "$log"
+  } 2>/dev/null || true
+}
 
 WATCHED=(
   "taxonomy/Origin/accelerationist.json"
@@ -122,26 +145,68 @@ HIT=0
 for f in "${WATCHED[@]}"; do
   if printf '%s\n' "$STAGED_LIST" | grep -qF "$f"; then HIT=1; break; fi
 done
-[ "$HIT" -eq 1 ] || exit 0
+[ "$HIT" -eq 1 ] || { record_skip "no watched taxonomy file in commit"; exit 0; }
 
-git rev-parse --verify HEAD >/dev/null 2>&1 || exit 0
+git rev-parse --verify HEAD >/dev/null 2>&1 || { record_skip "no HEAD (initial commit)"; exit 0; }
 
 # PYTHONDONTWRITEBYTECODE: importing the verdict module would otherwise leave
 # .githooks/__pycache__/ as untracked noise in every `git status` of a repo
 # whose cleanliness is actively monitored (the t/2452 drift backstop).
-PYTHONDONTWRITEBYTECODE=1 python3 - "$MSG_FILE" "$WARN_ONLY" <<'PYEOF'
+PYTHONDONTWRITEBYTECODE=1 python3 - "$MSG_FILE" "$WARN_ONLY" "$T0" <<'PYEOF'
 import json
 import os
 import re
 import subprocess
 import sys
-
-sys.path.insert(0, os.path.join(os.getcwd(), ".githooks"))
-from taxonomy_node_removal_verdict import acknowledged_ids, node_removal_verdict  # noqa: E402
+import time
 
 MSG_FILE = sys.argv[1]
 WARN_ONLY = sys.argv[2] == "1"
 EXIT_BAD = 0 if WARN_ONLY else 1
+T0_MS = int(sys.argv[3]) if len(sys.argv) > 3 and sys.argv[3].isdigit() else None
+
+
+def record(result, detail="", action=None):
+    """Append this run's execution record (see the header). Isolated: any failure here
+    is swallowed and can never change the verdict."""
+    try:
+        if action is None:
+            action = "refused" if (result in ("violation", "unverified") and not WARN_ONLY) else "allowed"
+
+        def git_out(*args):
+            return subprocess.run(["git", *args], capture_output=True, text=True).stdout.strip()
+
+        common = git_out("rev-parse", "--path-format=absolute", "--git-common-dir")
+        rec = {
+            "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "hook": "node-removal",
+            "result": result,
+            "action": action,
+            "warn_only": WARN_ONLY,
+            "ms": (int(time.time() * 1000) - T0_MS) if T0_MS else None,
+            "worktree": git_out("rev-parse", "--absolute-git-dir") != common,
+            "index": os.path.basename(os.environ.get("GIT_INDEX_FILE", "") or "index"),
+            "head": git_out("rev-parse", "--short", "HEAD"),
+            "detail": str(detail).replace("\n", " ")[:300],
+        }
+        log = os.environ.get("AI_TRIAD_HOOK_TELEMETRY") or os.path.join(common, "hook-telemetry.jsonl")
+        with open(log, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(rec, separators=(",", ":")) + "\n")
+    except Exception:
+        pass
+
+
+def _record_crash(exc_type, exc, tb):
+    # An uncaught exception exits non-zero, so `set -e` fails the commit in EITHER mode:
+    # record it as refused, then print the normal traceback. Behaviour is unchanged.
+    record("unverified", f"guard crashed: {exc_type.__name__}: {exc}", action="refused")
+    sys.__excepthook__(exc_type, exc, tb)
+
+
+sys.excepthook = _record_crash
+
+sys.path.insert(0, os.path.join(os.getcwd(), ".githooks"))
+from taxonomy_node_removal_verdict import acknowledged_ids, node_removal_verdict  # noqa: E402
 
 WATCHED = [
     "taxonomy/Origin/accelerationist.json",
@@ -227,12 +292,14 @@ for path in WATCHED:
     if s_st == "unparseable":
         err(f"[node-removal-guard] COULD NOT VERIFY: staged {path} is not parseable JSON.")
         err("  Refusing rather than guessing. Fix the JSON, or commit the repair on its own.")
+        record("unverified", f"staged {path} not parseable JSON")
         sys.exit(EXIT_BAD)
 
     h_ids = node_ids(h_doc) if h_st == "ok" else set()
     s_ids = node_ids(s_doc) if s_st == "ok" else set()
     if h_ids is None or s_ids is None:
         err(f"[node-removal-guard] COULD NOT VERIFY: {path} has no 'nodes' array.")
+        record("unverified", f"{path} has no nodes array")
         sys.exit(EXIT_BAD)
     head_ids |= h_ids
     staged_ids |= s_ids
@@ -246,6 +313,7 @@ if repairing:
 if not head_ids and not repairing:
     err("[node-removal-guard] COULD NOT VERIFY: read 0 node IDs from HEAD. "
         "This is a guard failure, not a clean result.")
+    record("unverified", "read 0 node IDs from HEAD")
     sys.exit(EXIT_BAD)
 
 # Shared parser (t/3870#5): the push-side re-check imports the same function,
@@ -259,6 +327,9 @@ v = node_removal_verdict(head_ids, staged_ids, acked)
 if v["ok"]:
     if v["reason"] == "acknowledged-removal":
         print(f"[node-removal-guard] OK: {len(v['removed'])} acknowledged removal(s).")
+        record("pass", "acknowledged: " + ",".join(sorted(v["removed"])))
+    else:
+        record("pass", "repair: " + ",".join(repairing) if repairing else "")
     sys.exit(0)
 
 removed = set(v["removed"])
@@ -334,6 +405,9 @@ if FULL_INDEX_COMMIT:
     err("")
     err("        git commit -m \"...\" -- <your paths>")
     err("")
+
+record("violation", "unacknowledged: " + ",".join(v["unacknowledged"])
+       + ("; spurious: " + ",".join(v["spurious"]) if v["spurious"] else ""))
 
 if WARN_ONLY:
     err("[node-removal-guard] WARN-ONLY: commit allowed. Will block once promoted (t/3851).")
