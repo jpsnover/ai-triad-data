@@ -49,6 +49,9 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 | 8 pathspec of unrelated file, peer's flat staged | created (`README.md` only) | created | none | `skip` |
 | 9 checker ref unreadable | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
 | 10 `pwsh` absent from PATH | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
+| 11 pwsh runner crashes before emitting any VIOLATION line (t/4022) | **refused** | created | `[situation-bdi] COULD NOT VERIFY`, never WARNING | `unverified` |
+
+**Arm 11 (t/4022) vs. arm 10:** arm 10 proves pwsh is never invoked (not on PATH). Arm 11 proves the opposite case -- pwsh *is* invoked, but the runner file itself fails to PARSE (a syntax error), which is terminating before the runner's own try/catch is ever reached. pwsh exits 1 for that, the same code the runner uses for "violations found," so this is the arm that exercises the rc=1 VIOLATION-line-vs-crash discriminator in `situations-bdi-check` -- distinct from the runner's *internal* load/parse failures (classifier/checker missing), which the runner's own try/catch already converts to exit 2 and arm 9 already covers.
 
 **Execution record (t/3892#6).** Every arm must append **exactly one** line to the hook's telemetry log, printed by the harness as `telemetry: <result>/<action>`. `action` is `refused` where blocking mode refuses the commit, otherwise `allowed`. This is the only thing that tells a silent pass (arms 2, 5, 6) from a hook that never ran, and it is what the real warn cycle is read from. The harness points `AI_TRIAD_HOOK_TELEMETRY` at a file **outside** the temp repo, because each arm's `git clean -fd` would delete one inside it. Since t/3970, `pre-commit` also runs `pov-tags-check` and appends its OWN record to this SAME shared file -- `telemetry_since()` filters to `"hook":"situation-bdi"` lines specifically, never just "the last line" or "any new line," so a sibling hook's quiet pass can't be mistaken for (or mask) this one's record.
 
@@ -64,8 +67,11 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 | 7 tags on a situation node | **refused** | created | `[pov-tags] WARNING` | `violation` |
 | 8 unrelated file staged, peer's bad tag unstaged on disk | created (`README.md` only) | created | none | `skip` |
 | 9 tsx unreachable | **refused** | created | `[pov-tags] COULD NOT VERIFY` | `unverified` |
+| 10 checker fails to load (t/4022) | **refused** | created | `[pov-tags] COULD NOT VERIFY`, never WARNING | `unverified` |
 
 The live registry (`lib/debate/soul-docs/pov-tags.json` on `origin/main`) is empty until t/3962 starts writing tags, so arms needing a *registered* id (2–7) build a throwaway fixture code-repo nested inside `AI_TRIAD_CODE_ROOT` -- the REAL `lib/schema/{povTags,pov-tags-cli}.ts` and `lib/flight-recorder/*.ts` (never reimplemented), plus a fixture registry with one controlled tag (`tag-a`, accelerationist-only) and a `node_modules/.bin/tsx` wrapper execing the real binary, so Node's upward `node_modules` resolution (for `zod`) still reaches the real checkout's install. Arm 9 removes that wrapper to prove the unreachable-tsx arm, independent of the fixture's own install state.
+
+**Arm 10 (t/4022) vs. arm 9:** arm 9 proves tsx is never *invoked* (no runner found at all). Arm 10 proves the opposite case -- tsx *is* invoked and extraction succeeds, but the CLI throws at load time (an uncaught import error, simulated by prepending a bad import to the fixture's `pov-tags-cli.ts`). Node exits 1 on that crash, the SAME exit code the CLI's own try/catch uses for "tags invalid" -- so this arm is the one that actually exercises the rc=1 verdict-JSON-vs-crash-trace discriminator in `pov-tags-check`, not the separate (and already-correct) "closure file missing" extraction guard.
 
 ### `livefire-situations-bdi.sh` (warn mode, as deployed)
 | Arm | Expect | Record |
