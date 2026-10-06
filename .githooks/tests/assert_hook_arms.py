@@ -106,9 +106,22 @@ POV_TAGS_TELEMETRY = {
     "6": "violation", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
 }
 
-# Live-fire runs the DEPLOYED hook (warn mode) from a real linked worktree -- the
-# only harness that caught the two #17 defects. Any COULD NOT VERIFY in A-C means
-# the check did not run: a defect, not a pass.
+# Live-fire runs the DEPLOYED hook from a real linked worktree -- the only harness
+# that caught the two #17 defects. Any COULD NOT VERIFY in A-C means the check did not
+# run: a defect, not a pass. The deployed mode is read from the log's
+# "deployed WARN_ONLY=N" line, so these expectations follow the flip (t/3892).
+# Blocking-mode table: outcomes, outputs and records for WARN_ONLY=0.
+WHOLE_INDEX = "WHOLE-INDEX commit"
+LIVEFIRE_BLOCKING = {
+    "A": (R, [SBD + " WARNING", "sit-livefire-001", WHOLE_INDEX, "worktree=true"], ["COULD NOT VERIFY"]),
+    "B": (C, ["(no [situation-bdi] output)", "worktree=true"], ["COULD NOT VERIFY"]),
+    # Pathspec commit: a temp index, so the whole-index advice must NOT appear.
+    "C": (R, [SBD + " WARNING", "worktree=true"], ["COULD NOT VERIFY", WHOLE_INDEX]),
+    "D": (R, ["COULD NOT VERIFY", "nonexistent", "worktree=true"], []),
+}
+LIVEFIRE_TELEMETRY = {"A": "violation", "B": "pass", "C": "violation", "D": "unverified"}
+DEPLOYED_RE = re.compile(r"^deployed WARN_ONLY=([01])$", re.M)
+# Warn-mode table (the pre-flip contract), kept so a warn-mode tree still asserts.
 LIVEFIRE = {
     "A": (C, [SBD + " WARNING", "sit-livefire-001", "telemetry: violation/allowed worktree=true"], ["COULD NOT VERIFY"]),
     "B": (C, ["(no [situation-bdi] output)", "telemetry: pass/allowed worktree=true"], ["COULD NOT VERIFY"]),
@@ -188,7 +201,16 @@ def main(argv):
     elif kind == "pov-tags":
         n, errors = check(POV_TAGS, mode, text, POV_TAGS_WARN_LINE, POV_TAGS_WARN_ARMS, POV_TAGS_TELEMETRY)
     else:
-        n, errors = check(LIVEFIRE, "1", text, None)
+        m = DEPLOYED_RE.search(text)
+        if not m:
+            # Fail closed: without the mode line we cannot know which contract applies.
+            print(f"::error::hook arms livefire ({path}): no 'deployed WARN_ONLY=' line in the log")
+            return 1
+        mode = m.group(1)
+        if mode == "0":
+            n, errors = check(LIVEFIRE_BLOCKING, "0", text, None, telemetry=LIVEFIRE_TELEMETRY)
+        else:
+            n, errors = check(LIVEFIRE, "1", text, None)
     label = f"{kind} mode={mode} ({path})"
     if errors:
         for e in errors:

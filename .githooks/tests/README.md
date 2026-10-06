@@ -73,12 +73,16 @@ The live registry (`lib/debate/soul-docs/pov-tags.json` on `origin/main`) is emp
 
 **Arm 10 (t/4022) vs. arm 9:** arm 9 proves tsx is never *invoked* (no runner found at all). Arm 10 proves the opposite case -- tsx *is* invoked and extraction succeeds, but the CLI throws at load time (an uncaught import error, simulated by prepending a bad import to the fixture's `pov-tags-cli.ts`). Node exits 1 on that crash, the SAME exit code the CLI's own try/catch uses for "tags invalid" -- so this arm is the one that actually exercises the rc=1 verdict-JSON-vs-crash-trace discriminator in `pov-tags-check`, not the separate (and already-correct) "closure file missing" extraction guard.
 
-### `livefire-situations-bdi.sh` (warn mode, as deployed)
-| Arm | Expect | Record |
-|---|---|---|
-| A flat situation, bare commit | `[situation-bdi] WARNING` naming `sit-livefire-001` × 3 POVs | `violation/allowed worktree=true` |
-| B valid relabel of `sit-001` | no `[situation-bdi]` output | `pass/allowed worktree=true` |
-| C flat situation, pathspec commit | `[situation-bdi] WARNING` | `violation/allowed worktree=true` |
-| D bogus `AI_TRIAD_CODE_ROOT` | `COULD NOT VERIFY` naming the bogus path (override honoured) | `unverified/allowed worktree=true` |
+### `livefire-situations-bdi.sh` (follows the DEPLOYED mode)
+The script prints `deployed WARN_ONLY=N` from the hook under test, and the assertion picks the matching table; a log without that line fails. **Blocking (`WARN_ONLY=0`, deployed since the t/3892 flip):**
+
+| Arm | Commit | Expect | Record |
+|---|---|---|---|
+| A flat situation, bare commit | **refused** | `[situation-bdi] WARNING` naming `sit-livefire-001`, plus the `WHOLE-INDEX commit` advice | `violation/refused worktree=true` |
+| B valid relabel of `sit-001` | created | no `[situation-bdi]` output | `pass/allowed worktree=true` |
+| C flat situation, pathspec commit | **refused** | `[situation-bdi] WARNING`, and **no** `WHOLE-INDEX` advice (temp index) | `violation/refused worktree=true` |
+| D bogus `AI_TRIAD_CODE_ROOT` | **refused** | `COULD NOT VERIFY` naming the bogus path (override honoured) | `unverified/refused worktree=true` |
+
+**Warn (`WARN_ONLY=1`, the pre-flip contract):** every commit is created; A and C print the `WARNING`, B is silent, D prints `COULD NOT VERIFY`; every record's action is `allowed`.
 
 Any `COULD NOT VERIFY` in arms A–C means the check **did not run**: a defect, not a pass. The live-fire sends its records to a temp file, never the real warn-cycle log.

@@ -23,11 +23,20 @@
 # WHY NOT `Import-Module AITriad`: 6-17 s per commit (measured, t/3892#2) drives
 # --no-verify, which disarms every data-repo guard. Loading two files takes ~0.9 s.
 #
-# WARN-ONLY for now. Per Gate Promotion it stays advisory for >=1 real green cycle,
-# and the flip to blocking (WARN_ONLY=0) needs a mandatory Second Opinion. When
-# reading the warn cycle, look for the printed WARNING lines -- this script exits 0
-# in warn mode whether or not it fired, so "the commit succeeded" proves nothing
-# (Sage #202).
+# STATUS: BLOCKING (WARN_ONLY=0) since 2026-10-06. Promoted after a real green cycle
+# (data e4095258, worktree `pass` record; TL GV t/3892#8) and the mandatory Second
+# Opinion (e/258#2). Emergency override: `git commit --no-verify` (disarms EVERY
+# data-repo guard -- prefer fixing the situation).
+#
+# BLOCKING PER WORKING TREE, NOT PER REPO: core.hooksPath=.githooks is relative, so a
+# commit runs the hook file in ITS OWN tree. A tree that does not yet contain this
+# commit still runs the old warn-only copy. The shared data checkout is synced by
+# DevOps only (docs/shared-tree-divergence.md), and is synced past this flip only
+# after it has written one non-`unverified` record with worktree=false (SO condition
+# 2) -- until then it stays warn-only, and t/3892 says so. Check a tree's mode with:
+#   grep '^WARN_ONLY=' .githooks/situations-bdi-check
+# In warn mode this script exits 0 whether or not it fired, so "the commit
+# succeeded" proves nothing there (Sage #202); read the WARNING lines or the record.
 #
 # EXECUTION RECORD (t/3892#6): every run appends one JSON line to
 # <common git dir>/hook-telemetry.jsonl -- untracked, shared by all worktrees of the
@@ -41,15 +50,17 @@
 # swallowed and can never change the verdict.
 #
 # COULD NOT VERIFY (pwsh missing, checker unreadable, JSON unparseable) is reported
-# as unverified, never as a pass; it blocks too once promoted.
+# as unverified, never as a pass; it blocks too.
 #
 # Not covered (after-push compliance, t/3671, is the backstop): --no-verify,
-# clones without core.hooksPath (t/3869), server-side writes (bot, merges, API).
+# clones without core.hooksPath (t/3869), server-side writes (bot, merges, API),
+# and a STALE working tree, which runs its stale (possibly warn-only) copy of this
+# file -- ordinary, not adversarial (e/258#2).
 
 set -uo pipefail
 export MSYS_NO_PATHCONV=1   # keep `:path` / `HEAD:path` revspecs intact under Git-for-Windows bash
 
-WARN_ONLY=1
+WARN_ONLY=0
 WATCH="taxonomy/Origin/situations.json"
 TAG="[situation-bdi]"
 
@@ -78,6 +89,14 @@ finish () {  # $1 = pass|violation|unverified   $2 = detail for the record
   if [ "$1" != pass ] && [ "$WARN_ONLY" -eq 0 ]; then
     record "$1" refused "${2:-}"
     echo "$TAG BLOCKING: commit refused." >&2
+    # Only a whole-index commit can sweep in a peer's staged situations.json, so only
+    # there might this refusal be about someone else's change (e/258#2; same
+    # discriminator as commit-msg, e/243#6). A pathspec commit uses a temp index.
+    if [ "$(basename "${GIT_INDEX_FILE:-index}")" = index ]; then
+      echo "  This is a WHOLE-INDEX commit: it includes everything currently staged, which on a" >&2
+      echo "  shared checkout may be another agent's change. If the situation above is not yours," >&2
+      echo "  commit only your own paths instead:  git commit -m \"...\" -- <your paths>" >&2
+    fi
     exit 1
   fi
   record "$1" allowed "${2:-}"

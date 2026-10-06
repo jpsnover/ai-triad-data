@@ -17,7 +17,7 @@ git init -q .; git config user.email t@t.t; git config user.name t
 mkdir -p .githooks taxonomy/Origin
 # pre-commit = the REAL data-repo pre-commit with the planned insertion (before its edges early-exit)
 cp "$HOOKS/pre-commit" .githooks/pre-commit   # the real pre-commit (already wired to the check)
-sed "s/^WARN_ONLY=1$/WARN_ONLY=$MODE/" "$HOOKS/situations-bdi-check" > .githooks/situations-bdi-check
+sed "s/^WARN_ONLY=[01]$/WARN_ONLY=$MODE/" "$HOOKS/situations-bdi-check" > .githooks/situations-bdi-check
 cp "$HOOKS/situations-bdi-runner.ps1" .githooks/
 # t/3970: pre-commit now ALSO calls pov-tags-check, right after this one -- copy it in
 # (always warn-only here; this harness tests situations-bdi, not pov-tags) so pre-commit's
