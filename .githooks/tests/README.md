@@ -8,6 +8,7 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 |---|---|---|---|
 | `gv-commit-msg.sh <1\|0>` | `commit-msg` (node-removal guard, t/3851) | temp repo | bash, git, python3 |
 | `gv-situations-bdi.sh <1\|0>` | `pre-commit` → `situations-bdi-check` (t/3892) | temp repo | + `pwsh`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `origin/main` fetched |
+| `gv-pov-tags.sh <1\|0>` | `pre-commit` → `pov-tags-check` (t/3970) | temp repo | + `node`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `node_modules` installed |
 | `livefire-situations-bdi.sh [ref]` | the **deployed** situation check | **a throwaway worktree of this repo**: real `core.hooksPath`, real `situations.json`; commits are local and discarded, never pushed | + `pwsh`, the code repo as a sibling of this repo's main checkout |
 
 `<1|0>` is `WARN_ONLY`. Run both. `HOOK_SRC` overrides which `.githooks` is under test (default: the directory above `tests/`).
@@ -49,7 +50,22 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 | 9 checker ref unreadable | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
 | 10 `pwsh` absent from PATH | **refused** | created | `[situation-bdi] COULD NOT VERIFY` | `unverified` |
 
-**Execution record (t/3892#6).** Every arm must append **exactly one** line to the hook's telemetry log, printed by the harness as `telemetry: <result>/<action>`. `action` is `refused` where blocking mode refuses the commit, otherwise `allowed`. This is the only thing that tells a silent pass (arms 2, 5, 6) from a hook that never ran, and it is what the real warn cycle is read from. The harness points `AI_TRIAD_HOOK_TELEMETRY` at a file **outside** the temp repo, because each arm's `git clean -fd` would delete one inside it.
+**Execution record (t/3892#6).** Every arm must append **exactly one** line to the hook's telemetry log, printed by the harness as `telemetry: <result>/<action>`. `action` is `refused` where blocking mode refuses the commit, otherwise `allowed`. This is the only thing that tells a silent pass (arms 2, 5, 6) from a hook that never ran, and it is what the real warn cycle is read from. The harness points `AI_TRIAD_HOOK_TELEMETRY` at a file **outside** the temp repo, because each arm's `git clean -fd` would delete one inside it. Since t/3970, `pre-commit` also runs `pov-tags-check` and appends its OWN record to this SAME shared file -- `telemetry_since()` filters to `"hook":"situation-bdi"` lines specifically, never just "the last line" or "any new line," so a sibling hook's quiet pass can't be mistaken for (or mask) this one's record.
+
+### `gv-pov-tags.sh`
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert | Record `result` |
+|---|---|---|---|---|
+| 1 no watched file staged | created | created | none | `skip` |
+| 2 valid tagged node, registered id, one-element array | created | created | none | `pass` |
+| 3 unknown tag id | **refused** | created | `[pov-tags] WARNING` naming it | `violation` |
+| 4 duplicate tag id | **refused** | created | `[pov-tags] WARNING` | `violation` |
+| 5 wrong-POV id (registered for a different POV) | **refused** | created | `[pov-tags] WARNING` | `violation` |
+| 6 scalar `pov_tags` (not an array) | **refused** | created | `[pov-tags] WARNING` | `violation` |
+| 7 tags on a situation node | **refused** | created | `[pov-tags] WARNING` | `violation` |
+| 8 unrelated file staged, peer's bad tag unstaged on disk | created (`README.md` only) | created | none | `skip` |
+| 9 tsx unreachable | **refused** | created | `[pov-tags] COULD NOT VERIFY` | `unverified` |
+
+The live registry (`lib/debate/soul-docs/pov-tags.json` on `origin/main`) is empty until t/3962 starts writing tags, so arms needing a *registered* id (2–7) build a throwaway fixture code-repo nested inside `AI_TRIAD_CODE_ROOT` -- the REAL `lib/schema/{povTags,pov-tags-cli}.ts` and `lib/flight-recorder/*.ts` (never reimplemented), plus a fixture registry with one controlled tag (`tag-a`, accelerationist-only) and a `node_modules/.bin/tsx` wrapper execing the real binary, so Node's upward `node_modules` resolution (for `zod`) still reaches the real checkout's install. Arm 9 removes that wrapper to prove the unreachable-tsx arm, independent of the fixture's own install state.
 
 ### `livefire-situations-bdi.sh` (warn mode, as deployed)
 | Arm | Expect | Record |

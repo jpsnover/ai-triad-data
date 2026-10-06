@@ -19,6 +19,11 @@ mkdir -p .githooks taxonomy/Origin
 cp "$HOOKS/pre-commit" .githooks/pre-commit   # the real pre-commit (already wired to the check)
 sed "s/^WARN_ONLY=1$/WARN_ONLY=$MODE/" "$HOOKS/situations-bdi-check" > .githooks/situations-bdi-check
 cp "$HOOKS/situations-bdi-runner.ps1" .githooks/
+# t/3970: pre-commit now ALSO calls pov-tags-check, right after this one -- copy it in
+# (always warn-only here; this harness tests situations-bdi, not pov-tags) so pre-commit's
+# `set -e` doesn't abort on "command not found" for a sibling hook this harness forgot to
+# carry along. None of this harness's fixtures set pov_tags, so it stays silent throughout.
+cp "$HOOKS/pov-tags-check" "$HOOKS/pov-tags-diff.mjs" .githooks/
 chmod +x .githooks/*; git config core.hooksPath .githooks
 grep -q "^WARN_ONLY=$MODE$" .githooks/situations-bdi-check || { echo "FATAL: mode not set"; exit 1; }
 grep -q "situations-bdi-check" .githooks/pre-commit || { echo "FATAL: not wired"; exit 1; }
@@ -53,8 +58,16 @@ TELEM_DIR="$(mktemp -d)"; export AI_TRIAD_HOOK_TELEMETRY="$TELEM_DIR/hook-teleme
 telemetry_since () {  # $1 = line count before the run
   local now; now="$(wc -l < "$AI_TRIAD_HOOK_TELEMETRY" | tr -d ' ')"
   if [ "$now" -gt "$1" ]; then
-    tail -n 1 "$AI_TRIAD_HOOK_TELEMETRY" | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*/    telemetry: \1\/\2/p'
-    [ "$(( now - $1 ))" -gt 1 ] && echo "    telemetry: MULTIPLE RECORDS ($(( now - $1 )))"
+    # t/3970: pre-commit also runs pov-tags-check now, appending its OWN record to this
+    # same shared file -- isolate "situation-bdi"'s lines specifically. "MULTIPLE RECORDS"
+    # must mean situation-bdi itself ran twice, not "a sibling hook also ran once."
+    local new_lines sbd_count; new_lines="$(tail -n "$(( now - $1 ))" "$AI_TRIAD_HOOK_TELEMETRY")"
+    sbd_count="$(printf '%s\n' "$new_lines" | grep -c '"hook":"situation-bdi"')"
+    printf '%s\n' "$new_lines" | grep '"hook":"situation-bdi"' | tail -n 1 \
+      | sed -n 's/.*"result":"\([a-z]*\)","action":"\([a-z]*\)".*/    telemetry: \1\/\2/p'
+    if [ "$sbd_count" -eq 0 ]; then echo "    telemetry: (none)"
+    elif [ "$sbd_count" -gt 1 ]; then echo "    telemetry: MULTIPLE RECORDS ($sbd_count)"
+    fi
   else
     echo "    telemetry: (none)"
   fi

@@ -4,8 +4,8 @@
 #        Before this, a hook change merged with ZERO checks (data #17).
 #
 # Two locations, because the #17 defects only exist in one of them:
-#   - temp-repo harnesses (gv-commit-msg.sh, gv-situations-bdi.sh), both WARN_ONLY modes, run
-#     from the normal checkout AND from a linked worktree of it;
+#   - temp-repo harnesses (gv-commit-msg.sh, gv-situations-bdi.sh, gv-pov-tags.sh), both
+#     WARN_ONLY modes, run from the normal checkout AND from a linked worktree of it;
 #   - livefire-situations-bdi.sh: the DEPLOYED situation hook through real `git commit` from a
 #     throwaway LINKED WORKTREE of this repo (real core.hooksPath, real situations.json). This is
 #     the arm that caught #17 (hook GIT_DIR overriding `git -C`; --show-toplevel resolving to the
@@ -14,6 +14,10 @@
 # Asserting, not printing: the arm scripts only PRINT. In warn mode every commit is created, so
 # a green "commit created" proves nothing (Sage #202); assert_hook_arms.py checks the tagged hook
 # output per arm as well as the outcome.
+#
+# t/3970: gv-pov-tags.sh needs the code repo's node_modules actually installed (it shells out to
+# the REAL lib/schema/pov-tags-cli.ts via tsx, not a PowerShell classifier read as a source blob
+# the way situations-bdi does) -- hence the added pnpm install step below, scoped to this one job.
 #
 # Advisory by construction: ai-triad-data has no branch protection, so this check reds the PR /
 # push but cannot block it.
@@ -47,12 +51,39 @@ jobs:
           path: ai-triad-data
           fetch-depth: 0   # live-fire `git fetch origin` + worktree off the tested SHA
 
-      - name: Checkout code repo (sibling; situation classifier + AITriad module)
+      - name: Checkout code repo (sibling; situation classifier + AITriad module + pov-tags-cli)
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
         with:
           repository: jpsnover/ai-triad-research   # public
           path: ai-triad-research
-          fetch-depth: 0   # the hook reads the classifier at origin/main of the code repo
+          fetch-depth: 0   # the hooks read origin/main of the code repo
+
+      # t/3970: gv-pov-tags.sh executes lib/schema/pov-tags-cli.ts for real (via tsx), unlike
+      # situations-bdi which only reads a PowerShell source blob -- so node_modules (zod, tsx)
+      # must actually be installed here, not just checked out.
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413  # v6.1.0
+        with:
+          version: '11.20.0'
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v6
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: ai-triad-research/pnpm-lock.yaml
+
+      - name: Install code repo Node dependencies (retry on transient network failures)
+        working-directory: ai-triad-research
+        run: |
+          for i in 1 2 3; do
+            pnpm install --frozen-lockfile && break
+            if [ "$i" -lt 3 ]; then
+              echo "pnpm install attempt $i failed; retry in $((i * 15))s"
+              sleep $((i * 15))
+            else
+              echo "::error::pnpm install failed after $i attempts"
+              exit 1
+            fi
+          done
 
       - name: Configure git + wire hooks
         working-directory: ai-triad-data
@@ -72,6 +103,7 @@ jobs:
             for m in 0 1; do
               ( cd "$loc" && bash .githooks/tests/gv-commit-msg.sh "$m" ) > "$L/$loc-commit-msg-$m.log" 2>&1 || true
               ( cd "$loc" && bash .githooks/tests/gv-situations-bdi.sh "$m" ) > "$L/$loc-situations-$m.log" 2>&1 || true
+              ( cd "$loc" && bash .githooks/tests/gv-pov-tags.sh "$m" ) > "$L/$loc-pov-tags-$m.log" 2>&1 || true
             done
           done
           ls -la "$L"
@@ -90,6 +122,7 @@ jobs:
             for m in 0 1; do
               python3 "$A" commit-msg "$m" "$L/$loc-commit-msg-$m.log" || rc=1
               python3 "$A" situations "$m" "$L/$loc-situations-$m.log" || rc=1
+              python3 "$A" pov-tags "$m" "$L/$loc-pov-tags-$m.log" || rc=1
             done
           done
           python3 "$A" livefire - "$L/livefire.log" || rc=1
