@@ -67,9 +67,27 @@ EOF
 # install root instead of the intended drive path). This wrapper is a harness-only
 # artifact of simulating "fixture has no node_modules of its own" cleanly; production
 # CODE_ROOT always has a real node_modules/.bin/tsx and never takes the PATH branch at all.
+#
+# t/4027: the wrapper used to `exec "$REAL_TSX" "$@"`, re-execing the REAL CODE_ROOT's
+# own `.bin/tsx` shim from inside this wrapper script. Under MSYS_NO_PATHCONV=1, that
+# shim's OWN internal path resolution breaks IF the embedded CODE_ROOT is a true
+# POSIX-style path (`/c/...`): node receives it unconverted, misreads the leading `/`
+# as "current drive root", and resolves to a mangled `C:\c\Users\...` -- harness-only
+# (the REAL hooks invoke `.bin/tsx` directly, with no extra re-exec layer, and are
+# unaffected: TL t/4021#5). Fix: skip the shim entirely and invoke tsx's own entry
+# point via `node`, with the entry-point path winpath-converted at WRAPPER-CREATION
+# time (not left as whatever form the caller's CODE_ROOT happens to be) so node, a
+# native binary, never receives an unconverted POSIX argument. A function, not an
+# inline block, so arm 11 can rebuild the SAME real wrapper from a different root
+# form and prove the fix, rather than re-deriving a copy that could drift from it.
+build_tsx_wrapper () {  # $1 = code root (either path form)  $2 = dest wrapper path
+  local cli="$1/node_modules/tsx/dist/cli.mjs"
+  if command -v cygpath >/dev/null 2>&1; then cli="$(cygpath -w "$cli")"; fi
+  printf '#!/usr/bin/env bash\nexec node "%s" "$@"\n' "$cli" > "$2"
+  chmod +x "$2"
+}
 mkdir -p "$FIXTURE/node_modules/.bin"
-printf '#!/usr/bin/env bash\nexec "%s" "$@"\n' "$REAL_CODE_ROOT/node_modules/.bin/tsx" > "$FIXTURE/node_modules/.bin/tsx"
-chmod +x "$FIXTURE/node_modules/.bin/tsx"
+build_tsx_wrapper "$REAL_CODE_ROOT" "$FIXTURE/node_modules/.bin/tsx"
 ( cd "$FIXTURE" && git init -q . && git config user.email t@t.t && git config user.name t \
     && git add -A && git commit -qm fixture )
 export AI_TRIAD_CODE_ROOT="$FIXTURE"
@@ -184,5 +202,25 @@ printf "import './this-module-does-not-exist.js';\n%s" "$(cat "$FIXTURE_CLI")" >
 run "checker broken"
 ( cd "$FIXTURE" && git reset -q --hard HEAD~1 )
 cp "$CLI_BACKUP" "$FIXTURE_CLI"
+
+arm "11 VALID under MSYS_NO_PATHCONV=1 with a POSIX-form CODE_ROOT (t/4027) → silent, not COULD NOT VERIFY"
+# t/4027: the actual trigger, found by direct reproduction, is narrower than "MSYS_NO_
+# PATHCONV=1 is set" (arms 1-10 already run under that, via pov-tags-check's own
+# unconditional `export MSYS_NO_PATHCONV=1`, and all pass) -- it needs the path fed into
+# the wrapper's embedded tsx location to arrive as a TRUE POSIX-style path (`/c/...`),
+# not the `C:/...` drive-letter form every other arm's wrapper was built from. Rebuild
+# the SAME wrapper via `build_tsx_wrapper` (the real subject code, not a re-derived
+# copy that could silently drift from it) from a POSIX-converted root, so this proves
+# the fix for the one caller-format combination that actually broke it.
+reseed; write_file taxonomy/Origin/accelerationist.json "$(node acc-001 '')" "$(node acc-011 ', "pov_tags": ["tag-a"]')"
+git add taxonomy/Origin/accelerationist.json
+# Backup goes to $T AFTER reseed, not before: reseed's `git clean -qfd` runs inside $T
+# (the harness cd'd there at the top) and deletes any untracked file created earlier
+# in $T's own working tree -- the exact cleanup bug already fixed once in arm 10
+# (t/4022), here for the same backup-location reason.
+cp "$FIXTURE/node_modules/.bin/tsx" "$T/tsx-wrapper.orig"
+build_tsx_wrapper "$(cygpath -u "$REAL_CODE_ROOT")" "$FIXTURE/node_modules/.bin/tsx"
+MSYS_NO_PATHCONV=1 run "valid, POSIX-form CODE_ROOT"
+cp "$T/tsx-wrapper.orig" "$FIXTURE/node_modules/.bin/tsx"
 
 cd /
