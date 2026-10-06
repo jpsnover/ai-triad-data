@@ -1,0 +1,220 @@
+#!/usr/bin/env bash
+# Conflicts-shape pre-commit check (t/3953). Called from .githooks/pre-commit, right after
+# pov-tags-check, before the edges early exit.
+#
+# Prevention follow-up for t/3948: a writer wrote `linked_taxonomy_nodes` as a doubly-nested
+# array (`[["id"]]`) into conflict files on ai-triad-data, undetected until it broke CI for
+# every downstream code PR. This validates every staged conflicts/*.json file's shape against
+# the SAME schema the taxonomy-editor already enforces (conflictFileSchema), so a regression
+# like t/3948's is caught at write time on the data repo, not downstream in unrelated code PRs.
+#
+# WHAT IT READS:
+#   candidate = `git show :<path>`  -- the content being committed. Honours GIT_INDEX_FILE, so
+#               a pathspec commit sees its temp index. NOT the working tree: on a shared
+#               checkout another agent's unstaged edit must not be validated.
+#   rule      = operations/devops/conflict-shape-cli.ts (which calls conflictFileSchema), read
+#               from the CODE repo's ${AI_TRIAD_CHECKER_REF:-origin/main} via `git archive` --
+#               not a hand-maintained file list (pov-tags-check's CLOSURE list is a known drift
+#               vector, t/3970#5) and not the working tree: the shared code checkout can be
+#               stale or carry uncommitted edits, and the gate must enforce reviewed code only.
+#
+# CHANGED-ONLY, at FILE granularity (not sub-field, unlike pov-tags-check): only the
+# conflicts/*.json files THIS commit stages are validated. A pre-existing bad file elsewhere is
+# not re-checked, so once this is promoted to blocking, one bad file can't refuse an unrelated
+# commit. A deleted conflicts/*.json file is skipped (nothing to validate).
+#
+# WHY NOT A SECOND VALIDATOR: conflictFileSchema already exists and is the schema the editor
+# enforces. Re-implementing the shape check in bash/PowerShell would be exactly the second
+# implementation that silently diverges from the first (Class 8) -- so this hook shells out to
+# the real schema via its CLI instead.
+#
+# WARN-ONLY for now. Per Gate Promotion it stays advisory for >=1 real green cycle, and the flip
+# to blocking (WARN_ONLY=0) needs a mandatory Second Opinion (validation-schema class, t/3361)
+# plus TL Gate Verification. This script exits 0 in warn mode whether or not it fired, so "the
+# commit succeeded" proves nothing (Sage #202) -- read the printed WARNING lines or telemetry.
+#
+# EXECUTION RECORD: every run appends one JSON line to <common git dir>/hook-telemetry.jsonl,
+# hook="conflicts-shape", result in {skip,pass,violation,unverified}. AI_TRIAD_HOOK_TELEMETRY
+# overrides the path (probes and harnesses point it elsewhere so they never pollute the real
+# cycle).
+#
+# COULD NOT VERIFY (node/tsx missing, code root unreadable, archive/tar failure, JSON
+# unparseable) is reported as unverified, never as a pass; it blocks too once promoted.
+#
+# Not covered (after-push compliance is the backstop): --no-verify, clones without
+# core.hooksPath, server-side writes (bot, merges, API). Surviving vectors (CL, t/3953#2):
+# conflictFileSchema is a non-strict z.object (an unknown extra field passes silently); other
+# data files need their own checks.
+
+set -uo pipefail
+export MSYS_NO_PATHCONV=1   # keep `:path` revspecs intact under Git-for-Windows bash
+
+WARN_ONLY=1
+WATCH_GLOB='conflicts/*.json'
+TAG="[conflicts-shape]"
+
+now_ms () { local t; t="$(date +%s%3N 2>/dev/null)"; case "$t" in ''|*[!0-9]*) t="$(( $(date +%s) * 1000 ))" ;; esac; printf '%s' "$t"; }
+T0="$(now_ms)"
+record () {  # $1 = skip|pass|violation|unverified   $2 = allowed|refused   $3 = detail
+  {
+    local common log wt det
+    common="$(git rev-parse --path-format=absolute --git-common-dir)"
+    log="${AI_TRIAD_HOOK_TELEMETRY:-$common/hook-telemetry.jsonl}"
+    [ "$(git rev-parse --absolute-git-dir)" = "$common" ] && wt=false || wt=true
+    det="$(printf '%s' "${3:-}" | tr -d '"\\' | tr '\r\n\t' '   ' | cut -c1-300)"
+    printf '{"ts":"%s","hook":"conflicts-shape","result":"%s","action":"%s","warn_only":%s,"ms":%s,"worktree":%s,"index":"%s","head":"%s","detail":"%s"}\n' \
+      "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$1" "$2" "$([ "$WARN_ONLY" -eq 1 ] && echo true || echo false)" \
+      "$(( $(now_ms) - T0 ))" "$wt" "$(basename "${GIT_INDEX_FILE:-index}")" \
+      "$(git rev-parse --short HEAD 2>/dev/null)" "$det" >> "$log"
+  } 2>/dev/null || true
+}
+
+# Which conflicts/*.json files does this commit stage (added/modified)? A deletion shows up
+# here too (git diff --cached --name-only lists it); handled per-file below via `cat-file -e`.
+STAGED_RAW="$(git diff --cached --name-only -- "$WATCH_GLOB")"
+STAGED_FILES="$(printf '%s\n' "$STAGED_RAW" | grep -v '^$' || true)"
+[ -z "$STAGED_FILES" ] && { record skip allowed "no $WATCH_GLOB file in commit"; exit 0; }
+
+finish () {  # $1 = pass|violation|unverified   $2 = detail for the record
+  if [ "$1" != pass ] && [ "$WARN_ONLY" -eq 0 ]; then
+    record "$1" refused "${2:-}"
+    echo "$TAG BLOCKING: commit refused." >&2
+    exit 1
+  fi
+  record "$1" allowed "${2:-}"
+  [ "$1" != pass ] && echo "$TAG WARN-ONLY: commit allowed. Will block once promoted (t/3953)." >&2
+  exit 0
+}
+unverified () {
+  echo "" >&2
+  echo "$TAG COULD NOT VERIFY: $1" >&2
+  echo "  The staged conflicts/*.json files were NOT checked. This is not a pass." >&2
+  finish unverified "$1"
+}
+
+tmp="$(mktemp -d)" || unverified "could not create a temp dir"
+trap 'rm -rf "$tmp"' EXIT
+
+# node, like pwsh, is a native Windows binary: MSYS_NO_PATHCONV=1 (set above, needed for the
+# `:path` git revspec) also suppresses the automatic POSIX->Windows path conversion Git-Bash
+# would otherwise do for OTHER arguments -- so every file path handed to `node` or `tsx` below
+# must be converted explicitly, or it resolves against the wrong root (ENOENT) even though the
+# path is valid POSIX-side (the exact bug found live-firing pov-tags-check, t/3970).
+winpath () { if command -v cygpath >/dev/null 2>&1; then cygpath -w "$1"; else printf '%s' "$1"; fi; }
+
+command -v node >/dev/null 2>&1 || unverified "node not found on PATH"
+BUILD_INPUT="$(dirname "$0")/conflicts-shape-build-input.mjs"
+[ -f "$BUILD_INPUT" ] || unverified "build-input script missing: $BUILD_INPUT"
+
+# Build (path, contentFile) pairs for every staged file that still exists (skip deletions --
+# nothing to validate once a file is gone).
+BUILD_ARGS=()
+i=0
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  git cat-file -e ":$f" 2>/dev/null || continue   # deleted: not this check's concern
+  cfile="$tmp/content_$i.json"
+  git show ":$f" > "$cfile" 2>/dev/null || unverified "could not read the staged $f"
+  BUILD_ARGS+=("$f" "$(winpath "$cfile")")
+  i=$((i + 1))
+done <<EOF
+$STAGED_FILES
+EOF
+[ "$i" -eq 0 ] && finish pass ""   # every staged conflicts/*.json file was a deletion
+
+ENTRIES_JSON="$tmp/entries.json"
+ENTRIES_JSON_WIN="$(winpath "$ENTRIES_JSON")"
+# Swap stdout/stderr so the error-message capture gets stderr while stdout (the JSON payload)
+# lands in the file -- `> file 2>&1` would send BOTH streams to the file (pov-tags-check lesson).
+build_err="$(node "$(winpath "$BUILD_INPUT")" "${BUILD_ARGS[@]}" 2>&1 1>"$ENTRIES_JSON_WIN")" || unverified "conflicts-shape-build-input: $build_err"
+
+# ---- resolve the code root, mirroring pov-tags-check ----
+DATA_MAIN="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+CODE_ROOT="${AI_TRIAD_CODE_ROOT:-$DATA_MAIN/../ai-triad-research}"
+if command -v cygpath >/dev/null 2>&1; then CODE_ROOT="$(cygpath -m "$CODE_ROOT")"; fi
+REF="${AI_TRIAD_CHECKER_REF:-origin/main}"
+code_git () {
+  env -u GIT_DIR -u GIT_WORK_TREE -u GIT_INDEX_FILE -u GIT_COMMON_DIR -u GIT_PREFIX \
+      -u GIT_OBJECT_DIRECTORY -u GIT_ALTERNATE_OBJECT_DIRECTORIES git -C "$CODE_ROOT" "$@"
+}
+code_git rev-parse --is-inside-work-tree >/dev/null 2>&1 || unverified "code root not a git repo at $CODE_ROOT"
+
+TSX="$CODE_ROOT/node_modules/.bin/tsx"
+if [ -x "$TSX" ]; then RUNNER="$TSX"
+elif command -v tsx >/dev/null 2>&1; then RUNNER="tsx"
+else unverified "tsx not found ($TSX, nor on PATH)"
+fi
+
+command -v tar >/dev/null 2>&1 || unverified "tar not found on PATH (needed to extract the git archive)"
+
+# Scratch location: CODE_ROOT/tmp/, NOT node_modules/.cache (deviation from the t/3953 spec's
+# literal instruction -- found live-firing this hook). node_modules/.cache was correct for
+# pov-tags-check (t/3970), which only has RELATIVE imports and needs nothing but zod's own
+# resolution. This CLI additionally needs tsx's --tsconfig PATH-ALIAS resolution (@lib/*), and
+# most resolvers (tsx's included, confirmed empirically) treat anything whose path contains a
+# "node_modules" segment as a pre-built third-party dependency and skip alias transformation for
+# it -- so nesting under node_modules/.cache resolves zod but silently breaks every @lib/*
+# import. CODE_ROOT/tmp/ satisfies BOTH constraints: it is already gitignored at the repo root
+# (`tmp/` in .gitignore, confirmed) so it never shows up as untracked in `git status`, is OUTSIDE
+# any "node_modules" path segment so tsx's alias resolution runs normally, AND Node's own
+# upward node_modules walk still finds CODE_ROOT/node_modules from one level deeper. Verified
+# both halves together, live, before relying on this.
+mkdir -p "$CODE_ROOT/tmp" || unverified "could not create $CODE_ROOT/tmp"
+SCRATCH="$(mktemp -d "$CODE_ROOT/tmp/conflicts-shape-check.XXXXXX")" || unverified "could not create a scratch dir under $CODE_ROOT/tmp"
+trap 'rm -rf "$tmp" "$SCRATCH"' EXIT
+
+# git archive, not a hand-maintained file list (t/3953 spec, explicitly avoiding the CLOSURE
+# drift vector pov-tags-check's hand-listed import closure is, t/3970#5): validation.ts imports
+# via @lib/* aliases into a large and moving set of lib/ files, so archive the whole `lib` tree
+# plus the specific editor file, tsconfig, and the CLI itself.
+ARCHIVE_TAR="$tmp/archive.tar"
+code_git archive "$REF" lib taxonomy-editor/src/renderer/utils/validation.ts 'taxonomy-editor/tsconfig*.json' operations/devops/conflict-shape-cli.ts > "$ARCHIVE_TAR" 2>"$tmp/archive.err"
+if [ $? -ne 0 ] || [ ! -s "$ARCHIVE_TAR" ]; then
+  unverified "git archive failed at $REF in $CODE_ROOT: $(cat "$tmp/archive.err" 2>/dev/null | head -1)"
+fi
+# tar here is the MSYS/Cygwin POSIX build (confirmed: /usr/bin/tar), which expects POSIX-style
+# paths -- UNLIKE node/tsx below. winpath-wrapping these (a real bug hit live-firing this hook)
+# makes tar's own `-f`/`-C` argument parser treat the Windows drive-letter colon ("C:/Users/…")
+# as a REMOTE host spec ("user@host:path"), failing with "Cannot connect to C: resolve failed".
+# --force-local is the documented GNU-tar fix for exactly this ambiguity (belt-and-suspenders
+# alongside using POSIX paths, not Windows ones, for tar specifically).
+tar --force-local -x -f "$ARCHIVE_TAR" -C "$SCRATCH" 2>"$tmp/tar.err" \
+  || unverified "tar extraction failed: $(cat "$tmp/tar.err" 2>/dev/null | head -1)"
+
+CLI="$SCRATCH/operations/devops/conflict-shape-cli.ts"
+TSCONFIG="$SCRATCH/taxonomy-editor/tsconfig.json"
+[ -f "$CLI" ] || unverified "conflict-shape-cli.ts not present after archive extraction (missing at $REF in $CODE_ROOT?)"
+[ -f "$TSCONFIG" ] || unverified "taxonomy-editor/tsconfig.json not present after archive extraction"
+
+out="$("$RUNNER" --tsconfig "$(winpath "$TSCONFIG")" "$(winpath "$CLI")" --input "$ENTRIES_JSON_WIN" 2>&1)"
+rc=$?
+
+case "$rc" in
+  0) finish pass "" ;;
+  1)
+    LASTLINE="$(printf '%s\n' "$out" | tail -n 1)"
+    echo "" >&2
+    echo "$TAG WARNING: staged conflicts/*.json shape is invalid:" >&2
+    ERRS="$(printf '%s' "$LASTLINE" | node -e '
+      let raw = "";
+      process.stdin.on("data", (d) => { raw += d; });
+      process.stdin.on("end", () => {
+        try {
+          const j = JSON.parse(raw);
+          for (const e of j.errors) console.log("    " + e);
+          process.stdout.write("##ERRLIST##" + j.errors.join(",") + "\n");
+        } catch { process.exit(1); }
+      });
+    ' 2>/dev/null)" || ERRS=""
+    if [ -n "$ERRS" ]; then
+      printf '%s\n' "$ERRS" | grep -v '^##ERRLIST##' >&2
+      DETAIL="$(printf '%s\n' "$ERRS" | grep '^##ERRLIST##' | sed 's/^##ERRLIST##//')"
+    else
+      printf '%s\n' "$out" >&2
+      DETAIL="$out"
+    fi
+    echo "" >&2
+    finish violation "$DETAIL" ;;
+  *)
+    unverified "conflict-shape-cli failed (exit $rc): $(printf '%s\n' "$out" | tail -3 | tr '\n' ' ')" ;;
+esac

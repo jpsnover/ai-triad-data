@@ -9,6 +9,7 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 | `gv-commit-msg.sh <1\|0>` | `commit-msg` (node-removal guard, t/3851) | temp repo | bash, git, python3 |
 | `gv-situations-bdi.sh <1\|0>` | `pre-commit` → `situations-bdi-check` (t/3892) | temp repo | + `pwsh`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `origin/main` fetched |
 | `gv-pov-tags.sh <1\|0>` | `pre-commit` → `pov-tags-check` (t/3970) | temp repo | + `node`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `node_modules` installed |
+| `gv-conflicts-shape.sh <1\|0>` | `pre-commit` → `conflicts-shape-check` (t/3953) | temp repo | + `node`, `tar`, `AI_TRIAD_CODE_ROOT` = an ai-triad-research checkout with `node_modules` installed and `conflict-shape-cli.ts` committed at `AI_TRIAD_CHECKER_REF` |
 | `livefire-situations-bdi.sh [ref]` | the **deployed** situation check | **a throwaway worktree of this repo**: real `core.hooksPath`, real `situations.json`; commits are local and discarded, never pushed | + `pwsh`, the code repo as a sibling of this repo's main checkout |
 
 `<1|0>` is `WARN_ONLY`. Run both. `HOOK_SRC` overrides which `.githooks` is under test (default: the directory above `tests/`).
@@ -74,6 +75,21 @@ Gate Verification arms for the data-repo hooks. Every arm goes through a **real 
 The live registry (`lib/debate/soul-docs/pov-tags.json` on `origin/main`) is empty until t/3962 starts writing tags, so arms needing a *registered* id (2–7) build a throwaway fixture code-repo nested inside `AI_TRIAD_CODE_ROOT` -- the REAL `lib/schema/{povTags,pov-tags-cli}.ts` and `lib/flight-recorder/*.ts` (never reimplemented), plus a fixture registry with one controlled tag (`tag-a`, accelerationist-only) and a `node_modules/.bin/tsx` wrapper execing the real binary, so Node's upward `node_modules` resolution (for `zod`) still reaches the real checkout's install. Arm 9 removes that wrapper to prove the unreachable-tsx arm, independent of the fixture's own install state.
 
 **Arm 10 (t/4022) vs. arm 9:** arm 9 proves tsx is never *invoked* (no runner found at all). Arm 10 proves the opposite case -- tsx *is* invoked and extraction succeeds, but the CLI throws at load time (an uncaught import error, simulated by prepending a bad import to the fixture's `pov-tags-cli.ts`). Node exits 1 on that crash, the SAME exit code the CLI's own try/catch uses for "tags invalid" -- so this arm is the one that actually exercises the rc=1 verdict-JSON-vs-crash-trace discriminator in `pov-tags-check`, not the separate (and already-correct) "closure file missing" extraction guard.
+
+### `gv-conflicts-shape.sh`
+| Arm | Blocking (`0`) | Warn (`1`) | Tag to assert | Record `result` |
+|---|---|---|---|---|
+| 1 nested array (the t/3948 bug) | **refused** | created | `[conflicts-shape] WARNING` naming the path | `violation` |
+| 2 non-string element | **refused** | created | `[conflicts-shape] WARNING` | `violation` |
+| 3 valid file | created | created | none | `pass` |
+| 4 unrelated file staged | created | created | none | `skip` |
+| 5 deleted conflict file | created | created | none (nothing to validate) | `pass` |
+| 6 t/3948 replay: the real `c034f34b` incident files | **refused** | created | `[conflicts-shape] WARNING` naming all 3 files | `violation` |
+| 7 tsx unreachable | **refused** | created | `[conflicts-shape] COULD NOT VERIFY` | `unverified` |
+
+Unlike `gv-pov-tags.sh`, this harness needs no fixture code-repo: `conflictFileSchema` (the rule under test) has no mutable-registry dependency, so `AI_TRIAD_CODE_ROOT`/`AI_TRIAD_CHECKER_REF` point straight at the real checkout and the branch under test. `conflict-shape-cli.ts` and its import closure (`lib/`, `taxonomy-editor/src/renderer/utils/validation.ts`, `taxonomy-editor/tsconfig*.json`) are pulled via `git archive`, not a hand-maintained file list (the `CLOSURE` list in `pov-tags-check` is a known drift vector, t/3970#5) — `validation.ts` imports through `@lib/*` aliases into a large, moving set of `lib/` files.
+
+**Scratch-location deviation, found live-firing this hook (not in the original spec):** the extracted archive is placed at `CODE_ROOT/tmp/conflicts-shape-check.*`, **not** `CODE_ROOT/node_modules/.cache/` (which is correct for `pov-tags-check`, t/3970, but wrong here). `node_modules/.cache` resolves `zod` correctly (Node's own upward walk) but SILENTLY breaks `tsx --tsconfig`'s `@lib/*` path-alias resolution, because most resolvers — tsx's included, confirmed empirically — treat anything whose path contains a `node_modules` segment as a pre-built third-party dependency and skip alias transformation for it. `CODE_ROOT/tmp/` is already gitignored at the repo root, sits outside any `node_modules` path segment (so alias resolution runs normally), and is still close enough for Node's upward walk to find `CODE_ROOT/node_modules` for `zod`. Verified both constraints together, live, before relying on it.
 
 ### `livefire-situations-bdi.sh` (follows the DEPLOYED mode)
 The script prints `deployed WARN_ONLY=N` from the hook under test, and the assertion picks the matching table; a log without that line fails. **Blocking (`WARN_ONLY=0`, deployed since the t/3892 flip):**

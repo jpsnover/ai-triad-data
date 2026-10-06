@@ -19,6 +19,13 @@
 # the REAL lib/schema/pov-tags-cli.ts via tsx, not a PowerShell classifier read as a source blob
 # the way situations-bdi does) -- hence the added pnpm install step below, scoped to this one job.
 #
+# t/3953: gv-conflicts-shape.sh shells out to operations/devops/conflict-shape-cli.ts the same
+# way, via `git archive` + tar instead of a hand-maintained file list. CROSS-REPO SEQUENCING
+# NOTE: this job checks out the CODE repo's origin/main (no `ref:` override) -- until the t/3953
+# code-side PR (conflict-shape-cli.ts) merges there, this hook's arms correctly report COULD NOT
+# VERIFY (archive can't find the CLI at origin/main yet), not a false pass. Land the code PR
+# first; this job goes fully green once it has.
+#
 # Advisory by construction: ai-triad-data has no branch protection, so this check reds the PR /
 # push but cannot block it.
 
@@ -104,6 +111,7 @@ jobs:
               ( cd "$loc" && bash .githooks/tests/gv-commit-msg.sh "$m" ) > "$L/$loc-commit-msg-$m.log" 2>&1 || true
               ( cd "$loc" && bash .githooks/tests/gv-situations-bdi.sh "$m" ) > "$L/$loc-situations-$m.log" 2>&1 || true
               ( cd "$loc" && bash .githooks/tests/gv-pov-tags.sh "$m" ) > "$L/$loc-pov-tags-$m.log" 2>&1 || true
+              ( cd "$loc" && bash .githooks/tests/gv-conflicts-shape.sh "$m" ) > "$L/$loc-conflicts-shape-$m.log" 2>&1 || true
             done
           done
           ls -la "$L"
@@ -123,6 +131,7 @@ jobs:
               python3 "$A" commit-msg "$m" "$L/$loc-commit-msg-$m.log" || rc=1
               python3 "$A" situations "$m" "$L/$loc-situations-$m.log" || rc=1
               python3 "$A" pov-tags "$m" "$L/$loc-pov-tags-$m.log" || rc=1
+              python3 "$A" conflicts-shape "$m" "$L/$loc-conflicts-shape-$m.log" || rc=1
             done
           done
           python3 "$A" livefire - "$L/livefire.log" || rc=1
