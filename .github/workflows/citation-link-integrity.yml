@@ -310,7 +310,7 @@ jobs:
         if: always()
         run: |
           extract() {
-            grep -E '^\s*REGEN_INPUTS="' "$1" | head -1 | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/'
+            grep -m1 -E '^\s*REGEN_INPUTS="' "$1" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/'
           }
           A="$(extract .github/workflows/citation-link-integrity.yml)"
           B="$(extract .github/workflows/source-index-regen.yml)"
