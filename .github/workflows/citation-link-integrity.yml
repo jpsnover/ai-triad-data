@@ -78,15 +78,26 @@ jobs:
           # full-set there). That workflow then evaluates leg-c on the fresh index ("Post-regen
           # leg-c") and alerts on red OR could-not-evaluate, so leg-c reported NEUTRAL here is
           # never unobserved: its authoritative verdict is that step.
-          # REGEN_INPUTS -- keep IDENTICAL to the list in source-index-regen.yml.
-          REGEN_INPUTS="summaries/ taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json"
+          # t/4064: REGEN_INPUTS is the shared-source read via the ONE parser both workflows call
+          # (.github/scripts/read-regen-inputs.sh, owns the format and every fail-closed check) --
+          # neither workflow parses .github/regen-inputs.txt inline, so a reintroduced literal
+          # shows up in review as dead code.
+          REGEN_INPUTS="$(bash .github/scripts/read-regen-inputs.sh)" || exit 1
           if [ "$BEFORE" = "$ZERO" ]; then
             echo "Zero-SHA push (first/force-push) — full-set validation; regen also runs full-set"
             echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
             echo "regen_pending=true" >> "$GITHUB_OUTPUT"
           else
+            # t/4064 condition 3: editing the shared input-set file itself is a regen input --
+            # the next regen must run full-set, so leg-c here is refresh-pending too, checked
+            # BEFORE the ordinary REGEN_INPUTS diff below (which reads the file's CONTENTS, not
+            # whether the file's definition itself just changed).
+            RIDEF_DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- .github/regen-inputs.txt 2>/dev/null || true)
             # shellcheck disable=SC2086 -- REGEN_INPUTS is a deliberate word-split pathspec list
-            if ! RDIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
+            if [ -n "$RIDEF_DIFF" ]; then
+              echo "regen-inputs.txt itself changed — treating as regen-pending (t/4064 condition 3)"
+              echo "regen_pending=true" >> "$GITHUB_OUTPUT"
+            elif ! RDIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
               # Mirrors the regen's fallback: a diff failure there means a FULL-SET regen, so a
               # post-regen leg-c (with its alerts) will run -> pending here too.
               echo "::warning::regen-pending check: git diff failed ($RDIFF); regen falls back to full-set, leg-c refresh-pending"
