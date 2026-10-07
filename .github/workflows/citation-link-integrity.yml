@@ -202,11 +202,18 @@ jobs:
         # gets an IMPLIED `success() &&` prefix from GitHub Actions. If citation_check itself
         # is what failed, the job is already past success(), so that implied prefix makes the
         # WHOLE condition false and this alert can never fire -- the exact case it exists for.
-        # `failure()` as an explicit leading term avoids the implicit prefix. The drift-check
-        # step now runs LAST (moved below, `if: always()`), so by the time this step evaluates
-        # it hasn't run yet and its outcome here is empty/unset -- the `!= 'failure'` exclusion
-        # is therefore defensive (never currently true), kept in case step order changes again.
-        if: failure() && steps.regen_inputs_drift.outcome != 'failure'
+        # `failure()` as an explicit leading term avoids the implicit prefix.
+        # SO e/273#2 condition 2: bare `failure()` is correct ONLY because this step runs
+        # BEFORE the `regen_inputs_drift` step (below) in job order -- at evaluation time the
+        # drift step hasn't run yet, so `failure()` here can only be true because of an EARLIER
+        # step (citation_check or a prior checkout/setup step), never because of the drift
+        # step itself. A `steps.regen_inputs_drift.outcome != 'failure'` exclusion was
+        # considered and REJECTED: it can never be true at this point in the order, so it reads
+        # like a guard while doing nothing -- and if a future edit ever moves the drift step
+        # ABOVE this one, that dead clause would silently START suppressing this alert exactly
+        # when both steps fail together. Order is load-bearing: if the drift step ever moves
+        # before this one, `failure()` must be re-scoped then, not before.
+        if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LEGA: ${{ steps.citation_check.outputs.lega }}
@@ -305,12 +312,28 @@ jobs:
       # IDENTICAL to source-index-regen.yml's copy -- they diff the same push range against the
       # same input set, so "regen will run" and "regen just ran" must mean the same files. NOT
       # advisory: continue-on-error defaults to false, same as the job itself.
+      # SO e/273#2 condition 4 (CL precondition, e/273#3): no warn cycle for this step --
+      # deterministic, both arms (and the regen-only arm) proven in real data CI (t/3895,
+      # SO e/273). leg-c itself remains ADVISORY; this step only meets CL's precondition for a
+      # possible future leg-c flip -- it does not promote leg-c and must never be read as doing so.
       - name: REGEN_INPUTS drift self-check
         id: regen_inputs_drift
         if: always()
         run: |
           extract() {
-            grep -m1 -E '^\s*REGEN_INPUTS="' "$1" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/'
+            local file="$1"
+            local n
+            # `|| true` on both greps below: this script runs under bash -e/pipefail (GH
+            # Actions default), and grep exits 1 on zero matches -- left unguarded, a
+            # zero-match file would abort the step via set -e before reaching the explicit
+            # ::error:: checks here, losing the diagnostic. These two checks (count != 1,
+            # then empty-string below) must be what fails the step, not an implicit set -e exit.
+            n="$(grep -c -E '^\s*REGEN_INPUTS="' "$file" || true)"
+            if [ "$n" -ne 1 ]; then
+              echo "::error::REGEN_INPUTS assignment count in $file is $n, expected exactly 1 -- failing closed (SO e/273#2 condition 1: a second assignment, e.g. a branch/debug override, must not silently win via first-match)"
+              exit 1
+            fi
+            grep -E '^\s*REGEN_INPUTS="' "$file" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/' || true
           }
           A="$(extract .github/workflows/citation-link-integrity.yml)"
           B="$(extract .github/workflows/source-index-regen.yml)"
