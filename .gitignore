@@ -40,3 +40,9 @@ calibration/
 
 # Raw LLM response dumps written by summarisation on parse failure (debug only; never tracked)
 summaries/*.debug-raw.txt
+
+# Advisory writer lockfiles — transient, created beside the file they guard and deleted on release
+# (t/4028 policy registry lock; t/3203 / t/3163#1 grounding lock shared with reconcile_grounding.py).
+# A held or stranded lock must never be swept into a commit by a broad `git add`.
+policy_actions.lock
+entity_mentions.lock
