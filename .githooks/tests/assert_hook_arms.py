@@ -104,6 +104,11 @@ POV_TAGS = {
     # run, but throws, so this is the arm that actually exercises the rc=1 verdict-JSON-vs-
     # crash-trace parsing fix, not a pre-existing extraction guard.
     "10": (R, [PVT + " COULD NOT VERIFY"], [PVT + " WARNING"]),
+    # t/4027: a valid commit, with a POSIX-form CODE_ROOT fed into the fixture wrapper,
+    # must still read a silent pass -- not COULD NOT VERIFY (the bug this arm guards:
+    # the wrapper's embedded tsx path reached node unconverted under MSYS_NO_PATHCONV=1
+    # and mangled to `C:\c\Users\...`).
+    "11": (C, [], [PVT]),
 }
 POV_TAGS_WARN_LINE = PVT + " WARN-ONLY"
 POV_TAGS_WARN_ARMS = {"3", "4", "5", "6", "7", "9", "10"}
@@ -113,6 +118,7 @@ POV_TAGS_WARN_ARMS = {"3", "4", "5", "6", "7", "9", "10"}
 POV_TAGS_TELEMETRY = {
     "1": "skip", "2": "pass", "3": "violation", "4": "violation", "5": "violation",
     "6": "violation", "7": "violation", "8": "skip", "9": "unverified", "10": "unverified",
+    "11": "pass",
 }
 
 CSH = "[conflicts-shape]"
@@ -128,6 +134,9 @@ CONFLICTS_SHAPE = {
     # VERIFY, never WARNING/violation. Distinct from arm 7 (tsx unreachable, caught before
     # it ever runs): here extraction succeeds and tsx DOES run, but throws.
     "8": (R, [CSH + " COULD NOT VERIFY"], [CSH + " WARNING"]),
+    # t/4027: a valid commit, with the real checkout's own tsx wrapper rebuilt from a
+    # POSIX-form CODE_ROOT, must still read a silent pass -- not COULD NOT VERIFY.
+    "9": (C, [], [CSH]),
 }
 CONFLICTS_SHAPE_WARN_LINE = CSH + " WARN-ONLY"
 CONFLICTS_SHAPE_WARN_ARMS = {"1", "2", "6", "7", "8"}
@@ -135,7 +144,7 @@ CONFLICTS_SHAPE_WARN_ARMS = {"1", "2", "6", "7", "8"}
 # passes/skips -- the record is what tells them apart from a hook that never ran.
 CONFLICTS_SHAPE_TELEMETRY = {
     "1": "violation", "2": "violation", "3": "pass", "4": "skip", "5": "pass",
-    "6": "violation", "7": "unverified", "8": "unverified",
+    "6": "violation", "7": "unverified", "8": "unverified", "9": "pass",
 }
 
 # Live-fire runs the DEPLOYED hook from a real linked worktree -- the only harness

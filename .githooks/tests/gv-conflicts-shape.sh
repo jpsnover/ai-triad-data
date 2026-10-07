@@ -140,13 +140,46 @@ printf "import './this-module-does-not-exist.js';\n" > "$BREAK_FIXTURE/operation
 # tsx wrapper execing the REAL binary by absolute path (gv-pov-tags.sh's same lesson): the
 # hook's PRIMARY `[ -x "$TSX" ]` branch must find it directly, never the `command -v tsx`
 # PATH fallback, which mis-resolves a `/c/...`-style PATH entry under MSYS_NO_PATHCONV=1.
+#
+# t/4027: re-exec'ing the REAL `.bin/tsx` shim from inside this wrapper breaks under
+# MSYS_NO_PATHCONV=1 IF the embedded CODE_ROOT is a true POSIX-style path (`/c/...`) --
+# the shim's own internal path resolution gets it unconverted and mangles it to
+# `C:\c\Users\...` (harness-only; the real hooks invoke `.bin/tsx` directly with no
+# re-exec layer and are unaffected, TL t/4021#5). Skip the shim: invoke tsx's entry
+# point via `node`, with the path winpath-converted at wrapper-creation time -- a
+# function, not an inline block, so arm 9 can rebuild the SAME real wrapper from a
+# different root form and prove the fix, rather than a copy that could drift from it.
+build_tsx_wrapper () {  # $1 = code root (either path form)  $2 = dest wrapper path
+  local cli="$1/node_modules/tsx/dist/cli.mjs"
+  if command -v cygpath >/dev/null 2>&1; then cli="$(cygpath -w "$cli")"; fi
+  printf '#!/usr/bin/env bash\nexec node "%s" "$@"\n' "$cli" > "$2"
+  chmod +x "$2"
+}
 mkdir -p "$BREAK_FIXTURE/node_modules/.bin"
-printf '#!/usr/bin/env bash\nexec "%s" "$@"\n' "$REAL_CODE_ROOT/node_modules/.bin/tsx" > "$BREAK_FIXTURE/node_modules/.bin/tsx"
-chmod +x "$BREAK_FIXTURE/node_modules/.bin/tsx"
+build_tsx_wrapper "$REAL_CODE_ROOT" "$BREAK_FIXTURE/node_modules/.bin/tsx"
 ( cd "$BREAK_FIXTURE" && git init -q . && git config user.email t@t.t && git config user.name t \
     && git add -A && git commit -qm fixture )
 AI_TRIAD_CODE_ROOT="$BREAK_FIXTURE" AI_TRIAD_CHECKER_REF=HEAD run "checker broken"
 rm -rf "$BREAK_FIXTURE"
+
+arm "9 VALID under MSYS_NO_PATHCONV=1 with a POSIX-form CODE_ROOT (t/4027) → silent, not COULD NOT VERIFY"
+# t/4027: same bug and same fix as gv-pov-tags.sh's arm 11, here for conflicts-shape-
+# check's own fixture wrapper. The wrapper is rebuilt via `build_tsx_wrapper` (the real
+# subject code) from a `cygpath -u`-converted root, proving the fix for the one
+# caller-format combination that actually broke it -- not a hand-copied duplicate that
+# could silently drift from the real wrapper-creation logic.
+reseed; write_conflict conflicts/posixroot.json '{ "claim_id":"c9","claim_label":"L","description":"D","status":"open","linked_taxonomy_nodes":["acc-beliefs-009"],"instances":[],"human_notes":[] }'
+git add conflicts/posixroot.json
+cp "$REAL_TSX" "$T/tsx-wrapper.orig"
+# No cygpath on CI's ubuntu-latest (the whole POSIX-vs-Windows-path distinction is
+# MSYS-specific) -- fall back to the unchanged root there, where it's a no-op and the
+# arm still asserts a plain pass, rather than letting the command substitution fail
+# and silently feed build_tsx_wrapper an empty string (t/4027 CI failure, found live).
+POSIX_ROOT="$REAL_CODE_ROOT"
+if command -v cygpath >/dev/null 2>&1; then POSIX_ROOT="$(cygpath -u "$REAL_CODE_ROOT")"; fi
+build_tsx_wrapper "$POSIX_ROOT" "$REAL_TSX"
+MSYS_NO_PATHCONV=1 run "valid, POSIX-form CODE_ROOT"
+cp "$T/tsx-wrapper.orig" "$REAL_TSX"
 
 cd /
 rm -rf "$T" "$TELEM_DIR"
