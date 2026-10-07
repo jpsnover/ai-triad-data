@@ -219,7 +219,13 @@ git add taxonomy/Origin/accelerationist.json
 # in $T's own working tree -- the exact cleanup bug already fixed once in arm 10
 # (t/4022), here for the same backup-location reason.
 cp "$FIXTURE/node_modules/.bin/tsx" "$T/tsx-wrapper.orig"
-build_tsx_wrapper "$(cygpath -u "$REAL_CODE_ROOT")" "$FIXTURE/node_modules/.bin/tsx"
+# No cygpath on CI's ubuntu-latest (the whole POSIX-vs-Windows-path distinction is
+# MSYS-specific) -- fall back to the unchanged root there, where it's a no-op and the
+# arm still asserts a plain pass, rather than letting the command substitution fail
+# and silently feed build_tsx_wrapper an empty string (t/4027 CI failure, found live).
+POSIX_ROOT="$REAL_CODE_ROOT"
+if command -v cygpath >/dev/null 2>&1; then POSIX_ROOT="$(cygpath -u "$REAL_CODE_ROOT")"; fi
+build_tsx_wrapper "$POSIX_ROOT" "$FIXTURE/node_modules/.bin/tsx"
 MSYS_NO_PATHCONV=1 run "valid, POSIX-form CODE_ROOT"
 cp "$T/tsx-wrapper.orig" "$FIXTURE/node_modules/.bin/tsx"
 

@@ -171,7 +171,13 @@ arm "9 VALID under MSYS_NO_PATHCONV=1 with a POSIX-form CODE_ROOT (t/4027) → s
 reseed; write_conflict conflicts/posixroot.json '{ "claim_id":"c9","claim_label":"L","description":"D","status":"open","linked_taxonomy_nodes":["acc-beliefs-009"],"instances":[],"human_notes":[] }'
 git add conflicts/posixroot.json
 cp "$REAL_TSX" "$T/tsx-wrapper.orig"
-build_tsx_wrapper "$(cygpath -u "$REAL_CODE_ROOT")" "$REAL_TSX"
+# No cygpath on CI's ubuntu-latest (the whole POSIX-vs-Windows-path distinction is
+# MSYS-specific) -- fall back to the unchanged root there, where it's a no-op and the
+# arm still asserts a plain pass, rather than letting the command substitution fail
+# and silently feed build_tsx_wrapper an empty string (t/4027 CI failure, found live).
+POSIX_ROOT="$REAL_CODE_ROOT"
+if command -v cygpath >/dev/null 2>&1; then POSIX_ROOT="$(cygpath -u "$REAL_CODE_ROOT")"; fi
+build_tsx_wrapper "$POSIX_ROOT" "$REAL_TSX"
 MSYS_NO_PATHCONV=1 run "valid, POSIX-form CODE_ROOT"
 cp "$T/tsx-wrapper.orig" "$REAL_TSX"
 
