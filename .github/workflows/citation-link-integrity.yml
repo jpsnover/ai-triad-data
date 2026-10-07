@@ -263,7 +263,11 @@ jobs:
       # A failed lookup prints a WARN and returns "" — the alert then creates a fresh issue (louder,
       # never silent) and auto-close closes nothing (never a wrong close).
       - name: Alert — leg-a offender (blocking) or check could not be evaluated
-        if: failure()
+        # t/3895: scoped to citation_check's OWN failure, not bare failure() -- an earlier,
+        # unrelated step failing (e.g. the REGEN_INPUTS drift self-check) skips citation_check
+        # entirely (outcome=skipped, never failure), so this must not fire for that and
+        # mislabel an unrelated failure as "leg-a could not be evaluated".
+        if: steps.citation_check.outcome == 'failure'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LEGA: ${{ steps.citation_check.outputs.lega }}
