@@ -12,9 +12,20 @@
 #     via -SkipSourceResolution (reports `skipped`, never false-fails). When the token lands, drop
 #     the switch and add a sparse `*/metadata.json` checkout of ai-triad-sources to light up leg-b.
 #
-# WARN-FIRST: continue-on-error: true keeps the push unblocked. Promotion to blocking is the CL's
-#   separate step (mandatory SO + TL Gate-Verification), flipping the cmdlet's $CitationIntegrityBlocking
-#   and this job's continue-on-error true→false — exactly bdi-boundary-check's documented path.
+# LEG-A IS A FAILING CHECK (t/4042, SO e/266#2): a leg-a (link-resolution) offender turns the run RED
+#   and opens/updates the leg-a issue. Data is direct-commit, so this DETECTS a bad push loudly — it
+#   cannot prevent one (surviving vector: a pre-commit hook on the writers would). Legs b and c stay
+#   ADVISORY: they never fail the run. A non-pending leg-c red opens its OWN advisory issue (distinct
+#   title) so index staleness keeps a durable signal without being promoted. The workflow `name:` keeps
+#   its "(Warn-First)" suffix deliberately — renaming would orphan run history and name-based lookups.
+#
+# ROUTING (SO condition 1): alert issues carry `data-compliance`; the Orca reminder
+#   `data-compliance-alert-bridge` routes every open one to the CL hourly (t/3598#23). The issue
+#   assignee alone is NOT the routing — that inbox is what left #10 unread for 5 days.
+#
+# AUTO-CLOSE ON RECOVERY (SO condition 2): an evaluated run where a leg passes closes that leg's open
+#   issue with "recovered at <sha>", so each regression opens a FRESH issue rather than appending to
+#   a stale one. Skipped runs (no citation inputs) and a regen-pending leg-c close nothing.
 #
 # Push range: github.event.before..github.event.after with fetch-depth: 0 (multi-commit safe).
 #   Zero-SHA (first/force-push) or workflow_dispatch → full-set validation, not a silent no-op.
@@ -36,7 +47,7 @@ permissions:
 jobs:
   citation-link-integrity:
     runs-on: ubuntu-latest
-    continue-on-error: true   # WARN-FIRST — never blocks the push (t/3745). CL flips this at promotion.
+    continue-on-error: false   # leg-a promoted (t/4042, SO e/266). Only leg-a can fail the run — see $failing.
     steps:
       - name: Checkout data repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v6
@@ -133,49 +144,143 @@ jobs:
             }
           }
 
-          $failing = @($r.results | Where-Object { -not $_.pass -and -not ($_.leg -eq 'c' -and $regenPending) })
-          if ($failing.Count -gt 0) {
-            foreach ($leg in $failing) {
-              $sample = @($leg.offenders | Select-Object -First 5 | ForEach-Object { $_ | ConvertTo-Json -Compress -Depth 4 }) -join '; '
-              Write-Host "::warning::Citation-integrity leg ($($leg.leg)) $($leg.name): $(@($leg.offenders).Count) offender(s) — $sample"
-            }
-            exit 1
-          } else {
-            Write-Host "Citation-link integrity (a+c) passed."
+          # Per-leg state for the alert / auto-close steps: pass | fail | pending (leg-c only).
+          # A leg the cmdlet did not return is left unset, so nothing auto-closes on it. `lega` is
+          # written only AFTER the absent/floor guards below, so a not-evaluated run can never
+          # auto-close an open leg-a issue as "recovered".
+          foreach ($leg in @($r.results | Where-Object { $_.leg -eq 'c' })) {
+            $state = if ($leg.leg -eq 'c' -and $regenPending) { 'pending' } elseif ($leg.pass) { 'pass' } else { 'fail' }
+            "leg$($leg.leg)=$state" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           }
 
-      - name: Alert — idempotent issue on citation-integrity offender
+          # Every non-neutral failing leg is reported; ONLY leg-a fails the run (t/4042).
+          $reported = @($r.results | Where-Object { -not $_.pass -and -not ($_.leg -eq 'c' -and $regenPending) })
+          foreach ($leg in $reported) {
+            $sample = @($leg.offenders | Select-Object -First 5 | ForEach-Object { $_ | ConvertTo-Json -Compress -Depth 4 }) -join '; '
+            $kind = if ($leg.leg -eq 'a') { 'error' } else { 'warning' }
+            Write-Host "::$kind::Citation-integrity leg ($($leg.leg)) $($leg.name): $(@($leg.offenders).Count) offender(s) — $sample"
+          }
+          # Fail CLOSED: a leg-a absent from the results (refactor, filter, early return) is not a pass.
+          # `lega` stays unset, so the alert's "could not be evaluated" branch fires (CL, PR #29).
+          if (-not @($r.results | Where-Object { $_.leg -eq 'a' })) {
+            Write-Host "::error::Citation-link integrity: leg-a was not evaluated (absent from results) — not a pass"
+            exit 1
+          }
+          # Fail CLOSED below a coverage floor: leg-a present with pass=True after examining ~nothing
+          # (moved summaries dir, checkout-path change, empty sparse checkout) is not a pass (SO e/266#10).
+          # FLOOR = 50% of the 2026-10-07 corpus at data 02c0c2c9: 870 summaries, 16,676 node refs
+          # (non-blank refs, as the cmdlet counts them; CL recount, DevOps count and PS #3007 agree).
+          # 50% tolerates ordinary removals/re-splits while any narrowed or empty glob falls far below.
+          # Absent count fields (cmdlet predating them) also fail closed. Stipulated threshold —
+          # registered in CL's provenance register; re-baseline there, not here, if the corpus shrinks.
+          $legA = @($r.results | Where-Object { $_.leg -eq 'a' })[0]
+          $floorSummaries = 400; $floorRefs = 8000
+          $scanned = $legA.PSObject.Properties['summariesScanned']; $refs = $legA.PSObject.Properties['refsChecked']
+          if (-not $scanned -or -not $refs -or [int]$scanned.Value -lt $floorSummaries -or [int]$refs.Value -lt $floorRefs) {
+            Write-Host "::error::Citation-link integrity: leg-a evaluated below floor (summariesScanned=$(if ($scanned) { $scanned.Value } else { 'absent' }) / $floorSummaries, refsChecked=$(if ($refs) { $refs.Value } else { 'absent' }) / $floorRefs) — not a pass"
+            exit 1
+          }
+          Write-Host "leg (a) coverage: summariesScanned=$($scanned.Value) refsChecked=$($refs.Value) (floor $floorSummaries / $floorRefs)"
+          "lega=$(if ($legA.pass) { 'pass' } else { 'fail' })" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          $failing = @($reported | Where-Object { $_.leg -eq 'a' })
+          if ($failing.Count -gt 0) {
+            Write-Host "Citation-link integrity: leg-a FAILED (blocking, t/4042)."
+            exit 1
+          } else {
+            Write-Host "Citation-link integrity: leg-a passed$(if ($reported.Count) { '; advisory leg(s) reported above' })."
+          }
+
+      # Exact-title lookup of an OPEN data-compliance issue. `gh --search` also matches bodies (the
+      # post-regen leg-c issues mention "citation"), so the search only narrows; jq picks the title.
+      # A failed lookup prints a WARN and returns "" — the alert then creates a fresh issue (louder,
+      # never silent) and auto-close closes nothing (never a wrong close).
+      - name: Alert — leg-a offender (blocking) or check could not be evaluated
         if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LEGA: ${{ steps.citation_check.outputs.lega }}
         run: |
-          PUSH_SHA="${{ github.event.after }}"
+          PUSH_SHA="${{ github.event.after || github.sha }}"
           ACTOR="${{ github.actor }}"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
           TITLE="Data: citation-link integrity offender(s) on push"
-          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} introduced a citation-link integrity offender (leg a=link-resolution or c=staleness; leg b is skipped here pending the sources token).
+          if [ "$LEGA" = "fail" ]; then
+            WHAT="introduced a citation-link **leg-a** (summary→node link resolution) offender. This run is RED."
+            ACTION="See the run log's \`::error::\` line for the offending summary/node ids, repair the data, then push. The next passing run closes this issue automatically."
+          else
+            WHAT="could NOT be evaluated (the check step failed before reporting leg-a). This is not a pass."
+            ACTION="Open the run log, fix the check (module import, checkout, cmdlet error), and re-run."
+          fi
+          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} ${WHAT}
 
-          **Action:** See the run log for the offending doc/ref (leg a) or the stale-hash/key-count detail (leg c), repair the data, then push an update.
+          **Action:** ${ACTION}
 
           Run: ${RUN_URL}
 
-          Warn-first CI wiring: t/3745 (advisory; blocking flip is CL-owned via SO + TL-GV)."
+          Routing: the \`data-compliance-alert-bridge\` Orca reminder routes this issue to the CL (t/3598#23). Gate: t/4042 (leg-a promoted, SO e/266)."
 
           gh label create "data-compliance" --color "#e4e669" \
             --description "Data corpus compliance regression" 2>/dev/null || true
 
-          EXISTING=$(gh issue list --label "data-compliance" --state open \
-            --search "citation-link integrity" \
-            --json number --jq '.[0].number' 2>/dev/null || echo "")
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "citation-link integrity in:title" --json number,title); then
+            echo "::warning::issue lookup failed — creating a fresh issue rather than risk a silent alert"
+            LIST="[]"
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
 
           if [ -n "$EXISTING" ]; then
             gh issue comment "$EXISTING" --body "$BODY"
-            gh issue reopen "$EXISTING" 2>/dev/null || true
           else
-            gh issue create \
-              --title "$TITLE" \
-              --body "$BODY" \
-              --label "data-compliance" \
-              --assignee jpsnover
+            gh issue create --title "$TITLE" --body "$BODY" --label "data-compliance" --assignee jpsnover
           fi
+
+      - name: Alert — leg-c staleness (advisory; run stays green)
+        if: always() && steps.citation_check.outputs.legc == 'fail'
+        continue-on-error: true   # advisory alert — a gh hiccup here must not turn the run red
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PUSH_SHA="${{ github.event.after || github.sha }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TITLE="Data: source_index staleness (citation leg-c, advisory) on push"
+          BODY="Push ${PUSH_SHA:0:8} left \`source_index.json\` stale (leg-c: stale-hash / dead-key / missing-key). No regen was pending for this push, so the post-regen check will not cover it. **Advisory**: leg-c is not promoted; this run stays green.
+
+          **Action:** see the run log's leg-c \`::warning::\` line; regenerate the index (\`source-index-regen.yml\`, workflow_dispatch) or repair it. The next run where leg-c passes closes this issue automatically.
+
+          Run: ${RUN_URL}"
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "source_index staleness in:title" --json number,title); then
+            echo "::warning::issue lookup failed — creating a fresh issue rather than risk a silent alert"
+            LIST="[]"
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "data-compliance" --assignee jpsnover
+          fi
+
+      - name: Auto-close on recovery (SO e/266 condition 2)
+        if: always() && (steps.citation_check.outputs.lega == 'pass' || steps.citation_check.outputs.legc == 'pass')
+        continue-on-error: true   # housekeeping — a failed close leaves a stale issue, never a red run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LEGA: ${{ steps.citation_check.outputs.lega }}
+          LEGC: ${{ steps.citation_check.outputs.legc }}
+        run: |
+          SHA="${{ github.event.after || github.sha }}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          close_recovered() {  # $1 = exact title, $2 = search narrowing, $3 = leg label
+            if ! LIST=$(gh issue list --label "data-compliance" --state open --search "$2 in:title" --json number,title); then
+              echo "::warning::auto-close: issue lookup failed for '$1' — nothing closed (a stale open issue is the safe failure)"
+              return 0
+            fi
+            for N in $(echo "$LIST" | jq -r --arg t "$1" '.[] | select(.title == $t) | .number'); do
+              gh issue close "$N" --reason completed --comment "Recovered at ${SHA:0:8}: $3 passed on this push (${RUN_URL}). Closed automatically so the next regression opens a fresh issue (t/4042)."
+              echo "closed #$N ($3 recovered at ${SHA:0:8})"
+            done
+          }
+          [ "$LEGA" = "pass" ] && close_recovered "Data: citation-link integrity offender(s) on push" "citation-link integrity" "leg-a"
+          [ "$LEGC" = "pass" ] && close_recovered "Data: source_index staleness (citation leg-c, advisory) on push" "source_index staleness" "leg-c"
+          exit 0
