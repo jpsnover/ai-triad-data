@@ -158,6 +158,12 @@ jobs:
             $kind = if ($leg.leg -eq 'a') { 'error' } else { 'warning' }
             Write-Host "::$kind::Citation-integrity leg ($($leg.leg)) $($leg.name): $(@($leg.offenders).Count) offender(s) — $sample"
           }
+          # Fail CLOSED: a leg-a absent from the results (refactor, filter, early return) is not a pass.
+          # `lega` stays unset, so the alert's "could not be evaluated" branch fires (CL, PR #29).
+          if (-not @($r.results | Where-Object { $_.leg -eq 'a' })) {
+            Write-Host "::error::Citation-link integrity: leg-a was not evaluated (absent from results) — not a pass"
+            exit 1
+          }
           $failing = @($reported | Where-Object { $_.leg -eq 'a' })
           if ($failing.Count -gt 0) {
             Write-Host "Citation-link integrity: leg-a FAILED (blocking, t/4042)."
