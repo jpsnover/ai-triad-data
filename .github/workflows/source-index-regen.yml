@@ -110,10 +110,13 @@ jobs:
           BEFORE="${{ github.event.before }}"
           AFTER="${{ github.event.after }}"
           ZERO="0000000000000000000000000000000000000000"
-          # REGEN_INPUTS -- keep IDENTICAL to the list in citation-link-integrity.yml (t/3895).
-          # summaries/ (leg-c hash) + the 3 POV files (leg-c key count = live belief nodes).
-          # NOT source_index.json (the loop-guard) and NOT situations.json (leg-c doesn't count it).
-          REGEN_INPUTS="summaries/ taxonomy/Origin/accelerationist.json taxonomy/Origin/safetyist.json taxonomy/Origin/skeptic.json"
+          # t/4064: REGEN_INPUTS is the shared-source read via the ONE parser both workflows call
+          # (.github/scripts/read-regen-inputs.sh, owns the format and every fail-closed check) --
+          # neither workflow parses .github/regen-inputs.txt inline, so a reintroduced literal
+          # shows up in review as dead code. NOT source_index.json (the loop-guard) and NOT
+          # situations.json (leg-c doesn't count it) -- enforced by the file's own contents, not
+          # this workflow.
+          REGEN_INPUTS="$(bash .github/scripts/read-regen-inputs.sh)" || exit 1
           if [ "$BEFORE" = "$ZERO" ]; then
             echo "Zero-SHA push (first/force-push) — full-set regen"
             echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
@@ -130,8 +133,18 @@ jobs:
             # EXPLICITLY, not inferred from empty output, and a diff failure falls
             # back to a full-set regen with a durable WARN (root AGENTS.md
             # Fallback-Path Logging: log that a fallback was taken, and why).
+            #
+            # t/4064 condition 3: editing the shared input-set file itself is a regen input --
+            # the next regen must run full-set. Checked BEFORE the ordinary REGEN_INPUTS diff
+            # (which reads the file's CONTENTS, not whether its definition just changed), and
+            # orthogonal to the loop-guard above: a source_index.json-ONLY push matches neither
+            # this check nor REGEN_INPUTS, so the guard is untouched.
+            RIDEF_DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- .github/regen-inputs.txt 2>/dev/null || true)
             # shellcheck disable=SC2086 -- REGEN_INPUTS is a deliberate word-split pathspec list
-            if ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
+            if [ -n "$RIDEF_DIFF" ]; then
+              echo "regen-inputs.txt itself changed — forcing full-set regen (t/4064 condition 3)"
+              echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
+            elif ! DIFF=$(git diff --name-only "$BEFORE..$AFTER" -- $REGEN_INPUTS 2>&1); then
               echo "::warning::git diff $BEFORE..$AFTER failed (BEFORE SHA likely unreachable -- force-push or history rewrite). FALLBACK: full-set regen rather than silently skipping. git output: $DIFF"
               echo "inputs_changed=true" >> "$GITHUB_OUTPUT"
             elif [ -n "$DIFF" ]; then
@@ -309,12 +322,24 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PUSH_SHA="${{ github.event.after }}"
+          # t/4064 (p/648#106): on workflow_dispatch, github.event.after is EMPTY and there's no
+          # branch to show -- a probe/manual run then reads as an unqualified "push by X failed"
+          # on main, indistinguishable from a real production alert. github.sha is always
+          # populated (it's the commit the run actually checked out), and ref_name/event_name
+          # disambiguate dispatch and non-main runs explicitly rather than leaving a blank.
+          PUSH_SHA="${{ github.event.after || github.sha }}"
           ACTOR="${{ github.actor }}"
+          REF_NAME="${{ github.ref_name }}"
+          EVENT_NAME="${{ github.event_name }}"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          TITLE="Data: source_index.json regeneration failed"
-          BODY="Push ${PUSH_SHA:0:8} by ${ACTOR} added summaries, but Build-NodeSourceIndex
+          PREFIX=""
+          if [ "$REF_NAME" != "main" ]; then
+            PREFIX="[non-main: ${REF_NAME}] "
+          fi
+
+          TITLE="${PREFIX}Data: source_index.json regeneration failed"
+          BODY="${PREFIX}Push ${PUSH_SHA:0:8} by ${ACTOR} (ref: ${REF_NAME}, event: ${EVENT_NAME}) added summaries, but Build-NodeSourceIndex
           regeneration or the commit-back failed. **source_index.json is now stale with NO
           detector other than leg-c (advisory) catching it on the next citation-integrity run.**
 
