@@ -61,6 +61,72 @@ jobs:
           path: ai-triad-research
           fetch-depth: 1
 
+      # t/3895: a neutral (regen-pending) leg-c here is only safe while REGEN_INPUTS is
+      # IDENTICAL to source-index-regen.yml's copy -- they diff the same push range against
+      # the same input set, so "regen will run" and "regen just ran" must mean the same
+      # files. This step is NOT advisory: it runs first (before anything trusts "pending"),
+      # and continue-on-error defaults to false, same as the job itself.
+      - name: REGEN_INPUTS drift self-check
+        id: regen_inputs_drift
+        run: |
+          extract() {
+            grep -E '^\s*REGEN_INPUTS="' "$1" | head -1 | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/'
+          }
+          A="$(extract .github/workflows/citation-link-integrity.yml)"
+          B="$(extract .github/workflows/source-index-regen.yml)"
+          if [ -z "$A" ] || [ -z "$B" ]; then
+            echo "::error::REGEN_INPUTS extraction failed (citation='$A' regen='$B') -- cannot verify drift, failing closed"
+            exit 1
+          fi
+          if [ "$A" != "$B" ]; then
+            echo "::error::REGEN_INPUTS drift between workflows -- citation-link-integrity.yml: '$A' / source-index-regen.yml: '$B'"
+            exit 1
+          fi
+          echo "REGEN_INPUTS consistent across both workflows: $A"
+
+      - name: Alert — REGEN_INPUTS drift
+        if: failure() && steps.regen_inputs_drift.outcome == 'failure'
+        continue-on-error: true   # advisory alert — a gh hiccup here must not mask the already-red run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TITLE="REGEN_INPUTS drift between citation and regen workflows"
+          BODY="\`.github/workflows/citation-link-integrity.yml\` and \`.github/workflows/source-index-regen.yml\` no longer carry the same \`REGEN_INPUTS\` pathspec. A neutral (regen-pending) leg-c verdict depends on the two files diffing the same input set — while they disagree, that safety does not hold, and this check fails the run rather than reporting a trustworthy neutral.
+
+          **Action:** see the run log's \`::error::\` line for both values, then make the two copies identical again. The next passing run closes this issue automatically.
+
+          Run: ${RUN_URL}"
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "REGEN_INPUTS drift in:title" --json number,title); then
+            echo "::warning::issue lookup failed — creating a fresh issue rather than risk a silent alert"
+            LIST="[]"
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "data-compliance" --assignee jpsnover
+          fi
+
+      - name: Auto-close REGEN_INPUTS drift issue on recovery
+        if: always() && steps.regen_inputs_drift.outcome == 'success'
+        continue-on-error: true   # housekeeping — a failed close leaves a stale issue, never a red run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SHA="${{ github.event.after || github.sha }}"
+          TITLE="REGEN_INPUTS drift between citation and regen workflows"
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "REGEN_INPUTS drift in:title" --json number,title); then
+            echo "::warning::issue lookup failed — skipping auto-close, never a wrong close"
+            exit 0
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue close "$EXISTING" --comment "Recovered at ${SHA:0:8}: REGEN_INPUTS now matches between both workflows."
+          fi
+
       - name: Check if citation inputs changed
         id: inputcheck
         run: |
