@@ -191,7 +191,29 @@ jobs:
             echo "No index change to commit (byte-identical regen — t/3598 determinism)"
           else
             git commit -m "chore: regenerate source_index.json (t/3788)"
-            git push
+            # Push with rebase-and-retry. A push to main landing mid-run used to reject this
+            # commit-back as non-fast-forward, with no retry, stranding a stale index
+            # (run 37679003670, data #49/#54). Rebasing our single index commit onto the
+            # newer main is correct: if the intervening commits changed regen inputs, they
+            # triggered their own push run, which is queued behind this one (the
+            # concurrency group never cancels) and regenerates again. A rebase CONFLICT means
+            # someone else committed source_index.json, so stop loudly rather than overwrite.
+            pushed=false
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD:main; then pushed=true; break; fi
+              echo "::warning::commit-back push rejected (attempt $attempt/5) -- main moved mid-run; rebasing onto origin/main and retrying"
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort || true
+                echo "::error::commit-back rebase CONFLICT on taxonomy/Origin/source_index.json -- another commit changed the index concurrently; not overwriting it. Re-dispatch source-index-regen after main settles."
+                exit 1
+              fi
+              sleep $((attempt * 5))
+            done
+            if [ "$pushed" != true ]; then
+              echo "::error::commit-back push still rejected after 5 rebase-and-retry attempts -- index NOT published; re-dispatch source-index-regen"
+              exit 1
+            fi
           fi
 
       - name: Post-regen leg-c (staleness on the FRESH index — t/3895)
