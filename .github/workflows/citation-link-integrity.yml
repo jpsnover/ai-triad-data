@@ -321,20 +321,26 @@ jobs:
         id: regen_inputs_drift
         if: always()
         run: |
-          extract() {
-            local file="$1"
-            local n
-            # `|| true` on both greps below: this script runs under bash -e/pipefail (GH
-            # Actions default), and grep exits 1 on zero matches -- left unguarded, a
-            # zero-match file would abort the step via set -e before reaching the explicit
-            # ::error:: checks here, losing the diagnostic. These two checks (count != 1,
-            # then empty-string below) must be what fails the step, not an implicit set -e exit.
-            n="$(grep -c -E '^\s*REGEN_INPUTS="' "$file" || true)"
+          # Count check runs as its own top-level loop, BEFORE any extraction. This is
+          # deliberate, not stylistic: an earlier version put this check's `echo "::error::"`
+          # inside a function that was itself called via `A="$(extract ...)"` command
+          # substitution. Command substitution captures the function's stdout into the
+          # variable -- so the error text was silently swallowed into $A instead of reaching
+          # the job log, and the step just died with a bare "Process completed with exit code
+          # 1" and no diagnostic (caught live in the SO e/273#2 condition-1 arm, t/3895). An
+          # `echo "::error::"` must never run inside anything wrapped in `$(...)`.
+          for f in .github/workflows/citation-link-integrity.yml .github/workflows/source-index-regen.yml; do
+            # `|| true`: this script runs under bash -e (GH Actions default), and grep exits 1
+            # on zero matches -- left unguarded, a zero-match file would abort the step via
+            # set -e before reaching the explicit ::error:: check below, losing the diagnostic.
+            n="$(grep -c -E '^\s*REGEN_INPUTS="' "$f" || true)"
             if [ "$n" -ne 1 ]; then
-              echo "::error::REGEN_INPUTS assignment count in $file is $n, expected exactly 1 -- failing closed (SO e/273#2 condition 1: a second assignment, e.g. a branch/debug override, must not silently win via first-match)"
+              echo "::error::REGEN_INPUTS assignment count in $f is $n, expected exactly 1 -- failing closed (SO e/273#2 condition 1: a second assignment, e.g. a branch/debug override, must not silently win via first-match)"
               exit 1
             fi
-            grep -E '^\s*REGEN_INPUTS="' "$file" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/' || true
+          done
+          extract() {
+            grep -E '^\s*REGEN_INPUTS="' "$1" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/' || true
           }
           A="$(extract .github/workflows/citation-link-integrity.yml)"
           B="$(extract .github/workflows/source-index-regen.yml)"
