@@ -145,8 +145,10 @@ jobs:
           }
 
           # Per-leg state for the alert / auto-close steps: pass | fail | pending (leg-c only).
-          # A leg the cmdlet did not return is left unset, so nothing auto-closes on it.
-          foreach ($leg in @($r.results | Where-Object { $_.leg -in 'a', 'c' })) {
+          # A leg the cmdlet did not return is left unset, so nothing auto-closes on it. `lega` is
+          # written only AFTER the absent/floor guards below, so a not-evaluated run can never
+          # auto-close an open leg-a issue as "recovered".
+          foreach ($leg in @($r.results | Where-Object { $_.leg -eq 'c' })) {
             $state = if ($leg.leg -eq 'c' -and $regenPending) { 'pending' } elseif ($leg.pass) { 'pass' } else { 'fail' }
             "leg$($leg.leg)=$state" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           }
@@ -164,6 +166,22 @@ jobs:
             Write-Host "::error::Citation-link integrity: leg-a was not evaluated (absent from results) — not a pass"
             exit 1
           }
+          # Fail CLOSED below a coverage floor: leg-a present with pass=True after examining ~nothing
+          # (moved summaries dir, checkout-path change, empty sparse checkout) is not a pass (SO e/266#10).
+          # FLOOR = 50% of the 2026-10-07 corpus at data 02c0c2c9: 870 summaries, 16,685 node refs
+          # (11,424 key-point + 5,261 claim; CL count, DevOps cross-check 16,676 — within noise).
+          # 50% tolerates ordinary removals/re-splits while any narrowed or empty glob falls far below.
+          # Absent count fields (cmdlet predating them) also fail closed. Stipulated threshold —
+          # registered in CL's provenance register; re-baseline there, not here, if the corpus shrinks.
+          $legA = @($r.results | Where-Object { $_.leg -eq 'a' })[0]
+          $floorSummaries = 400; $floorRefs = 8000
+          $scanned = $legA.PSObject.Properties['summariesScanned']; $refs = $legA.PSObject.Properties['refsChecked']
+          if (-not $scanned -or -not $refs -or [int]$scanned.Value -lt $floorSummaries -or [int]$refs.Value -lt $floorRefs) {
+            Write-Host "::error::Citation-link integrity: leg-a evaluated below floor (summariesScanned=$(if ($scanned) { $scanned.Value } else { 'absent' }) / $floorSummaries, refsChecked=$(if ($refs) { $refs.Value } else { 'absent' }) / $floorRefs) — not a pass"
+            exit 1
+          }
+          Write-Host "leg (a) coverage: summariesScanned=$($scanned.Value) refsChecked=$($refs.Value) (floor $floorSummaries / $floorRefs)"
+          "lega=$(if ($legA.pass) { 'pass' } else { 'fail' })" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           $failing = @($reported | Where-Object { $_.leg -eq 'a' })
           if ($failing.Count -gt 0) {
             Write-Host "Citation-link integrity: leg-a FAILED (blocking, t/4042)."
