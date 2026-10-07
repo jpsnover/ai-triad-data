@@ -197,6 +197,22 @@ jobs:
       # A failed lookup prints a WARN and returns "" — the alert then creates a fresh issue (louder,
       # never silent) and auto-close closes nothing (never a wrong close).
       - name: Alert — leg-a offender (blocking) or check could not be evaluated
+        # t/3895 (Lead review, data #37): a bare `steps.citation_check.outcome == 'failure'`
+        # -- with no success()/failure()/always()/cancelled() anywhere in the expression --
+        # gets an IMPLIED `success() &&` prefix from GitHub Actions. If citation_check itself
+        # is what failed, the job is already past success(), so that implied prefix makes the
+        # WHOLE condition false and this alert can never fire -- the exact case it exists for.
+        # `failure()` as an explicit leading term avoids the implicit prefix.
+        # SO e/273#2 condition 2: bare `failure()` is correct ONLY because this step runs
+        # BEFORE the `regen_inputs_drift` step (below) in job order -- at evaluation time the
+        # drift step hasn't run yet, so `failure()` here can only be true because of an EARLIER
+        # step (citation_check or a prior checkout/setup step), never because of the drift
+        # step itself. A `steps.regen_inputs_drift.outcome != 'failure'` exclusion was
+        # considered and REJECTED: it can never be true at this point in the order, so it reads
+        # like a guard while doing nothing -- and if a future edit ever moves the drift step
+        # ABOVE this one, that dead clause would silently START suppressing this alert exactly
+        # when both steps fail together. Order is load-bearing: if the drift step ever moves
+        # before this one, `failure()` must be re-scoped then, not before.
         if: failure()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -286,3 +302,99 @@ jobs:
           [ "$LEGA" = "pass" ] && close_recovered "Data: citation-link integrity offender(s) on push" "citation-link integrity" "leg-a"
           [ "$LEGC" = "pass" ] && close_recovered "Data: source_index staleness (citation leg-c, advisory) on push" "source_index staleness" "leg-c"
           exit 0
+
+      # t/3895 (Lead review, data #37): moved to the END of the job, with `if: always()`. It
+      # used to run FIRST, so a drift failure skipped every step after it, including
+      # citation_check -- leg-a could never be evaluated on the same push that broke drift.
+      # Placed last and forced to always() run, it evaluates independently of whatever
+      # citation_check/leg-a/leg-c did, and (symmetrically) nothing earlier in the job can
+      # skip IT either. A neutral (regen-pending) leg-c here is only safe while REGEN_INPUTS is
+      # IDENTICAL to source-index-regen.yml's copy -- they diff the same push range against the
+      # same input set, so "regen will run" and "regen just ran" must mean the same files. NOT
+      # advisory: continue-on-error defaults to false, same as the job itself.
+      # SO e/273#2 condition 4 (CL precondition, e/273#3): no warn cycle for this step --
+      # deterministic, both arms (and the regen-only arm) proven in real data CI (t/3895,
+      # SO e/273). leg-c itself remains ADVISORY; this step only meets CL's precondition for a
+      # possible future leg-c flip -- it does not promote leg-c and must never be read as doing so.
+      - name: REGEN_INPUTS drift self-check
+        id: regen_inputs_drift
+        if: always()
+        run: |
+          # Count check runs as its own top-level loop, BEFORE any extraction. This is
+          # deliberate, not stylistic: an earlier version put this check's `echo "::error::"`
+          # inside a function that was itself called via `A="$(extract ...)"` command
+          # substitution. Command substitution captures the function's stdout into the
+          # variable -- so the error text was silently swallowed into $A instead of reaching
+          # the job log, and the step just died with a bare "Process completed with exit code
+          # 1" and no diagnostic (caught live in the SO e/273#2 condition-1 arm, t/3895). An
+          # `echo "::error::"` must never run inside anything wrapped in `$(...)`.
+          for f in .github/workflows/citation-link-integrity.yml .github/workflows/source-index-regen.yml; do
+            # `|| true`: this script runs under bash -e (GH Actions default), and grep exits 1
+            # on zero matches -- left unguarded, a zero-match file would abort the step via
+            # set -e before reaching the explicit ::error:: check below, losing the diagnostic.
+            n="$(grep -c -E '^\s*REGEN_INPUTS="' "$f" || true)"
+            if [ "$n" -ne 1 ]; then
+              echo "::error::REGEN_INPUTS assignment count in $f is $n, expected exactly 1 -- failing closed (SO e/273#2 condition 1: a second assignment, e.g. a branch/debug override, must not silently win via first-match)"
+              exit 1
+            fi
+          done
+          extract() {
+            grep -E '^\s*REGEN_INPUTS="' "$1" | sed -E 's/^\s*REGEN_INPUTS="([^"]*)".*/\1/' || true
+          }
+          A="$(extract .github/workflows/citation-link-integrity.yml)"
+          B="$(extract .github/workflows/source-index-regen.yml)"
+          if [ -z "$A" ] || [ -z "$B" ]; then
+            echo "::error::REGEN_INPUTS extraction failed (citation='$A' regen='$B') -- cannot verify drift, failing closed"
+            exit 1
+          fi
+          if [ "$A" != "$B" ]; then
+            echo "::error::REGEN_INPUTS drift between workflows -- citation-link-integrity.yml: '$A' / source-index-regen.yml: '$B'"
+            exit 1
+          fi
+          echo "REGEN_INPUTS consistent across both workflows: $A"
+
+      - name: Alert — REGEN_INPUTS drift
+        # t/3895: explicit always() (not failure()) as the leading term -- citation_check may
+        # already have failed by this point in the job, and this step must still evaluate and
+        # fire on ITS OWN outcome regardless, never suppressed by an unrelated earlier failure.
+        if: always() && steps.regen_inputs_drift.outcome == 'failure'
+        continue-on-error: true   # advisory alert — a gh hiccup here must not mask the already-red run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          TITLE="REGEN_INPUTS drift between citation and regen workflows"
+          BODY="\`.github/workflows/citation-link-integrity.yml\` and \`.github/workflows/source-index-regen.yml\` no longer carry the same \`REGEN_INPUTS\` pathspec. A neutral (regen-pending) leg-c verdict depends on the two files diffing the same input set — while they disagree, that safety does not hold, and this check fails the run rather than reporting a trustworthy neutral.
+
+          **Action:** see the run log's \`::error::\` line for both values, then make the two copies identical again. The next passing run closes this issue automatically.
+
+          Run: ${RUN_URL}"
+          gh label create "data-compliance" --color "#e4e669" \
+            --description "Data corpus compliance regression" 2>/dev/null || true
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "REGEN_INPUTS drift in:title" --json number,title); then
+            echo "::warning::issue lookup failed — creating a fresh issue rather than risk a silent alert"
+            LIST="[]"
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create --title "$TITLE" --body "$BODY" --label "data-compliance" --assignee jpsnover
+          fi
+
+      - name: Auto-close REGEN_INPUTS drift issue on recovery
+        if: always() && steps.regen_inputs_drift.outcome == 'success'
+        continue-on-error: true   # housekeeping — a failed close leaves a stale issue, never a red run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SHA="${{ github.event.after || github.sha }}"
+          TITLE="REGEN_INPUTS drift between citation and regen workflows"
+          if ! LIST=$(gh issue list --label "data-compliance" --state open --search "REGEN_INPUTS drift in:title" --json number,title); then
+            echo "::warning::issue lookup failed — skipping auto-close, never a wrong close"
+            exit 0
+          fi
+          EXISTING=$(echo "$LIST" | jq -r --arg t "$TITLE" '[.[] | select(.title == $t)][0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            gh issue close "$EXISTING" --comment "Recovered at ${SHA:0:8}: REGEN_INPUTS now matches between both workflows."
+          fi
