@@ -47,6 +47,8 @@ env:
   ESCALATE_TO: 'jpsnover'
   LEGA_ISSUE_TITLE: 'Data: citation-link integrity offender(s) on push'
   ORPHAN_TITLE: 'Watchdog: leg-a run failed with no alert issue'
+  # A red citation run is ALSO explained by the REGEN_INPUTS drift self-check's own issue (t/3895, data PR #37).
+  DRIFT_ISSUE_TITLE: 'REGEN_INPUTS drift between citation and regen workflows'
 
 jobs:
   watchdog:
@@ -91,7 +93,7 @@ jobs:
           ORPHAN='no'
           if [ "$LAST_CONC" = "failure" ]; then
             OPEN_LEGA=$(gh issue list -R "$REPO" --label data-compliance --state open --limit 200 --json number,title \
-              | jq -r --arg a "$LEGA_ISSUE_TITLE" --arg o "$ORPHAN_TITLE" '[.[] | select(.title == $a or .title == $o)] | length')
+              | jq -r --arg a "$LEGA_ISSUE_TITLE" --arg o "$ORPHAN_TITLE" --arg d "$DRIFT_ISSUE_TITLE" '[.[] | select(.title == $a or .title == $o or .title == $d)] | length')
             if [ "$OPEN_LEGA" = "0" ]; then
               ORPHAN='yes'
               LAST_URL=$(jq -r '.[0].url' <<<"$LAST"); LAST_SHA=$(jq -r '.[0].headSha[0:8]' <<<"$LAST")
