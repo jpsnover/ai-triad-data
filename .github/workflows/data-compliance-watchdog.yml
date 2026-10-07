@@ -1,0 +1,110 @@
+# ─── Data-Compliance Alert Watchdog (t/4053) ───
+# What:  Hourly, OUTSIDE Orca: flags any `data-compliance` alert that has sat unrouted, and any red
+#        leg-a run that produced no alert issue. Escalates to the PI through GitHub (assign + @mention).
+#
+# Why:   The routing for data-compliance alerts is the Orca reminder `data-compliance-alert-bridge`
+#        (r/25 -> CL). Orca reminders coalesce missed fires and stop entirely while the Orca host is
+#        down (Orca Support t/4053#3/#5), so the bridge is best-effort, not hourly. A heartbeat written
+#        BY the bridge cannot detect a bridge that did not fire. This watchdog measures the OUTCOME
+#        (an alert sat unrouted) on GitHub's scheduler, a separate failure domain.
+#
+# Delivery (PI decision, t/4053#7: "both"):
+#   - outside Orca: the stale issue is labelled `bridge-stale`, assigned to and @-mentioning jpsnover;
+#   - inside Orca:  DevOps' hourly r/23 runs operations/devops/Get-DataComplianceWatchdog.ps1 (code repo),
+#                   which PULLS open `bridge-stale` issues AND checks this workflow ran in the last 12h
+#                   (a disabled/throttled schedule looks exactly like "nothing stale" otherwise).
+#
+# Stale = open `data-compliance` issue, WITHOUT `owner-acked`, created more than THRESHOLD_HOURS ago.
+#   Flagging is idempotent on the `bridge-stale` label: one @mention per episode, never hourly spam.
+#
+# Orphan red run (TL GV arm 4): the LATEST citation-link-integrity run on main concluded failure, yet
+#   no open leg-a issue exists -> the alert step itself failed (token/permissions). Opens its own issue.
+#
+# This is an ALERT, not a gate: it never blocks a push. It FAILS LOUDLY (red run + ::error::) when it
+# cannot query GitHub, so "could not check" is never reported as "nothing stale".
+
+name: Data-Compliance Alert Watchdog
+
+on:
+  schedule:
+    - cron: '41 * * * *'   # hourly at :41 (off the hour; GitHub may still delay under load)
+  workflow_dispatch:
+    inputs:
+      threshold_hours:
+        description: 'Flag unacked data-compliance issues older than this many hours (default 6)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+  actions: read
+
+env:
+  DEFAULT_THRESHOLD_HOURS: '6'
+  STALE_LABEL: 'bridge-stale'
+  ACK_LABEL: 'owner-acked'
+  ESCALATE_TO: 'jpsnover'
+  LEGA_ISSUE_TITLE: 'Data: citation-link integrity offender(s) on push'
+  ORPHAN_TITLE: 'Watchdog: leg-a run failed with no alert issue'
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Flag unrouted data-compliance alerts and orphan red leg-a runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          THRESHOLD_HOURS: ${{ github.event.inputs.threshold_hours || env.DEFAULT_THRESHOLD_HOURS }}
+          CITATION_BRANCH: main
+        run: |
+          set -euo pipefail
+          trap 'echo "::error::data-compliance watchdog failed at line ${LINENO} (exit $?) — alerts were NOT checked this run (t/4053)"' ERR
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          NOW=$(date -u +%s)
+
+          gh label create "$STALE_LABEL" -R "$REPO" --color "#d93f0b" \
+            --description "data-compliance alert sat unrouted past the watchdog threshold (t/4053)" 2>/dev/null || true
+
+          # --- 1. stale, unacked data-compliance issues ---
+          ISSUES=$(gh issue list -R "$REPO" --label data-compliance --state open --limit 200 --json number,title,createdAt,labels)
+          EXAMINED=$(jq 'length' <<<"$ISSUES")
+          STALE=$(jq -r --argjson now "$NOW" --argjson t "$THRESHOLD_HOURS" --arg ack "$ACK_LABEL" '
+            .[] | select((.labels | map(.name) | index($ack)) | not)
+                | select(($now - (.createdAt | fromdateiso8601)) > ($t * 3600))
+                | .number' <<<"$ISSUES")
+          NEWLY=0; ALREADY=0
+          for N in $STALE; do
+            if jq -e --argjson n "$N" --arg s "$STALE_LABEL" '.[] | select(.number == $n) | .labels | map(.name) | index($s)' <<<"$ISSUES" >/dev/null; then
+              ALREADY=$((ALREADY + 1)); continue   # already escalated this episode: no repeat @mention
+            fi
+            AGE_H=$(jq -r --argjson n "$N" --argjson now "$NOW" '.[] | select(.number == $n) | (($now - (.createdAt | fromdateiso8601)) / 3600 | floor)' <<<"$ISSUES")
+            gh issue edit "$N" -R "$REPO" --add-label "$STALE_LABEL" --add-assignee "$ESCALATE_TO"
+            gh issue comment "$N" -R "$REPO" --body "@${ESCALATE_TO} **This data-compliance alert has sat unrouted for ${AGE_H}h** (no \`${ACK_LABEL}\` label; threshold ${THRESHOLD_HOURS}h). The Orca routing bridge (r/25 -> CL) has not handled it — it may be stalled. Please route it or check the bridge. Watchdog run: ${RUN_URL} (t/4053)"
+            NEWLY=$((NEWLY + 1))
+          done
+
+          # --- 2. orphan red leg-a run (the alert step itself failed to open an issue) ---
+          LAST=$(gh run list -R "$REPO" --workflow citation-link-integrity.yml --branch "$CITATION_BRANCH" --status completed --limit 1 --json databaseId,conclusion,headSha,url)
+          LAST_CONC=$(jq -r '.[0].conclusion // "none"' <<<"$LAST")
+          ORPHAN='no'
+          if [ "$LAST_CONC" = "failure" ]; then
+            OPEN_LEGA=$(gh issue list -R "$REPO" --label data-compliance --state open --limit 200 --json number,title \
+              | jq -r --arg a "$LEGA_ISSUE_TITLE" --arg o "$ORPHAN_TITLE" '[.[] | select(.title == $a or .title == $o)] | length')
+            if [ "$OPEN_LEGA" = "0" ]; then
+              ORPHAN='yes'
+              LAST_URL=$(jq -r '.[0].url' <<<"$LAST"); LAST_SHA=$(jq -r '.[0].headSha[0:8]' <<<"$LAST")
+              gh issue create -R "$REPO" --title "$ORPHAN_TITLE" --label data-compliance --label "$STALE_LABEL" --assignee "$ESCALATE_TO" \
+                --body "@${ESCALATE_TO} The latest citation-link-integrity run on \`${CITATION_BRANCH}\` (${LAST_SHA}) **failed, but no leg-a alert issue is open** — the run's own alert step did not open one (token/permissions?). A red leg-a run that reaches no issue reaches no one. Run: ${LAST_URL} · Watchdog: ${RUN_URL} (t/4053 arm 4)"
+            fi
+          fi
+
+          # --- heartbeat: what this run examined (the Orca reader checks that runs happen at all) ---
+          {
+            echo "### Data-compliance watchdog"
+            echo "- open data-compliance issues examined: **${EXAMINED}** (threshold ${THRESHOLD_HOURS}h)"
+            echo "- newly flagged \`${STALE_LABEL}\`: **${NEWLY}**; already flagged: ${ALREADY}"
+            echo "- latest citation-link-integrity on \`${CITATION_BRANCH}\`: ${LAST_CONC}; orphan red run flagged: ${ORPHAN}"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "examined=${EXAMINED} newly_flagged=${NEWLY} already_flagged=${ALREADY} lega_latest=${LAST_CONC} orphan=${ORPHAN}"
